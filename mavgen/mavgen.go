@@ -548,7 +548,7 @@ func (e {{$enumName}}) String() string {
 	if name, ok := map[{{$enumName}}]string{ {{range .Entries}}{{.Name}}: "{{.Name}}", {{end}} }[e]; ok {
 		return name
 	}
-	return fmt.Sprintf("{{$enumName}}_ENUM_UNDEFINED_%d", int(e))
+	return fmt.Sprintf("{{$enumName}}_UNDEFINED_%d", int(e))
 }
 
 // Bitmask return string representetion of intersects {{$enumName}} enums 
