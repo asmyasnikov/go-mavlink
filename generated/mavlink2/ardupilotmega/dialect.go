@@ -59,6 +59,19 @@ func (e ACCELCAL_VEHICLE_POS) String() string {
 	}
 }
 
+func (e ACCELCAL_VEHICLE_POS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ACCELCAL_VEHICLE_POS{ACCELCAL_VEHICLE_POS_LEVEL, ACCELCAL_VEHICLE_POS_LEFT, ACCELCAL_VEHICLE_POS_RIGHT, ACCELCAL_VEHICLE_POS_NOSEDOWN, ACCELCAL_VEHICLE_POS_NOSEUP, ACCELCAL_VEHICLE_POS_BACK, ACCELCAL_VEHICLE_POS_SUCCESS, ACCELCAL_VEHICLE_POS_FAILED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // HEADING_TYPE type
 type HEADING_TYPE int
 
@@ -80,6 +93,19 @@ func (e HEADING_TYPE) String() string {
 	}
 }
 
+func (e HEADING_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []HEADING_TYPE{HEADING_TYPE_COURSE_OVER_GROUND, HEADING_TYPE_HEADING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // SPEED_TYPE type
 type SPEED_TYPE int
 
@@ -99,6 +125,19 @@ func (e SPEED_TYPE) String() string {
 	default:
 		return fmt.Sprintf("SPEED_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e SPEED_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []SPEED_TYPE{SPEED_TYPE_AIRSPEED, SPEED_TYPE_GROUNDSPEED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_CMD type
@@ -834,6 +873,19 @@ func (e MAV_CMD) String() string {
 	}
 }
 
+func (e MAV_CMD) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_CMD{MAV_CMD_DO_SET_RESUME_REPEAT_DIST, MAV_CMD_NAV_ALTITUDE_WAIT, MAV_CMD_POWER_OFF_INITIATED, MAV_CMD_SOLO_BTN_FLY_CLICK, MAV_CMD_SOLO_BTN_FLY_HOLD, MAV_CMD_SOLO_BTN_PAUSE_CLICK, MAV_CMD_FIXED_MAG_CAL, MAV_CMD_FIXED_MAG_CAL_FIELD, MAV_CMD_DO_START_MAG_CAL, MAV_CMD_DO_ACCEPT_MAG_CAL, MAV_CMD_DO_CANCEL_MAG_CAL, MAV_CMD_ACCELCAL_VEHICLE_POS, MAV_CMD_DO_SEND_BANNER, MAV_CMD_SET_FACTORY_TEST_MODE, MAV_CMD_GIMBAL_RESET, MAV_CMD_GIMBAL_AXIS_CALIBRATION_STATUS, MAV_CMD_GIMBAL_REQUEST_AXIS_CALIBRATION, MAV_CMD_GIMBAL_FULL_RESET, MAV_CMD_FLASH_BOOTLOADER, MAV_CMD_BATTERY_RESET, MAV_CMD_DEBUG_TRAP, MAV_CMD_SCRIPTING, MAV_CMD_GUIDED_CHANGE_SPEED, MAV_CMD_GUIDED_CHANGE_ALTITUDE, MAV_CMD_GUIDED_CHANGE_HEADING, MAV_CMD_NAV_WAYPOINT, MAV_CMD_NAV_LOITER_UNLIM, MAV_CMD_NAV_LOITER_TURNS, MAV_CMD_NAV_LOITER_TIME, MAV_CMD_NAV_RETURN_TO_LAUNCH, MAV_CMD_NAV_LAND, MAV_CMD_NAV_TAKEOFF, MAV_CMD_NAV_LAND_LOCAL, MAV_CMD_NAV_TAKEOFF_LOCAL, MAV_CMD_NAV_FOLLOW, MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT, MAV_CMD_NAV_LOITER_TO_ALT, MAV_CMD_DO_FOLLOW, MAV_CMD_DO_FOLLOW_REPOSITION, MAV_CMD_DO_ORBIT, MAV_CMD_NAV_ROI, MAV_CMD_NAV_PATHPLANNING, MAV_CMD_NAV_SPLINE_WAYPOINT, MAV_CMD_NAV_VTOL_TAKEOFF, MAV_CMD_NAV_VTOL_LAND, MAV_CMD_NAV_GUIDED_ENABLE, MAV_CMD_NAV_DELAY, MAV_CMD_NAV_PAYLOAD_PLACE, MAV_CMD_NAV_LAST, MAV_CMD_CONDITION_DELAY, MAV_CMD_CONDITION_CHANGE_ALT, MAV_CMD_CONDITION_DISTANCE, MAV_CMD_CONDITION_YAW, MAV_CMD_CONDITION_LAST, MAV_CMD_DO_SET_MODE, MAV_CMD_DO_JUMP, MAV_CMD_DO_CHANGE_SPEED, MAV_CMD_DO_SET_HOME, MAV_CMD_DO_SET_PARAMETER, MAV_CMD_DO_SET_RELAY, MAV_CMD_DO_REPEAT_RELAY, MAV_CMD_DO_SET_SERVO, MAV_CMD_DO_REPEAT_SERVO, MAV_CMD_DO_FLIGHTTERMINATION, MAV_CMD_DO_CHANGE_ALTITUDE, MAV_CMD_DO_SET_ACTUATOR, MAV_CMD_DO_LAND_START, MAV_CMD_DO_RALLY_LAND, MAV_CMD_DO_GO_AROUND, MAV_CMD_DO_REPOSITION, MAV_CMD_DO_PAUSE_CONTINUE, MAV_CMD_DO_SET_REVERSE, MAV_CMD_DO_SET_ROI_LOCATION, MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET, MAV_CMD_DO_SET_ROI_NONE, MAV_CMD_DO_SET_ROI_SYSID, MAV_CMD_DO_CONTROL_VIDEO, MAV_CMD_DO_SET_ROI, MAV_CMD_DO_DIGICAM_CONFIGURE, MAV_CMD_DO_DIGICAM_CONTROL, MAV_CMD_DO_MOUNT_CONFIGURE, MAV_CMD_DO_MOUNT_CONTROL, MAV_CMD_DO_SET_CAM_TRIGG_DIST, MAV_CMD_DO_FENCE_ENABLE, MAV_CMD_DO_PARACHUTE, MAV_CMD_DO_MOTOR_TEST, MAV_CMD_DO_INVERTED_FLIGHT, MAV_CMD_DO_GRIPPER, MAV_CMD_DO_AUTOTUNE_ENABLE, MAV_CMD_NAV_SET_YAW_SPEED, MAV_CMD_DO_SET_CAM_TRIGG_INTERVAL, MAV_CMD_DO_MOUNT_CONTROL_QUAT, MAV_CMD_DO_GUIDED_MASTER, MAV_CMD_DO_GUIDED_LIMITS, MAV_CMD_DO_ENGINE_CONTROL, MAV_CMD_DO_SET_MISSION_CURRENT, MAV_CMD_DO_LAST, MAV_CMD_PREFLIGHT_CALIBRATION, MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS, MAV_CMD_PREFLIGHT_UAVCAN, MAV_CMD_PREFLIGHT_STORAGE, MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN, MAV_CMD_DO_UPGRADE, MAV_CMD_OVERRIDE_GOTO, MAV_CMD_OBLIQUE_SURVEY, MAV_CMD_MISSION_START, MAV_CMD_COMPONENT_ARM_DISARM, MAV_CMD_ILLUMINATOR_ON_OFF, MAV_CMD_GET_HOME_POSITION, MAV_CMD_INJECT_FAILURE, MAV_CMD_START_RX_PAIR, MAV_CMD_GET_MESSAGE_INTERVAL, MAV_CMD_SET_MESSAGE_INTERVAL, MAV_CMD_REQUEST_MESSAGE, MAV_CMD_REQUEST_PROTOCOL_VERSION, MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES, MAV_CMD_REQUEST_CAMERA_INFORMATION, MAV_CMD_REQUEST_CAMERA_SETTINGS, MAV_CMD_REQUEST_STORAGE_INFORMATION, MAV_CMD_STORAGE_FORMAT, MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS, MAV_CMD_REQUEST_FLIGHT_INFORMATION, MAV_CMD_RESET_CAMERA_SETTINGS, MAV_CMD_SET_CAMERA_MODE, MAV_CMD_SET_CAMERA_ZOOM, MAV_CMD_SET_CAMERA_FOCUS, MAV_CMD_JUMP_TAG, MAV_CMD_DO_JUMP_TAG, MAV_CMD_PARAM_TRANSACTION, MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW, MAV_CMD_DO_GIMBAL_MANAGER_CONFIGURE, MAV_CMD_IMAGE_START_CAPTURE, MAV_CMD_IMAGE_STOP_CAPTURE, MAV_CMD_REQUEST_CAMERA_IMAGE_CAPTURE, MAV_CMD_DO_TRIGGER_CONTROL, MAV_CMD_CAMERA_TRACK_POINT, MAV_CMD_CAMERA_TRACK_RECTANGLE, MAV_CMD_CAMERA_STOP_TRACKING, MAV_CMD_VIDEO_START_CAPTURE, MAV_CMD_VIDEO_STOP_CAPTURE, MAV_CMD_VIDEO_START_STREAMING, MAV_CMD_VIDEO_STOP_STREAMING, MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION, MAV_CMD_REQUEST_VIDEO_STREAM_STATUS, MAV_CMD_LOGGING_START, MAV_CMD_LOGGING_STOP, MAV_CMD_AIRFRAME_CONFIGURATION, MAV_CMD_CONTROL_HIGH_LATENCY, MAV_CMD_PANORAMA_CREATE, MAV_CMD_DO_VTOL_TRANSITION, MAV_CMD_ARM_AUTHORIZATION_REQUEST, MAV_CMD_SET_GUIDED_SUBMODE_STANDARD, MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE, MAV_CMD_CONDITION_GATE, MAV_CMD_NAV_FENCE_RETURN_POINT, MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION, MAV_CMD_NAV_FENCE_POLYGON_VERTEX_EXCLUSION, MAV_CMD_NAV_FENCE_CIRCLE_INCLUSION, MAV_CMD_NAV_FENCE_CIRCLE_EXCLUSION, MAV_CMD_NAV_RALLY_POINT, MAV_CMD_UAVCAN_GET_NODE_INFO, MAV_CMD_PAYLOAD_PREPARE_DEPLOY, MAV_CMD_PAYLOAD_CONTROL_DEPLOY, MAV_CMD_FIXED_MAG_CAL_YAW, MAV_CMD_DO_WINCH, MAV_CMD_WAYPOINT_USER_1, MAV_CMD_WAYPOINT_USER_2, MAV_CMD_WAYPOINT_USER_3, MAV_CMD_WAYPOINT_USER_4, MAV_CMD_WAYPOINT_USER_5, MAV_CMD_SPATIAL_USER_1, MAV_CMD_SPATIAL_USER_2, MAV_CMD_SPATIAL_USER_3, MAV_CMD_SPATIAL_USER_4, MAV_CMD_SPATIAL_USER_5, MAV_CMD_USER_1, MAV_CMD_USER_2, MAV_CMD_USER_3, MAV_CMD_USER_4, MAV_CMD_USER_5} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // SCRIPTING_CMD type
 type SCRIPTING_CMD int
 
@@ -853,6 +905,19 @@ func (e SCRIPTING_CMD) String() string {
 	default:
 		return fmt.Sprintf("SCRIPTING_CMD_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e SCRIPTING_CMD) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []SCRIPTING_CMD{SCRIPTING_CMD_REPL_START, SCRIPTING_CMD_REPL_STOP} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // LIMITS_STATE type
@@ -892,6 +957,19 @@ func (e LIMITS_STATE) String() string {
 	}
 }
 
+func (e LIMITS_STATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []LIMITS_STATE{LIMITS_INIT, LIMITS_DISABLED, LIMITS_ENABLED, LIMITS_TRIGGERED, LIMITS_RECOVERING, LIMITS_RECOVERED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // LIMIT_MODULE type
 type LIMIT_MODULE int
 
@@ -917,6 +995,19 @@ func (e LIMIT_MODULE) String() string {
 	}
 }
 
+func (e LIMIT_MODULE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []LIMIT_MODULE{LIMIT_GPSLOCK, LIMIT_GEOFENCE, LIMIT_ALTITUDE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // RALLY_FLAGS type. Flags in RALLY_POINT message.
 type RALLY_FLAGS int
 
@@ -936,6 +1027,19 @@ func (e RALLY_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("RALLY_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e RALLY_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []RALLY_FLAGS{FAVORABLE_WIND, LAND_IMMEDIATELY} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // CAMERA_STATUS_TYPES type
@@ -979,6 +1083,19 @@ func (e CAMERA_STATUS_TYPES) String() string {
 	}
 }
 
+func (e CAMERA_STATUS_TYPES) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CAMERA_STATUS_TYPES{CAMERA_STATUS_TYPE_HEARTBEAT, CAMERA_STATUS_TYPE_TRIGGER, CAMERA_STATUS_TYPE_DISCONNECT, CAMERA_STATUS_TYPE_ERROR, CAMERA_STATUS_TYPE_LOWBATT, CAMERA_STATUS_TYPE_LOWSTORE, CAMERA_STATUS_TYPE_LOWSTOREV} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // CAMERA_FEEDBACK_FLAGS type
 type CAMERA_FEEDBACK_FLAGS int
 
@@ -1010,6 +1127,19 @@ func (e CAMERA_FEEDBACK_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("CAMERA_FEEDBACK_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e CAMERA_FEEDBACK_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CAMERA_FEEDBACK_FLAGS{CAMERA_FEEDBACK_PHOTO, CAMERA_FEEDBACK_VIDEO, CAMERA_FEEDBACK_BADEXPOSURE, CAMERA_FEEDBACK_CLOSEDLOOP, CAMERA_FEEDBACK_OPENLOOP} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_MODE_GIMBAL type
@@ -1053,6 +1183,19 @@ func (e MAV_MODE_GIMBAL) String() string {
 	}
 }
 
+func (e MAV_MODE_GIMBAL) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_MODE_GIMBAL{MAV_MODE_GIMBAL_UNINITIALIZED, MAV_MODE_GIMBAL_CALIBRATING_PITCH, MAV_MODE_GIMBAL_CALIBRATING_ROLL, MAV_MODE_GIMBAL_CALIBRATING_YAW, MAV_MODE_GIMBAL_INITIALIZED, MAV_MODE_GIMBAL_ACTIVE, MAV_MODE_GIMBAL_RATE_CMD_TIMEOUT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GIMBAL_AXIS type
 type GIMBAL_AXIS int
 
@@ -1076,6 +1219,19 @@ func (e GIMBAL_AXIS) String() string {
 	default:
 		return fmt.Sprintf("GIMBAL_AXIS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GIMBAL_AXIS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GIMBAL_AXIS{GIMBAL_AXIS_YAW, GIMBAL_AXIS_PITCH, GIMBAL_AXIS_ROLL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GIMBAL_AXIS_CALIBRATION_STATUS type
@@ -1103,6 +1259,19 @@ func (e GIMBAL_AXIS_CALIBRATION_STATUS) String() string {
 	}
 }
 
+func (e GIMBAL_AXIS_CALIBRATION_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GIMBAL_AXIS_CALIBRATION_STATUS{GIMBAL_AXIS_CALIBRATION_STATUS_IN_PROGRESS, GIMBAL_AXIS_CALIBRATION_STATUS_SUCCEEDED, GIMBAL_AXIS_CALIBRATION_STATUS_FAILED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GIMBAL_AXIS_CALIBRATION_REQUIRED type
 type GIMBAL_AXIS_CALIBRATION_REQUIRED int
 
@@ -1126,6 +1295,19 @@ func (e GIMBAL_AXIS_CALIBRATION_REQUIRED) String() string {
 	default:
 		return fmt.Sprintf("GIMBAL_AXIS_CALIBRATION_REQUIRED_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GIMBAL_AXIS_CALIBRATION_REQUIRED) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GIMBAL_AXIS_CALIBRATION_REQUIRED{GIMBAL_AXIS_CALIBRATION_REQUIRED_UNKNOWN, GIMBAL_AXIS_CALIBRATION_REQUIRED_TRUE, GIMBAL_AXIS_CALIBRATION_REQUIRED_FALSE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_HEARTBEAT_STATUS type
@@ -1157,6 +1339,19 @@ func (e GOPRO_HEARTBEAT_STATUS) String() string {
 	}
 }
 
+func (e GOPRO_HEARTBEAT_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_HEARTBEAT_STATUS{GOPRO_HEARTBEAT_STATUS_DISCONNECTED, GOPRO_HEARTBEAT_STATUS_INCOMPATIBLE, GOPRO_HEARTBEAT_STATUS_CONNECTED, GOPRO_HEARTBEAT_STATUS_ERROR} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_HEARTBEAT_FLAGS type
 type GOPRO_HEARTBEAT_FLAGS int
 
@@ -1172,6 +1367,19 @@ func (e GOPRO_HEARTBEAT_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("GOPRO_HEARTBEAT_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GOPRO_HEARTBEAT_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_HEARTBEAT_FLAGS{GOPRO_FLAG_RECORDING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_REQUEST_STATUS type
@@ -1193,6 +1401,19 @@ func (e GOPRO_REQUEST_STATUS) String() string {
 	default:
 		return fmt.Sprintf("GOPRO_REQUEST_STATUS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GOPRO_REQUEST_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_REQUEST_STATUS{GOPRO_REQUEST_SUCCESS, GOPRO_REQUEST_FAILED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_COMMAND type
@@ -1276,6 +1497,19 @@ func (e GOPRO_COMMAND) String() string {
 	}
 }
 
+func (e GOPRO_COMMAND) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_COMMAND{GOPRO_COMMAND_POWER, GOPRO_COMMAND_CAPTURE_MODE, GOPRO_COMMAND_SHUTTER, GOPRO_COMMAND_BATTERY, GOPRO_COMMAND_MODEL, GOPRO_COMMAND_VIDEO_SETTINGS, GOPRO_COMMAND_LOW_LIGHT, GOPRO_COMMAND_PHOTO_RESOLUTION, GOPRO_COMMAND_PHOTO_BURST_RATE, GOPRO_COMMAND_PROTUNE, GOPRO_COMMAND_PROTUNE_WHITE_BALANCE, GOPRO_COMMAND_PROTUNE_COLOUR, GOPRO_COMMAND_PROTUNE_GAIN, GOPRO_COMMAND_PROTUNE_SHARPNESS, GOPRO_COMMAND_PROTUNE_EXPOSURE, GOPRO_COMMAND_TIME, GOPRO_COMMAND_CHARGING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_CAPTURE_MODE type
 type GOPRO_CAPTURE_MODE int
 
@@ -1319,6 +1553,19 @@ func (e GOPRO_CAPTURE_MODE) String() string {
 	default:
 		return fmt.Sprintf("GOPRO_CAPTURE_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GOPRO_CAPTURE_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_CAPTURE_MODE{GOPRO_CAPTURE_MODE_VIDEO, GOPRO_CAPTURE_MODE_PHOTO, GOPRO_CAPTURE_MODE_BURST, GOPRO_CAPTURE_MODE_TIME_LAPSE, GOPRO_CAPTURE_MODE_MULTI_SHOT, GOPRO_CAPTURE_MODE_PLAYBACK, GOPRO_CAPTURE_MODE_SETUP, GOPRO_CAPTURE_MODE_UNKNOWN} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_RESOLUTION type
@@ -1390,6 +1637,19 @@ func (e GOPRO_RESOLUTION) String() string {
 	}
 }
 
+func (e GOPRO_RESOLUTION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_RESOLUTION{GOPRO_RESOLUTION_480p, GOPRO_RESOLUTION_720p, GOPRO_RESOLUTION_960p, GOPRO_RESOLUTION_1080p, GOPRO_RESOLUTION_1440p, GOPRO_RESOLUTION_2_7k_17_9, GOPRO_RESOLUTION_2_7k_16_9, GOPRO_RESOLUTION_2_7k_4_3, GOPRO_RESOLUTION_4k_16_9, GOPRO_RESOLUTION_4k_17_9, GOPRO_RESOLUTION_720p_SUPERVIEW, GOPRO_RESOLUTION_1080p_SUPERVIEW, GOPRO_RESOLUTION_2_7k_SUPERVIEW, GOPRO_RESOLUTION_4k_SUPERVIEW} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_FRAME_RATE type
 type GOPRO_FRAME_RATE int
 
@@ -1459,6 +1719,19 @@ func (e GOPRO_FRAME_RATE) String() string {
 	}
 }
 
+func (e GOPRO_FRAME_RATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_FRAME_RATE{GOPRO_FRAME_RATE_12, GOPRO_FRAME_RATE_15, GOPRO_FRAME_RATE_24, GOPRO_FRAME_RATE_25, GOPRO_FRAME_RATE_30, GOPRO_FRAME_RATE_48, GOPRO_FRAME_RATE_50, GOPRO_FRAME_RATE_60, GOPRO_FRAME_RATE_80, GOPRO_FRAME_RATE_90, GOPRO_FRAME_RATE_100, GOPRO_FRAME_RATE_120, GOPRO_FRAME_RATE_240, GOPRO_FRAME_RATE_12_5} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_FIELD_OF_VIEW type
 type GOPRO_FIELD_OF_VIEW int
 
@@ -1484,6 +1757,19 @@ func (e GOPRO_FIELD_OF_VIEW) String() string {
 	}
 }
 
+func (e GOPRO_FIELD_OF_VIEW) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_FIELD_OF_VIEW{GOPRO_FIELD_OF_VIEW_WIDE, GOPRO_FIELD_OF_VIEW_MEDIUM, GOPRO_FIELD_OF_VIEW_NARROW} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_VIDEO_SETTINGS_FLAGS type
 type GOPRO_VIDEO_SETTINGS_FLAGS int
 
@@ -1499,6 +1785,19 @@ func (e GOPRO_VIDEO_SETTINGS_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("GOPRO_VIDEO_SETTINGS_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GOPRO_VIDEO_SETTINGS_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_VIDEO_SETTINGS_FLAGS{GOPRO_VIDEO_SETTINGS_TV_MODE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_PHOTO_RESOLUTION type
@@ -1534,6 +1833,19 @@ func (e GOPRO_PHOTO_RESOLUTION) String() string {
 	}
 }
 
+func (e GOPRO_PHOTO_RESOLUTION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_PHOTO_RESOLUTION{GOPRO_PHOTO_RESOLUTION_5MP_MEDIUM, GOPRO_PHOTO_RESOLUTION_7MP_MEDIUM, GOPRO_PHOTO_RESOLUTION_7MP_WIDE, GOPRO_PHOTO_RESOLUTION_10MP_WIDE, GOPRO_PHOTO_RESOLUTION_12MP_WIDE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_PROTUNE_WHITE_BALANCE type
 type GOPRO_PROTUNE_WHITE_BALANCE int
 
@@ -1567,6 +1879,19 @@ func (e GOPRO_PROTUNE_WHITE_BALANCE) String() string {
 	}
 }
 
+func (e GOPRO_PROTUNE_WHITE_BALANCE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_PROTUNE_WHITE_BALANCE{GOPRO_PROTUNE_WHITE_BALANCE_AUTO, GOPRO_PROTUNE_WHITE_BALANCE_3000K, GOPRO_PROTUNE_WHITE_BALANCE_5500K, GOPRO_PROTUNE_WHITE_BALANCE_6500K, GOPRO_PROTUNE_WHITE_BALANCE_RAW} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_PROTUNE_COLOUR type
 type GOPRO_PROTUNE_COLOUR int
 
@@ -1586,6 +1911,19 @@ func (e GOPRO_PROTUNE_COLOUR) String() string {
 	default:
 		return fmt.Sprintf("GOPRO_PROTUNE_COLOUR_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GOPRO_PROTUNE_COLOUR) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_PROTUNE_COLOUR{GOPRO_PROTUNE_COLOUR_STANDARD, GOPRO_PROTUNE_COLOUR_NEUTRAL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_PROTUNE_GAIN type
@@ -1621,6 +1959,19 @@ func (e GOPRO_PROTUNE_GAIN) String() string {
 	}
 }
 
+func (e GOPRO_PROTUNE_GAIN) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_PROTUNE_GAIN{GOPRO_PROTUNE_GAIN_400, GOPRO_PROTUNE_GAIN_800, GOPRO_PROTUNE_GAIN_1600, GOPRO_PROTUNE_GAIN_3200, GOPRO_PROTUNE_GAIN_6400} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_PROTUNE_SHARPNESS type
 type GOPRO_PROTUNE_SHARPNESS int
 
@@ -1644,6 +1995,19 @@ func (e GOPRO_PROTUNE_SHARPNESS) String() string {
 	default:
 		return fmt.Sprintf("GOPRO_PROTUNE_SHARPNESS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GOPRO_PROTUNE_SHARPNESS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_PROTUNE_SHARPNESS{GOPRO_PROTUNE_SHARPNESS_LOW, GOPRO_PROTUNE_SHARPNESS_MEDIUM, GOPRO_PROTUNE_SHARPNESS_HIGH} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_PROTUNE_EXPOSURE type
@@ -1743,6 +2107,19 @@ func (e GOPRO_PROTUNE_EXPOSURE) String() string {
 	}
 }
 
+func (e GOPRO_PROTUNE_EXPOSURE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_PROTUNE_EXPOSURE{GOPRO_PROTUNE_EXPOSURE_NEG_5_0, GOPRO_PROTUNE_EXPOSURE_NEG_4_5, GOPRO_PROTUNE_EXPOSURE_NEG_4_0, GOPRO_PROTUNE_EXPOSURE_NEG_3_5, GOPRO_PROTUNE_EXPOSURE_NEG_3_0, GOPRO_PROTUNE_EXPOSURE_NEG_2_5, GOPRO_PROTUNE_EXPOSURE_NEG_2_0, GOPRO_PROTUNE_EXPOSURE_NEG_1_5, GOPRO_PROTUNE_EXPOSURE_NEG_1_0, GOPRO_PROTUNE_EXPOSURE_NEG_0_5, GOPRO_PROTUNE_EXPOSURE_ZERO, GOPRO_PROTUNE_EXPOSURE_POS_0_5, GOPRO_PROTUNE_EXPOSURE_POS_1_0, GOPRO_PROTUNE_EXPOSURE_POS_1_5, GOPRO_PROTUNE_EXPOSURE_POS_2_0, GOPRO_PROTUNE_EXPOSURE_POS_2_5, GOPRO_PROTUNE_EXPOSURE_POS_3_0, GOPRO_PROTUNE_EXPOSURE_POS_3_5, GOPRO_PROTUNE_EXPOSURE_POS_4_0, GOPRO_PROTUNE_EXPOSURE_POS_4_5, GOPRO_PROTUNE_EXPOSURE_POS_5_0} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GOPRO_CHARGING type
 type GOPRO_CHARGING int
 
@@ -1762,6 +2139,19 @@ func (e GOPRO_CHARGING) String() string {
 	default:
 		return fmt.Sprintf("GOPRO_CHARGING_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GOPRO_CHARGING) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_CHARGING{GOPRO_CHARGING_DISABLED, GOPRO_CHARGING_ENABLED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_MODEL type
@@ -1795,6 +2185,19 @@ func (e GOPRO_MODEL) String() string {
 	default:
 		return fmt.Sprintf("GOPRO_MODEL_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GOPRO_MODEL) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_MODEL{GOPRO_MODEL_UNKNOWN, GOPRO_MODEL_HERO_3_PLUS_SILVER, GOPRO_MODEL_HERO_3_PLUS_BLACK, GOPRO_MODEL_HERO_4_SILVER, GOPRO_MODEL_HERO_4_BLACK} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GOPRO_BURST_RATE type
@@ -1846,6 +2249,19 @@ func (e GOPRO_BURST_RATE) String() string {
 	}
 }
 
+func (e GOPRO_BURST_RATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GOPRO_BURST_RATE{GOPRO_BURST_RATE_3_IN_1_SECOND, GOPRO_BURST_RATE_5_IN_1_SECOND, GOPRO_BURST_RATE_10_IN_1_SECOND, GOPRO_BURST_RATE_10_IN_2_SECOND, GOPRO_BURST_RATE_10_IN_3_SECOND, GOPRO_BURST_RATE_30_IN_1_SECOND, GOPRO_BURST_RATE_30_IN_2_SECOND, GOPRO_BURST_RATE_30_IN_3_SECOND, GOPRO_BURST_RATE_30_IN_6_SECOND} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // LED_CONTROL_PATTERN type
 type LED_CONTROL_PATTERN int
 
@@ -1869,6 +2285,19 @@ func (e LED_CONTROL_PATTERN) String() string {
 	default:
 		return fmt.Sprintf("LED_CONTROL_PATTERN_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e LED_CONTROL_PATTERN) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []LED_CONTROL_PATTERN{LED_CONTROL_PATTERN_OFF, LED_CONTROL_PATTERN_FIRMWAREUPDATE, LED_CONTROL_PATTERN_CUSTOM} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // EKF_STATUS_FLAGS type. Flags in EKF_STATUS message.
@@ -1928,6 +2357,19 @@ func (e EKF_STATUS_FLAGS) String() string {
 	}
 }
 
+func (e EKF_STATUS_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []EKF_STATUS_FLAGS{EKF_ATTITUDE, EKF_VELOCITY_HORIZ, EKF_VELOCITY_VERT, EKF_POS_HORIZ_REL, EKF_POS_HORIZ_ABS, EKF_POS_VERT_ABS, EKF_POS_VERT_AGL, EKF_CONST_POS_MODE, EKF_PRED_POS_HORIZ_REL, EKF_PRED_POS_HORIZ_ABS, EKF_UNINITIALIZED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // PID_TUNING_AXIS type
 type PID_TUNING_AXIS int
 
@@ -1965,6 +2407,19 @@ func (e PID_TUNING_AXIS) String() string {
 	}
 }
 
+func (e PID_TUNING_AXIS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []PID_TUNING_AXIS{PID_TUNING_ROLL, PID_TUNING_PITCH, PID_TUNING_YAW, PID_TUNING_ACCZ, PID_TUNING_STEER, PID_TUNING_LANDING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS type. Special ACK block numbers control activation of dataflash log streaming.
 type MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS int
 
@@ -1984,6 +2439,19 @@ func (e MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS) String() string {
 	default:
 		return fmt.Sprintf("MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS{MAV_REMOTE_LOG_DATA_BLOCK_STOP, MAV_REMOTE_LOG_DATA_BLOCK_START} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_REMOTE_LOG_DATA_BLOCK_STATUSES type. Possible remote log data block statuses.
@@ -2007,6 +2475,19 @@ func (e MAV_REMOTE_LOG_DATA_BLOCK_STATUSES) String() string {
 	}
 }
 
+func (e MAV_REMOTE_LOG_DATA_BLOCK_STATUSES) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_REMOTE_LOG_DATA_BLOCK_STATUSES{MAV_REMOTE_LOG_DATA_BLOCK_NACK, MAV_REMOTE_LOG_DATA_BLOCK_ACK} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // DEVICE_OP_BUSTYPE type. Bus types for device operations.
 type DEVICE_OP_BUSTYPE int
 
@@ -2026,6 +2507,19 @@ func (e DEVICE_OP_BUSTYPE) String() string {
 	default:
 		return fmt.Sprintf("DEVICE_OP_BUSTYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e DEVICE_OP_BUSTYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []DEVICE_OP_BUSTYPE{DEVICE_OP_BUSTYPE_I2C, DEVICE_OP_BUSTYPE_SPI} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // DEEPSTALL_STAGE type. Deepstall flight stage.
@@ -2067,6 +2561,19 @@ func (e DEEPSTALL_STAGE) String() string {
 	default:
 		return fmt.Sprintf("DEEPSTALL_STAGE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e DEEPSTALL_STAGE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []DEEPSTALL_STAGE{DEEPSTALL_STAGE_FLY_TO_LANDING, DEEPSTALL_STAGE_ESTIMATE_WIND, DEEPSTALL_STAGE_WAIT_FOR_BREAKOUT, DEEPSTALL_STAGE_FLY_TO_ARC, DEEPSTALL_STAGE_ARC, DEEPSTALL_STAGE_APPROACH, DEEPSTALL_STAGE_LAND} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // PLANE_MODE type. A mapping of plane flight modes for custom_mode field of heartbeat.
@@ -2172,6 +2679,19 @@ func (e PLANE_MODE) String() string {
 	default:
 		return fmt.Sprintf("PLANE_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e PLANE_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []PLANE_MODE{PLANE_MODE_MANUAL, PLANE_MODE_CIRCLE, PLANE_MODE_STABILIZE, PLANE_MODE_TRAINING, PLANE_MODE_ACRO, PLANE_MODE_FLY_BY_WIRE_A, PLANE_MODE_FLY_BY_WIRE_B, PLANE_MODE_CRUISE, PLANE_MODE_AUTOTUNE, PLANE_MODE_AUTO, PLANE_MODE_RTL, PLANE_MODE_LOITER, PLANE_MODE_TAKEOFF, PLANE_MODE_AVOID_ADSB, PLANE_MODE_GUIDED, PLANE_MODE_INITIALIZING, PLANE_MODE_QSTABILIZE, PLANE_MODE_QHOVER, PLANE_MODE_QLOITER, PLANE_MODE_QLAND, PLANE_MODE_QRTL, PLANE_MODE_QAUTOTUNE, PLANE_MODE_QACRO} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // COPTER_MODE type. A mapping of copter flight modes for custom_mode field of heartbeat.
@@ -2283,6 +2803,19 @@ func (e COPTER_MODE) String() string {
 	}
 }
 
+func (e COPTER_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []COPTER_MODE{COPTER_MODE_STABILIZE, COPTER_MODE_ACRO, COPTER_MODE_ALT_HOLD, COPTER_MODE_AUTO, COPTER_MODE_GUIDED, COPTER_MODE_LOITER, COPTER_MODE_RTL, COPTER_MODE_CIRCLE, COPTER_MODE_LAND, COPTER_MODE_DRIFT, COPTER_MODE_SPORT, COPTER_MODE_FLIP, COPTER_MODE_AUTOTUNE, COPTER_MODE_POSHOLD, COPTER_MODE_BRAKE, COPTER_MODE_THROW, COPTER_MODE_AVOID_ADSB, COPTER_MODE_GUIDED_NOGPS, COPTER_MODE_SMART_RTL, COPTER_MODE_FLOWHOLD, COPTER_MODE_FOLLOW, COPTER_MODE_ZIGZAG, COPTER_MODE_SYSTEMID, COPTER_MODE_AUTOROTATE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // SUB_MODE type. A mapping of sub flight modes for custom_mode field of heartbeat.
 type SUB_MODE int
 
@@ -2330,6 +2863,19 @@ func (e SUB_MODE) String() string {
 	default:
 		return fmt.Sprintf("SUB_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e SUB_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []SUB_MODE{SUB_MODE_STABILIZE, SUB_MODE_ACRO, SUB_MODE_ALT_HOLD, SUB_MODE_AUTO, SUB_MODE_GUIDED, SUB_MODE_CIRCLE, SUB_MODE_SURFACE, SUB_MODE_POSHOLD, SUB_MODE_MANUAL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // ROVER_MODE type. A mapping of rover flight modes for custom_mode field of heartbeat.
@@ -2393,6 +2939,19 @@ func (e ROVER_MODE) String() string {
 	}
 }
 
+func (e ROVER_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ROVER_MODE{ROVER_MODE_MANUAL, ROVER_MODE_ACRO, ROVER_MODE_STEERING, ROVER_MODE_HOLD, ROVER_MODE_LOITER, ROVER_MODE_FOLLOW, ROVER_MODE_SIMPLE, ROVER_MODE_AUTO, ROVER_MODE_RTL, ROVER_MODE_SMART_RTL, ROVER_MODE_GUIDED, ROVER_MODE_INITIALIZING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // TRACKER_MODE type. A mapping of antenna tracker flight modes for custom_mode field of heartbeat.
 type TRACKER_MODE int
 
@@ -2428,6 +2987,19 @@ func (e TRACKER_MODE) String() string {
 	default:
 		return fmt.Sprintf("TRACKER_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e TRACKER_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []TRACKER_MODE{TRACKER_MODE_MANUAL, TRACKER_MODE_STOP, TRACKER_MODE_SCAN, TRACKER_MODE_SERVO_TEST, TRACKER_MODE_AUTO, TRACKER_MODE_INITIALIZING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // OSD_PARAM_CONFIG_TYPE type. The type of parameter for the OSD parameter editor.
@@ -2479,6 +3051,19 @@ func (e OSD_PARAM_CONFIG_TYPE) String() string {
 	}
 }
 
+func (e OSD_PARAM_CONFIG_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []OSD_PARAM_CONFIG_TYPE{OSD_PARAM_NONE, OSD_PARAM_SERIAL_PROTOCOL, OSD_PARAM_SERVO_FUNCTION, OSD_PARAM_AUX_FUNCTION, OSD_PARAM_FLIGHT_MODE, OSD_PARAM_FAILSAFE_ACTION, OSD_PARAM_FAILSAFE_ACTION_1, OSD_PARAM_FAILSAFE_ACTION_2, OSD_PARAM_NUM_TYPES} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // OSD_PARAM_CONFIG_ERROR type. The error type for the OSD parameter editor.
 type OSD_PARAM_CONFIG_ERROR int
 
@@ -2506,6 +3091,19 @@ func (e OSD_PARAM_CONFIG_ERROR) String() string {
 	default:
 		return fmt.Sprintf("OSD_PARAM_CONFIG_ERROR_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e OSD_PARAM_CONFIG_ERROR) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []OSD_PARAM_CONFIG_ERROR{OSD_PARAM_SUCCESS, OSD_PARAM_INVALID_SCREEN, OSD_PARAM_INVALID_PARAMETER_INDEX, OSD_PARAM_INVALID_PARAMETER} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // FIRMWARE_VERSION_TYPE type. These values define the type of firmware release.  These values indicate the first version or release of this type.  For example the first alpha release would be 64, the second would be 65.
@@ -2539,6 +3137,19 @@ func (e FIRMWARE_VERSION_TYPE) String() string {
 	default:
 		return fmt.Sprintf("FIRMWARE_VERSION_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e FIRMWARE_VERSION_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []FIRMWARE_VERSION_TYPE{FIRMWARE_VERSION_TYPE_DEV, FIRMWARE_VERSION_TYPE_ALPHA, FIRMWARE_VERSION_TYPE_BETA, FIRMWARE_VERSION_TYPE_RC, FIRMWARE_VERSION_TYPE_OFFICIAL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // HL_FAILURE_FLAG type. Flags to report failure cases over the high latency telemtry.
@@ -2610,6 +3221,19 @@ func (e HL_FAILURE_FLAG) String() string {
 	}
 }
 
+func (e HL_FAILURE_FLAG) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []HL_FAILURE_FLAG{HL_FAILURE_FLAG_GPS, HL_FAILURE_FLAG_DIFFERENTIAL_PRESSURE, HL_FAILURE_FLAG_ABSOLUTE_PRESSURE, HL_FAILURE_FLAG_3D_ACCEL, HL_FAILURE_FLAG_3D_GYRO, HL_FAILURE_FLAG_3D_MAG, HL_FAILURE_FLAG_TERRAIN, HL_FAILURE_FLAG_BATTERY, HL_FAILURE_FLAG_RC_RECEIVER, HL_FAILURE_FLAG_OFFBOARD_LINK, HL_FAILURE_FLAG_ENGINE, HL_FAILURE_FLAG_GEOFENCE, HL_FAILURE_FLAG_ESTIMATOR, HL_FAILURE_FLAG_MISSION} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_GOTO type. Actions that may be specified in MAV_CMD_OVERRIDE_GOTO to override mission execution.
 type MAV_GOTO int
 
@@ -2637,6 +3261,19 @@ func (e MAV_GOTO) String() string {
 	default:
 		return fmt.Sprintf("MAV_GOTO_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_GOTO) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_GOTO{MAV_GOTO_DO_HOLD, MAV_GOTO_DO_CONTINUE, MAV_GOTO_HOLD_AT_CURRENT_POSITION, MAV_GOTO_HOLD_AT_SPECIFIED_POSITION} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_MODE type. These defines are predefined OR-combined mode flags. There is no need to use values from this enum, but it                simplifies the use of the mode flags. Note that manual input is enabled in all modes as a safety override.
@@ -2694,6 +3331,19 @@ func (e MAV_MODE) String() string {
 	default:
 		return fmt.Sprintf("MAV_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_MODE{MAV_MODE_PREFLIGHT, MAV_MODE_STABILIZE_DISARMED, MAV_MODE_STABILIZE_ARMED, MAV_MODE_MANUAL_DISARMED, MAV_MODE_MANUAL_ARMED, MAV_MODE_GUIDED_DISARMED, MAV_MODE_GUIDED_ARMED, MAV_MODE_AUTO_DISARMED, MAV_MODE_AUTO_ARMED, MAV_MODE_TEST_DISARMED, MAV_MODE_TEST_ARMED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_SYS_STATUS_SENSOR type. These encode the sensors whose status is sent as part of the SYS_STATUS message.
@@ -2829,6 +3479,19 @@ func (e MAV_SYS_STATUS_SENSOR) String() string {
 	}
 }
 
+func (e MAV_SYS_STATUS_SENSOR) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_SYS_STATUS_SENSOR{MAV_SYS_STATUS_SENSOR_3D_GYRO, MAV_SYS_STATUS_SENSOR_3D_ACCEL, MAV_SYS_STATUS_SENSOR_3D_MAG, MAV_SYS_STATUS_SENSOR_ABSOLUTE_PRESSURE, MAV_SYS_STATUS_SENSOR_DIFFERENTIAL_PRESSURE, MAV_SYS_STATUS_SENSOR_GPS, MAV_SYS_STATUS_SENSOR_OPTICAL_FLOW, MAV_SYS_STATUS_SENSOR_VISION_POSITION, MAV_SYS_STATUS_SENSOR_LASER_POSITION, MAV_SYS_STATUS_SENSOR_EXTERNAL_GROUND_TRUTH, MAV_SYS_STATUS_SENSOR_ANGULAR_RATE_CONTROL, MAV_SYS_STATUS_SENSOR_ATTITUDE_STABILIZATION, MAV_SYS_STATUS_SENSOR_YAW_POSITION, MAV_SYS_STATUS_SENSOR_Z_ALTITUDE_CONTROL, MAV_SYS_STATUS_SENSOR_XY_POSITION_CONTROL, MAV_SYS_STATUS_SENSOR_MOTOR_OUTPUTS, MAV_SYS_STATUS_SENSOR_RC_RECEIVER, MAV_SYS_STATUS_SENSOR_3D_GYRO2, MAV_SYS_STATUS_SENSOR_3D_ACCEL2, MAV_SYS_STATUS_SENSOR_3D_MAG2, MAV_SYS_STATUS_GEOFENCE, MAV_SYS_STATUS_AHRS, MAV_SYS_STATUS_TERRAIN, MAV_SYS_STATUS_REVERSE_MOTOR, MAV_SYS_STATUS_LOGGING, MAV_SYS_STATUS_SENSOR_BATTERY, MAV_SYS_STATUS_SENSOR_PROXIMITY, MAV_SYS_STATUS_SENSOR_SATCOM, MAV_SYS_STATUS_PREARM_CHECK, MAV_SYS_STATUS_OBSTACLE_AVOIDANCE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_FRAME type
 type MAV_FRAME int
 
@@ -2930,6 +3593,19 @@ func (e MAV_FRAME) String() string {
 	}
 }
 
+func (e MAV_FRAME) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_FRAME{MAV_FRAME_GLOBAL, MAV_FRAME_LOCAL_NED, MAV_FRAME_MISSION, MAV_FRAME_GLOBAL_RELATIVE_ALT, MAV_FRAME_LOCAL_ENU, MAV_FRAME_GLOBAL_INT, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT, MAV_FRAME_LOCAL_OFFSET_NED, MAV_FRAME_BODY_NED, MAV_FRAME_BODY_OFFSET_NED, MAV_FRAME_GLOBAL_TERRAIN_ALT, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT, MAV_FRAME_BODY_FRD, MAV_FRAME_RESERVED_13, MAV_FRAME_RESERVED_14, MAV_FRAME_RESERVED_15, MAV_FRAME_RESERVED_16, MAV_FRAME_RESERVED_17, MAV_FRAME_RESERVED_18, MAV_FRAME_RESERVED_19, MAV_FRAME_LOCAL_FRD, MAV_FRAME_LOCAL_FLU} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAVLINK_DATA_STREAM_TYPE type
 type MAVLINK_DATA_STREAM_TYPE int
 
@@ -2967,6 +3643,19 @@ func (e MAVLINK_DATA_STREAM_TYPE) String() string {
 	}
 }
 
+func (e MAVLINK_DATA_STREAM_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAVLINK_DATA_STREAM_TYPE{MAVLINK_DATA_STREAM_IMG_JPEG, MAVLINK_DATA_STREAM_IMG_BMP, MAVLINK_DATA_STREAM_IMG_RAW8U, MAVLINK_DATA_STREAM_IMG_RAW32U, MAVLINK_DATA_STREAM_IMG_PGM, MAVLINK_DATA_STREAM_IMG_PNG} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // FENCE_ACTION type
 type FENCE_ACTION int
 
@@ -3000,6 +3689,19 @@ func (e FENCE_ACTION) String() string {
 	}
 }
 
+func (e FENCE_ACTION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []FENCE_ACTION{FENCE_ACTION_NONE, FENCE_ACTION_GUIDED, FENCE_ACTION_REPORT, FENCE_ACTION_GUIDED_THR_PASS, FENCE_ACTION_RTL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // FENCE_BREACH type
 type FENCE_BREACH int
 
@@ -3029,6 +3731,19 @@ func (e FENCE_BREACH) String() string {
 	}
 }
 
+func (e FENCE_BREACH) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []FENCE_BREACH{FENCE_BREACH_NONE, FENCE_BREACH_MINALT, FENCE_BREACH_MAXALT, FENCE_BREACH_BOUNDARY} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // FENCE_MITIGATE type. Actions being taken to mitigate/prevent fence breach
 type FENCE_MITIGATE int
 
@@ -3052,6 +3767,19 @@ func (e FENCE_MITIGATE) String() string {
 	default:
 		return fmt.Sprintf("FENCE_MITIGATE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e FENCE_MITIGATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []FENCE_MITIGATE{FENCE_MITIGATE_UNKNOWN, FENCE_MITIGATE_NONE, FENCE_MITIGATE_VEL_LIMIT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_MOUNT_MODE type. Enumeration of possible mount operation modes. This message is used by obsolete/deprecated gimbal messages.
@@ -3093,6 +3821,19 @@ func (e MAV_MOUNT_MODE) String() string {
 	default:
 		return fmt.Sprintf("MAV_MOUNT_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_MOUNT_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_MOUNT_MODE{MAV_MOUNT_MODE_RETRACT, MAV_MOUNT_MODE_NEUTRAL, MAV_MOUNT_MODE_MAVLINK_TARGETING, MAV_MOUNT_MODE_RC_TARGETING, MAV_MOUNT_MODE_GPS_POINT, MAV_MOUNT_MODE_SYSID_TARGET, MAV_MOUNT_MODE_HOME_LOCATION} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GIMBAL_DEVICE_CAP_FLAGS type. Gimbal device (low level) capability flags (bitmap)
@@ -3154,6 +3895,19 @@ func (e GIMBAL_DEVICE_CAP_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("GIMBAL_DEVICE_CAP_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GIMBAL_DEVICE_CAP_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GIMBAL_DEVICE_CAP_FLAGS{GIMBAL_DEVICE_CAP_FLAGS_HAS_RETRACT, GIMBAL_DEVICE_CAP_FLAGS_HAS_NEUTRAL, GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_AXIS, GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_FOLLOW, GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_LOCK, GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_AXIS, GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_FOLLOW, GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_LOCK, GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_AXIS, GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_FOLLOW, GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_LOCK, GIMBAL_DEVICE_CAP_FLAGS_SUPPORTS_INFINITE_YAW} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GIMBAL_MANAGER_CAP_FLAGS type. Gimbal manager high level capability flags (bitmap). The first 16 bits are identical to the GIMBAL_DEVICE_CAP_FLAGS which are identical with GIMBAL_DEVICE_FLAGS. However, the gimbal manager does not need to copy the flags from the gimbal but can also enhance the capabilities and thus add flags.
@@ -3225,6 +3979,19 @@ func (e GIMBAL_MANAGER_CAP_FLAGS) String() string {
 	}
 }
 
+func (e GIMBAL_MANAGER_CAP_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GIMBAL_MANAGER_CAP_FLAGS{GIMBAL_MANAGER_CAP_FLAGS_HAS_RETRACT, GIMBAL_MANAGER_CAP_FLAGS_HAS_NEUTRAL, GIMBAL_MANAGER_CAP_FLAGS_HAS_ROLL_AXIS, GIMBAL_MANAGER_CAP_FLAGS_HAS_ROLL_FOLLOW, GIMBAL_MANAGER_CAP_FLAGS_HAS_ROLL_LOCK, GIMBAL_MANAGER_CAP_FLAGS_HAS_PITCH_AXIS, GIMBAL_MANAGER_CAP_FLAGS_HAS_PITCH_FOLLOW, GIMBAL_MANAGER_CAP_FLAGS_HAS_PITCH_LOCK, GIMBAL_MANAGER_CAP_FLAGS_HAS_YAW_AXIS, GIMBAL_MANAGER_CAP_FLAGS_HAS_YAW_FOLLOW, GIMBAL_MANAGER_CAP_FLAGS_HAS_YAW_LOCK, GIMBAL_MANAGER_CAP_FLAGS_SUPPORTS_INFINITE_YAW, GIMBAL_MANAGER_CAP_FLAGS_CAN_POINT_LOCATION_LOCAL, GIMBAL_MANAGER_CAP_FLAGS_CAN_POINT_LOCATION_GLOBAL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GIMBAL_DEVICE_FLAGS type. Flags for gimbal device (lower level) operation.
 type GIMBAL_DEVICE_FLAGS int
 
@@ -3258,6 +4025,19 @@ func (e GIMBAL_DEVICE_FLAGS) String() string {
 	}
 }
 
+func (e GIMBAL_DEVICE_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GIMBAL_DEVICE_FLAGS{GIMBAL_DEVICE_FLAGS_RETRACT, GIMBAL_DEVICE_FLAGS_NEUTRAL, GIMBAL_DEVICE_FLAGS_ROLL_LOCK, GIMBAL_DEVICE_FLAGS_PITCH_LOCK, GIMBAL_DEVICE_FLAGS_YAW_LOCK} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GIMBAL_MANAGER_FLAGS type. Flags for high level gimbal manager operation The first 16 bytes are identical to the GIMBAL_DEVICE_FLAGS.
 type GIMBAL_MANAGER_FLAGS int
 
@@ -3289,6 +4069,19 @@ func (e GIMBAL_MANAGER_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("GIMBAL_MANAGER_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GIMBAL_MANAGER_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GIMBAL_MANAGER_FLAGS{GIMBAL_MANAGER_FLAGS_RETRACT, GIMBAL_MANAGER_FLAGS_NEUTRAL, GIMBAL_MANAGER_FLAGS_ROLL_LOCK, GIMBAL_MANAGER_FLAGS_PITCH_LOCK, GIMBAL_MANAGER_FLAGS_YAW_LOCK} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GIMBAL_DEVICE_ERROR_FLAGS type. Gimbal device (low level) error flags (bitmap, 0 means no error)
@@ -3340,6 +4133,19 @@ func (e GIMBAL_DEVICE_ERROR_FLAGS) String() string {
 	}
 }
 
+func (e GIMBAL_DEVICE_ERROR_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GIMBAL_DEVICE_ERROR_FLAGS{GIMBAL_DEVICE_ERROR_FLAGS_AT_ROLL_LIMIT, GIMBAL_DEVICE_ERROR_FLAGS_AT_PITCH_LIMIT, GIMBAL_DEVICE_ERROR_FLAGS_AT_YAW_LIMIT, GIMBAL_DEVICE_ERROR_FLAGS_ENCODER_ERROR, GIMBAL_DEVICE_ERROR_FLAGS_POWER_ERROR, GIMBAL_DEVICE_ERROR_FLAGS_MOTOR_ERROR, GIMBAL_DEVICE_ERROR_FLAGS_SOFTWARE_ERROR, GIMBAL_DEVICE_ERROR_FLAGS_COMMS_ERROR, GIMBAL_DEVICE_ERROR_FLAGS_CALIBRATION_RUNNING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // GRIPPER_ACTIONS type. Gripper actions.
 type GRIPPER_ACTIONS int
 
@@ -3359,6 +4165,19 @@ func (e GRIPPER_ACTIONS) String() string {
 	default:
 		return fmt.Sprintf("GRIPPER_ACTIONS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e GRIPPER_ACTIONS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GRIPPER_ACTIONS{GRIPPER_ACTION_RELEASE, GRIPPER_ACTION_GRAB} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // WINCH_ACTIONS type. Winch actions.
@@ -3384,6 +4203,19 @@ func (e WINCH_ACTIONS) String() string {
 	default:
 		return fmt.Sprintf("WINCH_ACTIONS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e WINCH_ACTIONS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []WINCH_ACTIONS{WINCH_RELAXED, WINCH_RELATIVE_LENGTH_CONTROL, WINCH_RATE_CONTROL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // UAVCAN_NODE_HEALTH type. Generalized UAVCAN node health
@@ -3413,6 +4245,19 @@ func (e UAVCAN_NODE_HEALTH) String() string {
 	default:
 		return fmt.Sprintf("UAVCAN_NODE_HEALTH_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e UAVCAN_NODE_HEALTH) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVCAN_NODE_HEALTH{UAVCAN_NODE_HEALTH_OK, UAVCAN_NODE_HEALTH_WARNING, UAVCAN_NODE_HEALTH_ERROR, UAVCAN_NODE_HEALTH_CRITICAL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // UAVCAN_NODE_MODE type. Generalized UAVCAN node mode
@@ -3446,6 +4291,19 @@ func (e UAVCAN_NODE_MODE) String() string {
 	default:
 		return fmt.Sprintf("UAVCAN_NODE_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e UAVCAN_NODE_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVCAN_NODE_MODE{UAVCAN_NODE_MODE_OPERATIONAL, UAVCAN_NODE_MODE_INITIALIZATION, UAVCAN_NODE_MODE_MAINTENANCE, UAVCAN_NODE_MODE_SOFTWARE_UPDATE, UAVCAN_NODE_MODE_OFFLINE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // ESC_CONNECTION_TYPE type. Indicates the ESC connection type.
@@ -3483,6 +4341,19 @@ func (e ESC_CONNECTION_TYPE) String() string {
 	default:
 		return fmt.Sprintf("ESC_CONNECTION_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e ESC_CONNECTION_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ESC_CONNECTION_TYPE{ESC_CONNECTION_TYPE_PPM, ESC_CONNECTION_TYPE_SERIAL, ESC_CONNECTION_TYPE_ONESHOT, ESC_CONNECTION_TYPE_I2C, ESC_CONNECTION_TYPE_CAN, ESC_CONNECTION_TYPE_DSHOT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // ESC_FAILURE_FLAGS type. Flags to report ESC failures.
@@ -3530,6 +4401,19 @@ func (e ESC_FAILURE_FLAGS) String() string {
 	}
 }
 
+func (e ESC_FAILURE_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ESC_FAILURE_FLAGS{ESC_FAILURE_NONE, ESC_FAILURE_OVER_CURRENT, ESC_FAILURE_OVER_VOLTAGE, ESC_FAILURE_OVER_TEMPERATURE, ESC_FAILURE_OVER_RPM, ESC_FAILURE_INCONSISTENT_CMD, ESC_FAILURE_MOTOR_STUCK, ESC_FAILURE_GENERIC} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // STORAGE_STATUS type. Flags to indicate the status of camera storage.
 type STORAGE_STATUS int
 
@@ -3557,6 +4441,19 @@ func (e STORAGE_STATUS) String() string {
 	default:
 		return fmt.Sprintf("STORAGE_STATUS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e STORAGE_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []STORAGE_STATUS{STORAGE_STATUS_EMPTY, STORAGE_STATUS_UNFORMATTED, STORAGE_STATUS_READY, STORAGE_STATUS_NOT_SUPPORTED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // STORAGE_TYPE type. Flags to indicate the type of storage.
@@ -3608,6 +4505,19 @@ func (e STORAGE_TYPE) String() string {
 	}
 }
 
+func (e STORAGE_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []STORAGE_TYPE{STORAGE_TYPE_UNKNOWN, STORAGE_TYPE_USB_STICK, STORAGE_TYPE_SD, STORAGE_TYPE_MICROSD, STORAGE_TYPE_CF, STORAGE_TYPE_CFE, STORAGE_TYPE_XQD, STORAGE_TYPE_HD, STORAGE_TYPE_OTHER} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // ORBIT_YAW_BEHAVIOUR type. Yaw behaviour during orbit flight.
 type ORBIT_YAW_BEHAVIOUR int
 
@@ -3639,6 +4549,19 @@ func (e ORBIT_YAW_BEHAVIOUR) String() string {
 	default:
 		return fmt.Sprintf("ORBIT_YAW_BEHAVIOUR_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e ORBIT_YAW_BEHAVIOUR) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ORBIT_YAW_BEHAVIOUR{ORBIT_YAW_BEHAVIOUR_HOLD_FRONT_TO_CIRCLE_CENTER, ORBIT_YAW_BEHAVIOUR_HOLD_INITIAL_HEADING, ORBIT_YAW_BEHAVIOUR_UNCONTROLLED, ORBIT_YAW_BEHAVIOUR_HOLD_FRONT_TANGENT_TO_CIRCLE, ORBIT_YAW_BEHAVIOUR_RC_CONTROLLED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // WIFI_CONFIG_AP_RESPONSE type. Possible responses from a WIFI_CONFIG_AP message.
@@ -3678,6 +4601,19 @@ func (e WIFI_CONFIG_AP_RESPONSE) String() string {
 	}
 }
 
+func (e WIFI_CONFIG_AP_RESPONSE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []WIFI_CONFIG_AP_RESPONSE{WIFI_CONFIG_AP_RESPONSE_UNDEFINED, WIFI_CONFIG_AP_RESPONSE_ACCEPTED, WIFI_CONFIG_AP_RESPONSE_REJECTED, WIFI_CONFIG_AP_RESPONSE_MODE_ERROR, WIFI_CONFIG_AP_RESPONSE_SSID_ERROR, WIFI_CONFIG_AP_RESPONSE_PASSWORD_ERROR} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // CELLULAR_CONFIG_RESPONSE type. Possible responses from a CELLULAR_CONFIG message.
 type CELLULAR_CONFIG_RESPONSE int
 
@@ -3711,6 +4647,19 @@ func (e CELLULAR_CONFIG_RESPONSE) String() string {
 	}
 }
 
+func (e CELLULAR_CONFIG_RESPONSE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CELLULAR_CONFIG_RESPONSE{CELLULAR_CONFIG_RESPONSE_ACCEPTED, CELLULAR_CONFIG_RESPONSE_APN_ERROR, CELLULAR_CONFIG_RESPONSE_PIN_ERROR, CELLULAR_CONFIG_RESPONSE_REJECTED, CELLULAR_CONFIG_BLOCKED_PUK_REQUIRED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // WIFI_CONFIG_AP_MODE type. WiFi Mode.
 type WIFI_CONFIG_AP_MODE int
 
@@ -3740,6 +4689,19 @@ func (e WIFI_CONFIG_AP_MODE) String() string {
 	}
 }
 
+func (e WIFI_CONFIG_AP_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []WIFI_CONFIG_AP_MODE{WIFI_CONFIG_AP_MODE_UNDEFINED, WIFI_CONFIG_AP_MODE_AP, WIFI_CONFIG_AP_MODE_STATION, WIFI_CONFIG_AP_MODE_DISABLED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // COMP_METADATA_TYPE type. Possible values for COMPONENT_INFORMATION.comp_metadata_type.
 type COMP_METADATA_TYPE int
 
@@ -3765,6 +4727,19 @@ func (e COMP_METADATA_TYPE) String() string {
 	}
 }
 
+func (e COMP_METADATA_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []COMP_METADATA_TYPE{COMP_METADATA_TYPE_VERSION, COMP_METADATA_TYPE_PARAMETER, COMP_METADATA_TYPE_COMMANDS} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // PARAM_TRANSACTION_TRANSPORT type. Possible transport layers to set and get parameters via mavlink during a parameter transaction.
 type PARAM_TRANSACTION_TRANSPORT int
 
@@ -3784,6 +4759,19 @@ func (e PARAM_TRANSACTION_TRANSPORT) String() string {
 	default:
 		return fmt.Sprintf("PARAM_TRANSACTION_TRANSPORT_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e PARAM_TRANSACTION_TRANSPORT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []PARAM_TRANSACTION_TRANSPORT{PARAM_TRANSACTION_TRANSPORT_PARAM, PARAM_TRANSACTION_TRANSPORT_PARAM_EXT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // PARAM_TRANSACTION_ACTION type. Possible parameter transaction actions.
@@ -3809,6 +4797,19 @@ func (e PARAM_TRANSACTION_ACTION) String() string {
 	default:
 		return fmt.Sprintf("PARAM_TRANSACTION_ACTION_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e PARAM_TRANSACTION_ACTION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []PARAM_TRANSACTION_ACTION{PARAM_TRANSACTION_ACTION_START, PARAM_TRANSACTION_ACTION_COMMIT, PARAM_TRANSACTION_ACTION_CANCEL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_DATA_STREAM type. A data stream is not a fixed set of messages, but rather a      recommendation to the autopilot software. Individual autopilots may or may not obey      the recommended messages.
@@ -3860,6 +4861,19 @@ func (e MAV_DATA_STREAM) String() string {
 	}
 }
 
+func (e MAV_DATA_STREAM) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_DATA_STREAM{MAV_DATA_STREAM_ALL, MAV_DATA_STREAM_RAW_SENSORS, MAV_DATA_STREAM_EXTENDED_STATUS, MAV_DATA_STREAM_RC_CHANNELS, MAV_DATA_STREAM_RAW_CONTROLLER, MAV_DATA_STREAM_POSITION, MAV_DATA_STREAM_EXTRA1, MAV_DATA_STREAM_EXTRA2, MAV_DATA_STREAM_EXTRA3} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ROI type. The ROI (region of interest) for the vehicle. This can be                 be used by the vehicle for camera/vehicle attitude alignment (see                 MAV_CMD_NAV_ROI).
 type MAV_ROI int
 
@@ -3891,6 +4905,19 @@ func (e MAV_ROI) String() string {
 	default:
 		return fmt.Sprintf("MAV_ROI_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_ROI) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ROI{MAV_ROI_NONE, MAV_ROI_WPNEXT, MAV_ROI_WPINDEX, MAV_ROI_LOCATION, MAV_ROI_TARGET} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_CMD_ACK type. ACK / NACK / ERROR values as a result of MAV_CMDs and for mission item transmission.
@@ -3940,6 +4967,19 @@ func (e MAV_CMD_ACK) String() string {
 	default:
 		return fmt.Sprintf("MAV_CMD_ACK_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_CMD_ACK) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_CMD_ACK{MAV_CMD_ACK_OK, MAV_CMD_ACK_ERR_FAIL, MAV_CMD_ACK_ERR_ACCESS_DENIED, MAV_CMD_ACK_ERR_NOT_SUPPORTED, MAV_CMD_ACK_ERR_COORDINATE_FRAME_NOT_SUPPORTED, MAV_CMD_ACK_ERR_COORDINATES_OUT_OF_RANGE, MAV_CMD_ACK_ERR_X_LAT_OUT_OF_RANGE, MAV_CMD_ACK_ERR_Y_LON_OUT_OF_RANGE, MAV_CMD_ACK_ERR_Z_ALT_OUT_OF_RANGE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_PARAM_TYPE type. Specifies the datatype of a MAVLink parameter.
@@ -3993,6 +5033,19 @@ func (e MAV_PARAM_TYPE) String() string {
 	default:
 		return fmt.Sprintf("MAV_PARAM_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_PARAM_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_PARAM_TYPE{MAV_PARAM_TYPE_UINT8, MAV_PARAM_TYPE_INT8, MAV_PARAM_TYPE_UINT16, MAV_PARAM_TYPE_INT16, MAV_PARAM_TYPE_UINT32, MAV_PARAM_TYPE_INT32, MAV_PARAM_TYPE_UINT64, MAV_PARAM_TYPE_INT64, MAV_PARAM_TYPE_REAL32, MAV_PARAM_TYPE_REAL64} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_PARAM_EXT_TYPE type. Specifies the datatype of a MAVLink extended parameter.
@@ -4052,6 +5105,19 @@ func (e MAV_PARAM_EXT_TYPE) String() string {
 	}
 }
 
+func (e MAV_PARAM_EXT_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_PARAM_EXT_TYPE{MAV_PARAM_EXT_TYPE_UINT8, MAV_PARAM_EXT_TYPE_INT8, MAV_PARAM_EXT_TYPE_UINT16, MAV_PARAM_EXT_TYPE_INT16, MAV_PARAM_EXT_TYPE_UINT32, MAV_PARAM_EXT_TYPE_INT32, MAV_PARAM_EXT_TYPE_UINT64, MAV_PARAM_EXT_TYPE_INT64, MAV_PARAM_EXT_TYPE_REAL32, MAV_PARAM_EXT_TYPE_REAL64, MAV_PARAM_EXT_TYPE_CUSTOM} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_RESULT type. Result from a MAVLink command (MAV_CMD)
 type MAV_RESULT int
 
@@ -4091,6 +5157,19 @@ func (e MAV_RESULT) String() string {
 	default:
 		return fmt.Sprintf("MAV_RESULT_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_RESULT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_RESULT{MAV_RESULT_ACCEPTED, MAV_RESULT_TEMPORARILY_REJECTED, MAV_RESULT_DENIED, MAV_RESULT_UNSUPPORTED, MAV_RESULT_FAILED, MAV_RESULT_IN_PROGRESS, MAV_RESULT_CANCELLED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_MISSION_RESULT type. Result of mission operation (in a MISSION_ACK message).
@@ -4170,6 +5249,19 @@ func (e MAV_MISSION_RESULT) String() string {
 	}
 }
 
+func (e MAV_MISSION_RESULT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_MISSION_RESULT{MAV_MISSION_ACCEPTED, MAV_MISSION_ERROR, MAV_MISSION_UNSUPPORTED_FRAME, MAV_MISSION_UNSUPPORTED, MAV_MISSION_NO_SPACE, MAV_MISSION_INVALID, MAV_MISSION_INVALID_PARAM1, MAV_MISSION_INVALID_PARAM2, MAV_MISSION_INVALID_PARAM3, MAV_MISSION_INVALID_PARAM4, MAV_MISSION_INVALID_PARAM5_X, MAV_MISSION_INVALID_PARAM6_Y, MAV_MISSION_INVALID_PARAM7, MAV_MISSION_INVALID_SEQUENCE, MAV_MISSION_DENIED, MAV_MISSION_OPERATION_CANCELLED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_SEVERITY type. Indicates the severity level, generally used for status messages to indicate their relative urgency. Based on RFC-5424 using expanded definitions at: http://www.kiwisyslog.com/kb/info:-syslog-message-levels/.
 type MAV_SEVERITY int
 
@@ -4215,6 +5307,19 @@ func (e MAV_SEVERITY) String() string {
 	}
 }
 
+func (e MAV_SEVERITY) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_SEVERITY{MAV_SEVERITY_EMERGENCY, MAV_SEVERITY_ALERT, MAV_SEVERITY_CRITICAL, MAV_SEVERITY_ERROR, MAV_SEVERITY_WARNING, MAV_SEVERITY_NOTICE, MAV_SEVERITY_INFO, MAV_SEVERITY_DEBUG} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_POWER_STATUS type. Power supply status flags (bitmask)
 type MAV_POWER_STATUS int
 
@@ -4250,6 +5355,19 @@ func (e MAV_POWER_STATUS) String() string {
 	default:
 		return fmt.Sprintf("MAV_POWER_STATUS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_POWER_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_POWER_STATUS{MAV_POWER_STATUS_BRICK_VALID, MAV_POWER_STATUS_SERVO_VALID, MAV_POWER_STATUS_USB_CONNECTED, MAV_POWER_STATUS_PERIPH_OVERCURRENT, MAV_POWER_STATUS_PERIPH_HIPOWER_OVERCURRENT, MAV_POWER_STATUS_CHANGED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // SERIAL_CONTROL_DEV type. SERIAL_CONTROL device types
@@ -4325,6 +5443,19 @@ func (e SERIAL_CONTROL_DEV) String() string {
 	}
 }
 
+func (e SERIAL_CONTROL_DEV) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []SERIAL_CONTROL_DEV{SERIAL_CONTROL_DEV_TELEM1, SERIAL_CONTROL_DEV_TELEM2, SERIAL_CONTROL_DEV_GPS1, SERIAL_CONTROL_DEV_GPS2, SERIAL_CONTROL_DEV_SHELL, SERIAL_CONTROL_SERIAL0, SERIAL_CONTROL_SERIAL1, SERIAL_CONTROL_SERIAL2, SERIAL_CONTROL_SERIAL3, SERIAL_CONTROL_SERIAL4, SERIAL_CONTROL_SERIAL5, SERIAL_CONTROL_SERIAL6, SERIAL_CONTROL_SERIAL7, SERIAL_CONTROL_SERIAL8, SERIAL_CONTROL_SERIAL9} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // SERIAL_CONTROL_FLAG type. SERIAL_CONTROL flags (bitmask)
 type SERIAL_CONTROL_FLAG int
 
@@ -4358,6 +5489,19 @@ func (e SERIAL_CONTROL_FLAG) String() string {
 	}
 }
 
+func (e SERIAL_CONTROL_FLAG) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []SERIAL_CONTROL_FLAG{SERIAL_CONTROL_FLAG_REPLY, SERIAL_CONTROL_FLAG_RESPOND, SERIAL_CONTROL_FLAG_EXCLUSIVE, SERIAL_CONTROL_FLAG_BLOCKING, SERIAL_CONTROL_FLAG_MULTI} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_DISTANCE_SENSOR type. Enumeration of distance sensor types
 type MAV_DISTANCE_SENSOR int
 
@@ -4389,6 +5533,19 @@ func (e MAV_DISTANCE_SENSOR) String() string {
 	default:
 		return fmt.Sprintf("MAV_DISTANCE_SENSOR_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_DISTANCE_SENSOR) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_DISTANCE_SENSOR{MAV_DISTANCE_SENSOR_LASER, MAV_DISTANCE_SENSOR_ULTRASOUND, MAV_DISTANCE_SENSOR_INFRARED, MAV_DISTANCE_SENSOR_RADAR, MAV_DISTANCE_SENSOR_UNKNOWN} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_SENSOR_ORIENTATION type. Enumeration of sensor orientation, according to its rotations
@@ -4572,6 +5729,19 @@ func (e MAV_SENSOR_ORIENTATION) String() string {
 	}
 }
 
+func (e MAV_SENSOR_ORIENTATION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_SENSOR_ORIENTATION{MAV_SENSOR_ROTATION_NONE, MAV_SENSOR_ROTATION_YAW_45, MAV_SENSOR_ROTATION_YAW_90, MAV_SENSOR_ROTATION_YAW_135, MAV_SENSOR_ROTATION_YAW_180, MAV_SENSOR_ROTATION_YAW_225, MAV_SENSOR_ROTATION_YAW_270, MAV_SENSOR_ROTATION_YAW_315, MAV_SENSOR_ROTATION_ROLL_180, MAV_SENSOR_ROTATION_ROLL_180_YAW_45, MAV_SENSOR_ROTATION_ROLL_180_YAW_90, MAV_SENSOR_ROTATION_ROLL_180_YAW_135, MAV_SENSOR_ROTATION_PITCH_180, MAV_SENSOR_ROTATION_ROLL_180_YAW_225, MAV_SENSOR_ROTATION_ROLL_180_YAW_270, MAV_SENSOR_ROTATION_ROLL_180_YAW_315, MAV_SENSOR_ROTATION_ROLL_90, MAV_SENSOR_ROTATION_ROLL_90_YAW_45, MAV_SENSOR_ROTATION_ROLL_90_YAW_90, MAV_SENSOR_ROTATION_ROLL_90_YAW_135, MAV_SENSOR_ROTATION_ROLL_270, MAV_SENSOR_ROTATION_ROLL_270_YAW_45, MAV_SENSOR_ROTATION_ROLL_270_YAW_90, MAV_SENSOR_ROTATION_ROLL_270_YAW_135, MAV_SENSOR_ROTATION_PITCH_90, MAV_SENSOR_ROTATION_PITCH_270, MAV_SENSOR_ROTATION_PITCH_180_YAW_90, MAV_SENSOR_ROTATION_PITCH_180_YAW_270, MAV_SENSOR_ROTATION_ROLL_90_PITCH_90, MAV_SENSOR_ROTATION_ROLL_180_PITCH_90, MAV_SENSOR_ROTATION_ROLL_270_PITCH_90, MAV_SENSOR_ROTATION_ROLL_90_PITCH_180, MAV_SENSOR_ROTATION_ROLL_270_PITCH_180, MAV_SENSOR_ROTATION_ROLL_90_PITCH_270, MAV_SENSOR_ROTATION_ROLL_180_PITCH_270, MAV_SENSOR_ROTATION_ROLL_270_PITCH_270, MAV_SENSOR_ROTATION_ROLL_90_PITCH_180_YAW_90, MAV_SENSOR_ROTATION_ROLL_90_YAW_270, MAV_SENSOR_ROTATION_ROLL_90_PITCH_68_YAW_293, MAV_SENSOR_ROTATION_PITCH_315, MAV_SENSOR_ROTATION_ROLL_90_PITCH_315, MAV_SENSOR_ROTATION_CUSTOM} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_PROTOCOL_CAPABILITY type. Bitmask of (optional) autopilot capabilities (64 bit). If a bit is set, the autopilot supports this capability.
 type MAV_PROTOCOL_CAPABILITY int
 
@@ -4653,6 +5823,19 @@ func (e MAV_PROTOCOL_CAPABILITY) String() string {
 	}
 }
 
+func (e MAV_PROTOCOL_CAPABILITY) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_PROTOCOL_CAPABILITY{MAV_PROTOCOL_CAPABILITY_MISSION_FLOAT, MAV_PROTOCOL_CAPABILITY_PARAM_FLOAT, MAV_PROTOCOL_CAPABILITY_MISSION_INT, MAV_PROTOCOL_CAPABILITY_COMMAND_INT, MAV_PROTOCOL_CAPABILITY_PARAM_UNION, MAV_PROTOCOL_CAPABILITY_FTP, MAV_PROTOCOL_CAPABILITY_SET_ATTITUDE_TARGET, MAV_PROTOCOL_CAPABILITY_SET_POSITION_TARGET_LOCAL_NED, MAV_PROTOCOL_CAPABILITY_SET_POSITION_TARGET_GLOBAL_INT, MAV_PROTOCOL_CAPABILITY_TERRAIN, MAV_PROTOCOL_CAPABILITY_SET_ACTUATOR_TARGET, MAV_PROTOCOL_CAPABILITY_FLIGHT_TERMINATION, MAV_PROTOCOL_CAPABILITY_COMPASS_CALIBRATION, MAV_PROTOCOL_CAPABILITY_MAVLINK2, MAV_PROTOCOL_CAPABILITY_MISSION_FENCE, MAV_PROTOCOL_CAPABILITY_MISSION_RALLY, MAV_PROTOCOL_CAPABILITY_FLIGHT_INFORMATION} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_MISSION_TYPE type. Type of mission items being requested/sent in mission protocol.
 type MAV_MISSION_TYPE int
 
@@ -4680,6 +5863,19 @@ func (e MAV_MISSION_TYPE) String() string {
 	default:
 		return fmt.Sprintf("MAV_MISSION_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_MISSION_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_MISSION_TYPE{MAV_MISSION_TYPE_MISSION, MAV_MISSION_TYPE_FENCE, MAV_MISSION_TYPE_RALLY, MAV_MISSION_TYPE_ALL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_ESTIMATOR_TYPE type. Enumeration of estimator types
@@ -4731,6 +5927,19 @@ func (e MAV_ESTIMATOR_TYPE) String() string {
 	}
 }
 
+func (e MAV_ESTIMATOR_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ESTIMATOR_TYPE{MAV_ESTIMATOR_TYPE_UNKNOWN, MAV_ESTIMATOR_TYPE_NAIVE, MAV_ESTIMATOR_TYPE_VISION, MAV_ESTIMATOR_TYPE_VIO, MAV_ESTIMATOR_TYPE_GPS, MAV_ESTIMATOR_TYPE_GPS_INS, MAV_ESTIMATOR_TYPE_MOCAP, MAV_ESTIMATOR_TYPE_LIDAR, MAV_ESTIMATOR_TYPE_AUTOPILOT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_BATTERY_TYPE type. Enumeration of battery types
 type MAV_BATTERY_TYPE int
 
@@ -4764,6 +5973,19 @@ func (e MAV_BATTERY_TYPE) String() string {
 	}
 }
 
+func (e MAV_BATTERY_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_BATTERY_TYPE{MAV_BATTERY_TYPE_UNKNOWN, MAV_BATTERY_TYPE_LIPO, MAV_BATTERY_TYPE_LIFE, MAV_BATTERY_TYPE_LION, MAV_BATTERY_TYPE_NIMH} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_BATTERY_FUNCTION type. Enumeration of battery functions
 type MAV_BATTERY_FUNCTION int
 
@@ -4795,6 +6017,19 @@ func (e MAV_BATTERY_FUNCTION) String() string {
 	default:
 		return fmt.Sprintf("MAV_BATTERY_FUNCTION_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_BATTERY_FUNCTION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_BATTERY_FUNCTION{MAV_BATTERY_FUNCTION_UNKNOWN, MAV_BATTERY_FUNCTION_ALL, MAV_BATTERY_FUNCTION_PROPULSION, MAV_BATTERY_FUNCTION_AVIONICS, MAV_BATTERY_TYPE_PAYLOAD} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_BATTERY_CHARGE_STATE type. Enumeration for battery charge states.
@@ -4842,6 +6077,19 @@ func (e MAV_BATTERY_CHARGE_STATE) String() string {
 	}
 }
 
+func (e MAV_BATTERY_CHARGE_STATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_BATTERY_CHARGE_STATE{MAV_BATTERY_CHARGE_STATE_UNDEFINED, MAV_BATTERY_CHARGE_STATE_OK, MAV_BATTERY_CHARGE_STATE_LOW, MAV_BATTERY_CHARGE_STATE_CRITICAL, MAV_BATTERY_CHARGE_STATE_EMERGENCY, MAV_BATTERY_CHARGE_STATE_FAILED, MAV_BATTERY_CHARGE_STATE_UNHEALTHY, MAV_BATTERY_CHARGE_STATE_CHARGING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_BATTERY_MODE type. Battery mode. Note, the normal operation mode (i.e. when flying) should be reported as MAV_BATTERY_MODE_UNKNOWN to allow message trimming in normal flight.
 type MAV_BATTERY_MODE int
 
@@ -4865,6 +6113,19 @@ func (e MAV_BATTERY_MODE) String() string {
 	default:
 		return fmt.Sprintf("MAV_BATTERY_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_BATTERY_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_BATTERY_MODE{MAV_BATTERY_MODE_UNKNOWN, MAV_BATTERY_MODE_AUTO_DISCHARGING, MAV_BATTERY_MODE_HOT_SWAP} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_BATTERY_FAULT type. Smart battery supply status/fault flags (bitmask) for health indication. The battery must also report either MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY if any of these are set.
@@ -4906,6 +6167,19 @@ func (e MAV_BATTERY_FAULT) String() string {
 	default:
 		return fmt.Sprintf("MAV_BATTERY_FAULT_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_BATTERY_FAULT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_BATTERY_FAULT{MAV_BATTERY_FAULT_DEEP_DISCHARGE, MAV_BATTERY_FAULT_SPIKES, MAV_BATTERY_FAULT_CELL_FAIL, MAV_BATTERY_FAULT_OVER_CURRENT, MAV_BATTERY_FAULT_OVER_TEMPERATURE, MAV_BATTERY_FAULT_UNDER_TEMPERATURE, MAV_BATTERY_FAULT_INCOMPATIBLE_VOLTAGE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_GENERATOR_STATUS_FLAG type. Flags to report status/failure cases for a power generator (used in GENERATOR_STATUS). Note that FAULTS are conditions that cause the generator to fail. Warnings are conditions that require attention before the next use (they indicate the system is not operating properly).
@@ -5013,6 +6287,19 @@ func (e MAV_GENERATOR_STATUS_FLAG) String() string {
 	}
 }
 
+func (e MAV_GENERATOR_STATUS_FLAG) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_GENERATOR_STATUS_FLAG{MAV_GENERATOR_STATUS_FLAG_OFF, MAV_GENERATOR_STATUS_FLAG_READY, MAV_GENERATOR_STATUS_FLAG_GENERATING, MAV_GENERATOR_STATUS_FLAG_CHARGING, MAV_GENERATOR_STATUS_FLAG_REDUCED_POWER, MAV_GENERATOR_STATUS_FLAG_MAXPOWER, MAV_GENERATOR_STATUS_FLAG_OVERTEMP_WARNING, MAV_GENERATOR_STATUS_FLAG_OVERTEMP_FAULT, MAV_GENERATOR_STATUS_FLAG_ELECTRONICS_OVERTEMP_WARNING, MAV_GENERATOR_STATUS_FLAG_ELECTRONICS_OVERTEMP_FAULT, MAV_GENERATOR_STATUS_FLAG_ELECTRONICS_FAULT, MAV_GENERATOR_STATUS_FLAG_POWERSOURCE_FAULT, MAV_GENERATOR_STATUS_FLAG_COMMUNICATION_WARNING, MAV_GENERATOR_STATUS_FLAG_COOLING_WARNING, MAV_GENERATOR_STATUS_FLAG_POWER_RAIL_FAULT, MAV_GENERATOR_STATUS_FLAG_OVERCURRENT_FAULT, MAV_GENERATOR_STATUS_FLAG_BATTERY_OVERCHARGE_CURRENT_FAULT, MAV_GENERATOR_STATUS_FLAG_OVERVOLTAGE_FAULT, MAV_GENERATOR_STATUS_FLAG_BATTERY_UNDERVOLT_FAULT, MAV_GENERATOR_STATUS_FLAG_START_INHIBITED, MAV_GENERATOR_STATUS_FLAG_MAINTENANCE_REQUIRED, MAV_GENERATOR_STATUS_FLAG_WARMING_UP, MAV_GENERATOR_STATUS_FLAG_IDLE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_VTOL_STATE type. Enumeration of VTOL states
 type MAV_VTOL_STATE int
 
@@ -5044,6 +6331,19 @@ func (e MAV_VTOL_STATE) String() string {
 	default:
 		return fmt.Sprintf("MAV_VTOL_STATE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_VTOL_STATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_VTOL_STATE{MAV_VTOL_STATE_UNDEFINED, MAV_VTOL_STATE_TRANSITION_TO_FW, MAV_VTOL_STATE_TRANSITION_TO_MC, MAV_VTOL_STATE_MC, MAV_VTOL_STATE_FW} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_LANDED_STATE type. Enumeration of landed detector states
@@ -5079,6 +6379,19 @@ func (e MAV_LANDED_STATE) String() string {
 	}
 }
 
+func (e MAV_LANDED_STATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_LANDED_STATE{MAV_LANDED_STATE_UNDEFINED, MAV_LANDED_STATE_ON_GROUND, MAV_LANDED_STATE_IN_AIR, MAV_LANDED_STATE_TAKEOFF, MAV_LANDED_STATE_LANDING} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // ADSB_ALTITUDE_TYPE type. Enumeration of the ADSB altimeter types
 type ADSB_ALTITUDE_TYPE int
 
@@ -5098,6 +6411,19 @@ func (e ADSB_ALTITUDE_TYPE) String() string {
 	default:
 		return fmt.Sprintf("ADSB_ALTITUDE_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e ADSB_ALTITUDE_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ADSB_ALTITUDE_TYPE{ADSB_ALTITUDE_TYPE_PRESSURE_QNH, ADSB_ALTITUDE_TYPE_GEOMETRIC} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // ADSB_EMITTER_TYPE type. ADSB classification for the type of vehicle emitting the transponder signal
@@ -5193,6 +6519,19 @@ func (e ADSB_EMITTER_TYPE) String() string {
 	}
 }
 
+func (e ADSB_EMITTER_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ADSB_EMITTER_TYPE{ADSB_EMITTER_TYPE_NO_INFO, ADSB_EMITTER_TYPE_LIGHT, ADSB_EMITTER_TYPE_SMALL, ADSB_EMITTER_TYPE_LARGE, ADSB_EMITTER_TYPE_HIGH_VORTEX_LARGE, ADSB_EMITTER_TYPE_HEAVY, ADSB_EMITTER_TYPE_HIGHLY_MANUV, ADSB_EMITTER_TYPE_ROTOCRAFT, ADSB_EMITTER_TYPE_UNASSIGNED, ADSB_EMITTER_TYPE_GLIDER, ADSB_EMITTER_TYPE_LIGHTER_AIR, ADSB_EMITTER_TYPE_PARACHUTE, ADSB_EMITTER_TYPE_ULTRA_LIGHT, ADSB_EMITTER_TYPE_UNASSIGNED2, ADSB_EMITTER_TYPE_UAV, ADSB_EMITTER_TYPE_SPACE, ADSB_EMITTER_TYPE_UNASSGINED3, ADSB_EMITTER_TYPE_EMERGENCY_SURFACE, ADSB_EMITTER_TYPE_SERVICE_SURFACE, ADSB_EMITTER_TYPE_POINT_OBSTACLE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // ADSB_FLAGS type. These flags indicate status such as data validity of each data source. Set = data valid
 type ADSB_FLAGS int
 
@@ -5246,6 +6585,19 @@ func (e ADSB_FLAGS) String() string {
 	}
 }
 
+func (e ADSB_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ADSB_FLAGS{ADSB_FLAGS_VALID_COORDS, ADSB_FLAGS_VALID_ALTITUDE, ADSB_FLAGS_VALID_HEADING, ADSB_FLAGS_VALID_VELOCITY, ADSB_FLAGS_VALID_CALLSIGN, ADSB_FLAGS_VALID_SQUAWK, ADSB_FLAGS_SIMULATED, ADSB_FLAGS_VERTICAL_VELOCITY_VALID, ADSB_FLAGS_BARO_VALID, ADSB_FLAGS_SOURCE_UAT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_DO_REPOSITION_FLAGS type. Bitmap of options for the MAV_CMD_DO_REPOSITION
 type MAV_DO_REPOSITION_FLAGS int
 
@@ -5261,6 +6613,19 @@ func (e MAV_DO_REPOSITION_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("MAV_DO_REPOSITION_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_DO_REPOSITION_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_DO_REPOSITION_FLAGS{MAV_DO_REPOSITION_FLAGS_CHANGE_MODE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // ESTIMATOR_STATUS_FLAGS type. Flags in ESTIMATOR_STATUS message
@@ -5324,6 +6689,19 @@ func (e ESTIMATOR_STATUS_FLAGS) String() string {
 	}
 }
 
+func (e ESTIMATOR_STATUS_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ESTIMATOR_STATUS_FLAGS{ESTIMATOR_ATTITUDE, ESTIMATOR_VELOCITY_HORIZ, ESTIMATOR_VELOCITY_VERT, ESTIMATOR_POS_HORIZ_REL, ESTIMATOR_POS_HORIZ_ABS, ESTIMATOR_POS_VERT_ABS, ESTIMATOR_POS_VERT_AGL, ESTIMATOR_CONST_POS_MODE, ESTIMATOR_PRED_POS_HORIZ_REL, ESTIMATOR_PRED_POS_HORIZ_ABS, ESTIMATOR_GPS_GLITCH, ESTIMATOR_ACCEL_ERROR} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MOTOR_TEST_ORDER type
 type MOTOR_TEST_ORDER int
 
@@ -5347,6 +6725,19 @@ func (e MOTOR_TEST_ORDER) String() string {
 	default:
 		return fmt.Sprintf("MOTOR_TEST_ORDER_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MOTOR_TEST_ORDER) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MOTOR_TEST_ORDER{MOTOR_TEST_ORDER_DEFAULT, MOTOR_TEST_ORDER_SEQUENCE, MOTOR_TEST_ORDER_BOARD} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MOTOR_TEST_THROTTLE_TYPE type
@@ -5376,6 +6767,19 @@ func (e MOTOR_TEST_THROTTLE_TYPE) String() string {
 	default:
 		return fmt.Sprintf("MOTOR_TEST_THROTTLE_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MOTOR_TEST_THROTTLE_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MOTOR_TEST_THROTTLE_TYPE{MOTOR_TEST_THROTTLE_PERCENT, MOTOR_TEST_THROTTLE_PWM, MOTOR_TEST_THROTTLE_PILOT, MOTOR_TEST_COMPASS_CAL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GPS_INPUT_IGNORE_FLAGS type
@@ -5423,6 +6827,19 @@ func (e GPS_INPUT_IGNORE_FLAGS) String() string {
 	}
 }
 
+func (e GPS_INPUT_IGNORE_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GPS_INPUT_IGNORE_FLAGS{GPS_INPUT_IGNORE_FLAG_ALT, GPS_INPUT_IGNORE_FLAG_HDOP, GPS_INPUT_IGNORE_FLAG_VDOP, GPS_INPUT_IGNORE_FLAG_VEL_HORIZ, GPS_INPUT_IGNORE_FLAG_VEL_VERT, GPS_INPUT_IGNORE_FLAG_SPEED_ACCURACY, GPS_INPUT_IGNORE_FLAG_HORIZONTAL_ACCURACY, GPS_INPUT_IGNORE_FLAG_VERTICAL_ACCURACY} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_COLLISION_ACTION type. Possible actions an aircraft can take to avoid a collision.
 type MAV_COLLISION_ACTION int
 
@@ -5464,6 +6881,19 @@ func (e MAV_COLLISION_ACTION) String() string {
 	}
 }
 
+func (e MAV_COLLISION_ACTION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_COLLISION_ACTION{MAV_COLLISION_ACTION_NONE, MAV_COLLISION_ACTION_REPORT, MAV_COLLISION_ACTION_ASCEND_OR_DESCEND, MAV_COLLISION_ACTION_MOVE_HORIZONTALLY, MAV_COLLISION_ACTION_MOVE_PERPENDICULAR, MAV_COLLISION_ACTION_RTL, MAV_COLLISION_ACTION_HOVER} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_COLLISION_THREAT_LEVEL type. Aircraft-rated danger from this threat.
 type MAV_COLLISION_THREAT_LEVEL int
 
@@ -5489,6 +6919,19 @@ func (e MAV_COLLISION_THREAT_LEVEL) String() string {
 	}
 }
 
+func (e MAV_COLLISION_THREAT_LEVEL) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_COLLISION_THREAT_LEVEL{MAV_COLLISION_THREAT_LEVEL_NONE, MAV_COLLISION_THREAT_LEVEL_LOW, MAV_COLLISION_THREAT_LEVEL_HIGH} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_COLLISION_SRC type. Source of information about this collision.
 type MAV_COLLISION_SRC int
 
@@ -5508,6 +6951,19 @@ func (e MAV_COLLISION_SRC) String() string {
 	default:
 		return fmt.Sprintf("MAV_COLLISION_SRC_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_COLLISION_SRC) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_COLLISION_SRC{MAV_COLLISION_SRC_ADSB, MAV_COLLISION_SRC_MAVLINK_GPS_GLOBAL_INT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // GPS_FIX_TYPE type. Type of GPS fix
@@ -5559,6 +7015,19 @@ func (e GPS_FIX_TYPE) String() string {
 	}
 }
 
+func (e GPS_FIX_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []GPS_FIX_TYPE{GPS_FIX_TYPE_NO_GPS, GPS_FIX_TYPE_NO_FIX, GPS_FIX_TYPE_2D_FIX, GPS_FIX_TYPE_3D_FIX, GPS_FIX_TYPE_DGPS, GPS_FIX_TYPE_RTK_FLOAT, GPS_FIX_TYPE_RTK_FIXED, GPS_FIX_TYPE_STATIC, GPS_FIX_TYPE_PPP} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // RTK_BASELINE_COORDINATE_SYSTEM type. RTK GPS baseline coordinate system, used for RTK corrections
 type RTK_BASELINE_COORDINATE_SYSTEM int
 
@@ -5578,6 +7047,19 @@ func (e RTK_BASELINE_COORDINATE_SYSTEM) String() string {
 	default:
 		return fmt.Sprintf("RTK_BASELINE_COORDINATE_SYSTEM_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e RTK_BASELINE_COORDINATE_SYSTEM) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []RTK_BASELINE_COORDINATE_SYSTEM{RTK_BASELINE_COORDINATE_SYSTEM_ECEF, RTK_BASELINE_COORDINATE_SYSTEM_NED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // LANDING_TARGET_TYPE type. Type of landing target
@@ -5607,6 +7089,19 @@ func (e LANDING_TARGET_TYPE) String() string {
 	default:
 		return fmt.Sprintf("LANDING_TARGET_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e LANDING_TARGET_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []LANDING_TARGET_TYPE{LANDING_TARGET_TYPE_LIGHT_BEACON, LANDING_TARGET_TYPE_RADIO_BEACON, LANDING_TARGET_TYPE_VISION_FIDUCIAL, LANDING_TARGET_TYPE_VISION_OTHER} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // VTOL_TRANSITION_HEADING type. Direction of VTOL transition
@@ -5640,6 +7135,19 @@ func (e VTOL_TRANSITION_HEADING) String() string {
 	default:
 		return fmt.Sprintf("VTOL_TRANSITION_HEADING_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e VTOL_TRANSITION_HEADING) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []VTOL_TRANSITION_HEADING{VTOL_TRANSITION_HEADING_VEHICLE_DEFAULT, VTOL_TRANSITION_HEADING_NEXT_WAYPOINT, VTOL_TRANSITION_HEADING_TAKEOFF, VTOL_TRANSITION_HEADING_SPECIFIED, VTOL_TRANSITION_HEADING_ANY} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // CAMERA_CAP_FLAGS type. Camera capability flags (Bitmap)
@@ -5703,6 +7211,19 @@ func (e CAMERA_CAP_FLAGS) String() string {
 	}
 }
 
+func (e CAMERA_CAP_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CAMERA_CAP_FLAGS{CAMERA_CAP_FLAGS_CAPTURE_VIDEO, CAMERA_CAP_FLAGS_CAPTURE_IMAGE, CAMERA_CAP_FLAGS_HAS_MODES, CAMERA_CAP_FLAGS_CAN_CAPTURE_IMAGE_IN_VIDEO_MODE, CAMERA_CAP_FLAGS_CAN_CAPTURE_VIDEO_IN_IMAGE_MODE, CAMERA_CAP_FLAGS_HAS_IMAGE_SURVEY_MODE, CAMERA_CAP_FLAGS_HAS_BASIC_ZOOM, CAMERA_CAP_FLAGS_HAS_BASIC_FOCUS, CAMERA_CAP_FLAGS_HAS_VIDEO_STREAM, CAMERA_CAP_FLAGS_HAS_TRACKING_POINT, CAMERA_CAP_FLAGS_HAS_TRACKING_RECTANGLE, CAMERA_CAP_FLAGS_HAS_TRACKING_GEO_STATUS} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // VIDEO_STREAM_STATUS_FLAGS type. Stream status flags (Bitmap)
 type VIDEO_STREAM_STATUS_FLAGS int
 
@@ -5722,6 +7243,19 @@ func (e VIDEO_STREAM_STATUS_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("VIDEO_STREAM_STATUS_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e VIDEO_STREAM_STATUS_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []VIDEO_STREAM_STATUS_FLAGS{VIDEO_STREAM_STATUS_FLAGS_RUNNING, VIDEO_STREAM_STATUS_FLAGS_THERMAL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // VIDEO_STREAM_TYPE type. Video stream types
@@ -5753,6 +7287,19 @@ func (e VIDEO_STREAM_TYPE) String() string {
 	}
 }
 
+func (e VIDEO_STREAM_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []VIDEO_STREAM_TYPE{VIDEO_STREAM_TYPE_RTSP, VIDEO_STREAM_TYPE_RTPUDP, VIDEO_STREAM_TYPE_TCP_MPEG, VIDEO_STREAM_TYPE_MPEG_TS_H264} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // CAMERA_TRACKING_STATUS_FLAGS type. Camera tracking status flags
 type CAMERA_TRACKING_STATUS_FLAGS int
 
@@ -5778,6 +7325,19 @@ func (e CAMERA_TRACKING_STATUS_FLAGS) String() string {
 	}
 }
 
+func (e CAMERA_TRACKING_STATUS_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CAMERA_TRACKING_STATUS_FLAGS{CAMERA_TRACKING_STATUS_FLAGS_IDLE, CAMERA_TRACKING_STATUS_FLAGS_ACTIVE, CAMERA_TRACKING_STATUS_FLAGS_ERROR} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // CAMERA_TRACKING_MODE type. Camera tracking modes
 type CAMERA_TRACKING_MODE int
 
@@ -5801,6 +7361,19 @@ func (e CAMERA_TRACKING_MODE) String() string {
 	default:
 		return fmt.Sprintf("CAMERA_TRACKING_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e CAMERA_TRACKING_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CAMERA_TRACKING_MODE{CAMERA_TRACKING_NONE, CAMERA_TRACKING_POINT, CAMERA_TRACKING_RECTANGLE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // CAMERA_TRACKING_TARGET_DATA type. Camera tracking target data (shows where tracked target is within image)
@@ -5832,6 +7405,19 @@ func (e CAMERA_TRACKING_TARGET_DATA) String() string {
 	}
 }
 
+func (e CAMERA_TRACKING_TARGET_DATA) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CAMERA_TRACKING_TARGET_DATA{CAMERA_TRACKING_TARGET_NONE, CAMERA_TRACKING_TARGET_EMBEDDED, CAMERA_TRACKING_TARGET_RENDERED, CAMERA_TRACKING_TARGET_IN_STATUS} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // CAMERA_ZOOM_TYPE type. Zoom types for MAV_CMD_SET_CAMERA_ZOOM
 type CAMERA_ZOOM_TYPE int
 
@@ -5859,6 +7445,19 @@ func (e CAMERA_ZOOM_TYPE) String() string {
 	default:
 		return fmt.Sprintf("CAMERA_ZOOM_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e CAMERA_ZOOM_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CAMERA_ZOOM_TYPE{ZOOM_TYPE_STEP, ZOOM_TYPE_CONTINUOUS, ZOOM_TYPE_RANGE, ZOOM_TYPE_FOCAL_LENGTH} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // SET_FOCUS_TYPE type. Focus types for MAV_CMD_SET_CAMERA_FOCUS
@@ -5890,6 +7489,19 @@ func (e SET_FOCUS_TYPE) String() string {
 	}
 }
 
+func (e SET_FOCUS_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []SET_FOCUS_TYPE{FOCUS_TYPE_STEP, FOCUS_TYPE_CONTINUOUS, FOCUS_TYPE_RANGE, FOCUS_TYPE_METERS} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // PARAM_ACK type. Result from PARAM_EXT_SET message (or a PARAM_SET within a transaction).
 type PARAM_ACK int
 
@@ -5919,6 +7531,19 @@ func (e PARAM_ACK) String() string {
 	}
 }
 
+func (e PARAM_ACK) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []PARAM_ACK{PARAM_ACK_ACCEPTED, PARAM_ACK_VALUE_UNSUPPORTED, PARAM_ACK_FAILED, PARAM_ACK_IN_PROGRESS} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // CAMERA_MODE type. Camera Modes.
 type CAMERA_MODE int
 
@@ -5942,6 +7567,19 @@ func (e CAMERA_MODE) String() string {
 	default:
 		return fmt.Sprintf("CAMERA_MODE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e CAMERA_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CAMERA_MODE{CAMERA_MODE_IMAGE, CAMERA_MODE_VIDEO, CAMERA_MODE_IMAGE_SURVEY} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_ARM_AUTH_DENIED_REASON type
@@ -5981,6 +7619,19 @@ func (e MAV_ARM_AUTH_DENIED_REASON) String() string {
 	}
 }
 
+func (e MAV_ARM_AUTH_DENIED_REASON) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ARM_AUTH_DENIED_REASON{MAV_ARM_AUTH_DENIED_REASON_GENERIC, MAV_ARM_AUTH_DENIED_REASON_NONE, MAV_ARM_AUTH_DENIED_REASON_INVALID_WAYPOINT, MAV_ARM_AUTH_DENIED_REASON_TIMEOUT, MAV_ARM_AUTH_DENIED_REASON_AIRSPACE_IN_USE, MAV_ARM_AUTH_DENIED_REASON_BAD_WEATHER} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // RC_TYPE type. RC type
 type RC_TYPE int
 
@@ -6000,6 +7651,19 @@ func (e RC_TYPE) String() string {
 	default:
 		return fmt.Sprintf("RC_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e RC_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []RC_TYPE{RC_TYPE_SPEKTRUM_DSM2, RC_TYPE_SPEKTRUM_DSMX} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // POSITION_TARGET_TYPEMASK type. Bitmap to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 9 is set the floats afx afy afz should be interpreted as force instead of acceleration.
@@ -6063,6 +7727,19 @@ func (e POSITION_TARGET_TYPEMASK) String() string {
 	}
 }
 
+func (e POSITION_TARGET_TYPEMASK) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []POSITION_TARGET_TYPEMASK{POSITION_TARGET_TYPEMASK_X_IGNORE, POSITION_TARGET_TYPEMASK_Y_IGNORE, POSITION_TARGET_TYPEMASK_Z_IGNORE, POSITION_TARGET_TYPEMASK_VX_IGNORE, POSITION_TARGET_TYPEMASK_VY_IGNORE, POSITION_TARGET_TYPEMASK_VZ_IGNORE, POSITION_TARGET_TYPEMASK_AX_IGNORE, POSITION_TARGET_TYPEMASK_AY_IGNORE, POSITION_TARGET_TYPEMASK_AZ_IGNORE, POSITION_TARGET_TYPEMASK_FORCE_SET, POSITION_TARGET_TYPEMASK_YAW_IGNORE, POSITION_TARGET_TYPEMASK_YAW_RATE_IGNORE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // ATTITUDE_TARGET_TYPEMASK type. Bitmap to indicate which dimensions should be ignored by the vehicle: a value of 0b00000000 indicates that none of the setpoint dimensions should be ignored.
 type ATTITUDE_TARGET_TYPEMASK int
 
@@ -6096,6 +7773,19 @@ func (e ATTITUDE_TARGET_TYPEMASK) String() string {
 	}
 }
 
+func (e ATTITUDE_TARGET_TYPEMASK) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ATTITUDE_TARGET_TYPEMASK{ATTITUDE_TARGET_TYPEMASK_BODY_ROLL_RATE_IGNORE, ATTITUDE_TARGET_TYPEMASK_BODY_PITCH_RATE_IGNORE, ATTITUDE_TARGET_TYPEMASK_BODY_YAW_RATE_IGNORE, ATTITUDE_TARGET_TYPEMASK_THROTTLE_IGNORE, ATTITUDE_TARGET_TYPEMASK_ATTITUDE_IGNORE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // UTM_FLIGHT_STATE type. Airborne status of UAS.
 type UTM_FLIGHT_STATE int
 
@@ -6127,6 +7817,19 @@ func (e UTM_FLIGHT_STATE) String() string {
 	default:
 		return fmt.Sprintf("UTM_FLIGHT_STATE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e UTM_FLIGHT_STATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UTM_FLIGHT_STATE{UTM_FLIGHT_STATE_UNKNOWN, UTM_FLIGHT_STATE_GROUND, UTM_FLIGHT_STATE_AIRBORNE, UTM_FLIGHT_STATE_EMERGENCY, UTM_FLIGHT_STATE_NOCTRL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // UTM_DATA_AVAIL_FLAGS type. Flags for the global position report.
@@ -6174,6 +7877,19 @@ func (e UTM_DATA_AVAIL_FLAGS) String() string {
 	}
 }
 
+func (e UTM_DATA_AVAIL_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UTM_DATA_AVAIL_FLAGS{UTM_DATA_AVAIL_FLAGS_TIME_VALID, UTM_DATA_AVAIL_FLAGS_UAS_ID_AVAILABLE, UTM_DATA_AVAIL_FLAGS_POSITION_AVAILABLE, UTM_DATA_AVAIL_FLAGS_ALTITUDE_AVAILABLE, UTM_DATA_AVAIL_FLAGS_RELATIVE_ALTITUDE_AVAILABLE, UTM_DATA_AVAIL_FLAGS_HORIZONTAL_VELO_AVAILABLE, UTM_DATA_AVAIL_FLAGS_VERTICAL_VELO_AVAILABLE, UTM_DATA_AVAIL_FLAGS_NEXT_WAYPOINT_AVAILABLE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // CELLULAR_NETWORK_RADIO_TYPE type. Cellular network radio type
 type CELLULAR_NETWORK_RADIO_TYPE int
 
@@ -6205,6 +7921,19 @@ func (e CELLULAR_NETWORK_RADIO_TYPE) String() string {
 	default:
 		return fmt.Sprintf("CELLULAR_NETWORK_RADIO_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e CELLULAR_NETWORK_RADIO_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CELLULAR_NETWORK_RADIO_TYPE{CELLULAR_NETWORK_RADIO_TYPE_NONE, CELLULAR_NETWORK_RADIO_TYPE_GSM, CELLULAR_NETWORK_RADIO_TYPE_CDMA, CELLULAR_NETWORK_RADIO_TYPE_WCDMA, CELLULAR_NETWORK_RADIO_TYPE_LTE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // CELLULAR_STATUS_FLAG type. These flags encode the cellular network status
@@ -6272,6 +8001,19 @@ func (e CELLULAR_STATUS_FLAG) String() string {
 	}
 }
 
+func (e CELLULAR_STATUS_FLAG) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CELLULAR_STATUS_FLAG{CELLULAR_STATUS_FLAG_UNKNOWN, CELLULAR_STATUS_FLAG_FAILED, CELLULAR_STATUS_FLAG_INITIALIZING, CELLULAR_STATUS_FLAG_LOCKED, CELLULAR_STATUS_FLAG_DISABLED, CELLULAR_STATUS_FLAG_DISABLING, CELLULAR_STATUS_FLAG_ENABLING, CELLULAR_STATUS_FLAG_ENABLED, CELLULAR_STATUS_FLAG_SEARCHING, CELLULAR_STATUS_FLAG_REGISTERED, CELLULAR_STATUS_FLAG_DISCONNECTING, CELLULAR_STATUS_FLAG_CONNECTING, CELLULAR_STATUS_FLAG_CONNECTED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // CELLULAR_NETWORK_FAILED_REASON type. These flags are used to diagnose the failure state of CELLULAR_STATUS
 type CELLULAR_NETWORK_FAILED_REASON int
 
@@ -6301,6 +8043,19 @@ func (e CELLULAR_NETWORK_FAILED_REASON) String() string {
 	}
 }
 
+func (e CELLULAR_NETWORK_FAILED_REASON) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []CELLULAR_NETWORK_FAILED_REASON{CELLULAR_NETWORK_FAILED_REASON_NONE, CELLULAR_NETWORK_FAILED_REASON_UNKNOWN, CELLULAR_NETWORK_FAILED_REASON_SIM_MISSING, CELLULAR_NETWORK_FAILED_REASON_SIM_ERROR} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // PRECISION_LAND_MODE type. Precision land modes (used in MAV_CMD_NAV_LAND).
 type PRECISION_LAND_MODE int
 
@@ -6326,6 +8081,19 @@ func (e PRECISION_LAND_MODE) String() string {
 	}
 }
 
+func (e PRECISION_LAND_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []PRECISION_LAND_MODE{PRECISION_LAND_MODE_DISABLED, PRECISION_LAND_MODE_OPPORTUNISTIC, PRECISION_LAND_MODE_REQUIRED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // PARACHUTE_ACTION type. Parachute actions. Trigger release and enable/disable auto-release.
 type PARACHUTE_ACTION int
 
@@ -6349,6 +8117,19 @@ func (e PARACHUTE_ACTION) String() string {
 	default:
 		return fmt.Sprintf("PARACHUTE_ACTION_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e PARACHUTE_ACTION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []PARACHUTE_ACTION{PARACHUTE_DISABLE, PARACHUTE_ENABLE, PARACHUTE_RELEASE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_TUNNEL_PAYLOAD_TYPE type
@@ -6408,6 +8189,19 @@ func (e MAV_TUNNEL_PAYLOAD_TYPE) String() string {
 	}
 }
 
+func (e MAV_TUNNEL_PAYLOAD_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_TUNNEL_PAYLOAD_TYPE{MAV_TUNNEL_PAYLOAD_TYPE_UNKNOWN, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED0, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED1, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED2, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED3, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED4, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED5, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED6, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED7, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED8, MAV_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED9} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_ID_TYPE type
 type MAV_ODID_ID_TYPE int
 
@@ -6435,6 +8229,19 @@ func (e MAV_ODID_ID_TYPE) String() string {
 	default:
 		return fmt.Sprintf("MAV_ODID_ID_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_ODID_ID_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_ID_TYPE{MAV_ODID_ID_TYPE_NONE, MAV_ODID_ID_TYPE_SERIAL_NUMBER, MAV_ODID_ID_TYPE_CAA_REGISTRATION_ID, MAV_ODID_ID_TYPE_UTM_ASSIGNED_UUID} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_ODID_UA_TYPE type
@@ -6514,6 +8321,19 @@ func (e MAV_ODID_UA_TYPE) String() string {
 	}
 }
 
+func (e MAV_ODID_UA_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_UA_TYPE{MAV_ODID_UA_TYPE_NONE, MAV_ODID_UA_TYPE_AEROPLANE, MAV_ODID_UA_TYPE_HELICOPTER_OR_MULTIROTOR, MAV_ODID_UA_TYPE_GYROPLANE, MAV_ODID_UA_TYPE_HYBRID_LIFT, MAV_ODID_UA_TYPE_ORNITHOPTER, MAV_ODID_UA_TYPE_GLIDER, MAV_ODID_UA_TYPE_KITE, MAV_ODID_UA_TYPE_FREE_BALLOON, MAV_ODID_UA_TYPE_CAPTIVE_BALLOON, MAV_ODID_UA_TYPE_AIRSHIP, MAV_ODID_UA_TYPE_FREE_FALL_PARACHUTE, MAV_ODID_UA_TYPE_ROCKET, MAV_ODID_UA_TYPE_TETHERED_POWERED_AIRCRAFT, MAV_ODID_UA_TYPE_GROUND_OBSTACLE, MAV_ODID_UA_TYPE_OTHER} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_STATUS type
 type MAV_ODID_STATUS int
 
@@ -6543,6 +8363,19 @@ func (e MAV_ODID_STATUS) String() string {
 	}
 }
 
+func (e MAV_ODID_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_STATUS{MAV_ODID_STATUS_UNDECLARED, MAV_ODID_STATUS_GROUND, MAV_ODID_STATUS_AIRBORNE, MAV_ODID_STATUS_EMERGENCY} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_HEIGHT_REF type
 type MAV_ODID_HEIGHT_REF int
 
@@ -6562,6 +8395,19 @@ func (e MAV_ODID_HEIGHT_REF) String() string {
 	default:
 		return fmt.Sprintf("MAV_ODID_HEIGHT_REF_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_ODID_HEIGHT_REF) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_HEIGHT_REF{MAV_ODID_HEIGHT_REF_OVER_TAKEOFF, MAV_ODID_HEIGHT_REF_OVER_GROUND} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_ODID_HOR_ACC type
@@ -6629,6 +8475,19 @@ func (e MAV_ODID_HOR_ACC) String() string {
 	}
 }
 
+func (e MAV_ODID_HOR_ACC) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_HOR_ACC{MAV_ODID_HOR_ACC_UNKNOWN, MAV_ODID_HOR_ACC_10NM, MAV_ODID_HOR_ACC_4NM, MAV_ODID_HOR_ACC_2NM, MAV_ODID_HOR_ACC_1NM, MAV_ODID_HOR_ACC_0_5NM, MAV_ODID_HOR_ACC_0_3NM, MAV_ODID_HOR_ACC_0_1NM, MAV_ODID_HOR_ACC_0_05NM, MAV_ODID_HOR_ACC_30_METER, MAV_ODID_HOR_ACC_10_METER, MAV_ODID_HOR_ACC_3_METER, MAV_ODID_HOR_ACC_1_METER} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_VER_ACC type
 type MAV_ODID_VER_ACC int
 
@@ -6670,6 +8529,19 @@ func (e MAV_ODID_VER_ACC) String() string {
 	}
 }
 
+func (e MAV_ODID_VER_ACC) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_VER_ACC{MAV_ODID_VER_ACC_UNKNOWN, MAV_ODID_VER_ACC_150_METER, MAV_ODID_VER_ACC_45_METER, MAV_ODID_VER_ACC_25_METER, MAV_ODID_VER_ACC_10_METER, MAV_ODID_VER_ACC_3_METER, MAV_ODID_VER_ACC_1_METER} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_SPEED_ACC type
 type MAV_ODID_SPEED_ACC int
 
@@ -6701,6 +8573,19 @@ func (e MAV_ODID_SPEED_ACC) String() string {
 	default:
 		return fmt.Sprintf("MAV_ODID_SPEED_ACC_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_ODID_SPEED_ACC) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_SPEED_ACC{MAV_ODID_SPEED_ACC_UNKNOWN, MAV_ODID_SPEED_ACC_10_METERS_PER_SECOND, MAV_ODID_SPEED_ACC_3_METERS_PER_SECOND, MAV_ODID_SPEED_ACC_1_METERS_PER_SECOND, MAV_ODID_SPEED_ACC_0_3_METERS_PER_SECOND} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_ODID_TIME_ACC type
@@ -6780,6 +8665,19 @@ func (e MAV_ODID_TIME_ACC) String() string {
 	}
 }
 
+func (e MAV_ODID_TIME_ACC) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_TIME_ACC{MAV_ODID_TIME_ACC_UNKNOWN, MAV_ODID_TIME_ACC_0_1_SECOND, MAV_ODID_TIME_ACC_0_2_SECOND, MAV_ODID_TIME_ACC_0_3_SECOND, MAV_ODID_TIME_ACC_0_4_SECOND, MAV_ODID_TIME_ACC_0_5_SECOND, MAV_ODID_TIME_ACC_0_6_SECOND, MAV_ODID_TIME_ACC_0_7_SECOND, MAV_ODID_TIME_ACC_0_8_SECOND, MAV_ODID_TIME_ACC_0_9_SECOND, MAV_ODID_TIME_ACC_1_0_SECOND, MAV_ODID_TIME_ACC_1_1_SECOND, MAV_ODID_TIME_ACC_1_2_SECOND, MAV_ODID_TIME_ACC_1_3_SECOND, MAV_ODID_TIME_ACC_1_4_SECOND, MAV_ODID_TIME_ACC_1_5_SECOND} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_AUTH_TYPE type
 type MAV_ODID_AUTH_TYPE int
 
@@ -6813,6 +8711,19 @@ func (e MAV_ODID_AUTH_TYPE) String() string {
 	}
 }
 
+func (e MAV_ODID_AUTH_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_AUTH_TYPE{MAV_ODID_AUTH_TYPE_NONE, MAV_ODID_AUTH_TYPE_UAS_ID_SIGNATURE, MAV_ODID_AUTH_TYPE_OPERATOR_ID_SIGNATURE, MAV_ODID_AUTH_TYPE_MESSAGE_SET_SIGNATURE, MAV_ODID_AUTH_TYPE_NETWORK_REMOTE_ID} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_DESC_TYPE type
 type MAV_ODID_DESC_TYPE int
 
@@ -6828,6 +8739,19 @@ func (e MAV_ODID_DESC_TYPE) String() string {
 	default:
 		return fmt.Sprintf("MAV_ODID_DESC_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_ODID_DESC_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_DESC_TYPE{MAV_ODID_DESC_TYPE_TEXT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_ODID_OPERATOR_LOCATION_TYPE type
@@ -6855,6 +8779,19 @@ func (e MAV_ODID_OPERATOR_LOCATION_TYPE) String() string {
 	}
 }
 
+func (e MAV_ODID_OPERATOR_LOCATION_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_OPERATOR_LOCATION_TYPE{MAV_ODID_OPERATOR_LOCATION_TYPE_TAKEOFF, MAV_ODID_OPERATOR_LOCATION_TYPE_LIVE_GNSS, MAV_ODID_OPERATOR_LOCATION_TYPE_FIXED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_CLASSIFICATION_TYPE type
 type MAV_ODID_CLASSIFICATION_TYPE int
 
@@ -6874,6 +8811,19 @@ func (e MAV_ODID_CLASSIFICATION_TYPE) String() string {
 	default:
 		return fmt.Sprintf("MAV_ODID_CLASSIFICATION_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_ODID_CLASSIFICATION_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_CLASSIFICATION_TYPE{MAV_ODID_CLASSIFICATION_TYPE_UNDECLARED, MAV_ODID_CLASSIFICATION_TYPE_EU} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_ODID_CATEGORY_EU type
@@ -6903,6 +8853,19 @@ func (e MAV_ODID_CATEGORY_EU) String() string {
 	default:
 		return fmt.Sprintf("MAV_ODID_CATEGORY_EU_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_ODID_CATEGORY_EU) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_CATEGORY_EU{MAV_ODID_CATEGORY_EU_UNDECLARED, MAV_ODID_CATEGORY_EU_OPEN, MAV_ODID_CATEGORY_EU_SPECIFIC, MAV_ODID_CATEGORY_EU_CERTIFIED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_ODID_CLASS_EU type
@@ -6950,6 +8913,19 @@ func (e MAV_ODID_CLASS_EU) String() string {
 	}
 }
 
+func (e MAV_ODID_CLASS_EU) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_CLASS_EU{MAV_ODID_CLASS_EU_UNDECLARED, MAV_ODID_CLASS_EU_CLASS_0, MAV_ODID_CLASS_EU_CLASS_1, MAV_ODID_CLASS_EU_CLASS_2, MAV_ODID_CLASS_EU_CLASS_3, MAV_ODID_CLASS_EU_CLASS_4, MAV_ODID_CLASS_EU_CLASS_5, MAV_ODID_CLASS_EU_CLASS_6} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_ODID_OPERATOR_ID_TYPE type
 type MAV_ODID_OPERATOR_ID_TYPE int
 
@@ -6965,6 +8941,19 @@ func (e MAV_ODID_OPERATOR_ID_TYPE) String() string {
 	default:
 		return fmt.Sprintf("MAV_ODID_OPERATOR_ID_TYPE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_ODID_OPERATOR_ID_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_ODID_OPERATOR_ID_TYPE{MAV_ODID_OPERATOR_ID_TYPE_CAA} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // TUNE_FORMAT type. Tune formats (used for vehicle buzzer/tone generation).
@@ -6988,6 +8977,19 @@ func (e TUNE_FORMAT) String() string {
 	}
 }
 
+func (e TUNE_FORMAT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []TUNE_FORMAT{TUNE_FORMAT_QBASIC1_1, TUNE_FORMAT_MML_MODERN} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // COMPONENT_CAP_FLAGS type. Component capability flags (Bitmap)
 type COMPONENT_CAP_FLAGS int
 
@@ -7007,6 +9009,19 @@ func (e COMPONENT_CAP_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("COMPONENT_CAP_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e COMPONENT_CAP_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []COMPONENT_CAP_FLAGS{COMPONENT_CAP_FLAGS_PARAM, COMPONENT_CAP_FLAGS_PARAM_EXT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // AIS_TYPE type. Type of AIS vessel, enum duplicated from AIS standard, https://gpsd.gitlab.io/gpsd/AIVDM.html
@@ -7422,6 +9437,19 @@ func (e AIS_TYPE) String() string {
 	}
 }
 
+func (e AIS_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []AIS_TYPE{AIS_TYPE_UNKNOWN, AIS_TYPE_RESERVED_1, AIS_TYPE_RESERVED_2, AIS_TYPE_RESERVED_3, AIS_TYPE_RESERVED_4, AIS_TYPE_RESERVED_5, AIS_TYPE_RESERVED_6, AIS_TYPE_RESERVED_7, AIS_TYPE_RESERVED_8, AIS_TYPE_RESERVED_9, AIS_TYPE_RESERVED_10, AIS_TYPE_RESERVED_11, AIS_TYPE_RESERVED_12, AIS_TYPE_RESERVED_13, AIS_TYPE_RESERVED_14, AIS_TYPE_RESERVED_15, AIS_TYPE_RESERVED_16, AIS_TYPE_RESERVED_17, AIS_TYPE_RESERVED_18, AIS_TYPE_RESERVED_19, AIS_TYPE_WIG, AIS_TYPE_WIG_HAZARDOUS_A, AIS_TYPE_WIG_HAZARDOUS_B, AIS_TYPE_WIG_HAZARDOUS_C, AIS_TYPE_WIG_HAZARDOUS_D, AIS_TYPE_WIG_RESERVED_1, AIS_TYPE_WIG_RESERVED_2, AIS_TYPE_WIG_RESERVED_3, AIS_TYPE_WIG_RESERVED_4, AIS_TYPE_WIG_RESERVED_5, AIS_TYPE_FISHING, AIS_TYPE_TOWING, AIS_TYPE_TOWING_LARGE, AIS_TYPE_DREDGING, AIS_TYPE_DIVING, AIS_TYPE_MILITARY, AIS_TYPE_SAILING, AIS_TYPE_PLEASURE, AIS_TYPE_RESERVED_20, AIS_TYPE_RESERVED_21, AIS_TYPE_HSC, AIS_TYPE_HSC_HAZARDOUS_A, AIS_TYPE_HSC_HAZARDOUS_B, AIS_TYPE_HSC_HAZARDOUS_C, AIS_TYPE_HSC_HAZARDOUS_D, AIS_TYPE_HSC_RESERVED_1, AIS_TYPE_HSC_RESERVED_2, AIS_TYPE_HSC_RESERVED_3, AIS_TYPE_HSC_RESERVED_4, AIS_TYPE_HSC_UNKNOWN, AIS_TYPE_PILOT, AIS_TYPE_SAR, AIS_TYPE_TUG, AIS_TYPE_PORT_TENDER, AIS_TYPE_ANTI_POLLUTION, AIS_TYPE_LAW_ENFORCEMENT, AIS_TYPE_SPARE_LOCAL_1, AIS_TYPE_SPARE_LOCAL_2, AIS_TYPE_MEDICAL_TRANSPORT, AIS_TYPE_NONECOMBATANT, AIS_TYPE_PASSENGER, AIS_TYPE_PASSENGER_HAZARDOUS_A, AIS_TYPE_PASSENGER_HAZARDOUS_B, AIS_TYPE_AIS_TYPE_PASSENGER_HAZARDOUS_C, AIS_TYPE_PASSENGER_HAZARDOUS_D, AIS_TYPE_PASSENGER_RESERVED_1, AIS_TYPE_PASSENGER_RESERVED_2, AIS_TYPE_PASSENGER_RESERVED_3, AIS_TYPE_AIS_TYPE_PASSENGER_RESERVED_4, AIS_TYPE_PASSENGER_UNKNOWN, AIS_TYPE_CARGO, AIS_TYPE_CARGO_HAZARDOUS_A, AIS_TYPE_CARGO_HAZARDOUS_B, AIS_TYPE_CARGO_HAZARDOUS_C, AIS_TYPE_CARGO_HAZARDOUS_D, AIS_TYPE_CARGO_RESERVED_1, AIS_TYPE_CARGO_RESERVED_2, AIS_TYPE_CARGO_RESERVED_3, AIS_TYPE_CARGO_RESERVED_4, AIS_TYPE_CARGO_UNKNOWN, AIS_TYPE_TANKER, AIS_TYPE_TANKER_HAZARDOUS_A, AIS_TYPE_TANKER_HAZARDOUS_B, AIS_TYPE_TANKER_HAZARDOUS_C, AIS_TYPE_TANKER_HAZARDOUS_D, AIS_TYPE_TANKER_RESERVED_1, AIS_TYPE_TANKER_RESERVED_2, AIS_TYPE_TANKER_RESERVED_3, AIS_TYPE_TANKER_RESERVED_4, AIS_TYPE_TANKER_UNKNOWN, AIS_TYPE_OTHER, AIS_TYPE_OTHER_HAZARDOUS_A, AIS_TYPE_OTHER_HAZARDOUS_B, AIS_TYPE_OTHER_HAZARDOUS_C, AIS_TYPE_OTHER_HAZARDOUS_D, AIS_TYPE_OTHER_RESERVED_1, AIS_TYPE_OTHER_RESERVED_2, AIS_TYPE_OTHER_RESERVED_3, AIS_TYPE_OTHER_RESERVED_4, AIS_TYPE_OTHER_UNKNOWN} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // AIS_NAV_STATUS type. Navigational status of AIS vessel, enum duplicated from AIS standard, https://gpsd.gitlab.io/gpsd/AIVDM.html
 type AIS_NAV_STATUS int
 
@@ -7499,6 +9527,19 @@ func (e AIS_NAV_STATUS) String() string {
 	}
 }
 
+func (e AIS_NAV_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []AIS_NAV_STATUS{UNDER_WAY, AIS_NAV_ANCHORED, AIS_NAV_UN_COMMANDED, AIS_NAV_RESTRICTED_MANOEUVERABILITY, AIS_NAV_DRAUGHT_CONSTRAINED, AIS_NAV_MOORED, AIS_NAV_AGROUND, AIS_NAV_FISHING, AIS_NAV_SAILING, AIS_NAV_RESERVED_HSC, AIS_NAV_RESERVED_WIG, AIS_NAV_RESERVED_1, AIS_NAV_RESERVED_2, AIS_NAV_RESERVED_3, AIS_NAV_AIS_SART, AIS_NAV_UNKNOWN} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // AIS_FLAGS type. These flags are used in the AIS_VESSEL.fields bitmask to indicate validity of data in the other message fields. When set, the data is valid.
 type AIS_FLAGS int
 
@@ -7562,6 +9603,19 @@ func (e AIS_FLAGS) String() string {
 	default:
 		return fmt.Sprintf("AIS_FLAGS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e AIS_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []AIS_FLAGS{AIS_FLAGS_POSITION_ACCURACY, AIS_FLAGS_VALID_COG, AIS_FLAGS_VALID_VELOCITY, AIS_FLAGS_HIGH_VELOCITY, AIS_FLAGS_VALID_TURN_RATE, AIS_FLAGS_TURN_RATE_SIGN_ONLY, AIS_FLAGS_VALID_DIMENSIONS, AIS_FLAGS_LARGE_BOW_DIMENSION, AIS_FLAGS_LARGE_STERN_DIMENSION, AIS_FLAGS_LARGE_PORT_DIMENSION, AIS_FLAGS_LARGE_STARBOARD_DIMENSION, AIS_FLAGS_VALID_CALLSIGN, AIS_FLAGS_VALID_NAME} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // FAILURE_UNIT type. List of possible units where failures can be injected.
@@ -7637,6 +9691,19 @@ func (e FAILURE_UNIT) String() string {
 	}
 }
 
+func (e FAILURE_UNIT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []FAILURE_UNIT{FAILURE_UNIT_SENSOR_GYRO, FAILURE_UNIT_SENSOR_ACCEL, FAILURE_UNIT_SENSOR_MAG, FAILURE_UNIT_SENSOR_BARO, FAILURE_UNIT_SENSOR_GPS, FAILURE_UNIT_SENSOR_OPTICAL_FLOW, FAILURE_UNIT_SENSOR_VIO, FAILURE_UNIT_SENSOR_DISTANCE_SENSOR, FAILURE_UNIT_SENSOR_AIRSPEED, FAILURE_UNIT_SYSTEM_BATTERY, FAILURE_UNIT_SYSTEM_MOTOR, FAILURE_UNIT_SYSTEM_SERVO, FAILURE_UNIT_SYSTEM_AVOIDANCE, FAILURE_UNIT_SYSTEM_RC_SIGNAL, FAILURE_UNIT_SYSTEM_MAVLINK_SIGNAL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // FAILURE_TYPE type. List of possible failure type to inject.
 type FAILURE_TYPE int
 
@@ -7682,6 +9749,19 @@ func (e FAILURE_TYPE) String() string {
 	}
 }
 
+func (e FAILURE_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []FAILURE_TYPE{FAILURE_TYPE_OK, FAILURE_TYPE_OFF, FAILURE_TYPE_STUCK, FAILURE_TYPE_GARBAGE, FAILURE_TYPE_WRONG, FAILURE_TYPE_SLOW, FAILURE_TYPE_DELAYED, FAILURE_TYPE_INTERMITTENT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_WINCH_STATUS_FLAG type. Winch status flags used in WINCH_STATUS
 type MAV_WINCH_STATUS_FLAG int
 
@@ -7709,6 +9789,19 @@ func (e MAV_WINCH_STATUS_FLAG) String() string {
 	default:
 		return fmt.Sprintf("MAV_WINCH_STATUS_FLAG_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_WINCH_STATUS_FLAG) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_WINCH_STATUS_FLAG{MAV_WINCH_STATUS_HEALTHY, MAV_WINCH_STATUS_FULLY_RETRACTED, MAV_WINCH_STATUS_MOVING, MAV_WINCH_STATUS_CLUTCH_ENGAGED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAG_CAL_STATUS type
@@ -7754,6 +9847,19 @@ func (e MAG_CAL_STATUS) String() string {
 	default:
 		return fmt.Sprintf("MAG_CAL_STATUS_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAG_CAL_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAG_CAL_STATUS{MAG_CAL_NOT_STARTED, MAG_CAL_WAITING_TO_START, MAG_CAL_RUNNING_STEP_ONE, MAG_CAL_RUNNING_STEP_TWO, MAG_CAL_SUCCESS, MAG_CAL_FAILED, MAG_CAL_BAD_ORIENTATION, MAG_CAL_BAD_RADIUS} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_AUTOPILOT type. Micro air vehicle / autopilot classes. This identifies the individual model.
@@ -7847,6 +9953,19 @@ func (e MAV_AUTOPILOT) String() string {
 	default:
 		return fmt.Sprintf("MAV_AUTOPILOT_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_AUTOPILOT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_AUTOPILOT{MAV_AUTOPILOT_GENERIC, MAV_AUTOPILOT_RESERVED, MAV_AUTOPILOT_SLUGS, MAV_AUTOPILOT_ARDUPILOTMEGA, MAV_AUTOPILOT_OPENPILOT, MAV_AUTOPILOT_GENERIC_WAYPOINTS_ONLY, MAV_AUTOPILOT_GENERIC_WAYPOINTS_AND_SIMPLE_NAVIGATION_ONLY, MAV_AUTOPILOT_GENERIC_MISSION_FULL, MAV_AUTOPILOT_INVALID, MAV_AUTOPILOT_PPZ, MAV_AUTOPILOT_UDB, MAV_AUTOPILOT_FP, MAV_AUTOPILOT_PX4, MAV_AUTOPILOT_SMACCMPILOT, MAV_AUTOPILOT_AUTOQUAD, MAV_AUTOPILOT_ARMAZILA, MAV_AUTOPILOT_AEROB, MAV_AUTOPILOT_ASLUAV, MAV_AUTOPILOT_SMARTAP, MAV_AUTOPILOT_AIRRAILS} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_TYPE type. MAVLINK component type reported in HEARTBEAT message. Flight controllers must report the type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA).
@@ -8006,6 +10125,19 @@ func (e MAV_TYPE) String() string {
 	}
 }
 
+func (e MAV_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_TYPE{MAV_TYPE_GENERIC, MAV_TYPE_FIXED_WING, MAV_TYPE_QUADROTOR, MAV_TYPE_COAXIAL, MAV_TYPE_HELICOPTER, MAV_TYPE_ANTENNA_TRACKER, MAV_TYPE_GCS, MAV_TYPE_AIRSHIP, MAV_TYPE_FREE_BALLOON, MAV_TYPE_ROCKET, MAV_TYPE_GROUND_ROVER, MAV_TYPE_SURFACE_BOAT, MAV_TYPE_SUBMARINE, MAV_TYPE_HEXAROTOR, MAV_TYPE_OCTOROTOR, MAV_TYPE_TRICOPTER, MAV_TYPE_FLAPPING_WING, MAV_TYPE_KITE, MAV_TYPE_ONBOARD_CONTROLLER, MAV_TYPE_VTOL_DUOROTOR, MAV_TYPE_VTOL_QUADROTOR, MAV_TYPE_VTOL_TILTROTOR, MAV_TYPE_VTOL_RESERVED2, MAV_TYPE_VTOL_RESERVED3, MAV_TYPE_VTOL_RESERVED4, MAV_TYPE_VTOL_RESERVED5, MAV_TYPE_GIMBAL, MAV_TYPE_ADSB, MAV_TYPE_PARAFOIL, MAV_TYPE_DODECAROTOR, MAV_TYPE_CAMERA, MAV_TYPE_CHARGING_STATION, MAV_TYPE_FLARM, MAV_TYPE_SERVO, MAV_TYPE_ODID, MAV_TYPE_DECAROTOR} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_MODE_FLAG type. These flags encode the MAV mode.
 type MAV_MODE_FLAG int
 
@@ -8051,6 +10183,19 @@ func (e MAV_MODE_FLAG) String() string {
 	}
 }
 
+func (e MAV_MODE_FLAG) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_MODE_FLAG{MAV_MODE_FLAG_SAFETY_ARMED, MAV_MODE_FLAG_MANUAL_INPUT_ENABLED, MAV_MODE_FLAG_HIL_ENABLED, MAV_MODE_FLAG_STABILIZE_ENABLED, MAV_MODE_FLAG_GUIDED_ENABLED, MAV_MODE_FLAG_AUTO_ENABLED, MAV_MODE_FLAG_TEST_ENABLED, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // MAV_MODE_FLAG_DECODE_POSITION type. These values encode the bit positions of the decode position. These values can be used to read the value of a flag bit by combining the base_mode variable with AND with the flag position value. The result will be either 0 or 1, depending on if the flag is set or not.
 type MAV_MODE_FLAG_DECODE_POSITION int
 
@@ -8094,6 +10239,19 @@ func (e MAV_MODE_FLAG_DECODE_POSITION) String() string {
 	default:
 		return fmt.Sprintf("MAV_MODE_FLAG_DECODE_POSITION_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_MODE_FLAG_DECODE_POSITION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_MODE_FLAG_DECODE_POSITION{MAV_MODE_FLAG_DECODE_POSITION_SAFETY, MAV_MODE_FLAG_DECODE_POSITION_MANUAL, MAV_MODE_FLAG_DECODE_POSITION_HIL, MAV_MODE_FLAG_DECODE_POSITION_STABILIZE, MAV_MODE_FLAG_DECODE_POSITION_GUIDED, MAV_MODE_FLAG_DECODE_POSITION_AUTO, MAV_MODE_FLAG_DECODE_POSITION_TEST, MAV_MODE_FLAG_DECODE_POSITION_CUSTOM_MODE} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_STATE type
@@ -8143,6 +10301,19 @@ func (e MAV_STATE) String() string {
 	default:
 		return fmt.Sprintf("MAV_STATE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e MAV_STATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STATE{MAV_STATE_UNINIT, MAV_STATE_BOOT, MAV_STATE_CALIBRATING, MAV_STATE_STANDBY, MAV_STATE_ACTIVE, MAV_STATE_CRITICAL, MAV_STATE_EMERGENCY, MAV_STATE_POWEROFF, MAV_STATE_FLIGHT_TERMINATION} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // MAV_COMPONENT type. Component ids (values) for the different types and instances of onboard hardware/software that might make up a MAVLink system (autopilot, cameras, servos, GPS systems, avoidance systems etc.).       Components must use the appropriate ID in their source address when sending messages. Components can also use IDs to determine if they are the intended recipient of an incoming message. The MAV_COMP_ID_ALL value is used to indicate messages that must be processed by all components.       When creating new entries, components that can have multiple instances (e.g. cameras, servos etc.) should be allocated sequential values. An appropriate number of values should be left free after these components to allow the number of instances to be expanded.
@@ -8666,6 +10837,19 @@ func (e MAV_COMPONENT) String() string {
 	}
 }
 
+func (e MAV_COMPONENT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_COMPONENT{MAV_COMP_ID_ALL, MAV_COMP_ID_AUTOPILOT1, MAV_COMP_ID_USER1, MAV_COMP_ID_USER2, MAV_COMP_ID_USER3, MAV_COMP_ID_USER4, MAV_COMP_ID_USER5, MAV_COMP_ID_USER6, MAV_COMP_ID_USER7, MAV_COMP_ID_USER8, MAV_COMP_ID_USER9, MAV_COMP_ID_USER10, MAV_COMP_ID_USER11, MAV_COMP_ID_USER12, MAV_COMP_ID_USER13, MAV_COMP_ID_USER14, MAV_COMP_ID_USER15, MAV_COMP_ID_USER16, MAV_COMP_ID_USER17, MAV_COMP_ID_USER18, MAV_COMP_ID_USER19, MAV_COMP_ID_USER20, MAV_COMP_ID_USER21, MAV_COMP_ID_USER22, MAV_COMP_ID_USER23, MAV_COMP_ID_USER24, MAV_COMP_ID_USER25, MAV_COMP_ID_USER26, MAV_COMP_ID_USER27, MAV_COMP_ID_USER28, MAV_COMP_ID_USER29, MAV_COMP_ID_USER30, MAV_COMP_ID_USER31, MAV_COMP_ID_USER32, MAV_COMP_ID_USER33, MAV_COMP_ID_USER34, MAV_COMP_ID_USER35, MAV_COMP_ID_USER36, MAV_COMP_ID_USER37, MAV_COMP_ID_USER38, MAV_COMP_ID_USER39, MAV_COMP_ID_USER40, MAV_COMP_ID_USER41, MAV_COMP_ID_USER42, MAV_COMP_ID_USER43, MAV_COMP_ID_TELEMETRY_RADIO, MAV_COMP_ID_USER45, MAV_COMP_ID_USER46, MAV_COMP_ID_USER47, MAV_COMP_ID_USER48, MAV_COMP_ID_USER49, MAV_COMP_ID_USER50, MAV_COMP_ID_USER51, MAV_COMP_ID_USER52, MAV_COMP_ID_USER53, MAV_COMP_ID_USER54, MAV_COMP_ID_USER55, MAV_COMP_ID_USER56, MAV_COMP_ID_USER57, MAV_COMP_ID_USER58, MAV_COMP_ID_USER59, MAV_COMP_ID_USER60, MAV_COMP_ID_USER61, MAV_COMP_ID_USER62, MAV_COMP_ID_USER63, MAV_COMP_ID_USER64, MAV_COMP_ID_USER65, MAV_COMP_ID_USER66, MAV_COMP_ID_USER67, MAV_COMP_ID_USER68, MAV_COMP_ID_USER69, MAV_COMP_ID_USER70, MAV_COMP_ID_USER71, MAV_COMP_ID_USER72, MAV_COMP_ID_USER73, MAV_COMP_ID_USER74, MAV_COMP_ID_USER75, MAV_COMP_ID_CAMERA, MAV_COMP_ID_CAMERA2, MAV_COMP_ID_CAMERA3, MAV_COMP_ID_CAMERA4, MAV_COMP_ID_CAMERA5, MAV_COMP_ID_CAMERA6, MAV_COMP_ID_SERVO1, MAV_COMP_ID_SERVO2, MAV_COMP_ID_SERVO3, MAV_COMP_ID_SERVO4, MAV_COMP_ID_SERVO5, MAV_COMP_ID_SERVO6, MAV_COMP_ID_SERVO7, MAV_COMP_ID_SERVO8, MAV_COMP_ID_SERVO9, MAV_COMP_ID_SERVO10, MAV_COMP_ID_SERVO11, MAV_COMP_ID_SERVO12, MAV_COMP_ID_SERVO13, MAV_COMP_ID_SERVO14, MAV_COMP_ID_GIMBAL, MAV_COMP_ID_LOG, MAV_COMP_ID_ADSB, MAV_COMP_ID_OSD, MAV_COMP_ID_PERIPHERAL, MAV_COMP_ID_QX1_GIMBAL, MAV_COMP_ID_FLARM, MAV_COMP_ID_GIMBAL2, MAV_COMP_ID_GIMBAL3, MAV_COMP_ID_GIMBAL4, MAV_COMP_ID_GIMBAL5, MAV_COMP_ID_GIMBAL6, MAV_COMP_ID_MISSIONPLANNER, MAV_COMP_ID_ONBOARD_COMPUTER, MAV_COMP_ID_PATHPLANNER, MAV_COMP_ID_OBSTACLE_AVOIDANCE, MAV_COMP_ID_VISUAL_INERTIAL_ODOMETRY, MAV_COMP_ID_PAIRING_MANAGER, MAV_COMP_ID_IMU, MAV_COMP_ID_IMU_2, MAV_COMP_ID_IMU_3, MAV_COMP_ID_GPS, MAV_COMP_ID_GPS2, MAV_COMP_ID_ODID_TXRX_1, MAV_COMP_ID_ODID_TXRX_2, MAV_COMP_ID_ODID_TXRX_3, MAV_COMP_ID_UDP_BRIDGE, MAV_COMP_ID_UART_BRIDGE, MAV_COMP_ID_TUNNEL_NODE, MAV_COMP_ID_SYSTEM_CONTROL} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // UAVIONIX_ADSB_OUT_DYNAMIC_STATE type. State flags for ADS-B transponder dynamic report
 type UAVIONIX_ADSB_OUT_DYNAMIC_STATE int
 
@@ -8699,6 +10883,19 @@ func (e UAVIONIX_ADSB_OUT_DYNAMIC_STATE) String() string {
 	}
 }
 
+func (e UAVIONIX_ADSB_OUT_DYNAMIC_STATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVIONIX_ADSB_OUT_DYNAMIC_STATE{UAVIONIX_ADSB_OUT_DYNAMIC_STATE_INTENT_CHANGE, UAVIONIX_ADSB_OUT_DYNAMIC_STATE_AUTOPILOT_ENABLED, UAVIONIX_ADSB_OUT_DYNAMIC_STATE_NICBARO_CROSSCHECKED, UAVIONIX_ADSB_OUT_DYNAMIC_STATE_ON_GROUND, UAVIONIX_ADSB_OUT_DYNAMIC_STATE_IDENT} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // UAVIONIX_ADSB_OUT_RF_SELECT type. Transceiver RF control flags for ADS-B transponder dynamic reports
 type UAVIONIX_ADSB_OUT_RF_SELECT int
 
@@ -8722,6 +10919,19 @@ func (e UAVIONIX_ADSB_OUT_RF_SELECT) String() string {
 	default:
 		return fmt.Sprintf("UAVIONIX_ADSB_OUT_RF_SELECT_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e UAVIONIX_ADSB_OUT_RF_SELECT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVIONIX_ADSB_OUT_RF_SELECT{UAVIONIX_ADSB_OUT_RF_SELECT_STANDBY, UAVIONIX_ADSB_OUT_RF_SELECT_RX_ENABLED, UAVIONIX_ADSB_OUT_RF_SELECT_TX_ENABLED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX type. Status for ADS-B transponder dynamic input
@@ -8761,6 +10971,19 @@ func (e UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX) String() string {
 	}
 }
 
+func (e UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX{UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_NONE_0, UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_NONE_1, UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_2D, UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_3D, UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_DGPS, UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_RTK} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // UAVIONIX_ADSB_RF_HEALTH type. Status flags for ADS-B transponder dynamic output
 type UAVIONIX_ADSB_RF_HEALTH int
 
@@ -8788,6 +11011,19 @@ func (e UAVIONIX_ADSB_RF_HEALTH) String() string {
 	default:
 		return fmt.Sprintf("UAVIONIX_ADSB_RF_HEALTH_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e UAVIONIX_ADSB_RF_HEALTH) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVIONIX_ADSB_RF_HEALTH{UAVIONIX_ADSB_RF_HEALTH_INITIALIZING, UAVIONIX_ADSB_RF_HEALTH_OK, UAVIONIX_ADSB_RF_HEALTH_FAIL_TX, UAVIONIX_ADSB_RF_HEALTH_FAIL_RX} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE type. Definitions for aircraft size
@@ -8867,6 +11103,19 @@ func (e UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE) String() string {
 	}
 }
 
+func (e UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE{UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_NO_DATA, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L15M_W23M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L25M_W28P5M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L25_34M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L35_33M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L35_38M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L45_39P5M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L45_45M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L55_45M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L55_52M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L65_59P5M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L65_67M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L75_W72P5M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L75_W80M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L85_W80M, UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_L85_W90M} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT type. GPS lataral offset encoding
 type UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT int
 
@@ -8912,6 +11161,19 @@ func (e UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT) String() string {
 	}
 }
 
+func (e UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT{UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_NO_DATA, UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_LEFT_2M, UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_LEFT_4M, UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_LEFT_6M, UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_RIGHT_0M, UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_RIGHT_2M, UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_RIGHT_4M, UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_RIGHT_6M} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON type. GPS longitudinal offset encoding
 type UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON int
 
@@ -8931,6 +11193,19 @@ func (e UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON) String() string {
 	default:
 		return fmt.Sprintf("UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON{UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON_NO_DATA, UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON_APPLIED_BY_SENSOR} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // UAVIONIX_ADSB_EMERGENCY_STATUS type. Emergency status encoding
@@ -8978,6 +11253,19 @@ func (e UAVIONIX_ADSB_EMERGENCY_STATUS) String() string {
 	}
 }
 
+func (e UAVIONIX_ADSB_EMERGENCY_STATUS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []UAVIONIX_ADSB_EMERGENCY_STATUS{UAVIONIX_ADSB_OUT_NO_EMERGENCY, UAVIONIX_ADSB_OUT_GENERAL_EMERGENCY, UAVIONIX_ADSB_OUT_LIFEGUARD_EMERGENCY, UAVIONIX_ADSB_OUT_MINIMUM_FUEL_EMERGENCY, UAVIONIX_ADSB_OUT_NO_COMM_EMERGENCY, UAVIONIX_ADSB_OUT_UNLAWFUL_INTERFERANCE_EMERGENCY, UAVIONIX_ADSB_OUT_DOWNED_AIRCRAFT_EMERGENCY, UAVIONIX_ADSB_OUT_RESERVED} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
 // ICAROUS_TRACK_BAND_TYPES type
 type ICAROUS_TRACK_BAND_TYPES int
 
@@ -9001,6 +11289,19 @@ func (e ICAROUS_TRACK_BAND_TYPES) String() string {
 	default:
 		return fmt.Sprintf("ICAROUS_TRACK_BAND_TYPES_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e ICAROUS_TRACK_BAND_TYPES) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ICAROUS_TRACK_BAND_TYPES{ICAROUS_TRACK_BAND_TYPE_NONE, ICAROUS_TRACK_BAND_TYPE_NEAR, ICAROUS_TRACK_BAND_TYPE_RECOVERY} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // ICAROUS_FMS_STATE type
@@ -9038,6 +11339,19 @@ func (e ICAROUS_FMS_STATE) String() string {
 	default:
 		return fmt.Sprintf("ICAROUS_FMS_STATE_ENUM_UNDEFINED_%d", int(e))
 	}
+}
+
+func (e ICAROUS_FMS_STATE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []ICAROUS_FMS_STATE{ICAROUS_FMS_STATE_IDLE, ICAROUS_FMS_STATE_TAKEOFF, ICAROUS_FMS_STATE_CLIMB, ICAROUS_FMS_STATE_CRUISE, ICAROUS_FMS_STATE_APPROACH, ICAROUS_FMS_STATE_LAND} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
 }
 
 // SensorOffsets struct (generated typeinfo)
@@ -10050,9 +12364,9 @@ func (m *LimitsStatus) String() string {
 		m.LastClear,
 		m.BreachCount,
 		m.LimitsState,
-		m.ModsEnabled,
-		m.ModsRequired,
-		m.ModsTriggered,
+		m.ModsEnabled.Bitmask(),
+		m.ModsRequired.Bitmask(),
+		m.ModsTriggered.Bitmask(),
 	)
 }
 
@@ -10518,7 +12832,7 @@ func (m *RallyPoint) String() string {
 		m.TargetComponent,
 		m.Idx,
 		m.Count,
-		m.Flags,
+		m.Flags.Bitmask(),
 	)
 }
 
@@ -11280,7 +13594,7 @@ func (m *MagCalProgress) String() string {
 		m.DirectionY,
 		m.DirectionZ,
 		m.CompassID,
-		m.CalMask,
+		m.CalMask.Bitmask(),
 		m.CalStatus,
 		m.Attempt,
 		m.CompletionPct,
@@ -11353,7 +13667,7 @@ func (m *EkfStatusReport) String() string {
 		m.PosVertVariance,
 		m.CompassVariance,
 		m.TerrainAltVariance,
-		m.Flags,
+		m.Flags.Bitmask(),
 	)
 }
 
@@ -11761,7 +14075,7 @@ func (m *GoproHeartbeat) String() string {
 		"&ardupilotmega.GoproHeartbeat{ Status: %+v, CaptureMode: %+v, Flags: %+v }",
 		m.Status,
 		m.CaptureMode,
-		m.Flags,
+		m.Flags.Bitmask(),
 	)
 }
 
@@ -12071,9 +14385,9 @@ func (m *SysStatus) MsgID() mavlink.MessageID {
 func (m *SysStatus) String() string {
 	return fmt.Sprintf(
 		"&common.SysStatus{ OnboardControlSensorsPresent: %+v, OnboardControlSensorsEnabled: %+v, OnboardControlSensorsHealth: %+v, Load: %+v, VoltageBattery: %+v, CurrentBattery: %+v, DropRateComm: %+v, ErrorsComm: %+v, ErrorsCount1: %+v, ErrorsCount2: %+v, ErrorsCount3: %+v, ErrorsCount4: %+v, BatteryRemaining: %+v }",
-		m.OnboardControlSensorsPresent,
-		m.OnboardControlSensorsEnabled,
-		m.OnboardControlSensorsHealth,
+		m.OnboardControlSensorsPresent.Bitmask(),
+		m.OnboardControlSensorsEnabled.Bitmask(),
+		m.OnboardControlSensorsHealth.Bitmask(),
 		m.Load,
 		m.VoltageBattery,
 		m.CurrentBattery,
@@ -15989,7 +18303,7 @@ func (m *SetAttitudeTarget) String() string {
 		m.Thrust,
 		m.TargetSystem,
 		m.TargetComponent,
-		m.TypeMask,
+		m.TypeMask.Bitmask(),
 	)
 }
 
@@ -16064,7 +18378,7 @@ func (m *AttitudeTarget) String() string {
 		m.BodyPitchRate,
 		m.BodyYawRate,
 		m.Thrust,
-		m.TypeMask,
+		m.TypeMask.Bitmask(),
 	)
 }
 
@@ -16150,7 +18464,7 @@ func (m *SetPositionTargetLocalNed) String() string {
 		m.Afz,
 		m.Yaw,
 		m.YawRate,
-		m.TypeMask,
+		m.TypeMask.Bitmask(),
 		m.TargetSystem,
 		m.TargetComponent,
 		m.CoordinateFrame,
@@ -16251,7 +18565,7 @@ func (m *PositionTargetLocalNed) String() string {
 		m.Afz,
 		m.Yaw,
 		m.YawRate,
-		m.TypeMask,
+		m.TypeMask.Bitmask(),
 		m.CoordinateFrame,
 	)
 }
@@ -16348,7 +18662,7 @@ func (m *SetPositionTargetGlobalInt) String() string {
 		m.Afz,
 		m.Yaw,
 		m.YawRate,
-		m.TypeMask,
+		m.TypeMask.Bitmask(),
 		m.TargetSystem,
 		m.TargetComponent,
 		m.CoordinateFrame,
@@ -16449,7 +18763,7 @@ func (m *PositionTargetGlobalInt) String() string {
 		m.Afz,
 		m.Yaw,
 		m.YawRate,
-		m.TypeMask,
+		m.TypeMask.Bitmask(),
 		m.CoordinateFrame,
 	)
 }
@@ -16871,9 +19185,9 @@ func (m *HilActuatorControls) String() string {
 	return fmt.Sprintf(
 		"&common.HilActuatorControls{ TimeUsec: %+v, Flags: %+v, Controls: %+v, Mode: %+v }",
 		m.TimeUsec,
-		m.Flags,
+		m.Flags.Bitmask(),
 		m.Controls,
-		m.Mode,
+		m.Mode.Bitmask(),
 	)
 }
 
@@ -17281,7 +19595,7 @@ func (m *HighresImu) String() string {
 		m.DiffPressure,
 		m.PressureAlt,
 		m.Temperature,
-		m.FieldsUpdated,
+		m.FieldsUpdated.Bitmask(),
 	)
 }
 
@@ -17467,7 +19781,7 @@ func (m *HilSensor) String() string {
 		m.DiffPressure,
 		m.PressureAlt,
 		m.Temperature,
-		m.FieldsUpdated,
+		m.FieldsUpdated.Bitmask(),
 	)
 }
 
@@ -18710,7 +21024,7 @@ func (m *PowerStatus) String() string {
 		"&common.PowerStatus{ Vcc: %+v, Vservo: %+v, Flags: %+v }",
 		m.Vcc,
 		m.Vservo,
-		m.Flags,
+		m.Flags.Bitmask(),
 	)
 }
 
@@ -18765,7 +21079,7 @@ func (m *SerialControl) String() string {
 		m.Baudrate,
 		m.Timeout,
 		m.Device,
-		m.Flags,
+		m.Flags.Bitmask(),
 		m.Count,
 		m.Data, string(m.Data[:]),
 	)
@@ -19269,7 +21583,7 @@ func (m *TerrainRequest) MsgID() mavlink.MessageID {
 func (m *TerrainRequest) String() string {
 	return fmt.Sprintf(
 		"&common.TerrainRequest{ Mask: %+v, Lat: %+v, Lon: %+v, GridSpacing: %+v }",
-		m.Mask,
+		m.Mask.Bitmask(),
 		m.Lat,
 		m.Lon,
 		m.GridSpacing,
@@ -20226,7 +22540,7 @@ func (m *AutopilotVersion) MsgID() mavlink.MessageID {
 func (m *AutopilotVersion) String() string {
 	return fmt.Sprintf(
 		"&common.AutopilotVersion{ Capabilities: %+v, UID: %+v, FlightSwVersion: %+v, MiddlewareSwVersion: %+v, OsSwVersion: %+v, BoardVersion: %+v, VendorID: %+v, ProductID: %+v, FlightCustomVersion: %0X (\"%s\"), MiddlewareCustomVersion: %0X (\"%s\"), OsCustomVersion: %0X (\"%s\") }",
-		m.Capabilities,
+		m.Capabilities.Bitmask(),
 		m.UID,
 		m.FlightSwVersion,
 		m.MiddlewareSwVersion,
@@ -20449,7 +22763,7 @@ func (m *MagCalReport) String() string {
 		m.OffdiagY,
 		m.OffdiagZ,
 		m.CompassID,
-		m.CalMask,
+		m.CalMask.Bitmask(),
 		m.CalStatus,
 		m.Autosaved,
 	)
@@ -20645,7 +22959,7 @@ func (m *EstimatorStatus) String() string {
 		m.TasRatio,
 		m.PosHorizAccuracy,
 		m.PosVertAccuracy,
-		m.Flags,
+		m.Flags.Bitmask(),
 	)
 }
 
@@ -20811,7 +23125,7 @@ func (m *GpsInput) String() string {
 		m.SpeedAccuracy,
 		m.HorizAccuracy,
 		m.VertAccuracy,
-		m.IgnoreFlags,
+		m.IgnoreFlags.Bitmask(),
 		m.TimeWeek,
 		m.GpsID,
 		m.FixType,
@@ -20966,7 +23280,7 @@ func (m *HighLatency) MsgID() mavlink.MessageID {
 func (m *HighLatency) String() string {
 	return fmt.Sprintf(
 		"&common.HighLatency{ CustomMode: %+v, Latitude: %+v, Longitude: %+v, Roll: %+v, Pitch: %+v, Heading: %+v, HeadingSp: %+v, AltitudeAmsl: %+v, AltitudeSp: %+v, WpDistance: %+v, BaseMode: %+v, LandedState: %+v, Throttle: %+v, Airspeed: %+v, AirspeedSp: %+v, Groundspeed: %+v, ClimbRate: %+v, GpsNsat: %+v, GpsFixType: %+v, BatteryRemaining: %+v, Temperature: %+v, TemperatureAir: %+v, Failsafe: %+v, WpNum: %+v }",
-		m.CustomMode,
+		m.CustomMode.Bitmask(),
 		m.Latitude,
 		m.Longitude,
 		m.Roll,
@@ -20976,7 +23290,7 @@ func (m *HighLatency) String() string {
 		m.AltitudeAmsl,
 		m.AltitudeSp,
 		m.WpDistance,
-		m.BaseMode,
+		m.BaseMode.Bitmask(),
 		m.LandedState,
 		m.Throttle,
 		m.Airspeed,
@@ -21107,12 +23421,12 @@ func (m *HighLatency2) String() string {
 		m.Timestamp,
 		m.Latitude,
 		m.Longitude,
-		m.CustomMode,
+		m.CustomMode.Bitmask(),
 		m.Altitude,
 		m.TargetAltitude,
 		m.TargetDistance,
 		m.WpNum,
-		m.FailureFlags,
+		m.FailureFlags.Bitmask(),
 		m.Type,
 		m.Autopilot,
 		m.Heading,
@@ -21575,7 +23889,7 @@ func (m *AdsbVehicle) String() string {
 		m.Heading,
 		m.HorVelocity,
 		m.VerVelocity,
-		m.Flags,
+		m.Flags.Bitmask(),
 		m.Squawk,
 		m.AltitudeType,
 		m.Callsign, string(m.Callsign[:]),
@@ -22095,11 +24409,11 @@ func (m *Heartbeat) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *Heartbeat) String() string {
 	return fmt.Sprintf(
-		"&common.Heartbeat{ CustomMode: %+v, Type: %+v, Autopilot: %+v, BaseMode: %+v, SystemStatus: %+v, MavlinkVersion: %+v }",
+		"&minimal.Heartbeat{ CustomMode: %+v, Type: %+v, Autopilot: %+v, BaseMode: %+v, SystemStatus: %+v, MavlinkVersion: %+v }",
 		m.CustomMode,
 		m.Type,
 		m.Autopilot,
-		m.BaseMode,
+		m.BaseMode.Bitmask(),
 		m.SystemStatus,
 		m.MavlinkVersion,
 	)

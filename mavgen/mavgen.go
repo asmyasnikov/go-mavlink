@@ -82,6 +82,7 @@ type MessageField struct {
 	CType       string `xml:"type,attr"`
 	Name        string `xml:"name,attr"`
 	Enum        string `xml:"enum,attr"`
+	Display     string `xml:"display,attr"`
 	Description string `xml:",innerxml"`
 	GoType      string
 	Tag         string
@@ -551,6 +552,19 @@ func (e {{$enumName}}) String() string {
 		return fmt.Sprintf("{{$enumName}}_ENUM_UNDEFINED_%d", int(e))
 	}
 }
+
+func (e {{$enumName}}) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []{{$enumName}}{ {{range .Entries}}{{.Name}}, {{end}} } {
+		if e & entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
 {{end}}
 `
 	// fill in missing enum values if necessary, and ensure description strings are valid.
@@ -620,7 +634,7 @@ func (m *{{$name}}) MsgID() mavlink.MessageID {
 func (m *{{$name}}) String() string {
 	return fmt.Sprintf(
 		"&{{.DialectName}}.{{$name}}{ {{range $i, $v := .Fields}}{{if gt $i 0}}, {{end}}{{.Name | UpperCamelCase}}: {{if IsByteArrayField .}}%0X (\"%s\"){{else}}%+v{{end}}{{end}} }", 
-		{{range .Fields}}m.{{.Name | UpperCamelCase}}{{if IsByteArrayField .}}, string(m.{{.Name | UpperCamelCase}}[:]){{end}},
+		{{range .Fields}}m.{{.Name | UpperCamelCase}}{{if eq .Display "bitmask"}}.Bitmask(){{end}}{{if IsByteArrayField .}}, string(m.{{.Name | UpperCamelCase}}[:]){{end}},
 {{end}}
 	)
 }
@@ -702,7 +716,9 @@ func (d *Dialect) merge(rhs *Dialect) error {
 	}
 	for _, message := range rhs.Messages {
 		if i := d.messageIdx(message); i < 0 {
-			message.DialectName = baseName(rhs.FilePath)
+			if len(message.DialectName) == 0 {
+				message.DialectName = baseName(rhs.FilePath)
+			}
 			d.Messages = append(d.Messages, message)
 		}
 	}
