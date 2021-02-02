@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	decoders "github.com/asmyasnikov/go-mavlink/common"
-	mavlink "github.com/asmyasnikov/go-mavlink/generated/mavlink1"
-	"github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
-	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
+	mavlink "github.com/asmyasnikov/go-mavlink/generated/mavlink2"
+	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
+	"github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
 	"github.com/tarm/serial"
 	"io"
 	"log"
@@ -121,7 +121,7 @@ func makeStatustext(text string) *mavlink.Packet {
 
 func makeCommandLong(cmd ardupilotmega.MAV_CMD, param1 uint32) *mavlink.Packet {
 	return makePacket(&ardupilotmega.CommandLong{
-		Param1:          1,
+		Param1:          float32(param1),
 		Param2:          0,
 		Param3:          0,
 		Param4:          0,
@@ -195,6 +195,8 @@ func sendPacket(writer io.Writer, packet *mavlink.Packet) {
 func handshake(wg *sync.WaitGroup, writer io.Writer) {
 	defer wg.Done()
 	time.Sleep(time.Second)
+	sendPacket(writer, makeHeartbeat())
+	sendPacket(writer, makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_MESSAGE, uint32(ardupilotmega.MSG_ID_AUTOPILOT_VERSION_REQUEST)))
 	sendPacket(writer, makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_PROTOCOL_VERSION, 1))
 	sendPacket(writer, makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES, 1))
 	sendPacket(writer, makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTENDED_STATUS, 2))
