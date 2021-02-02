@@ -126,9 +126,9 @@ func TestParseDialect(t *testing.T) {
     <dialect>0</dialect>
 </mavlink>`,
 			&Dialect{
-				Version: "3",
-				XMLName: xml.Name{Local: "mavlink"},
-				Enums: []*Enum{},
+				Version:  "3",
+				XMLName:  xml.Name{Local: "mavlink"},
+				Enums:    []*Enum{},
 				Messages: []*Message{},
 			},
 			nil,
@@ -161,9 +161,9 @@ func TestParseDialect(t *testing.T) {
     </messages>
 </mavlink>`,
 			&Dialect{
-				Version: "3",
-				XMLName: xml.Name{Local: "mavlink"},
-				Enums: enums,
+				Version:  "3",
+				XMLName:  xml.Name{Local: "mavlink"},
+				Enums:    enums,
 				Messages: messages,
 			},
 			nil,
@@ -200,9 +200,9 @@ func TestParseDialect(t *testing.T) {
     </messages>
 </mavlink>`,
 			&Dialect{
-				Version: "3",
-				XMLName: xml.Name{Local: "mavlink"},
-				Enums: enums,
+				Version:  "3",
+				XMLName:  xml.Name{Local: "mavlink"},
+				Enums:    enums,
 				Messages: messages,
 			},
 			nil,
@@ -238,9 +238,9 @@ func TestParseDialect(t *testing.T) {
     </messages>
 </mavlink>`,
 			&Dialect{
-				Version: "3",
-				XMLName: xml.Name{Local: "mavlink"},
-				Enums: enums,
+				Version:  "3",
+				XMLName:  xml.Name{Local: "mavlink"},
+				Enums:    enums,
 				Messages: messages,
 			},
 			nil,
