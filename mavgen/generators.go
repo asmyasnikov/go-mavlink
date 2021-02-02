@@ -58,7 +58,7 @@ func findOutFile(scheme string) string {
 	return filepath.Join(dir, baseName(scheme), baseName(scheme)+".go")
 }
 
-func generateDialect(dialectPath *string, schemeFile string, mavlinkVersion int) error {
+func generateDialect(dialectPath *string, commonPackage string, schemeFile string, mavlinkVersion int) error {
 	d, err := ParseDialect(schemeFile)
 	if err != nil {
 		return err
@@ -90,7 +90,7 @@ func generateDialect(dialectPath *string, schemeFile string, mavlinkVersion int)
 	}
 	defer dialectFile.Close()
 
-	if err := d.generateGo(dialectFile, baseName); err != nil {
+	if err := d.generateGo(dialectFile, baseName, commonPackage); err != nil {
 		return err
 	}
 
@@ -136,7 +136,7 @@ func generateCode(dialectDir string, data templateData, templateName string, tmp
 	return nil
 }
 
-func generateCommons(data templateData) error {
+func generateCommonPackage(data templateData) error {
 	cwd, err := os.Getwd()
 	if err != nil {
 		log.Fatal("Getwd(): ", err)

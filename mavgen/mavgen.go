@@ -470,7 +470,7 @@ func (d *Dialect) needImportEncodingBinary() bool {
 	return false
 }
 
-func (d *Dialect) generateGo(w io.Writer, packageName string) error {
+func (d *Dialect) generateGo(w io.Writer, packageName string, commonPackage string) error {
 	// templatize to buffer, format it, then write out
 
 	var bb bytes.Buffer
@@ -492,7 +492,11 @@ func (d *Dialect) generateGo(w io.Writer, packageName string) error {
 	if needImportParentMavlink || needImportEncodingBinary || needImportFmt || needImportMath {
 		bb.WriteString("import (\n")
 		if needImportParentMavlink {
-			bb.WriteString("mavlink \"github.com/asmyasnikov/go-mavlink/generated/mavlink" + strconv.Itoa(d.MavlinkVersion) + "\"\n")
+			if len(commonPackage) > 0 {
+				bb.WriteString("mavlink \"" + commonPackage + "\"\n")
+			} else {
+				bb.WriteString("mavlink \"github.com/asmyasnikov/go-mavlink/generated/mavlink" + strconv.Itoa(d.MavlinkVersion) + "\"\n")
+			}
 		}
 		if needImportEncodingBinary {
 			bb.WriteString("\"encoding/binary\"\n")
