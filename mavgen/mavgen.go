@@ -634,7 +634,7 @@ func (m *{{$name}}) MsgID() mavlink.MessageID {
 func (m *{{$name}}) String() string {
 	return fmt.Sprintf(
 		"&{{.DialectName}}.{{$name}}{ {{range $i, $v := .Fields}}{{if gt $i 0}}, {{end}}{{.Name | UpperCamelCase}}: {{if IsByteArrayField .}}%0X (\"%s\"){{else}}%+v{{end}}{{end}} }", 
-		{{range .Fields}}m.{{.Name | UpperCamelCase}}{{if eq .Display "bitmask"}}.Bitmask(){{end}}{{if IsByteArrayField .}}, string(m.{{.Name | UpperCamelCase}}[:]){{end}},
+		{{range .Fields}}m.{{.Name | UpperCamelCase}}{{if .Enum}}{{if eq .Display "bitmask"}}.Bitmask(){{end}}{{end}}{{if IsByteArrayField .}}, string(m.{{.Name | UpperCamelCase}}[:]){{end}},
 {{end}}
 	)
 }

@@ -12881,7 +12881,7 @@ func (m *HilActuatorControls) String() string {
 	return fmt.Sprintf(
 		"&common.HilActuatorControls{ TimeUsec: %+v, Flags: %+v, Controls: %+v, Mode: %+v }",
 		m.TimeUsec,
-		m.Flags.Bitmask(),
+		m.Flags,
 		m.Controls,
 		m.Mode.Bitmask(),
 	)
@@ -13261,7 +13261,7 @@ func (m *HighresImu) String() string {
 		m.DiffPressure,
 		m.PressureAlt,
 		m.Temperature,
-		m.FieldsUpdated.Bitmask(),
+		m.FieldsUpdated,
 	)
 }
 
@@ -13437,7 +13437,7 @@ func (m *HilSensor) String() string {
 		m.DiffPressure,
 		m.PressureAlt,
 		m.Temperature,
-		m.FieldsUpdated.Bitmask(),
+		m.FieldsUpdated,
 	)
 }
 
@@ -15109,7 +15109,7 @@ func (m *TerrainRequest) MsgID() mavlink.MessageID {
 func (m *TerrainRequest) String() string {
 	return fmt.Sprintf(
 		"&common.TerrainRequest{ Mask: %+v, Lat: %+v, Lon: %+v, GridSpacing: %+v }",
-		m.Mask.Bitmask(),
+		m.Mask,
 		m.Lat,
 		m.Lon,
 		m.GridSpacing,
@@ -16204,7 +16204,7 @@ func (m *MagCalReport) String() string {
 		m.OffdiagY,
 		m.OffdiagZ,
 		m.CompassID,
-		m.CalMask.Bitmask(),
+		m.CalMask,
 		m.CalStatus,
 		m.Autosaved,
 	)
@@ -16691,7 +16691,7 @@ func (m *HighLatency) MsgID() mavlink.MessageID {
 func (m *HighLatency) String() string {
 	return fmt.Sprintf(
 		"&common.HighLatency{ CustomMode: %+v, Latitude: %+v, Longitude: %+v, Roll: %+v, Pitch: %+v, Heading: %+v, HeadingSp: %+v, AltitudeAmsl: %+v, AltitudeSp: %+v, WpDistance: %+v, BaseMode: %+v, LandedState: %+v, Throttle: %+v, Airspeed: %+v, AirspeedSp: %+v, Groundspeed: %+v, ClimbRate: %+v, GpsNsat: %+v, GpsFixType: %+v, BatteryRemaining: %+v, Temperature: %+v, TemperatureAir: %+v, Failsafe: %+v, WpNum: %+v }",
-		m.CustomMode.Bitmask(),
+		m.CustomMode,
 		m.Latitude,
 		m.Longitude,
 		m.Roll,
@@ -16827,7 +16827,7 @@ func (m *HighLatency2) String() string {
 		m.Timestamp,
 		m.Latitude,
 		m.Longitude,
-		m.CustomMode.Bitmask(),
+		m.CustomMode,
 		m.Altitude,
 		m.TargetAltitude,
 		m.TargetDistance,
