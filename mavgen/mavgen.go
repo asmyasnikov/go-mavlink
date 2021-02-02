@@ -545,7 +545,9 @@ const ({{range .Entries}}
 )
 
 func (e {{$enumName}}) String() string {
-	if name, ok := map[{{$enumName}}]string{ {{range .Entries}}{{.Name}}: "{{.Name}}", {{end}} }[e]; ok {
+	if name, ok := map[{{$enumName}}]string{ {{range .Entries}}
+		{{.Name}}: "{{.Name}}", {{end}} 
+	}[e]; ok {
 		return name
 	}
 	return fmt.Sprintf("{{$enumName}}_UNDEFINED_%d", int(e))
@@ -554,7 +556,9 @@ func (e {{$enumName}}) String() string {
 // Bitmask return string representetion of intersects {{$enumName}} enums 
 func (e {{$enumName}}) Bitmask() string {
 	bitmap := ""
-	for _, entry := range []{{$enumName}}{ {{range .Entries}}{{.Name}}, {{end}} } {
+	for _, entry := range []{{$enumName}}{ {{range .Entries}}
+		{{.Name}}, {{end}} 
+	} {
 		if e & entry > 0 {
 			if len(bitmap) > 0 {
 				bitmap += " | "
