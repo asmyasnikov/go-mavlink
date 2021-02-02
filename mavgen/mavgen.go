@@ -542,6 +542,15 @@ const ({{range .Entries}}
 	// {{.Name}} enum{{if .Description}}. {{.Description}}{{end}}
 	{{.Name}} {{$enumName}} = {{.Value}} {{end}}
 )
+
+func (e {{$enumName}}) String() string {
+	switch e { {{range .Entries}}
+	case {{.Name}}: 
+		return "{{.Name}}"{{end}}
+	default: 
+		return fmt.Sprintf("{{$enumName}}_ENUM_UNDEFINED_%d", int(e))
+	}
+}
 {{end}}
 `
 	// fill in missing enum values if necessary, and ensure description strings are valid.
@@ -660,7 +669,7 @@ func (m *{{$name}}) Unpack(p *mavlink.Packet) error {
 			}
 			f.GoType, f.BitSize, f.ArrayLen = goname, gosz, golen
 			if len(f.Enum) > 0 {
-				f.Tag = "`gotype:\"" + f.GoType + "\"`"
+				f.Tag = "`raw:\"" + f.GoType + "\"`"
 			}
 		}
 
