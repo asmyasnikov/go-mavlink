@@ -6,6 +6,7 @@ import (
 	"github.com/asmyasnikov/go-mavlink/common"
 	"log"
 	"os"
+	"strconv"
 )
 
 var (
@@ -35,6 +36,10 @@ func main() {
 	if (*common.Mavlink1 && *common.Mavlink2) || (!*common.Mavlink1 && !*common.Mavlink2) {
 		fmt.Println("Select only one version of mavlink: -1 flag or -2 flag")
 		return
+	}
+
+	if len(*commonPackage) == 0 {
+		*commonPackage = "github.com/asmyasnikov/go-mavlink/generated/mavlink" + strconv.Itoa(common.MavlinkVersion())
 	}
 
 	if err := generateDialect(nil, *commonPackage, *schemeFile, common.MavlinkVersion()); err != nil {

@@ -492,11 +492,7 @@ func (d *Dialect) generateGo(w io.Writer, packageName string, commonPackage stri
 	if needImportParentMavlink || needImportEncodingBinary || needImportFmt || needImportMath {
 		bb.WriteString("import (\n")
 		if needImportParentMavlink {
-			if len(commonPackage) > 0 {
-				bb.WriteString("mavlink \"" + commonPackage + "\"\n")
-			} else {
-				bb.WriteString("mavlink \"github.com/asmyasnikov/go-mavlink/generated/mavlink" + strconv.Itoa(d.MavlinkVersion) + "\"\n")
-			}
+			bb.WriteString("mavlink \"" + commonPackage + "\"\n")
 		}
 		if needImportEncodingBinary {
 			bb.WriteString("\"encoding/binary\"\n")
