@@ -545,12 +545,10 @@ const ({{range .Entries}}
 )
 
 func (e {{$enumName}}) String() string {
-	switch e { {{range .Entries}}
-	case {{.Name}}: 
-		return "{{.Name}}"{{end}}
-	default: 
-		return fmt.Sprintf("{{$enumName}}_ENUM_UNDEFINED_%d", int(e))
+	if name, ok := map[{{$enumName}}]string{ {{range .Entries}}{{.Name}}: "{{.Name}}", {{end}} }[e]; ok {
+		return name
 	}
+	return fmt.Sprintf("{{$enumName}}_ENUM_UNDEFINED_%d", int(e))
 }
 
 // Bitmask return string representetion of intersects {{$enumName}} enums 
