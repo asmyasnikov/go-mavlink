@@ -553,6 +553,7 @@ func (e {{$enumName}}) String() string {
 	}
 }
 
+// Bitmask return string representetion of intersects {{$enumName}} enums 
 func (e {{$enumName}}) Bitmask() string {
 	bitmap := ""
 	for _, entry := range []{{$enumName}}{ {{range .Entries}}{{.Name}}, {{end}} } {
