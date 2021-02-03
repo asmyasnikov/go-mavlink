@@ -1,12 +1,18 @@
+/*
+ * CODE GENERATED AUTOMATICALLY WITH
+ *    github.com/asmyasnikov/go-mavlink/mavgen
+ * THIS FILE SHOULD NOT BE EDITED BY HAND
+ */
+
 package mavlink
 
 import "strconv"
 
 type message struct {
-    Name string
-    Size int
-    Extra uint8
-    Constructor func(p Packet) (Message, error)
+	Name        string
+	Size        int
+	Extra       uint8
+	Constructor func(p Packet) (Message, error)
 }
 
 var supported = make(map[MessageID]*message)
@@ -17,10 +23,10 @@ func Register(msgID MessageID, msgName string, msgSize int, crcExtra uint8, msgC
 		panic("Message with ID = " + strconv.Itoa(int(msgID)) + " already exists. Fix collision '" + msgName + "' vs '" + msg.Name + "' and re-run mavgen")
 	} else {
 		supported[msgID] = &message{
-		    Name:        msgName,
-		    Size:        msgSize,
-		    Extra:       crcExtra,
-		    Constructor: msgConstructor,
+			Name:        msgName,
+			Size:        msgSize,
+			Extra:       crcExtra,
+			Constructor: msgConstructor,
 		}
 	}
 }

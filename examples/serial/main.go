@@ -2,10 +2,9 @@ package main
 
 import (
 	"flag"
-	"github.com/asmyasnikov/go-mavlink/common/decoder"
-	"github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
-	mavlink "github.com/asmyasnikov/go-mavlink/generated/mavlink1"
-	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
+	"github.com/asmyasnikov/go-mavlink/common"
+	"github.com/asmyasnikov/go-mavlink/mavlink"
+	"github.com/asmyasnikov/go-mavlink/mavlink/ardupilotmega"
 	"github.com/tarm/serial"
 	"io"
 	"log"
@@ -48,59 +47,54 @@ func main() {
 	wg.Add(1)
 	go listenAndServe(&wg, port)
 	if !*ro {
-		wg.Add(1)
-		go handshake(&wg, port)
+		wg.Add(2)
+		go sendLoop(&wg, port)
+		go heartbeatLoop(&wg)
 	}
 	wg.Wait()
 }
 
 func listenAndServe(wg *sync.WaitGroup, device io.ReadWriteCloser) {
 	defer wg.Done()
-	decs := decoder.Decoders(device)
-	for i := range decs {
-		wg.Add(1)
-		go func(dec decoder.Decoder) {
-			defer wg.Done()
-			log.Println("listening packets from decoder " + dec.Name())
-			for {
-				packet, err := dec.Decode()
-				if err != nil {
-					log.Fatal(dec.Name(), " error: ", err.Error())
-				} else {
-					log.Println("<-", packet.String())
-				}
-				//if packet.MsgID == ardupilotmega.MSG_ID_TIMESYNC {
-				//	ts := ardupilotmega.Timesync{}
-				//	if err := ts.Unpack(&packet); err != nil {
-				//		log.Fatal(err)
-				//	} else {
-				//		sendPacket(device, makeTimeSync(ts.Ts1))
-				//	}
-				//}
-			}
-		}(decs[i])
+	dec := mavlink.NewDecoder(device)
+	log.Println("listening packets")
+	for {
+		packet, err := dec.Decode()
+		if err != nil {
+			log.Fatal("decode error: ", err.Error())
+		} else {
+			log.Println("<-", packet.String())
+		}
+		//if packet.MsgID == ardupilotmega.MSG_ID_TIMESYNC {
+		//	ts := ardupilotmega.Timesync{}
+		//	if err := ts.Unpack(&packet); err != nil {
+		//		log.Fatal(err)
+		//	} else {
+		//		sendPacket(device, makeTimeSync(ts.Ts1))
+		//	}
+		//}
 	}
 }
 
-func makeHeartbeat() *mavlink.Packet {
-	return makePacket(&ardupilotmega.Heartbeat{
+func makeHeartbeat() mavlink.Message {
+	return &ardupilotmega.Heartbeat{
 		CustomMode:     0,
 		Type:           ardupilotmega.MAV_TYPE_GCS,
 		Autopilot:      ardupilotmega.MAV_AUTOPILOT_INVALID,
 		BaseMode:       0,
 		SystemStatus:   ardupilotmega.MAV_STATE_UNINIT,
 		MavlinkVersion: 3,
-	})
+	}
 }
 
-func makeRequestDataStream(msgID ardupilotmega.MAV_DATA_STREAM, rate uint16) *mavlink.Packet {
-	return makePacket(&ardupilotmega.RequestDataStream{
+func makeRequestDataStream(msgID ardupilotmega.MAV_DATA_STREAM, rate uint16) mavlink.Message {
+	return &ardupilotmega.RequestDataStream{
 		ReqMessageRate:  rate,
 		TargetSystem:    1,
 		TargetComponent: 1,
 		ReqStreamID:     uint8(msgID),
 		StartStop:       1,
-	})
+	}
 }
 
 func makeTextArray(text string) (bytes [50]byte) {
@@ -113,15 +107,15 @@ func makePayload(payload []byte) (bytes [251]byte) {
 	return bytes
 }
 
-func makeStatustext(text string) *mavlink.Packet {
-	return makePacket(&ardupilotmega.Statustext{
+func makeStatustext(text string) mavlink.Message {
+	return &ardupilotmega.Statustext{
 		Severity: ardupilotmega.MAV_SEVERITY_INFO,
 		Text:     makeTextArray(text),
-	})
+	}
 }
 
-func makeCommandLong(cmd ardupilotmega.MAV_CMD, param1 uint32) *mavlink.Packet {
-	return makePacket(&ardupilotmega.CommandLong{
+func makeCommandLong(cmd ardupilotmega.MAV_CMD, param1 uint32) mavlink.Message {
+	return &ardupilotmega.CommandLong{
 		Param1:          float32(param1),
 		Param2:          0,
 		Param3:          0,
@@ -133,62 +127,49 @@ func makeCommandLong(cmd ardupilotmega.MAV_CMD, param1 uint32) *mavlink.Packet {
 		TargetSystem:    1,
 		TargetComponent: 1,
 		Confirmation:    0,
-	})
+	}
 }
 
-func makeParamRequestList() *mavlink.Packet {
-	return makePacket(&ardupilotmega.ParamRequestList{
+func makeParamRequestList() mavlink.Message {
+	return &ardupilotmega.ParamRequestList{
 		TargetSystem:    1,
 		TargetComponent: 1,
-	})
+	}
 }
 
-func makeTimeSync(ts int64) *mavlink.Packet {
-	return makePacket(&ardupilotmega.Timesync{
+func makeTimeSync(ts int64) mavlink.Message {
+	return &ardupilotmega.Timesync{
 		Tc1: time.Now().UnixNano(),
 		Ts1: ts,
-	})
+	}
 }
 
-func makeFileTransferProtocol(payload []byte) *mavlink.Packet {
-	return makePacket(&ardupilotmega.FileTransferProtocol{
+func makeFileTransferProtocol(payload []byte) mavlink.Message {
+	return &ardupilotmega.FileTransferProtocol{
 		TargetNetwork:   0,
 		TargetSystem:    1,
 		TargetComponent: 1,
 		Payload:         makePayload(payload),
-	})
-}
-
-var seq = uint8(0)
-
-func nextSeq() uint8 {
-	seq++
-	return seq
-}
-
-func makePacket(message mavlink.Message) *mavlink.Packet {
-	packet := mavlink.Packet{
-		SeqID:  nextSeq(),
-		SysID:  uint8(*sysID),
-		CompID: uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER),
 	}
-	if err := message.Pack(&packet); err != nil {
-		log.Fatalf("Error on pack message: %s\n", err)
-	}
-	return &packet
 }
 
-func sendPacket(writer io.Writer, packet *mavlink.Packet) {
-	for i := 0; i < *retryCount; i++ {
-		bytes := packet.Bytes()
-		if n, err := writer.Write(bytes); err != nil {
-			log.Fatalf("Error on write packet: %s\n", err)
-		} else if n != len(bytes) {
-			log.Fatalf("Writed %d bytes but need write %d bytes\n", n, len(bytes))
-		} else {
-			log.Println("->", packet.String())
+var sendChan = make(chan mavlink.Message)
+
+func heartbeatLoop(wg *sync.WaitGroup) {
+	defer wg.Done()
+	for {
+		time.Sleep(time.Second)
+		sendChan <- makeHeartbeat()
+	}
+}
+
+func sendLoop(wg *sync.WaitGroup, writer io.Writer) {
+	defer wg.Done()
+	enc := mavlink.NewEncoder(writer)
+	for m := range sendChan {
+		if err := enc.Encode(common.MavlinkVersion(), uint8(*sysID), uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER), m); err != nil {
+			log.Fatalf("Error on send loop: %+v", err)
 		}
-		time.Sleep(time.Millisecond * 500)
 	}
 }
 
@@ -196,19 +177,19 @@ func sendPacket(writer io.Writer, packet *mavlink.Packet) {
 func handshake(wg *sync.WaitGroup, writer io.Writer) {
 	defer wg.Done()
 	time.Sleep(time.Second)
-	sendPacket(writer, makeHeartbeat())
-	sendPacket(writer, makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_MESSAGE, uint32(ardupilotmega.MSG_ID_AUTOPILOT_VERSION_REQUEST)))
-	sendPacket(writer, makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_PROTOCOL_VERSION, 1))
-	sendPacket(writer, makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES, 1))
-	sendPacket(writer, makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTENDED_STATUS, 2))
-	sendPacket(writer, makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_POSITION, 2))
-	sendPacket(writer, makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTRA1, 4))
-	sendPacket(writer, makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTRA2, 4))
-	sendPacket(writer, makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTRA3, 4))
-	sendPacket(writer, makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_RAW_SENSORS, 2))
-	sendPacket(writer, makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_RC_CHANNELS, 2))
-	sendPacket(writer, makeHeartbeat())
-	sendPacket(writer, makeStatustext("Mission Planner 1.3.74"))
-	sendPacket(writer, makeCommandLong(ardupilotmega.MAV_CMD_DO_SEND_BANNER, 0))
-	sendPacket(writer, makeFileTransferProtocol([]byte{0, 0, 0, 4, 16, 0, 0, 0, 0, 0, 0, 0, 64, 80, 65, 82, 65, 77, 47, 112, 97, 114, 97, 109, 46, 112, 99, 107, 0}))
+	sendChan <- makeHeartbeat()
+	sendChan <- makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_MESSAGE, uint32(ardupilotmega.MSG_ID_AUTOPILOT_VERSION_REQUEST))
+	sendChan <- makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_PROTOCOL_VERSION, 1)
+	sendChan <- makeCommandLong(ardupilotmega.MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES, 1)
+	sendChan <- makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTENDED_STATUS, 2)
+	sendChan <- makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_POSITION, 2)
+	sendChan <- makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTRA1, 4)
+	sendChan <- makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTRA2, 4)
+	sendChan <- makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_EXTRA3, 4)
+	sendChan <- makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_RAW_SENSORS, 2)
+	sendChan <- makeRequestDataStream(ardupilotmega.MAV_DATA_STREAM_RC_CHANNELS, 2)
+	sendChan <- makeHeartbeat()
+	sendChan <- makeStatustext("Mission Planner 1.3.74")
+	sendChan <- makeCommandLong(ardupilotmega.MAV_CMD_DO_SEND_BANNER, 0)
+	sendChan <- makeFileTransferProtocol([]byte{0, 0, 0, 4, 16, 0, 0, 0, 0, 0, 0, 0, 64, 80, 65, 82, 65, 77, 47, 112, 97, 114, 97, 109, 46, 112, 99, 107, 0})
 }

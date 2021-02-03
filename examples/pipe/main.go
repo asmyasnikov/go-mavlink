@@ -4,14 +4,12 @@ import (
 	"bufio"
 	"encoding/hex"
 	"flag"
-	"github.com/asmyasnikov/go-mavlink/common/decoder"
-	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
-	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
+	"github.com/asmyasnikov/go-mavlink/mavlink"
+	_ "github.com/asmyasnikov/go-mavlink/mavlink/ardupilotmega"
 	"io"
 	"log"
 	"os"
 	"regexp"
-	"sync"
 )
 
 //////////////////////////////////////
@@ -75,22 +73,13 @@ func listenAndServe() {
 	} else {
 		reader = bufio.NewReader(os.Stdin)
 	}
-	wg := sync.WaitGroup{}
-	decs := decoder.Decoders(reader)
-	for i := range decs {
-		wg.Add(1)
-		dec := decs[i]
-		go func() {
-			defer wg.Done()
-			log.Println("listening packets from decoder " + dec.Name())
-			for {
-				if p, err := dec.Decode(); err != nil {
-					log.Fatal("Error on " + dec.Name() + " decode:" + err.Error())
-				} else {
-					log.Println("<-", p.String())
-				}
-			}
-		}()
+	dec := mavlink.NewDecoder(reader)
+	log.Println("listening packets")
+	for {
+		if p, err := dec.Decode(); err != nil {
+			log.Fatal("Error on decode:" + err.Error())
+		} else {
+			log.Println("<-", p.String())
+		}
 	}
-	wg.Wait()
 }

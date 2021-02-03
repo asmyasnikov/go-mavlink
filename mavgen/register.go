@@ -17,13 +17,13 @@ func registerTemplate() string {
 		"    Name string\n" +
 		"    Size int\n" +
 		"    Extra uint8\n" +
-		"    Constructor func(p *Packet) Message\n" +
+		"    Constructor func(p Packet) (Message, error)\n" +
 		"}\n" +
 		"\n" +
 		"var supported = make(map[MessageID]*message)\n" +
 		"\n" +
 		"// Register method provide register dialect message on decoder knowledge\n" +
-		"func Register(msgID MessageID, msgName string, msgSize int, crcExtra uint8, msgConstructor func(p *Packet) Message) {\n" +
+		"func Register(msgID MessageID, msgName string, msgSize int, crcExtra uint8, msgConstructor func(p Packet) (Message, error)) {\n" +
 		"\tif msg, ok := supported[msgID]; ok {\n" +
 		"\t\tpanic(\"Message with ID = \" + strconv.Itoa(int(msgID)) + \" already exists. Fix collision '\" + msgName + \"' vs '\" + msg.Name + \"' and re-run mavgen\")\n" +
 		"\t} else {\n" +

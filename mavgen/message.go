@@ -18,10 +18,14 @@ func messageTemplate() string {
 		"// use the Pack() and Unpack() routines on specific message\n" +
 		"// types to convert them to/from the Packet type.\n" +
 		"type Message interface {\n" +
-		"\tPack(*Packet) error\n" +
-		"\tUnpack(*Packet) error\n" +
+		"    // MsgID returns message id\n" +
 		"\tMsgID() MessageID\n" +
+		"    // String returns human-readable representation on Message\n" +
 		"\tString() string\n" +
+		"    // Marshal encodes Packet to byte slice\n" +
+		"    Marshal() ([]byte, error)\n" +
+		"    // Unmarshal parses PAYLOAD and stores the result in Packet\n" +
+		"    Unmarshal(payload []byte) error\n" +
 		"}\n" +
 		""
 	return tmpl

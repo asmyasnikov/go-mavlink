@@ -1,3 +1,9 @@
+/*
+ * CODE GENERATED AUTOMATICALLY WITH
+ *    github.com/asmyasnikov/go-mavlink/mavgen
+ * THIS FILE SHOULD NOT BE EDITED BY HAND
+ */
+
 package mavlink
 
 import (
@@ -27,22 +33,22 @@ type Packet interface {
 	Message() (Message, error)
 	// String returns string representation of packet
 	String() string
-    // Marshal encodes Packet to byte slice
-    Marshal() ([]byte, error)
-    // Unmarshal parses PAYLOAD and stores the result in Packet
-    Unmarshal(payload []byte) error
+	// Marshal encodes Packet to byte slice
+	Marshal() ([]byte, error)
+	// Unmarshal parses PAYLOAD and stores the result in Packet
+	Unmarshal(payload []byte) error
 }
 
 // Parser interface is abstract of parsers
 type Parser interface {
 	ParseChar(c byte) (Packet, error)
-    Destroy()
+	Destroy()
 }
 
 // Decoder struct provide decoding processor
 type Decoder struct {
-	reader      io.ByteReader
-	parsers     []Parser
+	reader  io.ByteReader
+	parsers []Parser
 }
 
 func (d *Decoder) clearParser(parser Parser) {
@@ -88,7 +94,7 @@ func byteReader(r io.Reader) io.ByteReader {
 	if rb, ok := r.(io.ByteReader); ok {
 		return rb
 	}
-    return bufio.NewReader(r)
+	return bufio.NewReader(r)
 }
 
 // NewDecoder function create decoder instance

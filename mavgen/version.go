@@ -14,8 +14,6 @@ func versionTemplate() string {
 		"const (\n" +
 		"    // Version of mavgen which generate this code or user defined (by mavgen flag -v) version of dialect\n" +
 		"    Version        = \"{{- .Version -}}\"\n" +
-		"    // MavlinkVersion is a user defined (by mavgen flag -m) version of mavlink protcol\n" +
-		"    MavlinkVersion = {{- .MavlinkVersion -}}\n" +
 		")"
 	return tmpl
 }

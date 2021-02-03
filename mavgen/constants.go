@@ -15,6 +15,13 @@ func constantsTemplate() string {
 		"\t\"errors\"\n" +
 		")\n" +
 		"\n" +
+		"type MAVLINK_VERSION int\n" +
+		"\n" +
+		"const (\n" +
+		"    MAVLINK_V1 MAVLINK_VERSION = 1\n" +
+		"    MAVLINK_V2 MAVLINK_VERSION = 2\n" +
+		")\n" +
+		"\n" +
 		"var (\n" +
 		"\t// ErrUnknownMsgID define\n" +
 		"\tErrUnknownMsgID = errors.New(\"unknown msg id\")\n" +
@@ -29,8 +36,6 @@ func constantsTemplate() string {
 		"    // zeroTail is a cache of zero slice for auto append tail to\n" +
 		"    // payload in Mavlink2 messages with trimmed payload (variable length)\n" +
 		"\tzeroTail           = make([]byte, 256)\n" +
-		"\t// currentSeqNum\n" +
-		"\tcurrentSeqNum uint8\n" +
 		")\n" +
 		""
 	return tmpl

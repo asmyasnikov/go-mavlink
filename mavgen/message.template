@@ -7,8 +7,12 @@ type MessageID uint32
 // use the Pack() and Unpack() routines on specific message
 // types to convert them to/from the Packet type.
 type Message interface {
-	Pack(*Packet) error
-	Unpack(*Packet) error
+    // MsgID returns message id
 	MsgID() MessageID
+    // String returns human-readable representation on Message
 	String() string
+    // Marshal encodes Packet to byte slice
+    Marshal() ([]byte, error)
+    // Unmarshal parses PAYLOAD and stores the result in Packet
+    Unmarshal(payload []byte) error
 }

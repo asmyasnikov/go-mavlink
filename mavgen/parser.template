@@ -51,13 +51,17 @@ func NewParserV{{.MavlinkVersion}}() Parser {
 func (p *parser{{.MavlinkVersion}}) Destroy() {
 	p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT
 	if p.crc != nil {
-		p.crc.Reset()
 		p.crc = nil
 	}
 	_parsersPool_v{{.MavlinkVersion}}.Put(p)
 }
 
+// ParseChar parse char to packet
 func (p *parser{{.MavlinkVersion}}) ParseChar(c byte) (Packet, error) {
+    return p.parseChar(c)
+}
+
+func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}}, error) {
 	switch p.state {
 	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT,
 		 MAVLINK{{.MavlinkVersion}}_PARSE_STATE_IDLE,
@@ -128,9 +132,7 @@ func (p *parser{{.MavlinkVersion}}) ParseChar(c byte) (Packet, error) {
 		if c == uint8(p.crc.Sum16()>>8) {
 			p.checksum = p.crc.Sum16()
 			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
-			result := packet{{.MavlinkVersion}}{}
-			result.Assign(p)
-			return &result, nil
+			return p.copy(), nil
 		}
         p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC
         return nil, ErrCrcFail

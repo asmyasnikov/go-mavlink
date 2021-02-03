@@ -13,7 +13,6 @@ func decoderTemplate() string {
 		"\n" +
 		"import (\n" +
 		"\t\"bufio\"\n" +
-		"\t\"fmt\"\n" +
 		"\t\"io\"\n" +
 		")\n" +
 		"\n" +
@@ -31,12 +30,18 @@ func decoderTemplate() string {
 		"\tSeqID() uint8\n" +
 		"\t// Payload returns packet payload\n" +
 		"\tPayload() []byte\n" +
-		"\t// Assign assign internal fields from right hand side oacket\n" +
-		"\tAssign(rhs Packet) error\n" +
+		"\t// Assign assign internal fields from right hand side packet\n" +
+		"\t//Assign(rhs Packet) error\n" +
+		"\t// Copy returns deep copy of packet\n" +
+		"\tCopy() Packet\n" +
 		"\t// Message returns dialect message\n" +
 		"\tMessage() (Message, error)\n" +
 		"\t// String returns string representation of packet\n" +
 		"\tString() string\n" +
+		"    // Marshal encodes Packet to byte slice\n" +
+		"    Marshal() ([]byte, error)\n" +
+		"    // Unmarshal parses PAYLOAD and stores the result in Packet\n" +
+		"    Unmarshal(payload []byte) error\n" +
 		"}\n" +
 		"\n" +
 		"// Parser interface is abstract of parsers\n" +
@@ -63,15 +68,11 @@ func decoderTemplate() string {
 		"}\n" +
 		"\n" +
 		"// Decode decode input stream to packet. Method return error or nil\n" +
-		"func (d *Decoder) Decode(v interface{}) error {\n" +
-		"    packet, ok := v.(Packet)\n" +
-		"    if !ok {\n" +
-		"        return fmt.Errorf(\"cast interface '%+v' to Packet fail\", v)\n" +
-		"    }\n" +
+		"func (d *Decoder) Decode() (Packet, error) {\n" +
 		"\tfor {\n" +
 		"\t\tc, err := d.reader.ReadByte()\n" +
 		"\t\tif err != nil {\n" +
-		"\t\t\treturn err\n" +
+		"\t\t\treturn nil, err\n" +
 		"\t\t}\n" +
 		"\t\tswitch c {\n" +
 		"\t\tcase 0xfe: // mavlink1\n" +
@@ -84,19 +85,8 @@ func decoderTemplate() string {
 		"\t\t\tif p, err := parser.ParseChar(c); err != nil {\n" +
 		"\t\t\t\td.clearParser(parser)\n" +
 		"\t\t\t} else if p != nil {\n" +
-		"\t\t\t    packet.Assign(p)\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\t\t\t\tpacket.InCompatFlags = p.InCompatFlags\n" +
-		"\t\t\t\tpacket.CompatFlags = p.CompatFlags\n" +
-		"{{- end}}\n" +
-		"\t\t\t\tpacket.SeqID = p.SeqID\n" +
-		"\t\t\t\tpacket.SysID = p.SysID\n" +
-		"\t\t\t\tpacket.CompID = p.CompID\n" +
-		"\t\t\t\tpacket.MsgID = p.MsgID\n" +
-		"\t\t\t\tpacket.Checksum = p.Checksum\n" +
-		"\t\t\t\tpacket.Payload = append(packet.Payload[:0], p.Payload...)\n" +
 		"\t\t\t\td.clearParsers()\n" +
-		"\t\t\t\treturn nil\n" +
+		"\t\t\t\treturn p, nil\n" +
 		"\t\t\t} else {\n" +
 		"\t\t\t\tparsers = append(parsers, parser)\n" +
 		"\t\t\t}\n" +

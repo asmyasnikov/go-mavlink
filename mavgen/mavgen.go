@@ -31,13 +31,12 @@ var (
 
 // Dialect described root tag of schema
 type Dialect struct {
-	MavlinkVersion int
-	FilePath       string
-	XMLName        xml.Name   `xml:"mavlink"`
-	Version        string     `xml:"version"`
-	Include        []string   `xml:"include"`
-	Enums          []*Enum    `xml:"enums>enum"`
-	Messages       []*Message `xml:"messages>message"`
+	FilePath string
+	XMLName  xml.Name   `xml:"mavlink"`
+	Version  string     `xml:"version"`
+	Include  []string   `xml:"include"`
+	Enums    []*Enum    `xml:"enums>enum"`
+	Messages []*Message `xml:"messages>message"`
 }
 
 // Enum described schema tag enum
@@ -492,7 +491,7 @@ func (d *Dialect) generateGo(w io.Writer, packageName string, commonPackage stri
 	if needImportParentMavlink || needImportEncodingBinary || needImportFmt || needImportMath {
 		bb.WriteString("import (\n")
 		if needImportParentMavlink {
-			bb.WriteString("mavlink \"" + commonPackage + "\"\n")
+			bb.WriteString("\"" + commonPackage + "\"\n")
 		}
 		if needImportEncodingBinary {
 			bb.WriteString("\"encoding/binary\"\n")
@@ -604,10 +603,12 @@ const ({{range .Messages}}
 
 {{if .Messages}}
 func init() { {{range .Messages}} 
-	mavlink.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.Size}}, {{.CRCExtra}}, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.Size}}, {{.CRCExtra}}, func(p mavlink.Packet) (mavlink.Message, error) {
 		msg := new({{.Name | UpperCamelCase}})
-		msg.Unpack(p)
-		return msg
+		if err := msg.Unmarshal(p.Payload()); err != nil {
+			return nil, err
+		}
+		return msg, nil
 	}){{end}}
 } {{end}}
 `
@@ -619,7 +620,6 @@ func init() { {{range .Messages}}
 // is expedient and correct. optimize this if/when needed.
 func (d *Dialect) generateClasses(w io.Writer) error {
 	classesTmpl := `
-{{$mavlinkVersion := .MavlinkVersion}}
 {{range .Messages}}
 {{$name := .Name | UpperCamelCase}}
 // {{$name}} struct (generated typeinfo)  
@@ -642,21 +642,15 @@ func (m *{{$name}}) String() string {
 	)
 }
 
-// Pack (generated function)
-func (m *{{$name}}) Pack(p *mavlink.Packet) error {
+// Marshal (generated function)
+func (m *{{$name}}) Marshal() ([]byte, error) {
 	payload := make([]byte, {{ .Size }}){{range .Fields}}
 	{{.PayloadPackSequence}}{{end}}
-	p.MsgID = m.MsgID()
-	p.Payload = payload
-	return nil
+	return payload, nil
 }
 
-// Unpack (generated function)
-func (m *{{$name}}) Unpack(p *mavlink.Packet) error {
-	payload := p.Payload[:]
-	if len(p.Payload) < {{.Size}} {
-		return mavlink.ErrPayloadTooSmall
-	}{{range .Fields}}
+// Unmarshal (generated function)
+func (m *{{$name}}) Unmarshal(payload []byte) error { {{range .Fields}}
 	{{.PayloadUnpackSequence}}{{end}}
 	return nil
 }

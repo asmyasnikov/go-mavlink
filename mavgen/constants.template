@@ -4,6 +4,13 @@ import (
 	"errors"
 )
 
+type MAVLINK_VERSION int
+
+const (
+    MAVLINK_V1 MAVLINK_VERSION = 1
+    MAVLINK_V2 MAVLINK_VERSION = 2
+)
+
 var (
 	// ErrUnknownMsgID define
 	ErrUnknownMsgID = errors.New("unknown msg id")
@@ -18,6 +25,4 @@ var (
     // zeroTail is a cache of zero slice for auto append tail to
     // payload in Mavlink2 messages with trimmed payload (variable length)
 	zeroTail           = make([]byte, 256)
-	// currentSeqNum
-	currentSeqNum uint8
 )

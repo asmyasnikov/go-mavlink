@@ -43,8 +43,8 @@ var (
 		"x25":       x25Template,
 	}
 	dependentTemplates = map[string](func() string){
-		"packet":    packetTemplate,
-		"parser":    parserTemplate,
+		"packet": packetTemplate,
+		"parser": parserTemplate,
 	}
 )
 
@@ -61,14 +61,13 @@ func findOutFile(scheme string) string {
 	return filepath.Join(dir, baseName(scheme), baseName(scheme)+".go")
 }
 
-func generateDialect(dialectPath *string, commonPackage string, schemeFile string, mavlinkVersion int) error {
+func generateDialect(dialectPath *string, commonPackage string, schemeFile string) error {
 	d, err := ParseDialect(schemeFile)
 	if err != nil {
 		return err
 	}
 
 	d.FilePath = schemeFile
-	d.MavlinkVersion = mavlinkVersion
 
 	baseName := baseName(schemeFile)
 
@@ -139,7 +138,7 @@ func generateCode(dialectDir string, data templateData, templateName string, tmp
 	return nil
 }
 
-func generateCommonPackage(data templateData) error {
+func generateCommonPackage(version string) error {
 	cwd, err := os.Getwd()
 	if err != nil {
 		log.Fatal("Getwd(): ", err)
@@ -147,18 +146,19 @@ func generateCommonPackage(data templateData) error {
 
 	// generate mavlink independent code
 	for k, v := range independentTemplates {
-		if err := generateCode(cwd+string(filepath.Separator), data, k, v()); err != nil {
+		if err := generateCode(cwd+string(filepath.Separator), templateData{
+			Version: version,
+		}, k, v()); err != nil {
 			return err
 		}
 	}
 
 	// generate mavlink dependent code
-	for _, m := range []int{1, 2,} {
+	for _, m := range []int{1, 2} {
 		for k, v := range dependentTemplates {
 			if err := generateCode(cwd+string(filepath.Separator), templateData{
-				Version: data.Version,
 				MavlinkVersion: m,
-			}, k + strconv.Itoa(m), v()); err != nil {
+			}, k+strconv.Itoa(m), v()); err != nil {
 				return err
 			}
 		}

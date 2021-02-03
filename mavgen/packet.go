@@ -58,10 +58,24 @@ func packetTemplate() string {
 		"\n" +
 		"// Payload returns packet payload\n" +
 		"func (p *packet{{.MavlinkVersion}}) Payload() []byte {\n" +
-		"    // todo: maybe COPY???\n" +
-		"    return p.payload\n" +
+		"    return append([]byte(nil), p.payload...)\n" +
 		"}\n" +
 		"\n" +
+		"func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error {\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    p.incompatFlags = rhs.incompatFlags\n" +
+		"    p.compatFlags = rhs.compatFlags\n" +
+		"{{- end}}\n" +
+		"    p.seqID = rhs.seqID\n" +
+		"    p.sysID = rhs.sysID\n" +
+		"    p.compID = rhs.compID\n" +
+		"    p.msgID = rhs.msgID\n" +
+		"    p.checksum = rhs.checksum\n" +
+		"    p.payload = append([]byte(nil), rhs.payload...)\n" +
+		"    return nil\n" +
+		"}\n" +
+		"\n" +
+		"/*\n" +
 		"// Assign assign internal fields from right hand side packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) Assign(rhs Packet) error {\n" +
 		"    packet, ok := rhs.(*packet{{.MavlinkVersion}})\n" +
@@ -69,24 +83,42 @@ func packetTemplate() string {
 		"        return fmt.Errorf(\"cast interface '%+v' to '*packet{{.MavlinkVersion}}' fail\", rhs)\n" +
 		"    }\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    packet.incompatFlags = p.incompatFlags\n" +
-		"    packet.compatFlags = p.compatFlags\n" +
+		"    p.incompatFlags = rhs.InncompatFlags()\n" +
+		"    p.compatFlags = rhs.CompatFlags()\n" +
 		"{{- end}}\n" +
-		"    packet.seqID = p.seqID\n" +
-		"    packet.sysID = p.sysID\n" +
-		"    packet.compID = p.compID\n" +
-		"    packet.msgID = p.msgID\n" +
-		"    packet.checksum = p.checksum\n" +
-		"    packet.payload = append(packet.payload[:0], p.payload...)\n" +
+		"    p.seqID = p.SeqID()\n" +
+		"    p.sysID = p.SysID()\n" +
+		"    p.compID = p.CompID()\n" +
+		"    p.msgID = p.MsgID()\n" +
+		"    p.checksum = p.Checksum()\n" +
+		"    p.payload = p.Payload()\n" +
 		"    return nil\n" +
 		"}\n" +
+		"*/\n" +
 		"\n" +
-		"\n" +
-		"func (p *packet{{.MavlinkVersion}}) nextSeqNum() byte {\n" +
-		"\tcurrentSeqNum++\n" +
-		"\treturn currentSeqNum\n" +
+		"// Copy returns deep copy of packet\n" +
+		"func (p *packet{{.MavlinkVersion}}) Copy() Packet {\n" +
+		"    return p.copy()\n" +
 		"}\n" +
 		"\n" +
+		"// Copy returns deep copy of packet\n" +
+		"func (p *packet{{.MavlinkVersion}}) copy() *packet{{.MavlinkVersion}} {\n" +
+		"    copy := &packet{{.MavlinkVersion}}{}\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    copy.incompatFlags = p.incompatFlags\n" +
+		"    copy.compatFlags = p.compatFlags\n" +
+		"{{- end}}\n" +
+		"    copy.seqID = p.seqID\n" +
+		"    copy.sysID = p.sysID\n" +
+		"    copy.compID = p.compID\n" +
+		"    copy.msgID = p.msgID\n" +
+		"    copy.checksum = p.checksum\n" +
+		"    copy.payload = p.payload\n" +
+		"    return copy\n" +
+		"}\n" +
+		"\n" +
+		"\n" +
+		"/*\n" +
 		"// Encode trying to encode message to packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) encode(sysID, compID uint8, m Message) error {\n" +
 		"\tp.seqID = p.nextSeqNum()\n" +
@@ -124,25 +156,26 @@ func packetTemplate() string {
 		"{{- end }}\n" +
 		"    return m.Unpack(p)\n" +
 		"}\n" +
+		"*/\n" +
 		"\n" +
 		"// Unmarshal trying to de-serialize byte slice to packet\n" +
-		"func unmarshal{{.MavlinkVersion}}(buffer []byte, p *packet{{.MavlinkVersion}}) error {\n" +
+		"func (p *packet{{.MavlinkVersion}}) Unmarshal(buffer []byte) error {\n" +
 		"\tparser := _parsersPool_v{{.MavlinkVersion}}.Get().(*parser{{.MavlinkVersion}})\n" +
 		"\tdefer parser.Destroy()\n" +
 		"\tfor _, c := range buffer {\n" +
-		"\t\tpacket, err := parser.ParseChar(c)\n" +
+		"\t\tpacket, err := parser.parseChar(c)\n" +
 		"\t\tif err != nil {\n" +
 		"\t\t\treturn err\n" +
 		"\t\t}\n" +
 		"\t\tif packet != nil {\n" +
-		"\t\t\treturn p.Assign(packet)\n" +
+		"\t\t\treturn p.assign(packet)\n" +
 		"\t\t}\n" +
 		"\t}\n" +
 		"\treturn ErrNoNewData\n" +
 		"}\n" +
 		"\n" +
 		"// Marshal trying to serialize byte slice from packet\n" +
-		"func marshal{{.MavlinkVersion}}(p *packet{{.MavlinkVersion}}) ([]byte, error) {\n" +
+		"func (p *packet{{.MavlinkVersion}}) Marshal() ([]byte, error) {\n" +
 		"\tif p == nil {\n" +
 		"\t\treturn nil, ErrNilPointerReference\n" +
 		"\t}\n" +
@@ -206,7 +239,7 @@ func packetTemplate() string {
 		"\tif !ok {\n" +
 		"\t\treturn nil, ErrUnknownMsgID\n" +
 		"\t}\n" +
-		"\treturn msg.Constructor(p), nil\n" +
+		"\treturn msg.Constructor(p)\n" +
 		"}\n" +
 		"\n" +
 		"// String function return string view of Packet struct\n" +

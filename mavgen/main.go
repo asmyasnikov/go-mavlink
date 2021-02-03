@@ -6,7 +6,6 @@ import (
 	"github.com/asmyasnikov/go-mavlink/common"
 	"log"
 	"os"
-	"strconv"
 )
 
 var (
@@ -39,19 +38,15 @@ func main() {
 	}
 
 	if len(*commonPackage) == 0 {
-		*commonPackage = "github.com/asmyasnikov/go-mavlink/generated/mavlink" + strconv.Itoa(common.MavlinkVersion())
+		*commonPackage = "github.com/asmyasnikov/go-mavlink/mavlink"
 	}
 
-	if err := generateDialect(nil, *commonPackage, *schemeFile, common.MavlinkVersion()); err != nil {
+	if err := generateDialect(nil, *commonPackage, *schemeFile); err != nil {
 		log.Fatal(err)
 	}
 
 	if *generateCommons {
-		data := templateData{
-			Version:        *version,
-			MavlinkVersion: common.MavlinkVersion(),
-		}
-		if err := generateCommonPackage(data); err != nil {
+		if err := generateCommonPackage(*version); err != nil {
 			log.Fatal(err)
 		}
 	}

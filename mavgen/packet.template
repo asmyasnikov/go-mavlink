@@ -47,10 +47,24 @@ func (p *packet{{.MavlinkVersion}}) SeqID() uint8 {
 
 // Payload returns packet payload
 func (p *packet{{.MavlinkVersion}}) Payload() []byte {
-    // todo: maybe COPY???
-    return p.payload
+    return append([]byte(nil), p.payload...)
 }
 
+func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error {
+{{- if eq .MavlinkVersion 2}}
+    p.incompatFlags = rhs.incompatFlags
+    p.compatFlags = rhs.compatFlags
+{{- end}}
+    p.seqID = rhs.seqID
+    p.sysID = rhs.sysID
+    p.compID = rhs.compID
+    p.msgID = rhs.msgID
+    p.checksum = rhs.checksum
+    p.payload = append([]byte(nil), rhs.payload...)
+    return nil
+}
+
+/*
 // Assign assign internal fields from right hand side packet
 func (p *packet{{.MavlinkVersion}}) Assign(rhs Packet) error {
     packet, ok := rhs.(*packet{{.MavlinkVersion}})
@@ -58,24 +72,42 @@ func (p *packet{{.MavlinkVersion}}) Assign(rhs Packet) error {
         return fmt.Errorf("cast interface '%+v' to '*packet{{.MavlinkVersion}}' fail", rhs)
     }
 {{- if eq .MavlinkVersion 2}}
-    packet.incompatFlags = p.incompatFlags
-    packet.compatFlags = p.compatFlags
+    p.incompatFlags = rhs.InncompatFlags()
+    p.compatFlags = rhs.CompatFlags()
 {{- end}}
-    packet.seqID = p.seqID
-    packet.sysID = p.sysID
-    packet.compID = p.compID
-    packet.msgID = p.msgID
-    packet.checksum = p.checksum
-    packet.payload = append(packet.payload[:0], p.payload...)
+    p.seqID = p.SeqID()
+    p.sysID = p.SysID()
+    p.compID = p.CompID()
+    p.msgID = p.MsgID()
+    p.checksum = p.Checksum()
+    p.payload = p.Payload()
     return nil
 }
+*/
 
-
-func (p *packet{{.MavlinkVersion}}) nextSeqNum() byte {
-	currentSeqNum++
-	return currentSeqNum
+// Copy returns deep copy of packet
+func (p *packet{{.MavlinkVersion}}) Copy() Packet {
+    return p.copy()
 }
 
+// Copy returns deep copy of packet
+func (p *packet{{.MavlinkVersion}}) copy() *packet{{.MavlinkVersion}} {
+    copy := &packet{{.MavlinkVersion}}{}
+{{- if eq .MavlinkVersion 2}}
+    copy.incompatFlags = p.incompatFlags
+    copy.compatFlags = p.compatFlags
+{{- end}}
+    copy.seqID = p.seqID
+    copy.sysID = p.sysID
+    copy.compID = p.compID
+    copy.msgID = p.msgID
+    copy.checksum = p.checksum
+    copy.payload = p.payload
+    return copy
+}
+
+
+/*
 // Encode trying to encode message to packet
 func (p *packet{{.MavlinkVersion}}) encode(sysID, compID uint8, m Message) error {
 	p.seqID = p.nextSeqNum()
@@ -113,25 +145,26 @@ func (p *packet{{.MavlinkVersion}}) Decode(m Message) error {
 {{- end }}
     return m.Unpack(p)
 }
+*/
 
 // Unmarshal trying to de-serialize byte slice to packet
-func unmarshal{{.MavlinkVersion}}(buffer []byte, p *packet{{.MavlinkVersion}}) error {
+func (p *packet{{.MavlinkVersion}}) Unmarshal(buffer []byte) error {
 	parser := _parsersPool_v{{.MavlinkVersion}}.Get().(*parser{{.MavlinkVersion}})
 	defer parser.Destroy()
 	for _, c := range buffer {
-		packet, err := parser.ParseChar(c)
+		packet, err := parser.parseChar(c)
 		if err != nil {
 			return err
 		}
 		if packet != nil {
-			return p.Assign(packet)
+			return p.assign(packet)
 		}
 	}
 	return ErrNoNewData
 }
 
 // Marshal trying to serialize byte slice from packet
-func marshal{{.MavlinkVersion}}(p *packet{{.MavlinkVersion}}) ([]byte, error) {
+func (p *packet{{.MavlinkVersion}}) Marshal() ([]byte, error) {
 	if p == nil {
 		return nil, ErrNilPointerReference
 	}
@@ -195,7 +228,7 @@ func (p *packet{{.MavlinkVersion}}) Message() (Message, error) {
 	if !ok {
 		return nil, ErrUnknownMsgID
 	}
-	return msg.Constructor(p), nil
+	return msg.Constructor(p)
 }
 
 // String function return string view of Packet struct

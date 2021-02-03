@@ -2,12 +2,10 @@ package main
 
 import (
 	"flag"
-	"github.com/asmyasnikov/go-mavlink/common/decoder"
-	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
-	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
+	"github.com/asmyasnikov/go-mavlink/mavlink"
+	_ "github.com/asmyasnikov/go-mavlink/mavlink/ardupilotmega"
 	"log"
 	"net"
-	"sync"
 )
 
 //////////////////////////////////////
@@ -41,21 +39,13 @@ func listenAndServe(addr string) {
 	}
 	log.Println("listening on", udpAddr)
 
-	decs := decoder.Decoders(conn)
-	wg := sync.WaitGroup{}
-	wg.Add(len(decs))
-	for i := range decs {
-		dec := decs[i]
-		go func() {
-			defer wg.Done()
-			log.Println("listening packets from decoder " + dec.Name())
-			for {
-				if p, err := dec.Decode(); err != nil {
-					log.Fatal(p)
-				} else {
-					log.Println(p)
-				}
-			}
-		}()
+	dec := mavlink.NewDecoder(conn)
+	log.Println("listening packets")
+	for {
+		if p, err := dec.Decode(); err != nil {
+			log.Fatal(p)
+		} else {
+			log.Println(p)
+		}
 	}
 }

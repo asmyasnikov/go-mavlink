@@ -62,13 +62,17 @@ func parserTemplate() string {
 		"func (p *parser{{.MavlinkVersion}}) Destroy() {\n" +
 		"\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT\n" +
 		"\tif p.crc != nil {\n" +
-		"\t\tp.crc.Reset()\n" +
 		"\t\tp.crc = nil\n" +
 		"\t}\n" +
 		"\t_parsersPool_v{{.MavlinkVersion}}.Put(p)\n" +
 		"}\n" +
 		"\n" +
+		"// ParseChar parse char to packet\n" +
 		"func (p *parser{{.MavlinkVersion}}) ParseChar(c byte) (Packet, error) {\n" +
+		"    return p.parseChar(c)\n" +
+		"}\n" +
+		"\n" +
+		"func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}}, error) {\n" +
 		"\tswitch p.state {\n" +
 		"\tcase MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT,\n" +
 		"\t\t MAVLINK{{.MavlinkVersion}}_PARSE_STATE_IDLE,\n" +
@@ -139,9 +143,7 @@ func parserTemplate() string {
 		"\t\tif c == uint8(p.crc.Sum16()>>8) {\n" +
 		"\t\t\tp.checksum = p.crc.Sum16()\n" +
 		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
-		"\t\t\tresult := packet{{.MavlinkVersion}}{}\n" +
-		"\t\t\tresult.Assign(p)\n" +
-		"\t\t\treturn &result, nil\n" +
+		"\t\t\treturn p.copy(), nil\n" +
 		"\t\t}\n" +
 		"        p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC\n" +
 		"        return nil, ErrCrcFail\n" +
