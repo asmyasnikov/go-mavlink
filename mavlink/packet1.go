@@ -129,12 +129,12 @@ func (p *packet1) Marshal() ([]byte, error) {
 		p.compID,
 		uint8(p.msgID),
 	)
-	if err := p.fixChecksum(); err != nil {
-		return nil, err
-	}
 	// payload
 	bytes = append(bytes, p.payload...)
 	// crc
+	if err := p.fixChecksum(); err != nil {
+		return nil, err
+	}
 	bytes = append(bytes, u16ToBytes(p.checksum)...)
 	return bytes, nil
 }

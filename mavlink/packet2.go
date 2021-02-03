@@ -126,6 +126,12 @@ func (p *packet2) Marshal() ([]byte, error) {
 		return nil, ErrNilPointerReference
 	}
 	bytes := make([]byte, 0, 12+len(p.payload))
+	// payload minify
+	payloadLen := len(p.payload)
+	for payloadLen > 1 && p.payload[payloadLen-1] == 0 {
+		payloadLen--
+	}
+	p.payload = p.payload[:payloadLen]
 	// header
 	bytes = append(bytes,
 		0xfd,
@@ -139,17 +145,12 @@ func (p *packet2) Marshal() ([]byte, error) {
 		uint8(p.msgID>>8),
 		uint8(p.msgID>>16),
 	)
-	payloadLen := len(p.payload)
-	for payloadLen > 1 && p.payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	p.payload = p.payload[:payloadLen]
-	if err := p.fixChecksum(); err != nil {
-		return nil, err
-	}
 	// payload
 	bytes = append(bytes, p.payload...)
 	// crc
+	if err := p.fixChecksum(); err != nil {
+		return nil, err
+	}
 	bytes = append(bytes, u16ToBytes(p.checksum)...)
 	return bytes, nil
 }
