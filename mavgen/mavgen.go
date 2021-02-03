@@ -470,7 +470,7 @@ func (d *Dialect) needImportEncodingBinary() bool {
 	return false
 }
 
-func (d *Dialect) generateGo(w io.Writer, packageName string) error {
+func (d *Dialect) generateGo(w io.Writer, packageName string, commonPackage string) error {
 	// templatize to buffer, format it, then write out
 
 	var bb bytes.Buffer
@@ -492,7 +492,7 @@ func (d *Dialect) generateGo(w io.Writer, packageName string) error {
 	if needImportParentMavlink || needImportEncodingBinary || needImportFmt || needImportMath {
 		bb.WriteString("import (\n")
 		if needImportParentMavlink {
-			bb.WriteString("mavlink \"github.com/asmyasnikov/go-mavlink/generated/mavlink" + strconv.Itoa(d.MavlinkVersion) + "\"\n")
+			bb.WriteString("mavlink \"" + commonPackage + "\"\n")
 		}
 		if needImportEncodingBinary {
 			bb.WriteString("\"encoding/binary\"\n")
@@ -545,17 +545,20 @@ const ({{range .Entries}}
 )
 
 func (e {{$enumName}}) String() string {
-	switch e { {{range .Entries}}
-	case {{.Name}}: 
-		return "{{.Name}}"{{end}}
-	default: 
-		return fmt.Sprintf("{{$enumName}}_ENUM_UNDEFINED_%d", int(e))
+	if name, ok := map[{{$enumName}}]string{ {{range .Entries}}
+		{{.Name}}: "{{.Name}}", {{end}} 
+	}[e]; ok {
+		return name
 	}
+	return fmt.Sprintf("{{$enumName}}_UNDEFINED_%d", int(e))
 }
 
+// Bitmask return string representetion of intersects {{$enumName}} enums 
 func (e {{$enumName}}) Bitmask() string {
 	bitmap := ""
-	for _, entry := range []{{$enumName}}{ {{range .Entries}}{{.Name}}, {{end}} } {
+	for _, entry := range []{{$enumName}}{ {{range .Entries}}
+		{{.Name}}, {{end}} 
+	} {
 		if e & entry > 0 {
 			if len(bitmap) > 0 {
 				bitmap += " | "

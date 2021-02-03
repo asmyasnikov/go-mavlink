@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/xml"
 	"fmt"
 	"reflect"
 	"strings"
@@ -103,11 +104,11 @@ func TestParseDialect(t *testing.T) {
 
 	messages := []*Message{
 		{1, "MSG1", "descr1", []*MessageField{
-			{"uint32_t", "f1", "", "descr1", "", "", 0, 0, 0},
-			{"uint8_t", "f2", "", "descr2", "", "", 0, 0, 0},
+			{"uint32_t", "f1", "", "", "descr1", "", "", 0, 0, 0},
+			{"uint8_t", "f2", "", "", "descr2", "", "", 0, 0, 0},
 		}, "", ""},
 		{2, "MSG2", "descr2", []*MessageField{
-			{"uint8_t[10]", "f1", "", "descr1", "", "", 0, 0, 0},
+			{"uint8_t[10]", "f1", "", "", "descr1", "", "", 0, 0, 0},
 		}, "", ""},
 	}
 
@@ -124,7 +125,12 @@ func TestParseDialect(t *testing.T) {
     <version>3</version>
     <dialect>0</dialect>
 </mavlink>`,
-			&Dialect{Version: "3", Enums: []*Enum{}, Messages: []*Message{}},
+			&Dialect{
+				Version:  "3",
+				XMLName:  xml.Name{Local: "mavlink"},
+				Enums:    []*Enum{},
+				Messages: []*Message{},
+			},
 			nil,
 		},
 
@@ -154,7 +160,12 @@ func TestParseDialect(t *testing.T) {
         </message>
     </messages>
 </mavlink>`,
-			&Dialect{Version: "3", Enums: enums, Messages: messages},
+			&Dialect{
+				Version:  "3",
+				XMLName:  xml.Name{Local: "mavlink"},
+				Enums:    enums,
+				Messages: messages,
+			},
 			nil,
 		},
 
@@ -188,7 +199,12 @@ func TestParseDialect(t *testing.T) {
         </message>
     </messages>
 </mavlink>`,
-			&Dialect{Version: "3", Enums: enums, Messages: messages},
+			&Dialect{
+				Version:  "3",
+				XMLName:  xml.Name{Local: "mavlink"},
+				Enums:    enums,
+				Messages: messages,
+			},
 			nil,
 		},
 
@@ -221,7 +237,12 @@ func TestParseDialect(t *testing.T) {
         </message>
     </messages>
 </mavlink>`,
-			&Dialect{Version: "3", Enums: enums, Messages: messages},
+			&Dialect{
+				Version:  "3",
+				XMLName:  xml.Name{Local: "mavlink"},
+				Enums:    enums,
+				Messages: messages,
+			},
 			nil,
 		},
 
@@ -254,6 +275,7 @@ func TestParseDialect(t *testing.T) {
 </mavlink>`,
 			&Dialect{
 				Version: "3", Enums: enums,
+				XMLName: xml.Name{Local: "mavlink"},
 				Messages: []*Message{
 					{1, "MSG1", "descr1", []*MessageField{}, "", ""},
 					{2, "MSG2", "descr2", []*MessageField(nil), "", ""},
@@ -271,7 +293,7 @@ func TestParseDialect(t *testing.T) {
 				t.Fatalf("expected err to be %+v, got %+v", c.err, err)
 			}
 			if !checkDialect(d, c.dialect) {
-				t.Fatalf("expected to get dialect %+v, got %+v", c.dialect, d)
+				t.Fatalf("expected to get dialect \n%+v,\n got \n%+v", c.dialect, d)
 			}
 		})
 	}

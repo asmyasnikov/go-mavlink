@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	decoders "github.com/asmyasnikov/go-mavlink/common"
-	mavlink "github.com/asmyasnikov/go-mavlink/generated/mavlink2"
 	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
+	mavlink "github.com/asmyasnikov/go-mavlink/generated/mavlink2"
 	"github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
 	"github.com/tarm/serial"
 	"io"

@@ -18,7 +18,7 @@ func registerTemplate() string {
 		"\tif exists, ok := msgNames[msgID]; ok {\n" +
 		"\t\tpanic(\"Message with ID = \" + strconv.Itoa(int(msgID)) + \" already exists. Fix collision '\" + msgName + \"' vs '\" + exists + \"' and re-run mavgen\")\n" +
 		"\t} else {\n" +
-		"\t\tmsgNames[msgID] = \"MSG_ID_SENSOR_OFFSETS\"\n" +
+		"\t\tmsgNames[msgID] = msgName\n" +
 		"\t\tmsgCrcExtras[msgID] = crcExtra\n" +
 		"\t\tmsgConstructors[msgID] = msgConstructor\n" +
 		"\t}\n" +
