@@ -56,11 +56,7 @@ func (p *packet2) SeqID() uint8 {
 
 // Payload returns packet payload
 func (p *packet2) Payload() []byte {
-	msg, ok := supported[p.msgID]
-	if !ok {
-		panic(ErrUnknownMsgID)
-	}
-	return append(append([]byte(nil), p.payload...), zeroTail[:msg.Size-len(p.payload)]...)
+	return append([]byte(nil), p.payload...)
 }
 
 func (p *packet2) assign(rhs *packet2) error {

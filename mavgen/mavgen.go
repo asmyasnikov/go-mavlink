@@ -659,7 +659,8 @@ func (m *{{$name}}) Marshal() ([]byte, error) {
 }
 
 // Unmarshal (generated function)
-func (m *{{$name}}) Unmarshal(payload []byte) error { {{range .Fields}}
+func (m *{{$name}}) Unmarshal(payload []byte) error { 
+	payload = append(make([]byte, {{.Size}}), payload...){{range .Fields}}
 	{{.PayloadUnpackSequence}}{{end}}
 	return nil
 }

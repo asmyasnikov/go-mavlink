@@ -28,7 +28,4 @@ var (
 	ErrNilPointerReference = errors.New("nil pointer reference")
 	// ErrPayloadTooSmall define
 	ErrPayloadTooSmall = errors.New("payload too small")
-	// zeroTail is a cache of zero slice for auto append tail to
-	// payload in Mavlink2 messages with trimmed payload (variable length)
-	zeroTail = make([]byte, 256)
 )

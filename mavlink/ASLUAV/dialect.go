@@ -8937,6 +8937,7 @@ func (m *CommandIntStamped) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *CommandIntStamped) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 47), payload...)
 	m.VehicleTimestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.UtcTime = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -9019,6 +9020,7 @@ func (m *CommandLongStamped) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *CommandLongStamped) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 45), payload...)
 	m.VehicleTimestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.UtcTime = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -9072,6 +9074,7 @@ func (m *SensPower) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SensPower) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 16), payload...)
 	m.Adc121VspbVolt = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Adc121CspbAmp = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Adc121Cs1Amp = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -9143,6 +9146,7 @@ func (m *SensMppt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SensMppt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 41), payload...)
 	m.MpptTimestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Mppt1Volt = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Mppt1Amp = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -9259,6 +9263,7 @@ func (m *AslctrlData) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AslctrlData) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 98), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.H = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Href = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -9345,6 +9350,7 @@ func (m *AslctrlDebug) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AslctrlDebug) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 38), payload...)
 	m.I321 = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.F1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.F2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -9401,6 +9407,7 @@ func (m *AsluavStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AsluavStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 14), payload...)
 	m.MotorRpm = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.LedStatus = uint8(payload[4])
 	m.SatcomStatus = uint8(payload[5])
@@ -9454,6 +9461,7 @@ func (m *EkfExt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *EkfExt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 32), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Windspeed = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Winddir = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -9513,6 +9521,7 @@ func (m *AslObctrl) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AslObctrl) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 33), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Uelev = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Uthrot = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -9558,6 +9567,7 @@ func (m *SensAtmos) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SensAtmos) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 16), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Tempambient = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Humidity = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -9634,6 +9644,7 @@ func (m *SensBatmon) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SensBatmon) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 41), payload...)
 	m.BatmonTimestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Temperature = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Safetystatus = uint32(binary.LittleEndian.Uint32(payload[12:]))
@@ -9752,6 +9763,7 @@ func (m *FwSoaringData) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *FwSoaringData) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 102), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Timestampmodechanged = uint64(binary.LittleEndian.Uint64(payload[8:]))
 	m.Xw = math.Float32frombits(binary.LittleEndian.Uint32(payload[16:]))
@@ -9829,6 +9841,7 @@ func (m *SensorpodStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SensorpodStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 16), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.FreeSpace = uint16(binary.LittleEndian.Uint16(payload[8:]))
 	m.VisensorRate1 = uint8(payload[10])
@@ -9901,6 +9914,7 @@ func (m *SensPowerBoard) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SensPowerBoard) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 46), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.PwrBrdSystemVolt = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.PwrBrdServoVolt = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -9962,6 +9976,7 @@ func (m *GsmLinkStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GsmLinkStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 14), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.GsmModemType = GSM_MODEM_TYPE(payload[8])
 	m.GsmLinkType = GSM_LINK_TYPE(payload[9])
@@ -10021,6 +10036,7 @@ func (m *SatcomLinkStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SatcomLinkStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 24), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.LastHeartbeat = uint64(binary.LittleEndian.Uint64(payload[8:]))
 	m.FailedSessions = uint16(binary.LittleEndian.Uint16(payload[16:]))
@@ -10072,6 +10088,7 @@ func (m *SensorAirflowAngles) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SensorAirflowAngles) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 18), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Angleofattack = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Sideslip = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -10144,6 +10161,7 @@ func (m *SysStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SysStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 31), payload...)
 	m.OnboardControlSensorsPresent = MAV_SYS_STATUS_SENSOR(binary.LittleEndian.Uint32(payload[0:]))
 	m.OnboardControlSensorsEnabled = MAV_SYS_STATUS_SENSOR(binary.LittleEndian.Uint32(payload[4:]))
 	m.OnboardControlSensorsHealth = MAV_SYS_STATUS_SENSOR(binary.LittleEndian.Uint32(payload[8:]))
@@ -10191,6 +10209,7 @@ func (m *SystemTime) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SystemTime) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 12), payload...)
 	m.TimeUnixUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	return nil
@@ -10233,6 +10252,7 @@ func (m *Ping) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Ping) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 14), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Seq = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	m.TargetSystem = uint8(payload[12])
@@ -10282,6 +10302,7 @@ func (m *ChangeOperatorControl) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ChangeOperatorControl) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 28), payload...)
 	m.TargetSystem = uint8(payload[0])
 	m.ControlRequest = uint8(payload[1])
 	m.Version = uint8(payload[2])
@@ -10323,6 +10344,7 @@ func (m *ChangeOperatorControlAck) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ChangeOperatorControlAck) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 3), payload...)
 	m.GcsSystemID = uint8(payload[0])
 	m.ControlRequest = uint8(payload[1])
 	m.Ack = uint8(payload[2])
@@ -10362,6 +10384,7 @@ func (m *AuthKey) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AuthKey) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 32), payload...)
 	m.Key = string(payload[0:32])
 	return nil
 }
@@ -10424,6 +10447,7 @@ func (m *LinkNodeStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LinkNodeStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 36), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.TxRate = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	m.RxRate = uint32(binary.LittleEndian.Uint32(payload[12:]))
@@ -10472,6 +10496,7 @@ func (m *SetMode) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SetMode) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 6), payload...)
 	m.CustomMode = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
 	m.BaseMode = MAV_MODE(payload[5])
@@ -10526,6 +10551,7 @@ func (m *ParamAckTransaction) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ParamAckTransaction) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 24), payload...)
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
 	m.TargetComponent = uint8(payload[5])
@@ -10577,6 +10603,7 @@ func (m *ParamRequestRead) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ParamRequestRead) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 20), payload...)
 	m.ParamIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
@@ -10615,6 +10642,7 @@ func (m *ParamRequestList) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ParamRequestList) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 2), payload...)
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
 	return nil
@@ -10665,6 +10693,7 @@ func (m *ParamValue) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ParamValue) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 25), payload...)
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.ParamCount = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.ParamIndex = uint16(binary.LittleEndian.Uint16(payload[6:]))
@@ -10720,6 +10749,7 @@ func (m *ParamSet) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ParamSet) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 23), payload...)
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
 	m.TargetComponent = uint8(payload[5])
@@ -10784,6 +10814,7 @@ func (m *GpsRawInt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GpsRawInt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 30), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[12:]))
@@ -10865,6 +10896,7 @@ func (m *GpsStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GpsStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 101), payload...)
 	m.SatellitesVisible = uint8(payload[0])
 	copy(m.SatellitePrn[:], payload[1:21])
 	copy(m.SatelliteUsed[:], payload[21:41])
@@ -10929,6 +10961,7 @@ func (m *ScaledImu) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ScaledImu) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 22), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Xacc = int16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Yacc = int16(binary.LittleEndian.Uint16(payload[6:]))
@@ -10997,6 +11030,7 @@ func (m *RawImu) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *RawImu) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 26), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Xacc = int16(binary.LittleEndian.Uint16(payload[8:]))
 	m.Yacc = int16(binary.LittleEndian.Uint16(payload[10:]))
@@ -11050,6 +11084,7 @@ func (m *RawPressure) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *RawPressure) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 16), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.PressAbs = int16(binary.LittleEndian.Uint16(payload[8:]))
 	m.PressDiff1 = int16(binary.LittleEndian.Uint16(payload[10:]))
@@ -11095,6 +11130,7 @@ func (m *ScaledPressure) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ScaledPressure) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 14), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.PressAbs = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.PressDiff = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -11148,6 +11184,7 @@ func (m *Attitude) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Attitude) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 28), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Roll = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Pitch = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -11207,6 +11244,7 @@ func (m *AttitudeQuaternion) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AttitudeQuaternion) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 32), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Q1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Q2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -11264,6 +11302,7 @@ func (m *LocalPositionNed) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LocalPositionNed) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 28), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -11327,6 +11366,7 @@ func (m *GlobalPositionInt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GlobalPositionInt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 28), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -11397,6 +11437,7 @@ func (m *RcChannelsScaled) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *RcChannelsScaled) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 22), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Chan1Scaled = int16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Chan2Scaled = int16(binary.LittleEndian.Uint16(payload[6:]))
@@ -11469,6 +11510,7 @@ func (m *RcChannelsRaw) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *RcChannelsRaw) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 22), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Chan1Raw = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Chan2Raw = uint16(binary.LittleEndian.Uint16(payload[6:]))
@@ -11538,6 +11580,7 @@ func (m *ServoOutputRaw) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ServoOutputRaw) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 21), payload...)
 	m.TimeUsec = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Servo1Raw = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Servo2Raw = uint16(binary.LittleEndian.Uint16(payload[6:]))
@@ -11588,6 +11631,7 @@ func (m *MissionRequestPartialList) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionRequestPartialList) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 6), payload...)
 	m.StartIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.EndIndex = int16(binary.LittleEndian.Uint16(payload[2:]))
 	m.TargetSystem = uint8(payload[4])
@@ -11632,6 +11676,7 @@ func (m *MissionWritePartialList) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionWritePartialList) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 6), payload...)
 	m.StartIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.EndIndex = int16(binary.LittleEndian.Uint16(payload[2:]))
 	m.TargetSystem = uint8(payload[4])
@@ -11707,6 +11752,7 @@ func (m *MissionItem) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionItem) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 37), payload...)
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Param2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Param3 = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -11758,6 +11804,7 @@ func (m *MissionRequest) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionRequest) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 4), payload...)
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
@@ -11798,6 +11845,7 @@ func (m *MissionSetCurrent) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionSetCurrent) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 4), payload...)
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
@@ -11832,6 +11880,7 @@ func (m *MissionCurrent) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionCurrent) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 2), payload...)
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	return nil
 }
@@ -11867,6 +11916,7 @@ func (m *MissionRequestList) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionRequestList) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 2), payload...)
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
 	return nil
@@ -11906,6 +11956,7 @@ func (m *MissionCount) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionCount) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 4), payload...)
 	m.Count = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
@@ -11943,6 +11994,7 @@ func (m *MissionClearAll) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionClearAll) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 2), payload...)
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
 	return nil
@@ -11976,6 +12028,7 @@ func (m *MissionItemReached) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionItemReached) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 2), payload...)
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	return nil
 }
@@ -12014,6 +12067,7 @@ func (m *MissionAck) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionAck) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 3), payload...)
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
 	m.Type = MAV_MISSION_RESULT(payload[2])
@@ -12057,6 +12111,7 @@ func (m *SetGpsGlobalOrigin) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SetGpsGlobalOrigin) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 13), payload...)
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Altitude = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -12098,6 +12153,7 @@ func (m *GpsGlobalOrigin) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GpsGlobalOrigin) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 12), payload...)
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Altitude = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -12161,6 +12217,7 @@ func (m *ParamMapRc) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ParamMapRc) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 37), payload...)
 	m.ParamValue0 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Scale = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.ParamValueMin = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -12207,6 +12264,7 @@ func (m *MissionRequestInt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionRequestInt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 4), payload...)
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
@@ -12253,6 +12311,7 @@ func (m *MissionChanged) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionChanged) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 7), payload...)
 	m.StartIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.EndIndex = int16(binary.LittleEndian.Uint16(payload[2:]))
 	m.OriginSysid = uint8(payload[4])
@@ -12313,6 +12372,7 @@ func (m *SafetySetAllowedArea) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SafetySetAllowedArea) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 27), payload...)
 	m.P1x = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.P1y = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.P1z = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -12371,6 +12431,7 @@ func (m *SafetyAllowedArea) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SafetyAllowedArea) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 25), payload...)
 	m.P1x = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.P1y = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.P1z = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -12428,6 +12489,7 @@ func (m *AttitudeQuaternionCov) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AttitudeQuaternionCov) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 72), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.Q); i++ {
 		m.Q[i] = math.Float32frombits(binary.LittleEndian.Uint32(payload[8+i*4:]))
@@ -12490,6 +12552,7 @@ func (m *NavControllerOutput) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *NavControllerOutput) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 26), payload...)
 	m.NavRoll = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.NavPitch = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.AltError = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -12558,6 +12621,7 @@ func (m *GlobalPositionIntCov) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GlobalPositionIntCov) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 181), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[12:]))
@@ -12636,6 +12700,7 @@ func (m *LocalPositionNedCov) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LocalPositionNedCov) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 225), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -12741,6 +12806,7 @@ func (m *RcChannels) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *RcChannels) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 42), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Chan1Raw = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Chan2Raw = uint16(binary.LittleEndian.Uint16(payload[6:]))
@@ -12805,6 +12871,7 @@ func (m *RequestDataStream) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *RequestDataStream) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 6), payload...)
 	m.ReqMessageRate = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
@@ -12847,6 +12914,7 @@ func (m *DataStream) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *DataStream) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 4), payload...)
 	m.MessageRate = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.StreamID = uint8(payload[2])
 	m.OnOff = uint8(payload[3])
@@ -12896,6 +12964,7 @@ func (m *ManualControl) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ManualControl) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 11), payload...)
 	m.X = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Y = int16(binary.LittleEndian.Uint16(payload[2:]))
 	m.Z = int16(binary.LittleEndian.Uint16(payload[4:]))
@@ -12960,6 +13029,7 @@ func (m *RcChannelsOverride) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *RcChannelsOverride) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 18), payload...)
 	m.Chan1Raw = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Chan2Raw = uint16(binary.LittleEndian.Uint16(payload[2:]))
 	m.Chan3Raw = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -13041,6 +13111,7 @@ func (m *MissionItemInt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MissionItemInt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 37), payload...)
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Param2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Param3 = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -13101,6 +13172,7 @@ func (m *VfrHud) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *VfrHud) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 20), payload...)
 	m.Airspeed = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Groundspeed = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Alt = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -13174,6 +13246,7 @@ func (m *CommandInt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *CommandInt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 35), payload...)
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Param2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Param3 = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -13248,6 +13321,7 @@ func (m *CommandLong) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *CommandLong) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 33), payload...)
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Param2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Param3 = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -13293,6 +13367,7 @@ func (m *CommandAck) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *CommandAck) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 3), payload...)
 	m.Command = MAV_CMD(binary.LittleEndian.Uint16(payload[0:]))
 	m.Result = MAV_RESULT(payload[2])
 	return nil
@@ -13332,6 +13407,7 @@ func (m *CommandCancel) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *CommandCancel) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 4), payload...)
 	m.Command = MAV_CMD(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
@@ -13384,6 +13460,7 @@ func (m *ManualSetpoint) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ManualSetpoint) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 22), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Roll = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Pitch = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -13448,6 +13525,7 @@ func (m *SetAttitudeTarget) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SetAttitudeTarget) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 39), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	for i := 0; i < len(m.Q); i++ {
 		m.Q[i] = math.Float32frombits(binary.LittleEndian.Uint32(payload[4+i*4:]))
@@ -13510,6 +13588,7 @@ func (m *AttitudeTarget) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AttitudeTarget) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 37), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	for i := 0; i < len(m.Q); i++ {
 		m.Q[i] = math.Float32frombits(binary.LittleEndian.Uint32(payload[4+i*4:]))
@@ -13595,6 +13674,7 @@ func (m *SetPositionTargetLocalNed) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SetPositionTargetLocalNed) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 53), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -13681,6 +13761,7 @@ func (m *PositionTargetLocalNed) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *PositionTargetLocalNed) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 51), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -13771,6 +13852,7 @@ func (m *SetPositionTargetGlobalInt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SetPositionTargetGlobalInt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 53), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.LatInt = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.LonInt = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -13857,6 +13939,7 @@ func (m *PositionTargetGlobalInt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *PositionTargetGlobalInt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 51), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.LatInt = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.LonInt = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -13920,6 +14003,7 @@ func (m *LocalPositionNedSystemGlobalOffset) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LocalPositionNedSystemGlobalOffset) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 28), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -14003,6 +14087,7 @@ func (m *HilState) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HilState) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 56), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Roll = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Pitch = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14080,6 +14165,7 @@ func (m *HilControls) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HilControls) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 42), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.RollAilerons = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.PitchElevator = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14161,6 +14247,7 @@ func (m *HilRcInputsRaw) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HilRcInputsRaw) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 33), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Chan1Raw = uint16(binary.LittleEndian.Uint16(payload[8:]))
 	m.Chan2Raw = uint16(binary.LittleEndian.Uint16(payload[10:]))
@@ -14217,6 +14304,7 @@ func (m *HilActuatorControls) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HilActuatorControls) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 81), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Flags = uint64(binary.LittleEndian.Uint64(payload[8:]))
 	for i := 0; i < len(m.Controls); i++ {
@@ -14275,6 +14363,7 @@ func (m *OpticalFlow) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *OpticalFlow) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 26), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.FlowCompMX = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.FlowCompMY = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14332,6 +14421,7 @@ func (m *GlobalVisionPositionEstimate) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GlobalVisionPositionEstimate) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 32), payload...)
 	m.Usec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14388,6 +14478,7 @@ func (m *VisionPositionEstimate) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *VisionPositionEstimate) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 32), payload...)
 	m.Usec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14435,6 +14526,7 @@ func (m *VisionSpeedEstimate) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *VisionSpeedEstimate) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 20), payload...)
 	m.Usec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14488,6 +14580,7 @@ func (m *ViconPositionEstimate) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ViconPositionEstimate) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 32), payload...)
 	m.Usec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14568,6 +14661,7 @@ func (m *HighresImu) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HighresImu) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 62), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Xacc = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Yacc = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14647,6 +14741,7 @@ func (m *OpticalFlowRad) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *OpticalFlowRad) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 44), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.IntegrationTimeUs = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	m.IntegratedX = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14732,6 +14827,7 @@ func (m *HilSensor) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HilSensor) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 64), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Xacc = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Yacc = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -14838,6 +14934,7 @@ func (m *SimState) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SimState) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 84), payload...)
 	m.Q1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Q2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Q3 = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -14908,6 +15005,7 @@ func (m *RadioStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *RadioStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 9), payload...)
 	m.Rxerrors = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Fixed = uint16(binary.LittleEndian.Uint16(payload[2:]))
 	m.Rssi = uint8(payload[4])
@@ -14960,6 +15058,7 @@ func (m *FileTransferProtocol) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *FileTransferProtocol) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 254), payload...)
 	m.TargetNetwork = uint8(payload[0])
 	m.TargetSystem = uint8(payload[1])
 	m.TargetComponent = uint8(payload[2])
@@ -14998,6 +15097,7 @@ func (m *Timesync) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Timesync) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 16), payload...)
 	m.Tc1 = int64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Ts1 = int64(binary.LittleEndian.Uint64(payload[8:]))
 	return nil
@@ -15034,6 +15134,7 @@ func (m *CameraTrigger) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *CameraTrigger) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 12), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Seq = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	return nil
@@ -15104,6 +15205,7 @@ func (m *HilGps) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HilGps) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 36), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[12:]))
@@ -15181,6 +15283,7 @@ func (m *HilOpticalFlow) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HilOpticalFlow) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 44), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.IntegrationTimeUs = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	m.IntegratedX = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -15271,6 +15374,7 @@ func (m *HilStateQuaternion) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HilStateQuaternion) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 64), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.AttitudeQuaternion); i++ {
 		m.AttitudeQuaternion[i] = math.Float32frombits(binary.LittleEndian.Uint32(payload[8+i*4:]))
@@ -15347,6 +15451,7 @@ func (m *ScaledImu2) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ScaledImu2) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 22), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Xacc = int16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Yacc = int16(binary.LittleEndian.Uint16(payload[6:]))
@@ -15397,6 +15502,7 @@ func (m *LogRequestList) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LogRequestList) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 6), payload...)
 	m.Start = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.End = uint16(binary.LittleEndian.Uint16(payload[2:]))
 	m.TargetSystem = uint8(payload[4])
@@ -15444,6 +15550,7 @@ func (m *LogEntry) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LogEntry) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 14), payload...)
 	m.TimeUtc = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Size = uint32(binary.LittleEndian.Uint32(payload[4:]))
 	m.ID = uint16(binary.LittleEndian.Uint16(payload[8:]))
@@ -15492,6 +15599,7 @@ func (m *LogRequestData) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LogRequestData) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 12), payload...)
 	m.Ofs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Count = uint32(binary.LittleEndian.Uint32(payload[4:]))
 	m.ID = uint16(binary.LittleEndian.Uint16(payload[8:]))
@@ -15542,6 +15650,7 @@ func (m *LogData) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LogData) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 97), payload...)
 	m.Ofs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.ID = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Count = uint8(payload[6])
@@ -15580,6 +15689,7 @@ func (m *LogErase) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LogErase) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 2), payload...)
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
 	return nil
@@ -15616,6 +15726,7 @@ func (m *LogRequestEnd) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LogRequestEnd) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 2), payload...)
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
 	return nil
@@ -15663,6 +15774,7 @@ func (m *GpsInjectData) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GpsInjectData) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 113), payload...)
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
 	m.Len = uint8(payload[2])
@@ -15731,6 +15843,7 @@ func (m *Gps2Raw) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Gps2Raw) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 35), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[12:]))
@@ -15780,6 +15893,7 @@ func (m *PowerStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *PowerStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 6), payload...)
 	m.Vcc = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Vservo = uint16(binary.LittleEndian.Uint16(payload[2:]))
 	m.Flags = MAV_POWER_STATUS(binary.LittleEndian.Uint16(payload[4:]))
@@ -15834,6 +15948,7 @@ func (m *SerialControl) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SerialControl) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 79), payload...)
 	m.Baudrate = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Timeout = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Device = SERIAL_CONTROL_DEV(payload[6])
@@ -15907,6 +16022,7 @@ func (m *GpsRtk) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GpsRtk) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 35), payload...)
 	m.TimeLastBaselineMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Tow = uint32(binary.LittleEndian.Uint32(payload[4:]))
 	m.BaselineAMm = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -15987,6 +16103,7 @@ func (m *Gps2Rtk) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Gps2Rtk) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 35), payload...)
 	m.TimeLastBaselineMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Tow = uint32(binary.LittleEndian.Uint32(payload[4:]))
 	m.BaselineAMm = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -16058,6 +16175,7 @@ func (m *ScaledImu3) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ScaledImu3) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 22), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Xacc = int16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Yacc = int16(binary.LittleEndian.Uint16(payload[6:]))
@@ -16117,6 +16235,7 @@ func (m *DataTransmissionHandshake) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *DataTransmissionHandshake) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 13), payload...)
 	m.Size = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Width = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.Height = uint16(binary.LittleEndian.Uint16(payload[6:]))
@@ -16163,6 +16282,7 @@ func (m *EncapsulatedData) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *EncapsulatedData) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 255), payload...)
 	m.Seqnr = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	copy(m.Data[:], payload[2:255])
 	return nil
@@ -16217,6 +16337,7 @@ func (m *DistanceSensor) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *DistanceSensor) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 14), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.MinDistance = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.MaxDistance = uint16(binary.LittleEndian.Uint16(payload[6:]))
@@ -16265,6 +16386,7 @@ func (m *TerrainRequest) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *TerrainRequest) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 18), payload...)
 	m.Mask = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[12:]))
@@ -16314,6 +16436,7 @@ func (m *TerrainData) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *TerrainData) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 43), payload...)
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.GridSpacing = uint16(binary.LittleEndian.Uint16(payload[8:]))
@@ -16355,6 +16478,7 @@ func (m *TerrainCheck) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *TerrainCheck) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 8), payload...)
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[4:]))
 	return nil
@@ -16406,6 +16530,7 @@ func (m *TerrainReport) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *TerrainReport) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 22), payload...)
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.TerrainHeight = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -16453,6 +16578,7 @@ func (m *ScaledPressure2) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ScaledPressure2) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 14), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.PressAbs = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.PressDiff = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -16502,6 +16628,7 @@ func (m *AttPosMocap) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AttPosMocap) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 36), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.Q); i++ {
 		m.Q[i] = math.Float32frombits(binary.LittleEndian.Uint32(payload[8+i*4:]))
@@ -16554,6 +16681,7 @@ func (m *SetActuatorControlTarget) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SetActuatorControlTarget) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 43), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.Controls); i++ {
 		m.Controls[i] = math.Float32frombits(binary.LittleEndian.Uint32(payload[8+i*4:]))
@@ -16600,6 +16728,7 @@ func (m *ActuatorControlTarget) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ActuatorControlTarget) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 41), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.Controls); i++ {
 		m.Controls[i] = math.Float32frombits(binary.LittleEndian.Uint32(payload[8+i*4:]))
@@ -16654,6 +16783,7 @@ func (m *Altitude) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Altitude) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 32), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.AltitudeMonotonic = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.AltitudeAmsl = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -16714,6 +16844,7 @@ func (m *ResourceRequest) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ResourceRequest) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 243), payload...)
 	m.RequestID = uint8(payload[0])
 	m.URIType = uint8(payload[1])
 	copy(m.URI[:], payload[2:122])
@@ -16759,6 +16890,7 @@ func (m *ScaledPressure3) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ScaledPressure3) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 14), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.PressAbs = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.PressDiff = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -16834,6 +16966,7 @@ func (m *FollowTarget) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *FollowTarget) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 93), payload...)
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.CustomState = uint64(binary.LittleEndian.Uint64(payload[8:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[16:]))
@@ -16940,6 +17073,7 @@ func (m *ControlSystemState) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ControlSystemState) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 100), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.XAcc = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.YAcc = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -17020,6 +17154,7 @@ func (m *BatteryStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *BatteryStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 36), payload...)
 	m.CurrentConsumed = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.EnergyConsumed = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Temperature = int16(binary.LittleEndian.Uint16(payload[8:]))
@@ -17107,6 +17242,7 @@ func (m *AutopilotVersion) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AutopilotVersion) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 60), payload...)
 	m.Capabilities = MAV_PROTOCOL_CAPABILITY(binary.LittleEndian.Uint64(payload[0:]))
 	m.UID = uint64(binary.LittleEndian.Uint64(payload[8:]))
 	m.FlightSwVersion = uint32(binary.LittleEndian.Uint32(payload[16:]))
@@ -17170,6 +17306,7 @@ func (m *LandingTarget) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *LandingTarget) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 30), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.AngleX = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.AngleY = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -17218,6 +17355,7 @@ func (m *FenceStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *FenceStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 8), payload...)
 	m.BreachTime = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.BreachCount = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.BreachStatus = uint8(payload[6])
@@ -17292,6 +17430,7 @@ func (m *MagCalReport) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MagCalReport) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 44), payload...)
 	m.Fitness = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.OfsX = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.OfsY = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -17385,6 +17524,7 @@ func (m *EfiStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *EfiStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 65), payload...)
 	m.EcuIndex = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Rpm = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.FuelConsumed = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -17460,6 +17600,7 @@ func (m *EstimatorStatus) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *EstimatorStatus) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 42), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.VelRatio = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.PosHorizRatio = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -17525,6 +17666,7 @@ func (m *WindCov) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *WindCov) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 40), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.WindX = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.WindY = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -17616,6 +17758,7 @@ func (m *GpsInput) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GpsInput) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 63), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.TimeWeekMs = uint32(binary.LittleEndian.Uint32(payload[8:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[12:]))
@@ -17676,6 +17819,7 @@ func (m *GpsRtcmData) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *GpsRtcmData) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 182), payload...)
 	m.Flags = uint8(payload[0])
 	m.Len = uint8(payload[1])
 	copy(m.Data[:], payload[2:182])
@@ -17779,6 +17923,7 @@ func (m *HighLatency) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HighLatency) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 40), payload...)
 	m.CustomMode = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -17912,6 +18057,7 @@ func (m *HighLatency2) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HighLatency2) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 42), payload...)
 	m.Timestamp = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -17988,6 +18134,7 @@ func (m *Vibration) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Vibration) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 32), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.VibrationX = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.VibrationY = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -18055,6 +18202,7 @@ func (m *HomePosition) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *HomePosition) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 52), payload...)
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Altitude = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -18130,6 +18278,7 @@ func (m *SetHomePosition) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *SetHomePosition) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 53), payload...)
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Altitude = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -18177,6 +18326,7 @@ func (m *MessageInterval) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MessageInterval) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 6), payload...)
 	m.IntervalUs = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.MessageID = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	return nil
@@ -18213,6 +18363,7 @@ func (m *ExtendedSysState) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *ExtendedSysState) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 2), payload...)
 	m.VtolState = MAV_VTOL_STATE(payload[0])
 	m.LandedState = MAV_LANDED_STATE(payload[1])
 	return nil
@@ -18287,6 +18438,7 @@ func (m *AdsbVehicle) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *AdsbVehicle) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 38), payload...)
 	m.IcaoAddress = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -18349,6 +18501,7 @@ func (m *Collision) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Collision) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 19), payload...)
 	m.ID = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.TimeToMinimumDelta = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.AltitudeMinimumDelta = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -18404,6 +18557,7 @@ func (m *V2Extension) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *V2Extension) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 254), payload...)
 	m.MessageType = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetNetwork = uint8(payload[2])
 	m.TargetSystem = uint8(payload[3])
@@ -18451,6 +18605,7 @@ func (m *MemoryVect) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *MemoryVect) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 36), payload...)
 	m.Address = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Ver = uint8(payload[2])
 	m.Type = uint8(payload[3])
@@ -18505,6 +18660,7 @@ func (m *DebugVect) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *DebugVect) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 30), payload...)
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
@@ -18552,6 +18708,7 @@ func (m *NamedValueFloat) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *NamedValueFloat) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 18), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Name = string(payload[8:18])
@@ -18597,6 +18754,7 @@ func (m *NamedValueInt) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *NamedValueInt) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 18), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = int32(binary.LittleEndian.Uint32(payload[4:]))
 	m.Name = string(payload[8:18])
@@ -18639,6 +18797,7 @@ func (m *Statustext) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Statustext) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 51), payload...)
 	m.Severity = MAV_SEVERITY(payload[0])
 	m.Text = string(payload[1:51])
 	return nil
@@ -18678,6 +18837,7 @@ func (m *Debug) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Debug) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 9), payload...)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
 	m.Ind = uint8(payload[8])
@@ -18727,6 +18887,7 @@ func (m *Heartbeat) Marshal() ([]byte, error) {
 
 // Unmarshal (generated function)
 func (m *Heartbeat) Unmarshal(payload []byte) error {
+	payload = append(make([]byte, 9), payload...)
 	m.CustomMode = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Type = MAV_TYPE(payload[4])
 	m.Autopilot = MAV_AUTOPILOT(payload[5])

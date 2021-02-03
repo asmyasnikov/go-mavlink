@@ -63,11 +63,7 @@ func packetTemplate() string {
 		"\n" +
 		"// Payload returns packet payload\n" +
 		"func (p *packet{{.MavlinkVersion}}) Payload() []byte {\n" +
-		"    msg, ok := supported[p.msgID]\n" +
-		"\tif !ok {\n" +
-		"\t    panic(ErrUnknownMsgID)\n" +
-		"\t}\n" +
-		"    return append(append([]byte(nil), p.payload...), zeroTail[:msg.Size-len(p.payload)]...)\n" +
+		"    return append([]byte(nil), p.payload...)\n" +
 		"}\n" +
 		"\n" +
 		"func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error {\n" +

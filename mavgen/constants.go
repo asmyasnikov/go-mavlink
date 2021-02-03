@@ -33,9 +33,6 @@ func constantsTemplate() string {
 		"\tErrNilPointerReference = errors.New(\"nil pointer reference\")\n" +
 		"    // ErrPayloadTooSmall define\n" +
 		"    ErrPayloadTooSmall = errors.New(\"payload too small\")\n" +
-		"    // zeroTail is a cache of zero slice for auto append tail to\n" +
-		"    // payload in Mavlink2 messages with trimmed payload (variable length)\n" +
-		"\tzeroTail           = make([]byte, 256)\n" +
 		")\n" +
 		""
 	return tmpl
