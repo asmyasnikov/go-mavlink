@@ -13,8 +13,6 @@ func parserTemplate() string {
 		"\n" +
 		"import \"sync\"\n" +
 		"\n" +
-		"var msgCrcExtras = map[MessageID]uint8{}\n" +
-		"\n" +
 		"// Parser is a state machine which parse bytes to mavlink.Packet\n" +
 		"type Parser struct {\n" +
 		"\tstate  MAVLINK_PARSE_STATE\n" +
@@ -94,10 +92,10 @@ func parserTemplate() string {
 		"\t\t\tp.state = MAVLINK_PARSE_STATE_GOT_PAYLOAD\n" +
 		"\t\t}\n" +
 		"\tcase MAVLINK_PARSE_STATE_GOT_PAYLOAD:\n" +
-		"        if crcExtra, ok := msgCrcExtras[p.packet.MsgID]; ok {\n" +
-		"\t\t    p.crc.WriteByte(crcExtra)\n" +
+		"        if msg, ok := supported[p.packet.MsgID]; !ok {\n" +
+		"            return nil, ErrUnknownMsgID\n" +
 		"        } else {\n" +
-		"\t\t    p.crc.WriteByte(0)\n" +
+		"            p.crc.WriteByte(msg.Extra)\n" +
 		"        }\n" +
 		"\t\tif c != uint8(p.crc.Sum16()&0xFF) {\n" +
 		"\t\t\tp.state = MAVLINK_PARSE_STATE_GOT_BAD_CRC\n" +

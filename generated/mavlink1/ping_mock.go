@@ -28,6 +28,11 @@ func (m *pingMock) String() string {
 	)
 }
 
+// Len
+func (m *pingMock) Len() int {
+	return 4
+}
+
 // Pack
 func (m *pingMock) Pack(p *Packet) error {
 	payload := make([]byte, 4)

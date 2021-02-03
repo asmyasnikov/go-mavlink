@@ -13,14 +13,26 @@ func registerTemplate() string {
 		"\n" +
 		"import \"strconv\"\n" +
 		"\n" +
+		"type message struct {\n" +
+		"    Name string\n" +
+		"    Size int\n" +
+		"    Extra uint8\n" +
+		"    Constructor func(p *Packet) Message\n" +
+		"}\n" +
+		"\n" +
+		"var supported = make(map[MessageID]*message)\n" +
+		"\n" +
 		"// Register method provide register dialect message on decoder knowledge\n" +
-		"func Register(msgID MessageID, msgName string, crcExtra uint8, msgConstructor func(p *Packet) Message) {\n" +
-		"\tif exists, ok := msgNames[msgID]; ok {\n" +
-		"\t\tpanic(\"Message with ID = \" + strconv.Itoa(int(msgID)) + \" already exists. Fix collision '\" + msgName + \"' vs '\" + exists + \"' and re-run mavgen\")\n" +
+		"func Register(msgID MessageID, msgName string, msgSize int, crcExtra uint8, msgConstructor func(p *Packet) Message) {\n" +
+		"\tif msg, ok := supported[msgID]; ok {\n" +
+		"\t\tpanic(\"Message with ID = \" + strconv.Itoa(int(msgID)) + \" already exists. Fix collision '\" + msgName + \"' vs '\" + msg.Name + \"' and re-run mavgen\")\n" +
 		"\t} else {\n" +
-		"\t\tmsgNames[msgID] = msgName\n" +
-		"\t\tmsgCrcExtras[msgID] = crcExtra\n" +
-		"\t\tmsgConstructors[msgID] = msgConstructor\n" +
+		"\t\tsupported[msgID] = &message{\n" +
+		"\t\t    Name:        msgName,\n" +
+		"\t\t    Size:        msgSize,\n" +
+		"\t\t    Extra:       crcExtra,\n" +
+		"\t\t    Constructor: msgConstructor,\n" +
+		"\t\t}\n" +
 		"\t}\n" +
 		"}\n" +
 		""

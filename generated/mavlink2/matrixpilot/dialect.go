@@ -8860,11 +8860,6 @@ func (m *FlexifunctionSet) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -8874,7 +8869,7 @@ func (m *FlexifunctionSet) Pack(p *mavlink.Packet) error {
 func (m *FlexifunctionSet) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -8913,11 +8908,6 @@ func (m *FlexifunctionReadReq) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[2:], uint16(m.DataIndex))
 	payload[4] = byte(m.TargetSystem)
 	payload[5] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -8927,7 +8917,7 @@ func (m *FlexifunctionReadReq) Pack(p *mavlink.Packet) error {
 func (m *FlexifunctionReadReq) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.ReadReqType = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.DataIndex = int16(binary.LittleEndian.Uint16(payload[2:]))
@@ -8979,11 +8969,6 @@ func (m *FlexifunctionBufferFunction) Pack(p *mavlink.Packet) error {
 	for i, v := range m.Data {
 		payload[10+i*1] = byte(v)
 	}
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -8993,7 +8978,7 @@ func (m *FlexifunctionBufferFunction) Pack(p *mavlink.Packet) error {
 func (m *FlexifunctionBufferFunction) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 58 {
-		payload = append(payload, mavlink.ZeroTail[:58-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.FuncIndex = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.FuncCount = uint16(binary.LittleEndian.Uint16(payload[2:]))
@@ -9039,11 +9024,6 @@ func (m *FlexifunctionBufferFunctionAck) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[2:], uint16(m.Result))
 	payload[4] = byte(m.TargetSystem)
 	payload[5] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9053,7 +9033,7 @@ func (m *FlexifunctionBufferFunctionAck) Pack(p *mavlink.Packet) error {
 func (m *FlexifunctionBufferFunctionAck) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.FuncIndex = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Result = uint16(binary.LittleEndian.Uint16(payload[2:]))
@@ -9102,11 +9082,6 @@ func (m *FlexifunctionDirectory) Pack(p *mavlink.Packet) error {
 	for i, v := range m.DirectoryData {
 		payload[5+i*1] = byte(v)
 	}
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9116,7 +9091,7 @@ func (m *FlexifunctionDirectory) Pack(p *mavlink.Packet) error {
 func (m *FlexifunctionDirectory) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 53 {
-		payload = append(payload, mavlink.ZeroTail[:53-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -9167,11 +9142,6 @@ func (m *FlexifunctionDirectoryAck) Pack(p *mavlink.Packet) error {
 	payload[4] = byte(m.DirectoryType)
 	payload[5] = byte(m.StartIndex)
 	payload[6] = byte(m.Count)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9181,7 +9151,7 @@ func (m *FlexifunctionDirectoryAck) Pack(p *mavlink.Packet) error {
 func (m *FlexifunctionDirectoryAck) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 7 {
-		payload = append(payload, mavlink.ZeroTail[:7-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Result = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
@@ -9221,11 +9191,6 @@ func (m *FlexifunctionCommand) Pack(p *mavlink.Packet) error {
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
 	payload[2] = byte(m.CommandType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9235,7 +9200,7 @@ func (m *FlexifunctionCommand) Pack(p *mavlink.Packet) error {
 func (m *FlexifunctionCommand) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 3 {
-		payload = append(payload, mavlink.ZeroTail[:3-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -9269,11 +9234,6 @@ func (m *FlexifunctionCommandAck) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 4)
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.CommandType))
 	binary.LittleEndian.PutUint16(payload[2:], uint16(m.Result))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9283,7 +9243,7 @@ func (m *FlexifunctionCommandAck) Pack(p *mavlink.Packet) error {
 func (m *FlexifunctionCommandAck) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 4 {
-		payload = append(payload, mavlink.ZeroTail[:4-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.CommandType = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Result = uint16(binary.LittleEndian.Uint16(payload[2:]))
@@ -9391,11 +9351,6 @@ func (m *SerialUdbExtraF2A) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[56:], uint16(m.SueSvs))
 	binary.LittleEndian.PutUint16(payload[58:], uint16(m.SueHdop))
 	payload[60] = byte(m.SueStatus)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9405,7 +9360,7 @@ func (m *SerialUdbExtraF2A) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF2A) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 61 {
-		payload = append(payload, mavlink.ZeroTail[:61-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueTime = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.SueLatitude = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -9607,11 +9562,6 @@ func (m *SerialUdbExtraF2B) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[102:], uint16(m.SueBatAmpHours))
 	binary.LittleEndian.PutUint16(payload[104:], uint16(m.SueDesiredHeight))
 	binary.LittleEndian.PutUint16(payload[106:], uint16(m.SueMemoryStackFree))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9621,7 +9571,7 @@ func (m *SerialUdbExtraF2B) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF2B) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 108 {
-		payload = append(payload, mavlink.ZeroTail[:108-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueTime = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.SueFlags = uint32(binary.LittleEndian.Uint32(payload[4:]))
@@ -9726,11 +9676,6 @@ func (m *SerialUdbExtraF4) Pack(p *mavlink.Packet) error {
 	payload[7] = byte(m.SueAltitudeholdStabilized)
 	payload[8] = byte(m.SueAltitudeholdWaypoint)
 	payload[9] = byte(m.SueRacingMode)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9740,7 +9685,7 @@ func (m *SerialUdbExtraF4) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF4) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 10 {
-		payload = append(payload, mavlink.ZeroTail[:10-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueRollStabilizationAilerons = uint8(payload[0])
 	m.SueRollStabilizationRudder = uint8(payload[1])
@@ -9787,11 +9732,6 @@ func (m *SerialUdbExtraF5) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(m.SueYawkdAileron))
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.SueRollkp))
 	binary.LittleEndian.PutUint32(payload[12:], math.Float32bits(m.SueRollkd))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9801,7 +9741,7 @@ func (m *SerialUdbExtraF5) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF5) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 16 {
-		payload = append(payload, mavlink.ZeroTail[:16-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueYawkpAileron = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.SueYawkdAileron = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -9845,11 +9785,6 @@ func (m *SerialUdbExtraF6) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.SueRudderElevMix))
 	binary.LittleEndian.PutUint32(payload[12:], math.Float32bits(m.SueRollElevMix))
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.SueElevatorBoost))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9859,7 +9794,7 @@ func (m *SerialUdbExtraF6) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF6) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 20 {
-		payload = append(payload, mavlink.ZeroTail[:20-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SuePitchgain = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.SuePitchkd = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -9907,11 +9842,6 @@ func (m *SerialUdbExtraF7) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[12:], math.Float32bits(m.SueRollkdRudder))
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.SueRudderBoost))
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.SueRtlPitchDown))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9921,7 +9851,7 @@ func (m *SerialUdbExtraF7) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF7) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 24 {
-		payload = append(payload, mavlink.ZeroTail[:24-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueYawkpRudder = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.SueYawkdRudder = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -9973,11 +9903,6 @@ func (m *SerialUdbExtraF8) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.SueAltHoldPitchMin))
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.SueAltHoldPitchMax))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.SueAltHoldPitchHigh))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -9987,7 +9912,7 @@ func (m *SerialUdbExtraF8) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF8) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 28 {
-		payload = append(payload, mavlink.ZeroTail[:28-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueHeightTargetMax = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.SueHeightTargetMin = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -10031,11 +9956,6 @@ func (m *SerialUdbExtraF13) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[4:], uint32(m.SueLonOrigin))
 	binary.LittleEndian.PutUint32(payload[8:], uint32(m.SueAltOrigin))
 	binary.LittleEndian.PutUint16(payload[12:], uint16(m.SueWeekNo))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10045,7 +9965,7 @@ func (m *SerialUdbExtraF13) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF13) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 14 {
-		payload = append(payload, mavlink.ZeroTail[:14-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueLatOrigin = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.SueLonOrigin = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -10107,11 +10027,6 @@ func (m *SerialUdbExtraF14) Pack(p *mavlink.Packet) error {
 	payload[14] = byte(m.SueAirframe)
 	payload[15] = byte(m.SueClockConfig)
 	payload[16] = byte(m.SueFlightPlanType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10121,7 +10036,7 @@ func (m *SerialUdbExtraF14) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF14) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 17 {
-		payload = append(payload, mavlink.ZeroTail[:17-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueTrapSource = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.SueRcon = int16(binary.LittleEndian.Uint16(payload[4:]))
@@ -10163,11 +10078,6 @@ func (m *SerialUdbExtraF15) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 60)
 	copy(payload[0:], m.SueIDVehicleModelName[:])
 	copy(payload[40:], m.SueIDVehicleRegistration[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10177,7 +10087,7 @@ func (m *SerialUdbExtraF15) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF15) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 60 {
-		payload = append(payload, mavlink.ZeroTail[:60-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	copy(m.SueIDVehicleModelName[:], payload[0:40])
 	copy(m.SueIDVehicleRegistration[:], payload[40:60])
@@ -10210,11 +10120,6 @@ func (m *SerialUdbExtraF16) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 110)
 	copy(payload[0:], m.SueIDLeadPilot[:])
 	copy(payload[40:], m.SueIDDiyDronesURL[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10224,7 +10129,7 @@ func (m *SerialUdbExtraF16) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF16) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 110 {
-		payload = append(payload, mavlink.ZeroTail[:110-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	copy(m.SueIDLeadPilot[:], payload[0:40])
 	copy(m.SueIDDiyDronesURL[:], payload[40:110])
@@ -10272,11 +10177,6 @@ func (m *Altitudes) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[16:], uint32(m.AltOpticalFlow))
 	binary.LittleEndian.PutUint32(payload[20:], uint32(m.AltRangeFinder))
 	binary.LittleEndian.PutUint32(payload[24:], uint32(m.AltExtra))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10286,7 +10186,7 @@ func (m *Altitudes) Pack(p *mavlink.Packet) error {
 func (m *Altitudes) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 28 {
-		payload = append(payload, mavlink.ZeroTail[:28-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.AltGps = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -10339,11 +10239,6 @@ func (m *Airspeeds) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[10:], uint16(m.AirspeedUltrasonic))
 	binary.LittleEndian.PutUint16(payload[12:], uint16(m.Aoa))
 	binary.LittleEndian.PutUint16(payload[14:], uint16(m.Aoy))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10353,7 +10248,7 @@ func (m *Airspeeds) Pack(p *mavlink.Packet) error {
 func (m *Airspeeds) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 16 {
-		payload = append(payload, mavlink.ZeroTail[:16-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.AirspeedImu = int16(binary.LittleEndian.Uint16(payload[4:]))
@@ -10394,11 +10289,6 @@ func (m *SerialUdbExtraF17) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[0:], math.Float32bits(m.SueFeedForward))
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(m.SueTurnRateNav))
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.SueTurnRateFbw))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10408,7 +10298,7 @@ func (m *SerialUdbExtraF17) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF17) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 12 {
-		payload = append(payload, mavlink.ZeroTail[:12-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueFeedForward = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.SueTurnRateNav = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -10451,11 +10341,6 @@ func (m *SerialUdbExtraF18) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.ElevatorTrimNormal))
 	binary.LittleEndian.PutUint32(payload[12:], math.Float32bits(m.ElevatorTrimInverted))
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.ReferenceSpeed))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10465,7 +10350,7 @@ func (m *SerialUdbExtraF18) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF18) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 20 {
-		payload = append(payload, mavlink.ZeroTail[:20-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.AngleOfAttackNormal = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.AngleOfAttackInverted = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -10519,11 +10404,6 @@ func (m *SerialUdbExtraF19) Pack(p *mavlink.Packet) error {
 	payload[5] = byte(m.SueThrottleReversed)
 	payload[6] = byte(m.SueRudderOutputChannel)
 	payload[7] = byte(m.SueRudderReversed)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10533,7 +10413,7 @@ func (m *SerialUdbExtraF19) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF19) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 8 {
-		payload = append(payload, mavlink.ZeroTail[:8-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueAileronOutputChannel = uint8(payload[0])
 	m.SueAileronReversed = uint8(payload[1])
@@ -10605,11 +10485,6 @@ func (m *SerialUdbExtraF20) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[20:], uint16(m.SueTrimValueInput11))
 	binary.LittleEndian.PutUint16(payload[22:], uint16(m.SueTrimValueInput12))
 	payload[24] = byte(m.SueNumberOfInputs)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10619,7 +10494,7 @@ func (m *SerialUdbExtraF20) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF20) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 25 {
-		payload = append(payload, mavlink.ZeroTail[:25-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueTrimValueInput1 = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.SueTrimValueInput2 = int16(binary.LittleEndian.Uint16(payload[2:]))
@@ -10675,11 +10550,6 @@ func (m *SerialUdbExtraF21) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[6:], uint16(m.SueGyroXOffset))
 	binary.LittleEndian.PutUint16(payload[8:], uint16(m.SueGyroYOffset))
 	binary.LittleEndian.PutUint16(payload[10:], uint16(m.SueGyroZOffset))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10689,7 +10559,7 @@ func (m *SerialUdbExtraF21) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF21) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 12 {
-		payload = append(payload, mavlink.ZeroTail[:12-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueAccelXOffset = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.SueAccelYOffset = int16(binary.LittleEndian.Uint16(payload[2:]))
@@ -10738,11 +10608,6 @@ func (m *SerialUdbExtraF22) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[6:], uint16(m.SueGyroXAtCalibration))
 	binary.LittleEndian.PutUint16(payload[8:], uint16(m.SueGyroYAtCalibration))
 	binary.LittleEndian.PutUint16(payload[10:], uint16(m.SueGyroZAtCalibration))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10752,7 +10617,7 @@ func (m *SerialUdbExtraF22) Pack(p *mavlink.Packet) error {
 func (m *SerialUdbExtraF22) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 12 {
-		payload = append(payload, mavlink.ZeroTail[:12-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SueAccelXAtCalibration = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.SueAccelYAtCalibration = int16(binary.LittleEndian.Uint16(payload[2:]))
@@ -10822,11 +10687,6 @@ func (m *SysStatus) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[26:], uint16(m.ErrorsCount3))
 	binary.LittleEndian.PutUint16(payload[28:], uint16(m.ErrorsCount4))
 	payload[30] = byte(m.BatteryRemaining)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10836,7 +10696,7 @@ func (m *SysStatus) Pack(p *mavlink.Packet) error {
 func (m *SysStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 31 {
-		payload = append(payload, mavlink.ZeroTail[:31-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.OnboardControlSensorsPresent = MAV_SYS_STATUS_SENSOR(binary.LittleEndian.Uint32(payload[0:]))
 	m.OnboardControlSensorsEnabled = MAV_SYS_STATUS_SENSOR(binary.LittleEndian.Uint32(payload[4:]))
@@ -10880,11 +10740,6 @@ func (m *SystemTime) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 12)
 	binary.LittleEndian.PutUint64(payload[0:], uint64(m.TimeUnixUsec))
 	binary.LittleEndian.PutUint32(payload[8:], uint32(m.TimeBootMs))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10894,7 +10749,7 @@ func (m *SystemTime) Pack(p *mavlink.Packet) error {
 func (m *SystemTime) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 12 {
-		payload = append(payload, mavlink.ZeroTail[:12-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUnixUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[8:]))
@@ -10933,11 +10788,6 @@ func (m *Ping) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[8:], uint32(m.Seq))
 	payload[12] = byte(m.TargetSystem)
 	payload[13] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -10947,7 +10797,7 @@ func (m *Ping) Pack(p *mavlink.Packet) error {
 func (m *Ping) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 14 {
-		payload = append(payload, mavlink.ZeroTail[:14-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Seq = uint32(binary.LittleEndian.Uint32(payload[8:]))
@@ -10988,11 +10838,6 @@ func (m *ChangeOperatorControl) Pack(p *mavlink.Packet) error {
 	payload[1] = byte(m.ControlRequest)
 	payload[2] = byte(m.Version)
 	copy(payload[3:], m.Passkey[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11002,7 +10847,7 @@ func (m *ChangeOperatorControl) Pack(p *mavlink.Packet) error {
 func (m *ChangeOperatorControl) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 28 {
-		payload = append(payload, mavlink.ZeroTail[:28-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.ControlRequest = uint8(payload[1])
@@ -11040,11 +10885,6 @@ func (m *ChangeOperatorControlAck) Pack(p *mavlink.Packet) error {
 	payload[0] = byte(m.GcsSystemID)
 	payload[1] = byte(m.ControlRequest)
 	payload[2] = byte(m.Ack)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11054,7 +10894,7 @@ func (m *ChangeOperatorControlAck) Pack(p *mavlink.Packet) error {
 func (m *ChangeOperatorControlAck) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 3 {
-		payload = append(payload, mavlink.ZeroTail[:3-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.GcsSystemID = uint8(payload[0])
 	m.ControlRequest = uint8(payload[1])
@@ -11085,11 +10925,6 @@ func (m *AuthKey) String() string {
 func (m *AuthKey) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 32)
 	copy(payload[0:], m.Key[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11099,7 +10934,7 @@ func (m *AuthKey) Pack(p *mavlink.Packet) error {
 func (m *AuthKey) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 32 {
-		payload = append(payload, mavlink.ZeroTail[:32-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	copy(m.Key[:], payload[0:32])
 	return nil
@@ -11158,11 +10993,6 @@ func (m *LinkNodeStatus) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[32:], uint16(m.RxOverflows))
 	payload[34] = byte(m.TxBuf)
 	payload[35] = byte(m.RxBuf)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11172,7 +11002,7 @@ func (m *LinkNodeStatus) Pack(p *mavlink.Packet) error {
 func (m *LinkNodeStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 36 {
-		payload = append(payload, mavlink.ZeroTail[:36-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.TxRate = uint32(binary.LittleEndian.Uint32(payload[8:]))
@@ -11217,11 +11047,6 @@ func (m *SetMode) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.CustomMode))
 	payload[4] = byte(m.TargetSystem)
 	payload[5] = byte(m.BaseMode)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11231,7 +11056,7 @@ func (m *SetMode) Pack(p *mavlink.Packet) error {
 func (m *SetMode) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.CustomMode = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
@@ -11277,11 +11102,6 @@ func (m *ParamAckTransaction) Pack(p *mavlink.Packet) error {
 	copy(payload[6:], m.ParamID[:])
 	payload[22] = byte(m.ParamType)
 	payload[23] = byte(m.ParamResult)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11291,7 +11111,7 @@ func (m *ParamAckTransaction) Pack(p *mavlink.Packet) error {
 func (m *ParamAckTransaction) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 24 {
-		payload = append(payload, mavlink.ZeroTail[:24-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
@@ -11334,11 +11154,6 @@ func (m *ParamRequestRead) Pack(p *mavlink.Packet) error {
 	payload[2] = byte(m.TargetSystem)
 	payload[3] = byte(m.TargetComponent)
 	copy(payload[4:], m.ParamID[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11348,7 +11163,7 @@ func (m *ParamRequestRead) Pack(p *mavlink.Packet) error {
 func (m *ParamRequestRead) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 20 {
-		payload = append(payload, mavlink.ZeroTail[:20-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.ParamIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
@@ -11383,11 +11198,6 @@ func (m *ParamRequestList) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11397,7 +11207,7 @@ func (m *ParamRequestList) Pack(p *mavlink.Packet) error {
 func (m *ParamRequestList) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -11439,11 +11249,6 @@ func (m *ParamValue) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[6:], uint16(m.ParamIndex))
 	copy(payload[8:], m.ParamID[:])
 	payload[24] = byte(m.ParamType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11453,7 +11258,7 @@ func (m *ParamValue) Pack(p *mavlink.Packet) error {
 func (m *ParamValue) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 25 {
-		payload = append(payload, mavlink.ZeroTail[:25-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.ParamCount = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -11500,11 +11305,6 @@ func (m *ParamSet) Pack(p *mavlink.Packet) error {
 	payload[5] = byte(m.TargetComponent)
 	copy(payload[6:], m.ParamID[:])
 	payload[22] = byte(m.ParamType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11514,7 +11314,7 @@ func (m *ParamSet) Pack(p *mavlink.Packet) error {
 func (m *ParamSet) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 23 {
-		payload = append(payload, mavlink.ZeroTail[:23-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
@@ -11575,11 +11375,6 @@ func (m *GpsRawInt) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[26:], uint16(m.Cog))
 	payload[28] = byte(m.FixType)
 	payload[29] = byte(m.SatellitesVisible)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11589,7 +11384,7 @@ func (m *GpsRawInt) Pack(p *mavlink.Packet) error {
 func (m *GpsRawInt) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 30 {
-		payload = append(payload, mavlink.ZeroTail[:30-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -11642,11 +11437,6 @@ func (m *GpsStatus) Pack(p *mavlink.Packet) error {
 	copy(payload[41:], m.SatelliteElevation[:])
 	copy(payload[61:], m.SatelliteAzimuth[:])
 	copy(payload[81:], m.SatelliteSnr[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11656,7 +11446,7 @@ func (m *GpsStatus) Pack(p *mavlink.Packet) error {
 func (m *GpsStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 101 {
-		payload = append(payload, mavlink.ZeroTail[:101-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.SatellitesVisible = uint8(payload[0])
 	copy(m.SatellitePrn[:], payload[1:21])
@@ -11717,11 +11507,6 @@ func (m *ScaledImu) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[16:], uint16(m.Xmag))
 	binary.LittleEndian.PutUint16(payload[18:], uint16(m.Ymag))
 	binary.LittleEndian.PutUint16(payload[20:], uint16(m.Zmag))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11731,7 +11516,7 @@ func (m *ScaledImu) Pack(p *mavlink.Packet) error {
 func (m *ScaledImu) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 22 {
-		payload = append(payload, mavlink.ZeroTail[:22-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Xacc = int16(binary.LittleEndian.Uint16(payload[4:]))
@@ -11796,11 +11581,6 @@ func (m *RawImu) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[20:], uint16(m.Xmag))
 	binary.LittleEndian.PutUint16(payload[22:], uint16(m.Ymag))
 	binary.LittleEndian.PutUint16(payload[24:], uint16(m.Zmag))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11810,7 +11590,7 @@ func (m *RawImu) Pack(p *mavlink.Packet) error {
 func (m *RawImu) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 26 {
-		payload = append(payload, mavlink.ZeroTail[:26-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Xacc = int16(binary.LittleEndian.Uint16(payload[8:]))
@@ -11860,11 +11640,6 @@ func (m *RawPressure) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[10:], uint16(m.PressDiff1))
 	binary.LittleEndian.PutUint16(payload[12:], uint16(m.PressDiff2))
 	binary.LittleEndian.PutUint16(payload[14:], uint16(m.Temperature))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11874,7 +11649,7 @@ func (m *RawPressure) Pack(p *mavlink.Packet) error {
 func (m *RawPressure) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 16 {
-		payload = append(payload, mavlink.ZeroTail[:16-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.PressAbs = int16(binary.LittleEndian.Uint16(payload[8:]))
@@ -11916,11 +11691,6 @@ func (m *ScaledPressure) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(m.PressAbs))
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.PressDiff))
 	binary.LittleEndian.PutUint16(payload[12:], uint16(m.Temperature))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11930,7 +11700,7 @@ func (m *ScaledPressure) Pack(p *mavlink.Packet) error {
 func (m *ScaledPressure) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 14 {
-		payload = append(payload, mavlink.ZeroTail[:14-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.PressAbs = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -11980,11 +11750,6 @@ func (m *Attitude) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.Rollspeed))
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.Pitchspeed))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.Yawspeed))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -11994,7 +11759,7 @@ func (m *Attitude) Pack(p *mavlink.Packet) error {
 func (m *Attitude) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 28 {
-		payload = append(payload, mavlink.ZeroTail[:28-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Roll = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -12050,11 +11815,6 @@ func (m *AttitudeQuaternion) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.Rollspeed))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.Pitchspeed))
 	binary.LittleEndian.PutUint32(payload[28:], math.Float32bits(m.Yawspeed))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12064,7 +11824,7 @@ func (m *AttitudeQuaternion) Pack(p *mavlink.Packet) error {
 func (m *AttitudeQuaternion) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 32 {
-		payload = append(payload, mavlink.ZeroTail[:32-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Q1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -12118,11 +11878,6 @@ func (m *LocalPositionNed) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.Vx))
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.Vy))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.Vz))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12132,7 +11887,7 @@ func (m *LocalPositionNed) Pack(p *mavlink.Packet) error {
 func (m *LocalPositionNed) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 28 {
-		payload = append(payload, mavlink.ZeroTail[:28-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -12192,11 +11947,6 @@ func (m *GlobalPositionInt) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[22:], uint16(m.Vy))
 	binary.LittleEndian.PutUint16(payload[24:], uint16(m.Vz))
 	binary.LittleEndian.PutUint16(payload[26:], uint16(m.Hdg))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12206,7 +11956,7 @@ func (m *GlobalPositionInt) Pack(p *mavlink.Packet) error {
 func (m *GlobalPositionInt) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 28 {
-		payload = append(payload, mavlink.ZeroTail[:28-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -12273,11 +12023,6 @@ func (m *RcChannelsScaled) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[18:], uint16(m.Chan8Scaled))
 	payload[20] = byte(m.Port)
 	payload[21] = byte(m.Rssi)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12287,7 +12032,7 @@ func (m *RcChannelsScaled) Pack(p *mavlink.Packet) error {
 func (m *RcChannelsScaled) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 22 {
-		payload = append(payload, mavlink.ZeroTail[:22-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Chan1Scaled = int16(binary.LittleEndian.Uint16(payload[4:]))
@@ -12356,11 +12101,6 @@ func (m *RcChannelsRaw) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[18:], uint16(m.Chan8Raw))
 	payload[20] = byte(m.Port)
 	payload[21] = byte(m.Rssi)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12370,7 +12110,7 @@ func (m *RcChannelsRaw) Pack(p *mavlink.Packet) error {
 func (m *RcChannelsRaw) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 22 {
-		payload = append(payload, mavlink.ZeroTail[:22-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Chan1Raw = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -12436,11 +12176,6 @@ func (m *ServoOutputRaw) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[16:], uint16(m.Servo7Raw))
 	binary.LittleEndian.PutUint16(payload[18:], uint16(m.Servo8Raw))
 	payload[20] = byte(m.Port)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12450,7 +12185,7 @@ func (m *ServoOutputRaw) Pack(p *mavlink.Packet) error {
 func (m *ServoOutputRaw) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 21 {
-		payload = append(payload, mavlink.ZeroTail[:21-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Servo1Raw = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -12497,11 +12232,6 @@ func (m *MissionRequestPartialList) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[2:], uint16(m.EndIndex))
 	payload[4] = byte(m.TargetSystem)
 	payload[5] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12511,7 +12241,7 @@ func (m *MissionRequestPartialList) Pack(p *mavlink.Packet) error {
 func (m *MissionRequestPartialList) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.StartIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.EndIndex = int16(binary.LittleEndian.Uint16(payload[2:]))
@@ -12552,11 +12282,6 @@ func (m *MissionWritePartialList) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[2:], uint16(m.EndIndex))
 	payload[4] = byte(m.TargetSystem)
 	payload[5] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12566,7 +12291,7 @@ func (m *MissionWritePartialList) Pack(p *mavlink.Packet) error {
 func (m *MissionWritePartialList) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.StartIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.EndIndex = int16(binary.LittleEndian.Uint16(payload[2:]))
@@ -12638,11 +12363,6 @@ func (m *MissionItem) Pack(p *mavlink.Packet) error {
 	payload[34] = byte(m.Frame)
 	payload[35] = byte(m.Current)
 	payload[36] = byte(m.Autocontinue)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12652,7 +12372,7 @@ func (m *MissionItem) Pack(p *mavlink.Packet) error {
 func (m *MissionItem) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 37 {
-		payload = append(payload, mavlink.ZeroTail[:37-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Param2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -12700,11 +12420,6 @@ func (m *MissionRequest) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Seq))
 	payload[2] = byte(m.TargetSystem)
 	payload[3] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12714,7 +12429,7 @@ func (m *MissionRequest) Pack(p *mavlink.Packet) error {
 func (m *MissionRequest) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 4 {
-		payload = append(payload, mavlink.ZeroTail[:4-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
@@ -12751,11 +12466,6 @@ func (m *MissionSetCurrent) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Seq))
 	payload[2] = byte(m.TargetSystem)
 	payload[3] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12765,7 +12475,7 @@ func (m *MissionSetCurrent) Pack(p *mavlink.Packet) error {
 func (m *MissionSetCurrent) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 4 {
-		payload = append(payload, mavlink.ZeroTail[:4-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
@@ -12796,11 +12506,6 @@ func (m *MissionCurrent) String() string {
 func (m *MissionCurrent) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Seq))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12810,7 +12515,7 @@ func (m *MissionCurrent) Pack(p *mavlink.Packet) error {
 func (m *MissionCurrent) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	return nil
@@ -12842,11 +12547,6 @@ func (m *MissionRequestList) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12856,7 +12556,7 @@ func (m *MissionRequestList) Pack(p *mavlink.Packet) error {
 func (m *MissionRequestList) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -12892,11 +12592,6 @@ func (m *MissionCount) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Count))
 	payload[2] = byte(m.TargetSystem)
 	payload[3] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12906,7 +12601,7 @@ func (m *MissionCount) Pack(p *mavlink.Packet) error {
 func (m *MissionCount) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 4 {
-		payload = append(payload, mavlink.ZeroTail[:4-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Count = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
@@ -12940,11 +12635,6 @@ func (m *MissionClearAll) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12954,7 +12644,7 @@ func (m *MissionClearAll) Pack(p *mavlink.Packet) error {
 func (m *MissionClearAll) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -12984,11 +12674,6 @@ func (m *MissionItemReached) String() string {
 func (m *MissionItemReached) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Seq))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -12998,7 +12683,7 @@ func (m *MissionItemReached) Pack(p *mavlink.Packet) error {
 func (m *MissionItemReached) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	return nil
@@ -13033,11 +12718,6 @@ func (m *MissionAck) Pack(p *mavlink.Packet) error {
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
 	payload[2] = byte(m.Type)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13047,7 +12727,7 @@ func (m *MissionAck) Pack(p *mavlink.Packet) error {
 func (m *MissionAck) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 3 {
-		payload = append(payload, mavlink.ZeroTail[:3-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -13087,11 +12767,6 @@ func (m *SetGpsGlobalOrigin) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[4:], uint32(m.Longitude))
 	binary.LittleEndian.PutUint32(payload[8:], uint32(m.Altitude))
 	payload[12] = byte(m.TargetSystem)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13101,7 +12776,7 @@ func (m *SetGpsGlobalOrigin) Pack(p *mavlink.Packet) error {
 func (m *SetGpsGlobalOrigin) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 13 {
-		payload = append(payload, mavlink.ZeroTail[:13-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -13139,11 +12814,6 @@ func (m *GpsGlobalOrigin) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.Latitude))
 	binary.LittleEndian.PutUint32(payload[4:], uint32(m.Longitude))
 	binary.LittleEndian.PutUint32(payload[8:], uint32(m.Altitude))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13153,7 +12823,7 @@ func (m *GpsGlobalOrigin) Pack(p *mavlink.Packet) error {
 func (m *GpsGlobalOrigin) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 12 {
-		payload = append(payload, mavlink.ZeroTail[:12-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -13208,11 +12878,6 @@ func (m *ParamMapRc) Pack(p *mavlink.Packet) error {
 	payload[19] = byte(m.TargetComponent)
 	copy(payload[20:], m.ParamID[:])
 	payload[36] = byte(m.ParameterRcChannelIndex)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13222,7 +12887,7 @@ func (m *ParamMapRc) Pack(p *mavlink.Packet) error {
 func (m *ParamMapRc) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 37 {
-		payload = append(payload, mavlink.ZeroTail[:37-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.ParamValue0 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Scale = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -13265,11 +12930,6 @@ func (m *MissionRequestInt) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Seq))
 	payload[2] = byte(m.TargetSystem)
 	payload[3] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13279,7 +12939,7 @@ func (m *MissionRequestInt) Pack(p *mavlink.Packet) error {
 func (m *MissionRequestInt) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 4 {
-		payload = append(payload, mavlink.ZeroTail[:4-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Seq = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
@@ -13322,11 +12982,6 @@ func (m *MissionChanged) Pack(p *mavlink.Packet) error {
 	payload[4] = byte(m.OriginSysid)
 	payload[5] = byte(m.OriginCompid)
 	payload[6] = byte(m.MissionType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13336,7 +12991,7 @@ func (m *MissionChanged) Pack(p *mavlink.Packet) error {
 func (m *MissionChanged) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 7 {
-		payload = append(payload, mavlink.ZeroTail[:7-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.StartIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.EndIndex = int16(binary.LittleEndian.Uint16(payload[2:]))
@@ -13393,11 +13048,6 @@ func (m *SafetySetAllowedArea) Pack(p *mavlink.Packet) error {
 	payload[24] = byte(m.TargetSystem)
 	payload[25] = byte(m.TargetComponent)
 	payload[26] = byte(m.Frame)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13407,7 +13057,7 @@ func (m *SafetySetAllowedArea) Pack(p *mavlink.Packet) error {
 func (m *SafetySetAllowedArea) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 27 {
-		payload = append(payload, mavlink.ZeroTail[:27-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.P1x = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.P1y = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -13462,11 +13112,6 @@ func (m *SafetyAllowedArea) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.P2y))
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.P2z))
 	payload[24] = byte(m.Frame)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13476,7 +13121,7 @@ func (m *SafetyAllowedArea) Pack(p *mavlink.Packet) error {
 func (m *SafetyAllowedArea) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 25 {
-		payload = append(payload, mavlink.ZeroTail[:25-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.P1x = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.P1y = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -13530,11 +13175,6 @@ func (m *AttitudeQuaternionCov) Pack(p *mavlink.Packet) error {
 	for i, v := range m.Covariance {
 		binary.LittleEndian.PutUint32(payload[36+i*4:], math.Float32bits(v))
 	}
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13544,7 +13184,7 @@ func (m *AttitudeQuaternionCov) Pack(p *mavlink.Packet) error {
 func (m *AttitudeQuaternionCov) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 72 {
-		payload = append(payload, mavlink.ZeroTail[:72-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.Q); i++ {
@@ -13603,11 +13243,6 @@ func (m *NavControllerOutput) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[20:], uint16(m.NavBearing))
 	binary.LittleEndian.PutUint16(payload[22:], uint16(m.TargetBearing))
 	binary.LittleEndian.PutUint16(payload[24:], uint16(m.WpDist))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13617,7 +13252,7 @@ func (m *NavControllerOutput) Pack(p *mavlink.Packet) error {
 func (m *NavControllerOutput) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 26 {
-		payload = append(payload, mavlink.ZeroTail[:26-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.NavRoll = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.NavPitch = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -13682,11 +13317,6 @@ func (m *GlobalPositionIntCov) Pack(p *mavlink.Packet) error {
 		binary.LittleEndian.PutUint32(payload[36+i*4:], math.Float32bits(v))
 	}
 	payload[180] = byte(m.EstimatorType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13696,7 +13326,7 @@ func (m *GlobalPositionIntCov) Pack(p *mavlink.Packet) error {
 func (m *GlobalPositionIntCov) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 181 {
-		payload = append(payload, mavlink.ZeroTail[:181-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -13771,11 +13401,6 @@ func (m *LocalPositionNedCov) Pack(p *mavlink.Packet) error {
 		binary.LittleEndian.PutUint32(payload[44+i*4:], math.Float32bits(v))
 	}
 	payload[224] = byte(m.EstimatorType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13785,7 +13410,7 @@ func (m *LocalPositionNedCov) Pack(p *mavlink.Packet) error {
 func (m *LocalPositionNedCov) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 225 {
-		payload = append(payload, mavlink.ZeroTail[:225-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -13887,11 +13512,6 @@ func (m *RcChannels) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[38:], uint16(m.Chan18Raw))
 	payload[40] = byte(m.Chancount)
 	payload[41] = byte(m.Rssi)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13901,7 +13521,7 @@ func (m *RcChannels) Pack(p *mavlink.Packet) error {
 func (m *RcChannels) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 42 {
-		payload = append(payload, mavlink.ZeroTail[:42-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Chan1Raw = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -13962,11 +13582,6 @@ func (m *RequestDataStream) Pack(p *mavlink.Packet) error {
 	payload[3] = byte(m.TargetComponent)
 	payload[4] = byte(m.ReqStreamID)
 	payload[5] = byte(m.StartStop)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -13976,7 +13591,7 @@ func (m *RequestDataStream) Pack(p *mavlink.Packet) error {
 func (m *RequestDataStream) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.ReqMessageRate = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
@@ -14015,11 +13630,6 @@ func (m *DataStream) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.MessageRate))
 	payload[2] = byte(m.StreamID)
 	payload[3] = byte(m.OnOff)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14029,7 +13639,7 @@ func (m *DataStream) Pack(p *mavlink.Packet) error {
 func (m *DataStream) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 4 {
-		payload = append(payload, mavlink.ZeroTail[:4-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.MessageRate = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.StreamID = uint8(payload[2])
@@ -14075,11 +13685,6 @@ func (m *ManualControl) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[6:], uint16(m.R))
 	binary.LittleEndian.PutUint16(payload[8:], uint16(m.Buttons))
 	payload[10] = byte(m.Target)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14089,7 +13694,7 @@ func (m *ManualControl) Pack(p *mavlink.Packet) error {
 func (m *ManualControl) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 11 {
-		payload = append(payload, mavlink.ZeroTail[:11-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.X = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Y = int16(binary.LittleEndian.Uint16(payload[2:]))
@@ -14150,11 +13755,6 @@ func (m *RcChannelsOverride) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[14:], uint16(m.Chan8Raw))
 	payload[16] = byte(m.TargetSystem)
 	payload[17] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14164,7 +13764,7 @@ func (m *RcChannelsOverride) Pack(p *mavlink.Packet) error {
 func (m *RcChannelsOverride) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 18 {
-		payload = append(payload, mavlink.ZeroTail[:18-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Chan1Raw = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Chan2Raw = uint16(binary.LittleEndian.Uint16(payload[2:]))
@@ -14242,11 +13842,6 @@ func (m *MissionItemInt) Pack(p *mavlink.Packet) error {
 	payload[34] = byte(m.Frame)
 	payload[35] = byte(m.Current)
 	payload[36] = byte(m.Autocontinue)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14256,7 +13851,7 @@ func (m *MissionItemInt) Pack(p *mavlink.Packet) error {
 func (m *MissionItemInt) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 37 {
-		payload = append(payload, mavlink.ZeroTail[:37-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Param2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -14313,11 +13908,6 @@ func (m *VfrHud) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[12:], math.Float32bits(m.Climb))
 	binary.LittleEndian.PutUint16(payload[16:], uint16(m.Heading))
 	binary.LittleEndian.PutUint16(payload[18:], uint16(m.Throttle))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14327,7 +13917,7 @@ func (m *VfrHud) Pack(p *mavlink.Packet) error {
 func (m *VfrHud) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 20 {
-		payload = append(payload, mavlink.ZeroTail[:20-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Airspeed = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Groundspeed = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -14397,11 +13987,6 @@ func (m *CommandInt) Pack(p *mavlink.Packet) error {
 	payload[32] = byte(m.Frame)
 	payload[33] = byte(m.Current)
 	payload[34] = byte(m.Autocontinue)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14411,7 +13996,7 @@ func (m *CommandInt) Pack(p *mavlink.Packet) error {
 func (m *CommandInt) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 35 {
-		payload = append(payload, mavlink.ZeroTail[:35-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Param2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -14482,11 +14067,6 @@ func (m *CommandLong) Pack(p *mavlink.Packet) error {
 	payload[30] = byte(m.TargetSystem)
 	payload[31] = byte(m.TargetComponent)
 	payload[32] = byte(m.Confirmation)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14496,7 +14076,7 @@ func (m *CommandLong) Pack(p *mavlink.Packet) error {
 func (m *CommandLong) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 33 {
-		payload = append(payload, mavlink.ZeroTail[:33-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Param1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Param2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -14538,11 +14118,6 @@ func (m *CommandAck) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 3)
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Command))
 	payload[2] = byte(m.Result)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14552,7 +14127,7 @@ func (m *CommandAck) Pack(p *mavlink.Packet) error {
 func (m *CommandAck) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 3 {
-		payload = append(payload, mavlink.ZeroTail[:3-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Command = MAV_CMD(binary.LittleEndian.Uint16(payload[0:]))
 	m.Result = MAV_RESULT(payload[2])
@@ -14588,11 +14163,6 @@ func (m *CommandCancel) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Command))
 	payload[2] = byte(m.TargetSystem)
 	payload[3] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14602,7 +14172,7 @@ func (m *CommandCancel) Pack(p *mavlink.Packet) error {
 func (m *CommandCancel) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 4 {
-		payload = append(payload, mavlink.ZeroTail[:4-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Command = MAV_CMD(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
@@ -14651,11 +14221,6 @@ func (m *ManualSetpoint) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.Thrust))
 	payload[20] = byte(m.ModeSwitch)
 	payload[21] = byte(m.ManualOverrideSwitch)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14665,7 +14230,7 @@ func (m *ManualSetpoint) Pack(p *mavlink.Packet) error {
 func (m *ManualSetpoint) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 22 {
-		payload = append(payload, mavlink.ZeroTail[:22-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Roll = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -14726,11 +14291,6 @@ func (m *SetAttitudeTarget) Pack(p *mavlink.Packet) error {
 	payload[36] = byte(m.TargetSystem)
 	payload[37] = byte(m.TargetComponent)
 	payload[38] = byte(m.TypeMask)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14740,7 +14300,7 @@ func (m *SetAttitudeTarget) Pack(p *mavlink.Packet) error {
 func (m *SetAttitudeTarget) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 39 {
-		payload = append(payload, mavlink.ZeroTail[:39-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	for i := 0; i < len(m.Q); i++ {
@@ -14799,11 +14359,6 @@ func (m *AttitudeTarget) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[28:], math.Float32bits(m.BodyYawRate))
 	binary.LittleEndian.PutUint32(payload[32:], math.Float32bits(m.Thrust))
 	payload[36] = byte(m.TypeMask)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14813,7 +14368,7 @@ func (m *AttitudeTarget) Pack(p *mavlink.Packet) error {
 func (m *AttitudeTarget) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 37 {
-		payload = append(payload, mavlink.ZeroTail[:37-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	for i := 0; i < len(m.Q); i++ {
@@ -14895,11 +14450,6 @@ func (m *SetPositionTargetLocalNed) Pack(p *mavlink.Packet) error {
 	payload[50] = byte(m.TargetSystem)
 	payload[51] = byte(m.TargetComponent)
 	payload[52] = byte(m.CoordinateFrame)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -14909,7 +14459,7 @@ func (m *SetPositionTargetLocalNed) Pack(p *mavlink.Packet) error {
 func (m *SetPositionTargetLocalNed) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 53 {
-		payload = append(payload, mavlink.ZeroTail[:53-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -14992,11 +14542,6 @@ func (m *PositionTargetLocalNed) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[44:], math.Float32bits(m.YawRate))
 	binary.LittleEndian.PutUint16(payload[48:], uint16(m.TypeMask))
 	payload[50] = byte(m.CoordinateFrame)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15006,7 +14551,7 @@ func (m *PositionTargetLocalNed) Pack(p *mavlink.Packet) error {
 func (m *PositionTargetLocalNed) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 51 {
-		payload = append(payload, mavlink.ZeroTail[:51-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -15093,11 +14638,6 @@ func (m *SetPositionTargetGlobalInt) Pack(p *mavlink.Packet) error {
 	payload[50] = byte(m.TargetSystem)
 	payload[51] = byte(m.TargetComponent)
 	payload[52] = byte(m.CoordinateFrame)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15107,7 +14647,7 @@ func (m *SetPositionTargetGlobalInt) Pack(p *mavlink.Packet) error {
 func (m *SetPositionTargetGlobalInt) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 53 {
-		payload = append(payload, mavlink.ZeroTail[:53-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.LatInt = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -15190,11 +14730,6 @@ func (m *PositionTargetGlobalInt) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[44:], math.Float32bits(m.YawRate))
 	binary.LittleEndian.PutUint16(payload[48:], uint16(m.TypeMask))
 	payload[50] = byte(m.CoordinateFrame)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15204,7 +14739,7 @@ func (m *PositionTargetGlobalInt) Pack(p *mavlink.Packet) error {
 func (m *PositionTargetGlobalInt) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 51 {
-		payload = append(payload, mavlink.ZeroTail[:51-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.LatInt = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -15264,11 +14799,6 @@ func (m *LocalPositionNedSystemGlobalOffset) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.Roll))
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.Pitch))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.Yaw))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15278,7 +14808,7 @@ func (m *LocalPositionNedSystemGlobalOffset) Pack(p *mavlink.Packet) error {
 func (m *LocalPositionNedSystemGlobalOffset) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 28 {
-		payload = append(payload, mavlink.ZeroTail[:28-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -15358,11 +14888,6 @@ func (m *HilState) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[50:], uint16(m.Xacc))
 	binary.LittleEndian.PutUint16(payload[52:], uint16(m.Yacc))
 	binary.LittleEndian.PutUint16(payload[54:], uint16(m.Zacc))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15372,7 +14897,7 @@ func (m *HilState) Pack(p *mavlink.Packet) error {
 func (m *HilState) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 56 {
-		payload = append(payload, mavlink.ZeroTail[:56-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Roll = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -15446,11 +14971,6 @@ func (m *HilControls) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[36:], math.Float32bits(m.Aux4))
 	payload[40] = byte(m.Mode)
 	payload[41] = byte(m.NavMode)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15460,7 +14980,7 @@ func (m *HilControls) Pack(p *mavlink.Packet) error {
 func (m *HilControls) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 42 {
-		payload = append(payload, mavlink.ZeroTail[:42-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.RollAilerons = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -15538,11 +15058,6 @@ func (m *HilRcInputsRaw) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[28:], uint16(m.Chan11Raw))
 	binary.LittleEndian.PutUint16(payload[30:], uint16(m.Chan12Raw))
 	payload[32] = byte(m.Rssi)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15552,7 +15067,7 @@ func (m *HilRcInputsRaw) Pack(p *mavlink.Packet) error {
 func (m *HilRcInputsRaw) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 33 {
-		payload = append(payload, mavlink.ZeroTail[:33-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Chan1Raw = uint16(binary.LittleEndian.Uint16(payload[8:]))
@@ -15605,11 +15120,6 @@ func (m *HilActuatorControls) Pack(p *mavlink.Packet) error {
 		binary.LittleEndian.PutUint32(payload[16+i*4:], math.Float32bits(v))
 	}
 	payload[80] = byte(m.Mode)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15619,7 +15129,7 @@ func (m *HilActuatorControls) Pack(p *mavlink.Packet) error {
 func (m *HilActuatorControls) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 81 {
-		payload = append(payload, mavlink.ZeroTail[:81-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Flags = uint64(binary.LittleEndian.Uint64(payload[8:]))
@@ -15674,11 +15184,6 @@ func (m *OpticalFlow) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[22:], uint16(m.FlowY))
 	payload[24] = byte(m.SensorID)
 	payload[25] = byte(m.Quality)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15688,7 +15193,7 @@ func (m *OpticalFlow) Pack(p *mavlink.Packet) error {
 func (m *OpticalFlow) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 26 {
-		payload = append(payload, mavlink.ZeroTail[:26-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.FlowCompMX = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -15742,11 +15247,6 @@ func (m *GlobalVisionPositionEstimate) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.Roll))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.Pitch))
 	binary.LittleEndian.PutUint32(payload[28:], math.Float32bits(m.Yaw))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15756,7 +15256,7 @@ func (m *GlobalVisionPositionEstimate) Pack(p *mavlink.Packet) error {
 func (m *GlobalVisionPositionEstimate) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 32 {
-		payload = append(payload, mavlink.ZeroTail[:32-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Usec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -15809,11 +15309,6 @@ func (m *VisionPositionEstimate) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.Roll))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.Pitch))
 	binary.LittleEndian.PutUint32(payload[28:], math.Float32bits(m.Yaw))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15823,7 +15318,7 @@ func (m *VisionPositionEstimate) Pack(p *mavlink.Packet) error {
 func (m *VisionPositionEstimate) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 32 {
-		payload = append(payload, mavlink.ZeroTail[:32-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Usec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -15867,11 +15362,6 @@ func (m *VisionSpeedEstimate) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.X))
 	binary.LittleEndian.PutUint32(payload[12:], math.Float32bits(m.Y))
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.Z))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15881,7 +15371,7 @@ func (m *VisionSpeedEstimate) Pack(p *mavlink.Packet) error {
 func (m *VisionSpeedEstimate) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 20 {
-		payload = append(payload, mavlink.ZeroTail[:20-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Usec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -15931,11 +15421,6 @@ func (m *ViconPositionEstimate) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.Roll))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.Pitch))
 	binary.LittleEndian.PutUint32(payload[28:], math.Float32bits(m.Yaw))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -15945,7 +15430,7 @@ func (m *ViconPositionEstimate) Pack(p *mavlink.Packet) error {
 func (m *ViconPositionEstimate) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 32 {
-		payload = append(payload, mavlink.ZeroTail[:32-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Usec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -16022,11 +15507,6 @@ func (m *HighresImu) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[52:], math.Float32bits(m.PressureAlt))
 	binary.LittleEndian.PutUint32(payload[56:], math.Float32bits(m.Temperature))
 	binary.LittleEndian.PutUint16(payload[60:], uint16(m.FieldsUpdated))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16036,7 +15516,7 @@ func (m *HighresImu) Pack(p *mavlink.Packet) error {
 func (m *HighresImu) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 62 {
-		payload = append(payload, mavlink.ZeroTail[:62-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Xacc = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -16112,11 +15592,6 @@ func (m *OpticalFlowRad) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[40:], uint16(m.Temperature))
 	payload[42] = byte(m.SensorID)
 	payload[43] = byte(m.Quality)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16126,7 +15601,7 @@ func (m *OpticalFlowRad) Pack(p *mavlink.Packet) error {
 func (m *OpticalFlowRad) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 44 {
-		payload = append(payload, mavlink.ZeroTail[:44-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.IntegrationTimeUs = uint32(binary.LittleEndian.Uint32(payload[8:]))
@@ -16208,11 +15683,6 @@ func (m *HilSensor) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[52:], math.Float32bits(m.PressureAlt))
 	binary.LittleEndian.PutUint32(payload[56:], math.Float32bits(m.Temperature))
 	binary.LittleEndian.PutUint32(payload[60:], uint32(m.FieldsUpdated))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16222,7 +15692,7 @@ func (m *HilSensor) Pack(p *mavlink.Packet) error {
 func (m *HilSensor) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 64 {
-		payload = append(payload, mavlink.ZeroTail[:64-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Xacc = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -16325,11 +15795,6 @@ func (m *SimState) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[72:], math.Float32bits(m.Vn))
 	binary.LittleEndian.PutUint32(payload[76:], math.Float32bits(m.Ve))
 	binary.LittleEndian.PutUint32(payload[80:], math.Float32bits(m.Vd))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16339,7 +15804,7 @@ func (m *SimState) Pack(p *mavlink.Packet) error {
 func (m *SimState) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 84 {
-		payload = append(payload, mavlink.ZeroTail[:84-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Q1 = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Q2 = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -16406,11 +15871,6 @@ func (m *RadioStatus) Pack(p *mavlink.Packet) error {
 	payload[6] = byte(m.Txbuf)
 	payload[7] = byte(m.Noise)
 	payload[8] = byte(m.Remnoise)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16420,7 +15880,7 @@ func (m *RadioStatus) Pack(p *mavlink.Packet) error {
 func (m *RadioStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 9 {
-		payload = append(payload, mavlink.ZeroTail[:9-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Rxerrors = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Fixed = uint16(binary.LittleEndian.Uint16(payload[2:]))
@@ -16464,11 +15924,6 @@ func (m *FileTransferProtocol) Pack(p *mavlink.Packet) error {
 	payload[1] = byte(m.TargetSystem)
 	payload[2] = byte(m.TargetComponent)
 	copy(payload[3:], m.Payload[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16478,7 +15933,7 @@ func (m *FileTransferProtocol) Pack(p *mavlink.Packet) error {
 func (m *FileTransferProtocol) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 254 {
-		payload = append(payload, mavlink.ZeroTail[:254-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetNetwork = uint8(payload[0])
 	m.TargetSystem = uint8(payload[1])
@@ -16513,11 +15968,6 @@ func (m *Timesync) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 16)
 	binary.LittleEndian.PutUint64(payload[0:], uint64(m.Tc1))
 	binary.LittleEndian.PutUint64(payload[8:], uint64(m.Ts1))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16527,7 +15977,7 @@ func (m *Timesync) Pack(p *mavlink.Packet) error {
 func (m *Timesync) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 16 {
-		payload = append(payload, mavlink.ZeroTail[:16-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Tc1 = int64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Ts1 = int64(binary.LittleEndian.Uint64(payload[8:]))
@@ -16560,11 +16010,6 @@ func (m *CameraTrigger) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 12)
 	binary.LittleEndian.PutUint64(payload[0:], uint64(m.TimeUsec))
 	binary.LittleEndian.PutUint32(payload[8:], uint32(m.Seq))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16574,7 +16019,7 @@ func (m *CameraTrigger) Pack(p *mavlink.Packet) error {
 func (m *CameraTrigger) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 12 {
-		payload = append(payload, mavlink.ZeroTail[:12-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Seq = uint32(binary.LittleEndian.Uint32(payload[8:]))
@@ -16641,11 +16086,6 @@ func (m *HilGps) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[32:], uint16(m.Cog))
 	payload[34] = byte(m.FixType)
 	payload[35] = byte(m.SatellitesVisible)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16655,7 +16095,7 @@ func (m *HilGps) Pack(p *mavlink.Packet) error {
 func (m *HilGps) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 36 {
-		payload = append(payload, mavlink.ZeroTail[:36-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -16729,11 +16169,6 @@ func (m *HilOpticalFlow) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[40:], uint16(m.Temperature))
 	payload[42] = byte(m.SensorID)
 	payload[43] = byte(m.Quality)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16743,7 +16178,7 @@ func (m *HilOpticalFlow) Pack(p *mavlink.Packet) error {
 func (m *HilOpticalFlow) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 44 {
-		payload = append(payload, mavlink.ZeroTail[:44-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.IntegrationTimeUs = uint32(binary.LittleEndian.Uint32(payload[8:]))
@@ -16830,11 +16265,6 @@ func (m *HilStateQuaternion) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[58:], uint16(m.Xacc))
 	binary.LittleEndian.PutUint16(payload[60:], uint16(m.Yacc))
 	binary.LittleEndian.PutUint16(payload[62:], uint16(m.Zacc))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16844,7 +16274,7 @@ func (m *HilStateQuaternion) Pack(p *mavlink.Packet) error {
 func (m *HilStateQuaternion) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 64 {
-		payload = append(payload, mavlink.ZeroTail[:64-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.AttitudeQuaternion); i++ {
@@ -16917,11 +16347,6 @@ func (m *ScaledImu2) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[16:], uint16(m.Xmag))
 	binary.LittleEndian.PutUint16(payload[18:], uint16(m.Ymag))
 	binary.LittleEndian.PutUint16(payload[20:], uint16(m.Zmag))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16931,7 +16356,7 @@ func (m *ScaledImu2) Pack(p *mavlink.Packet) error {
 func (m *ScaledImu2) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 22 {
-		payload = append(payload, mavlink.ZeroTail[:22-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Xacc = int16(binary.LittleEndian.Uint16(payload[4:]))
@@ -16978,11 +16403,6 @@ func (m *LogRequestList) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[2:], uint16(m.End))
 	payload[4] = byte(m.TargetSystem)
 	payload[5] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -16992,7 +16412,7 @@ func (m *LogRequestList) Pack(p *mavlink.Packet) error {
 func (m *LogRequestList) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Start = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.End = uint16(binary.LittleEndian.Uint16(payload[2:]))
@@ -17036,11 +16456,6 @@ func (m *LogEntry) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[8:], uint16(m.ID))
 	binary.LittleEndian.PutUint16(payload[10:], uint16(m.NumLogs))
 	binary.LittleEndian.PutUint16(payload[12:], uint16(m.LastLogNum))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17050,7 +16465,7 @@ func (m *LogEntry) Pack(p *mavlink.Packet) error {
 func (m *LogEntry) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 14 {
-		payload = append(payload, mavlink.ZeroTail[:14-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUtc = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Size = uint32(binary.LittleEndian.Uint32(payload[4:]))
@@ -17095,11 +16510,6 @@ func (m *LogRequestData) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[8:], uint16(m.ID))
 	payload[10] = byte(m.TargetSystem)
 	payload[11] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17109,7 +16519,7 @@ func (m *LogRequestData) Pack(p *mavlink.Packet) error {
 func (m *LogRequestData) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 12 {
-		payload = append(payload, mavlink.ZeroTail[:12-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Ofs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Count = uint32(binary.LittleEndian.Uint32(payload[4:]))
@@ -17151,11 +16561,6 @@ func (m *LogData) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[4:], uint16(m.ID))
 	payload[6] = byte(m.Count)
 	copy(payload[7:], m.Data[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17165,7 +16570,7 @@ func (m *LogData) Pack(p *mavlink.Packet) error {
 func (m *LogData) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 97 {
-		payload = append(payload, mavlink.ZeroTail[:97-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Ofs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.ID = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -17200,11 +16605,6 @@ func (m *LogErase) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17214,7 +16614,7 @@ func (m *LogErase) Pack(p *mavlink.Packet) error {
 func (m *LogErase) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -17247,11 +16647,6 @@ func (m *LogRequestEnd) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17261,7 +16656,7 @@ func (m *LogRequestEnd) Pack(p *mavlink.Packet) error {
 func (m *LogRequestEnd) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -17300,11 +16695,6 @@ func (m *GpsInjectData) Pack(p *mavlink.Packet) error {
 	payload[1] = byte(m.TargetComponent)
 	payload[2] = byte(m.Len)
 	copy(payload[3:], m.Data[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17314,7 +16704,7 @@ func (m *GpsInjectData) Pack(p *mavlink.Packet) error {
 func (m *GpsInjectData) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 113 {
-		payload = append(payload, mavlink.ZeroTail[:113-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TargetSystem = uint8(payload[0])
 	m.TargetComponent = uint8(payload[1])
@@ -17379,11 +16769,6 @@ func (m *Gps2Raw) Pack(p *mavlink.Packet) error {
 	payload[32] = byte(m.FixType)
 	payload[33] = byte(m.SatellitesVisible)
 	payload[34] = byte(m.DgpsNumch)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17393,7 +16778,7 @@ func (m *Gps2Raw) Pack(p *mavlink.Packet) error {
 func (m *Gps2Raw) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 35 {
-		payload = append(payload, mavlink.ZeroTail[:35-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -17439,11 +16824,6 @@ func (m *PowerStatus) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Vcc))
 	binary.LittleEndian.PutUint16(payload[2:], uint16(m.Vservo))
 	binary.LittleEndian.PutUint16(payload[4:], uint16(m.Flags))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17453,7 +16833,7 @@ func (m *PowerStatus) Pack(p *mavlink.Packet) error {
 func (m *PowerStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Vcc = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Vservo = uint16(binary.LittleEndian.Uint16(payload[2:]))
@@ -17499,11 +16879,6 @@ func (m *SerialControl) Pack(p *mavlink.Packet) error {
 	payload[7] = byte(m.Flags)
 	payload[8] = byte(m.Count)
 	copy(payload[9:], m.Data[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17513,7 +16888,7 @@ func (m *SerialControl) Pack(p *mavlink.Packet) error {
 func (m *SerialControl) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 79 {
-		payload = append(payload, mavlink.ZeroTail[:79-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Baudrate = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Timeout = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -17583,11 +16958,6 @@ func (m *GpsRtk) Pack(p *mavlink.Packet) error {
 	payload[32] = byte(m.RtkRate)
 	payload[33] = byte(m.Nsats)
 	payload[34] = byte(m.BaselineCoordsType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17597,7 +16967,7 @@ func (m *GpsRtk) Pack(p *mavlink.Packet) error {
 func (m *GpsRtk) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 35 {
-		payload = append(payload, mavlink.ZeroTail[:35-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeLastBaselineMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Tow = uint32(binary.LittleEndian.Uint32(payload[4:]))
@@ -17674,11 +17044,6 @@ func (m *Gps2Rtk) Pack(p *mavlink.Packet) error {
 	payload[32] = byte(m.RtkRate)
 	payload[33] = byte(m.Nsats)
 	payload[34] = byte(m.BaselineCoordsType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17688,7 +17053,7 @@ func (m *Gps2Rtk) Pack(p *mavlink.Packet) error {
 func (m *Gps2Rtk) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 35 {
-		payload = append(payload, mavlink.ZeroTail[:35-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeLastBaselineMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Tow = uint32(binary.LittleEndian.Uint32(payload[4:]))
@@ -17756,11 +17121,6 @@ func (m *ScaledImu3) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[16:], uint16(m.Xmag))
 	binary.LittleEndian.PutUint16(payload[18:], uint16(m.Ymag))
 	binary.LittleEndian.PutUint16(payload[20:], uint16(m.Zmag))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17770,7 +17130,7 @@ func (m *ScaledImu3) Pack(p *mavlink.Packet) error {
 func (m *ScaledImu3) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 22 {
-		payload = append(payload, mavlink.ZeroTail[:22-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Xacc = int16(binary.LittleEndian.Uint16(payload[4:]))
@@ -17826,11 +17186,6 @@ func (m *DataTransmissionHandshake) Pack(p *mavlink.Packet) error {
 	payload[10] = byte(m.Type)
 	payload[11] = byte(m.Payload)
 	payload[12] = byte(m.JpgQuality)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17840,7 +17195,7 @@ func (m *DataTransmissionHandshake) Pack(p *mavlink.Packet) error {
 func (m *DataTransmissionHandshake) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 13 {
-		payload = append(payload, mavlink.ZeroTail[:13-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Size = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Width = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -17878,11 +17233,6 @@ func (m *EncapsulatedData) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 255)
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Seqnr))
 	copy(payload[2:], m.Data[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17892,7 +17242,7 @@ func (m *EncapsulatedData) Pack(p *mavlink.Packet) error {
 func (m *EncapsulatedData) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 255 {
-		payload = append(payload, mavlink.ZeroTail[:255-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Seqnr = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	copy(m.Data[:], payload[2:255])
@@ -17943,11 +17293,6 @@ func (m *DistanceSensor) Pack(p *mavlink.Packet) error {
 	payload[11] = byte(m.ID)
 	payload[12] = byte(m.Orientation)
 	payload[13] = byte(m.Covariance)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -17957,7 +17302,7 @@ func (m *DistanceSensor) Pack(p *mavlink.Packet) error {
 func (m *DistanceSensor) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 14 {
-		payload = append(payload, mavlink.ZeroTail[:14-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.MinDistance = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -18002,11 +17347,6 @@ func (m *TerrainRequest) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[8:], uint32(m.Lat))
 	binary.LittleEndian.PutUint32(payload[12:], uint32(m.Lon))
 	binary.LittleEndian.PutUint16(payload[16:], uint16(m.GridSpacing))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18016,7 +17356,7 @@ func (m *TerrainRequest) Pack(p *mavlink.Packet) error {
 func (m *TerrainRequest) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 18 {
-		payload = append(payload, mavlink.ZeroTail[:18-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Mask = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[8:]))
@@ -18062,11 +17402,6 @@ func (m *TerrainData) Pack(p *mavlink.Packet) error {
 		binary.LittleEndian.PutUint16(payload[10+i*2:], uint16(v))
 	}
 	payload[42] = byte(m.Gridbit)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18076,7 +17411,7 @@ func (m *TerrainData) Pack(p *mavlink.Packet) error {
 func (m *TerrainData) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 43 {
-		payload = append(payload, mavlink.ZeroTail[:43-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -18114,11 +17449,6 @@ func (m *TerrainCheck) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 8)
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.Lat))
 	binary.LittleEndian.PutUint32(payload[4:], uint32(m.Lon))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18128,7 +17458,7 @@ func (m *TerrainCheck) Pack(p *mavlink.Packet) error {
 func (m *TerrainCheck) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 8 {
-		payload = append(payload, mavlink.ZeroTail[:8-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -18176,11 +17506,6 @@ func (m *TerrainReport) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[16:], uint16(m.Spacing))
 	binary.LittleEndian.PutUint16(payload[18:], uint16(m.Pending))
 	binary.LittleEndian.PutUint16(payload[20:], uint16(m.Loaded))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18190,7 +17515,7 @@ func (m *TerrainReport) Pack(p *mavlink.Packet) error {
 func (m *TerrainReport) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 22 {
-		payload = append(payload, mavlink.ZeroTail[:22-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lon = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -18234,11 +17559,6 @@ func (m *ScaledPressure2) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(m.PressAbs))
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.PressDiff))
 	binary.LittleEndian.PutUint16(payload[12:], uint16(m.Temperature))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18248,7 +17568,7 @@ func (m *ScaledPressure2) Pack(p *mavlink.Packet) error {
 func (m *ScaledPressure2) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 14 {
-		payload = append(payload, mavlink.ZeroTail[:14-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.PressAbs = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -18294,11 +17614,6 @@ func (m *AttPosMocap) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.X))
 	binary.LittleEndian.PutUint32(payload[28:], math.Float32bits(m.Y))
 	binary.LittleEndian.PutUint32(payload[32:], math.Float32bits(m.Z))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18308,7 +17623,7 @@ func (m *AttPosMocap) Pack(p *mavlink.Packet) error {
 func (m *AttPosMocap) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 36 {
-		payload = append(payload, mavlink.ZeroTail[:36-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.Q); i++ {
@@ -18357,11 +17672,6 @@ func (m *SetActuatorControlTarget) Pack(p *mavlink.Packet) error {
 	payload[40] = byte(m.GroupMlx)
 	payload[41] = byte(m.TargetSystem)
 	payload[42] = byte(m.TargetComponent)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18371,7 +17681,7 @@ func (m *SetActuatorControlTarget) Pack(p *mavlink.Packet) error {
 func (m *SetActuatorControlTarget) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 43 {
-		payload = append(payload, mavlink.ZeroTail[:43-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.Controls); i++ {
@@ -18414,11 +17724,6 @@ func (m *ActuatorControlTarget) Pack(p *mavlink.Packet) error {
 		binary.LittleEndian.PutUint32(payload[8+i*4:], math.Float32bits(v))
 	}
 	payload[40] = byte(m.GroupMlx)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18428,7 +17733,7 @@ func (m *ActuatorControlTarget) Pack(p *mavlink.Packet) error {
 func (m *ActuatorControlTarget) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 41 {
-		payload = append(payload, mavlink.ZeroTail[:41-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	for i := 0; i < len(m.Controls); i++ {
@@ -18479,11 +17784,6 @@ func (m *Altitude) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[20:], math.Float32bits(m.AltitudeRelative))
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.AltitudeTerrain))
 	binary.LittleEndian.PutUint32(payload[28:], math.Float32bits(m.BottomClearance))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18493,7 +17793,7 @@ func (m *Altitude) Pack(p *mavlink.Packet) error {
 func (m *Altitude) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 32 {
-		payload = append(payload, mavlink.ZeroTail[:32-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.AltitudeMonotonic = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -18540,11 +17840,6 @@ func (m *ResourceRequest) Pack(p *mavlink.Packet) error {
 	copy(payload[2:], m.URI[:])
 	payload[122] = byte(m.TransferType)
 	copy(payload[123:], m.Storage[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18554,7 +17849,7 @@ func (m *ResourceRequest) Pack(p *mavlink.Packet) error {
 func (m *ResourceRequest) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 243 {
-		payload = append(payload, mavlink.ZeroTail[:243-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.RequestID = uint8(payload[0])
 	m.URIType = uint8(payload[1])
@@ -18596,11 +17891,6 @@ func (m *ScaledPressure3) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(m.PressAbs))
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.PressDiff))
 	binary.LittleEndian.PutUint16(payload[12:], uint16(m.Temperature))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18610,7 +17900,7 @@ func (m *ScaledPressure3) Pack(p *mavlink.Packet) error {
 func (m *ScaledPressure3) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 14 {
-		payload = append(payload, mavlink.ZeroTail[:14-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.PressAbs = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -18682,11 +17972,6 @@ func (m *FollowTarget) Pack(p *mavlink.Packet) error {
 		binary.LittleEndian.PutUint32(payload[80+i*4:], math.Float32bits(v))
 	}
 	payload[92] = byte(m.EstCapabilities)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18696,7 +17981,7 @@ func (m *FollowTarget) Pack(p *mavlink.Packet) error {
 func (m *FollowTarget) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 93 {
-		payload = append(payload, mavlink.ZeroTail[:93-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Timestamp = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.CustomState = uint64(binary.LittleEndian.Uint64(payload[8:]))
@@ -18799,11 +18084,6 @@ func (m *ControlSystemState) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[88:], math.Float32bits(m.RollRate))
 	binary.LittleEndian.PutUint32(payload[92:], math.Float32bits(m.PitchRate))
 	binary.LittleEndian.PutUint32(payload[96:], math.Float32bits(m.YawRate))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18813,7 +18093,7 @@ func (m *ControlSystemState) Pack(p *mavlink.Packet) error {
 func (m *ControlSystemState) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 100 {
-		payload = append(payload, mavlink.ZeroTail[:100-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.XAcc = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -18890,11 +18170,6 @@ func (m *BatteryStatus) Pack(p *mavlink.Packet) error {
 	payload[33] = byte(m.BatteryFunction)
 	payload[34] = byte(m.Type)
 	payload[35] = byte(m.BatteryRemaining)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18904,7 +18179,7 @@ func (m *BatteryStatus) Pack(p *mavlink.Packet) error {
 func (m *BatteryStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 36 {
-		payload = append(payload, mavlink.ZeroTail[:36-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.CurrentConsumed = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.EnergyConsumed = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -18973,11 +18248,6 @@ func (m *AutopilotVersion) Pack(p *mavlink.Packet) error {
 	copy(payload[36:], m.FlightCustomVersion[:])
 	copy(payload[44:], m.MiddlewareCustomVersion[:])
 	copy(payload[52:], m.OsCustomVersion[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -18987,7 +18257,7 @@ func (m *AutopilotVersion) Pack(p *mavlink.Packet) error {
 func (m *AutopilotVersion) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 60 {
-		payload = append(payload, mavlink.ZeroTail[:60-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Capabilities = MAV_PROTOCOL_CAPABILITY(binary.LittleEndian.Uint64(payload[0:]))
 	m.UID = uint64(binary.LittleEndian.Uint64(payload[8:]))
@@ -19047,11 +18317,6 @@ func (m *LandingTarget) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[24:], math.Float32bits(m.SizeY))
 	payload[28] = byte(m.TargetNum)
 	payload[29] = byte(m.Frame)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19061,7 +18326,7 @@ func (m *LandingTarget) Pack(p *mavlink.Packet) error {
 func (m *LandingTarget) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 30 {
-		payload = append(payload, mavlink.ZeroTail[:30-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.AngleX = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -19106,11 +18371,6 @@ func (m *FenceStatus) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint16(payload[4:], uint16(m.BreachCount))
 	payload[6] = byte(m.BreachStatus)
 	payload[7] = byte(m.BreachType)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19120,7 +18380,7 @@ func (m *FenceStatus) Pack(p *mavlink.Packet) error {
 func (m *FenceStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 8 {
-		payload = append(payload, mavlink.ZeroTail[:8-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.BreachTime = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.BreachCount = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -19191,11 +18451,6 @@ func (m *MagCalReport) Pack(p *mavlink.Packet) error {
 	payload[41] = byte(m.CalMask)
 	payload[42] = byte(m.CalStatus)
 	payload[43] = byte(m.Autosaved)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19205,7 +18460,7 @@ func (m *MagCalReport) Pack(p *mavlink.Packet) error {
 func (m *MagCalReport) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 44 {
-		payload = append(payload, mavlink.ZeroTail[:44-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Fitness = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.OfsX = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -19295,11 +18550,6 @@ func (m *EfiStatus) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[56:], math.Float32bits(m.ThrottleOut))
 	binary.LittleEndian.PutUint32(payload[60:], math.Float32bits(m.PtCompensation))
 	payload[64] = byte(m.Health)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19309,7 +18559,7 @@ func (m *EfiStatus) Pack(p *mavlink.Packet) error {
 func (m *EfiStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 65 {
-		payload = append(payload, mavlink.ZeroTail[:65-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.EcuIndex = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.Rpm = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -19381,11 +18631,6 @@ func (m *EstimatorStatus) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[32:], math.Float32bits(m.PosHorizAccuracy))
 	binary.LittleEndian.PutUint32(payload[36:], math.Float32bits(m.PosVertAccuracy))
 	binary.LittleEndian.PutUint16(payload[40:], uint16(m.Flags))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19395,7 +18640,7 @@ func (m *EstimatorStatus) Pack(p *mavlink.Packet) error {
 func (m *EstimatorStatus) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 42 {
-		payload = append(payload, mavlink.ZeroTail[:42-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.VelRatio = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -19457,11 +18702,6 @@ func (m *WindCov) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[28:], math.Float32bits(m.WindAlt))
 	binary.LittleEndian.PutUint32(payload[32:], math.Float32bits(m.HorizAccuracy))
 	binary.LittleEndian.PutUint32(payload[36:], math.Float32bits(m.VertAccuracy))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19471,7 +18711,7 @@ func (m *WindCov) Pack(p *mavlink.Packet) error {
 func (m *WindCov) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 40 {
-		payload = append(payload, mavlink.ZeroTail[:40-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.WindX = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -19559,11 +18799,6 @@ func (m *GpsInput) Pack(p *mavlink.Packet) error {
 	payload[60] = byte(m.GpsID)
 	payload[61] = byte(m.FixType)
 	payload[62] = byte(m.SatellitesVisible)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19573,7 +18808,7 @@ func (m *GpsInput) Pack(p *mavlink.Packet) error {
 func (m *GpsInput) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 63 {
-		payload = append(payload, mavlink.ZeroTail[:63-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.TimeWeekMs = uint32(binary.LittleEndian.Uint32(payload[8:]))
@@ -19625,11 +18860,6 @@ func (m *GpsRtcmData) Pack(p *mavlink.Packet) error {
 	payload[0] = byte(m.Flags)
 	payload[1] = byte(m.Len)
 	copy(payload[2:], m.Data[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19639,7 +18869,7 @@ func (m *GpsRtcmData) Pack(p *mavlink.Packet) error {
 func (m *GpsRtcmData) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 182 {
-		payload = append(payload, mavlink.ZeroTail[:182-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Flags = uint8(payload[0])
 	m.Len = uint8(payload[1])
@@ -19739,11 +18969,6 @@ func (m *HighLatency) Pack(p *mavlink.Packet) error {
 	payload[37] = byte(m.TemperatureAir)
 	payload[38] = byte(m.Failsafe)
 	payload[39] = byte(m.WpNum)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19753,7 +18978,7 @@ func (m *HighLatency) Pack(p *mavlink.Packet) error {
 func (m *HighLatency) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 40 {
-		payload = append(payload, mavlink.ZeroTail[:40-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.CustomMode = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -19883,11 +19108,6 @@ func (m *HighLatency2) Pack(p *mavlink.Packet) error {
 	payload[39] = byte(m.Custom0)
 	payload[40] = byte(m.Custom1)
 	payload[41] = byte(m.Custom2)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19897,7 +19117,7 @@ func (m *HighLatency2) Pack(p *mavlink.Packet) error {
 func (m *HighLatency2) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 42 {
-		payload = append(payload, mavlink.ZeroTail[:42-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Timestamp = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -19970,11 +19190,6 @@ func (m *Vibration) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[20:], uint32(m.Clipping0))
 	binary.LittleEndian.PutUint32(payload[24:], uint32(m.Clipping1))
 	binary.LittleEndian.PutUint32(payload[28:], uint32(m.Clipping2))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -19984,7 +19199,7 @@ func (m *Vibration) Pack(p *mavlink.Packet) error {
 func (m *Vibration) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 32 {
-		payload = append(payload, mavlink.ZeroTail[:32-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.VibrationX = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -20048,11 +19263,6 @@ func (m *HomePosition) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[40:], math.Float32bits(m.ApproachX))
 	binary.LittleEndian.PutUint32(payload[44:], math.Float32bits(m.ApproachY))
 	binary.LittleEndian.PutUint32(payload[48:], math.Float32bits(m.ApproachZ))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20062,7 +19272,7 @@ func (m *HomePosition) Pack(p *mavlink.Packet) error {
 func (m *HomePosition) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 52 {
-		payload = append(payload, mavlink.ZeroTail[:52-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -20134,11 +19344,6 @@ func (m *SetHomePosition) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[44:], math.Float32bits(m.ApproachY))
 	binary.LittleEndian.PutUint32(payload[48:], math.Float32bits(m.ApproachZ))
 	payload[52] = byte(m.TargetSystem)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20148,7 +19353,7 @@ func (m *SetHomePosition) Pack(p *mavlink.Packet) error {
 func (m *SetHomePosition) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 53 {
-		payload = append(payload, mavlink.ZeroTail[:53-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Latitude = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Longitude = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -20192,11 +19397,6 @@ func (m *MessageInterval) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 6)
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.IntervalUs))
 	binary.LittleEndian.PutUint16(payload[4:], uint16(m.MessageID))
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20206,7 +19406,7 @@ func (m *MessageInterval) Pack(p *mavlink.Packet) error {
 func (m *MessageInterval) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 6 {
-		payload = append(payload, mavlink.ZeroTail[:6-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.IntervalUs = int32(binary.LittleEndian.Uint32(payload[0:]))
 	m.MessageID = uint16(binary.LittleEndian.Uint16(payload[4:]))
@@ -20239,11 +19439,6 @@ func (m *ExtendedSysState) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 2)
 	payload[0] = byte(m.VtolState)
 	payload[1] = byte(m.LandedState)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20253,7 +19448,7 @@ func (m *ExtendedSysState) Pack(p *mavlink.Packet) error {
 func (m *ExtendedSysState) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 2 {
-		payload = append(payload, mavlink.ZeroTail[:2-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.VtolState = MAV_VTOL_STATE(payload[0])
 	m.LandedState = MAV_LANDED_STATE(payload[1])
@@ -20319,11 +19514,6 @@ func (m *AdsbVehicle) Pack(p *mavlink.Packet) error {
 	copy(payload[27:], m.Callsign[:])
 	payload[36] = byte(m.EmitterType)
 	payload[37] = byte(m.Tslc)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20333,7 +19523,7 @@ func (m *AdsbVehicle) Pack(p *mavlink.Packet) error {
 func (m *AdsbVehicle) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 38 {
-		payload = append(payload, mavlink.ZeroTail[:38-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.IcaoAddress = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Lat = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -20392,11 +19582,6 @@ func (m *Collision) Pack(p *mavlink.Packet) error {
 	payload[16] = byte(m.Src)
 	payload[17] = byte(m.Action)
 	payload[18] = byte(m.ThreatLevel)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20406,7 +19591,7 @@ func (m *Collision) Pack(p *mavlink.Packet) error {
 func (m *Collision) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 19 {
-		payload = append(payload, mavlink.ZeroTail[:19-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.ID = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.TimeToMinimumDelta = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -20453,11 +19638,6 @@ func (m *V2Extension) Pack(p *mavlink.Packet) error {
 	payload[3] = byte(m.TargetSystem)
 	payload[4] = byte(m.TargetComponent)
 	copy(payload[5:], m.Payload[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20467,7 +19647,7 @@ func (m *V2Extension) Pack(p *mavlink.Packet) error {
 func (m *V2Extension) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 254 {
-		payload = append(payload, mavlink.ZeroTail[:254-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.MessageType = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetNetwork = uint8(payload[2])
@@ -20511,11 +19691,6 @@ func (m *MemoryVect) Pack(p *mavlink.Packet) error {
 	for i, v := range m.Value {
 		payload[4+i*1] = byte(v)
 	}
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20525,7 +19700,7 @@ func (m *MemoryVect) Pack(p *mavlink.Packet) error {
 func (m *MemoryVect) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 36 {
-		payload = append(payload, mavlink.ZeroTail[:36-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Address = uint16(binary.LittleEndian.Uint16(payload[0:]))
 	m.Ver = uint8(payload[2])
@@ -20571,11 +19746,6 @@ func (m *DebugVect) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[12:], math.Float32bits(m.Y))
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.Z))
 	copy(payload[20:], m.Name[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20585,7 +19755,7 @@ func (m *DebugVect) Pack(p *mavlink.Packet) error {
 func (m *DebugVect) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 30 {
-		payload = append(payload, mavlink.ZeroTail[:30-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeUsec = uint64(binary.LittleEndian.Uint64(payload[0:]))
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
@@ -20624,11 +19794,6 @@ func (m *NamedValueFloat) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.TimeBootMs))
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(m.Value))
 	copy(payload[8:], m.Name[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20638,7 +19803,7 @@ func (m *NamedValueFloat) Pack(p *mavlink.Packet) error {
 func (m *NamedValueFloat) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 18 {
-		payload = append(payload, mavlink.ZeroTail[:18-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -20675,11 +19840,6 @@ func (m *NamedValueInt) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.TimeBootMs))
 	binary.LittleEndian.PutUint32(payload[4:], uint32(m.Value))
 	copy(payload[8:], m.Name[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20689,7 +19849,7 @@ func (m *NamedValueInt) Pack(p *mavlink.Packet) error {
 func (m *NamedValueInt) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 18 {
-		payload = append(payload, mavlink.ZeroTail[:18-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = int32(binary.LittleEndian.Uint32(payload[4:]))
@@ -20723,11 +19883,6 @@ func (m *Statustext) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, 51)
 	payload[0] = byte(m.Severity)
 	copy(payload[1:], m.Text[:])
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20737,7 +19892,7 @@ func (m *Statustext) Pack(p *mavlink.Packet) error {
 func (m *Statustext) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 51 {
-		payload = append(payload, mavlink.ZeroTail[:51-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.Severity = MAV_SEVERITY(payload[0])
 	copy(m.Text[:], payload[1:51])
@@ -20773,11 +19928,6 @@ func (m *Debug) Pack(p *mavlink.Packet) error {
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.TimeBootMs))
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(m.Value))
 	payload[8] = byte(m.Ind)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20787,7 +19937,7 @@ func (m *Debug) Pack(p *mavlink.Packet) error {
 func (m *Debug) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 9 {
-		payload = append(payload, mavlink.ZeroTail[:9-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
@@ -20833,11 +19983,6 @@ func (m *Heartbeat) Pack(p *mavlink.Packet) error {
 	payload[6] = byte(m.BaseMode)
 	payload[7] = byte(m.SystemStatus)
 	payload[8] = byte(m.MavlinkVersion)
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -20847,7 +19992,7 @@ func (m *Heartbeat) Pack(p *mavlink.Packet) error {
 func (m *Heartbeat) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 9 {
-		payload = append(payload, mavlink.ZeroTail[:9-len(p.Payload)]...)
+		return mavlink.ErrPayloadTooSmall
 	}
 	m.CustomMode = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Type = MAV_TYPE(payload[4])
@@ -21034,857 +20179,857 @@ const (
 )
 
 func init() {
-	mavlink.Register(MSG_ID_FLEXIFUNCTION_SET, "MSG_ID_FLEXIFUNCTION_SET", 181, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FLEXIFUNCTION_SET, "MSG_ID_FLEXIFUNCTION_SET", 2, 181, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FlexifunctionSet)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FLEXIFUNCTION_READ_REQ, "MSG_ID_FLEXIFUNCTION_READ_REQ", 26, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FLEXIFUNCTION_READ_REQ, "MSG_ID_FLEXIFUNCTION_READ_REQ", 6, 26, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FlexifunctionReadReq)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION, "MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION", 101, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION, "MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION", 58, 101, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FlexifunctionBufferFunction)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK, "MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK", 109, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK, "MSG_ID_FLEXIFUNCTION_BUFFER_FUNCTION_ACK", 6, 109, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FlexifunctionBufferFunctionAck)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FLEXIFUNCTION_DIRECTORY, "MSG_ID_FLEXIFUNCTION_DIRECTORY", 12, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FLEXIFUNCTION_DIRECTORY, "MSG_ID_FLEXIFUNCTION_DIRECTORY", 53, 12, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FlexifunctionDirectory)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK, "MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK", 218, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK, "MSG_ID_FLEXIFUNCTION_DIRECTORY_ACK", 7, 218, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FlexifunctionDirectoryAck)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FLEXIFUNCTION_COMMAND, "MSG_ID_FLEXIFUNCTION_COMMAND", 133, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FLEXIFUNCTION_COMMAND, "MSG_ID_FLEXIFUNCTION_COMMAND", 3, 133, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FlexifunctionCommand)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FLEXIFUNCTION_COMMAND_ACK, "MSG_ID_FLEXIFUNCTION_COMMAND_ACK", 208, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FLEXIFUNCTION_COMMAND_ACK, "MSG_ID_FLEXIFUNCTION_COMMAND_ACK", 4, 208, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FlexifunctionCommandAck)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F2_A, "MSG_ID_SERIAL_UDB_EXTRA_F2_A", 103, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F2_A, "MSG_ID_SERIAL_UDB_EXTRA_F2_A", 61, 103, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF2A)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F2_B, "MSG_ID_SERIAL_UDB_EXTRA_F2_B", 245, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F2_B, "MSG_ID_SERIAL_UDB_EXTRA_F2_B", 108, 245, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF2B)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F4, "MSG_ID_SERIAL_UDB_EXTRA_F4", 191, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F4, "MSG_ID_SERIAL_UDB_EXTRA_F4", 10, 191, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF4)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F5, "MSG_ID_SERIAL_UDB_EXTRA_F5", 54, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F5, "MSG_ID_SERIAL_UDB_EXTRA_F5", 16, 54, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF5)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F6, "MSG_ID_SERIAL_UDB_EXTRA_F6", 54, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F6, "MSG_ID_SERIAL_UDB_EXTRA_F6", 20, 54, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF6)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F7, "MSG_ID_SERIAL_UDB_EXTRA_F7", 171, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F7, "MSG_ID_SERIAL_UDB_EXTRA_F7", 24, 171, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF7)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F8, "MSG_ID_SERIAL_UDB_EXTRA_F8", 142, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F8, "MSG_ID_SERIAL_UDB_EXTRA_F8", 28, 142, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF8)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F13, "MSG_ID_SERIAL_UDB_EXTRA_F13", 249, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F13, "MSG_ID_SERIAL_UDB_EXTRA_F13", 14, 249, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF13)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F14, "MSG_ID_SERIAL_UDB_EXTRA_F14", 123, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F14, "MSG_ID_SERIAL_UDB_EXTRA_F14", 17, 123, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF14)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F15, "MSG_ID_SERIAL_UDB_EXTRA_F15", 7, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F15, "MSG_ID_SERIAL_UDB_EXTRA_F15", 60, 7, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF15)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F16, "MSG_ID_SERIAL_UDB_EXTRA_F16", 222, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F16, "MSG_ID_SERIAL_UDB_EXTRA_F16", 110, 222, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF16)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ALTITUDES, "MSG_ID_ALTITUDES", 55, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ALTITUDES, "MSG_ID_ALTITUDES", 28, 55, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Altitudes)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_AIRSPEEDS, "MSG_ID_AIRSPEEDS", 154, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_AIRSPEEDS, "MSG_ID_AIRSPEEDS", 16, 154, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Airspeeds)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F17, "MSG_ID_SERIAL_UDB_EXTRA_F17", 175, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F17, "MSG_ID_SERIAL_UDB_EXTRA_F17", 12, 175, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF17)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F18, "MSG_ID_SERIAL_UDB_EXTRA_F18", 41, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F18, "MSG_ID_SERIAL_UDB_EXTRA_F18", 20, 41, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF18)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F19, "MSG_ID_SERIAL_UDB_EXTRA_F19", 87, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F19, "MSG_ID_SERIAL_UDB_EXTRA_F19", 8, 87, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF19)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F20, "MSG_ID_SERIAL_UDB_EXTRA_F20", 144, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F20, "MSG_ID_SERIAL_UDB_EXTRA_F20", 25, 144, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF20)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F21, "MSG_ID_SERIAL_UDB_EXTRA_F21", 134, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F21, "MSG_ID_SERIAL_UDB_EXTRA_F21", 12, 134, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF21)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F22, "MSG_ID_SERIAL_UDB_EXTRA_F22", 91, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_UDB_EXTRA_F22, "MSG_ID_SERIAL_UDB_EXTRA_F22", 12, 91, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialUdbExtraF22)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SYS_STATUS, "MSG_ID_SYS_STATUS", 124, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SYS_STATUS, "MSG_ID_SYS_STATUS", 31, 124, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SysStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SYSTEM_TIME, "MSG_ID_SYSTEM_TIME", 137, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SYSTEM_TIME, "MSG_ID_SYSTEM_TIME", 12, 137, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SystemTime)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_PING, "MSG_ID_PING", 237, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_PING, "MSG_ID_PING", 14, 237, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Ping)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_CHANGE_OPERATOR_CONTROL, "MSG_ID_CHANGE_OPERATOR_CONTROL", 217, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_CHANGE_OPERATOR_CONTROL, "MSG_ID_CHANGE_OPERATOR_CONTROL", 28, 217, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ChangeOperatorControl)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_CHANGE_OPERATOR_CONTROL_ACK, "MSG_ID_CHANGE_OPERATOR_CONTROL_ACK", 104, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_CHANGE_OPERATOR_CONTROL_ACK, "MSG_ID_CHANGE_OPERATOR_CONTROL_ACK", 3, 104, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ChangeOperatorControlAck)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_AUTH_KEY, "MSG_ID_AUTH_KEY", 119, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_AUTH_KEY, "MSG_ID_AUTH_KEY", 32, 119, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(AuthKey)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LINK_NODE_STATUS, "MSG_ID_LINK_NODE_STATUS", 117, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LINK_NODE_STATUS, "MSG_ID_LINK_NODE_STATUS", 36, 117, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LinkNodeStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SET_MODE, "MSG_ID_SET_MODE", 89, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SET_MODE, "MSG_ID_SET_MODE", 6, 89, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SetMode)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_PARAM_ACK_TRANSACTION, "MSG_ID_PARAM_ACK_TRANSACTION", 137, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_PARAM_ACK_TRANSACTION, "MSG_ID_PARAM_ACK_TRANSACTION", 24, 137, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ParamAckTransaction)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_PARAM_REQUEST_READ, "MSG_ID_PARAM_REQUEST_READ", 214, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_PARAM_REQUEST_READ, "MSG_ID_PARAM_REQUEST_READ", 20, 214, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ParamRequestRead)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_PARAM_REQUEST_LIST, "MSG_ID_PARAM_REQUEST_LIST", 159, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_PARAM_REQUEST_LIST, "MSG_ID_PARAM_REQUEST_LIST", 2, 159, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ParamRequestList)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_PARAM_VALUE, "MSG_ID_PARAM_VALUE", 220, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_PARAM_VALUE, "MSG_ID_PARAM_VALUE", 25, 220, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ParamValue)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_PARAM_SET, "MSG_ID_PARAM_SET", 168, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_PARAM_SET, "MSG_ID_PARAM_SET", 23, 168, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ParamSet)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS_RAW_INT, "MSG_ID_GPS_RAW_INT", 24, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS_RAW_INT, "MSG_ID_GPS_RAW_INT", 30, 24, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GpsRawInt)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS_STATUS, "MSG_ID_GPS_STATUS", 23, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS_STATUS, "MSG_ID_GPS_STATUS", 101, 23, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GpsStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SCALED_IMU, "MSG_ID_SCALED_IMU", 170, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SCALED_IMU, "MSG_ID_SCALED_IMU", 22, 170, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ScaledImu)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_RAW_IMU, "MSG_ID_RAW_IMU", 144, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_RAW_IMU, "MSG_ID_RAW_IMU", 26, 144, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(RawImu)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_RAW_PRESSURE, "MSG_ID_RAW_PRESSURE", 67, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_RAW_PRESSURE, "MSG_ID_RAW_PRESSURE", 16, 67, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(RawPressure)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SCALED_PRESSURE, "MSG_ID_SCALED_PRESSURE", 115, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SCALED_PRESSURE, "MSG_ID_SCALED_PRESSURE", 14, 115, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ScaledPressure)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ATTITUDE, "MSG_ID_ATTITUDE", 39, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ATTITUDE, "MSG_ID_ATTITUDE", 28, 39, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Attitude)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ATTITUDE_QUATERNION, "MSG_ID_ATTITUDE_QUATERNION", 246, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ATTITUDE_QUATERNION, "MSG_ID_ATTITUDE_QUATERNION", 32, 246, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(AttitudeQuaternion)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOCAL_POSITION_NED, "MSG_ID_LOCAL_POSITION_NED", 185, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOCAL_POSITION_NED, "MSG_ID_LOCAL_POSITION_NED", 28, 185, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LocalPositionNed)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GLOBAL_POSITION_INT, "MSG_ID_GLOBAL_POSITION_INT", 104, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GLOBAL_POSITION_INT, "MSG_ID_GLOBAL_POSITION_INT", 28, 104, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GlobalPositionInt)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_RC_CHANNELS_SCALED, "MSG_ID_RC_CHANNELS_SCALED", 237, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_RC_CHANNELS_SCALED, "MSG_ID_RC_CHANNELS_SCALED", 22, 237, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(RcChannelsScaled)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_RC_CHANNELS_RAW, "MSG_ID_RC_CHANNELS_RAW", 244, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_RC_CHANNELS_RAW, "MSG_ID_RC_CHANNELS_RAW", 22, 244, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(RcChannelsRaw)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERVO_OUTPUT_RAW, "MSG_ID_SERVO_OUTPUT_RAW", 222, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERVO_OUTPUT_RAW, "MSG_ID_SERVO_OUTPUT_RAW", 21, 222, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ServoOutputRaw)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_REQUEST_PARTIAL_LIST, "MSG_ID_MISSION_REQUEST_PARTIAL_LIST", 212, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_REQUEST_PARTIAL_LIST, "MSG_ID_MISSION_REQUEST_PARTIAL_LIST", 6, 212, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionRequestPartialList)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_WRITE_PARTIAL_LIST, "MSG_ID_MISSION_WRITE_PARTIAL_LIST", 9, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_WRITE_PARTIAL_LIST, "MSG_ID_MISSION_WRITE_PARTIAL_LIST", 6, 9, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionWritePartialList)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_ITEM, "MSG_ID_MISSION_ITEM", 254, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_ITEM, "MSG_ID_MISSION_ITEM", 37, 254, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionItem)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_REQUEST, "MSG_ID_MISSION_REQUEST", 230, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_REQUEST, "MSG_ID_MISSION_REQUEST", 4, 230, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionRequest)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_SET_CURRENT, "MSG_ID_MISSION_SET_CURRENT", 28, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_SET_CURRENT, "MSG_ID_MISSION_SET_CURRENT", 4, 28, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionSetCurrent)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_CURRENT, "MSG_ID_MISSION_CURRENT", 28, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_CURRENT, "MSG_ID_MISSION_CURRENT", 2, 28, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionCurrent)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_REQUEST_LIST, "MSG_ID_MISSION_REQUEST_LIST", 132, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_REQUEST_LIST, "MSG_ID_MISSION_REQUEST_LIST", 2, 132, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionRequestList)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_COUNT, "MSG_ID_MISSION_COUNT", 221, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_COUNT, "MSG_ID_MISSION_COUNT", 4, 221, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionCount)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_CLEAR_ALL, "MSG_ID_MISSION_CLEAR_ALL", 232, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_CLEAR_ALL, "MSG_ID_MISSION_CLEAR_ALL", 2, 232, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionClearAll)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_ITEM_REACHED, "MSG_ID_MISSION_ITEM_REACHED", 11, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_ITEM_REACHED, "MSG_ID_MISSION_ITEM_REACHED", 2, 11, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionItemReached)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_ACK, "MSG_ID_MISSION_ACK", 153, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_ACK, "MSG_ID_MISSION_ACK", 3, 153, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionAck)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SET_GPS_GLOBAL_ORIGIN, "MSG_ID_SET_GPS_GLOBAL_ORIGIN", 41, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SET_GPS_GLOBAL_ORIGIN, "MSG_ID_SET_GPS_GLOBAL_ORIGIN", 13, 41, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SetGpsGlobalOrigin)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS_GLOBAL_ORIGIN, "MSG_ID_GPS_GLOBAL_ORIGIN", 39, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS_GLOBAL_ORIGIN, "MSG_ID_GPS_GLOBAL_ORIGIN", 12, 39, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GpsGlobalOrigin)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_PARAM_MAP_RC, "MSG_ID_PARAM_MAP_RC", 78, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_PARAM_MAP_RC, "MSG_ID_PARAM_MAP_RC", 37, 78, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ParamMapRc)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_REQUEST_INT, "MSG_ID_MISSION_REQUEST_INT", 196, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_REQUEST_INT, "MSG_ID_MISSION_REQUEST_INT", 4, 196, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionRequestInt)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_CHANGED, "MSG_ID_MISSION_CHANGED", 132, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_CHANGED, "MSG_ID_MISSION_CHANGED", 7, 132, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionChanged)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SAFETY_SET_ALLOWED_AREA, "MSG_ID_SAFETY_SET_ALLOWED_AREA", 15, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SAFETY_SET_ALLOWED_AREA, "MSG_ID_SAFETY_SET_ALLOWED_AREA", 27, 15, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SafetySetAllowedArea)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SAFETY_ALLOWED_AREA, "MSG_ID_SAFETY_ALLOWED_AREA", 3, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SAFETY_ALLOWED_AREA, "MSG_ID_SAFETY_ALLOWED_AREA", 25, 3, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SafetyAllowedArea)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ATTITUDE_QUATERNION_COV, "MSG_ID_ATTITUDE_QUATERNION_COV", 167, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ATTITUDE_QUATERNION_COV, "MSG_ID_ATTITUDE_QUATERNION_COV", 72, 167, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(AttitudeQuaternionCov)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_NAV_CONTROLLER_OUTPUT, "MSG_ID_NAV_CONTROLLER_OUTPUT", 183, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_NAV_CONTROLLER_OUTPUT, "MSG_ID_NAV_CONTROLLER_OUTPUT", 26, 183, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(NavControllerOutput)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GLOBAL_POSITION_INT_COV, "MSG_ID_GLOBAL_POSITION_INT_COV", 119, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GLOBAL_POSITION_INT_COV, "MSG_ID_GLOBAL_POSITION_INT_COV", 181, 119, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GlobalPositionIntCov)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOCAL_POSITION_NED_COV, "MSG_ID_LOCAL_POSITION_NED_COV", 191, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOCAL_POSITION_NED_COV, "MSG_ID_LOCAL_POSITION_NED_COV", 225, 191, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LocalPositionNedCov)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_RC_CHANNELS, "MSG_ID_RC_CHANNELS", 118, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_RC_CHANNELS, "MSG_ID_RC_CHANNELS", 42, 118, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(RcChannels)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_REQUEST_DATA_STREAM, "MSG_ID_REQUEST_DATA_STREAM", 148, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_REQUEST_DATA_STREAM, "MSG_ID_REQUEST_DATA_STREAM", 6, 148, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(RequestDataStream)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_DATA_STREAM, "MSG_ID_DATA_STREAM", 21, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_DATA_STREAM, "MSG_ID_DATA_STREAM", 4, 21, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(DataStream)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MANUAL_CONTROL, "MSG_ID_MANUAL_CONTROL", 243, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MANUAL_CONTROL, "MSG_ID_MANUAL_CONTROL", 11, 243, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ManualControl)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_RC_CHANNELS_OVERRIDE, "MSG_ID_RC_CHANNELS_OVERRIDE", 124, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_RC_CHANNELS_OVERRIDE, "MSG_ID_RC_CHANNELS_OVERRIDE", 18, 124, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(RcChannelsOverride)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MISSION_ITEM_INT, "MSG_ID_MISSION_ITEM_INT", 38, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MISSION_ITEM_INT, "MSG_ID_MISSION_ITEM_INT", 37, 38, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MissionItemInt)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_VFR_HUD, "MSG_ID_VFR_HUD", 20, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_VFR_HUD, "MSG_ID_VFR_HUD", 20, 20, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(VfrHud)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_COMMAND_INT, "MSG_ID_COMMAND_INT", 158, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_COMMAND_INT, "MSG_ID_COMMAND_INT", 35, 158, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(CommandInt)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_COMMAND_LONG, "MSG_ID_COMMAND_LONG", 152, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_COMMAND_LONG, "MSG_ID_COMMAND_LONG", 33, 152, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(CommandLong)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_COMMAND_ACK, "MSG_ID_COMMAND_ACK", 143, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_COMMAND_ACK, "MSG_ID_COMMAND_ACK", 3, 143, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(CommandAck)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_COMMAND_CANCEL, "MSG_ID_COMMAND_CANCEL", 14, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_COMMAND_CANCEL, "MSG_ID_COMMAND_CANCEL", 4, 14, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(CommandCancel)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MANUAL_SETPOINT, "MSG_ID_MANUAL_SETPOINT", 106, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MANUAL_SETPOINT, "MSG_ID_MANUAL_SETPOINT", 22, 106, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ManualSetpoint)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SET_ATTITUDE_TARGET, "MSG_ID_SET_ATTITUDE_TARGET", 49, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SET_ATTITUDE_TARGET, "MSG_ID_SET_ATTITUDE_TARGET", 39, 49, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SetAttitudeTarget)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ATTITUDE_TARGET, "MSG_ID_ATTITUDE_TARGET", 22, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ATTITUDE_TARGET, "MSG_ID_ATTITUDE_TARGET", 37, 22, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(AttitudeTarget)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SET_POSITION_TARGET_LOCAL_NED, "MSG_ID_SET_POSITION_TARGET_LOCAL_NED", 143, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SET_POSITION_TARGET_LOCAL_NED, "MSG_ID_SET_POSITION_TARGET_LOCAL_NED", 53, 143, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SetPositionTargetLocalNed)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_POSITION_TARGET_LOCAL_NED, "MSG_ID_POSITION_TARGET_LOCAL_NED", 140, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_POSITION_TARGET_LOCAL_NED, "MSG_ID_POSITION_TARGET_LOCAL_NED", 51, 140, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(PositionTargetLocalNed)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SET_POSITION_TARGET_GLOBAL_INT, "MSG_ID_SET_POSITION_TARGET_GLOBAL_INT", 5, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SET_POSITION_TARGET_GLOBAL_INT, "MSG_ID_SET_POSITION_TARGET_GLOBAL_INT", 53, 5, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SetPositionTargetGlobalInt)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_POSITION_TARGET_GLOBAL_INT, "MSG_ID_POSITION_TARGET_GLOBAL_INT", 150, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_POSITION_TARGET_GLOBAL_INT, "MSG_ID_POSITION_TARGET_GLOBAL_INT", 51, 150, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(PositionTargetGlobalInt)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET, "MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET", 231, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET, "MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET", 28, 231, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LocalPositionNedSystemGlobalOffset)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIL_STATE, "MSG_ID_HIL_STATE", 183, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIL_STATE, "MSG_ID_HIL_STATE", 56, 183, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HilState)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIL_CONTROLS, "MSG_ID_HIL_CONTROLS", 63, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIL_CONTROLS, "MSG_ID_HIL_CONTROLS", 42, 63, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HilControls)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIL_RC_INPUTS_RAW, "MSG_ID_HIL_RC_INPUTS_RAW", 54, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIL_RC_INPUTS_RAW, "MSG_ID_HIL_RC_INPUTS_RAW", 33, 54, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HilRcInputsRaw)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIL_ACTUATOR_CONTROLS, "MSG_ID_HIL_ACTUATOR_CONTROLS", 47, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIL_ACTUATOR_CONTROLS, "MSG_ID_HIL_ACTUATOR_CONTROLS", 81, 47, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HilActuatorControls)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_OPTICAL_FLOW, "MSG_ID_OPTICAL_FLOW", 175, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_OPTICAL_FLOW, "MSG_ID_OPTICAL_FLOW", 26, 175, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(OpticalFlow)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE, "MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE", 102, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE, "MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE", 32, 102, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GlobalVisionPositionEstimate)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_VISION_POSITION_ESTIMATE, "MSG_ID_VISION_POSITION_ESTIMATE", 158, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_VISION_POSITION_ESTIMATE, "MSG_ID_VISION_POSITION_ESTIMATE", 32, 158, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(VisionPositionEstimate)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_VISION_SPEED_ESTIMATE, "MSG_ID_VISION_SPEED_ESTIMATE", 208, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_VISION_SPEED_ESTIMATE, "MSG_ID_VISION_SPEED_ESTIMATE", 20, 208, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(VisionSpeedEstimate)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_VICON_POSITION_ESTIMATE, "MSG_ID_VICON_POSITION_ESTIMATE", 56, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_VICON_POSITION_ESTIMATE, "MSG_ID_VICON_POSITION_ESTIMATE", 32, 56, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ViconPositionEstimate)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIGHRES_IMU, "MSG_ID_HIGHRES_IMU", 93, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIGHRES_IMU, "MSG_ID_HIGHRES_IMU", 62, 93, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HighresImu)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_OPTICAL_FLOW_RAD, "MSG_ID_OPTICAL_FLOW_RAD", 138, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_OPTICAL_FLOW_RAD, "MSG_ID_OPTICAL_FLOW_RAD", 44, 138, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(OpticalFlowRad)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIL_SENSOR, "MSG_ID_HIL_SENSOR", 108, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIL_SENSOR, "MSG_ID_HIL_SENSOR", 64, 108, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HilSensor)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SIM_STATE, "MSG_ID_SIM_STATE", 32, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SIM_STATE, "MSG_ID_SIM_STATE", 84, 32, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SimState)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_RADIO_STATUS, "MSG_ID_RADIO_STATUS", 185, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_RADIO_STATUS, "MSG_ID_RADIO_STATUS", 9, 185, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(RadioStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FILE_TRANSFER_PROTOCOL, "MSG_ID_FILE_TRANSFER_PROTOCOL", 84, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FILE_TRANSFER_PROTOCOL, "MSG_ID_FILE_TRANSFER_PROTOCOL", 254, 84, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FileTransferProtocol)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_TIMESYNC, "MSG_ID_TIMESYNC", 34, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_TIMESYNC, "MSG_ID_TIMESYNC", 16, 34, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Timesync)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_CAMERA_TRIGGER, "MSG_ID_CAMERA_TRIGGER", 174, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_CAMERA_TRIGGER, "MSG_ID_CAMERA_TRIGGER", 12, 174, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(CameraTrigger)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIL_GPS, "MSG_ID_HIL_GPS", 124, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIL_GPS, "MSG_ID_HIL_GPS", 36, 124, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HilGps)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIL_OPTICAL_FLOW, "MSG_ID_HIL_OPTICAL_FLOW", 237, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIL_OPTICAL_FLOW, "MSG_ID_HIL_OPTICAL_FLOW", 44, 237, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HilOpticalFlow)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIL_STATE_QUATERNION, "MSG_ID_HIL_STATE_QUATERNION", 4, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIL_STATE_QUATERNION, "MSG_ID_HIL_STATE_QUATERNION", 64, 4, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HilStateQuaternion)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SCALED_IMU2, "MSG_ID_SCALED_IMU2", 76, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SCALED_IMU2, "MSG_ID_SCALED_IMU2", 22, 76, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ScaledImu2)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOG_REQUEST_LIST, "MSG_ID_LOG_REQUEST_LIST", 128, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOG_REQUEST_LIST, "MSG_ID_LOG_REQUEST_LIST", 6, 128, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LogRequestList)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOG_ENTRY, "MSG_ID_LOG_ENTRY", 56, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOG_ENTRY, "MSG_ID_LOG_ENTRY", 14, 56, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LogEntry)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOG_REQUEST_DATA, "MSG_ID_LOG_REQUEST_DATA", 116, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOG_REQUEST_DATA, "MSG_ID_LOG_REQUEST_DATA", 12, 116, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LogRequestData)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOG_DATA, "MSG_ID_LOG_DATA", 134, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOG_DATA, "MSG_ID_LOG_DATA", 97, 134, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LogData)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOG_ERASE, "MSG_ID_LOG_ERASE", 237, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOG_ERASE, "MSG_ID_LOG_ERASE", 2, 237, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LogErase)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LOG_REQUEST_END, "MSG_ID_LOG_REQUEST_END", 203, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LOG_REQUEST_END, "MSG_ID_LOG_REQUEST_END", 2, 203, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LogRequestEnd)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS_INJECT_DATA, "MSG_ID_GPS_INJECT_DATA", 250, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS_INJECT_DATA, "MSG_ID_GPS_INJECT_DATA", 113, 250, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GpsInjectData)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS2_RAW, "MSG_ID_GPS2_RAW", 87, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS2_RAW, "MSG_ID_GPS2_RAW", 35, 87, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Gps2Raw)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_POWER_STATUS, "MSG_ID_POWER_STATUS", 203, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_POWER_STATUS, "MSG_ID_POWER_STATUS", 6, 203, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(PowerStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SERIAL_CONTROL, "MSG_ID_SERIAL_CONTROL", 220, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SERIAL_CONTROL, "MSG_ID_SERIAL_CONTROL", 79, 220, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SerialControl)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS_RTK, "MSG_ID_GPS_RTK", 25, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS_RTK, "MSG_ID_GPS_RTK", 35, 25, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GpsRtk)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS2_RTK, "MSG_ID_GPS2_RTK", 226, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS2_RTK, "MSG_ID_GPS2_RTK", 35, 226, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Gps2Rtk)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SCALED_IMU3, "MSG_ID_SCALED_IMU3", 46, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SCALED_IMU3, "MSG_ID_SCALED_IMU3", 22, 46, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ScaledImu3)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_DATA_TRANSMISSION_HANDSHAKE, "MSG_ID_DATA_TRANSMISSION_HANDSHAKE", 29, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_DATA_TRANSMISSION_HANDSHAKE, "MSG_ID_DATA_TRANSMISSION_HANDSHAKE", 13, 29, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(DataTransmissionHandshake)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ENCAPSULATED_DATA, "MSG_ID_ENCAPSULATED_DATA", 223, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ENCAPSULATED_DATA, "MSG_ID_ENCAPSULATED_DATA", 255, 223, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(EncapsulatedData)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_DISTANCE_SENSOR, "MSG_ID_DISTANCE_SENSOR", 85, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_DISTANCE_SENSOR, "MSG_ID_DISTANCE_SENSOR", 14, 85, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(DistanceSensor)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_TERRAIN_REQUEST, "MSG_ID_TERRAIN_REQUEST", 6, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_TERRAIN_REQUEST, "MSG_ID_TERRAIN_REQUEST", 18, 6, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(TerrainRequest)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_TERRAIN_DATA, "MSG_ID_TERRAIN_DATA", 229, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_TERRAIN_DATA, "MSG_ID_TERRAIN_DATA", 43, 229, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(TerrainData)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_TERRAIN_CHECK, "MSG_ID_TERRAIN_CHECK", 203, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_TERRAIN_CHECK, "MSG_ID_TERRAIN_CHECK", 8, 203, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(TerrainCheck)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_TERRAIN_REPORT, "MSG_ID_TERRAIN_REPORT", 1, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_TERRAIN_REPORT, "MSG_ID_TERRAIN_REPORT", 22, 1, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(TerrainReport)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SCALED_PRESSURE2, "MSG_ID_SCALED_PRESSURE2", 195, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SCALED_PRESSURE2, "MSG_ID_SCALED_PRESSURE2", 14, 195, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ScaledPressure2)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ATT_POS_MOCAP, "MSG_ID_ATT_POS_MOCAP", 109, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ATT_POS_MOCAP, "MSG_ID_ATT_POS_MOCAP", 36, 109, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(AttPosMocap)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SET_ACTUATOR_CONTROL_TARGET, "MSG_ID_SET_ACTUATOR_CONTROL_TARGET", 168, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SET_ACTUATOR_CONTROL_TARGET, "MSG_ID_SET_ACTUATOR_CONTROL_TARGET", 43, 168, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SetActuatorControlTarget)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ACTUATOR_CONTROL_TARGET, "MSG_ID_ACTUATOR_CONTROL_TARGET", 181, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ACTUATOR_CONTROL_TARGET, "MSG_ID_ACTUATOR_CONTROL_TARGET", 41, 181, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ActuatorControlTarget)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ALTITUDE, "MSG_ID_ALTITUDE", 47, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ALTITUDE, "MSG_ID_ALTITUDE", 32, 47, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Altitude)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_RESOURCE_REQUEST, "MSG_ID_RESOURCE_REQUEST", 72, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_RESOURCE_REQUEST, "MSG_ID_RESOURCE_REQUEST", 243, 72, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ResourceRequest)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SCALED_PRESSURE3, "MSG_ID_SCALED_PRESSURE3", 131, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SCALED_PRESSURE3, "MSG_ID_SCALED_PRESSURE3", 14, 131, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ScaledPressure3)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FOLLOW_TARGET, "MSG_ID_FOLLOW_TARGET", 127, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FOLLOW_TARGET, "MSG_ID_FOLLOW_TARGET", 93, 127, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FollowTarget)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_CONTROL_SYSTEM_STATE, "MSG_ID_CONTROL_SYSTEM_STATE", 103, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_CONTROL_SYSTEM_STATE, "MSG_ID_CONTROL_SYSTEM_STATE", 100, 103, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ControlSystemState)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_BATTERY_STATUS, "MSG_ID_BATTERY_STATUS", 154, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_BATTERY_STATUS, "MSG_ID_BATTERY_STATUS", 36, 154, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(BatteryStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_AUTOPILOT_VERSION, "MSG_ID_AUTOPILOT_VERSION", 178, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_AUTOPILOT_VERSION, "MSG_ID_AUTOPILOT_VERSION", 60, 178, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(AutopilotVersion)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_LANDING_TARGET, "MSG_ID_LANDING_TARGET", 200, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_LANDING_TARGET, "MSG_ID_LANDING_TARGET", 30, 200, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(LandingTarget)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_FENCE_STATUS, "MSG_ID_FENCE_STATUS", 189, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_FENCE_STATUS, "MSG_ID_FENCE_STATUS", 8, 189, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(FenceStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MAG_CAL_REPORT, "MSG_ID_MAG_CAL_REPORT", 36, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MAG_CAL_REPORT, "MSG_ID_MAG_CAL_REPORT", 44, 36, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MagCalReport)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_EFI_STATUS, "MSG_ID_EFI_STATUS", 208, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_EFI_STATUS, "MSG_ID_EFI_STATUS", 65, 208, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(EfiStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ESTIMATOR_STATUS, "MSG_ID_ESTIMATOR_STATUS", 163, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ESTIMATOR_STATUS, "MSG_ID_ESTIMATOR_STATUS", 42, 163, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(EstimatorStatus)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_WIND_COV, "MSG_ID_WIND_COV", 105, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_WIND_COV, "MSG_ID_WIND_COV", 40, 105, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(WindCov)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS_INPUT, "MSG_ID_GPS_INPUT", 151, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS_INPUT, "MSG_ID_GPS_INPUT", 63, 151, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GpsInput)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_GPS_RTCM_DATA, "MSG_ID_GPS_RTCM_DATA", 35, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_GPS_RTCM_DATA, "MSG_ID_GPS_RTCM_DATA", 182, 35, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(GpsRtcmData)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIGH_LATENCY, "MSG_ID_HIGH_LATENCY", 150, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIGH_LATENCY, "MSG_ID_HIGH_LATENCY", 40, 150, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HighLatency)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HIGH_LATENCY2, "MSG_ID_HIGH_LATENCY2", 179, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HIGH_LATENCY2, "MSG_ID_HIGH_LATENCY2", 42, 179, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HighLatency2)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_VIBRATION, "MSG_ID_VIBRATION", 90, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_VIBRATION, "MSG_ID_VIBRATION", 32, 90, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Vibration)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HOME_POSITION, "MSG_ID_HOME_POSITION", 104, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HOME_POSITION, "MSG_ID_HOME_POSITION", 52, 104, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(HomePosition)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_SET_HOME_POSITION, "MSG_ID_SET_HOME_POSITION", 85, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_SET_HOME_POSITION, "MSG_ID_SET_HOME_POSITION", 53, 85, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(SetHomePosition)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MESSAGE_INTERVAL, "MSG_ID_MESSAGE_INTERVAL", 95, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MESSAGE_INTERVAL, "MSG_ID_MESSAGE_INTERVAL", 6, 95, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MessageInterval)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_EXTENDED_SYS_STATE, "MSG_ID_EXTENDED_SYS_STATE", 130, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_EXTENDED_SYS_STATE, "MSG_ID_EXTENDED_SYS_STATE", 2, 130, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(ExtendedSysState)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_ADSB_VEHICLE, "MSG_ID_ADSB_VEHICLE", 184, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_ADSB_VEHICLE, "MSG_ID_ADSB_VEHICLE", 38, 184, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(AdsbVehicle)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_COLLISION, "MSG_ID_COLLISION", 81, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_COLLISION, "MSG_ID_COLLISION", 19, 81, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Collision)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_V2_EXTENSION, "MSG_ID_V2_EXTENSION", 8, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_V2_EXTENSION, "MSG_ID_V2_EXTENSION", 254, 8, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(V2Extension)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_MEMORY_VECT, "MSG_ID_MEMORY_VECT", 204, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_MEMORY_VECT, "MSG_ID_MEMORY_VECT", 36, 204, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(MemoryVect)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_DEBUG_VECT, "MSG_ID_DEBUG_VECT", 49, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_DEBUG_VECT, "MSG_ID_DEBUG_VECT", 30, 49, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(DebugVect)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_NAMED_VALUE_FLOAT, "MSG_ID_NAMED_VALUE_FLOAT", 170, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_NAMED_VALUE_FLOAT, "MSG_ID_NAMED_VALUE_FLOAT", 18, 170, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(NamedValueFloat)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_NAMED_VALUE_INT, "MSG_ID_NAMED_VALUE_INT", 44, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_NAMED_VALUE_INT, "MSG_ID_NAMED_VALUE_INT", 18, 44, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(NamedValueInt)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_STATUSTEXT, "MSG_ID_STATUSTEXT", 83, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_STATUSTEXT, "MSG_ID_STATUSTEXT", 51, 83, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Statustext)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_DEBUG, "MSG_ID_DEBUG", 46, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_DEBUG, "MSG_ID_DEBUG", 9, 46, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Debug)
 		msg.Unpack(p)
 		return msg
 	})
-	mavlink.Register(MSG_ID_HEARTBEAT, "MSG_ID_HEARTBEAT", 50, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_HEARTBEAT, "MSG_ID_HEARTBEAT", 9, 50, func(p *mavlink.Packet) mavlink.Message {
 		msg := new(Heartbeat)
 		msg.Unpack(p)
 		return msg

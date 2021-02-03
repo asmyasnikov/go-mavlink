@@ -7,6 +7,14 @@ import (
 	"testing"
 )
 
+func init() {
+	Register(MSG_ID_PING_MOCK, "MSG_ID_PING_MOCK", 4, 0, func(p *Packet) Message {
+		msg := new(pingMock)
+		msg.Unpack(p)
+		return msg
+	})
+}
+
 func TestRoundTripChannels(t *testing.T) {
 	rand.Seed(43)
 	var buffer bytes.Buffer

@@ -604,7 +604,7 @@ const ({{range .Messages}}
 
 {{if .Messages}}
 func init() { {{range .Messages}} 
-	mavlink.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.CRCExtra}}, func(p *mavlink.Packet) mavlink.Message {
+	mavlink.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.Size}}, {{.CRCExtra}}, func(p *mavlink.Packet) mavlink.Message {
 		msg := new({{.Name | UpperCamelCase}})
 		msg.Unpack(p)
 		return msg
@@ -646,13 +646,6 @@ func (m *{{$name}}) String() string {
 func (m *{{$name}}) Pack(p *mavlink.Packet) error {
 	payload := make([]byte, {{ .Size }}){{range .Fields}}
 	{{.PayloadPackSequence}}{{end}}
-{{- if gt $mavlinkVersion 1 }}
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
-{{- end }}
 	p.MsgID = m.MsgID()
 	p.Payload = payload
 	return nil
@@ -661,12 +654,8 @@ func (m *{{$name}}) Pack(p *mavlink.Packet) error {
 // Unpack (generated function)
 func (m *{{$name}}) Unpack(p *mavlink.Packet) error {
 	payload := p.Payload[:]
-	if len(p.Payload) < {{ .Size }} {
-{{- if eq $mavlinkVersion 1 }}
+	if len(p.Payload) < {{.Size}} {
 		return mavlink.ErrPayloadTooSmall
-{{- else }}
-		payload = append(payload, mavlink.ZeroTail[:{{ .Size }}-len(p.Payload)]...)
-{{- end }}
 	}{{range .Fields}}
 	{{.PayloadUnpackSequence}}{{end}}
 	return nil

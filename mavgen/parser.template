@@ -2,8 +2,6 @@ package mavlink
 
 import "sync"
 
-var msgCrcExtras = map[MessageID]uint8{}
-
 // Parser is a state machine which parse bytes to mavlink.Packet
 type Parser struct {
 	state  MAVLINK_PARSE_STATE
@@ -83,10 +81,10 @@ func (p *Parser) parseChar(c byte) (*Packet, error) {
 			p.state = MAVLINK_PARSE_STATE_GOT_PAYLOAD
 		}
 	case MAVLINK_PARSE_STATE_GOT_PAYLOAD:
-        if crcExtra, ok := msgCrcExtras[p.packet.MsgID]; ok {
-		    p.crc.WriteByte(crcExtra)
+        if msg, ok := supported[p.packet.MsgID]; !ok {
+            return nil, ErrUnknownMsgID
         } else {
-		    p.crc.WriteByte(0)
+            p.crc.WriteByte(msg.Extra)
         }
 		if c != uint8(p.crc.Sum16()&0xFF) {
 			p.state = MAVLINK_PARSE_STATE_GOT_BAD_CRC

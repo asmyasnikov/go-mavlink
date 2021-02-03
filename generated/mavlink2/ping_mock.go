@@ -20,6 +20,11 @@ func (m *pingMock) MsgID() MessageID {
 	return MSG_ID_PING_MOCK
 }
 
+// Len
+func (m *pingMock) Len() int {
+	return 4
+}
+
 // String
 func (m *pingMock) String() string {
 	return fmt.Sprintf(
@@ -46,7 +51,7 @@ func (m *pingMock) Pack(p *Packet) error {
 func (m *pingMock) Unpack(p *Packet) error {
 	payload := p.Payload[:]
 	if len(p.Payload) < 4 {
-		payload = append(payload, ZeroTail[:4-len(p.Payload)]...)
+		payload = append(payload, zeroTail[:4-len(p.Payload)]...)
 	}
 	m.Seq = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	return nil

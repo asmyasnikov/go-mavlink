@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"encoding/hex"
 	"flag"
-	"github.com/asmyasnikov/go-mavlink/common"
+	"github.com/asmyasnikov/go-mavlink/common/decoder"
 	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
 	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
 	"io"
@@ -76,7 +76,7 @@ func listenAndServe() {
 		reader = bufio.NewReader(os.Stdin)
 	}
 	wg := sync.WaitGroup{}
-	decs := common.Decoders(reader)
+	decs := decoder.Decoders(reader)
 	for i := range decs {
 		wg.Add(1)
 		dec := decs[i]

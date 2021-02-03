@@ -12,7 +12,6 @@ const (
 // MessageID typedef
 type MessageID {{if eq .MavlinkVersion 2 -}} uint32 {{else}} uint8 {{- end}}
 
-
 // MAVLINK_PARSE_STATE typedef
 type MAVLINK_PARSE_STATE int
 
@@ -49,13 +48,11 @@ var (
 	ErrNoNewData = errors.New("no new data")
 	// ErrNilPointerReference define
 	ErrNilPointerReference = errors.New("nil pointer reference")
-{{- if eq .MavlinkVersion 1 }}
     // ErrPayloadTooSmall define
     ErrPayloadTooSmall = errors.New("payload too small")
-{{- end }}
-    // ZeroTail is a cache of zero slice for auto append tail to
+    // zeroTail is a cache of zero slice for auto append tail to
     // payload in Mavlink2 messages with trimmed payload (variable length)
-	ZeroTail           = make([]byte, 256)
+	zeroTail           = make([]byte, 256)
 	// currentSeqNum
 	currentSeqNum uint8
 )

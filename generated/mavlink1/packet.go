@@ -10,11 +10,6 @@ import (
 	"fmt"
 )
 
-var (
-	msgConstructors = map[MessageID]func(*Packet) Message{}
-	msgNames        = map[MessageID]string{}
-)
-
 // Packet is a wire type for encoding/decoding mavlink messages.
 // use the ToPacket() and FromPacket() routines on specific message
 // types to convert them to/from the Message type.
@@ -45,7 +40,7 @@ func (p *Packet) Encode(m Message) error {
 	if err := m.Pack(p); err != nil {
 		return err
 	}
-	if err := p.fixChecksum(msgCrcExtras[m.MsgID()]); err != nil {
+	if err := p.fixChecksum(); err != nil {
 		return err
 	}
 	return nil
@@ -100,7 +95,11 @@ func (p *Packet) Bytes() []byte {
 	return bytes
 }
 
-func (p *Packet) fixChecksum(crcExtra uint8) error {
+func (p *Packet) fixChecksum() error {
+	msg, ok := supported[p.MsgID]
+	if !ok {
+		return ErrUnknownMsgID
+	}
 	crc := NewX25()
 	crc.WriteByte(byte(len(p.Payload)))
 	crc.WriteByte(p.SeqID)
@@ -108,7 +107,7 @@ func (p *Packet) fixChecksum(crcExtra uint8) error {
 	crc.WriteByte(p.CompID)
 	crc.WriteByte(byte(p.MsgID >> 0))
 	crc.Write(p.Payload)
-	crc.WriteByte(crcExtra)
+	crc.WriteByte(msg.Extra)
 	p.Checksum = crc.Sum16()
 	return nil
 }
@@ -119,11 +118,11 @@ func (p *Packet) u16ToBytes(v uint16) []byte {
 
 // Message function produce message from packet
 func (p *Packet) Message() (Message, error) {
-	constructor, ok := msgConstructors[p.MsgID]
+	msg, ok := supported[p.MsgID]
 	if !ok {
 		return nil, ErrUnknownMsgID
 	}
-	return constructor(p), nil
+	return msg.Constructor(p), nil
 }
 
 // String function return string view of Packet struct

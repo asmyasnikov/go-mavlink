@@ -15,11 +15,6 @@ func packetTemplate() string {
 		"    \"fmt\"\n" +
 		")\n" +
 		"\n" +
-		"var (\n" +
-		"    msgConstructors = map[MessageID]func(*Packet) Message{}\n" +
-		"    msgNames = map[MessageID]string{}\n" +
-		")\n" +
-		"\n" +
 		"// Packet is a wire type for encoding/decoding mavlink messages.\n" +
 		"// use the ToPacket() and FromPacket() routines on specific message\n" +
 		"// types to convert them to/from the Message type.\n" +
@@ -54,7 +49,14 @@ func packetTemplate() string {
 		"\tif err := m.Pack(p); err != nil {\n" +
 		"\t\treturn err\n" +
 		"\t}\n" +
-		"\tif err := p.fixChecksum(msgCrcExtras[m.MsgID()]); err != nil {\n" +
+		"{{- if eq .MavlinkVersion 2 }}\n" +
+		"\tpayloadLen := len(p.Payload)\n" +
+		"\tfor payloadLen > 1 && p.Payload[payloadLen-1] == 0 {\n" +
+		"\t\tpayloadLen--\n" +
+		"\t}\n" +
+		"\tp.Payload = p.Payload[:payloadLen]\n" +
+		"{{- end }}\n" +
+		"\tif err := p.fixChecksum(); err != nil {\n" +
 		"\t\treturn err\n" +
 		"\t}\n" +
 		"\treturn nil\n" +
@@ -62,7 +64,14 @@ func packetTemplate() string {
 		"\n" +
 		"// Decode trying to decode message to packet\n" +
 		"func (p *Packet) Decode(m Message) error {\n" +
-		"\treturn m.Unpack(p)\n" +
+		"{{- if eq .MavlinkVersion 2 }}\n" +
+		"    if msg, ok := supported[p.MsgID]; !ok {\n" +
+		"        return ErrUnknownMsgID\n" +
+		"    } else if len(p.Payload) < msg.Size {\n" +
+		"\t\tp.Payload = append(p.Payload, zeroTail[:msg.Size-len(p.Payload)]...)\n" +
+		"\t}\n" +
+		"{{- end }}\n" +
+		"    return m.Unpack(p)\n" +
 		"}\n" +
 		"\n" +
 		"// Unmarshal trying to de-serialize byte slice to packet\n" +
@@ -117,7 +126,11 @@ func packetTemplate() string {
 		"\treturn bytes\n" +
 		"}\n" +
 		"\n" +
-		"func (p *Packet) fixChecksum(crcExtra uint8) error {\n" +
+		"func (p *Packet) fixChecksum() error {\n" +
+		"    msg, ok := supported[p.MsgID]\n" +
+		"    if !ok {\n" +
+		"\t\treturn ErrUnknownMsgID\n" +
+		"    }\n" +
 		"\tcrc := NewX25()\n" +
 		"\tcrc.WriteByte(byte(len(p.Payload)))\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
@@ -133,7 +146,7 @@ func packetTemplate() string {
 		"\tcrc.WriteByte(byte(p.MsgID >> 16))\n" +
 		"{{- end}}\n" +
 		"\tcrc.Write(p.Payload)\n" +
-		"\tcrc.WriteByte(crcExtra)\n" +
+		"\tcrc.WriteByte(msg.Extra)\n" +
 		"\tp.Checksum = crc.Sum16()\n" +
 		"\treturn nil\n" +
 		"}\n" +
@@ -144,11 +157,11 @@ func packetTemplate() string {
 		"\n" +
 		"// Message function produce message from packet\n" +
 		"func (p *Packet) Message() (Message, error) {\n" +
-		"\tconstructor, ok := msgConstructors[p.MsgID]\n" +
+		"    msg, ok := supported[p.MsgID]\n" +
 		"\tif !ok {\n" +
 		"\t\treturn nil, ErrUnknownMsgID\n" +
 		"\t}\n" +
-		"\treturn constructor(p), nil\n" +
+		"\treturn msg.Constructor(p), nil\n" +
 		"}\n" +
 		"\n" +
 		"// String function return string view of Packet struct\n" +

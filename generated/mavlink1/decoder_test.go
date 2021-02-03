@@ -26,11 +26,11 @@ func BenchmarkDecoder(b *testing.B) {
 		defer wg.Done()
 		fmt.Println("to send", b.N)
 		for i := 0; i < b.N; i++ {
-			dummy := pingMock{
+			ping := pingMock{
 				Seq: rand.Uint32(),
 			}
 			packet := &Packet{}
-			if err := packet.encode(uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), &dummy); err != nil {
+			if err := packet.encode(uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), &ping); err != nil {
 				b.Fatal(err)
 			}
 			fmt.Println("sended pre")

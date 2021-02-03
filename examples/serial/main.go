@@ -2,10 +2,10 @@ package main
 
 import (
 	"flag"
-	decoders "github.com/asmyasnikov/go-mavlink/common"
-	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
-	mavlink "github.com/asmyasnikov/go-mavlink/generated/mavlink2"
-	"github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
+	"github.com/asmyasnikov/go-mavlink/common/decoder"
+	"github.com/asmyasnikov/go-mavlink/generated/mavlink1/ardupilotmega"
+	mavlink "github.com/asmyasnikov/go-mavlink/generated/mavlink1"
+	_ "github.com/asmyasnikov/go-mavlink/generated/mavlink2/ardupilotmega"
 	"github.com/tarm/serial"
 	"io"
 	"log"
@@ -56,10 +56,10 @@ func main() {
 
 func listenAndServe(wg *sync.WaitGroup, device io.ReadWriteCloser) {
 	defer wg.Done()
-	decs := decoders.Decoders(device)
+	decs := decoder.Decoders(device)
 	for i := range decs {
 		wg.Add(1)
-		go func(dec decoders.Decoder) {
+		go func(dec decoder.Decoder) {
 			defer wg.Done()
 			log.Println("listening packets from decoder " + dec.Name())
 			for {

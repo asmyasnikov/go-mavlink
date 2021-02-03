@@ -50,9 +50,11 @@ var (
 	ErrNoNewData = errors.New("no new data")
 	// ErrNilPointerReference define
 	ErrNilPointerReference = errors.New("nil pointer reference")
-	// ZeroTail is a cache of zero slice for auto append tail to
+	// ErrPayloadTooSmall define
+	ErrPayloadTooSmall = errors.New("payload too small")
+	// zeroTail is a cache of zero slice for auto append tail to
 	// payload in Mavlink2 messages with trimmed payload (variable length)
-	ZeroTail = make([]byte, 256)
+	zeroTail = make([]byte, 256)
 	// currentSeqNum
 	currentSeqNum uint8
 )
