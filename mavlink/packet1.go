@@ -70,26 +70,6 @@ func (p *packet1) assign(rhs *packet1) error {
 	return nil
 }
 
-/*
-// Assign assign internal fields from right hand side packet
-func (p *packet1) Assign(rhs Packet) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-    packet, ok := rhs.(*packet1)
-    if !ok {
-        return fmt.Errorf("cast interface '%+v' to '*packet1' fail", rhs)
-    }
-    p.seqID = p.SeqID()
-    p.sysID = p.SysID()
-    p.compID = p.CompID()
-    p.msgID = p.MsgID()
-    p.checksum = p.Checksum()
-    p.payload = p.Payload()
-    return nil
-}
-*/
-
 // Copy returns deep copy of packet
 func (p *packet1) Copy() Packet {
 	return p.copy()
@@ -109,38 +89,6 @@ func (p *packet1) copy() *packet1 {
 	copy.payload = p.payload
 	return copy
 }
-
-/*
-// Encode trying to encode message to packet
-func (p *packet1) encode(sysID, compID uint8, m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-	p.seqID = p.nextSeqNum()
-	p.sysID = sysID
-	p.compID = compID
-	return p.Encode(m)
-}
-
-// Encode trying to encode message to packet
-func (p *packet1) Encode(m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-	if err := m.Pack(p); err != nil {
-		return err
-	}
-	return nil
-}
-
-// Decode trying to decode message to packet
-func (p *packet1) Decode(m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-    return m.Unpack(p)
-}
-*/
 
 // Unmarshal trying to de-serialize byte slice to packet
 func (p *packet1) Unmarshal(buffer []byte) error {

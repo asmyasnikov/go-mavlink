@@ -72,30 +72,6 @@ func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error
     return nil
 }
 
-/*
-// Assign assign internal fields from right hand side packet
-func (p *packet{{.MavlinkVersion}}) Assign(rhs Packet) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-    packet, ok := rhs.(*packet{{.MavlinkVersion}})
-    if !ok {
-        return fmt.Errorf("cast interface '%+v' to '*packet{{.MavlinkVersion}}' fail", rhs)
-    }
-{{- if eq .MavlinkVersion 2}}
-    p.incompatFlags = rhs.InncompatFlags()
-    p.compatFlags = rhs.CompatFlags()
-{{- end}}
-    p.seqID = p.SeqID()
-    p.sysID = p.SysID()
-    p.compID = p.CompID()
-    p.msgID = p.MsgID()
-    p.checksum = p.Checksum()
-    p.payload = p.Payload()
-    return nil
-}
-*/
-
 // Copy returns deep copy of packet
 func (p *packet{{.MavlinkVersion}}) Copy() Packet {
     return p.copy()
@@ -119,53 +95,6 @@ func (p *packet{{.MavlinkVersion}}) copy() *packet{{.MavlinkVersion}} {
     copy.payload = p.payload
     return copy
 }
-
-
-/*
-// Encode trying to encode message to packet
-func (p *packet{{.MavlinkVersion}}) encode(sysID, compID uint8, m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-	p.seqID = p.nextSeqNum()
-	p.sysID = sysID
-	p.compID = compID
-	return p.Encode(m)
-}
-
-// Encode trying to encode message to packet
-func (p *packet{{.MavlinkVersion}}) Encode(m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-	if err := m.Pack(p); err != nil {
-		return err
-	}
-{{- if eq .MavlinkVersion 2 }}
-	payloadLen := len(p.payload)
-	for payloadLen > 1 && p.payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	p.payload = p.payload[:payloadLen]
-{{- end }}
-	return nil
-}
-
-// Decode trying to decode message to packet
-func (p *packet{{.MavlinkVersion}}) Decode(m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-{{- if eq .MavlinkVersion 2 }}
-    if msg, ok := supported[p.msgID]; !ok {
-        return ErrUnknownMsgID
-    } else if len(p.payload) < msg.Size {
-		p.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)
-	}
-{{- end }}
-    return m.Unpack(p)
-}
-*/
 
 // Unmarshal trying to de-serialize byte slice to packet
 func (p *packet{{.MavlinkVersion}}) Unmarshal(buffer []byte) error {

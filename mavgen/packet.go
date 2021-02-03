@@ -83,30 +83,6 @@ func packetTemplate() string {
 		"    return nil\n" +
 		"}\n" +
 		"\n" +
-		"/*\n" +
-		"// Assign assign internal fields from right hand side packet\n" +
-		"func (p *packet{{.MavlinkVersion}}) Assign(rhs Packet) error {\n" +
-		"    if p == nil {\n" +
-		"        return ErrNilPointerReference\n" +
-		"    }\n" +
-		"    packet, ok := rhs.(*packet{{.MavlinkVersion}})\n" +
-		"    if !ok {\n" +
-		"        return fmt.Errorf(\"cast interface '%+v' to '*packet{{.MavlinkVersion}}' fail\", rhs)\n" +
-		"    }\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    p.incompatFlags = rhs.InncompatFlags()\n" +
-		"    p.compatFlags = rhs.CompatFlags()\n" +
-		"{{- end}}\n" +
-		"    p.seqID = p.SeqID()\n" +
-		"    p.sysID = p.SysID()\n" +
-		"    p.compID = p.CompID()\n" +
-		"    p.msgID = p.MsgID()\n" +
-		"    p.checksum = p.Checksum()\n" +
-		"    p.payload = p.Payload()\n" +
-		"    return nil\n" +
-		"}\n" +
-		"*/\n" +
-		"\n" +
 		"// Copy returns deep copy of packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) Copy() Packet {\n" +
 		"    return p.copy()\n" +
@@ -130,53 +106,6 @@ func packetTemplate() string {
 		"    copy.payload = p.payload\n" +
 		"    return copy\n" +
 		"}\n" +
-		"\n" +
-		"\n" +
-		"/*\n" +
-		"// Encode trying to encode message to packet\n" +
-		"func (p *packet{{.MavlinkVersion}}) encode(sysID, compID uint8, m Message) error {\n" +
-		"    if p == nil {\n" +
-		"        return ErrNilPointerReference\n" +
-		"    }\n" +
-		"\tp.seqID = p.nextSeqNum()\n" +
-		"\tp.sysID = sysID\n" +
-		"\tp.compID = compID\n" +
-		"\treturn p.Encode(m)\n" +
-		"}\n" +
-		"\n" +
-		"// Encode trying to encode message to packet\n" +
-		"func (p *packet{{.MavlinkVersion}}) Encode(m Message) error {\n" +
-		"    if p == nil {\n" +
-		"        return ErrNilPointerReference\n" +
-		"    }\n" +
-		"\tif err := m.Pack(p); err != nil {\n" +
-		"\t\treturn err\n" +
-		"\t}\n" +
-		"{{- if eq .MavlinkVersion 2 }}\n" +
-		"\tpayloadLen := len(p.payload)\n" +
-		"\tfor payloadLen > 1 && p.payload[payloadLen-1] == 0 {\n" +
-		"\t\tpayloadLen--\n" +
-		"\t}\n" +
-		"\tp.payload = p.payload[:payloadLen]\n" +
-		"{{- end }}\n" +
-		"\treturn nil\n" +
-		"}\n" +
-		"\n" +
-		"// Decode trying to decode message to packet\n" +
-		"func (p *packet{{.MavlinkVersion}}) Decode(m Message) error {\n" +
-		"    if p == nil {\n" +
-		"        return ErrNilPointerReference\n" +
-		"    }\n" +
-		"{{- if eq .MavlinkVersion 2 }}\n" +
-		"    if msg, ok := supported[p.msgID]; !ok {\n" +
-		"        return ErrUnknownMsgID\n" +
-		"    } else if len(p.payload) < msg.Size {\n" +
-		"\t\tp.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)\n" +
-		"\t}\n" +
-		"{{- end }}\n" +
-		"    return m.Unpack(p)\n" +
-		"}\n" +
-		"*/\n" +
 		"\n" +
 		"// Unmarshal trying to de-serialize byte slice to packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) Unmarshal(buffer []byte) error {\n" +

@@ -74,28 +74,6 @@ func (p *packet2) assign(rhs *packet2) error {
 	return nil
 }
 
-/*
-// Assign assign internal fields from right hand side packet
-func (p *packet2) Assign(rhs Packet) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-    packet, ok := rhs.(*packet2)
-    if !ok {
-        return fmt.Errorf("cast interface '%+v' to '*packet2' fail", rhs)
-    }
-    p.incompatFlags = rhs.InncompatFlags()
-    p.compatFlags = rhs.CompatFlags()
-    p.seqID = p.SeqID()
-    p.sysID = p.SysID()
-    p.compID = p.CompID()
-    p.msgID = p.MsgID()
-    p.checksum = p.Checksum()
-    p.payload = p.Payload()
-    return nil
-}
-*/
-
 // Copy returns deep copy of packet
 func (p *packet2) Copy() Packet {
 	return p.copy()
@@ -117,48 +95,6 @@ func (p *packet2) copy() *packet2 {
 	copy.payload = p.payload
 	return copy
 }
-
-/*
-// Encode trying to encode message to packet
-func (p *packet2) encode(sysID, compID uint8, m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-	p.seqID = p.nextSeqNum()
-	p.sysID = sysID
-	p.compID = compID
-	return p.Encode(m)
-}
-
-// Encode trying to encode message to packet
-func (p *packet2) Encode(m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-	if err := m.Pack(p); err != nil {
-		return err
-	}
-	payloadLen := len(p.payload)
-	for payloadLen > 1 && p.payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	p.payload = p.payload[:payloadLen]
-	return nil
-}
-
-// Decode trying to decode message to packet
-func (p *packet2) Decode(m Message) error {
-    if p == nil {
-        return ErrNilPointerReference
-    }
-    if msg, ok := supported[p.msgID]; !ok {
-        return ErrUnknownMsgID
-    } else if len(p.payload) < msg.Size {
-		p.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)
-	}
-    return m.Unpack(p)
-}
-*/
 
 // Unmarshal trying to de-serialize byte slice to packet
 func (p *packet2) Unmarshal(buffer []byte) error {
