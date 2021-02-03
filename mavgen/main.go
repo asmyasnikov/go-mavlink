@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/asmyasnikov/go-mavlink/common"
 	"log"
 	"os"
 )
@@ -27,13 +26,8 @@ func main() {
 	flag.Parse()
 
 	if len(*schemeFile) == 0 {
-		fmt.Println("Usage: " + os.Args[0] + " (-1|-2) [-c \"github.com/my/project/mavlink/path\"] [-p] [-f ./ardupilotmega.xml] [-v \"ardupilotmega-v1.2.3\"]")
+		fmt.Println("Usage: " + os.Args[0] + " [-c \"github.com/my/project/mavlink/path\"] [-p] [-f ./ardupilotmega.xml] [-v \"ardupilotmega-v1.2.3\"]")
 		flag.PrintDefaults()
-		return
-	}
-
-	if (*common.Mavlink1 && *common.Mavlink2) || (!*common.Mavlink1 && !*common.Mavlink2) {
-		fmt.Println("Select only one version of mavlink: -1 flag or -2 flag")
 		return
 	}
 

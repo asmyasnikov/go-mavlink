@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"github.com/asmyasnikov/go-mavlink/common"
 	"github.com/asmyasnikov/go-mavlink/mavlink"
 	"github.com/asmyasnikov/go-mavlink/mavlink/ardupilotmega"
 	"github.com/tarm/serial"
@@ -18,7 +17,7 @@ import (
 //
 // listen serial port device and prints received msgs, more info:
 //
-// run via `go run main.go -d /dev/ttyACM0 -b 57600 -1`
+// run via `go run main.go -d /dev/ttyACM0 -b 57600`
 //
 //////////////////////////////////////
 
@@ -65,14 +64,14 @@ func listenAndServe(wg *sync.WaitGroup, device io.ReadWriteCloser) {
 		} else if p != nil {
 			log.Println("<-", p.String())
 		}
-		//if packet.MsgID == ardupilotmega.MSG_ID_TIMESYNC {
-		//	ts := ardupilotmega.Timesync{}
-		//	if err := ts.Unpack(&packet); err != nil {
-		//		log.Fatal(err)
-		//	} else {
-		//		sendPacket(device, makeTimeSync(ts.Ts1))
-		//	}
-		//}
+		if p.MsgID() == ardupilotmega.MSG_ID_TIMESYNC {
+			ts := ardupilotmega.Timesync{}
+			if err := ts.Unmarshal(p.Payload()); err != nil {
+				log.Fatal(err)
+			} else {
+				sendChan <- makeTimeSync(ts.Ts1)
+			}
+		}
 	}
 }
 
@@ -157,8 +156,10 @@ func sendLoop(wg *sync.WaitGroup, writer io.Writer) {
 	defer wg.Done()
 	enc := mavlink.NewEncoder(writer)
 	for m := range sendChan {
-		if err := enc.Encode(common.MavlinkVersion(), uint8(*sysID), uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER), m); err != nil {
+		if err := enc.Encode(2, uint8(*sysID), uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER), m); err != nil {
 			log.Fatalf("Error on send loop: %+v", err)
+		} else {
+			log.Println("->", m)
 		}
 	}
 }

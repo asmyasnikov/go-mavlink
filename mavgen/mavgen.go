@@ -294,10 +294,6 @@ func (f *MessageField) PayloadUnpackSequence() string {
 	return fmt.Sprintf("m.%s = %s", name, f.payloadUnpackPrimitive(fmt.Sprintf("%d", f.ByteOffset)))
 }
 
-// func SanitizeComments(s string) string {
-// 	return strings.Replace(s, "\n", "\n// ", -1)
-// }
-
 // Return the number of non-extension fields, that are contained in rawmsg, where rawmsg
 // is raw XML content of "message" element.
 func numBaseFields(rawmsg string) int {
@@ -587,7 +583,7 @@ func (e {{$enumName}}) Bitmask() string {
 			if ee.Value == 0 {
 				ee.Value = uint32(i)
 			}
-			ee.Description = strings.Trim(strings.Replace(ee.Description, "\n", " ", -1), " .")
+			ee.Description = strings.Trim(strings.ReplaceAll(ee.Description, "\n", " "), " .")
 			if len(ee.Params) > 0 {
 				if len(ee.Description) > 0 {
 					ee.Description += ". "
@@ -670,12 +666,12 @@ func (m *{{$name}}) Unmarshal(payload []byte) error { {{range .Fields}}
 {{end}}
 `
 	for _, m := range d.Messages {
-		m.Description = strings.Replace(m.Description, "\n", "\n// ", -1)
+		m.Description = strings.ReplaceAll(m.Description, "\n", "\n// ")
 		if len(m.DialectName) == 0 {
 			m.DialectName = baseName(d.FilePath)
 		}
 		for _, f := range m.Fields {
-			f.Description = strings.Replace(f.Description, "\n", " ", -1)
+			f.Description = strings.ReplaceAll(f.Description, "\n", " ")
 			f.Tags = map[string]string{}
 			goname, gosz, golen := GoTypeInfo(f.CType)
 			//if len(f.Enum) > 0 {

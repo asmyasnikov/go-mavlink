@@ -15,9 +15,7 @@ xml definitions can be updated from https://github.com/mavlink/mavlink
 package `go-mavlink/mavgen` is used only for generating classes from mavlink xml definitions, it is not generally intended to be used by anything other than the `go generate` command.
 
 ```bash
-Usage: mavgen (-1|-2) [-c "github.com/my/project/mavlink/path"] [-p] [-f ./ardupilotmega.xml] [-v "ardupilotmega-v1.2.3"]
-  -1    mavlink v1
-  -2    mavlink v2
+Usage: mavgen [-c "github.com/my/project/mavlink/path"] [-p] [-f ./ardupilotmega.xml] [-v "ardupilotmega-v1.2.3"]
   -c string
         common mavlink package path used for import from go code. For example "github.com/asmyasnikov/go-mavlink/generated/mavlink1"
   -f string
