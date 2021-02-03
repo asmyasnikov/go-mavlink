@@ -80,6 +80,11 @@ func packetTemplate() string {
 		"    p.msgID = rhs.msgID\n" +
 		"    p.checksum = rhs.checksum\n" +
 		"    p.payload = append([]byte(nil), rhs.payload...)\n" +
+		"    msg, ok := supported[p.msgID]\n" +
+		"\tif !ok {\n" +
+		"\t\treturn nil, ErrUnknownMsgID\n" +
+		"\t}\n" +
+		"\tp.payload = append(p.payload, zeroTail[:msg.Size-len(p.Payload)]...)\n" +
 		"    return nil\n" +
 		"}\n" +
 		"\n" +

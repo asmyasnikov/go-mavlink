@@ -71,6 +71,11 @@ func (p *packet2) assign(rhs *packet2) error {
 	p.msgID = rhs.msgID
 	p.checksum = rhs.checksum
 	p.payload = append([]byte(nil), rhs.payload...)
+	msg, ok := supported[p.msgID]
+	if !ok {
+		return nil, ErrUnknownMsgID
+	}
+	p.payload = append(p.payload, zeroTail[:msg.Size-len(p.Payload)]...)
 	return nil
 }
 
