@@ -31,6 +31,11 @@ func packetTemplate() string {
 		"\tchecksum      uint16\n" +
 		"}\n" +
 		"\n" +
+		"// Nil returns true if packet is nil\n" +
+		"func (p *packet{{.MavlinkVersion}}) Nil() bool {\n" +
+		"    return p == nil\n" +
+		"}\n" +
+		"\n" +
 		"// SysID returns system id\n" +
 		"func (p *packet{{.MavlinkVersion}}) SysID() uint8 {\n" +
 		"    return p.sysID\n" +

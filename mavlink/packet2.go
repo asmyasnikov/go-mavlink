@@ -24,6 +24,11 @@ type packet2 struct {
 	checksum      uint16
 }
 
+// Nil returns true if packet is nil
+func (p *packet2) Nil() bool {
+	return p == nil
+}
+
 // SysID returns system id
 func (p *packet2) SysID() uint8 {
 	return p.sysID

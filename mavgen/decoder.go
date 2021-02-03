@@ -18,6 +18,8 @@ func decoderTemplate() string {
 		"\n" +
 		"// Packet is the interface implemented by frames of every supported version.\n" +
 		"type Packet interface {\n" +
+		"\t// Nil returns true if packet is nil\n" +
+		"\tNil() bool\n" +
 		"\t// SysID returns system id\n" +
 		"\tSysID() uint8\n" +
 		"\t// CompID returns component id\n" +
@@ -84,7 +86,7 @@ func decoderTemplate() string {
 		"\t\tfor _, parser := range d.parsers {\n" +
 		"\t\t\tif p, err := parser.ParseChar(c); err != nil {\n" +
 		"\t\t\t\td.clearParser(parser)\n" +
-		"\t\t\t} else if p != nil {\n" +
+		"\t\t\t} else if !p.Nil() {\n" +
 		"\t\t\t\td.clearParsers()\n" +
 		"\t\t\t\treturn p, nil\n" +
 		"\t\t\t} else {\n" +

@@ -20,6 +20,11 @@ type packet{{.MavlinkVersion}} struct {
 	checksum      uint16
 }
 
+// Nil returns true if packet is nil
+func (p *packet{{.MavlinkVersion}}) Nil() bool {
+    return p == nil
+}
+
 // SysID returns system id
 func (p *packet{{.MavlinkVersion}}) SysID() uint8 {
     return p.sysID
