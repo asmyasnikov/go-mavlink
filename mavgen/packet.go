@@ -103,7 +103,7 @@ func packetTemplate() string {
 		"    copy.compID = p.compID\n" +
 		"    copy.msgID = p.msgID\n" +
 		"    copy.checksum = p.checksum\n" +
-		"    copy.payload = p.payload\n" +
+		"    copy.payload = append([]byte(nil), p.payload...)\n" +
 		"    return copy\n" +
 		"}\n" +
 		"\n" +

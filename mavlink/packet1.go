@@ -86,7 +86,7 @@ func (p *packet1) copy() *packet1 {
 	copy.compID = p.compID
 	copy.msgID = p.msgID
 	copy.checksum = p.checksum
-	copy.payload = p.payload
+	copy.payload = append([]byte(nil), p.payload...)
 	return copy
 }
 
