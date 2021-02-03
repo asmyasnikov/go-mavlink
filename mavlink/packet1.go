@@ -54,7 +54,11 @@ func (p *packet1) SeqID() uint8 {
 
 // Payload returns packet payload
 func (p *packet1) Payload() []byte {
-	return append([]byte(nil), p.payload...)
+	msg, ok := supported[p.msgID]
+	if !ok {
+		panic(ErrUnknownMsgID)
+	}
+	return append(append([]byte(nil), p.payload...), zeroTail[:msg.Size-len(p.payload)]...)
 }
 
 func (p *packet1) assign(rhs *packet1) error {
@@ -67,11 +71,6 @@ func (p *packet1) assign(rhs *packet1) error {
 	p.msgID = rhs.msgID
 	p.checksum = rhs.checksum
 	p.payload = append([]byte(nil), rhs.payload...)
-	msg, ok := supported[p.msgID]
-	if !ok {
-		return ErrUnknownMsgID
-	}
-	p.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)
 	return nil
 }
 
@@ -120,6 +119,10 @@ func (p *packet1) Marshal() ([]byte, error) {
 		return nil, ErrNilPointerReference
 	}
 	bytes := make([]byte, 0, 8+len(p.payload))
+	// prepare
+	if err := p.prepare(); err != nil {
+		return nil, err
+	}
 	// header
 	bytes = append(bytes,
 		0xfe,
@@ -131,15 +134,11 @@ func (p *packet1) Marshal() ([]byte, error) {
 	)
 	// payload
 	bytes = append(bytes, p.payload...)
-	// crc
-	if err := p.fixChecksum(); err != nil {
-		return nil, err
-	}
 	bytes = append(bytes, u16ToBytes(p.checksum)...)
 	return bytes, nil
 }
 
-func (p *packet1) fixChecksum() error {
+func (p *packet1) prepare() error {
 	if p == nil {
 		return ErrNilPointerReference
 	}

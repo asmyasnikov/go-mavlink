@@ -52,7 +52,11 @@ func (p *packet{{.MavlinkVersion}}) SeqID() uint8 {
 
 // Payload returns packet payload
 func (p *packet{{.MavlinkVersion}}) Payload() []byte {
-    return append([]byte(nil), p.payload...)
+    msg, ok := supported[p.msgID]
+	if !ok {
+	    panic(ErrUnknownMsgID)
+	}
+    return append(append([]byte(nil), p.payload...), zeroTail[:msg.Size-len(p.payload)]...)
 }
 
 func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error {
@@ -69,11 +73,6 @@ func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error
     p.msgID = rhs.msgID
     p.checksum = rhs.checksum
     p.payload = append([]byte(nil), rhs.payload...)
-    msg, ok := supported[p.msgID]
-	if !ok {
-		return ErrUnknownMsgID
-	}
-	p.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)
     return nil
 }
 
@@ -126,14 +125,10 @@ func (p *packet{{.MavlinkVersion}}) Marshal() ([]byte, error) {
 		return nil, ErrNilPointerReference
 	}
     bytes := make([]byte, 0, {{if eq .MavlinkVersion 2 -}} 12 {{- else -}} 8 {{- end}}+len(p.payload))
-{{- if eq .MavlinkVersion 2}}
-    // payload minify
-	payloadLen := len(p.payload)
-	for payloadLen > 1 && p.payload[payloadLen-1] == 0 {
-		payloadLen--
+	// prepare
+	if err := p.prepare(); err != nil {
+		return nil, err
 	}
-	p.payload = p.payload[:payloadLen]
-{{- end}}
     // header
     bytes = append(bytes,
 	    {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}},
@@ -153,18 +148,22 @@ func (p *packet{{.MavlinkVersion}}) Marshal() ([]byte, error) {
     )
     // payload
 	bytes = append(bytes, p.payload...)
-	// crc
-	if err := p.fixChecksum(); err != nil {
-		return nil, err
-	}
 	bytes = append(bytes, u16ToBytes(p.checksum)...)
 	return bytes, nil
 }
 
-func (p *packet{{.MavlinkVersion}}) fixChecksum() error {
+func (p *packet{{.MavlinkVersion}}) prepare() error {
     if p == nil {
         return ErrNilPointerReference
     }
+{{- if eq .MavlinkVersion 2}}
+    // payload minify
+	payloadLen := len(p.payload)
+	for payloadLen > 1 && p.payload[payloadLen-1] == 0 {
+		payloadLen--
+	}
+	p.payload = p.payload[:payloadLen]
+{{- end}}
     msg, ok := supported[p.msgID]
     if !ok {
 		return ErrUnknownMsgID

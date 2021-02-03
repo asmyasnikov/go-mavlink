@@ -63,7 +63,11 @@ func packetTemplate() string {
 		"\n" +
 		"// Payload returns packet payload\n" +
 		"func (p *packet{{.MavlinkVersion}}) Payload() []byte {\n" +
-		"    return append([]byte(nil), p.payload...)\n" +
+		"    msg, ok := supported[p.msgID]\n" +
+		"\tif !ok {\n" +
+		"\t    panic(ErrUnknownMsgID)\n" +
+		"\t}\n" +
+		"    return append(append([]byte(nil), p.payload...), zeroTail[:msg.Size-len(p.payload)]...)\n" +
 		"}\n" +
 		"\n" +
 		"func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error {\n" +
@@ -80,11 +84,6 @@ func packetTemplate() string {
 		"    p.msgID = rhs.msgID\n" +
 		"    p.checksum = rhs.checksum\n" +
 		"    p.payload = append([]byte(nil), rhs.payload...)\n" +
-		"    msg, ok := supported[p.msgID]\n" +
-		"\tif !ok {\n" +
-		"\t\treturn ErrUnknownMsgID\n" +
-		"\t}\n" +
-		"\tp.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)\n" +
 		"    return nil\n" +
 		"}\n" +
 		"\n" +
@@ -137,14 +136,10 @@ func packetTemplate() string {
 		"\t\treturn nil, ErrNilPointerReference\n" +
 		"\t}\n" +
 		"    bytes := make([]byte, 0, {{if eq .MavlinkVersion 2 -}} 12 {{- else -}} 8 {{- end}}+len(p.payload))\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    // payload minify\n" +
-		"\tpayloadLen := len(p.payload)\n" +
-		"\tfor payloadLen > 1 && p.payload[payloadLen-1] == 0 {\n" +
-		"\t\tpayloadLen--\n" +
+		"\t// prepare\n" +
+		"\tif err := p.prepare(); err != nil {\n" +
+		"\t\treturn nil, err\n" +
 		"\t}\n" +
-		"\tp.payload = p.payload[:payloadLen]\n" +
-		"{{- end}}\n" +
 		"    // header\n" +
 		"    bytes = append(bytes,\n" +
 		"\t    {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}},\n" +
@@ -164,18 +159,22 @@ func packetTemplate() string {
 		"    )\n" +
 		"    // payload\n" +
 		"\tbytes = append(bytes, p.payload...)\n" +
-		"\t// crc\n" +
-		"\tif err := p.fixChecksum(); err != nil {\n" +
-		"\t\treturn nil, err\n" +
-		"\t}\n" +
 		"\tbytes = append(bytes, u16ToBytes(p.checksum)...)\n" +
 		"\treturn bytes, nil\n" +
 		"}\n" +
 		"\n" +
-		"func (p *packet{{.MavlinkVersion}}) fixChecksum() error {\n" +
+		"func (p *packet{{.MavlinkVersion}}) prepare() error {\n" +
 		"    if p == nil {\n" +
 		"        return ErrNilPointerReference\n" +
 		"    }\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    // payload minify\n" +
+		"\tpayloadLen := len(p.payload)\n" +
+		"\tfor payloadLen > 1 && p.payload[payloadLen-1] == 0 {\n" +
+		"\t\tpayloadLen--\n" +
+		"\t}\n" +
+		"\tp.payload = p.payload[:payloadLen]\n" +
+		"{{- end}}\n" +
 		"    msg, ok := supported[p.msgID]\n" +
 		"    if !ok {\n" +
 		"\t\treturn ErrUnknownMsgID\n" +
