@@ -75,7 +75,7 @@ func (p *packet2) assign(rhs *packet2) error {
 	if !ok {
 		return ErrUnknownMsgID
 	}
-	p.payload = append(p.payload, zeroTail[:msg.Size-len(p.Payload)]...)
+	p.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)
 	return nil
 }
 

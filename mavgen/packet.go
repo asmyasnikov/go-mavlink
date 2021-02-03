@@ -84,7 +84,7 @@ func packetTemplate() string {
 		"\tif !ok {\n" +
 		"\t\treturn ErrUnknownMsgID\n" +
 		"\t}\n" +
-		"\tp.payload = append(p.payload, zeroTail[:msg.Size-len(p.Payload)]...)\n" +
+		"\tp.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)\n" +
 		"    return nil\n" +
 		"}\n" +
 		"\n" +
