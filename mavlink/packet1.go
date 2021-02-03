@@ -114,9 +114,6 @@ func (p *packet1) Marshal() ([]byte, error) {
 	if p == nil {
 		return nil, ErrNilPointerReference
 	}
-	if err := p.fixChecksum(); err != nil {
-		return nil, err
-	}
 	bytes := make([]byte, 0, 8+len(p.payload))
 	// header
 	bytes = append(bytes,
@@ -127,6 +124,9 @@ func (p *packet1) Marshal() ([]byte, error) {
 		p.compID,
 		uint8(p.msgID),
 	)
+	if err := p.fixChecksum(); err != nil {
+		return nil, err
+	}
 	// payload
 	bytes = append(bytes, p.payload...)
 	// crc

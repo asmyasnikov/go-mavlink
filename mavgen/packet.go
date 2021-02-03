@@ -131,9 +131,6 @@ func packetTemplate() string {
 		"\tif p == nil {\n" +
 		"\t\treturn nil, ErrNilPointerReference\n" +
 		"\t}\n" +
-		"\tif err := p.fixChecksum(); err != nil {\n" +
-		"\t\treturn nil, err\n" +
-		"\t}\n" +
 		"    bytes := make([]byte, 0, {{if eq .MavlinkVersion 2 -}} 12 {{- else -}} 8 {{- end}}+len(p.payload))\n" +
 		"    // header\n" +
 		"    bytes = append(bytes,\n" +
@@ -152,6 +149,16 @@ func packetTemplate() string {
 		"\t    uint8(p.msgID >> 16),\n" +
 		"{{- end}}\n" +
 		"    )\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"\tpayloadLen := len(p.payload)\n" +
+		"\tfor payloadLen > 1 && p.payload[payloadLen-1] == 0 {\n" +
+		"\t\tpayloadLen--\n" +
+		"\t}\n" +
+		"\tp.payload = p.payload[:payloadLen]\n" +
+		"{{- end}}\n" +
+		"\tif err := p.fixChecksum(); err != nil {\n" +
+		"\t\treturn nil, err\n" +
+		"\t}\n" +
 		"    // payload\n" +
 		"\tbytes = append(bytes, p.payload...)\n" +
 		"\t// crc\n" +
