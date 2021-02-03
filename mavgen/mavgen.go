@@ -93,6 +93,7 @@ type MessageField struct {
 var funcMap = template.FuncMap{
 	"UpperCamelCase":   UpperCamelCase,
 	"IsByteArrayField": IsByteArrayField,
+	"IsStringField":    IsStringField,
 }
 
 // SizeInBytes function calculate size in bytes of message field
@@ -165,18 +166,10 @@ func IsByteArrayField(v interface{}) bool {
 	return false
 }
 
-// IsByteArrayField function check field is bytearray
+// IsStringField function check field is bytearray
 func IsStringField(v interface{}) bool {
 	if field, ok := v.(*MessageField); ok {
-		if field.ArrayLen == 0 {
-			return false
-		}
-		t := strings.ToLower(field.GoType)
-		for _, s := range []string{"byte"} {
-			if strings.Contains(t, s) {
-				return true
-			}
-		}
+		return field.GoType == "string"
 	}
 	return false
 }
@@ -226,7 +219,7 @@ func (f *MessageField) PayloadPackSequence() string {
 
 	if f.ArrayLen > 0 {
 		// optimize to copy() if possible
-		if f.GoType == "string" || strings.HasSuffix(f.GoType, "uint8")  || strings.HasSuffix(f.GoType, "byte"){
+		if f.GoType == "string" || strings.HasSuffix(f.GoType, "uint8") || strings.HasSuffix(f.GoType, "byte") {
 			return fmt.Sprintf(`copy(payload[%d:], m.%s[:func(l, m int)int{ if l < m { return l }; return m }(len(m.%s), %d)])`, f.ByteOffset, name, name, f.ArrayLen)
 		}
 
@@ -645,7 +638,7 @@ func (m *{{$name}}) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *{{$name}}) String() string {
 	return fmt.Sprintf(
-		"&{{.DialectName}}.{{$name}}{ {{range $i, $v := .Fields}}{{if gt $i 0}}, {{end}}{{.Name | UpperCamelCase}}: {{if IsByteArrayField .}}%0X (\"%s\"){{else}}%+v{{if .Enum}}{{if eq .Display "bitmask"}} (%0{{.BitSize}}b){{end}}{{end}}{{end}}{{end}} }", 
+		"&{{.DialectName}}.{{$name}}{ {{range $i, $v := .Fields}}{{if gt $i 0}}, {{end}}{{.Name | UpperCamelCase}}: {{if IsStringField .}}\"%s\"{{else}}{{if IsByteArrayField .}}%0X (\"%s\"){{else}}%+v{{if .Enum}}{{if eq .Display "bitmask"}} (%0{{.BitSize}}b){{end}}{{end}}{{end}}{{end}}{{end}} }", 
 		{{range .Fields}}m.{{.Name | UpperCamelCase}}{{if .Enum}}{{if eq .Display "bitmask"}}.Bitmask(), uint64(m.{{.Name | UpperCamelCase}}){{end}}{{end}}{{if IsByteArrayField .}}, string(m.{{.Name | UpperCamelCase}}[:]){{end}},
 {{end}}
 	)
