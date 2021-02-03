@@ -28,6 +28,7 @@ var (
 	device     = flag.String("d", "/dev/ttyUSB0", "path of serial port device")
 	ro         = flag.Bool("ro", false, "read-only mode")
 	retryCount = flag.Int("retry-count", 2, "retry count for sending packets")
+	sysID      = flag.Int("sysID", 1, "System ID (copter)")
 )
 
 func main() {
@@ -87,7 +88,7 @@ func makeHeartbeat() *mavlink.Packet {
 		Type:           ardupilotmega.MAV_TYPE_GCS,
 		Autopilot:      ardupilotmega.MAV_AUTOPILOT_INVALID,
 		BaseMode:       0,
-		SystemStatus:   0,
+		SystemStatus:   ardupilotmega.MAV_STATE_UNINIT,
 		MavlinkVersion: 3,
 	})
 }
@@ -168,7 +169,7 @@ func nextSeq() uint8 {
 func makePacket(message mavlink.Message) *mavlink.Packet {
 	packet := mavlink.Packet{
 		SeqID:  nextSeq(),
-		SysID:  255,
+		SysID:  uint8(*sysID),
 		CompID: uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER),
 	}
 	if err := message.Pack(&packet); err != nil {
