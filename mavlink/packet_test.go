@@ -7,7 +7,7 @@ import (
 
 func TestU16ToBytes(t *testing.T) {
 	expected := []byte{0x25, 0x93}
-	bytes := (*Packet)(nil).u16ToBytes(37669)
+	bytes := u16ToBytes(37669)
 	require.Equal(t, len(bytes), 2, "Len of bytes should be equal 2")
 	require.Equal(t, expected[0], bytes[0], "First byte unexpected")
 	require.Equal(t, expected[1], bytes[1], "Second byte unexpected")
@@ -17,19 +17,27 @@ func TestMarshallUnmarshal(t *testing.T) {
 	ping := &pingMock{
 		Seq: 9999,
 	}
-	packet := &Packet{}
-	require.NoError(t, packet.Encode(ping), "encode failed")
-	bytes, err := Marshal(packet)
+	payload, err := ping.Marshal()
 	require.NoError(t, err)
-	require.Equal(t, []byte{0xfe, 0x4, 0x0, 0x0, 0x0, 0xde, 0xf, 0x27, 0x0, 0x0, 0xf4, 0xe2}, bytes)
-	require.NoError(t, Unmarshal([]byte{0xfe, 0x4, 0x0, 0x0, 0x0, 0xde, 0xf, 0x27, 0x0, 0x0, 0xf4, 0xe2}, packet))
-}
-
-func TestEncodeDecode(t *testing.T) {
-	ping := &pingMock{
-		Seq: 1000,
+	cases := []struct{
+		packet Packet
+		bytes []byte
+	}{
+		{&packet1{msgID: ping.MsgID(), payload: payload}, []byte{0xfe, 0x4, 0x0, 0x0, 0x0, 0xde, 0xf, 0x27, 0x0, 0x0, 0xf4, 0xe2} },
+		{&packet2{msgID: ping.MsgID(), payload: payload}, []byte{0xfd, 0x4, 0x0, 0x0, 0x0, 0x0, 0x0, 0xde, 0x0, 0x0, 0xf, 0x27, 0x0, 0x0, 0xc4, 0xd2} },
 	}
-	packet := &Packet{}
-	require.NoError(t, packet.Encode(ping), "encode failed")
-	require.NoError(t, packet.Decode(ping), "decode failed")
+	for _, c := range cases {
+		b, err := c.packet.Marshal()
+		require.NoError(t, err)
+		require.Equal(t, c.bytes, b)
+	}
+	for _, c := range cases {
+		err := c.packet.Unmarshal(c.bytes)
+		require.NoError(t, err)
+		msg, err := c.packet.Message()
+		require.NoError(t, err)
+		p, ok := msg.(*pingMock)
+		require.True(t, ok)
+		require.Equal(t, ping.Seq, p.Seq)
+	}
 }

@@ -159,9 +159,6 @@ func packetTemplate() string {
 		"\t}\n" +
 		"\tp.payload = p.payload[:payloadLen]\n" +
 		"{{- end }}\n" +
-		"\tif err := p.fixChecksum(); err != nil {\n" +
-		"\t\treturn err\n" +
-		"\t}\n" +
 		"\treturn nil\n" +
 		"}\n" +
 		"\n" +
@@ -205,6 +202,9 @@ func packetTemplate() string {
 		"\tif p == nil {\n" +
 		"\t\treturn nil, ErrNilPointerReference\n" +
 		"\t}\n" +
+		"\tif err := p.fixChecksum(); err != nil {\n" +
+		"\t\treturn nil, err\n" +
+		"\t}\n" +
 		"    bytes := make([]byte, 0, {{if eq .MavlinkVersion 2 -}} 12 {{- else -}} 8 {{- end}}+len(p.payload))\n" +
 		"    // header\n" +
 		"    bytes = append(bytes,\n" +
@@ -226,7 +226,7 @@ func packetTemplate() string {
 		"    // payload\n" +
 		"\tbytes = append(bytes, p.payload...)\n" +
 		"\t// crc\n" +
-		"\tbytes = append(bytes, p.u16ToBytes(p.checksum)...)\n" +
+		"\tbytes = append(bytes, u16ToBytes(p.checksum)...)\n" +
 		"\treturn bytes, nil\n" +
 		"}\n" +
 		"\n" +
@@ -256,10 +256,6 @@ func packetTemplate() string {
 		"\tcrc.WriteByte(msg.Extra)\n" +
 		"\tp.checksum = crc.Sum16()\n" +
 		"\treturn nil\n" +
-		"}\n" +
-		"\n" +
-		"func (p *packet{{.MavlinkVersion}}) u16ToBytes(v uint16) []byte {\n" +
-		"\treturn []byte{byte(v & 0xff), byte(v >> 8)}\n" +
 		"}\n" +
 		"\n" +
 		"// Message function produce message from packet\n" +

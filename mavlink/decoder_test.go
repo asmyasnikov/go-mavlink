@@ -12,6 +12,7 @@ import (
 func BenchmarkDecoder(b *testing.B) {
 	var buffer bytes.Buffer
 	dec := NewDecoder(&buffer)
+	enc := NewEncoder(&buffer)
 
 	rand.Seed(123)
 
@@ -29,24 +30,22 @@ func BenchmarkDecoder(b *testing.B) {
 			ping := pingMock{
 				Seq: rand.Uint32(),
 			}
-			packet := &Packet{}
-			if err := packet.encode(uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), &ping); err != nil {
+			if err := enc.Encode(MAVLINK_VERSION(i%2), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), &ping); err != nil {
 				b.Fatal(err)
 			}
-			fmt.Println("sended pre")
-			buffer.Write(packet.Bytes())
 			sended++
-			fmt.Println("sended")
 		}
 	}()
 
 	go func() {
 		defer wg.Done()
-		var packet Packet
 		for {
-			err := dec.Decode(&packet)
-			if err == nil {
-				return
+			packet, err := dec.Decode()
+			if err != nil {
+				b.Fatal(err)
+			}
+			if packet.Nil() {
+				b.Fatal("nil packet")
 			}
 			received++
 		}

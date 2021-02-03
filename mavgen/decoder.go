@@ -111,6 +111,10 @@ func decoderTemplate() string {
 		"\t\tparsers: make([]Parser, 0),\n" +
 		"\t}\n" +
 		"}\n" +
+		"\n" +
+		"func u16ToBytes(v uint16) []byte {\n" +
+		"\treturn []byte{byte(v & 0xff), byte(v >> 8)}\n" +
+		"}\n" +
 		""
 	return tmpl
 }

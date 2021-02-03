@@ -143,9 +143,6 @@ func (p *packet2) Encode(m Message) error {
 		payloadLen--
 	}
 	p.payload = p.payload[:payloadLen]
-	if err := p.fixChecksum(); err != nil {
-		return err
-	}
 	return nil
 }
 
@@ -187,6 +184,9 @@ func (p *packet2) Marshal() ([]byte, error) {
 	if p == nil {
 		return nil, ErrNilPointerReference
 	}
+	if err := p.fixChecksum(); err != nil {
+		return nil, err
+	}
 	bytes := make([]byte, 0, 12+len(p.payload))
 	// header
 	bytes = append(bytes,
@@ -204,7 +204,7 @@ func (p *packet2) Marshal() ([]byte, error) {
 	// payload
 	bytes = append(bytes, p.payload...)
 	// crc
-	bytes = append(bytes, p.u16ToBytes(p.checksum)...)
+	bytes = append(bytes, u16ToBytes(p.checksum)...)
 	return bytes, nil
 }
 
@@ -230,10 +230,6 @@ func (p *packet2) fixChecksum() error {
 	crc.WriteByte(msg.Extra)
 	p.checksum = crc.Sum16()
 	return nil
-}
-
-func (p *packet2) u16ToBytes(v uint16) []byte {
-	return []byte{byte(v & 0xff), byte(v >> 8)}
 }
 
 // Message function produce message from packet
