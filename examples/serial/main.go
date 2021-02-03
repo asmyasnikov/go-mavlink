@@ -97,20 +97,10 @@ func makeRequestDataStream(msgID ardupilotmega.MAV_DATA_STREAM, rate uint16) mav
 	}
 }
 
-func makeTextArray(text string) (bytes [50]byte) {
-	copy(bytes[:], text)
-	return bytes
-}
-
-func makePayload(payload []byte) (bytes [251]byte) {
-	copy(bytes[:], payload)
-	return bytes
-}
-
 func makeStatustext(text string) mavlink.Message {
 	return &ardupilotmega.Statustext{
 		Severity: ardupilotmega.MAV_SEVERITY_INFO,
-		Text:     makeTextArray(text),
+		Text:     text,
 	}
 }
 
@@ -149,7 +139,7 @@ func makeFileTransferProtocol(payload []byte) mavlink.Message {
 		TargetNetwork:   0,
 		TargetSystem:    1,
 		TargetComponent: 1,
-		Payload:         makePayload(payload),
+		Payload:         payload,
 	}
 }
 

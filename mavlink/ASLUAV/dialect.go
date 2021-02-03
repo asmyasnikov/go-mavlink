@@ -8879,10 +8879,10 @@ type CommandIntStamped struct {
 	X                int32     // PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
 	Y                int32     // PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
 	Z                float32   // PARAM7 / z position: global: altitude in meters (MSL, WGS84, AGL or relative to home - depending on frame).
-	Command          MAV_CMD   `raw:"uint16"` // The scheduled action for the mission item, as defined by MAV_CMD enum
+	Command          MAV_CMD   // The scheduled action for the mission item, as defined by MAV_CMD enum
 	TargetSystem     uint8     // System ID
 	TargetComponent  uint8     // Component ID
-	Frame            MAV_FRAME `raw:"uint8"` // The coordinate system of the COMMAND, as defined by MAV_FRAME enum
+	Frame            MAV_FRAME // The coordinate system of the COMMAND, as defined by MAV_FRAME enum
 	Current          uint8     // false:0, true:1
 	Autocontinue     uint8     // autocontinue to next wp
 }
@@ -8967,7 +8967,7 @@ type CommandLongStamped struct {
 	Param5           float32 // Parameter 5, as defined by MAV_CMD enum.
 	Param6           float32 // Parameter 6, as defined by MAV_CMD enum.
 	Param7           float32 // Parameter 7, as defined by MAV_CMD enum.
-	Command          MAV_CMD `raw:"uint16"` // Command ID, as defined by MAV_CMD enum.
+	Command          MAV_CMD // Command ID, as defined by MAV_CMD enum.
 	TargetSystem     uint8   // System which should execute the command
 	TargetComponent  uint8   // Component which should execute the command, 0 for all components
 	Confirmation     uint8   // 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
@@ -9362,10 +9362,10 @@ func (m *AslctrlDebug) Unmarshal(payload []byte) error {
 // AsluavStatus struct (generated typeinfo)
 // Extended state information for ASLUAVs
 type AsluavStatus struct {
-	MotorRpm     float32  //  Motor RPM
-	LedStatus    uint8    //  Status of the position-indicator LEDs
-	SatcomStatus uint8    //  Status of the IRIDIUM satellite communication system
-	ServoStatus  [8]uint8 //  Status vector for up to 8 servos
+	MotorRpm     float32 //  Motor RPM
+	LedStatus    uint8   //  Status of the position-indicator LEDs
+	SatcomStatus uint8   //  Status of the IRIDIUM satellite communication system
+	ServoStatus  []uint8 `len:"8" ` //  Status vector for up to 8 servos
 }
 
 // MsgID (generated function)
@@ -9390,7 +9390,12 @@ func (m *AsluavStatus) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint32(payload[0:], math.Float32bits(m.MotorRpm))
 	payload[4] = byte(m.LedStatus)
 	payload[5] = byte(m.SatcomStatus)
-	copy(payload[6:], m.ServoStatus[:])
+	copy(payload[6:], m.ServoStatus[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.ServoStatus), 8)])
 	return payload, nil
 }
 
@@ -9915,8 +9920,8 @@ func (m *SensPowerBoard) Unmarshal(payload []byte) error {
 // Status of GSM modem (connected to onboard computer)
 type GsmLinkStatus struct {
 	Timestamp    uint64         // Timestamp (of OBC)
-	GsmModemType GSM_MODEM_TYPE `raw:"uint8"` // GSM modem used
-	GsmLinkType  GSM_LINK_TYPE  `raw:"uint8"` // GSM link type
+	GsmModemType GSM_MODEM_TYPE // GSM modem used
+	GsmLinkType  GSM_LINK_TYPE  // GSM link type
 	Rssi         uint8          // RSSI as reported by modem (unconverted)
 	RsrpRscp     uint8          // RSRP (LTE) or RSCP (WCDMA) as reported by modem (unconverted)
 	SinrEcio     uint8          // SINR (LTE) or ECIO (WCDMA) as reported by modem (unconverted)
@@ -10078,9 +10083,9 @@ func (m *SensorAirflowAngles) Unmarshal(payload []byte) error {
 // SysStatus struct (generated typeinfo)
 // The general system state. If the system is following the MAVLink standard, the system state is mainly defined by three orthogonal states/modes: The system mode, which is either LOCKED (motors shut down and locked), MANUAL (system under RC control), GUIDED (system with autonomous position control, position setpoint controlled manually) or AUTO (system guided by path/waypoint planner). The NAV_MODE defined the current flight state: LIFTOFF (often an open-loop maneuver), LANDING, WAYPOINTS or VECTOR. This represents the internal navigation state machine. The system status shows whether the system is currently active or not and if an emergency occurred. During the CRITICAL and EMERGENCY states the MAV is still considered to be active, but should start emergency procedures autonomously. After a failure occurred it should first move from active to critical to allow manual intervention and then move to emergency after a certain timeout.
 type SysStatus struct {
-	OnboardControlSensorsPresent MAV_SYS_STATUS_SENSOR `raw:"uint32"` // Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
-	OnboardControlSensorsEnabled MAV_SYS_STATUS_SENSOR `raw:"uint32"` // Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
-	OnboardControlSensorsHealth  MAV_SYS_STATUS_SENSOR `raw:"uint32"` // Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
+	OnboardControlSensorsPresent MAV_SYS_STATUS_SENSOR // Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
+	OnboardControlSensorsEnabled MAV_SYS_STATUS_SENSOR // Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
+	OnboardControlSensorsHealth  MAV_SYS_STATUS_SENSOR // Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
 	Load                         uint16                // Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
 	VoltageBattery               uint16                // Battery voltage, UINT16_MAX: Voltage not sent by autopilot
 	CurrentBattery               int16                 // Battery current, -1: Current not sent by autopilot
@@ -10238,10 +10243,10 @@ func (m *Ping) Unmarshal(payload []byte) error {
 // ChangeOperatorControl struct (generated typeinfo)
 // Request to control this MAV
 type ChangeOperatorControl struct {
-	TargetSystem   uint8    // System the GCS requests control for
-	ControlRequest uint8    // 0: request control of this MAV, 1: Release control of this MAV
-	Version        uint8    // 0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch.
-	Passkey        [25]byte // Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-"
+	TargetSystem   uint8  // System the GCS requests control for
+	ControlRequest uint8  // 0: request control of this MAV, 1: Release control of this MAV
+	Version        uint8  // 0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch.
+	Passkey        string `len:"25" ` // Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-"
 }
 
 // MsgID (generated function)
@@ -10252,11 +10257,11 @@ func (m *ChangeOperatorControl) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *ChangeOperatorControl) String() string {
 	return fmt.Sprintf(
-		"&common.ChangeOperatorControl{ TargetSystem: %+v, ControlRequest: %+v, Version: %+v, Passkey: %0X (\"%s\") }",
+		"&common.ChangeOperatorControl{ TargetSystem: %+v, ControlRequest: %+v, Version: %+v, Passkey: %+v }",
 		m.TargetSystem,
 		m.ControlRequest,
 		m.Version,
-		m.Passkey, string(m.Passkey[:]),
+		m.Passkey,
 	)
 }
 
@@ -10266,7 +10271,12 @@ func (m *ChangeOperatorControl) Marshal() ([]byte, error) {
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.ControlRequest)
 	payload[2] = byte(m.Version)
-	copy(payload[3:], m.Passkey[:])
+	copy(payload[3:], m.Passkey[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Passkey), 25)])
 	return payload, nil
 }
 
@@ -10275,7 +10285,7 @@ func (m *ChangeOperatorControl) Unmarshal(payload []byte) error {
 	m.TargetSystem = uint8(payload[0])
 	m.ControlRequest = uint8(payload[1])
 	m.Version = uint8(payload[2])
-	copy(m.Passkey[:], payload[3:28])
+	m.Passkey = string(payload[3:28])
 	return nil
 }
 
@@ -10322,7 +10332,7 @@ func (m *ChangeOperatorControlAck) Unmarshal(payload []byte) error {
 // AuthKey struct (generated typeinfo)
 // Emit an encrypted signature / key identifying this system. PLEASE NOTE: This protocol has been kept simple, so transmitting the key requires an encrypted channel for true safety.
 type AuthKey struct {
-	Key [32]byte // key
+	Key string `len:"32" ` // key
 }
 
 // MsgID (generated function)
@@ -10333,21 +10343,26 @@ func (m *AuthKey) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *AuthKey) String() string {
 	return fmt.Sprintf(
-		"&common.AuthKey{ Key: %0X (\"%s\") }",
-		m.Key, string(m.Key[:]),
+		"&common.AuthKey{ Key: %+v }",
+		m.Key,
 	)
 }
 
 // Marshal (generated function)
 func (m *AuthKey) Marshal() ([]byte, error) {
 	payload := make([]byte, 32)
-	copy(payload[0:], m.Key[:])
+	copy(payload[0:], m.Key[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Key), 32)])
 	return payload, nil
 }
 
 // Unmarshal (generated function)
 func (m *AuthKey) Unmarshal(payload []byte) error {
-	copy(m.Key[:], payload[0:32])
+	m.Key = string(payload[0:32])
 	return nil
 }
 
@@ -10428,7 +10443,7 @@ func (m *LinkNodeStatus) Unmarshal(payload []byte) error {
 type SetMode struct {
 	CustomMode   uint32   // The new autopilot-specific mode. This field can be ignored by an autopilot.
 	TargetSystem uint8    // The system setting the mode
-	BaseMode     MAV_MODE `raw:"uint8"` // The new base mode.
+	BaseMode     MAV_MODE // The new base mode.
 }
 
 // MsgID (generated function)
@@ -10469,9 +10484,9 @@ type ParamAckTransaction struct {
 	ParamValue      float32        // Parameter value (new value if PARAM_ACCEPTED, current value otherwise)
 	TargetSystem    uint8          // Id of system that sent PARAM_SET message.
 	TargetComponent uint8          // Id of system that sent PARAM_SET message.
-	ParamID         [16]byte       // Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
-	ParamType       MAV_PARAM_TYPE `raw:"uint8"` // Parameter type.
-	ParamResult     PARAM_ACK      `raw:"uint8"` // Result code.
+	ParamID         string         `len:"16" ` // Parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
+	ParamType       MAV_PARAM_TYPE // Parameter type.
+	ParamResult     PARAM_ACK      // Result code.
 }
 
 // MsgID (generated function)
@@ -10482,11 +10497,11 @@ func (m *ParamAckTransaction) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *ParamAckTransaction) String() string {
 	return fmt.Sprintf(
-		"&common.ParamAckTransaction{ ParamValue: %+v, TargetSystem: %+v, TargetComponent: %+v, ParamID: %0X (\"%s\"), ParamType: %+v, ParamResult: %+v }",
+		"&common.ParamAckTransaction{ ParamValue: %+v, TargetSystem: %+v, TargetComponent: %+v, ParamID: %+v, ParamType: %+v, ParamResult: %+v }",
 		m.ParamValue,
 		m.TargetSystem,
 		m.TargetComponent,
-		m.ParamID, string(m.ParamID[:]),
+		m.ParamID,
 		m.ParamType,
 		m.ParamResult,
 	)
@@ -10498,7 +10513,12 @@ func (m *ParamAckTransaction) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint32(payload[0:], math.Float32bits(m.ParamValue))
 	payload[4] = byte(m.TargetSystem)
 	payload[5] = byte(m.TargetComponent)
-	copy(payload[6:], m.ParamID[:])
+	copy(payload[6:], m.ParamID[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.ParamID), 16)])
 	payload[22] = byte(m.ParamType)
 	payload[23] = byte(m.ParamResult)
 	return payload, nil
@@ -10509,7 +10529,7 @@ func (m *ParamAckTransaction) Unmarshal(payload []byte) error {
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
 	m.TargetComponent = uint8(payload[5])
-	copy(m.ParamID[:], payload[6:22])
+	m.ParamID = string(payload[6:22])
 	m.ParamType = MAV_PARAM_TYPE(payload[22])
 	m.ParamResult = PARAM_ACK(payload[23])
 	return nil
@@ -10518,10 +10538,10 @@ func (m *ParamAckTransaction) Unmarshal(payload []byte) error {
 // ParamRequestRead struct (generated typeinfo)
 // Request to read the onboard parameter with the param_id string id. Onboard parameters are stored as key[const char*] -> value[float]. This allows to send a parameter to any other component (such as the GCS) without the need of previous knowledge of possible parameter names. Thus the same GCS can store different parameters for different autopilots. See also https://mavlink.io/en/services/parameter.html for a full documentation of QGroundControl and IMU code.
 type ParamRequestRead struct {
-	ParamIndex      int16    // Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored)
-	TargetSystem    uint8    // System ID
-	TargetComponent uint8    // Component ID
-	ParamID         [16]byte // Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
+	ParamIndex      int16  // Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored)
+	TargetSystem    uint8  // System ID
+	TargetComponent uint8  // Component ID
+	ParamID         string `len:"16" ` // Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
 }
 
 // MsgID (generated function)
@@ -10532,11 +10552,11 @@ func (m *ParamRequestRead) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *ParamRequestRead) String() string {
 	return fmt.Sprintf(
-		"&common.ParamRequestRead{ ParamIndex: %+v, TargetSystem: %+v, TargetComponent: %+v, ParamID: %0X (\"%s\") }",
+		"&common.ParamRequestRead{ ParamIndex: %+v, TargetSystem: %+v, TargetComponent: %+v, ParamID: %+v }",
 		m.ParamIndex,
 		m.TargetSystem,
 		m.TargetComponent,
-		m.ParamID, string(m.ParamID[:]),
+		m.ParamID,
 	)
 }
 
@@ -10546,7 +10566,12 @@ func (m *ParamRequestRead) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.ParamIndex))
 	payload[2] = byte(m.TargetSystem)
 	payload[3] = byte(m.TargetComponent)
-	copy(payload[4:], m.ParamID[:])
+	copy(payload[4:], m.ParamID[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.ParamID), 16)])
 	return payload, nil
 }
 
@@ -10555,7 +10580,7 @@ func (m *ParamRequestRead) Unmarshal(payload []byte) error {
 	m.ParamIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
-	copy(m.ParamID[:], payload[4:20])
+	m.ParamID = string(payload[4:20])
 	return nil
 }
 
@@ -10601,8 +10626,8 @@ type ParamValue struct {
 	ParamValue float32        // Onboard parameter value
 	ParamCount uint16         // Total number of onboard parameters
 	ParamIndex uint16         // Index of this onboard parameter
-	ParamID    [16]byte       // Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
-	ParamType  MAV_PARAM_TYPE `raw:"uint8"` // Onboard parameter type.
+	ParamID    string         `len:"16" ` // Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
+	ParamType  MAV_PARAM_TYPE // Onboard parameter type.
 }
 
 // MsgID (generated function)
@@ -10613,11 +10638,11 @@ func (m *ParamValue) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *ParamValue) String() string {
 	return fmt.Sprintf(
-		"&common.ParamValue{ ParamValue: %+v, ParamCount: %+v, ParamIndex: %+v, ParamID: %0X (\"%s\"), ParamType: %+v }",
+		"&common.ParamValue{ ParamValue: %+v, ParamCount: %+v, ParamIndex: %+v, ParamID: %+v, ParamType: %+v }",
 		m.ParamValue,
 		m.ParamCount,
 		m.ParamIndex,
-		m.ParamID, string(m.ParamID[:]),
+		m.ParamID,
 		m.ParamType,
 	)
 }
@@ -10628,7 +10653,12 @@ func (m *ParamValue) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint32(payload[0:], math.Float32bits(m.ParamValue))
 	binary.LittleEndian.PutUint16(payload[4:], uint16(m.ParamCount))
 	binary.LittleEndian.PutUint16(payload[6:], uint16(m.ParamIndex))
-	copy(payload[8:], m.ParamID[:])
+	copy(payload[8:], m.ParamID[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.ParamID), 16)])
 	payload[24] = byte(m.ParamType)
 	return payload, nil
 }
@@ -10638,7 +10668,7 @@ func (m *ParamValue) Unmarshal(payload []byte) error {
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.ParamCount = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.ParamIndex = uint16(binary.LittleEndian.Uint16(payload[6:]))
-	copy(m.ParamID[:], payload[8:24])
+	m.ParamID = string(payload[8:24])
 	m.ParamType = MAV_PARAM_TYPE(payload[24])
 	return nil
 }
@@ -10651,8 +10681,8 @@ type ParamSet struct {
 	ParamValue      float32        // Onboard parameter value
 	TargetSystem    uint8          // System ID
 	TargetComponent uint8          // Component ID
-	ParamID         [16]byte       // Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
-	ParamType       MAV_PARAM_TYPE `raw:"uint8"` // Onboard parameter type.
+	ParamID         string         `len:"16" ` // Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
+	ParamType       MAV_PARAM_TYPE // Onboard parameter type.
 }
 
 // MsgID (generated function)
@@ -10663,11 +10693,11 @@ func (m *ParamSet) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *ParamSet) String() string {
 	return fmt.Sprintf(
-		"&common.ParamSet{ ParamValue: %+v, TargetSystem: %+v, TargetComponent: %+v, ParamID: %0X (\"%s\"), ParamType: %+v }",
+		"&common.ParamSet{ ParamValue: %+v, TargetSystem: %+v, TargetComponent: %+v, ParamID: %+v, ParamType: %+v }",
 		m.ParamValue,
 		m.TargetSystem,
 		m.TargetComponent,
-		m.ParamID, string(m.ParamID[:]),
+		m.ParamID,
 		m.ParamType,
 	)
 }
@@ -10678,7 +10708,12 @@ func (m *ParamSet) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint32(payload[0:], math.Float32bits(m.ParamValue))
 	payload[4] = byte(m.TargetSystem)
 	payload[5] = byte(m.TargetComponent)
-	copy(payload[6:], m.ParamID[:])
+	copy(payload[6:], m.ParamID[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.ParamID), 16)])
 	payload[22] = byte(m.ParamType)
 	return payload, nil
 }
@@ -10688,7 +10723,7 @@ func (m *ParamSet) Unmarshal(payload []byte) error {
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
 	m.TargetComponent = uint8(payload[5])
-	copy(m.ParamID[:], payload[6:22])
+	m.ParamID = string(payload[6:22])
 	m.ParamType = MAV_PARAM_TYPE(payload[22])
 	return nil
 }
@@ -10705,7 +10740,7 @@ type GpsRawInt struct {
 	Epv               uint16       // GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
 	Vel               uint16       // GPS ground speed. If unknown, set to: UINT16_MAX
 	Cog               uint16       // Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
-	FixType           GPS_FIX_TYPE `raw:"uint8"` // GPS fix type.
+	FixType           GPS_FIX_TYPE // GPS fix type.
 	SatellitesVisible uint8        // Number of satellites visible. If unknown, set to 255
 }
 
@@ -10765,12 +10800,12 @@ func (m *GpsRawInt) Unmarshal(payload []byte) error {
 // GpsStatus struct (generated typeinfo)
 // The positioning status, as reported by GPS. This message is intended to display status information about each satellite visible to the receiver. See message GLOBAL_POSITION for the global position estimate. This message can contain information for up to 20 satellites.
 type GpsStatus struct {
-	SatellitesVisible  uint8     // Number of satellites visible
-	SatellitePrn       [20]uint8 // Global satellite ID
-	SatelliteUsed      [20]uint8 // 0: Satellite not used, 1: used for localization
-	SatelliteElevation [20]uint8 // Elevation (0: right on top of receiver, 90: on the horizon) of satellite
-	SatelliteAzimuth   [20]uint8 // Direction of satellite, 0: 0 deg, 255: 360 deg.
-	SatelliteSnr       [20]uint8 // Signal to noise ratio of satellite
+	SatellitesVisible  uint8   // Number of satellites visible
+	SatellitePrn       []uint8 `len:"20" ` // Global satellite ID
+	SatelliteUsed      []uint8 `len:"20" ` // 0: Satellite not used, 1: used for localization
+	SatelliteElevation []uint8 `len:"20" ` // Elevation (0: right on top of receiver, 90: on the horizon) of satellite
+	SatelliteAzimuth   []uint8 `len:"20" ` // Direction of satellite, 0: 0 deg, 255: 360 deg.
+	SatelliteSnr       []uint8 `len:"20" ` // Signal to noise ratio of satellite
 }
 
 // MsgID (generated function)
@@ -10795,11 +10830,36 @@ func (m *GpsStatus) String() string {
 func (m *GpsStatus) Marshal() ([]byte, error) {
 	payload := make([]byte, 101)
 	payload[0] = byte(m.SatellitesVisible)
-	copy(payload[1:], m.SatellitePrn[:])
-	copy(payload[21:], m.SatelliteUsed[:])
-	copy(payload[41:], m.SatelliteElevation[:])
-	copy(payload[61:], m.SatelliteAzimuth[:])
-	copy(payload[81:], m.SatelliteSnr[:])
+	copy(payload[1:], m.SatellitePrn[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.SatellitePrn), 20)])
+	copy(payload[21:], m.SatelliteUsed[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.SatelliteUsed), 20)])
+	copy(payload[41:], m.SatelliteElevation[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.SatelliteElevation), 20)])
+	copy(payload[61:], m.SatelliteAzimuth[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.SatelliteAzimuth), 20)])
+	copy(payload[81:], m.SatelliteSnr[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.SatelliteSnr), 20)])
 	return payload, nil
 }
 
@@ -11591,10 +11651,10 @@ type MissionItem struct {
 	Y               float32   // PARAM6 / local: Y coordinate, global: longitude
 	Z               float32   // PARAM7 / local: Z coordinate, global: altitude (relative or absolute, depending on frame).
 	Seq             uint16    // Sequence
-	Command         MAV_CMD   `raw:"uint16"` // The scheduled action for the waypoint.
+	Command         MAV_CMD   // The scheduled action for the waypoint.
 	TargetSystem    uint8     // System ID
 	TargetComponent uint8     // Component ID
-	Frame           MAV_FRAME `raw:"uint8"` // The coordinate system of the waypoint.
+	Frame           MAV_FRAME // The coordinate system of the waypoint.
 	Current         uint8     // false:0, true:1
 	Autocontinue    uint8     // Autocontinue to next waypoint
 }
@@ -11925,7 +11985,7 @@ func (m *MissionItemReached) Unmarshal(payload []byte) error {
 type MissionAck struct {
 	TargetSystem    uint8              // System ID
 	TargetComponent uint8              // Component ID
-	Type            MAV_MISSION_RESULT `raw:"uint8"` // Mission result.
+	Type            MAV_MISSION_RESULT // Mission result.
 }
 
 // MsgID (generated function)
@@ -12047,15 +12107,15 @@ func (m *GpsGlobalOrigin) Unmarshal(payload []byte) error {
 // ParamMapRc struct (generated typeinfo)
 // Bind a RC channel to a parameter. The parameter should change according to the RC channel value.
 type ParamMapRc struct {
-	ParamValue0             float32  // Initial parameter value
-	Scale                   float32  // Scale, maps the RC range [-1, 1] to a parameter value
-	ParamValueMin           float32  // Minimum param value. The protocol does not define if this overwrites an onboard minimum value. (Depends on implementation)
-	ParamValueMax           float32  // Maximum param value. The protocol does not define if this overwrites an onboard maximum value. (Depends on implementation)
-	ParamIndex              int16    // Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored), send -2 to disable any existing map for this rc_channel_index.
-	TargetSystem            uint8    // System ID
-	TargetComponent         uint8    // Component ID
-	ParamID                 [16]byte // Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
-	ParameterRcChannelIndex uint8    // Index of parameter RC channel. Not equal to the RC channel id. Typically corresponds to a potentiometer-knob on the RC.
+	ParamValue0             float32 // Initial parameter value
+	Scale                   float32 // Scale, maps the RC range [-1, 1] to a parameter value
+	ParamValueMin           float32 // Minimum param value. The protocol does not define if this overwrites an onboard minimum value. (Depends on implementation)
+	ParamValueMax           float32 // Maximum param value. The protocol does not define if this overwrites an onboard maximum value. (Depends on implementation)
+	ParamIndex              int16   // Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored), send -2 to disable any existing map for this rc_channel_index.
+	TargetSystem            uint8   // System ID
+	TargetComponent         uint8   // Component ID
+	ParamID                 string  `len:"16" ` // Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
+	ParameterRcChannelIndex uint8   // Index of parameter RC channel. Not equal to the RC channel id. Typically corresponds to a potentiometer-knob on the RC.
 }
 
 // MsgID (generated function)
@@ -12066,7 +12126,7 @@ func (m *ParamMapRc) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *ParamMapRc) String() string {
 	return fmt.Sprintf(
-		"&common.ParamMapRc{ ParamValue0: %+v, Scale: %+v, ParamValueMin: %+v, ParamValueMax: %+v, ParamIndex: %+v, TargetSystem: %+v, TargetComponent: %+v, ParamID: %0X (\"%s\"), ParameterRcChannelIndex: %+v }",
+		"&common.ParamMapRc{ ParamValue0: %+v, Scale: %+v, ParamValueMin: %+v, ParamValueMax: %+v, ParamIndex: %+v, TargetSystem: %+v, TargetComponent: %+v, ParamID: %+v, ParameterRcChannelIndex: %+v }",
 		m.ParamValue0,
 		m.Scale,
 		m.ParamValueMin,
@@ -12074,7 +12134,7 @@ func (m *ParamMapRc) String() string {
 		m.ParamIndex,
 		m.TargetSystem,
 		m.TargetComponent,
-		m.ParamID, string(m.ParamID[:]),
+		m.ParamID,
 		m.ParameterRcChannelIndex,
 	)
 }
@@ -12089,7 +12149,12 @@ func (m *ParamMapRc) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint16(payload[16:], uint16(m.ParamIndex))
 	payload[18] = byte(m.TargetSystem)
 	payload[19] = byte(m.TargetComponent)
-	copy(payload[20:], m.ParamID[:])
+	copy(payload[20:], m.ParamID[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.ParamID), 16)])
 	payload[36] = byte(m.ParameterRcChannelIndex)
 	return payload, nil
 }
@@ -12103,7 +12168,7 @@ func (m *ParamMapRc) Unmarshal(payload []byte) error {
 	m.ParamIndex = int16(binary.LittleEndian.Uint16(payload[16:]))
 	m.TargetSystem = uint8(payload[18])
 	m.TargetComponent = uint8(payload[19])
-	copy(m.ParamID[:], payload[20:36])
+	m.ParamID = string(payload[20:36])
 	m.ParameterRcChannelIndex = uint8(payload[36])
 	return nil
 }
@@ -12154,8 +12219,8 @@ type MissionChanged struct {
 	StartIndex   int16            // Start index for partial mission change (-1 for all items).
 	EndIndex     int16            // End index of a partial mission change. -1 is a synonym for the last mission item (i.e. selects all items from start_index). Ignore field if start_index=-1.
 	OriginSysid  uint8            // System ID of the author of the new mission.
-	OriginCompid MAV_COMPONENT    `raw:"uint8"` // Compnent ID of the author of the new mission.
-	MissionType  MAV_MISSION_TYPE `raw:"uint8"` // Mission type.
+	OriginCompid MAV_COMPONENT    // Compnent ID of the author of the new mission.
+	MissionType  MAV_MISSION_TYPE // Mission type.
 }
 
 // MsgID (generated function)
@@ -12207,7 +12272,7 @@ type SafetySetAllowedArea struct {
 	P2z             float32   // z position 2 / Altitude 2
 	TargetSystem    uint8     // System ID
 	TargetComponent uint8     // Component ID
-	Frame           MAV_FRAME `raw:"uint8"` // Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
+	Frame           MAV_FRAME // Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
 }
 
 // MsgID (generated function)
@@ -12269,7 +12334,7 @@ type SafetyAllowedArea struct {
 	P2x   float32   // x position 2 / Latitude 2
 	P2y   float32   // y position 2 / Longitude 2
 	P2z   float32   // z position 2 / Altitude 2
-	Frame MAV_FRAME `raw:"uint8"` // Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
+	Frame MAV_FRAME // Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
 }
 
 // MsgID (generated function)
@@ -12319,12 +12384,12 @@ func (m *SafetyAllowedArea) Unmarshal(payload []byte) error {
 // AttitudeQuaternionCov struct (generated typeinfo)
 // The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0).
 type AttitudeQuaternionCov struct {
-	TimeUsec   uint64     // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Q          [4]float32 // Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
-	Rollspeed  float32    // Roll angular speed
-	Pitchspeed float32    // Pitch angular speed
-	Yawspeed   float32    // Yaw angular speed
-	Covariance [9]float32 // Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
+	TimeUsec   uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Q          []float32 `len:"4" ` // Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
+	Rollspeed  float32   // Roll angular speed
+	Pitchspeed float32   // Pitch angular speed
+	Yawspeed   float32   // Yaw angular speed
+	Covariance []float32 `len:"9" ` // Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
 }
 
 // MsgID (generated function)
@@ -12447,8 +12512,8 @@ type GlobalPositionIntCov struct {
 	Vx            float32            // Ground X Speed (Latitude)
 	Vy            float32            // Ground Y Speed (Longitude)
 	Vz            float32            // Ground Z Speed (Altitude)
-	Covariance    [36]float32        // Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
-	EstimatorType MAV_ESTIMATOR_TYPE `raw:"uint8"` // Class id of the estimator this estimate originated from.
+	Covariance    []float32          `len:"36" ` // Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
+	EstimatorType MAV_ESTIMATOR_TYPE // Class id of the estimator this estimate originated from.
 }
 
 // MsgID (generated function)
@@ -12521,8 +12586,8 @@ type LocalPositionNedCov struct {
 	Ax            float32            // X Acceleration
 	Ay            float32            // Y Acceleration
 	Az            float32            // Z Acceleration
-	Covariance    [45]float32        // Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
-	EstimatorType MAV_ESTIMATOR_TYPE `raw:"uint8"` // Class id of the estimator this estimate originated from.
+	Covariance    []float32          `len:"45" ` // Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
+	EstimatorType MAV_ESTIMATOR_TYPE // Class id of the estimator this estimate originated from.
 }
 
 // MsgID (generated function)
@@ -12920,10 +12985,10 @@ type MissionItemInt struct {
 	Y               int32     // PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
 	Z               float32   // PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
 	Seq             uint16    // Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).
-	Command         MAV_CMD   `raw:"uint16"` // The scheduled action for the waypoint.
+	Command         MAV_CMD   // The scheduled action for the waypoint.
 	TargetSystem    uint8     // System ID
 	TargetComponent uint8     // Component ID
-	Frame           MAV_FRAME `raw:"uint8"` // The coordinate system of the waypoint.
+	Frame           MAV_FRAME // The coordinate system of the waypoint.
 	Current         uint8     // false:0, true:1
 	Autocontinue    uint8     // Autocontinue to next waypoint
 }
@@ -13055,10 +13120,10 @@ type CommandInt struct {
 	X               int32     // PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
 	Y               int32     // PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7
 	Z               float32   // PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame).
-	Command         MAV_CMD   `raw:"uint16"` // The scheduled action for the mission item.
+	Command         MAV_CMD   // The scheduled action for the mission item.
 	TargetSystem    uint8     // System ID
 	TargetComponent uint8     // Component ID
-	Frame           MAV_FRAME `raw:"uint8"` // The coordinate system of the COMMAND.
+	Frame           MAV_FRAME // The coordinate system of the COMMAND.
 	Current         uint8     // Not used.
 	Autocontinue    uint8     // Not used (set 0).
 }
@@ -13135,7 +13200,7 @@ type CommandLong struct {
 	Param5          float32 // Parameter 5 (for the specific command).
 	Param6          float32 // Parameter 6 (for the specific command).
 	Param7          float32 // Parameter 7 (for the specific command).
-	Command         MAV_CMD `raw:"uint16"` // Command ID (of command to send).
+	Command         MAV_CMD // Command ID (of command to send).
 	TargetSystem    uint8   // System which should execute the command
 	TargetComponent uint8   // Component which should execute the command, 0 for all components
 	Confirmation    uint8   // 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
@@ -13200,8 +13265,8 @@ func (m *CommandLong) Unmarshal(payload []byte) error {
 // CommandAck struct (generated typeinfo)
 // Report status of a command. Includes feedback whether the command was executed. The command microservice is documented at https://mavlink.io/en/services/command.html
 type CommandAck struct {
-	Command MAV_CMD    `raw:"uint16"` // Command ID (of acknowledged command).
-	Result  MAV_RESULT `raw:"uint8"`  // Result of command.
+	Command MAV_CMD    // Command ID (of acknowledged command).
+	Result  MAV_RESULT // Result of command.
 }
 
 // MsgID (generated function)
@@ -13236,7 +13301,7 @@ func (m *CommandAck) Unmarshal(payload []byte) error {
 // CommandCancel struct (generated typeinfo)
 // Cancel a long running command. The target system should respond with a COMMAND_ACK to the original command with result=MAV_RESULT_CANCELLED if the long running process was cancelled. If it has already completed, the cancel action can be ignored. The cancel action can be retried until some sort of acknowledgement to the original command has been received. The command microservice is documented at https://mavlink.io/en/services/command.html
 type CommandCancel struct {
-	Command         MAV_CMD `raw:"uint16"` // Command ID (of command to cancel).
+	Command         MAV_CMD // Command ID (of command to cancel).
 	TargetSystem    uint8   // System executing long running command. Should not be broadcast (0).
 	TargetComponent uint8   // Component executing long running command.
 }
@@ -13333,14 +13398,14 @@ func (m *ManualSetpoint) Unmarshal(payload []byte) error {
 // Sets a desired vehicle attitude. Used by an external controller to command the vehicle (manual controller or other system).
 type SetAttitudeTarget struct {
 	TimeBootMs      uint32                   // Timestamp (time since system boot).
-	Q               [4]float32               // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
+	Q               []float32                `len:"4" ` // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
 	BodyRollRate    float32                  // Body roll rate
 	BodyPitchRate   float32                  // Body pitch rate
 	BodyYawRate     float32                  // Body yaw rate
 	Thrust          float32                  // Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust)
 	TargetSystem    uint8                    // System ID
 	TargetComponent uint8                    // Component ID
-	TypeMask        ATTITUDE_TARGET_TYPEMASK `raw:"uint8"` // Bitmap to indicate which dimensions should be ignored by the vehicle.
+	TypeMask        ATTITUDE_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 }
 
 // MsgID (generated function)
@@ -13401,12 +13466,12 @@ func (m *SetAttitudeTarget) Unmarshal(payload []byte) error {
 // Reports the current commanded attitude of the vehicle as specified by the autopilot. This should match the commands sent in a SET_ATTITUDE_TARGET message if the vehicle is being controlled this way.
 type AttitudeTarget struct {
 	TimeBootMs    uint32                   // Timestamp (time since system boot).
-	Q             [4]float32               // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
+	Q             []float32                `len:"4" ` // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
 	BodyRollRate  float32                  // Body roll rate
 	BodyPitchRate float32                  // Body pitch rate
 	BodyYawRate   float32                  // Body yaw rate
 	Thrust        float32                  // Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust)
-	TypeMask      ATTITUDE_TARGET_TYPEMASK `raw:"uint8"` // Bitmap to indicate which dimensions should be ignored by the vehicle.
+	TypeMask      ATTITUDE_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 }
 
 // MsgID (generated function)
@@ -13472,10 +13537,10 @@ type SetPositionTargetLocalNed struct {
 	Afz             float32                  // Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
 	Yaw             float32                  // yaw setpoint
 	YawRate         float32                  // yaw rate setpoint
-	TypeMask        POSITION_TARGET_TYPEMASK `raw:"uint16"` // Bitmap to indicate which dimensions should be ignored by the vehicle.
+	TypeMask        POSITION_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 	TargetSystem    uint8                    // System ID
 	TargetComponent uint8                    // Component ID
-	CoordinateFrame MAV_FRAME                `raw:"uint8"` // Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9
+	CoordinateFrame MAV_FRAME                // Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9
 }
 
 // MsgID (generated function)
@@ -13564,8 +13629,8 @@ type PositionTargetLocalNed struct {
 	Afz             float32                  // Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
 	Yaw             float32                  // yaw setpoint
 	YawRate         float32                  // yaw rate setpoint
-	TypeMask        POSITION_TARGET_TYPEMASK `raw:"uint16"` // Bitmap to indicate which dimensions should be ignored by the vehicle.
-	CoordinateFrame MAV_FRAME                `raw:"uint8"`  // Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9
+	TypeMask        POSITION_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
+	CoordinateFrame MAV_FRAME                // Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9
 }
 
 // MsgID (generated function)
@@ -13648,10 +13713,10 @@ type SetPositionTargetGlobalInt struct {
 	Afz             float32                  // Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
 	Yaw             float32                  // yaw setpoint
 	YawRate         float32                  // yaw rate setpoint
-	TypeMask        POSITION_TARGET_TYPEMASK `raw:"uint16"` // Bitmap to indicate which dimensions should be ignored by the vehicle.
+	TypeMask        POSITION_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 	TargetSystem    uint8                    // System ID
 	TargetComponent uint8                    // Component ID
-	CoordinateFrame MAV_FRAME                `raw:"uint8"` // Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
+	CoordinateFrame MAV_FRAME                // Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
 }
 
 // MsgID (generated function)
@@ -13740,8 +13805,8 @@ type PositionTargetGlobalInt struct {
 	Afz             float32                  // Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
 	Yaw             float32                  // yaw setpoint
 	YawRate         float32                  // yaw rate setpoint
-	TypeMask        POSITION_TARGET_TYPEMASK `raw:"uint16"` // Bitmap to indicate which dimensions should be ignored by the vehicle.
-	CoordinateFrame MAV_FRAME                `raw:"uint8"`  // Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
+	TypeMask        POSITION_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
+	CoordinateFrame MAV_FRAME                // Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
 }
 
 // MsgID (generated function)
@@ -13969,7 +14034,7 @@ type HilControls struct {
 	Aux2          float32  // Aux 2, -1 .. 1
 	Aux3          float32  // Aux 3, -1 .. 1
 	Aux4          float32  // Aux 4, -1 .. 1
-	Mode          MAV_MODE `raw:"uint8"` // System mode.
+	Mode          MAV_MODE // System mode.
 	NavMode       uint8    // Navigation mode (MAV_NAV_MODE)
 }
 
@@ -14118,8 +14183,8 @@ func (m *HilRcInputsRaw) Unmarshal(payload []byte) error {
 type HilActuatorControls struct {
 	TimeUsec uint64        // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Flags    uint64        // Flags as bitfield, 1: indicate simulation using lockstep.
-	Controls [16]float32   // Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.
-	Mode     MAV_MODE_FLAG `raw:"uint8"` // System mode. Includes arming state.
+	Controls []float32     `len:"16" ` // Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.
+	Mode     MAV_MODE_FLAG // System mode. Includes arming state.
 }
 
 // MsgID (generated function)
@@ -14856,10 +14921,10 @@ func (m *RadioStatus) Unmarshal(payload []byte) error {
 // FileTransferProtocol struct (generated typeinfo)
 // File transfer message
 type FileTransferProtocol struct {
-	TargetNetwork   uint8      // Network ID (0 for broadcast)
-	TargetSystem    uint8      // System ID (0 for broadcast)
-	TargetComponent uint8      // Component ID (0 for broadcast)
-	Payload         [251]uint8 // Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.
+	TargetNetwork   uint8   // Network ID (0 for broadcast)
+	TargetSystem    uint8   // System ID (0 for broadcast)
+	TargetComponent uint8   // Component ID (0 for broadcast)
+	Payload         []uint8 `len:"251" ` // Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.
 }
 
 // MsgID (generated function)
@@ -14884,7 +14949,12 @@ func (m *FileTransferProtocol) Marshal() ([]byte, error) {
 	payload[0] = byte(m.TargetNetwork)
 	payload[1] = byte(m.TargetSystem)
 	payload[2] = byte(m.TargetComponent)
-	copy(payload[3:], m.Payload[:])
+	copy(payload[3:], m.Payload[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Payload), 251)])
 	return payload, nil
 }
 
@@ -15129,22 +15199,22 @@ func (m *HilOpticalFlow) Unmarshal(payload []byte) error {
 // HilStateQuaternion struct (generated typeinfo)
 // Sent from simulation to autopilot, avoids in contrast to HIL_STATE singularities. This packet is useful for high throughput applications such as hardware in the loop simulations.
 type HilStateQuaternion struct {
-	TimeUsec           uint64     // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	AttitudeQuaternion [4]float32 // Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 1 0 0 0 being the null-rotation)
-	Rollspeed          float32    // Body frame roll / phi angular speed
-	Pitchspeed         float32    // Body frame pitch / theta angular speed
-	Yawspeed           float32    // Body frame yaw / psi angular speed
-	Lat                int32      // Latitude
-	Lon                int32      // Longitude
-	Alt                int32      // Altitude
-	Vx                 int16      // Ground X Speed (Latitude)
-	Vy                 int16      // Ground Y Speed (Longitude)
-	Vz                 int16      // Ground Z Speed (Altitude)
-	IndAirspeed        uint16     // Indicated airspeed
-	TrueAirspeed       uint16     // True airspeed
-	Xacc               int16      // X acceleration
-	Yacc               int16      // Y acceleration
-	Zacc               int16      // Z acceleration
+	TimeUsec           uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	AttitudeQuaternion []float32 `len:"4" ` // Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 1 0 0 0 being the null-rotation)
+	Rollspeed          float32   // Body frame roll / phi angular speed
+	Pitchspeed         float32   // Body frame pitch / theta angular speed
+	Yawspeed           float32   // Body frame yaw / psi angular speed
+	Lat                int32     // Latitude
+	Lon                int32     // Longitude
+	Alt                int32     // Altitude
+	Vx                 int16     // Ground X Speed (Latitude)
+	Vy                 int16     // Ground Y Speed (Longitude)
+	Vz                 int16     // Ground Z Speed (Altitude)
+	IndAirspeed        uint16    // Indicated airspeed
+	TrueAirspeed       uint16    // True airspeed
+	Xacc               int16     // X acceleration
+	Yacc               int16     // Y acceleration
+	Zacc               int16     // Z acceleration
 }
 
 // MsgID (generated function)
@@ -15433,10 +15503,10 @@ func (m *LogRequestData) Unmarshal(payload []byte) error {
 // LogData struct (generated typeinfo)
 // Reply to LOG_REQUEST_DATA
 type LogData struct {
-	Ofs   uint32    // Offset into the log
-	ID    uint16    // Log id (from LOG_ENTRY reply)
-	Count uint8     // Number of bytes (zero for end of log)
-	Data  [90]uint8 // log data
+	Ofs   uint32  // Offset into the log
+	ID    uint16  // Log id (from LOG_ENTRY reply)
+	Count uint8   // Number of bytes (zero for end of log)
+	Data  []uint8 `len:"90" ` // log data
 }
 
 // MsgID (generated function)
@@ -15461,7 +15531,12 @@ func (m *LogData) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.Ofs))
 	binary.LittleEndian.PutUint16(payload[4:], uint16(m.ID))
 	payload[6] = byte(m.Count)
-	copy(payload[7:], m.Data[:])
+	copy(payload[7:], m.Data[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Data), 90)])
 	return payload, nil
 }
 
@@ -15549,10 +15624,10 @@ func (m *LogRequestEnd) Unmarshal(payload []byte) error {
 // GpsInjectData struct (generated typeinfo)
 // Data for injecting into the onboard GPS (used for DGPS)
 type GpsInjectData struct {
-	TargetSystem    uint8      // System ID
-	TargetComponent uint8      // Component ID
-	Len             uint8      // Data length
-	Data            [110]uint8 // Raw data (110 is enough for 12 satellites of RTCMv2)
+	TargetSystem    uint8   // System ID
+	TargetComponent uint8   // Component ID
+	Len             uint8   // Data length
+	Data            []uint8 `len:"110" ` // Raw data (110 is enough for 12 satellites of RTCMv2)
 }
 
 // MsgID (generated function)
@@ -15577,7 +15652,12 @@ func (m *GpsInjectData) Marshal() ([]byte, error) {
 	payload[0] = byte(m.TargetSystem)
 	payload[1] = byte(m.TargetComponent)
 	payload[2] = byte(m.Len)
-	copy(payload[3:], m.Data[:])
+	copy(payload[3:], m.Data[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Data), 110)])
 	return payload, nil
 }
 
@@ -15602,7 +15682,7 @@ type Gps2Raw struct {
 	Epv               uint16       // GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
 	Vel               uint16       // GPS ground speed. If unknown, set to: UINT16_MAX
 	Cog               uint16       // Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
-	FixType           GPS_FIX_TYPE `raw:"uint8"` // GPS fix type.
+	FixType           GPS_FIX_TYPE // GPS fix type.
 	SatellitesVisible uint8        // Number of satellites visible. If unknown, set to 255
 	DgpsNumch         uint8        // Number of DGPS satellites
 }
@@ -15671,7 +15751,7 @@ func (m *Gps2Raw) Unmarshal(payload []byte) error {
 type PowerStatus struct {
 	Vcc    uint16           // 5V rail voltage.
 	Vservo uint16           // Servo rail voltage.
-	Flags  MAV_POWER_STATUS `raw:"uint16"` // Bitmap of power supply status flags.
+	Flags  MAV_POWER_STATUS // Bitmap of power supply status flags.
 }
 
 // MsgID (generated function)
@@ -15711,10 +15791,10 @@ func (m *PowerStatus) Unmarshal(payload []byte) error {
 type SerialControl struct {
 	Baudrate uint32              // Baudrate of transfer. Zero means no change.
 	Timeout  uint16              // Timeout for reply data
-	Device   SERIAL_CONTROL_DEV  `raw:"uint8"` // Serial control device type.
-	Flags    SERIAL_CONTROL_FLAG `raw:"uint8"` // Bitmap of serial control flags.
+	Device   SERIAL_CONTROL_DEV  // Serial control device type.
+	Flags    SERIAL_CONTROL_FLAG // Bitmap of serial control flags.
 	Count    uint8               // how many bytes in this transfer
-	Data     [70]uint8           // serial data
+	Data     []uint8             `len:"70" ` // serial data
 }
 
 // MsgID (generated function)
@@ -15743,7 +15823,12 @@ func (m *SerialControl) Marshal() ([]byte, error) {
 	payload[6] = byte(m.Device)
 	payload[7] = byte(m.Flags)
 	payload[8] = byte(m.Count)
-	copy(payload[9:], m.Data[:])
+	copy(payload[9:], m.Data[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Data), 70)])
 	return payload, nil
 }
 
@@ -15773,7 +15858,7 @@ type GpsRtk struct {
 	RtkHealth          uint8                          // GPS-specific health report for RTK data.
 	RtkRate            uint8                          // Rate of baseline messages being received by GPS
 	Nsats              uint8                          // Current number of sats used for RTK calculation.
-	BaselineCoordsType RTK_BASELINE_COORDINATE_SYSTEM `raw:"uint8"` // Coordinate system of baseline
+	BaselineCoordsType RTK_BASELINE_COORDINATE_SYSTEM // Coordinate system of baseline
 }
 
 // MsgID (generated function)
@@ -15853,7 +15938,7 @@ type Gps2Rtk struct {
 	RtkHealth          uint8                          // GPS-specific health report for RTK data.
 	RtkRate            uint8                          // Rate of baseline messages being received by GPS
 	Nsats              uint8                          // Current number of sats used for RTK calculation.
-	BaselineCoordsType RTK_BASELINE_COORDINATE_SYSTEM `raw:"uint8"` // Coordinate system of baseline
+	BaselineCoordsType RTK_BASELINE_COORDINATE_SYSTEM // Coordinate system of baseline
 }
 
 // MsgID (generated function)
@@ -15993,7 +16078,7 @@ type DataTransmissionHandshake struct {
 	Width      uint16                   // Width of a matrix or image.
 	Height     uint16                   // Height of a matrix or image.
 	Packets    uint16                   // Number of packets being sent (set on ACK only).
-	Type       MAVLINK_DATA_STREAM_TYPE `raw:"uint8"` // Type of requested/acknowledged data.
+	Type       MAVLINK_DATA_STREAM_TYPE // Type of requested/acknowledged data.
 	Payload    uint8                    // Payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) (set on ACK only).
 	JpgQuality uint8                    // JPEG quality. Values: [1-100].
 }
@@ -16045,8 +16130,8 @@ func (m *DataTransmissionHandshake) Unmarshal(payload []byte) error {
 // EncapsulatedData struct (generated typeinfo)
 // Data packet for images sent using the Image Transmission Protocol: https://mavlink.io/en/services/image_transmission.html.
 type EncapsulatedData struct {
-	Seqnr uint16     // sequence number (starting with 0 on every transmission)
-	Data  [253]uint8 // image data bytes
+	Seqnr uint16  // sequence number (starting with 0 on every transmission)
+	Data  []uint8 `len:"253" ` // image data bytes
 }
 
 // MsgID (generated function)
@@ -16067,7 +16152,12 @@ func (m *EncapsulatedData) String() string {
 func (m *EncapsulatedData) Marshal() ([]byte, error) {
 	payload := make([]byte, 255)
 	binary.LittleEndian.PutUint16(payload[0:], uint16(m.Seqnr))
-	copy(payload[2:], m.Data[:])
+	copy(payload[2:], m.Data[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Data), 253)])
 	return payload, nil
 }
 
@@ -16085,9 +16175,9 @@ type DistanceSensor struct {
 	MinDistance     uint16                 // Minimum distance the sensor can measure
 	MaxDistance     uint16                 // Maximum distance the sensor can measure
 	CurrentDistance uint16                 // Current distance reading
-	Type            MAV_DISTANCE_SENSOR    `raw:"uint8"` // Type of distance sensor.
+	Type            MAV_DISTANCE_SENSOR    // Type of distance sensor.
 	ID              uint8                  // Onboard ID of the sensor
-	Orientation     MAV_SENSOR_ORIENTATION `raw:"uint8"` // Direction the sensor faces. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270
+	Orientation     MAV_SENSOR_ORIENTATION // Direction the sensor faces. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270
 	Covariance      uint8                  // Measurement variance. Max standard deviation is 6cm. 255 if unknown.
 }
 
@@ -16185,11 +16275,11 @@ func (m *TerrainRequest) Unmarshal(payload []byte) error {
 // TerrainData struct (generated typeinfo)
 // Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a lat/lon from a TERRAIN_REQUEST. See terrain protocol docs: https://mavlink.io/en/services/terrain.html
 type TerrainData struct {
-	Lat         int32     // Latitude of SW corner of first grid
-	Lon         int32     // Longitude of SW corner of first grid
-	GridSpacing uint16    // Grid spacing
-	Data        [16]int16 // Terrain data MSL
-	Gridbit     uint8     // bit within the terrain request mask
+	Lat         int32   // Latitude of SW corner of first grid
+	Lon         int32   // Longitude of SW corner of first grid
+	GridSpacing uint16  // Grid spacing
+	Data        []int16 `len:"16" ` // Terrain data MSL
+	Gridbit     uint8   // bit within the terrain request mask
 }
 
 // MsgID (generated function)
@@ -16373,11 +16463,11 @@ func (m *ScaledPressure2) Unmarshal(payload []byte) error {
 // AttPosMocap struct (generated typeinfo)
 // Motion capture attitude and position
 type AttPosMocap struct {
-	TimeUsec uint64     // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Q        [4]float32 // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
-	X        float32    // X position (NED)
-	Y        float32    // Y position (NED)
-	Z        float32    // Z position (NED)
+	TimeUsec uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Q        []float32 `len:"4" ` // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
+	X        float32   // X position (NED)
+	Y        float32   // Y position (NED)
+	Z        float32   // Z position (NED)
 }
 
 // MsgID (generated function)
@@ -16425,11 +16515,11 @@ func (m *AttPosMocap) Unmarshal(payload []byte) error {
 // SetActuatorControlTarget struct (generated typeinfo)
 // Set the vehicle attitude and body angular rates.
 type SetActuatorControlTarget struct {
-	TimeUsec        uint64     // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Controls        [8]float32 // Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
-	GroupMlx        uint8      // Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances.
-	TargetSystem    uint8      // System ID
-	TargetComponent uint8      // Component ID
+	TimeUsec        uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Controls        []float32 `len:"8" ` // Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
+	GroupMlx        uint8     // Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances.
+	TargetSystem    uint8     // System ID
+	TargetComponent uint8     // Component ID
 }
 
 // MsgID (generated function)
@@ -16477,9 +16567,9 @@ func (m *SetActuatorControlTarget) Unmarshal(payload []byte) error {
 // ActuatorControlTarget struct (generated typeinfo)
 // Set the vehicle attitude and body angular rates.
 type ActuatorControlTarget struct {
-	TimeUsec uint64     // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Controls [8]float32 // Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
-	GroupMlx uint8      // Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances.
+	TimeUsec uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Controls []float32 `len:"8" ` // Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
+	GroupMlx uint8     // Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances.
 }
 
 // MsgID (generated function)
@@ -16577,11 +16667,11 @@ func (m *Altitude) Unmarshal(payload []byte) error {
 // ResourceRequest struct (generated typeinfo)
 // The autopilot is requesting a resource (file, binary, other type of data)
 type ResourceRequest struct {
-	RequestID    uint8      // Request ID. This ID should be re-used when sending back URI contents
-	URIType      uint8      // The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary
-	URI          [120]uint8 // The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)
-	TransferType uint8      // The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.
-	Storage      [120]uint8 // The storage path the autopilot wants the URI to be stored in. Will only be valid if the transfer_type has a storage associated (e.g. MAVLink FTP).
+	RequestID    uint8   // Request ID. This ID should be re-used when sending back URI contents
+	URIType      uint8   // The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary
+	URI          []uint8 `len:"120" ` // The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)
+	TransferType uint8   // The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.
+	Storage      []uint8 `len:"120" ` // The storage path the autopilot wants the URI to be stored in. Will only be valid if the transfer_type has a storage associated (e.g. MAVLink FTP).
 }
 
 // MsgID (generated function)
@@ -16606,9 +16696,19 @@ func (m *ResourceRequest) Marshal() ([]byte, error) {
 	payload := make([]byte, 243)
 	payload[0] = byte(m.RequestID)
 	payload[1] = byte(m.URIType)
-	copy(payload[2:], m.URI[:])
+	copy(payload[2:], m.URI[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.URI), 120)])
 	payload[122] = byte(m.TransferType)
-	copy(payload[123:], m.Storage[:])
+	copy(payload[123:], m.Storage[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Storage), 120)])
 	return payload, nil
 }
 
@@ -16669,17 +16769,17 @@ func (m *ScaledPressure3) Unmarshal(payload []byte) error {
 // FollowTarget struct (generated typeinfo)
 // Current motion information from a designated system
 type FollowTarget struct {
-	Timestamp       uint64     // Timestamp (time since system boot).
-	CustomState     uint64     // button states or switches of a tracker device
-	Lat             int32      // Latitude (WGS84)
-	Lon             int32      // Longitude (WGS84)
-	Alt             float32    // Altitude (MSL)
-	Vel             [3]float32 // target velocity (0,0,0) for unknown
-	Acc             [3]float32 // linear target acceleration (0,0,0) for unknown
-	AttitudeQ       [4]float32 // (1 0 0 0 for unknown)
-	Rates           [3]float32 // (0 0 0 for unknown)
-	PositionCov     [3]float32 // eph epv
-	EstCapabilities uint8      // bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
+	Timestamp       uint64    // Timestamp (time since system boot).
+	CustomState     uint64    // button states or switches of a tracker device
+	Lat             int32     // Latitude (WGS84)
+	Lon             int32     // Longitude (WGS84)
+	Alt             float32   // Altitude (MSL)
+	Vel             []float32 `len:"3" ` // target velocity (0,0,0) for unknown
+	Acc             []float32 `len:"3" ` // linear target acceleration (0,0,0) for unknown
+	AttitudeQ       []float32 `len:"4" ` // (1 0 0 0 for unknown)
+	Rates           []float32 `len:"3" ` // (0 0 0 for unknown)
+	PositionCov     []float32 `len:"3" ` // eph epv
+	EstCapabilities uint8     // bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
 }
 
 // MsgID (generated function)
@@ -16761,23 +16861,23 @@ func (m *FollowTarget) Unmarshal(payload []byte) error {
 // ControlSystemState struct (generated typeinfo)
 // The smoothed, monotonic system state used to feed the control loops of the system.
 type ControlSystemState struct {
-	TimeUsec    uint64     // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	XAcc        float32    // X acceleration in body frame
-	YAcc        float32    // Y acceleration in body frame
-	ZAcc        float32    // Z acceleration in body frame
-	XVel        float32    // X velocity in body frame
-	YVel        float32    // Y velocity in body frame
-	ZVel        float32    // Z velocity in body frame
-	XPos        float32    // X position in local frame
-	YPos        float32    // Y position in local frame
-	ZPos        float32    // Z position in local frame
-	Airspeed    float32    // Airspeed, set to -1 if unknown
-	VelVariance [3]float32 // Variance of body velocity estimate
-	PosVariance [3]float32 // Variance in local position
-	Q           [4]float32 // The attitude, represented as Quaternion
-	RollRate    float32    // Angular rate in roll axis
-	PitchRate   float32    // Angular rate in pitch axis
-	YawRate     float32    // Angular rate in yaw axis
+	TimeUsec    uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	XAcc        float32   // X acceleration in body frame
+	YAcc        float32   // Y acceleration in body frame
+	ZAcc        float32   // Z acceleration in body frame
+	XVel        float32   // X velocity in body frame
+	YVel        float32   // Y velocity in body frame
+	ZVel        float32   // Z velocity in body frame
+	XPos        float32   // X position in local frame
+	YPos        float32   // Y position in local frame
+	ZPos        float32   // Z position in local frame
+	Airspeed    float32   // Airspeed, set to -1 if unknown
+	VelVariance []float32 `len:"3" ` // Variance of body velocity estimate
+	PosVariance []float32 `len:"3" ` // Variance in local position
+	Q           []float32 `len:"4" ` // The attitude, represented as Quaternion
+	RollRate    float32   // Angular rate in roll axis
+	PitchRate   float32   // Angular rate in pitch axis
+	YawRate     float32   // Angular rate in yaw axis
 }
 
 // MsgID (generated function)
@@ -16872,11 +16972,11 @@ type BatteryStatus struct {
 	CurrentConsumed  int32                // Consumed charge, -1: autopilot does not provide consumption estimate
 	EnergyConsumed   int32                // Consumed energy, -1: autopilot does not provide energy consumption estimate
 	Temperature      int16                // Temperature of the battery. INT16_MAX for unknown temperature.
-	Voltages         [10]uint16           // Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above the valid cell count for this battery should have the UINT16_MAX value. If individual cell voltages are unknown or not measured for this battery, then the overall battery voltage should be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining voltage. This can be extended to multiple cells if the total voltage is greater than 2 * (UINT16_MAX - 1).
+	Voltages         []uint16             `len:"10" ` // Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above the valid cell count for this battery should have the UINT16_MAX value. If individual cell voltages are unknown or not measured for this battery, then the overall battery voltage should be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining voltage. This can be extended to multiple cells if the total voltage is greater than 2 * (UINT16_MAX - 1).
 	CurrentBattery   int16                // Battery current, -1: autopilot does not measure the current
 	ID               uint8                // Battery ID
-	BatteryFunction  MAV_BATTERY_FUNCTION `raw:"uint8"` // Function of the battery
-	Type             MAV_BATTERY_TYPE     `raw:"uint8"` // Type (chemistry) of the battery
+	BatteryFunction  MAV_BATTERY_FUNCTION // Function of the battery
+	Type             MAV_BATTERY_TYPE     // Type (chemistry) of the battery
 	BatteryRemaining int8                 // Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.
 }
 
@@ -16937,7 +17037,7 @@ func (m *BatteryStatus) Unmarshal(payload []byte) error {
 // AutopilotVersion struct (generated typeinfo)
 // Version and capability of autopilot software. This should be emitted in response to a request with MAV_CMD_REQUEST_MESSAGE.
 type AutopilotVersion struct {
-	Capabilities            MAV_PROTOCOL_CAPABILITY `raw:"uint64"` // Bitmap of capabilities
+	Capabilities            MAV_PROTOCOL_CAPABILITY // Bitmap of capabilities
 	UID                     uint64                  // UID if provided by hardware (see uid2)
 	FlightSwVersion         uint32                  // Firmware version number
 	MiddlewareSwVersion     uint32                  // Middleware version number
@@ -16945,9 +17045,9 @@ type AutopilotVersion struct {
 	BoardVersion            uint32                  // HW / board version (last 8 bytes should be silicon ID, if any)
 	VendorID                uint16                  // ID of the board vendor
 	ProductID               uint16                  // ID of the product
-	FlightCustomVersion     [8]uint8                // Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
-	MiddlewareCustomVersion [8]uint8                // Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
-	OsCustomVersion         [8]uint8                // Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
+	FlightCustomVersion     []uint8                 `len:"8" ` // Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
+	MiddlewareCustomVersion []uint8                 `len:"8" ` // Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
+	OsCustomVersion         []uint8                 `len:"8" ` // Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
 }
 
 // MsgID (generated function)
@@ -16984,9 +17084,24 @@ func (m *AutopilotVersion) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint32(payload[28:], uint32(m.BoardVersion))
 	binary.LittleEndian.PutUint16(payload[32:], uint16(m.VendorID))
 	binary.LittleEndian.PutUint16(payload[34:], uint16(m.ProductID))
-	copy(payload[36:], m.FlightCustomVersion[:])
-	copy(payload[44:], m.MiddlewareCustomVersion[:])
-	copy(payload[52:], m.OsCustomVersion[:])
+	copy(payload[36:], m.FlightCustomVersion[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.FlightCustomVersion), 8)])
+	copy(payload[44:], m.MiddlewareCustomVersion[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.MiddlewareCustomVersion), 8)])
+	copy(payload[52:], m.OsCustomVersion[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.OsCustomVersion), 8)])
 	return payload, nil
 }
 
@@ -17016,7 +17131,7 @@ type LandingTarget struct {
 	SizeX     float32   // Size of target along x-axis
 	SizeY     float32   // Size of target along y-axis
 	TargetNum uint8     // The ID of the target if multiple targets are present
-	Frame     MAV_FRAME `raw:"uint8"` // Coordinate frame used for following fields.
+	Frame     MAV_FRAME // Coordinate frame used for following fields.
 }
 
 // MsgID (generated function)
@@ -17072,7 +17187,7 @@ type FenceStatus struct {
 	BreachTime   uint32       // Time (since boot) of last breach.
 	BreachCount  uint16       // Number of fence breaches.
 	BreachStatus uint8        // Breach status (0 if currently inside fence, 1 if outside).
-	BreachType   FENCE_BREACH `raw:"uint8"` // Last breach type.
+	BreachType   FENCE_BREACH // Last breach type.
 }
 
 // MsgID (generated function)
@@ -17125,7 +17240,7 @@ type MagCalReport struct {
 	OffdiagZ  float32        // Z off-diagonal (matrix 32 and 23).
 	CompassID uint8          // Compass being calibrated.
 	CalMask   uint8          // Bitmask of compasses being calibrated.
-	CalStatus MAG_CAL_STATUS `raw:"uint8"` // Calibration Status.
+	CalStatus MAG_CAL_STATUS // Calibration Status.
 	Autosaved uint8          // 0=requires a MAV_CMD_DO_ACCEPT_MAG_CAL, 1=saved to parameters.
 }
 
@@ -17302,7 +17417,7 @@ type EstimatorStatus struct {
 	TasRatio         float32                // True airspeed innovation test ratio
 	PosHorizAccuracy float32                // Horizontal position 1-STD accuracy relative to the EKF local origin
 	PosVertAccuracy  float32                // Vertical position 1-STD accuracy relative to the EKF local origin
-	Flags            ESTIMATOR_STATUS_FLAGS `raw:"uint16"` // Bitmap indicating which EKF outputs are valid.
+	Flags            ESTIMATOR_STATUS_FLAGS // Bitmap indicating which EKF outputs are valid.
 }
 
 // MsgID (generated function)
@@ -17438,7 +17553,7 @@ type GpsInput struct {
 	SpeedAccuracy     float32                // GPS speed accuracy
 	HorizAccuracy     float32                // GPS horizontal accuracy
 	VertAccuracy      float32                // GPS vertical accuracy
-	IgnoreFlags       GPS_INPUT_IGNORE_FLAGS `raw:"uint16"` // Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
+	IgnoreFlags       GPS_INPUT_IGNORE_FLAGS // Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
 	TimeWeek          uint16                 // GPS week number
 	GpsID             uint8                  // ID of the GPS for multiple GPS inputs
 	FixType           uint8                  // 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK
@@ -17525,9 +17640,9 @@ func (m *GpsInput) Unmarshal(payload []byte) error {
 // GpsRtcmData struct (generated typeinfo)
 // RTCM message for injecting into the onboard GPS (used for DGPS)
 type GpsRtcmData struct {
-	Flags uint8      // LSB: 1 means message is fragmented, next 2 bits are the fragment ID, the remaining 5 bits are used for the sequence ID. Messages are only to be flushed to the GPS when the entire message has been reconstructed on the autopilot. The fragment ID specifies which order the fragments should be assembled into a buffer, while the sequence ID is used to detect a mismatch between different buffers. The buffer is considered fully reconstructed when either all 4 fragments are present, or all the fragments before the first fragment with a non full payload is received. This management is used to ensure that normal GPS operation doesn't corrupt RTCM data, and to recover from a unreliable transport delivery order.
-	Len   uint8      // data length
-	Data  [180]uint8 // RTCM message (may be fragmented)
+	Flags uint8   // LSB: 1 means message is fragmented, next 2 bits are the fragment ID, the remaining 5 bits are used for the sequence ID. Messages are only to be flushed to the GPS when the entire message has been reconstructed on the autopilot. The fragment ID specifies which order the fragments should be assembled into a buffer, while the sequence ID is used to detect a mismatch between different buffers. The buffer is considered fully reconstructed when either all 4 fragments are present, or all the fragments before the first fragment with a non full payload is received. This management is used to ensure that normal GPS operation doesn't corrupt RTCM data, and to recover from a unreliable transport delivery order.
+	Len   uint8   // data length
+	Data  []uint8 `len:"180" ` // RTCM message (may be fragmented)
 }
 
 // MsgID (generated function)
@@ -17550,7 +17665,12 @@ func (m *GpsRtcmData) Marshal() ([]byte, error) {
 	payload := make([]byte, 182)
 	payload[0] = byte(m.Flags)
 	payload[1] = byte(m.Len)
-	copy(payload[2:], m.Data[:])
+	copy(payload[2:], m.Data[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Data), 180)])
 	return payload, nil
 }
 
@@ -17575,15 +17695,15 @@ type HighLatency struct {
 	AltitudeAmsl     int16            // Altitude above mean sea level
 	AltitudeSp       int16            // Altitude setpoint relative to the home position
 	WpDistance       uint16           // distance to target
-	BaseMode         MAV_MODE_FLAG    `raw:"uint8"` // Bitmap of enabled system modes.
-	LandedState      MAV_LANDED_STATE `raw:"uint8"` // The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
+	BaseMode         MAV_MODE_FLAG    // Bitmap of enabled system modes.
+	LandedState      MAV_LANDED_STATE // The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
 	Throttle         int8             // throttle (percentage)
 	Airspeed         uint8            // airspeed
 	AirspeedSp       uint8            // airspeed setpoint
 	Groundspeed      uint8            // groundspeed
 	ClimbRate        int8             // climb rate
 	GpsNsat          uint8            // Number of satellites visible. If unknown, set to 255
-	GpsFixType       GPS_FIX_TYPE     `raw:"uint8"` // GPS Fix type.
+	GpsFixType       GPS_FIX_TYPE     // GPS Fix type.
 	BatteryRemaining uint8            // Remaining battery (percentage)
 	Temperature      int8             // Autopilot temperature (degrees C)
 	TemperatureAir   int8             // Air temperature (degrees C) from airspeed sensor
@@ -17697,9 +17817,9 @@ type HighLatency2 struct {
 	TargetAltitude int16           // Altitude setpoint
 	TargetDistance uint16          // Distance to target waypoint or position
 	WpNum          uint16          // Current waypoint number
-	FailureFlags   HL_FAILURE_FLAG `raw:"uint16"` // Bitmap of failure flags.
-	Type           MAV_TYPE        `raw:"uint8"`  // Type of the MAV (quadrotor, helicopter, etc.)
-	Autopilot      MAV_AUTOPILOT   `raw:"uint8"`  // Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.
+	FailureFlags   HL_FAILURE_FLAG // Bitmap of failure flags.
+	Type           MAV_TYPE        // Type of the MAV (quadrotor, helicopter, etc.)
+	Autopilot      MAV_AUTOPILOT   // Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.
 	Heading        uint8           // Heading
 	TargetHeading  uint8           // Heading setpoint
 	Throttle       uint8           // Throttle
@@ -17881,16 +18001,16 @@ func (m *Vibration) Unmarshal(payload []byte) error {
 // HomePosition struct (generated typeinfo)
 // This message can be requested by sending the MAV_CMD_GET_HOME_POSITION command. The position the system will return to and land on. The position is set automatically by the system during the takeoff in case it was not explicitly set by the operator before or after. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector.
 type HomePosition struct {
-	Latitude  int32      // Latitude (WGS84)
-	Longitude int32      // Longitude (WGS84)
-	Altitude  int32      // Altitude (MSL). Positive for up.
-	X         float32    // Local X position of this position in the local coordinate frame
-	Y         float32    // Local Y position of this position in the local coordinate frame
-	Z         float32    // Local Z position of this position in the local coordinate frame
-	Q         [4]float32 // World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground
-	ApproachX float32    // Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	ApproachY float32    // Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	ApproachZ float32    // Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	Latitude  int32     // Latitude (WGS84)
+	Longitude int32     // Longitude (WGS84)
+	Altitude  int32     // Altitude (MSL). Positive for up.
+	X         float32   // Local X position of this position in the local coordinate frame
+	Y         float32   // Local Y position of this position in the local coordinate frame
+	Z         float32   // Local Z position of this position in the local coordinate frame
+	Q         []float32 `len:"4" ` // World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground
+	ApproachX float32   // Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachY float32   // Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachZ float32   // Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
 }
 
 // MsgID (generated function)
@@ -17953,17 +18073,17 @@ func (m *HomePosition) Unmarshal(payload []byte) error {
 // SetHomePosition struct (generated typeinfo)
 // The position the system will return to and land on. The position is set automatically by the system during the takeoff in case it was not explicitly set by the operator before or after. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector.
 type SetHomePosition struct {
-	Latitude     int32      // Latitude (WGS84)
-	Longitude    int32      // Longitude (WGS84)
-	Altitude     int32      // Altitude (MSL). Positive for up.
-	X            float32    // Local X position of this position in the local coordinate frame
-	Y            float32    // Local Y position of this position in the local coordinate frame
-	Z            float32    // Local Z position of this position in the local coordinate frame
-	Q            [4]float32 // World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground
-	ApproachX    float32    // Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	ApproachY    float32    // Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	ApproachZ    float32    // Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	TargetSystem uint8      // System ID.
+	Latitude     int32     // Latitude (WGS84)
+	Longitude    int32     // Longitude (WGS84)
+	Altitude     int32     // Altitude (MSL). Positive for up.
+	X            float32   // Local X position of this position in the local coordinate frame
+	Y            float32   // Local Y position of this position in the local coordinate frame
+	Z            float32   // Local Z position of this position in the local coordinate frame
+	Q            []float32 `len:"4" ` // World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground
+	ApproachX    float32   // Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachY    float32   // Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachZ    float32   // Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	TargetSystem uint8     // System ID.
 }
 
 // MsgID (generated function)
@@ -18065,8 +18185,8 @@ func (m *MessageInterval) Unmarshal(payload []byte) error {
 // ExtendedSysState struct (generated typeinfo)
 // Provides state for additional features
 type ExtendedSysState struct {
-	VtolState   MAV_VTOL_STATE   `raw:"uint8"` // The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL configuration.
-	LandedState MAV_LANDED_STATE `raw:"uint8"` // The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
+	VtolState   MAV_VTOL_STATE   // The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL configuration.
+	LandedState MAV_LANDED_STATE // The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
 }
 
 // MsgID (generated function)
@@ -18108,11 +18228,11 @@ type AdsbVehicle struct {
 	Heading      uint16             // Course over ground
 	HorVelocity  uint16             // The horizontal velocity
 	VerVelocity  int16              // The vertical velocity. Positive is up
-	Flags        ADSB_FLAGS         `raw:"uint16"` // Bitmap to indicate various statuses including valid data fields
+	Flags        ADSB_FLAGS         // Bitmap to indicate various statuses including valid data fields
 	Squawk       uint16             // Squawk code
-	AltitudeType ADSB_ALTITUDE_TYPE `raw:"uint8"` // ADSB altitude type.
-	Callsign     [9]byte            // The callsign, 8+null
-	EmitterType  ADSB_EMITTER_TYPE  `raw:"uint8"` // ADSB emitter type.
+	AltitudeType ADSB_ALTITUDE_TYPE // ADSB altitude type.
+	Callsign     string             `len:"9" ` // The callsign, 8+null
+	EmitterType  ADSB_EMITTER_TYPE  // ADSB emitter type.
 	Tslc         uint8              // Time since last communication in seconds
 }
 
@@ -18124,7 +18244,7 @@ func (m *AdsbVehicle) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *AdsbVehicle) String() string {
 	return fmt.Sprintf(
-		"&common.AdsbVehicle{ IcaoAddress: %+v, Lat: %+v, Lon: %+v, Altitude: %+v, Heading: %+v, HorVelocity: %+v, VerVelocity: %+v, Flags: %+v (%016b), Squawk: %+v, AltitudeType: %+v, Callsign: %0X (\"%s\"), EmitterType: %+v, Tslc: %+v }",
+		"&common.AdsbVehicle{ IcaoAddress: %+v, Lat: %+v, Lon: %+v, Altitude: %+v, Heading: %+v, HorVelocity: %+v, VerVelocity: %+v, Flags: %+v (%016b), Squawk: %+v, AltitudeType: %+v, Callsign: %+v, EmitterType: %+v, Tslc: %+v }",
 		m.IcaoAddress,
 		m.Lat,
 		m.Lon,
@@ -18135,7 +18255,7 @@ func (m *AdsbVehicle) String() string {
 		m.Flags.Bitmask(), uint64(m.Flags),
 		m.Squawk,
 		m.AltitudeType,
-		m.Callsign, string(m.Callsign[:]),
+		m.Callsign,
 		m.EmitterType,
 		m.Tslc,
 	)
@@ -18154,7 +18274,12 @@ func (m *AdsbVehicle) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint16(payload[22:], uint16(m.Flags))
 	binary.LittleEndian.PutUint16(payload[24:], uint16(m.Squawk))
 	payload[26] = byte(m.AltitudeType)
-	copy(payload[27:], m.Callsign[:])
+	copy(payload[27:], m.Callsign[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Callsign), 9)])
 	payload[36] = byte(m.EmitterType)
 	payload[37] = byte(m.Tslc)
 	return payload, nil
@@ -18172,7 +18297,7 @@ func (m *AdsbVehicle) Unmarshal(payload []byte) error {
 	m.Flags = ADSB_FLAGS(binary.LittleEndian.Uint16(payload[22:]))
 	m.Squawk = uint16(binary.LittleEndian.Uint16(payload[24:]))
 	m.AltitudeType = ADSB_ALTITUDE_TYPE(payload[26])
-	copy(m.Callsign[:], payload[27:36])
+	m.Callsign = string(payload[27:36])
 	m.EmitterType = ADSB_EMITTER_TYPE(payload[36])
 	m.Tslc = uint8(payload[37])
 	return nil
@@ -18185,9 +18310,9 @@ type Collision struct {
 	TimeToMinimumDelta     float32                    // Estimated time until collision occurs
 	AltitudeMinimumDelta   float32                    // Closest vertical distance between vehicle and object
 	HorizontalMinimumDelta float32                    // Closest horizontal distance between vehicle and object
-	Src                    MAV_COLLISION_SRC          `raw:"uint8"` // Collision data source
-	Action                 MAV_COLLISION_ACTION       `raw:"uint8"` // Action that is being taken to avoid this collision
-	ThreatLevel            MAV_COLLISION_THREAT_LEVEL `raw:"uint8"` // How concerned the aircraft is about this collision
+	Src                    MAV_COLLISION_SRC          // Collision data source
+	Action                 MAV_COLLISION_ACTION       // Action that is being taken to avoid this collision
+	ThreatLevel            MAV_COLLISION_THREAT_LEVEL // How concerned the aircraft is about this collision
 }
 
 // MsgID (generated function)
@@ -18237,11 +18362,11 @@ func (m *Collision) Unmarshal(payload []byte) error {
 // V2Extension struct (generated typeinfo)
 // Message implementing parts of the V2 payload specs in V1 frames for transitional support.
 type V2Extension struct {
-	MessageType     uint16     // A code that identifies the software component that understands this message (analogous to USB device classes or mime type strings). If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/definition_files/extension_message_ids.xml. Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase.
-	TargetNetwork   uint8      // Network ID (0 for broadcast)
-	TargetSystem    uint8      // System ID (0 for broadcast)
-	TargetComponent uint8      // Component ID (0 for broadcast)
-	Payload         [249]uint8 // Variable length payload. The length must be encoded in the payload as part of the message_type protocol, e.g. by including the length as payload data, or by terminating the payload data with a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the payload block is opaque unless you understand the encoding message_type. The particular encoding used can be extension specific and might not always be documented as part of the MAVLink specification.
+	MessageType     uint16  // A code that identifies the software component that understands this message (analogous to USB device classes or mime type strings). If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/definition_files/extension_message_ids.xml. Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase.
+	TargetNetwork   uint8   // Network ID (0 for broadcast)
+	TargetSystem    uint8   // System ID (0 for broadcast)
+	TargetComponent uint8   // Component ID (0 for broadcast)
+	Payload         []uint8 `len:"249" ` // Variable length payload. The length must be encoded in the payload as part of the message_type protocol, e.g. by including the length as payload data, or by terminating the payload data with a non-zero marker. This is required in order to reconstruct zero-terminated payloads that are (or otherwise would be) trimmed by MAVLink 2 empty-byte truncation. The entire content of the payload block is opaque unless you understand the encoding message_type. The particular encoding used can be extension specific and might not always be documented as part of the MAVLink specification.
 }
 
 // MsgID (generated function)
@@ -18268,7 +18393,12 @@ func (m *V2Extension) Marshal() ([]byte, error) {
 	payload[2] = byte(m.TargetNetwork)
 	payload[3] = byte(m.TargetSystem)
 	payload[4] = byte(m.TargetComponent)
-	copy(payload[5:], m.Payload[:])
+	copy(payload[5:], m.Payload[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Payload), 249)])
 	return payload, nil
 }
 
@@ -18285,10 +18415,10 @@ func (m *V2Extension) Unmarshal(payload []byte) error {
 // MemoryVect struct (generated typeinfo)
 // Send raw controller memory. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output.
 type MemoryVect struct {
-	Address uint16   // Starting address of the debug variables
-	Ver     uint8    // Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below
-	Type    uint8    // Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 1Q14
-	Value   [32]int8 // Memory contents at specified address
+	Address uint16 // Starting address of the debug variables
+	Ver     uint8  // Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below
+	Type    uint8  // Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 1Q14
+	Value   []int8 `len:"32" ` // Memory contents at specified address
 }
 
 // MsgID (generated function)
@@ -18333,11 +18463,11 @@ func (m *MemoryVect) Unmarshal(payload []byte) error {
 // DebugVect struct (generated typeinfo)
 // To debug something using a named 3D vector.
 type DebugVect struct {
-	TimeUsec uint64   // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	X        float32  // x
-	Y        float32  // y
-	Z        float32  // z
-	Name     [10]byte // Name
+	TimeUsec uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	X        float32 // x
+	Y        float32 // y
+	Z        float32 // z
+	Name     string  `len:"10" ` // Name
 }
 
 // MsgID (generated function)
@@ -18348,12 +18478,12 @@ func (m *DebugVect) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *DebugVect) String() string {
 	return fmt.Sprintf(
-		"&common.DebugVect{ TimeUsec: %+v, X: %+v, Y: %+v, Z: %+v, Name: %0X (\"%s\") }",
+		"&common.DebugVect{ TimeUsec: %+v, X: %+v, Y: %+v, Z: %+v, Name: %+v }",
 		m.TimeUsec,
 		m.X,
 		m.Y,
 		m.Z,
-		m.Name, string(m.Name[:]),
+		m.Name,
 	)
 }
 
@@ -18364,7 +18494,12 @@ func (m *DebugVect) Marshal() ([]byte, error) {
 	binary.LittleEndian.PutUint32(payload[8:], math.Float32bits(m.X))
 	binary.LittleEndian.PutUint32(payload[12:], math.Float32bits(m.Y))
 	binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(m.Z))
-	copy(payload[20:], m.Name[:])
+	copy(payload[20:], m.Name[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Name), 10)])
 	return payload, nil
 }
 
@@ -18374,16 +18509,16 @@ func (m *DebugVect) Unmarshal(payload []byte) error {
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
 	m.Z = math.Float32frombits(binary.LittleEndian.Uint32(payload[16:]))
-	copy(m.Name[:], payload[20:30])
+	m.Name = string(payload[20:30])
 	return nil
 }
 
 // NamedValueFloat struct (generated typeinfo)
 // Send a key-value pair as float. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output.
 type NamedValueFloat struct {
-	TimeBootMs uint32   // Timestamp (time since system boot).
-	Value      float32  // Floating point value
-	Name       [10]byte // Name of the debug variable
+	TimeBootMs uint32  // Timestamp (time since system boot).
+	Value      float32 // Floating point value
+	Name       string  `len:"10" ` // Name of the debug variable
 }
 
 // MsgID (generated function)
@@ -18394,10 +18529,10 @@ func (m *NamedValueFloat) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *NamedValueFloat) String() string {
 	return fmt.Sprintf(
-		"&common.NamedValueFloat{ TimeBootMs: %+v, Value: %+v, Name: %0X (\"%s\") }",
+		"&common.NamedValueFloat{ TimeBootMs: %+v, Value: %+v, Name: %+v }",
 		m.TimeBootMs,
 		m.Value,
-		m.Name, string(m.Name[:]),
+		m.Name,
 	)
 }
 
@@ -18406,7 +18541,12 @@ func (m *NamedValueFloat) Marshal() ([]byte, error) {
 	payload := make([]byte, 18)
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.TimeBootMs))
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(m.Value))
-	copy(payload[8:], m.Name[:])
+	copy(payload[8:], m.Name[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Name), 10)])
 	return payload, nil
 }
 
@@ -18414,16 +18554,16 @@ func (m *NamedValueFloat) Marshal() ([]byte, error) {
 func (m *NamedValueFloat) Unmarshal(payload []byte) error {
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
-	copy(m.Name[:], payload[8:18])
+	m.Name = string(payload[8:18])
 	return nil
 }
 
 // NamedValueInt struct (generated typeinfo)
 // Send a key-value pair as integer. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output.
 type NamedValueInt struct {
-	TimeBootMs uint32   // Timestamp (time since system boot).
-	Value      int32    // Signed integer value
-	Name       [10]byte // Name of the debug variable
+	TimeBootMs uint32 // Timestamp (time since system boot).
+	Value      int32  // Signed integer value
+	Name       string `len:"10" ` // Name of the debug variable
 }
 
 // MsgID (generated function)
@@ -18434,10 +18574,10 @@ func (m *NamedValueInt) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *NamedValueInt) String() string {
 	return fmt.Sprintf(
-		"&common.NamedValueInt{ TimeBootMs: %+v, Value: %+v, Name: %0X (\"%s\") }",
+		"&common.NamedValueInt{ TimeBootMs: %+v, Value: %+v, Name: %+v }",
 		m.TimeBootMs,
 		m.Value,
-		m.Name, string(m.Name[:]),
+		m.Name,
 	)
 }
 
@@ -18446,7 +18586,12 @@ func (m *NamedValueInt) Marshal() ([]byte, error) {
 	payload := make([]byte, 18)
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.TimeBootMs))
 	binary.LittleEndian.PutUint32(payload[4:], uint32(m.Value))
-	copy(payload[8:], m.Name[:])
+	copy(payload[8:], m.Name[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Name), 10)])
 	return payload, nil
 }
 
@@ -18454,15 +18599,15 @@ func (m *NamedValueInt) Marshal() ([]byte, error) {
 func (m *NamedValueInt) Unmarshal(payload []byte) error {
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = int32(binary.LittleEndian.Uint32(payload[4:]))
-	copy(m.Name[:], payload[8:18])
+	m.Name = string(payload[8:18])
 	return nil
 }
 
 // Statustext struct (generated typeinfo)
 // Status text message. These messages are printed in yellow in the COMM console of QGroundControl. WARNING: They consume quite some bandwidth, so use only for important status and error messages. If implemented wisely, these messages are buffered on the MCU and sent only at a limited rate (e.g. 10 Hz).
 type Statustext struct {
-	Severity MAV_SEVERITY `raw:"uint8"` // Severity of status. Relies on the definitions within RFC-5424.
-	Text     [50]byte     // Status text message, without null termination character
+	Severity MAV_SEVERITY // Severity of status. Relies on the definitions within RFC-5424.
+	Text     string       `len:"50" ` // Status text message, without null termination character
 }
 
 // MsgID (generated function)
@@ -18473,9 +18618,9 @@ func (m *Statustext) MsgID() mavlink.MessageID {
 // String (generated function)
 func (m *Statustext) String() string {
 	return fmt.Sprintf(
-		"&common.Statustext{ Severity: %+v, Text: %0X (\"%s\") }",
+		"&common.Statustext{ Severity: %+v, Text: %+v }",
 		m.Severity,
-		m.Text, string(m.Text[:]),
+		m.Text,
 	)
 }
 
@@ -18483,14 +18628,19 @@ func (m *Statustext) String() string {
 func (m *Statustext) Marshal() ([]byte, error) {
 	payload := make([]byte, 51)
 	payload[0] = byte(m.Severity)
-	copy(payload[1:], m.Text[:])
+	copy(payload[1:], m.Text[:func(l, m int) int {
+		if l < m {
+			return l
+		}
+		return m
+	}(len(m.Text), 50)])
 	return payload, nil
 }
 
 // Unmarshal (generated function)
 func (m *Statustext) Unmarshal(payload []byte) error {
 	m.Severity = MAV_SEVERITY(payload[0])
-	copy(m.Text[:], payload[1:51])
+	m.Text = string(payload[1:51])
 	return nil
 }
 
@@ -18538,10 +18688,10 @@ func (m *Debug) Unmarshal(payload []byte) error {
 // The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html
 type Heartbeat struct {
 	CustomMode     uint32        // A bitfield for use for autopilot-specific flags
-	Type           MAV_TYPE      `raw:"uint8"` // Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.
-	Autopilot      MAV_AUTOPILOT `raw:"uint8"` // Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.
-	BaseMode       MAV_MODE_FLAG `raw:"uint8"` // System mode bitmap.
-	SystemStatus   MAV_STATE     `raw:"uint8"` // System status flag.
+	Type           MAV_TYPE      // Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.
+	Autopilot      MAV_AUTOPILOT // Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.
+	BaseMode       MAV_MODE_FLAG // System mode bitmap.
+	SystemStatus   MAV_STATE     // System status flag.
 	MavlinkVersion uint8         // MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version
 }
 

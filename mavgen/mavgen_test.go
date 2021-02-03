@@ -22,16 +22,13 @@ func TestTypeConversions(t *testing.T) {
 		{"uint64_t", "uint64", 64, 0},
 		{"float", "float32", 32, 0},
 		{"double", "float64", 64, 0},
-		{"char[10]", "[10]byte", 8, 10},
-		{"float[30]", "[30]float32", 32, 30},
+		{"char[10]", "string", 8, 10},
+		{"uint8_t[12]", "[]uint8", 8, 12},
+		{"float[30]", "[]float32", 32, 30},
 	}
 
 	for _, c := range cases {
-		name, bitsz, arraylen, err := GoTypeInfo(c.in)
-		// XXX: should test some cases that generate errors...
-		if err != nil {
-			t.Error("Type conversion err:", err)
-		}
+		name, bitsz, arraylen := GoTypeInfo(c.in)
 		if name != c.name {
 			t.Errorf("Type Conversion for %q, got name %q, want %q", c.in, name, c.name)
 		}
@@ -104,11 +101,11 @@ func TestParseDialect(t *testing.T) {
 
 	messages := []*Message{
 		{1, "MSG1", "descr1", []*MessageField{
-			{"uint32_t", "f1", "", "", "descr1", "", "", 0, 0, 0},
-			{"uint8_t", "f2", "", "", "descr2", "", "", 0, 0, 0},
+			{"uint32_t", "f1", "", "", "descr1", "", nil, 0, 0, 0},
+			{"uint8_t", "f2", "", "", "descr2", "", nil, 0, 0, 0},
 		}, "", ""},
 		{2, "MSG2", "descr2", []*MessageField{
-			{"uint8_t[10]", "f1", "", "", "descr1", "", "", 0, 0, 0},
+			{"uint8_t[10]", "f1", "", "", "descr1", "", nil, 0, 0, 0},
 		}, "", ""},
 	}
 

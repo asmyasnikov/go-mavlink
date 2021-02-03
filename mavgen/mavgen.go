@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/xml"
-	"errors"
 	"fmt"
 	"github.com/howeyc/crc16"
 	"go/format"
@@ -11,6 +10,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -84,7 +84,7 @@ type MessageField struct {
 	Display     string `xml:"display,attr"`
 	Description string `xml:",innerxml"`
 	GoType      string
-	Tag         string
+	Tags        map[string]string
 	BitSize     int
 	ArrayLen    int
 	ByteOffset  int // from beginning of payload
@@ -165,6 +165,22 @@ func IsByteArrayField(v interface{}) bool {
 	return false
 }
 
+// IsByteArrayField function check field is bytearray
+func IsStringField(v interface{}) bool {
+	if field, ok := v.(*MessageField); ok {
+		if field.ArrayLen == 0 {
+			return false
+		}
+		t := strings.ToLower(field.GoType)
+		for _, s := range []string{"byte"} {
+			if strings.Contains(t, s) {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 // UpperCamelCase function convert names to upper camel case
 func UpperCamelCase(s string) string {
 	var b bytes.Buffer
@@ -210,8 +226,8 @@ func (f *MessageField) PayloadPackSequence() string {
 
 	if f.ArrayLen > 0 {
 		// optimize to copy() if possible
-		if strings.HasSuffix(f.GoType, "byte") || strings.HasSuffix(f.GoType, "uint8") {
-			return fmt.Sprintf("copy(payload[%d:], m.%s[:])", f.ByteOffset, name)
+		if f.GoType == "string" || strings.HasSuffix(f.GoType, "uint8")  || strings.HasSuffix(f.GoType, "byte"){
+			return fmt.Sprintf(`copy(payload[%d:], m.%s[:func(l, m int)int{ if l < m { return l }; return m }(len(m.%s), %d)])`, f.ByteOffset, name, name, f.ArrayLen)
 		}
 
 		// pack each element in the array
@@ -259,8 +275,11 @@ func (f *MessageField) PayloadUnpackSequence() string {
 	name := UpperCamelCase(f.Name)
 
 	if f.ArrayLen > 0 {
+		if f.GoType == "string" {
+			return fmt.Sprintf("m.%s = string(payload[%d:%d])", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
+		}
 		// optimize to copy() if possible
-		if strings.HasSuffix(f.GoType, "byte") || strings.HasSuffix(f.GoType, "uint8") {
+		if strings.HasSuffix(f.GoType, "uint8") || strings.HasSuffix(f.GoType, "byte") {
 			return fmt.Sprintf("copy(m.%s[:], payload[%d:%d])", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
 		}
 
@@ -369,22 +388,30 @@ func ParseDialect(schemeFile string) (*Dialect, error) {
 	return d, nil
 }
 
+var reCType = regexp.MustCompile(`^(.+?)([0-9]+)_t$`)
+
 // convert a C primitive type to its corresponding Go type.
 // do not handle arrays or other constructs...just primitives.
-func c2goPrimitive(ctype string) string {
+func c2goPrimitive(ctype string) (string, int) {
 	switch ctype {
 	case "uint8_t", "uint16_t", "uint32_t", "uint64_t",
 		"int8_t", "int16_t", "int32_t", "int64_t":
-		idx := strings.IndexByte(ctype, '_')
-		return ctype[:idx]
+		if matches := reCType.FindStringSubmatch(ctype); matches != nil {
+			return matches[1] + matches[2], func() int {
+				v, _ := strconv.Atoi(matches[2])
+				return v
+			}()
+		} else {
+			panic(fmt.Sprintf("c2goPrimitive: unhandled primitive type - %s", ctype))
+		}
 	case "char":
-		return "byte"
+		return "byte", 8
 	case "float":
-		return "float32"
+		return "float32", 32
 	case "double":
-		return "float64"
+		return "float64", 64
 	case "uint8_t_mavlink_version":
-		return "uint8"
+		return "uint8", 8
 	default:
 		panic(fmt.Sprintf("c2goPrimitive: unhandled primitive type - %s", ctype))
 	}
@@ -404,37 +431,21 @@ func (f *MessageField) IsFloat() bool {
 }
 
 // GoTypeInfo produce type info string
-func GoTypeInfo(s string) (string, int, int, error) {
-
-	var name string
-	var bitsz, arraylen int
-	var err error
-
+func GoTypeInfo(s string) (string, int, int) {
 	// array? leave the [N] but convert the primitive type name
-	if idx := strings.IndexByte(s, '['); idx < 0 {
-		name = c2goPrimitive(s)
-	} else {
-		name = s[idx:] + c2goPrimitive(s[:idx])
-		if arraylen, err = strconv.Atoi(s[idx+1 : len(s)-1]); err != nil {
-			return "", 0, 0, err
-		}
-	}
-
-	// determine bit size for this type
-	if strings.HasSuffix(name, "byte") {
-		bitsz = 8
-	} else {
-		t := name[strings.IndexByte(name, ']')+1:]
-		if sizeStart := strings.IndexAny(t, "8136"); sizeStart != -1 {
-			if bitsz, err = strconv.Atoi(t[sizeStart:]); err != nil {
-				return "", 0, 0, err
-			}
+	if matches := reTypeIsArray.FindStringSubmatch(s); matches != nil {
+		arrayLen, _ := strconv.Atoi(matches[2])
+		if matches[1] == "char" {
+			return "string", 8, arrayLen
 		} else {
-			return "", 0, 0, errors.New("Unknown message field size")
+			name, bitSize := c2goPrimitive(matches[1])
+			name = "[]" + name
+			return name, bitSize, arrayLen
 		}
+	} else {
+		name, bitSize := c2goPrimitive(s)
+		return name, bitSize, 0
 	}
-
-	return name, bitsz, arraylen, nil
 }
 
 func (d *Dialect) needImportParentMavlink() bool {
@@ -615,6 +626,8 @@ func init() { {{range .Messages}}
 	return template.Must(template.New("msgIds").Funcs(funcMap).Parse(msgIDTmpl)).Execute(w, d)
 }
 
+var reTypeIsArray = regexp.MustCompile(`^(.+?)\[([0-9]+)\]$`)
+
 // generate class definitions for each msg id.
 // for now, pack/unpack payloads via encoding/binary since it
 // is expedient and correct. optimize this if/when needed.
@@ -625,7 +638,7 @@ func (d *Dialect) generateClasses(w io.Writer) error {
 // {{$name}} struct (generated typeinfo)  
 // {{.Description}}
 type {{$name}} struct { {{range .Fields}}
-  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{.Tag}} {{ else }} {{.GoType}} {{ end }} // {{.Description}}{{end}}
+  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{ else }} {{.GoType}} {{ end }} {{if .Tags}} ` + "`" + `{{range $k, $v := .Tags}}{{$k}}:"{{$v}}" {{end}}` + "`" + `{{end}}// {{.Description}}{{end}}
 }
 
 // MsgID (generated function)
@@ -663,14 +676,15 @@ func (m *{{$name}}) Unmarshal(payload []byte) error { {{range .Fields}}
 		}
 		for _, f := range m.Fields {
 			f.Description = strings.Replace(f.Description, "\n", " ", -1)
-			goname, gosz, golen, err := GoTypeInfo(f.CType)
-			if err != nil {
-				return err
+			f.Tags = map[string]string{}
+			goname, gosz, golen := GoTypeInfo(f.CType)
+			//if len(f.Enum) > 0 {
+			//	f.Tags["raw"] = f.CType
+			//}
+			if golen > 0 {
+				f.Tags["len"] = strconv.Itoa(golen)
 			}
 			f.GoType, f.BitSize, f.ArrayLen = goname, gosz, golen
-			if len(f.Enum) > 0 {
-				f.Tag = "`raw:\"" + f.GoType + "\"`"
-			}
 		}
 
 		// ensure fields are sorted according to their size,
