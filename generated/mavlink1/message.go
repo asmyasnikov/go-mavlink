@@ -6,6 +6,9 @@
 
 package mavlink
 
+// MessageID typedef
+type MessageID uint32
+
 // Message is a basic type for encoding/decoding mavlink messages.
 // use the Pack() and Unpack() routines on specific message
 // types to convert them to/from the Packet type.

@@ -17,15 +17,42 @@ func decoderTemplate() string {
 		"\t\"io\"\n" +
 		")\n" +
 		"\n" +
+		"// Packet is the interface implemented by frames of every supported version.\n" +
+		"type Packet interface {\n" +
+		"\t// SysID returns system id\n" +
+		"\tSysID() uint8\n" +
+		"\t// CompID returns component id\n" +
+		"\tCompID() uint8\n" +
+		"\t// MsgID returns message id\n" +
+		"\tMsgID() MessageID\n" +
+		"\t// Checksum returns packet checksum\n" +
+		"\tChecksum() uint16\n" +
+		"\t// SeqID returns packet sequence number\n" +
+		"\tSeqID() uint8\n" +
+		"\t// Payload returns packet payload\n" +
+		"\tPayload() []byte\n" +
+		"\t// Assign assign internal fields from right hand side oacket\n" +
+		"\tAssign(rhs Packet) error\n" +
+		"\t// Message returns dialect message\n" +
+		"\tMessage() (Message, error)\n" +
+		"\t// String returns string representation of packet\n" +
+		"\tString() string\n" +
+		"}\n" +
+		"\n" +
+		"// Parser interface is abstract of parsers\n" +
+		"type Parser interface {\n" +
+		"\tParseChar(c byte) (Packet, error)\n" +
+		"    Destroy()\n" +
+		"}\n" +
+		"\n" +
 		"// Decoder struct provide decoding processor\n" +
 		"type Decoder struct {\n" +
 		"\treader      io.ByteReader\n" +
-		"\tparsers     []*Parser\n" +
+		"\tparsers     []Parser\n" +
 		"}\n" +
 		"\n" +
-		"func (d *Decoder) clearParser(parser *Parser) {\n" +
-		"\tparser.Reset()\n" +
-		"\tparsersPool.Put(parser)\n" +
+		"func (d *Decoder) clearParser(parser Parser) {\n" +
+		"\tparser.Destroy()\n" +
 		"}\n" +
 		"\n" +
 		"func (d *Decoder) clearParsers() {\n" +
@@ -37,23 +64,27 @@ func decoderTemplate() string {
 		"\n" +
 		"// Decode decode input stream to packet. Method return error or nil\n" +
 		"func (d *Decoder) Decode(v interface{}) error {\n" +
-		"\tpacket, ok := v.(*Packet)\n" +
-		"\tif !ok {\n" +
-		"\t\treturn fmt.Errorf(\"cast interface '%+v' to Packet fail\", v)\n" +
-		"\t}\n" +
+		"    packet, ok := v.(Packet)\n" +
+		"    if !ok {\n" +
+		"        return fmt.Errorf(\"cast interface '%+v' to Packet fail\", v)\n" +
+		"    }\n" +
 		"\tfor {\n" +
 		"\t\tc, err := d.reader.ReadByte()\n" +
 		"\t\tif err != nil {\n" +
 		"\t\t\treturn err\n" +
 		"\t\t}\n" +
-		"\t\tif c == magicNumber {\n" +
-		"\t\t\td.parsers = append(d.parsers, parsersPool.Get().(*Parser))\n" +
+		"\t\tswitch c {\n" +
+		"\t\tcase 0xfe: // mavlink1\n" +
+		"\t\t\td.parsers = append(d.parsers, NewParserV1())\n" +
+		"\t\tcase 0xfd: // mavlink2\n" +
+		"\t\t\td.parsers = append(d.parsers, NewParserV2())\n" +
 		"\t\t}\n" +
-		"\t\tparsers := make([]*Parser, 0, len(d.parsers))\n" +
+		"\t\tparsers := make([]Parser, 0, len(d.parsers))\n" +
 		"\t\tfor _, parser := range d.parsers {\n" +
-		"\t\t\tif p, err := parser.parseChar(c); err != nil {\n" +
+		"\t\t\tif p, err := parser.ParseChar(c); err != nil {\n" +
 		"\t\t\t\td.clearParser(parser)\n" +
 		"\t\t\t} else if p != nil {\n" +
+		"\t\t\t    packet.Assign(p)\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"\t\t\t\tpacket.InCompatFlags = p.InCompatFlags\n" +
 		"\t\t\t\tpacket.CompatFlags = p.CompatFlags\n" +
@@ -85,7 +116,7 @@ func decoderTemplate() string {
 		"func NewDecoder(r io.Reader) *Decoder {\n" +
 		"\treturn &Decoder{\n" +
 		"\t\treader:  byteReader(r),\n" +
-		"\t\tparsers: make([]*Parser, 0),\n" +
+		"\t\tparsers: make([]Parser, 0),\n" +
 		"\t}\n" +
 		"}\n" +
 		""

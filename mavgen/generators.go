@@ -18,6 +18,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"text/template"
 )
@@ -32,16 +33,18 @@ const (
 )
 
 var (
-	templates = map[string](func() string){
+	independentTemplates = map[string](func() string){
 		"register":  registerTemplate,
 		"constants": constantsTemplate,
 		"encoder":   encoderTemplate,
 		"decoder":   decoderTemplate,
 		"message":   messageTemplate,
-		"packet":    packetTemplate,
-		"parser":    parserTemplate,
 		"version":   versionTemplate,
 		"x25":       x25Template,
+	}
+	dependentTemplates = map[string](func() string){
+		"packet":    packetTemplate,
+		"parser":    parserTemplate,
 	}
 )
 
@@ -142,9 +145,22 @@ func generateCommonPackage(data templateData) error {
 		log.Fatal("Getwd(): ", err)
 	}
 
-	for k, v := range templates {
+	// generate mavlink independent code
+	for k, v := range independentTemplates {
 		if err := generateCode(cwd+string(filepath.Separator), data, k, v()); err != nil {
 			return err
+		}
+	}
+
+	// generate mavlink dependent code
+	for _, m := range []int{1, 2,} {
+		for k, v := range dependentTemplates {
+			if err := generateCode(cwd+string(filepath.Separator), templateData{
+				Version: data.Version,
+				MavlinkVersion: m,
+			}, k + strconv.Itoa(m), v()); err != nil {
+				return err
+			}
 		}
 	}
 	return nil

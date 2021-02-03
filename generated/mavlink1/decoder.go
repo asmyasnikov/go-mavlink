@@ -12,15 +12,42 @@ import (
 	"io"
 )
 
+// Packet is the interface implemented by frames of every supported version.
+type Packet interface {
+	// SysID returns system id
+	SysID() uint8
+	// CompID returns component id
+	CompID() uint8
+	// MsgID returns message id
+	MsgID() MessageID
+	// Checksum returns packet checksum
+	Checksum() uint16
+	// SeqID returns packet sequence number
+	SeqID() uint8
+	// Payload returns packet payload
+	Payload() []byte
+	// Assign assign internal fields from right hand side oacket
+	Assign(rhs Packet) error
+	// Message returns dialect message
+	Message() (Message, error)
+	// String returns string representation of packet
+	String() string
+}
+
+// Parser interface is abstract of parsers
+type Parser interface {
+	ParseChar(c byte) (Packet, error)
+	Destroy()
+}
+
 // Decoder struct provide decoding processor
 type Decoder struct {
 	reader  io.ByteReader
-	parsers []*Parser
+	parsers []Parser
 }
 
-func (d *Decoder) clearParser(parser *Parser) {
-	parser.Reset()
-	parsersPool.Put(parser)
+func (d *Decoder) clearParser(parser Parser) {
+	parser.Destroy()
 }
 
 func (d *Decoder) clearParsers() {
@@ -32,7 +59,7 @@ func (d *Decoder) clearParsers() {
 
 // Decode decode input stream to packet. Method return error or nil
 func (d *Decoder) Decode(v interface{}) error {
-	packet, ok := v.(*Packet)
+	packet, ok := v.(Packet)
 	if !ok {
 		return fmt.Errorf("cast interface '%+v' to Packet fail", v)
 	}
@@ -41,14 +68,18 @@ func (d *Decoder) Decode(v interface{}) error {
 		if err != nil {
 			return err
 		}
-		if c == magicNumber {
-			d.parsers = append(d.parsers, parsersPool.Get().(*Parser))
+		switch c {
+		case 0xfe: // mavlink1
+			d.parsers = append(d.parsers, NewParserV1())
+		case 0xfd: // mavlink2
+			d.parsers = append(d.parsers, NewParserV2())
 		}
-		parsers := make([]*Parser, 0, len(d.parsers))
+		parsers := make([]Parser, 0, len(d.parsers))
 		for _, parser := range d.parsers {
-			if p, err := parser.parseChar(c); err != nil {
+			if p, err := parser.ParseChar(c); err != nil {
 				d.clearParser(parser)
 			} else if p != nil {
+				packet.Assign(p)
 				packet.SeqID = p.SeqID
 				packet.SysID = p.SysID
 				packet.CompID = p.CompID
@@ -76,6 +107,6 @@ func byteReader(r io.Reader) io.ByteReader {
 func NewDecoder(r io.Reader) *Decoder {
 	return &Decoder{
 		reader:  byteReader(r),
-		parsers: make([]*Parser, 0),
+		parsers: make([]Parser, 0),
 	}
 }

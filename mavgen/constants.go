@@ -15,41 +15,6 @@ func constantsTemplate() string {
 		"\t\"errors\"\n" +
 		")\n" +
 		"\n" +
-		"// magicNumber constant for mavlink {{if eq .MavlinkVersion 2 -}} 2 {{- else -}} 1 {{- end}}.0\n" +
-		"const (\n" +
-		"\tmagicNumber = {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}}\n" +
-		")\n" +
-		"\n" +
-		"// MessageID typedef\n" +
-		"type MessageID {{if eq .MavlinkVersion 2 -}} uint32 {{else}} uint8 {{- end}}\n" +
-		"\n" +
-		"// MAVLINK_PARSE_STATE typedef\n" +
-		"type MAVLINK_PARSE_STATE int\n" +
-		"\n" +
-		"// MAVLINK_PARSE_STATES\n" +
-		"const (\n" +
-		"\tMAVLINK_PARSE_STATE_UNINIT             MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_IDLE               MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_STX            MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_LENGTH         MAVLINK_PARSE_STATE = iota\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_INCOMPAT_FLAGS MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_COMPAT_FLAGS   MAVLINK_PARSE_STATE = iota\n" +
-		"{{- end}}\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_SEQ            MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_SYSID          MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_COMPID         MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_MSGID1         MAVLINK_PARSE_STATE = iota\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_MSGID2         MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_MSGID3         MAVLINK_PARSE_STATE = iota\n" +
-		"{{- end}}\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_PAYLOAD        MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_CRC1           MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_BAD_CRC        MAVLINK_PARSE_STATE = iota\n" +
-		"\tMAVLINK_PARSE_STATE_GOT_GOOD_MESSAGE   MAVLINK_PARSE_STATE = iota\n" +
-		")\n" +
-		"\n" +
 		"var (\n" +
 		"\t// ErrUnknownMsgID define\n" +
 		"\tErrUnknownMsgID = errors.New(\"unknown msg id\")\n" +

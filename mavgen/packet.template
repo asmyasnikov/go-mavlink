@@ -7,43 +7,94 @@ import (
 // Packet is a wire type for encoding/decoding mavlink messages.
 // use the ToPacket() and FromPacket() routines on specific message
 // types to convert them to/from the Message type.
-type Packet struct {
+type packet{{.MavlinkVersion}} struct {
 {{- if eq .MavlinkVersion 2}}
-	InCompatFlags uint8     // incompat flags
-	CompatFlags   uint8     // compat flags
+	incompatFlags uint8     // incompat flags
+	compatFlags   uint8     // compat flags
 {{- end}}
-	SeqID         uint8     // Sequence of packet
-	SysID         uint8     // ID of message sender system/aircraft
-	CompID        uint8     // ID of the message sender component
-	MsgID         MessageID // ID of message in payload
-	Payload       []byte
-	Checksum      uint16
+	seqID         uint8     // Sequence of packet
+	sysID         uint8     // ID of message sender system/aircraft
+	compID        uint8     // ID of the message sender component
+	msgID         MessageID // ID of message in payload
+	payload       []byte
+	checksum      uint16
 }
 
-func (p *Packet) nextSeqNum() byte {
+// SysID returns system id
+func (p *packet{{.MavlinkVersion}}) SysID() uint8 {
+    return p.sysID
+}
+
+// CompID returns component id
+func (p *packet{{.MavlinkVersion}}) CompID() uint8 {
+    return p.compID
+}
+
+// MsgID returns message id
+func (p *packet{{.MavlinkVersion}}) MsgID() MessageID {
+    return p.msgID
+}
+
+// Checksum returns packet checksum
+func (p *packet{{.MavlinkVersion}}) Checksum() uint16 {
+    return p.checksum
+}
+
+// SeqID returns packet sequence number
+func (p *packet{{.MavlinkVersion}}) SeqID() uint8 {
+    return p.seqID
+}
+
+// Payload returns packet payload
+func (p *packet{{.MavlinkVersion}}) Payload() []byte {
+    // todo: maybe COPY???
+    return p.payload
+}
+
+// Assign assign internal fields from right hand side packet
+func (p *packet{{.MavlinkVersion}}) Assign(rhs Packet) error {
+    packet, ok := rhs.(*packet{{.MavlinkVersion}})
+    if !ok {
+        return fmt.Errorf("cast interface '%+v' to '*packet{{.MavlinkVersion}}' fail", rhs)
+    }
+{{- if eq .MavlinkVersion 2}}
+    packet.incompatFlags = p.incompatFlags
+    packet.compatFlags = p.compatFlags
+{{- end}}
+    packet.seqID = p.seqID
+    packet.sysID = p.sysID
+    packet.compID = p.compID
+    packet.msgID = p.msgID
+    packet.checksum = p.checksum
+    packet.payload = append(packet.payload[:0], p.payload...)
+    return nil
+}
+
+
+func (p *packet{{.MavlinkVersion}}) nextSeqNum() byte {
 	currentSeqNum++
 	return currentSeqNum
 }
 
 // Encode trying to encode message to packet
-func (p *Packet) encode(sysID, compID uint8, m Message) error {
-	p.SeqID = p.nextSeqNum()
-	p.SysID = sysID
-	p.CompID = compID
+func (p *packet{{.MavlinkVersion}}) encode(sysID, compID uint8, m Message) error {
+	p.seqID = p.nextSeqNum()
+	p.sysID = sysID
+	p.compID = compID
 	return p.Encode(m)
 }
 
 // Encode trying to encode message to packet
-func (p *Packet) Encode(m Message) error {
+func (p *packet{{.MavlinkVersion}}) Encode(m Message) error {
 	if err := m.Pack(p); err != nil {
 		return err
 	}
 {{- if eq .MavlinkVersion 2 }}
-	payloadLen := len(p.Payload)
-	for payloadLen > 1 && p.Payload[payloadLen-1] == 0 {
+	payloadLen := len(p.payload)
+	for payloadLen > 1 && p.payload[payloadLen-1] == 0 {
 		payloadLen--
 	}
-	p.Payload = p.Payload[:payloadLen]
+	p.payload = p.payload[:payloadLen]
 {{- end }}
 	if err := p.fixChecksum(); err != nil {
 		return err
@@ -52,101 +103,95 @@ func (p *Packet) Encode(m Message) error {
 }
 
 // Decode trying to decode message to packet
-func (p *Packet) Decode(m Message) error {
+func (p *packet{{.MavlinkVersion}}) Decode(m Message) error {
 {{- if eq .MavlinkVersion 2 }}
-    if msg, ok := supported[p.MsgID]; !ok {
+    if msg, ok := supported[p.msgID]; !ok {
         return ErrUnknownMsgID
-    } else if len(p.Payload) < msg.Size {
-		p.Payload = append(p.Payload, zeroTail[:msg.Size-len(p.Payload)]...)
+    } else if len(p.payload) < msg.Size {
+		p.payload = append(p.payload, zeroTail[:msg.Size-len(p.payload)]...)
 	}
 {{- end }}
     return m.Unpack(p)
 }
 
 // Unmarshal trying to de-serialize byte slice to packet
-func Unmarshal(buffer []byte, p *Packet) error {
-	parser := parsersPool.Get().(*Parser)
-	defer parsersPool.Put(parser)
+func unmarshal{{.MavlinkVersion}}(buffer []byte, p *packet{{.MavlinkVersion}}) error {
+	parser := _parsersPool_v{{.MavlinkVersion}}.Get().(*parser{{.MavlinkVersion}})
+	defer parser.Destroy()
 	for _, c := range buffer {
-		packet, err := parser.parseChar(c)
+		packet, err := parser.ParseChar(c)
 		if err != nil {
 			return err
 		}
 		if packet != nil {
-			*p = *packet
-			return nil
+			return p.Assign(packet)
 		}
 	}
 	return ErrNoNewData
 }
 
 // Marshal trying to serialize byte slice from packet
-func Marshal(p *Packet) ([]byte, error) {
+func marshal{{.MavlinkVersion}}(p *packet{{.MavlinkVersion}}) ([]byte, error) {
 	if p == nil {
 		return nil, ErrNilPointerReference
 	}
-	return p.Bytes(), nil
-}
-
-// Bytes make byte slice from packet
-func (p *Packet) Bytes() []byte {
-    bytes := make([]byte, 0, {{if eq .MavlinkVersion 2 -}} 12 {{- else -}} 8 {{- end}}+len(p.Payload))
+    bytes := make([]byte, 0, {{if eq .MavlinkVersion 2 -}} 12 {{- else -}} 8 {{- end}}+len(p.payload))
     // header
     bytes = append(bytes,
-	    magicNumber,
-	    byte(len(p.Payload)),
+	    {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}},
+	    byte(len(p.payload)),
 {{- if eq .MavlinkVersion 2}}
-	    uint8(p.InCompatFlags),
-	    uint8(p.CompatFlags),
+	    uint8(p.incompatFlags),
+	    uint8(p.compatFlags),
 {{- end}}
-	    p.SeqID,
-	    p.SysID,
-	    p.CompID,
-	    uint8(p.MsgID),
+	    p.seqID,
+	    p.sysID,
+	    p.compID,
+	    uint8(p.msgID),
 {{- if eq .MavlinkVersion 2}}
-	    uint8(p.MsgID >> 8),
-	    uint8(p.MsgID >> 16),
+	    uint8(p.msgID >> 8),
+	    uint8(p.msgID >> 16),
 {{- end}}
     )
     // payload
-	bytes = append(bytes, p.Payload...)
+	bytes = append(bytes, p.payload...)
 	// crc
-	bytes = append(bytes, p.u16ToBytes(p.Checksum)...)
-	return bytes
+	bytes = append(bytes, p.u16ToBytes(p.checksum)...)
+	return bytes, nil
 }
 
-func (p *Packet) fixChecksum() error {
-    msg, ok := supported[p.MsgID]
+func (p *packet{{.MavlinkVersion}}) fixChecksum() error {
+    msg, ok := supported[p.msgID]
     if !ok {
 		return ErrUnknownMsgID
     }
 	crc := NewX25()
-	crc.WriteByte(byte(len(p.Payload)))
+	crc.WriteByte(byte(len(p.payload)))
 {{- if eq .MavlinkVersion 2}}
-	crc.WriteByte(p.InCompatFlags)
-	crc.WriteByte(p.CompatFlags)
+	crc.WriteByte(p.incompatFlags)
+	crc.WriteByte(p.compatFlags)
 {{- end}}
-	crc.WriteByte(p.SeqID)
-	crc.WriteByte(p.SysID)
-	crc.WriteByte(p.CompID)
-	crc.WriteByte(byte(p.MsgID >> 0 ))
+	crc.WriteByte(p.seqID)
+	crc.WriteByte(p.sysID)
+	crc.WriteByte(p.compID)
+	crc.WriteByte(byte(p.msgID >> 0 ))
 {{- if eq .MavlinkVersion 2}}
-	crc.WriteByte(byte(p.MsgID >> 8 ))
-	crc.WriteByte(byte(p.MsgID >> 16))
+	crc.WriteByte(byte(p.msgID >> 8 ))
+	crc.WriteByte(byte(p.msgID >> 16))
 {{- end}}
-	crc.Write(p.Payload)
+	crc.Write(p.payload)
 	crc.WriteByte(msg.Extra)
-	p.Checksum = crc.Sum16()
+	p.checksum = crc.Sum16()
 	return nil
 }
 
-func (p *Packet) u16ToBytes(v uint16) []byte {
+func (p *packet{{.MavlinkVersion}}) u16ToBytes(v uint16) []byte {
 	return []byte{byte(v & 0xff), byte(v >> 8)}
 }
 
 // Message function produce message from packet
-func (p *Packet) Message() (Message, error) {
-    msg, ok := supported[p.MsgID]
+func (p *packet{{.MavlinkVersion}}) Message() (Message, error) {
+    msg, ok := supported[p.msgID]
 	if !ok {
 		return nil, ErrUnknownMsgID
 	}
@@ -154,24 +199,24 @@ func (p *Packet) Message() (Message, error) {
 }
 
 // String function return string view of Packet struct
-func (p *Packet) String() string {
+func (p *packet{{.MavlinkVersion}}) String() string {
 	return fmt.Sprintf(
-		"&mavlink{{.MavlinkVersion}}.Packet{ {{ if eq .MavlinkVersion 2 }}InCompatFlags: %08b, CompatFlags: %08b, {{ end }}SeqID: %d, SysID: %d, CompID: %d, MsgID: %d, Payload: %s, Checksum: %d }",
+		"&packet{{.MavlinkVersion}}{ {{ if eq .MavlinkVersion 2 }}incompatFlags: %08b, compatFlags: %08b, {{ end }}seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
 {{- if eq .MavlinkVersion 2}}
-    	p.InCompatFlags,
-	    p.CompatFlags,
+    	p.incompatFlags,
+	    p.compatFlags,
 {{- end}}
-		p.SeqID,
-		p.SysID,
-		p.CompID,
-		int64(p.MsgID),
+		p.seqID,
+		p.sysID,
+		p.compID,
+		int64(p.msgID),
 		func() string {
 			msg, err := p.Message()
 			if err != nil {
-				return fmt.Sprintf("%0X", p.Payload)
+				return fmt.Sprintf("%0X", p.payload)
 			}
 			return msg.String()
 		}(),
-		p.Checksum,
+		p.checksum,
 	)
 }
