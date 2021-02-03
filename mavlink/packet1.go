@@ -53,6 +53,9 @@ func (p *packet1) Payload() []byte {
 }
 
 func (p *packet1) assign(rhs *packet1) error {
+	if p == nil {
+		return ErrNilPointerReference
+	}
 	p.seqID = rhs.seqID
 	p.sysID = rhs.sysID
 	p.compID = rhs.compID
@@ -65,6 +68,9 @@ func (p *packet1) assign(rhs *packet1) error {
 /*
 // Assign assign internal fields from right hand side packet
 func (p *packet1) Assign(rhs Packet) error {
+    if p == nil {
+        return ErrNilPointerReference
+    }
     packet, ok := rhs.(*packet1)
     if !ok {
         return fmt.Errorf("cast interface '%+v' to '*packet1' fail", rhs)
@@ -86,6 +92,9 @@ func (p *packet1) Copy() Packet {
 
 // Copy returns deep copy of packet
 func (p *packet1) copy() *packet1 {
+	if p == nil {
+		return nil
+	}
 	copy := &packet1{}
 	copy.seqID = p.seqID
 	copy.sysID = p.sysID
@@ -99,6 +108,9 @@ func (p *packet1) copy() *packet1 {
 /*
 // Encode trying to encode message to packet
 func (p *packet1) encode(sysID, compID uint8, m Message) error {
+    if p == nil {
+        return ErrNilPointerReference
+    }
 	p.seqID = p.nextSeqNum()
 	p.sysID = sysID
 	p.compID = compID
@@ -107,6 +119,9 @@ func (p *packet1) encode(sysID, compID uint8, m Message) error {
 
 // Encode trying to encode message to packet
 func (p *packet1) Encode(m Message) error {
+    if p == nil {
+        return ErrNilPointerReference
+    }
 	if err := m.Pack(p); err != nil {
 		return err
 	}
@@ -118,12 +133,18 @@ func (p *packet1) Encode(m Message) error {
 
 // Decode trying to decode message to packet
 func (p *packet1) Decode(m Message) error {
+    if p == nil {
+        return ErrNilPointerReference
+    }
     return m.Unpack(p)
 }
 */
 
 // Unmarshal trying to de-serialize byte slice to packet
 func (p *packet1) Unmarshal(buffer []byte) error {
+	if p == nil {
+		return ErrNilPointerReference
+	}
 	parser := _parsersPool_v1.Get().(*parser1)
 	defer parser.Destroy()
 	for _, c := range buffer {
@@ -161,6 +182,9 @@ func (p *packet1) Marshal() ([]byte, error) {
 }
 
 func (p *packet1) fixChecksum() error {
+	if p == nil {
+		return ErrNilPointerReference
+	}
 	msg, ok := supported[p.msgID]
 	if !ok {
 		return ErrUnknownMsgID
@@ -183,6 +207,9 @@ func (p *packet1) u16ToBytes(v uint16) []byte {
 
 // Message function produce message from packet
 func (p *packet1) Message() (Message, error) {
+	if p == nil {
+		return nil, ErrNilPointerReference
+	}
 	msg, ok := supported[p.msgID]
 	if !ok {
 		return nil, ErrUnknownMsgID
@@ -192,6 +219,9 @@ func (p *packet1) Message() (Message, error) {
 
 // String function return string view of Packet struct
 func (p *packet1) String() string {
+	if p == nil {
+		return "nil"
+	}
 	return fmt.Sprintf(
 		"&packet1{ seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
 		p.seqID,

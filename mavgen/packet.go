@@ -62,6 +62,9 @@ func packetTemplate() string {
 		"}\n" +
 		"\n" +
 		"func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error {\n" +
+		"    if p == nil {\n" +
+		"        return ErrNilPointerReference\n" +
+		"    }\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"    p.incompatFlags = rhs.incompatFlags\n" +
 		"    p.compatFlags = rhs.compatFlags\n" +
@@ -78,6 +81,9 @@ func packetTemplate() string {
 		"/*\n" +
 		"// Assign assign internal fields from right hand side packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) Assign(rhs Packet) error {\n" +
+		"    if p == nil {\n" +
+		"        return ErrNilPointerReference\n" +
+		"    }\n" +
 		"    packet, ok := rhs.(*packet{{.MavlinkVersion}})\n" +
 		"    if !ok {\n" +
 		"        return fmt.Errorf(\"cast interface '%+v' to '*packet{{.MavlinkVersion}}' fail\", rhs)\n" +
@@ -103,6 +109,9 @@ func packetTemplate() string {
 		"\n" +
 		"// Copy returns deep copy of packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) copy() *packet{{.MavlinkVersion}} {\n" +
+		"    if p == nil {\n" +
+		"        return nil\n" +
+		"    }\n" +
 		"    copy := &packet{{.MavlinkVersion}}{}\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"    copy.incompatFlags = p.incompatFlags\n" +
@@ -121,6 +130,9 @@ func packetTemplate() string {
 		"/*\n" +
 		"// Encode trying to encode message to packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) encode(sysID, compID uint8, m Message) error {\n" +
+		"    if p == nil {\n" +
+		"        return ErrNilPointerReference\n" +
+		"    }\n" +
 		"\tp.seqID = p.nextSeqNum()\n" +
 		"\tp.sysID = sysID\n" +
 		"\tp.compID = compID\n" +
@@ -129,6 +141,9 @@ func packetTemplate() string {
 		"\n" +
 		"// Encode trying to encode message to packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) Encode(m Message) error {\n" +
+		"    if p == nil {\n" +
+		"        return ErrNilPointerReference\n" +
+		"    }\n" +
 		"\tif err := m.Pack(p); err != nil {\n" +
 		"\t\treturn err\n" +
 		"\t}\n" +
@@ -147,6 +162,9 @@ func packetTemplate() string {
 		"\n" +
 		"// Decode trying to decode message to packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) Decode(m Message) error {\n" +
+		"    if p == nil {\n" +
+		"        return ErrNilPointerReference\n" +
+		"    }\n" +
 		"{{- if eq .MavlinkVersion 2 }}\n" +
 		"    if msg, ok := supported[p.msgID]; !ok {\n" +
 		"        return ErrUnknownMsgID\n" +
@@ -160,6 +178,9 @@ func packetTemplate() string {
 		"\n" +
 		"// Unmarshal trying to de-serialize byte slice to packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) Unmarshal(buffer []byte) error {\n" +
+		"    if p == nil {\n" +
+		"        return ErrNilPointerReference\n" +
+		"    }\n" +
 		"\tparser := _parsersPool_v{{.MavlinkVersion}}.Get().(*parser{{.MavlinkVersion}})\n" +
 		"\tdefer parser.Destroy()\n" +
 		"\tfor _, c := range buffer {\n" +
@@ -205,6 +226,9 @@ func packetTemplate() string {
 		"}\n" +
 		"\n" +
 		"func (p *packet{{.MavlinkVersion}}) fixChecksum() error {\n" +
+		"    if p == nil {\n" +
+		"        return ErrNilPointerReference\n" +
+		"    }\n" +
 		"    msg, ok := supported[p.msgID]\n" +
 		"    if !ok {\n" +
 		"\t\treturn ErrUnknownMsgID\n" +
@@ -235,6 +259,9 @@ func packetTemplate() string {
 		"\n" +
 		"// Message function produce message from packet\n" +
 		"func (p *packet{{.MavlinkVersion}}) Message() (Message, error) {\n" +
+		"    if p == nil {\n" +
+		"        return nil, ErrNilPointerReference\n" +
+		"    }\n" +
 		"    msg, ok := supported[p.msgID]\n" +
 		"\tif !ok {\n" +
 		"\t\treturn nil, ErrUnknownMsgID\n" +
@@ -244,6 +271,9 @@ func packetTemplate() string {
 		"\n" +
 		"// String function return string view of Packet struct\n" +
 		"func (p *packet{{.MavlinkVersion}}) String() string {\n" +
+		"    if p == nil {\n" +
+		"        return \"nil\"\n" +
+		"    }\n" +
 		"\treturn fmt.Sprintf(\n" +
 		"\t\t\"&packet{{.MavlinkVersion}}{ {{ if eq .MavlinkVersion 2 }}incompatFlags: %08b, compatFlags: %08b, {{ end }}seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }\",\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +

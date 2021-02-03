@@ -59,11 +59,11 @@ func listenAndServe(wg *sync.WaitGroup, device io.ReadWriteCloser) {
 	dec := mavlink.NewDecoder(device)
 	log.Println("listening packets")
 	for {
-		packet, err := dec.Decode()
+		p, err := dec.Decode()
 		if err != nil {
 			log.Fatal("decode error: ", err.Error())
-		} else {
-			log.Println("<-", packet.String())
+		} else if p != nil {
+			log.Println("<-", p.String())
 		}
 		//if packet.MsgID == ardupilotmega.MSG_ID_TIMESYNC {
 		//	ts := ardupilotmega.Timesync{}

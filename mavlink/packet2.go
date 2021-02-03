@@ -55,6 +55,9 @@ func (p *packet2) Payload() []byte {
 }
 
 func (p *packet2) assign(rhs *packet2) error {
+	if p == nil {
+		return ErrNilPointerReference
+	}
 	p.incompatFlags = rhs.incompatFlags
 	p.compatFlags = rhs.compatFlags
 	p.seqID = rhs.seqID
@@ -69,6 +72,9 @@ func (p *packet2) assign(rhs *packet2) error {
 /*
 // Assign assign internal fields from right hand side packet
 func (p *packet2) Assign(rhs Packet) error {
+    if p == nil {
+        return ErrNilPointerReference
+    }
     packet, ok := rhs.(*packet2)
     if !ok {
         return fmt.Errorf("cast interface '%+v' to '*packet2' fail", rhs)
@@ -92,6 +98,9 @@ func (p *packet2) Copy() Packet {
 
 // Copy returns deep copy of packet
 func (p *packet2) copy() *packet2 {
+	if p == nil {
+		return nil
+	}
 	copy := &packet2{}
 	copy.incompatFlags = p.incompatFlags
 	copy.compatFlags = p.compatFlags
@@ -107,6 +116,9 @@ func (p *packet2) copy() *packet2 {
 /*
 // Encode trying to encode message to packet
 func (p *packet2) encode(sysID, compID uint8, m Message) error {
+    if p == nil {
+        return ErrNilPointerReference
+    }
 	p.seqID = p.nextSeqNum()
 	p.sysID = sysID
 	p.compID = compID
@@ -115,6 +127,9 @@ func (p *packet2) encode(sysID, compID uint8, m Message) error {
 
 // Encode trying to encode message to packet
 func (p *packet2) Encode(m Message) error {
+    if p == nil {
+        return ErrNilPointerReference
+    }
 	if err := m.Pack(p); err != nil {
 		return err
 	}
@@ -131,6 +146,9 @@ func (p *packet2) Encode(m Message) error {
 
 // Decode trying to decode message to packet
 func (p *packet2) Decode(m Message) error {
+    if p == nil {
+        return ErrNilPointerReference
+    }
     if msg, ok := supported[p.msgID]; !ok {
         return ErrUnknownMsgID
     } else if len(p.payload) < msg.Size {
@@ -142,6 +160,9 @@ func (p *packet2) Decode(m Message) error {
 
 // Unmarshal trying to de-serialize byte slice to packet
 func (p *packet2) Unmarshal(buffer []byte) error {
+	if p == nil {
+		return ErrNilPointerReference
+	}
 	parser := _parsersPool_v2.Get().(*parser2)
 	defer parser.Destroy()
 	for _, c := range buffer {
@@ -183,6 +204,9 @@ func (p *packet2) Marshal() ([]byte, error) {
 }
 
 func (p *packet2) fixChecksum() error {
+	if p == nil {
+		return ErrNilPointerReference
+	}
 	msg, ok := supported[p.msgID]
 	if !ok {
 		return ErrUnknownMsgID
@@ -209,6 +233,9 @@ func (p *packet2) u16ToBytes(v uint16) []byte {
 
 // Message function produce message from packet
 func (p *packet2) Message() (Message, error) {
+	if p == nil {
+		return nil, ErrNilPointerReference
+	}
 	msg, ok := supported[p.msgID]
 	if !ok {
 		return nil, ErrUnknownMsgID
@@ -218,6 +245,9 @@ func (p *packet2) Message() (Message, error) {
 
 // String function return string view of Packet struct
 func (p *packet2) String() string {
+	if p == nil {
+		return "nil"
+	}
 	return fmt.Sprintf(
 		"&packet2{ incompatFlags: %08b, compatFlags: %08b, seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
 		p.incompatFlags,
