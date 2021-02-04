@@ -562,12 +562,11 @@ func (d *Dialect) generateGo(dialectPath string, packageName string, commonPacka
 						}
 					}
 					return nil
-				}()...
+				}()...,
 			)...,
 		),
 		d.generateClasses,
-	)
-		err != nil {
+	); err != nil {
 		return err
 	}
 	if err := d.generateFile(
