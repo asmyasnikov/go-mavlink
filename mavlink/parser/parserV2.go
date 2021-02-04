@@ -46,7 +46,7 @@ type parser2 struct {
 	crc   *crc.X25
 }
 
-var _parsersPool_v2 = &sync.Pool{
+var _parsersPoolV2 = &sync.Pool{
 	New: func() interface{} {
 		return new(parser2)
 	},
@@ -54,7 +54,7 @@ var _parsersPool_v2 = &sync.Pool{
 
 // Reset set parser to idle state
 func NewParserV2() Parser {
-	return _parsersPool_v2.Get().(Parser)
+	return _parsersPoolV2.Get().(Parser)
 }
 
 // Reset set parser to idle state
@@ -63,7 +63,7 @@ func (p *parser2) Destroy() {
 	if p.crc != nil {
 		p.crc = nil
 	}
-	_parsersPool_v2.Put(p)
+	_parsersPoolV2.Put(p)
 }
 
 // ParseChar parse char to packet

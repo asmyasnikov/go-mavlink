@@ -69,9 +69,11 @@ func (s Signature) String() string {
 
 const (
 	// MAGIC_NUMBER_V2 const value for common use
-	MAGIC_NUMBER_V2      packet.MAGIC_NUMBER = 0xfd
-	MAVLINK_IFLAG_SIGNED MAVLINK_IFLAG       = 0b00000001
-	SIGNATURE_LEN                            = 13
+	MAGIC_NUMBER_V2 packet.MAGIC_NUMBER = 0xfd
+	// MAVLINK_IFLAG_SIGNED constant
+	MAVLINK_IFLAG_SIGNED MAVLINK_IFLAG = 0b00000001
+	// SIGNATURE_LEN constant
+	SIGNATURE_LEN = 13
 )
 
 // Packet is a wire type for encoding/decoding mavlink messages.
@@ -188,7 +190,7 @@ func (p *packet2) Unmarshal(buffer []byte) error {
 	if p == nil {
 		return errors.ErrNilPointerReference
 	}
-	parser := _parsersPool_v2.Get().(*parser2)
+	parser := _parsersPoolV2.Get().(*parser2)
 	defer parser.Destroy()
 	for _, c := range buffer {
 		packet, err := parser.parseChar(c)

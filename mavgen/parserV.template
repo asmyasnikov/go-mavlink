@@ -46,7 +46,7 @@ type parser{{.MavlinkVersion}} struct {
 	crc         *crc.X25
 }
 
-var _parsersPool_v{{.MavlinkVersion}} = &sync.Pool{
+var _parsersPoolV{{.MavlinkVersion}} = &sync.Pool{
 	New: func() interface{} {
 		return new(parser{{.MavlinkVersion}})
 	},
@@ -54,7 +54,7 @@ var _parsersPool_v{{.MavlinkVersion}} = &sync.Pool{
 
 // Reset set parser to idle state
 func NewParserV{{.MavlinkVersion}}() Parser {
-    return _parsersPool_v{{.MavlinkVersion}}.Get().(Parser)
+    return _parsersPoolV{{.MavlinkVersion}}.Get().(Parser)
 }
 
 // Reset set parser to idle state
@@ -63,7 +63,7 @@ func (p *parser{{.MavlinkVersion}}) Destroy() {
 	if p.crc != nil {
 		p.crc = nil
 	}
-	_parsersPool_v{{.MavlinkVersion}}.Put(p)
+	_parsersPoolV{{.MavlinkVersion}}.Put(p)
 }
 
 // ParseChar parse char to packet

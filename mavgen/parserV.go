@@ -57,7 +57,7 @@ func parserVTemplate() string {
 		"\tcrc         *crc.X25\n" +
 		"}\n" +
 		"\n" +
-		"var _parsersPool_v{{.MavlinkVersion}} = &sync.Pool{\n" +
+		"var _parsersPoolV{{.MavlinkVersion}} = &sync.Pool{\n" +
 		"\tNew: func() interface{} {\n" +
 		"\t\treturn new(parser{{.MavlinkVersion}})\n" +
 		"\t},\n" +
@@ -65,7 +65,7 @@ func parserVTemplate() string {
 		"\n" +
 		"// Reset set parser to idle state\n" +
 		"func NewParserV{{.MavlinkVersion}}() Parser {\n" +
-		"    return _parsersPool_v{{.MavlinkVersion}}.Get().(Parser)\n" +
+		"    return _parsersPoolV{{.MavlinkVersion}}.Get().(Parser)\n" +
 		"}\n" +
 		"\n" +
 		"// Reset set parser to idle state\n" +
@@ -74,7 +74,7 @@ func parserVTemplate() string {
 		"\tif p.crc != nil {\n" +
 		"\t\tp.crc = nil\n" +
 		"\t}\n" +
-		"\t_parsersPool_v{{.MavlinkVersion}}.Put(p)\n" +
+		"\t_parsersPoolV{{.MavlinkVersion}}.Put(p)\n" +
 		"}\n" +
 		"\n" +
 		"// ParseChar parse char to packet\n" +

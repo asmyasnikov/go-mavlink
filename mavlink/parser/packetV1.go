@@ -127,7 +127,7 @@ func (p *packet1) Unmarshal(buffer []byte) error {
 	if p == nil {
 		return errors.ErrNilPointerReference
 	}
-	parser := _parsersPool_v1.Get().(*parser1)
+	parser := _parsersPoolV1.Get().(*parser1)
 	defer parser.Destroy()
 	for _, c := range buffer {
 		packet, err := parser.parseChar(c)

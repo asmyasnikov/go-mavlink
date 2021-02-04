@@ -80,7 +80,9 @@ func packetVTemplate() string {
 		"    // MAGIC_NUMBER_V{{.MavlinkVersion}} const value for common use\n" +
 		"    MAGIC_NUMBER_V{{.MavlinkVersion}} packet.MAGIC_NUMBER = {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}}\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    // MAVLINK_IFLAG_SIGNED constant\n" +
 		"    MAVLINK_IFLAG_SIGNED MAVLINK_IFLAG = 0b00000001\n" +
+		"    // SIGNATURE_LEN constant\n" +
 		"    SIGNATURE_LEN = 13\n" +
 		"{{- end}}\n" +
 		")\n" +
@@ -212,7 +214,7 @@ func packetVTemplate() string {
 		"    if p == nil {\n" +
 		"        return errors.ErrNilPointerReference\n" +
 		"    }\n" +
-		"\tparser := _parsersPool_v{{.MavlinkVersion}}.Get().(*parser{{.MavlinkVersion}})\n" +
+		"\tparser := _parsersPoolV{{.MavlinkVersion}}.Get().(*parser{{.MavlinkVersion}})\n" +
 		"\tdefer parser.Destroy()\n" +
 		"\tfor _, c := range buffer {\n" +
 		"\t\tpacket, err := parser.parseChar(c)\n" +
