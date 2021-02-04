@@ -41,7 +41,9 @@ func (m *pingMock) Marshal() ([]byte, error) {
 }
 
 // Unmarshal
-func (m *pingMock) Unmarshal(payload []byte) error {
+func (m *pingMock) Unmarshal(data []byte) error {
+	payload := make([]byte, 4)
+	copy(payload[0:], data)
 	m.Seq = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	return nil
 }
