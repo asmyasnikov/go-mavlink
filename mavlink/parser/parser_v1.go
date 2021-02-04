@@ -118,9 +118,10 @@ func (p *parser1) parseChar(c byte) (*packet1, error) {
 			p.checksum = p.crc.Sum16()
 			p.state = MAVLINK1_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
+		} else {
+			p.state = MAVLINK1_PARSE_STATE_GOT_BAD_CRC
+			return nil, errors.ErrCrcFail
 		}
-		p.state = MAVLINK1_PARSE_STATE_GOT_BAD_CRC
-		return nil, errors.ErrCrcFail
 	}
 	return nil, nil
 }

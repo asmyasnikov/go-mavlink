@@ -63,7 +63,7 @@ func packet_vTemplate() string {
 		"// String function return string view of Packet struct\n" +
 		"func (s Signature) String() string {\n" +
 		"\treturn fmt.Sprintf(\n" +
-		"\t\t\"&Signature{ linkID: %0X, timestamp: \\\"%+v\\\", signature: \\\"%06X\\\" }\",\n" +
+		"\t\t\"&Signature{ linkID: 0x%02X, timestamp: \\\"%+v\\\", signature: \\\"%06X\\\" }\",\n" +
 		"    \ts.LinkID(),\n" +
 		"    \ts.Timestamp(),\n" +
 		"    \ts.Signature(),\n" +
@@ -168,6 +168,9 @@ func packet_vTemplate() string {
 		"    p.msgID = rhs.msgID\n" +
 		"    p.checksum = rhs.checksum\n" +
 		"    p.payload = append([]byte(nil), rhs.payload...)\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    p.signature = Signature(append([]byte(nil), []byte(rhs.signature)...))\n" +
+		"{{- end}}\n" +
 		"    return nil\n" +
 		"}\n" +
 		"\n" +
@@ -192,6 +195,9 @@ func packet_vTemplate() string {
 		"    copy.msgID = p.msgID\n" +
 		"    copy.checksum = p.checksum\n" +
 		"    copy.payload = append([]byte(nil), p.payload...)\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    copy.signature = Signature(append([]byte(nil), []byte(p.signature)...))\n" +
+		"{{- end}}\n" +
 		"    return copy\n" +
 		"}\n" +
 		"\n" +
@@ -244,6 +250,11 @@ func packet_vTemplate() string {
 		"    // payload\n" +
 		"\tbytes = append(bytes, p.payload...)\n" +
 		"\tbytes = append(bytes, helpers.U16ToBytes(p.checksum)...)\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"\tif p.IsSigned() {\n" +
+		"\t    bytes = append(bytes, []byte(p.signature)...)\n" +
+		"\t}\n" +
+		"{{- end}}\n" +
 		"\treturn bytes, nil\n" +
 		"}\n" +
 		"\n" +

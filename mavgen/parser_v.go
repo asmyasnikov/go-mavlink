@@ -45,6 +45,9 @@ func parser_vTemplate() string {
 		"\tMAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1           MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota\n" +
 		"\tMAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC        MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota\n" +
 		"\tMAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE   MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"\tMAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE     MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota\n" +
+		"{{- end}}\n" +
 		")\n" +
 		"\n" +
 		"// parser{{.MavlinkVersion}} is a state machine which parse bytes to packet.Packet\n" +
@@ -149,11 +152,28 @@ func parser_vTemplate() string {
 		"\tcase MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1:\n" +
 		"\t\tif c == uint8(p.crc.Sum16()>>8) {\n" +
 		"\t\t\tp.checksum = p.crc.Sum16()\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"            if !p.IsSigned() {\n" +
+		"                p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
+		"                return p.copy(), nil\n" +
+		"            }\n" +
+		"            p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE\n" +
+		"{{- else}}\n" +
 		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
 		"\t\t\treturn p.copy(), nil\n" +
-		"\t\t}\n" +
-		"        p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC\n" +
-		"        return nil, errors.ErrCrcFail\n" +
+		"{{- end}}\n" +
+		"\t\t} else {\n" +
+		"            p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC\n" +
+		"            return nil, errors.ErrCrcFail\n" +
+		"        }\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"\tcase MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE:\n" +
+		"\t    p.signature = append(p.signature, c)\n" +
+		"\t    if len([]byte(p.signature)) == SIGNATURE_LEN {\n" +
+		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
+		"\t\t\treturn p.copy(), nil\n" +
+		"\t    }\n" +
+		"{{- end}}\n" +
 		"\t}\n" +
 		"\treturn nil, nil\n" +
 		"}\n" +

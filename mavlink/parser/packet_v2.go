@@ -55,7 +55,7 @@ func (s Signature) Signature() (signature [6]byte) {
 // String function return string view of Packet struct
 func (s Signature) String() string {
 	return fmt.Sprintf(
-		"&Signature{ linkID: %0X, timestamp: \"%+v\", signature: \"%06X\" }",
+		"&Signature{ linkID: 0x%02X, timestamp: \"%+v\", signature: \"%06X\" }",
 		s.LinkID(),
 		s.Timestamp(),
 		s.Signature(),
@@ -150,6 +150,7 @@ func (p *packet2) assign(rhs *packet2) error {
 	p.msgID = rhs.msgID
 	p.checksum = rhs.checksum
 	p.payload = append([]byte(nil), rhs.payload...)
+	p.signature = Signature(append([]byte(nil), []byte(rhs.signature)...))
 	return nil
 }
 
@@ -172,6 +173,7 @@ func (p *packet2) copy() *packet2 {
 	copy.msgID = p.msgID
 	copy.checksum = p.checksum
 	copy.payload = append([]byte(nil), p.payload...)
+	copy.signature = Signature(append([]byte(nil), []byte(p.signature)...))
 	return copy
 }
 
@@ -220,6 +222,9 @@ func (p *packet2) Marshal() ([]byte, error) {
 	// payload
 	bytes = append(bytes, p.payload...)
 	bytes = append(bytes, helpers.U16ToBytes(p.checksum)...)
+	if p.IsSigned() {
+		bytes = append(bytes, []byte(p.signature)...)
+	}
 	return bytes, nil
 }
 

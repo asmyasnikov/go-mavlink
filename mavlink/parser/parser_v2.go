@@ -36,6 +36,7 @@ const (
 	MAVLINK2_PARSE_STATE_GOT_CRC1           MAVLINK2_PARSE_STATE = iota
 	MAVLINK2_PARSE_STATE_GOT_BAD_CRC        MAVLINK2_PARSE_STATE = iota
 	MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE   MAVLINK2_PARSE_STATE = iota
+	MAVLINK2_PARSE_STATE_WAIT_SIGNATURE     MAVLINK2_PARSE_STATE = iota
 )
 
 // parser2 is a state machine which parse bytes to packet.Packet
@@ -136,11 +137,21 @@ func (p *parser2) parseChar(c byte) (*packet2, error) {
 	case MAVLINK2_PARSE_STATE_GOT_CRC1:
 		if c == uint8(p.crc.Sum16()>>8) {
 			p.checksum = p.crc.Sum16()
+			if !p.IsSigned() {
+				p.state = MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE
+				return p.copy(), nil
+			}
+			p.state = MAVLINK2_PARSE_STATE_WAIT_SIGNATURE
+		} else {
+			p.state = MAVLINK2_PARSE_STATE_GOT_BAD_CRC
+			return nil, errors.ErrCrcFail
+		}
+	case MAVLINK2_PARSE_STATE_WAIT_SIGNATURE:
+		p.signature = append(p.signature, c)
+		if len([]byte(p.signature)) == SIGNATURE_LEN {
 			p.state = MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
 		}
-		p.state = MAVLINK2_PARSE_STATE_GOT_BAD_CRC
-		return nil, errors.ErrCrcFail
 	}
 	return nil, nil
 }

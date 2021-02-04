@@ -2,6 +2,7 @@ package mavlink
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/asmyasnikov/go-mavlink/mavlink/mock"
 	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"github.com/stretchr/testify/require"
@@ -24,6 +25,7 @@ func TestRoundTripChannels(t *testing.T) {
 		}
 		pings = append(pings, ping)
 		p, err := NewPacket(version.MAVLINK_VERSION(i%2+1), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), ping)
+		fmt.Println(p)
 		require.NoError(t, err)
 		require.NoError(t, enc.Encode(p))
 	}

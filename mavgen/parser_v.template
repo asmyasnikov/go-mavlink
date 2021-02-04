@@ -34,6 +34,9 @@ const (
 	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1           MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
 	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC        MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
 	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE   MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+{{- if eq .MavlinkVersion 2}}
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE     MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+{{- end}}
 )
 
 // parser{{.MavlinkVersion}} is a state machine which parse bytes to packet.Packet
@@ -138,11 +141,28 @@ func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}
 	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1:
 		if c == uint8(p.crc.Sum16()>>8) {
 			p.checksum = p.crc.Sum16()
+{{- if eq .MavlinkVersion 2}}
+            if !p.IsSigned() {
+                p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
+                return p.copy(), nil
+            }
+            p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE
+{{- else}}
 			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
-		}
-        p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC
-        return nil, errors.ErrCrcFail
+{{- end}}
+		} else {
+            p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC
+            return nil, errors.ErrCrcFail
+        }
+{{- if eq .MavlinkVersion 2}}
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE:
+	    p.signature = append(p.signature, c)
+	    if len([]byte(p.signature)) == SIGNATURE_LEN {
+			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
+			return p.copy(), nil
+	    }
+{{- end}}
 	}
 	return nil, nil
 }
