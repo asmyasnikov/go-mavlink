@@ -13,6 +13,7 @@ import (
 	"strconv"
 )
 
+// MessageInfo type
 type MessageInfo struct {
 	Name        string
 	Size        int
@@ -36,6 +37,7 @@ func Register(msgID message.MessageID, msgName string, msgSize int, crcExtra uin
 	}
 }
 
+// Info return info about message
 func Info(msgID message.MessageID) (*MessageInfo, error) {
 	if info, ok := supported[msgID]; ok {
 		return info, nil

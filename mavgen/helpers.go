@@ -11,6 +11,7 @@ package main
 func helpersTemplate() string {
 	var tmpl = "package helpers\n" +
 		"\n" +
+		"// U16ToBytes creates bytearray representation\n" +
 		"func U16ToBytes(v uint16) []byte {\n" +
 		"\treturn []byte{byte(v & 0xff), byte(v >> 8)}\n" +
 		"}\n" +

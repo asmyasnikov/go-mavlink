@@ -18,6 +18,7 @@ func registerTemplate() string {
 		"    \"{{.CommonPackageURL}}/packet\"\n" +
 		")\n" +
 		"\n" +
+		"// MessageInfo type\n" +
 		"type MessageInfo struct {\n" +
 		"    Name string\n" +
 		"    Size int\n" +
@@ -41,6 +42,7 @@ func registerTemplate() string {
 		"\t}\n" +
 		"}\n" +
 		"\n" +
+		"// Info return info about message\n" +
 		"func Info(msgID message.MessageID) (*MessageInfo, error) {\n" +
 		"\tif info, ok := supported[msgID]; ok {\n" +
 		"\t    return info, nil\n" +

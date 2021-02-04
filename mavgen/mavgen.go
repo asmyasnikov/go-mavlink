@@ -388,8 +388,6 @@ func c2goPrimitive(ctype string) (string, int) {
 				v, _ := strconv.Atoi(matches[2])
 				return v
 			}()
-		} else {
-			panic(fmt.Sprintf("c2goPrimitive: unhandled primitive type - %s", ctype))
 		}
 	case "char":
 		return "byte", 8
@@ -399,9 +397,8 @@ func c2goPrimitive(ctype string) (string, int) {
 		return "float64", 64
 	case "uint8_t_mavlink_version":
 		return "uint8", 8
-	default:
-		panic(fmt.Sprintf("c2goPrimitive: unhandled primitive type - %s", ctype))
 	}
+	panic(fmt.Sprintf("c2goPrimitive: unhandled primitive type - %s", ctype))
 }
 
 func goArrayType(s string) string {

@@ -28,12 +28,12 @@ type Ping struct {
 	Seq uint32 // Ping sequence
 }
 
-// MsgID
+// MsgID func
 func (m *Ping) MsgID() message.MessageID {
 	return MSG_ID_PING_MOCK
 }
 
-// String
+// String func
 func (m *Ping) String() string {
 	return fmt.Sprintf(
 		"&Ping{ Seq: %+v }",
@@ -41,19 +41,19 @@ func (m *Ping) String() string {
 	)
 }
 
-// Len
+// Len func
 func (m *Ping) Len() int {
 	return 4
 }
 
-// Marshal
+// Marshal func
 func (m *Ping) Marshal() ([]byte, error) {
 	payload := make([]byte, 4)
 	binary.LittleEndian.PutUint32(payload[0:], uint32(m.Seq))
 	return payload, nil
 }
 
-// Unmarshal
+// Unmarshal func
 func (m *Ping) Unmarshal(data []byte) error {
 	payload := make([]byte, 4)
 	copy(payload[0:], data)

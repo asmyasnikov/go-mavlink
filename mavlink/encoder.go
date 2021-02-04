@@ -47,7 +47,7 @@ func NewEncoder(w io.Writer) *Encoder {
 	}
 }
 
-// NewEncoder function creates packet
+// NewPacket function creates packet
 func NewPacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) (packet.Packet, error) {
 	switch v {
 	case version.MAVLINK_V1:

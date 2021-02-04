@@ -53,7 +53,7 @@ func encoderTemplate() string {
 		"}\n" +
 		"\n" +
 		"\n" +
-		"// NewEncoder function creates packet\n" +
+		"// NewPacket function creates packet\n" +
 		"func NewPacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) (packet.Packet, error) {\n" +
 		"\tswitch v {\n" +
 		"\tcase version.MAVLINK_V1:\n" +

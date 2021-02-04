@@ -6,6 +6,7 @@
 
 package helpers
 
+// U16ToBytes creates bytearray representation
 func U16ToBytes(v uint16) []byte {
 	return []byte{byte(v & 0xff), byte(v >> 8)}
 }
