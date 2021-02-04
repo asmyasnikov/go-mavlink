@@ -6,9 +6,12 @@
 
 package version
 
+// MAVLINK_VERSION type
 type MAVLINK_VERSION int
 
 const (
+	// MAVLINK_V1 constant
 	MAVLINK_V1 MAVLINK_VERSION = 1
+	// MAVLINK_V2 constant
 	MAVLINK_V2 MAVLINK_VERSION = 2
 )

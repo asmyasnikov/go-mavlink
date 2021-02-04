@@ -11,10 +11,13 @@ package main
 func versionTemplate() string {
 	var tmpl = "package version\n" +
 		"\n" +
+		"// MAVLINK_VERSION type\n" +
 		"type MAVLINK_VERSION int\n" +
 		"\n" +
 		"const (\n" +
+		"    // MAVLINK_V1 constant\n" +
 		"    MAVLINK_V1 MAVLINK_VERSION = 1\n" +
+		"    // MAVLINK_V2 constant\n" +
 		"    MAVLINK_V2 MAVLINK_VERSION = 2\n" +
 		")\n" +
 		""
