@@ -9,17 +9,15 @@ package main
 // encoderTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
 func encoderTemplate() string {
-	var tmpl = "/*\n" +
-		" * CODE GENERATED AUTOMATICALLY WITH\n" +
-		" *    github.com/asmyasnikov/go-mavlink/mavgen\n" +
-		" * THIS FILE SHOULD NOT BE EDITED BY HAND\n" +
-		" */\n" +
-		"\n" +
-		"package mavlink\n" +
+	var tmpl = "package mavlink\n" +
 		"\n" +
 		"import (\n" +
 		"\t\"fmt\"\n" +
 		"\t\"io\"\n" +
+		"    \"{{.CommonPackageURL}}/parser\"\n" +
+		"    \"{{.CommonPackageURL}}/packet\"\n" +
+		"    \"{{.CommonPackageURL}}/message\"\n" +
+		"    \"{{.CommonPackageURL}}/version\"\n" +
 		")\n" +
 		"\n" +
 		"// Encoder struct provide decoding processor\n" +
@@ -27,13 +25,19 @@ func encoderTemplate() string {
 		"\twriter  io.Writer\n" +
 		"}\n" +
 		"\n" +
-		"// Encode encode packet to output stream. Method return error or nil\n" +
-		"func (e *Encoder) Encode(v interface{}) error {\n" +
-		"\tpacket, ok := v.(*Packet)\n" +
-		"\tif !ok {\n" +
-		"\t\treturn fmt.Errorf(\"cast interface '%+v' to Packet fail\", v)\n" +
+		"var currentSeqNum uint8\n" +
+		"\n" +
+		"func nextSeqNum() byte {\n" +
+		"\tcurrentSeqNum++\n" +
+		"\treturn currentSeqNum\n" +
+		"}\n" +
+		"\n" +
+		"// Encode encode packet to output stream. Method return error or nil on success\n" +
+		"func (e *Encoder) Encode(p packet.Packet) error {\n" +
+		"\tb, err := p.Marshal()\n" +
+		"\tif err != nil {\n" +
+		"\t    return err\n" +
 		"\t}\n" +
-		"\tb := packet.Bytes()\n" +
 		"\tn, err := e.writer.Write(b)\n" +
 		"\tif len(b) != n {\n" +
 		"\t\treturn fmt.Errorf(\"writed %d bytes, but need to write %d bytes\", n, len(b))\n" +
@@ -41,10 +45,23 @@ func encoderTemplate() string {
 		"\treturn err\n" +
 		"}\n" +
 		"\n" +
-		"// NewEncoder function create encoder instance\n" +
+		"// NewEncoder function creates encoder instance\n" +
 		"func NewEncoder(w io.Writer) *Encoder {\n" +
 		"\treturn &Encoder{\n" +
-		"\t\twriter:  w,\n" +
+		"\t\twriter:        w,\n" +
+		"\t}\n" +
+		"}\n" +
+		"\n" +
+		"\n" +
+		"// NewEncoder function creates packet\n" +
+		"func NewPacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) (packet.Packet, error) {\n" +
+		"\tswitch v {\n" +
+		"\tcase version.MAVLINK_V1:\n" +
+		"\t\treturn parser.NewPacketV1(sysID, compID, nextSeqNum(), message)\n" +
+		"\tcase version.MAVLINK_V2:\n" +
+		"\t\treturn parser.NewPacketV2(sysID, compID, nextSeqNum(), message)\n" +
+		"\tdefault:\n" +
+		"\t\treturn nil, fmt.Errorf(\"Unknown mavlink version %d\", v)\n" +
 		"\t}\n" +
 		"}\n" +
 		""

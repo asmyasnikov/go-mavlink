@@ -9,7 +9,7 @@ package main
 // x25Template is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
 func x25Template() string {
-	var tmpl = "package mavlink\n" +
+	var tmpl = "package crc\n" +
 		"\n" +
 		"// X25 implements hash.Hash\n" +
 		"type X25 struct {\n" +

@@ -1,8 +1,8 @@
-package mavlink
+package version
+
+type MAVLINK_VERSION int
 
 const (
-    // Version of mavgen which generate this code or user defined (by mavgen flag -v) version of dialect
-    Version        = "{{- .Version -}}"
-    // MavlinkVersion is a user defined (by mavgen flag -m) version of mavlink protcol
-    MavlinkVersion = {{- .MavlinkVersion -}}
+    MAVLINK_V1 MAVLINK_VERSION = 1
+    MAVLINK_V2 MAVLINK_VERSION = 2
 )

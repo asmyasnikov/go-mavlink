@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/xml"
-	"errors"
 	"fmt"
 	"github.com/howeyc/crc16"
 	"go/format"
@@ -11,6 +10,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -31,13 +31,12 @@ var (
 
 // Dialect described root tag of schema
 type Dialect struct {
-	MavlinkVersion int
-	FilePath       string
-	XMLName        xml.Name   `xml:"mavlink"`
-	Version        string     `xml:"version"`
-	Include        []string   `xml:"include"`
-	Enums          []*Enum    `xml:"enums>enum"`
-	Messages       []*Message `xml:"messages>message"`
+	FilePath string
+	XMLName  xml.Name   `xml:"mavlink"`
+	Version  string     `xml:"version"`
+	Include  []string   `xml:"include"`
+	Enums    []*Enum    `xml:"enums>enum"`
+	Messages []*Message `xml:"messages>message"`
 }
 
 // Enum described schema tag enum
@@ -49,7 +48,7 @@ type Enum struct {
 
 // EnumEntry described schema tag entry
 type EnumEntry struct {
-	Value       uint32            `xml:"value,attr"`
+	Value       string            `xml:"value,attr"`
 	Name        string            `xml:"name,attr"`
 	Description string            `xml:"description"`
 	Params      []*EnumEntryParam `xml:"param"`
@@ -85,7 +84,7 @@ type MessageField struct {
 	Display     string `xml:"display,attr"`
 	Description string `xml:",innerxml"`
 	GoType      string
-	Tag         string
+	Tags        map[string]string
 	BitSize     int
 	ArrayLen    int
 	ByteOffset  int // from beginning of payload
@@ -94,6 +93,7 @@ type MessageField struct {
 var funcMap = template.FuncMap{
 	"UpperCamelCase":   UpperCamelCase,
 	"IsByteArrayField": IsByteArrayField,
+	"IsStringField":    IsStringField,
 }
 
 // SizeInBytes function calculate size in bytes of message field
@@ -166,6 +166,14 @@ func IsByteArrayField(v interface{}) bool {
 	return false
 }
 
+// IsStringField function check field is bytearray
+func IsStringField(v interface{}) bool {
+	if field, ok := v.(*MessageField); ok {
+		return field.GoType == "string"
+	}
+	return false
+}
+
 // UpperCamelCase function convert names to upper camel case
 func UpperCamelCase(s string) string {
 	var b bytes.Buffer
@@ -211,8 +219,8 @@ func (f *MessageField) PayloadPackSequence() string {
 
 	if f.ArrayLen > 0 {
 		// optimize to copy() if possible
-		if strings.HasSuffix(f.GoType, "byte") || strings.HasSuffix(f.GoType, "uint8") {
-			return fmt.Sprintf("copy(payload[%d:], m.%s[:])", f.ByteOffset, name)
+		if f.GoType == "string" || strings.HasSuffix(f.GoType, "uint8") || strings.HasSuffix(f.GoType, "byte") {
+			return fmt.Sprintf(`copy(payload[%d:], m.%s)`, f.ByteOffset, name)
 		}
 
 		// pack each element in the array
@@ -258,10 +266,12 @@ func (f *MessageField) payloadUnpackPrimitive(offset string) string {
 // this message's fields into a byte slice called 'payload'
 func (f *MessageField) PayloadUnpackSequence() string {
 	name := UpperCamelCase(f.Name)
-
 	if f.ArrayLen > 0 {
+		if f.GoType == "string" {
+			return fmt.Sprintf("m.%s = string(payload[%d:%d])", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
+		}
 		// optimize to copy() if possible
-		if strings.HasSuffix(f.GoType, "byte") || strings.HasSuffix(f.GoType, "uint8") {
+		if strings.HasSuffix(f.GoType, "uint8") || strings.HasSuffix(f.GoType, "byte") {
 			return fmt.Sprintf("copy(m.%s[:], payload[%d:%d])", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
 		}
 
@@ -272,13 +282,8 @@ func (f *MessageField) PayloadUnpackSequence() string {
 		s += fmt.Sprintf("}")
 		return s
 	}
-
 	return fmt.Sprintf("m.%s = %s", name, f.payloadUnpackPrimitive(fmt.Sprintf("%d", f.ByteOffset)))
 }
-
-// func SanitizeComments(s string) string {
-// 	return strings.Replace(s, "\n", "\n// ", -1)
-// }
 
 // Return the number of non-extension fields, that are contained in rawmsg, where rawmsg
 // is raw XML content of "message" element.
@@ -370,22 +375,30 @@ func ParseDialect(schemeFile string) (*Dialect, error) {
 	return d, nil
 }
 
+var reCType = regexp.MustCompile(`^(.+?)([0-9]+)_t$`)
+
 // convert a C primitive type to its corresponding Go type.
 // do not handle arrays or other constructs...just primitives.
-func c2goPrimitive(ctype string) string {
+func c2goPrimitive(ctype string) (string, int) {
 	switch ctype {
 	case "uint8_t", "uint16_t", "uint32_t", "uint64_t",
 		"int8_t", "int16_t", "int32_t", "int64_t":
-		idx := strings.IndexByte(ctype, '_')
-		return ctype[:idx]
+		if matches := reCType.FindStringSubmatch(ctype); matches != nil {
+			return matches[1] + matches[2], func() int {
+				v, _ := strconv.Atoi(matches[2])
+				return v
+			}()
+		} else {
+			panic(fmt.Sprintf("c2goPrimitive: unhandled primitive type - %s", ctype))
+		}
 	case "char":
-		return "byte"
+		return "byte", 8
 	case "float":
-		return "float32"
+		return "float32", 32
 	case "double":
-		return "float64"
+		return "float64", 64
 	case "uint8_t_mavlink_version":
-		return "uint8"
+		return "uint8", 8
 	default:
 		panic(fmt.Sprintf("c2goPrimitive: unhandled primitive type - %s", ctype))
 	}
@@ -405,37 +418,21 @@ func (f *MessageField) IsFloat() bool {
 }
 
 // GoTypeInfo produce type info string
-func GoTypeInfo(s string) (string, int, int, error) {
-
-	var name string
-	var bitsz, arraylen int
-	var err error
-
+func GoTypeInfo(s string) (string, int, int) {
 	// array? leave the [N] but convert the primitive type name
-	if idx := strings.IndexByte(s, '['); idx < 0 {
-		name = c2goPrimitive(s)
-	} else {
-		name = s[idx:] + c2goPrimitive(s[:idx])
-		if arraylen, err = strconv.Atoi(s[idx+1 : len(s)-1]); err != nil {
-			return "", 0, 0, err
-		}
-	}
-
-	// determine bit size for this type
-	if strings.HasSuffix(name, "byte") {
-		bitsz = 8
-	} else {
-		t := name[strings.IndexByte(name, ']')+1:]
-		if sizeStart := strings.IndexAny(t, "8136"); sizeStart != -1 {
-			if bitsz, err = strconv.Atoi(t[sizeStart:]); err != nil {
-				return "", 0, 0, err
-			}
+	if matches := reTypeIsArray.FindStringSubmatch(s); matches != nil {
+		arrayLen, _ := strconv.Atoi(matches[2])
+		if matches[1] == "char" {
+			return "string", 8, arrayLen
 		} else {
-			return "", 0, 0, errors.New("Unknown message field size")
+			name, bitSize := c2goPrimitive(matches[1])
+			name = "[]" + name
+			return name, bitSize, arrayLen
 		}
+	} else {
+		name, bitSize := c2goPrimitive(s)
+		return name, bitSize, 0
 	}
-
-	return name, bitsz, arraylen, nil
 }
 
 func (d *Dialect) needImportParentMavlink() bool {
@@ -470,66 +467,144 @@ func (d *Dialect) needImportEncodingBinary() bool {
 	return false
 }
 
-func (d *Dialect) generateGo(w io.Writer, packageName string, commonPackage string) error {
-	// templatize to buffer, format it, then write out
-
+func (d *Dialect) generateFile(filePath string, packageName string, commonPackage string, imports []string, generator func(w io.Writer) error) error {
 	var bb bytes.Buffer
-
-	bb.WriteString("//////////////////////////////////////////////////\n")
-	bb.WriteString("//\n")
-	bb.WriteString("// NOTE: do not edit,\n")
-	bb.WriteString("// this file created automatically by mavgen.go\n")
-	bb.WriteString("//\n")
-	bb.WriteString("//////////////////////////////////////////////////\n\n")
-
+	bb.WriteString(generatedHeader)
 	bb.WriteString("package " + strings.ToLower(packageName) + "\n\n")
-
-	needImportParentMavlink := d.needImportParentMavlink()
-	needImportEncodingBinary := d.needImportEncodingBinary()
-	needImportFmt := d.needImportFmt()
-	needImportMath := d.needImportMath()
-
-	if needImportParentMavlink || needImportEncodingBinary || needImportFmt || needImportMath {
+	if len(imports) > 0 {
 		bb.WriteString("import (\n")
-		if needImportParentMavlink {
-			bb.WriteString("mavlink \"" + commonPackage + "\"\n")
-		}
-		if needImportEncodingBinary {
-			bb.WriteString("\"encoding/binary\"\n")
-		}
-		if needImportFmt {
-			bb.WriteString("\"fmt\"\n")
-		}
-		if needImportMath {
-			bb.WriteString("\"math\"\n")
+		for _, i := range imports {
+			bb.WriteString("\"" + i + "\"\n")
 		}
 		bb.WriteString(")\n")
 	}
-
-	err := d.generateEnums(&bb)
-	if err != nil {
+	if err := generator(&bb); err != nil {
 		return err
 	}
-	err = d.generateClasses(&bb)
-	if err != nil {
-		return err
-	}
-	err = d.generateMsgIds(&bb)
-	if err != nil {
-		return err
-	}
-
 	formatted, err := format.Source(bb.Bytes())
 	if err != nil {
 		formatted = bb.Bytes()
 	}
-
-	n, err := w.Write(formatted)
+	if err := os.MkdirAll(filepath.Dir(filePath), os.ModePerm); err != nil {
+		return err
+	}
+	f, err := os.Create(filePath)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	n, err := f.Write(formatted)
 	if err == nil && n != len(formatted) {
 		return io.ErrShortWrite
 	}
-
 	return err
+}
+
+func (d *Dialect) generateGo(dialectPath string, packageName string, commonPackage string) error {
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "version.go"),
+		packageName,
+		commonPackage,
+		nil,
+		d.generateVersion,
+	); err != nil {
+		return err
+	}
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "enums.go"),
+		packageName,
+		commonPackage,
+		func() []string {
+			if len(d.Enums) > 0 {
+				return []string{
+					"fmt",
+				}
+			}
+			return nil
+		}(),
+		d.generateEnums,
+	); err != nil {
+		return err
+	}
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "classes.go"),
+		packageName,
+		commonPackage,
+		append(
+			func() []string {
+				if len(d.Messages) > 0 {
+					return []string{
+						"fmt",
+						commonPackage + "/message",
+					}
+				}
+				return nil
+			}(),
+			append(
+				func() []string {
+					for _, m := range d.Messages {
+						for _, f := range m.Fields {
+							switch f.CType {
+							case "float", "double":
+								return []string{"math"}
+							}
+						}
+					}
+					return nil
+				}(),
+				func() []string {
+					for _, m := range d.Messages {
+						for _, f := range m.Fields {
+							switch f.CType {
+							case "uint16_t", "uint32_t", "uint64_t":
+								return []string{"encoding/binary"}
+							}
+						}
+					}
+					return nil
+				}()...
+			)...,
+		),
+		d.generateClasses,
+	)
+		err != nil {
+		return err
+	}
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "messages.go"),
+		packageName,
+		commonPackage,
+		func() []string {
+			if len(d.Messages) > 0 {
+				return []string{
+					commonPackage + "/message",
+				}
+			}
+			return nil
+		}(),
+		d.generateMsgIds,
+	); err != nil {
+		return err
+	}
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "init.go"),
+		packageName,
+		commonPackage,
+		func() []string {
+			if len(d.Messages) > 0 {
+				return []string{
+					commonPackage + "/message",
+					commonPackage + "/packet",
+					commonPackage + "/register",
+				}
+			}
+			return nil
+		}(),
+		d.generateInit,
+	); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *Dialect) generateEnums(w io.Writer) error {
@@ -574,10 +649,10 @@ func (e {{$enumName}}) Bitmask() string {
 	for _, e := range d.Enums {
 		e.Description = strings.Replace(e.Description, "\n", " ", -1)
 		for i, ee := range e.Entries {
-			if ee.Value == 0 {
-				ee.Value = uint32(i)
+			if ee.Value == "" {
+				ee.Value = strconv.Itoa(i)
 			}
-			ee.Description = strings.Trim(strings.Replace(ee.Description, "\n", " ", -1), " .")
+			ee.Description = strings.Trim(strings.ReplaceAll(ee.Description, "\n", " "), " .")
 			if len(ee.Params) > 0 {
 				if len(ee.Description) > 0 {
 					ee.Description += ". "
@@ -593,101 +668,105 @@ func (e {{$enumName}}) Bitmask() string {
 	return template.Must(template.New("enums").Parse(enumTmpl)).Execute(w, d)
 }
 
+func (d *Dialect) generateVersion(w io.Writer) error {
+	versionTmpl := `
+const (
+    // Version of mavgen which generate this code or user defined (by mavgen flag -v) version of dialect
+    Version        = "{{- .Version -}}"
+)
+`
+	return template.Must(template.New("version").Parse(versionTmpl)).Execute(w, d)
+}
+
 func (d *Dialect) generateMsgIds(w io.Writer) error {
 	msgIDTmpl := `
 {{if .Messages}}
 // Message IDs
 const ({{range .Messages}}
-	MSG_ID_{{.Name}} mavlink.MessageID = {{.ID}}{{end}}
+	MSG_ID_{{.Name}} message.MessageID = {{.ID}}{{end}}
 )
 {{end}}
-
-{{if .Messages}}
-func init() { {{range .Messages}} 
-	mavlink.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.CRCExtra}}, func(p *mavlink.Packet) mavlink.Message {
-		msg := new({{.Name | UpperCamelCase}})
-		msg.Unpack(p)
-		return msg
-	}){{end}}
-} {{end}}
 `
 	return template.Must(template.New("msgIds").Funcs(funcMap).Parse(msgIDTmpl)).Execute(w, d)
 }
+
+func (d *Dialect) generateInit(w io.Writer) error {
+	initTmpl := `
+{{if .Messages}}
+func init() { {{range .Messages}} 
+	register.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.Size}}, {{.CRCExtra}}, func(p packet.Packet) (message.Message, error) {
+		msg := new({{.Name | UpperCamelCase}})
+		if err := msg.Unmarshal(p.Payload()); err != nil {
+			return nil, err
+		}
+		return msg, nil
+	}){{end}}
+} {{end}}
+`
+	return template.Must(template.New("init").Funcs(funcMap).Parse(initTmpl)).Execute(w, d)
+}
+
+var reTypeIsArray = regexp.MustCompile(`^(.+?)\[([0-9]+)\]$`)
 
 // generate class definitions for each msg id.
 // for now, pack/unpack payloads via encoding/binary since it
 // is expedient and correct. optimize this if/when needed.
 func (d *Dialect) generateClasses(w io.Writer) error {
 	classesTmpl := `
-{{$mavlinkVersion := .MavlinkVersion}}
 {{range .Messages}}
 {{$name := .Name | UpperCamelCase}}
 // {{$name}} struct (generated typeinfo)  
 // {{.Description}}
 type {{$name}} struct { {{range .Fields}}
-  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{.Tag}} {{ else }} {{.GoType}} {{ end }} // {{.Description}}{{end}}
+  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{ else }} {{.GoType}} {{ end }} {{if .Tags}} ` + "`" + `{{range $k, $v := .Tags}}{{$k}}:"{{$v}}" {{end}}` + "`" + `{{end}}// {{.Description}}{{end}}
 }
 
 // MsgID (generated function)
-func (m *{{$name}}) MsgID() mavlink.MessageID {
+func (m *{{$name}}) MsgID() message.MessageID {
 	return MSG_ID_{{.Name}}
 }
 
 // String (generated function)
 func (m *{{$name}}) String() string {
 	return fmt.Sprintf(
-		"&{{.DialectName}}.{{$name}}{ {{range $i, $v := .Fields}}{{if gt $i 0}}, {{end}}{{.Name | UpperCamelCase}}: {{if IsByteArrayField .}}%0X (\"%s\"){{else}}%+v{{if .Enum}}{{if eq .Display "bitmask"}} (%0{{.BitSize}}b){{end}}{{end}}{{end}}{{end}} }", 
+		"&{{.DialectName}}.{{$name}}{ {{range $i, $v := .Fields}}{{if gt $i 0}}, {{end}}{{.Name | UpperCamelCase}}: {{if IsStringField .}}\"%s\"{{else}}{{if IsByteArrayField .}}%0X (\"%s\"){{else}}%+v{{if .Enum}}{{if eq .Display "bitmask"}} (%0{{.BitSize}}b){{end}}{{end}}{{end}}{{end}}{{end}} }", 
 		{{range .Fields}}m.{{.Name | UpperCamelCase}}{{if .Enum}}{{if eq .Display "bitmask"}}.Bitmask(), uint64(m.{{.Name | UpperCamelCase}}){{end}}{{end}}{{if IsByteArrayField .}}, string(m.{{.Name | UpperCamelCase}}[:]){{end}},
 {{end}}
 	)
 }
 
-// Pack (generated function)
-func (m *{{$name}}) Pack(p *mavlink.Packet) error {
+// Marshal (generated function)
+func (m *{{$name}}) Marshal() ([]byte, error) {
 	payload := make([]byte, {{ .Size }}){{range .Fields}}
 	{{.PayloadPackSequence}}{{end}}
-{{- if gt $mavlinkVersion 1 }}
-	payloadLen := len(payload)
-	for payloadLen > 1 && payload[payloadLen-1] == 0 {
-		payloadLen--
-	}
-	payload = payload[:payloadLen]
-{{- end }}
-	p.MsgID = m.MsgID()
-	p.Payload = payload
-	return nil
+	return payload, nil
 }
 
-// Unpack (generated function)
-func (m *{{$name}}) Unpack(p *mavlink.Packet) error {
-	payload := p.Payload[:]
-	if len(p.Payload) < {{ .Size }} {
-{{- if eq $mavlinkVersion 1 }}
-		return mavlink.ErrPayloadTooSmall
-{{- else }}
-		payload = append(payload, mavlink.ZeroTail[:{{ .Size }}-len(p.Payload)]...)
-{{- end }}
-	}{{range .Fields}}
+// Unmarshal (generated function)
+func (m *{{$name}}) Unmarshal(data []byte) error {
+	payload := make([]byte, {{.Size}})
+	copy(payload[0:], data){{range .Fields}}
 	{{.PayloadUnpackSequence}}{{end}}
 	return nil
 }
 {{end}}
 `
 	for _, m := range d.Messages {
-		m.Description = strings.Replace(m.Description, "\n", "\n// ", -1)
+		m.Description = strings.ReplaceAll(m.Description, "\n", "\n// ")
 		if len(m.DialectName) == 0 {
 			m.DialectName = baseName(d.FilePath)
 		}
 		for _, f := range m.Fields {
-			f.Description = strings.Replace(f.Description, "\n", " ", -1)
-			goname, gosz, golen, err := GoTypeInfo(f.CType)
-			if err != nil {
-				return err
+			f.Description = strings.ReplaceAll(f.Description, "\n", " ")
+			f.Tags = map[string]string{}
+			goname, gosz, golen := GoTypeInfo(f.CType)
+			//if len(f.Enum) > 0 {
+			//	f.Tags["raw"] = f.CType
+			//}
+			if golen > 0 {
+				f.Tags["len"] = strconv.Itoa(golen)
 			}
 			f.GoType, f.BitSize, f.ArrayLen = goname, gosz, golen
-			if len(f.Enum) > 0 {
-				f.Tag = "`raw:\"" + f.GoType + "\"`"
-			}
 		}
 
 		// ensure fields are sorted according to their size,

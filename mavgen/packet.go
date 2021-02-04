@@ -9,169 +9,40 @@ package main
 // packetTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
 func packetTemplate() string {
-	var tmpl = "package mavlink\n" +
+	var tmpl = "package packet\n" +
 		"\n" +
 		"import (\n" +
-		"    \"fmt\"\n" +
+		"    \"{{.CommonPackageURL}}/message\"\n" +
 		")\n" +
 		"\n" +
-		"var (\n" +
-		"    msgConstructors = map[MessageID]func(*Packet) Message{}\n" +
-		"    msgNames = map[MessageID]string{}\n" +
-		")\n" +
-		"\n" +
-		"// Packet is a wire type for encoding/decoding mavlink messages.\n" +
-		"// use the ToPacket() and FromPacket() routines on specific message\n" +
-		"// types to convert them to/from the Message type.\n" +
-		"type Packet struct {\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\tInCompatFlags uint8     // incompat flags\n" +
-		"\tCompatFlags   uint8     // compat flags\n" +
-		"{{- end}}\n" +
-		"\tSeqID         uint8     // Sequence of packet\n" +
-		"\tSysID         uint8     // ID of message sender system/aircraft\n" +
-		"\tCompID        uint8     // ID of the message sender component\n" +
-		"\tMsgID         MessageID // ID of message in payload\n" +
-		"\tPayload       []byte\n" +
-		"\tChecksum      uint16\n" +
-		"}\n" +
-		"\n" +
-		"func (p *Packet) nextSeqNum() byte {\n" +
-		"\tcurrentSeqNum++\n" +
-		"\treturn currentSeqNum\n" +
-		"}\n" +
-		"\n" +
-		"// Encode trying to encode message to packet\n" +
-		"func (p *Packet) encode(sysID, compID uint8, m Message) error {\n" +
-		"\tp.SeqID = p.nextSeqNum()\n" +
-		"\tp.SysID = sysID\n" +
-		"\tp.CompID = compID\n" +
-		"\treturn p.Encode(m)\n" +
-		"}\n" +
-		"\n" +
-		"// Encode trying to encode message to packet\n" +
-		"func (p *Packet) Encode(m Message) error {\n" +
-		"\tif err := m.Pack(p); err != nil {\n" +
-		"\t\treturn err\n" +
-		"\t}\n" +
-		"\tif err := p.fixChecksum(msgCrcExtras[m.MsgID()]); err != nil {\n" +
-		"\t\treturn err\n" +
-		"\t}\n" +
-		"\treturn nil\n" +
-		"}\n" +
-		"\n" +
-		"// Decode trying to decode message to packet\n" +
-		"func (p *Packet) Decode(m Message) error {\n" +
-		"\treturn m.Unpack(p)\n" +
-		"}\n" +
-		"\n" +
-		"// Unmarshal trying to de-serialize byte slice to packet\n" +
-		"func Unmarshal(buffer []byte, p *Packet) error {\n" +
-		"\tparser := parsersPool.Get().(*Parser)\n" +
-		"\tdefer parsersPool.Put(parser)\n" +
-		"\tfor _, c := range buffer {\n" +
-		"\t\tpacket, err := parser.parseChar(c)\n" +
-		"\t\tif err != nil {\n" +
-		"\t\t\treturn err\n" +
-		"\t\t}\n" +
-		"\t\tif packet != nil {\n" +
-		"\t\t\t*p = *packet\n" +
-		"\t\t\treturn nil\n" +
-		"\t\t}\n" +
-		"\t}\n" +
-		"\treturn ErrNoNewData\n" +
-		"}\n" +
-		"\n" +
-		"// Marshal trying to serialize byte slice from packet\n" +
-		"func Marshal(p *Packet) ([]byte, error) {\n" +
-		"\tif p == nil {\n" +
-		"\t\treturn nil, ErrNilPointerReference\n" +
-		"\t}\n" +
-		"\treturn p.Bytes(), nil\n" +
-		"}\n" +
-		"\n" +
-		"// Bytes make byte slice from packet\n" +
-		"func (p *Packet) Bytes() []byte {\n" +
-		"    bytes := make([]byte, 0, {{if eq .MavlinkVersion 2 -}} 12 {{- else -}} 8 {{- end}}+len(p.Payload))\n" +
-		"    // header\n" +
-		"    bytes = append(bytes,\n" +
-		"\t    magicNumber,\n" +
-		"\t    byte(len(p.Payload)),\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\t    uint8(p.InCompatFlags),\n" +
-		"\t    uint8(p.CompatFlags),\n" +
-		"{{- end}}\n" +
-		"\t    p.SeqID,\n" +
-		"\t    p.SysID,\n" +
-		"\t    p.CompID,\n" +
-		"\t    uint8(p.MsgID),\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\t    uint8(p.MsgID >> 8),\n" +
-		"\t    uint8(p.MsgID >> 16),\n" +
-		"{{- end}}\n" +
-		"    )\n" +
-		"    // payload\n" +
-		"\tbytes = append(bytes, p.Payload...)\n" +
-		"\t// crc\n" +
-		"\tbytes = append(bytes, p.u16ToBytes(p.Checksum)...)\n" +
-		"\treturn bytes\n" +
-		"}\n" +
-		"\n" +
-		"func (p *Packet) fixChecksum(crcExtra uint8) error {\n" +
-		"\tcrc := NewX25()\n" +
-		"\tcrc.WriteByte(byte(len(p.Payload)))\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\tcrc.WriteByte(p.InCompatFlags)\n" +
-		"\tcrc.WriteByte(p.CompatFlags)\n" +
-		"{{- end}}\n" +
-		"\tcrc.WriteByte(p.SeqID)\n" +
-		"\tcrc.WriteByte(p.SysID)\n" +
-		"\tcrc.WriteByte(p.CompID)\n" +
-		"\tcrc.WriteByte(byte(p.MsgID >> 0 ))\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\tcrc.WriteByte(byte(p.MsgID >> 8 ))\n" +
-		"\tcrc.WriteByte(byte(p.MsgID >> 16))\n" +
-		"{{- end}}\n" +
-		"\tcrc.Write(p.Payload)\n" +
-		"\tcrc.WriteByte(crcExtra)\n" +
-		"\tp.Checksum = crc.Sum16()\n" +
-		"\treturn nil\n" +
-		"}\n" +
-		"\n" +
-		"func (p *Packet) u16ToBytes(v uint16) []byte {\n" +
-		"\treturn []byte{byte(v & 0xff), byte(v >> 8)}\n" +
-		"}\n" +
-		"\n" +
-		"// Message function produce message from packet\n" +
-		"func (p *Packet) Message() (Message, error) {\n" +
-		"\tconstructor, ok := msgConstructors[p.MsgID]\n" +
-		"\tif !ok {\n" +
-		"\t\treturn nil, ErrUnknownMsgID\n" +
-		"\t}\n" +
-		"\treturn constructor(p), nil\n" +
-		"}\n" +
-		"\n" +
-		"// String function return string view of Packet struct\n" +
-		"func (p *Packet) String() string {\n" +
-		"\treturn fmt.Sprintf(\n" +
-		"\t\t\"&mavlink{{.MavlinkVersion}}.Packet{ {{ if eq .MavlinkVersion 2 }}InCompatFlags: %08b, CompatFlags: %08b, {{ end }}SeqID: %d, SysID: %d, CompID: %d, MsgID: %d, Payload: %s, Checksum: %d }\",\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    \tp.InCompatFlags,\n" +
-		"\t    p.CompatFlags,\n" +
-		"{{- end}}\n" +
-		"\t\tp.SeqID,\n" +
-		"\t\tp.SysID,\n" +
-		"\t\tp.CompID,\n" +
-		"\t\tint64(p.MsgID),\n" +
-		"\t\tfunc() string {\n" +
-		"\t\t\tmsg, err := p.Message()\n" +
-		"\t\t\tif err != nil {\n" +
-		"\t\t\t\treturn fmt.Sprintf(\"%0X\", p.Payload)\n" +
-		"\t\t\t}\n" +
-		"\t\t\treturn msg.String()\n" +
-		"\t\t}(),\n" +
-		"\t\tp.Checksum,\n" +
-		"\t)\n" +
+		"// Packet is the interface implemented by frames of every supported version.\n" +
+		"type Packet interface {\n" +
+		"\t// Nil returns true if packet is nil\n" +
+		"\tNil() bool\n" +
+		"\t// SysID returns system id\n" +
+		"\tSysID() uint8\n" +
+		"\t// CompID returns component id\n" +
+		"\tCompID() uint8\n" +
+		"\t// MsgID returns message id\n" +
+		"\tMsgID() message.MessageID\n" +
+		"\t// Checksum returns packet checksum\n" +
+		"\tChecksum() uint16\n" +
+		"\t// SeqID returns packet sequence number\n" +
+		"\tSeqID() uint8\n" +
+		"\t// Payload returns packet payload\n" +
+		"\tPayload() []byte\n" +
+		"\t// Assign assign internal fields from right hand side packet\n" +
+		"\t//Assign(rhs Packet) error\n" +
+		"\t// Copy returns deep copy of packet\n" +
+		"\tCopy() Packet\n" +
+		"\t// Message returns dialect message\n" +
+		"\tMessage() (message.Message, error)\n" +
+		"\t// String returns string representation of packet\n" +
+		"\tString() string\n" +
+		"    // Marshal encodes Packet to byte slice\n" +
+		"    Marshal() ([]byte, error)\n" +
+		"    // Unmarshal parses PAYLOAD and stores the result in Packet\n" +
+		"    Unmarshal(payload []byte) error\n" +
 		"}\n" +
 		""
 	return tmpl

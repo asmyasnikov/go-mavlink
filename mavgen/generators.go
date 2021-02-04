@@ -1,10 +1,13 @@
 //go:generate templify register.template
-//go:generate templify constants.template
+//go:generate templify helpers.template
+//go:generate templify errors.template
 //go:generate templify encoder.template
 //go:generate templify decoder.template
 //go:generate templify message.template
 //go:generate templify packet.template
+//go:generate templify packet_v.template
 //go:generate templify parser.template
+//go:generate templify parser_v.template
 //go:generate templify version.template
 //go:generate templify x25.template
 
@@ -18,30 +21,37 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"text/template"
 )
 
 const (
-	generatedHeader = "/*\n" +
-		" * CODE GENERATED AUTOMATICALLY WITH\n" +
-		" *    github.com/asmyasnikov/go-mavlink/mavgen\n" +
-		" * THIS FILE SHOULD NOT BE EDITED BY HAND\n" +
-		" */\n" +
-		"\n"
+	generatedHeader = `/*
+ * CODE GENERATED AUTOMATICALLY WITH
+ *    github.com/asmyasnikov/go-mavlink/mavgen
+ * THIS FILE SHOULD NOT BE EDITED BY HAND
+ */
+
+`
 )
 
 var (
-	templates = map[string](func() string){
-		"register":  registerTemplate,
-		"constants": constantsTemplate,
-		"encoder":   encoderTemplate,
-		"decoder":   decoderTemplate,
-		"message":   messageTemplate,
-		"packet":    packetTemplate,
-		"parser":    parserTemplate,
-		"version":   versionTemplate,
-		"x25":       x25Template,
+	independentTemplates = map[string](func() string){
+		"encoder":           encoderTemplate,
+		"decoder":           decoderTemplate,
+		"errors/errors":     errorsTemplate,
+		"helpers/helpers":   helpersTemplate,
+		"register/register": registerTemplate,
+		"message/message":   messageTemplate,
+		"version/version":   versionTemplate,
+		"packet/packet":     packetTemplate,
+		"parser/parser":     parserTemplate,
+		"crc/x25":           x25Template,
+	}
+	dependentTemplates = map[string](func() string){
+		"parser/packet_v": packet_vTemplate,
+		"parser/parser_v": parser_vTemplate,
 	}
 )
 
@@ -58,14 +68,13 @@ func findOutFile(scheme string) string {
 	return filepath.Join(dir, baseName(scheme), baseName(scheme)+".go")
 }
 
-func generateDialect(dialectPath *string, commonPackage string, schemeFile string, mavlinkVersion int) error {
+func generateDialect(dialectPath *string, commonPackage string, schemeFile string) error {
 	d, err := ParseDialect(schemeFile)
 	if err != nil {
 		return err
 	}
 
 	d.FilePath = schemeFile
-	d.MavlinkVersion = mavlinkVersion
 
 	baseName := baseName(schemeFile)
 
@@ -74,23 +83,11 @@ func generateDialect(dialectPath *string, commonPackage string, schemeFile strin
 		if err != nil {
 			log.Fatal("Getwd(): ", err)
 		}
-		path = filepath.Join(path, baseName)
+		path = filepath.Join(path, "dialects", baseName)
 		dialectPath = &path
 	}
 
-	dialectFileName := "dialect.go"
-
-	if err = os.MkdirAll(filepath.Dir(*dialectPath+string(filepath.Separator)), os.ModePerm); err != nil {
-		return err
-	}
-
-	dialectFile, err := os.Create(filepath.Join(*dialectPath, dialectFileName))
-	if err != nil {
-		return err
-	}
-	defer dialectFile.Close()
-
-	if err := d.generateGo(dialectFile, baseName, commonPackage); err != nil {
+	if err := d.generateGo(*dialectPath, baseName, commonPackage); err != nil {
 		return err
 	}
 
@@ -136,15 +133,40 @@ func generateCode(dialectDir string, data templateData, templateName string, tmp
 	return nil
 }
 
-func generateCommonPackage(data templateData) error {
+func generateCommonPackage(commonPackageURL string) error {
 	cwd, err := os.Getwd()
 	if err != nil {
 		log.Fatal("Getwd(): ", err)
 	}
 
-	for k, v := range templates {
-		if err := generateCode(cwd+string(filepath.Separator), data, k, v()); err != nil {
+	// generate mavlink independent code
+	for k, v := range independentTemplates {
+		paths := strings.Split(k, string(filepath.Separator))
+		path := strings.Join(append([]string{cwd}, paths[:len(paths)-1]...), string(filepath.Separator)) + string(filepath.Separator)
+		if err := os.MkdirAll(path, os.ModePerm); err != nil {
 			return err
+		}
+		if err := generateCode(path, templateData{
+			CommonPackageURL: commonPackageURL,
+		}, paths[len(paths)-1], v()); err != nil {
+			return err
+		}
+	}
+
+	// generate mavlink dependent code
+	for _, m := range []int{1, 2} {
+		for k, v := range dependentTemplates {
+			paths := strings.Split(k, string(filepath.Separator))
+			path := strings.Join(append([]string{cwd}, paths[:len(paths)-1]...), string(filepath.Separator)) + string(filepath.Separator)
+			if err := os.MkdirAll(path, os.ModePerm); err != nil {
+				return err
+			}
+			if err := generateCode(path, templateData{
+				MavlinkVersion:   m,
+				CommonPackageURL: commonPackageURL,
+			}, paths[len(paths)-1]+strconv.Itoa(m), v()); err != nil {
+				return err
+			}
 		}
 	}
 	return nil

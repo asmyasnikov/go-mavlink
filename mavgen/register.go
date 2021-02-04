@@ -9,20 +9,44 @@ package main
 // registerTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
 func registerTemplate() string {
-	var tmpl = "package mavlink\n" +
+	var tmpl = "package register\n" +
 		"\n" +
-		"import \"strconv\"\n" +
+		"import (\n" +
+		"    \"strconv\"\n" +
+		"    \"{{.CommonPackageURL}}/errors\"\n" +
+		"    \"{{.CommonPackageURL}}/message\"\n" +
+		"    \"{{.CommonPackageURL}}/packet\"\n" +
+		")\n" +
+		"\n" +
+		"type MessageInfo struct {\n" +
+		"    Name string\n" +
+		"    Size int\n" +
+		"    Extra uint8\n" +
+		"    Constructor func(p packet.Packet) (message.Message, error)\n" +
+		"}\n" +
+		"\n" +
+		"var supported = make(map[message.MessageID]*MessageInfo)\n" +
 		"\n" +
 		"// Register method provide register dialect message on decoder knowledge\n" +
-		"func Register(msgID MessageID, msgName string, crcExtra uint8, msgConstructor func(p *Packet) Message) {\n" +
-		"\tif exists, ok := msgNames[msgID]; ok {\n" +
-		"\t\tpanic(\"Message with ID = \" + strconv.Itoa(int(msgID)) + \" already exists. Fix collision '\" + msgName + \"' vs '\" + exists + \"' and re-run mavgen\")\n" +
+		"func Register(msgID message.MessageID, msgName string, msgSize int, crcExtra uint8, msgConstructor func(p packet.Packet) (message.Message, error)) {\n" +
+		"\tif info, ok := supported[msgID]; ok {\n" +
+		"\t\tpanic(\"Message with ID = \" + strconv.Itoa(int(msgID)) + \" already exists. Fix collision '\" + msgName + \"' vs '\" + info.Name + \"' and re-run mavgen\")\n" +
 		"\t} else {\n" +
-		"\t\tmsgNames[msgID] = msgName\n" +
-		"\t\tmsgCrcExtras[msgID] = crcExtra\n" +
-		"\t\tmsgConstructors[msgID] = msgConstructor\n" +
+		"\t\tsupported[msgID] = &MessageInfo{\n" +
+		"\t\t    Name:        msgName,\n" +
+		"\t\t    Size:        msgSize,\n" +
+		"\t\t    Extra:       crcExtra,\n" +
+		"\t\t    Constructor: msgConstructor,\n" +
+		"\t\t}\n" +
 		"\t}\n" +
 		"}\n" +
-		""
+		"\n" +
+		"func Info(msgID message.MessageID) (*MessageInfo, error) {\n" +
+		"\tif info, ok := supported[msgID]; ok {\n" +
+		"\t    return info, nil\n" +
+		"\t} else {\n" +
+		"\t    return nil, errors.ErrUnknownMsgID\n" +
+		"\t}\n" +
+		"}"
 	return tmpl
 }

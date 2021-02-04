@@ -2,19 +2,19 @@ package mavlink
 
 import (
 	"bufio"
-	"fmt"
 	"io"
+    "{{.CommonPackageURL}}/packet"
+    "{{.CommonPackageURL}}/parser"
 )
 
 // Decoder struct provide decoding processor
 type Decoder struct {
 	reader      io.ByteReader
-	parsers     []*Parser
+	parsers     []parser.Parser
 }
 
-func (d *Decoder) clearParser(parser *Parser) {
-	parser.Reset()
-	parsersPool.Put(parser)
+func (d *Decoder) clearParser(parser parser.Parser) {
+	parser.Destroy()
 }
 
 func (d *Decoder) clearParsers() {
@@ -25,36 +25,25 @@ func (d *Decoder) clearParsers() {
 }
 
 // Decode decode input stream to packet. Method return error or nil
-func (d *Decoder) Decode(v interface{}) error {
-	packet, ok := v.(*Packet)
-	if !ok {
-		return fmt.Errorf("cast interface '%+v' to Packet fail", v)
-	}
+func (d *Decoder) Decode() (packet.Packet, error) {
 	for {
 		c, err := d.reader.ReadByte()
 		if err != nil {
-			return err
+			return nil, err
 		}
-		if c == magicNumber {
-			d.parsers = append(d.parsers, parsersPool.Get().(*Parser))
+		switch c {
+		case 0xfe: // mavlink1
+			d.parsers = append(d.parsers, parser.NewParserV1())
+		case 0xfd: // mavlink2
+			d.parsers = append(d.parsers, parser.NewParserV2())
 		}
-		parsers := make([]*Parser, 0, len(d.parsers))
+		parsers := make([]parser.Parser, 0, len(d.parsers))
 		for _, parser := range d.parsers {
-			if p, err := parser.parseChar(c); err != nil {
+			if p, err := parser.ParseChar(c); err != nil {
 				d.clearParser(parser)
-			} else if p != nil {
-{{- if eq .MavlinkVersion 2}}
-				packet.InCompatFlags = p.InCompatFlags
-				packet.CompatFlags = p.CompatFlags
-{{- end}}
-				packet.SeqID = p.SeqID
-				packet.SysID = p.SysID
-				packet.CompID = p.CompID
-				packet.MsgID = p.MsgID
-				packet.Checksum = p.Checksum
-				packet.Payload = append(packet.Payload[:0], p.Payload...)
+			} else if !p.Nil() {
 				d.clearParsers()
-				return nil
+				return p, nil
 			} else {
 				parsers = append(parsers, parser)
 			}
@@ -74,6 +63,6 @@ func byteReader(r io.Reader) io.ByteReader {
 func NewDecoder(r io.Reader) *Decoder {
 	return &Decoder{
 		reader:  byteReader(r),
-		parsers: make([]*Parser, 0),
+		parsers: make([]parser.Parser, 0),
 	}
 }
