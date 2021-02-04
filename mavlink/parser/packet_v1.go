@@ -8,6 +8,7 @@ package parser
 
 import (
 	"fmt"
+
 	"github.com/asmyasnikov/go-mavlink/mavlink/crc"
 	"github.com/asmyasnikov/go-mavlink/mavlink/errors"
 	"github.com/asmyasnikov/go-mavlink/mavlink/helpers"
@@ -202,7 +203,7 @@ func (p *packet1) String() string {
 		return "nil"
 	}
 	return fmt.Sprintf(
-		"&mavlink1.Packet{ seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
+		"&mavlink1.Packet{ seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d%s }",
 		p.seqID,
 		p.sysID,
 		p.compID,
@@ -215,5 +216,6 @@ func (p *packet1) String() string {
 			return msg.String()
 		}(),
 		p.checksum,
+		"",
 	)
 }

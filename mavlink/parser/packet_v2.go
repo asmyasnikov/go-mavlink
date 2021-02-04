@@ -14,15 +14,59 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
+	"time"
 )
 
-// INCOMPAT_FLAGS type
-type INCOMPAT_FLAGS uint8
+// MAVLINK_IFLAG type
+type MAVLINK_IFLAG uint8
+
+// Signature type
+type Signature []byte
+
+// LinkID returns link id
+func (s Signature) LinkID() byte {
+	return s[0]
+}
+
+func uint48Encode(buf []byte, in uint64) []byte {
+	buf[0] = byte(in)
+	buf[1] = byte(in >> 8)
+	buf[2] = byte(in >> 16)
+	buf[3] = byte(in >> 24)
+	buf[4] = byte(in >> 32)
+	buf[5] = byte(in >> 40)
+	return buf[:6]
+}
+
+// 1st January 2015 GMT https://mavlink.io/en/guide/message_signing.html#timestamps
+var signatureReferenceDate = time.Date(2015, 01, 01, 0, 0, 0, 0, time.UTC)
+
+// Timestamp returns timestamp of signature
+func (s Signature) Timestamp() time.Time {
+	return signatureReferenceDate.Add(time.Duration(uint64(s[6])<<40|uint64(s[5])<<32|uint64(s[4])<<24|uint64(s[3])<<16|uint64(s[2])<<8|uint64(s[1])) * 10 * time.Microsecond)
+}
+
+// Timestamp returns link id
+func (s Signature) Signature() (signature [6]byte) {
+	copy(signature[:], s[7:])
+	return signature
+}
+
+// String function return string view of Packet struct
+func (s Signature) String() string {
+	return fmt.Sprintf(
+		"&Signature{ linkID: %0X, timestamp: \"%+v\", signature: \"%06X\" }",
+		s.LinkID(),
+		s.Timestamp(),
+		s.Signature(),
+	)
+}
 
 const (
 	// MAGIC_NUMBER_V2 const value for common use
-	MAGIC_NUMBER_V2       packet.MAGIC_NUMBER = 0xfd
-	INCOMPAT_FLAGS_SIGNED INCOMPAT_FLAGS      = 0b00000001
+	MAGIC_NUMBER_V2      packet.MAGIC_NUMBER = 0xfd
+	MAVLINK_IFLAG_SIGNED MAVLINK_IFLAG       = 0b00000001
+	SIGNATURE_LEN                            = 13
 )
 
 // Packet is a wire type for encoding/decoding mavlink messages.
@@ -37,6 +81,7 @@ type packet2 struct {
 	msgID         message.MessageID // ID of message in payload
 	payload       []byte
 	checksum      uint16
+	signature     Signature
 }
 
 func NewPacketV2(sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {
@@ -60,7 +105,7 @@ func (p *packet2) IsNil() bool {
 
 // IsSigned checks whether the frame contains a signature. It does not validate the signature
 func (p *packet2) IsSigned() bool {
-	return (INCOMPAT_FLAGS(p.incompatFlags) & INCOMPAT_FLAGS_SIGNED) != 0
+	return (MAVLINK_IFLAG(p.incompatFlags) & MAVLINK_IFLAG_SIGNED) != 0
 }
 
 // SysID returns system id
@@ -226,7 +271,7 @@ func (p *packet2) String() string {
 		return "nil"
 	}
 	return fmt.Sprintf(
-		"&mavlink2.Packet{ incompatFlags: %08b, compatFlags: %08b, seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
+		"&mavlink2.Packet{ incompatFlags: %08b, compatFlags: %08b, seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d%s }",
 		p.incompatFlags,
 		p.compatFlags,
 		p.seqID,
@@ -241,5 +286,11 @@ func (p *packet2) String() string {
 			return msg.String()
 		}(),
 		p.checksum,
+		func() string {
+			if p.IsSigned() {
+				return fmt.Sprintf(", signature: %+v", p.signature)
+			}
+			return ""
+		}(),
 	)
 }

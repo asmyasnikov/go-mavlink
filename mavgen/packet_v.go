@@ -13,6 +13,9 @@ func packet_vTemplate() string {
 		"\n" +
 		"import (\n" +
 		"    \"fmt\"\n" +
+		"{{if eq .MavlinkVersion 2 -}}\n" +
+		"    \"time\"\n" +
+		"{{- end}}\n" +
 		"    \"{{.CommonPackageURL}}/packet\"\n" +
 		"    \"{{.CommonPackageURL}}/register\"\n" +
 		"    \"{{.CommonPackageURL}}/errors\"\n" +
@@ -22,17 +25,61 @@ func packet_vTemplate() string {
 		")\n" +
 		"\n" +
 		"{{if eq .MavlinkVersion 2 -}}\n" +
-		"// INCOMPAT_FLAGS type\n" +
-		"type INCOMPAT_FLAGS uint8\n" +
+		"// MAVLINK_IFLAG type\n" +
+		"type MAVLINK_IFLAG uint8\n" +
+		"\n" +
+		"// Signature type\n" +
+		"type Signature []byte\n" +
+		"\n" +
+		"// LinkID returns link id\n" +
+		"func (s Signature) LinkID() byte {\n" +
+		"    return s[0]\n" +
+		"}\n" +
+		"\n" +
+		"func uint48Encode(buf []byte, in uint64) []byte {\n" +
+		"\tbuf[0] = byte(in)\n" +
+		"\tbuf[1] = byte(in >> 8)\n" +
+		"\tbuf[2] = byte(in >> 16)\n" +
+		"\tbuf[3] = byte(in >> 24)\n" +
+		"\tbuf[4] = byte(in >> 32)\n" +
+		"\tbuf[5] = byte(in >> 40)\n" +
+		"\treturn buf[:6]\n" +
+		"}\n" +
+		"\n" +
+		"// 1st January 2015 GMT https://mavlink.io/en/guide/message_signing.html#timestamps\n" +
+		"var signatureReferenceDate = time.Date(2015, 01, 01, 0, 0, 0, 0, time.UTC)\n" +
+		"\n" +
+		"// Timestamp returns timestamp of signature\n" +
+		"func (s Signature) Timestamp() time.Time {\n" +
+		"    return signatureReferenceDate.Add(time.Duration(uint64(s[6])<<40 | uint64(s[5])<<32 | uint64(s[4])<<24 | uint64(s[3])<<16 | uint64(s[2])<<8 | uint64(s[1])) * 10 * time.Microsecond)\n" +
+		"}\n" +
+		"\n" +
+		"// Timestamp returns link id\n" +
+		"func (s Signature) Signature() (signature [6]byte) {\n" +
+		"    copy(signature[:], s[7:])\n" +
+		"    return signature\n" +
+		"}\n" +
+		"\n" +
+		"// String function return string view of Packet struct\n" +
+		"func (s Signature) String() string {\n" +
+		"\treturn fmt.Sprintf(\n" +
+		"\t\t\"&Signature{ linkID: %0X, timestamp: \\\"%+v\\\", signature: \\\"%06X\\\" }\",\n" +
+		"    \ts.LinkID(),\n" +
+		"    \ts.Timestamp(),\n" +
+		"    \ts.Signature(),\n" +
+		"    )\n" +
+		"}\n" +
 		"{{- end}}\n" +
 		"\n" +
 		"const (\n" +
 		"    // MAGIC_NUMBER_V{{.MavlinkVersion}} const value for common use\n" +
 		"    MAGIC_NUMBER_V{{.MavlinkVersion}} packet.MAGIC_NUMBER = {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}}\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    INCOMPAT_FLAGS_SIGNED INCOMPAT_FLAGS = 0b00000001\n" +
+		"    MAVLINK_IFLAG_SIGNED MAVLINK_IFLAG = 0b00000001\n" +
+		"    SIGNATURE_LEN = 13\n" +
 		"{{- end}}\n" +
 		")\n" +
+		"\n" +
 		"\n" +
 		"// Packet is a wire type for encoding/decoding mavlink messages.\n" +
 		"// use the ToPacket() and FromPacket() routines on specific message\n" +
@@ -48,6 +95,9 @@ func packet_vTemplate() string {
 		"\tmsgID         message.MessageID // ID of message in payload\n" +
 		"\tpayload       []byte\n" +
 		"\tchecksum      uint16\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"\tsignature     Signature\n" +
+		"{{- end}}\n" +
 		"}\n" +
 		"\n" +
 		"func NewPacketV{{.MavlinkVersion}}(sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {\n" +
@@ -71,7 +121,7 @@ func packet_vTemplate() string {
 		"\n" +
 		"// IsSigned checks whether the frame contains a signature. It does not validate the signature\n" +
 		"func (p *packet{{.MavlinkVersion}}) IsSigned() bool {\n" +
-		"\treturn {{if eq .MavlinkVersion 2 -}} (INCOMPAT_FLAGS(p.incompatFlags) & INCOMPAT_FLAGS_SIGNED) != 0 {{- else -}} false {{- end}}\n" +
+		"\treturn {{if eq .MavlinkVersion 2 -}} (MAVLINK_IFLAG(p.incompatFlags) & MAVLINK_IFLAG_SIGNED) != 0 {{- else -}} false {{- end}}\n" +
 		"}\n" +
 		"\n" +
 		"// SysID returns system id\n" +
@@ -251,7 +301,7 @@ func packet_vTemplate() string {
 		"        return \"nil\"\n" +
 		"    }\n" +
 		"\treturn fmt.Sprintf(\n" +
-		"\t\t\"&mavlink{{.MavlinkVersion}}.Packet{ {{ if eq .MavlinkVersion 2 }}incompatFlags: %08b, compatFlags: %08b, {{ end }}seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }\",\n" +
+		"\t\t\"&mavlink{{.MavlinkVersion}}.Packet{ {{ if eq .MavlinkVersion 2 }}incompatFlags: %08b, compatFlags: %08b, {{ end }}seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d%s }\",\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"    \tp.incompatFlags,\n" +
 		"\t    p.compatFlags,\n" +
@@ -268,6 +318,16 @@ func packet_vTemplate() string {
 		"\t\t\treturn msg.String()\n" +
 		"\t\t}(),\n" +
 		"\t\tp.checksum,\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"        func() string {\n" +
+		"            if p.IsSigned() {\n" +
+		"                return fmt.Sprintf(\", signature: %+v\", p.signature)\n" +
+		"            }\n" +
+		"            return \"\"\n" +
+		"        }(),\n" +
+		"{{- else}}\n" +
+		"        \"\",\n" +
+		"{{- end}}\n" +
 		"\t)\n" +
 		"}\n" +
 		""
