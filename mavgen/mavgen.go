@@ -687,14 +687,23 @@ const ({{range .Messages}}
 func (d *Dialect) generateInit(w io.Writer) error {
 	initTmpl := `
 {{if .Messages}}
-func init() { {{range .Messages}} 
-	register.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.Size}}, {{.CRCExtra}}, func(p packet.Packet) (message.Message, error) {
-		msg := new({{.Name | UpperCamelCase}})
-		if err := msg.Unmarshal(p.Payload()); err != nil {
-			return nil, err
-		}
-		return msg, nil
-	}){{end}}
+func init() {  
+	for msgID, info := range map[message.MessageID]register.MessageInfo{ {{range .Messages}}
+		MSG_ID_{{.Name}}: {
+			"MSG_ID_{{.Name}}",
+			{{.Size}},
+			{{.CRCExtra}},
+			func(p packet.Packet) (message.Message, error) {
+				msg := new({{.Name | UpperCamelCase}})
+				if err := msg.Unmarshal(p.Payload()); err != nil {
+					return nil, err
+				}
+				return msg, nil
+			},
+		},{{end}}
+	} {
+		register.Register(msgID, info.Name, info.Size, info.Extra, info.Constructor)
+	}
 } {{end}}
 `
 	return template.Must(template.New("init").Funcs(funcMap).Parse(initTmpl)).Execute(w, d)

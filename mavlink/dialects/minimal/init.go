@@ -13,11 +13,20 @@ import (
 )
 
 func init() {
-	register.Register(MSG_ID_HEARTBEAT, "MSG_ID_HEARTBEAT", 9, 50, func(p packet.Packet) (message.Message, error) {
-		msg := new(Heartbeat)
-		if err := msg.Unmarshal(p.Payload()); err != nil {
-			return nil, err
-		}
-		return msg, nil
-	})
+	for msgID, info := range map[message.MessageID]register.MessageInfo{
+		MSG_ID_HEARTBEAT: {
+			"MSG_ID_HEARTBEAT",
+			9,
+			50,
+			func(p packet.Packet) (message.Message, error) {
+				msg := new(Heartbeat)
+				if err := msg.Unmarshal(p.Payload()); err != nil {
+					return nil, err
+				}
+				return msg, nil
+			},
+		},
+	} {
+		register.Register(msgID, info.Name, info.Size, info.Extra, info.Constructor)
+	}
 }
