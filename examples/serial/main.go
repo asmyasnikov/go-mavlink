@@ -45,7 +45,7 @@ func main() {
 	}
 	wg := sync.WaitGroup{}
 	wg.Add(1)
-	go listenAndServe(&wg, port)
+	go listenAndServe(&wg, port, *ro)
 	if !*ro {
 		wg.Add(2)
 		go sendLoop(&wg, port)
@@ -54,7 +54,7 @@ func main() {
 	wg.Wait()
 }
 
-func listenAndServe(wg *sync.WaitGroup, device io.ReadWriteCloser) {
+func listenAndServe(wg *sync.WaitGroup, device io.ReadWriteCloser, ro bool) {
 	defer wg.Done()
 	dec := mavlink.NewDecoder(device)
 	log.Println("listening packets")
@@ -69,7 +69,7 @@ func listenAndServe(wg *sync.WaitGroup, device io.ReadWriteCloser) {
 			ts := ardupilotmega.Timesync{}
 			if err := ts.Unmarshal(p.Payload()); err != nil {
 				log.Fatal(err)
-			} else {
+			} else if !ro {
 				sendChan <- makeTimeSync(ts.Ts1)
 			}
 		}
@@ -157,10 +157,14 @@ func sendLoop(wg *sync.WaitGroup, writer io.Writer) {
 	defer wg.Done()
 	enc := mavlink.NewEncoder(writer)
 	for m := range sendChan {
-		if err := enc.Encode(2, uint8(*sysID), uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER), m); err != nil {
+		p, err := mavlink.NewPacket(2, uint8(*sysID), uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER), m)
+		if err != nil {
+			log.Fatalf("Error on create packet: %+v", err)
+		}
+		if err := enc.Encode(p); err != nil {
 			log.Fatalf("Error on send loop: %+v", err)
 		} else {
-			log.Println("->", m)
+			log.Println("->", p)
 		}
 	}
 }

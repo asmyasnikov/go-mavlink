@@ -23,7 +23,9 @@ func TestRoundTripChannels(t *testing.T) {
 			Seq: rand.Uint32(),
 		}
 		pings = append(pings, ping)
-		require.NoError(t, enc.Encode(version.MAVLINK_VERSION(i%2+1), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), ping))
+		p, err := NewPacket(version.MAVLINK_VERSION(i%2+1), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), ping)
+		require.NoError(t, err)
+		require.NoError(t, enc.Encode(p))
 	}
 	for {
 		p, err := dec.Decode()

@@ -12,20 +12,17 @@ import (
 // Encoder struct provide decoding processor
 type Encoder struct {
 	writer  io.Writer
-	currentSeqNum byte
 }
 
-func (e *Encoder) nextSeqNum() byte {
-	e.currentSeqNum++
-	return e.currentSeqNum
+var currentSeqNum uint8
+
+func nextSeqNum() byte {
+	currentSeqNum++
+	return currentSeqNum
 }
 
-// Encode encode packet to output stream. Method return error or nil
-func (e *Encoder) Encode(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) error {
-    p, err := MakePacket(v, sysID, compID, e.nextSeqNum(), message)
-	if err != nil {
-	    return err
-	}
+// Encode encode packet to output stream. Method return error or nil on success
+func (e *Encoder) Encode(p packet.Packet) error {
 	b, err := p.Marshal()
 	if err != nil {
 	    return err
@@ -37,21 +34,21 @@ func (e *Encoder) Encode(v version.MAVLINK_VERSION, sysID uint8, compID uint8, m
 	return err
 }
 
-// NewEncoder function create encoder instance
+// NewEncoder function creates encoder instance
 func NewEncoder(w io.Writer) *Encoder {
 	return &Encoder{
 		writer:        w,
-		currentSeqNum: 0,
 	}
 }
 
 
-func MakePacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {
+// NewEncoder function creates packet
+func NewPacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) (packet.Packet, error) {
 	switch v {
 	case version.MAVLINK_V1:
-		return parser.MakePacketV1(sysID, compID, seqID, message)
+		return parser.NewPacketV1(sysID, compID, nextSeqNum(), message)
 	case version.MAVLINK_V2:
-		return parser.MakePacketV2(sysID, compID, seqID, message)
+		return parser.NewPacketV2(sysID, compID, nextSeqNum(), message)
 	default:
 		return nil, fmt.Errorf("Unknown mavlink version %d", v)
 	}

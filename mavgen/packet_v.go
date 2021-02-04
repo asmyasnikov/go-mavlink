@@ -37,7 +37,7 @@ func packet_vTemplate() string {
 		"\tchecksum      uint16\n" +
 		"}\n" +
 		"\n" +
-		"func MakePacketV{{.MavlinkVersion}}(sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {\n" +
+		"func NewPacketV{{.MavlinkVersion}}(sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {\n" +
 		"\tpayload, err := message.Marshal()\n" +
 		"\tif err != nil {\n" +
 		"\t\treturn nil, err\n" +

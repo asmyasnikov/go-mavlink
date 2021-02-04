@@ -28,7 +28,7 @@ type packet1 struct {
 	checksum uint16
 }
 
-func MakePacketV1(sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {
+func NewPacketV1(sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {
 	payload, err := message.Marshal()
 	if err != nil {
 		return nil, err

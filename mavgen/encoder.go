@@ -23,20 +23,17 @@ func encoderTemplate() string {
 		"// Encoder struct provide decoding processor\n" +
 		"type Encoder struct {\n" +
 		"\twriter  io.Writer\n" +
-		"\tcurrentSeqNum byte\n" +
 		"}\n" +
 		"\n" +
-		"func (e *Encoder) nextSeqNum() byte {\n" +
-		"\te.currentSeqNum++\n" +
-		"\treturn e.currentSeqNum\n" +
+		"var currentSeqNum uint8\n" +
+		"\n" +
+		"func nextSeqNum() byte {\n" +
+		"\tcurrentSeqNum++\n" +
+		"\treturn currentSeqNum\n" +
 		"}\n" +
 		"\n" +
-		"// Encode encode packet to output stream. Method return error or nil\n" +
-		"func (e *Encoder) Encode(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) error {\n" +
-		"    p, err := MakePacket(v, sysID, compID, e.nextSeqNum(), message)\n" +
-		"\tif err != nil {\n" +
-		"\t    return err\n" +
-		"\t}\n" +
+		"// Encode encode packet to output stream. Method return error or nil on success\n" +
+		"func (e *Encoder) Encode(p packet.Packet) error {\n" +
 		"\tb, err := p.Marshal()\n" +
 		"\tif err != nil {\n" +
 		"\t    return err\n" +
@@ -48,21 +45,21 @@ func encoderTemplate() string {
 		"\treturn err\n" +
 		"}\n" +
 		"\n" +
-		"// NewEncoder function create encoder instance\n" +
+		"// NewEncoder function creates encoder instance\n" +
 		"func NewEncoder(w io.Writer) *Encoder {\n" +
 		"\treturn &Encoder{\n" +
 		"\t\twriter:        w,\n" +
-		"\t\tcurrentSeqNum: 0,\n" +
 		"\t}\n" +
 		"}\n" +
 		"\n" +
 		"\n" +
-		"func MakePacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {\n" +
+		"// NewEncoder function creates packet\n" +
+		"func NewPacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) (packet.Packet, error) {\n" +
 		"\tswitch v {\n" +
 		"\tcase version.MAVLINK_V1:\n" +
-		"\t\treturn parser.MakePacketV1(sysID, compID, seqID, message)\n" +
+		"\t\treturn parser.NewPacketV1(sysID, compID, nextSeqNum(), message)\n" +
 		"\tcase version.MAVLINK_V2:\n" +
-		"\t\treturn parser.MakePacketV2(sysID, compID, seqID, message)\n" +
+		"\t\treturn parser.NewPacketV2(sysID, compID, nextSeqNum(), message)\n" +
 		"\tdefault:\n" +
 		"\t\treturn nil, fmt.Errorf(\"Unknown mavlink version %d\", v)\n" +
 		"\t}\n" +

@@ -32,7 +32,11 @@ func BenchmarkDecoder(b *testing.B) {
 			ping := mock.Ping{
 				Seq: rand.Uint32(),
 			}
-			if err := enc.Encode(version.MAVLINK_VERSION(i%2), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), &ping); err != nil {
+			p, err := NewPacket(version.MAVLINK_VERSION(i%2), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), &ping)
+			if err != nil {
+				b.Fatal(err)
+			}
+			if err := enc.Encode(p); err != nil {
 				b.Fatal(err)
 			}
 			sended++
