@@ -5,9 +5,9 @@
 //go:generate templify decoder.template
 //go:generate templify message.template
 //go:generate templify packet.template
-//go:generate templify packet_v.template
+//go:generate templify packetV.template
 //go:generate templify parser.template
-//go:generate templify parser_v.template
+//go:generate templify parserV.template
 //go:generate templify version.template
 //go:generate templify x25.template
 
@@ -50,8 +50,8 @@ var (
 		"crc/x25":           x25Template,
 	}
 	dependentTemplates = map[string](func() string){
-		"parser/packet_v": packet_vTemplate,
-		"parser/parser_v": parser_vTemplate,
+		"parser/packetV": packetVTemplate,
+		"parser/parserV": parserVTemplate,
 	}
 )
 

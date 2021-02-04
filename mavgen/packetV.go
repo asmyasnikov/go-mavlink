@@ -6,9 +6,9 @@
 
 package main
 
-// packet_vTemplate is a generated function returning the template as a string.
+// packetVTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
-func packet_vTemplate() string {
+func packetVTemplate() string {
 	var tmpl = "package parser\n" +
 		"\n" +
 		"import (\n" +

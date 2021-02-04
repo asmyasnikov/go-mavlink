@@ -6,9 +6,9 @@
 
 package main
 
-// parser_vTemplate is a generated function returning the template as a string.
+// parserVTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
-func parser_vTemplate() string {
+func parserVTemplate() string {
 	var tmpl = "package parser\n" +
 		"\n" +
 		"import (\n" +
