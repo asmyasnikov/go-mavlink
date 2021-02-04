@@ -21,6 +21,19 @@ func packet_vTemplate() string {
 		"    \"{{.CommonPackageURL}}/crc\"\n" +
 		")\n" +
 		"\n" +
+		"{{if eq .MavlinkVersion 2 -}}\n" +
+		"// INCOMPAT_FLAGS type\n" +
+		"type INCOMPAT_FLAGS uint8\n" +
+		"{{- end}}\n" +
+		"\n" +
+		"const (\n" +
+		"    // MAGIC_NUMBER_V{{.MavlinkVersion}} const value for common use\n" +
+		"    MAGIC_NUMBER_V{{.MavlinkVersion}} packet.MAGIC_NUMBER = {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}}\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    INCOMPAT_FLAGS_SIGNED INCOMPAT_FLAGS = 0b00000001\n" +
+		"{{- end}}\n" +
+		")\n" +
+		"\n" +
 		"// Packet is a wire type for encoding/decoding mavlink messages.\n" +
 		"// use the ToPacket() and FromPacket() routines on specific message\n" +
 		"// types to convert them to/from the Message type.\n" +
@@ -158,7 +171,7 @@ func packet_vTemplate() string {
 		"\t}\n" +
 		"    // header\n" +
 		"    bytes = append(bytes,\n" +
-		"\t    {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}},\n" +
+		"\t    byte(MAGIC_NUMBER_V{{.MavlinkVersion}}),\n" +
 		"\t    byte(len(p.payload)),\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"\t    uint8(p.incompatFlags),\n" +

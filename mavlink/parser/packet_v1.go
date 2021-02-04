@@ -16,6 +16,11 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 )
 
+const (
+	// MAGIC_NUMBER_V1 const value for common use
+	MAGIC_NUMBER_V1 packet.MAGIC_NUMBER = 0xfe
+)
+
 // Packet is a wire type for encoding/decoding mavlink messages.
 // use the ToPacket() and FromPacket() routines on specific message
 // types to convert them to/from the Message type.
@@ -141,7 +146,7 @@ func (p *packet1) Marshal() ([]byte, error) {
 	}
 	// header
 	bytes = append(bytes,
-		0xfe,
+		byte(MAGIC_NUMBER_V1),
 		byte(len(p.payload)),
 		p.seqID,
 		p.sysID,

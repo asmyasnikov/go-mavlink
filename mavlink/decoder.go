@@ -37,10 +37,10 @@ func (d *Decoder) Decode() (packet.Packet, error) {
 		if err != nil {
 			return nil, err
 		}
-		switch c {
-		case 0xfe: // mavlink1
+		switch packet.MAGIC_NUMBER(c) {
+		case parser.MAGIC_NUMBER_V1: // mavlink1
 			d.parsers = append(d.parsers, parser.NewParserV1())
-		case 0xfd: // mavlink2
+		case parser.MAGIC_NUMBER_V2: // mavlink2
 			d.parsers = append(d.parsers, parser.NewParserV2())
 		}
 		parsers := make([]parser.Parser, 0, len(d.parsers))

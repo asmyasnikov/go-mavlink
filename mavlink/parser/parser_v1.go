@@ -72,7 +72,7 @@ func (p *parser1) parseChar(c byte) (*packet1, error) {
 		MAVLINK1_PARSE_STATE_IDLE,
 		MAVLINK1_PARSE_STATE_GOT_BAD_CRC,
 		MAVLINK1_PARSE_STATE_GOT_GOOD_MESSAGE:
-		if c == 0xfe {
+		if c == byte(MAGIC_NUMBER_V1) {
 			p.crc = crc.NewX25()
 			p.state = MAVLINK1_PARSE_STATE_GOT_STX
 		}

@@ -74,7 +74,7 @@ func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}
 		 MAVLINK{{.MavlinkVersion}}_PARSE_STATE_IDLE,
 		 MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC,
 		 MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE :
-		if c == {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}} {
+		if c == byte(MAGIC_NUMBER_V{{.MavlinkVersion}}) {
 			p.crc = crc.NewX25()
 			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_STX
 		}

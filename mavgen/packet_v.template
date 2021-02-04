@@ -10,6 +10,19 @@ import (
     "{{.CommonPackageURL}}/crc"
 )
 
+{{if eq .MavlinkVersion 2 -}}
+// INCOMPAT_FLAGS type
+type INCOMPAT_FLAGS uint8
+{{- end}}
+
+const (
+    // MAGIC_NUMBER_V{{.MavlinkVersion}} const value for common use
+    MAGIC_NUMBER_V{{.MavlinkVersion}} packet.MAGIC_NUMBER = {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}}
+{{- if eq .MavlinkVersion 2}}
+    INCOMPAT_FLAGS_SIGNED INCOMPAT_FLAGS = 0b00000001
+{{- end}}
+)
+
 // Packet is a wire type for encoding/decoding mavlink messages.
 // use the ToPacket() and FromPacket() routines on specific message
 // types to convert them to/from the Message type.
@@ -147,7 +160,7 @@ func (p *packet{{.MavlinkVersion}}) Marshal() ([]byte, error) {
 	}
     // header
     bytes = append(bytes,
-	    {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}},
+	    byte(MAGIC_NUMBER_V{{.MavlinkVersion}}),
 	    byte(len(p.payload)),
 {{- if eq .MavlinkVersion 2}}
 	    uint8(p.incompatFlags),

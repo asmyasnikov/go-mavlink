@@ -10,6 +10,9 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 )
 
+// MAGIC_NUMBER type
+type MAGIC_NUMBER uint8
+
 // Packet is the interface implemented by frames of every supported version.
 type Packet interface {
 	// Nil returns true if packet is nil

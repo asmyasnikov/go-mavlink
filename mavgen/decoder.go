@@ -42,10 +42,10 @@ func decoderTemplate() string {
 		"\t\tif err != nil {\n" +
 		"\t\t\treturn nil, err\n" +
 		"\t\t}\n" +
-		"\t\tswitch c {\n" +
-		"\t\tcase 0xfe: // mavlink1\n" +
+		"\t\tswitch packet.MAGIC_NUMBER(c) {\n" +
+		"\t\tcase parser.MAGIC_NUMBER_V1: // mavlink1\n" +
 		"\t\t\td.parsers = append(d.parsers, parser.NewParserV1())\n" +
-		"\t\tcase 0xfd: // mavlink2\n" +
+		"\t\tcase parser.MAGIC_NUMBER_V2: // mavlink2\n" +
 		"\t\t\td.parsers = append(d.parsers, parser.NewParserV2())\n" +
 		"\t\t}\n" +
 		"\t\tparsers := make([]parser.Parser, 0, len(d.parsers))\n" +

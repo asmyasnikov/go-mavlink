@@ -15,6 +15,9 @@ func packetTemplate() string {
 		"    \"{{.CommonPackageURL}}/message\"\n" +
 		")\n" +
 		"\n" +
+		"// MAGIC_NUMBER type\n" +
+		"type MAGIC_NUMBER uint8\n" +
+		"\n" +
 		"// Packet is the interface implemented by frames of every supported version.\n" +
 		"type Packet interface {\n" +
 		"\t// Nil returns true if packet is nil\n" +

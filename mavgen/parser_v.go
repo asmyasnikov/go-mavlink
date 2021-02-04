@@ -85,7 +85,7 @@ func parser_vTemplate() string {
 		"\t\t MAVLINK{{.MavlinkVersion}}_PARSE_STATE_IDLE,\n" +
 		"\t\t MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC,\n" +
 		"\t\t MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE :\n" +
-		"\t\tif c == {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}} {\n" +
+		"\t\tif c == byte(MAGIC_NUMBER_V{{.MavlinkVersion}}) {\n" +
 		"\t\t\tp.crc = crc.NewX25()\n" +
 		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_STX\n" +
 		"\t\t}\n" +

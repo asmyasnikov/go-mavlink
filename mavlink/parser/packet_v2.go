@@ -16,6 +16,15 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 )
 
+// INCOMPAT_FLAGS type
+type INCOMPAT_FLAGS uint8
+
+const (
+	// MAGIC_NUMBER_V2 const value for common use
+	MAGIC_NUMBER_V2       packet.MAGIC_NUMBER = 0xfd
+	INCOMPAT_FLAGS_SIGNED INCOMPAT_FLAGS      = 0b00000001
+)
+
 // Packet is a wire type for encoding/decoding mavlink messages.
 // use the ToPacket() and FromPacket() routines on specific message
 // types to convert them to/from the Message type.
@@ -147,7 +156,7 @@ func (p *packet2) Marshal() ([]byte, error) {
 	}
 	// header
 	bytes = append(bytes,
-		0xfd,
+		byte(MAGIC_NUMBER_V2),
 		byte(len(p.payload)),
 		uint8(p.incompatFlags),
 		uint8(p.compatFlags),
