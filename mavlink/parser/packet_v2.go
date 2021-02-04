@@ -212,7 +212,7 @@ func (p *packet2) String() string {
 		return "nil"
 	}
 	return fmt.Sprintf(
-		"&packet2{ incompatFlags: %08b, compatFlags: %08b, seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
+		"&mavlink2.Packet{ incompatFlags: %08b, compatFlags: %08b, seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
 		p.incompatFlags,
 		p.compatFlags,
 		p.seqID,

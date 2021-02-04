@@ -222,7 +222,7 @@ func (p *packet{{.MavlinkVersion}}) String() string {
         return "nil"
     }
 	return fmt.Sprintf(
-		"&packet{{.MavlinkVersion}}{ {{ if eq .MavlinkVersion 2 }}incompatFlags: %08b, compatFlags: %08b, {{ end }}seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
+		"&mavlink{{.MavlinkVersion}}.Packet{ {{ if eq .MavlinkVersion 2 }}incompatFlags: %08b, compatFlags: %08b, {{ end }}seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
 {{- if eq .MavlinkVersion 2}}
     	p.incompatFlags,
 	    p.compatFlags,

@@ -233,7 +233,7 @@ func packet_vTemplate() string {
 		"        return \"nil\"\n" +
 		"    }\n" +
 		"\treturn fmt.Sprintf(\n" +
-		"\t\t\"&packet{{.MavlinkVersion}}{ {{ if eq .MavlinkVersion 2 }}incompatFlags: %08b, compatFlags: %08b, {{ end }}seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }\",\n" +
+		"\t\t\"&mavlink{{.MavlinkVersion}}.Packet{ {{ if eq .MavlinkVersion 2 }}incompatFlags: %08b, compatFlags: %08b, {{ end }}seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }\",\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"    \tp.incompatFlags,\n" +
 		"\t    p.compatFlags,\n" +

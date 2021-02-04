@@ -192,7 +192,7 @@ func (p *packet1) String() string {
 		return "nil"
 	}
 	return fmt.Sprintf(
-		"&packet1{ seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
+		"&mavlink1.Packet{ seqID: %d, sysID: %d, compID: %d, msgID: %d, payload: %s, checksum: %d }",
 		p.seqID,
 		p.sysID,
 		p.compID,
