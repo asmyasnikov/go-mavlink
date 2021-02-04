@@ -3,7 +3,8 @@ package main
 import (
 	"flag"
 	"github.com/asmyasnikov/go-mavlink/mavlink"
-	"github.com/asmyasnikov/go-mavlink/mavlink/ardupilotmega"
+	"github.com/asmyasnikov/go-mavlink/mavlink/dialects/ardupilotmega"
+	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 	"github.com/tarm/serial"
 	"io"
 	"log"
@@ -75,7 +76,7 @@ func listenAndServe(wg *sync.WaitGroup, device io.ReadWriteCloser) {
 	}
 }
 
-func makeHeartbeat() mavlink.Message {
+func makeHeartbeat() message.Message {
 	return &ardupilotmega.Heartbeat{
 		CustomMode:     0,
 		Type:           ardupilotmega.MAV_TYPE_GCS,
@@ -86,7 +87,7 @@ func makeHeartbeat() mavlink.Message {
 	}
 }
 
-func makeRequestDataStream(msgID ardupilotmega.MAV_DATA_STREAM, rate uint16) mavlink.Message {
+func makeRequestDataStream(msgID ardupilotmega.MAV_DATA_STREAM, rate uint16) message.Message {
 	return &ardupilotmega.RequestDataStream{
 		ReqMessageRate:  rate,
 		TargetSystem:    1,
@@ -96,14 +97,14 @@ func makeRequestDataStream(msgID ardupilotmega.MAV_DATA_STREAM, rate uint16) mav
 	}
 }
 
-func makeStatustext(text string) mavlink.Message {
+func makeStatustext(text string) message.Message {
 	return &ardupilotmega.Statustext{
 		Severity: ardupilotmega.MAV_SEVERITY_INFO,
 		Text:     text,
 	}
 }
 
-func makeCommandLong(cmd ardupilotmega.MAV_CMD, param1 uint32) mavlink.Message {
+func makeCommandLong(cmd ardupilotmega.MAV_CMD, param1 uint32) message.Message {
 	return &ardupilotmega.CommandLong{
 		Param1:          float32(param1),
 		Param2:          0,
@@ -119,21 +120,21 @@ func makeCommandLong(cmd ardupilotmega.MAV_CMD, param1 uint32) mavlink.Message {
 	}
 }
 
-func makeParamRequestList() mavlink.Message {
+func makeParamRequestList() message.Message {
 	return &ardupilotmega.ParamRequestList{
 		TargetSystem:    1,
 		TargetComponent: 1,
 	}
 }
 
-func makeTimeSync(ts int64) mavlink.Message {
+func makeTimeSync(ts int64) message.Message {
 	return &ardupilotmega.Timesync{
 		Tc1: time.Now().UnixNano(),
 		Ts1: ts,
 	}
 }
 
-func makeFileTransferProtocol(payload []byte) mavlink.Message {
+func makeFileTransferProtocol(payload []byte) message.Message {
 	return &ardupilotmega.FileTransferProtocol{
 		TargetNetwork:   0,
 		TargetSystem:    1,
@@ -142,7 +143,7 @@ func makeFileTransferProtocol(payload []byte) mavlink.Message {
 	}
 }
 
-var sendChan = make(chan mavlink.Message)
+var sendChan = make(chan message.Message)
 
 func heartbeatLoop(wg *sync.WaitGroup) {
 	defer wg.Done()

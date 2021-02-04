@@ -1,4 +1,4 @@
-package mavlink
+package crc
 
 // X25 implements hash.Hash
 type X25 struct {

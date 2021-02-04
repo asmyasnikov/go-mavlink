@@ -3,6 +3,8 @@ package mavlink
 import (
 	"bytes"
 	"fmt"
+	"github.com/asmyasnikov/go-mavlink/mavlink/mock"
+	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"math/rand"
 	"sync"
 	"testing"
@@ -27,10 +29,10 @@ func BenchmarkDecoder(b *testing.B) {
 		defer wg.Done()
 		fmt.Println("to send", b.N)
 		for i := 0; i < b.N; i++ {
-			ping := pingMock{
+			ping := mock.Ping{
 				Seq: rand.Uint32(),
 			}
-			if err := enc.Encode(MAVLINK_VERSION(i%2), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), &ping); err != nil {
+			if err := enc.Encode(version.MAVLINK_VERSION(i%2), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), &ping); err != nil {
 				b.Fatal(err)
 			}
 			sended++

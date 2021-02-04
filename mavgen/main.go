@@ -10,14 +10,13 @@ import (
 var (
 	mavgenVersion   = "devel"
 	schemeFile      = flag.String("f", "", "mavlink xml-definition file input")
-	version         = flag.String("v", mavgenVersion, "custom version of mavlink dialect")
 	commonPackage   = flag.String("c", "", "common mavlink package path used for import from go code. For example \"github.com/asmyasnikov/go-mavlink/generated/mavlink1\"")
 	generateCommons = flag.Bool("p", false, "generate common mavlink package")
 )
 
 type templateData struct {
-	Version        string
-	MavlinkVersion int
+	MavlinkVersion   int
+	CommonPackageURL string
 }
 
 func main() {
@@ -40,7 +39,7 @@ func main() {
 	}
 
 	if *generateCommons {
-		if err := generateCommonPackage(*version); err != nil {
+		if err := generateCommonPackage(*commonPackage); err != nil {
 			log.Fatal(err)
 		}
 	}

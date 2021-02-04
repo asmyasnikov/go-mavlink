@@ -94,8 +94,8 @@ func TestParseDialect(t *testing.T) {
 
 	enums := []*Enum{
 		{"MAV_AUTOPILOT", "descr1", []*EnumEntry{
-			{0, "MAV_AUTOPILOT_GENERIC", "", []*EnumEntryParam(nil)},
-			{1, "MAV_AUTOPILOT_RESERVED", "", []*EnumEntryParam(nil)},
+			{"0", "MAV_AUTOPILOT_GENERIC", "", []*EnumEntryParam(nil)},
+			{"1", "MAV_AUTOPILOT_RESERVED", "", []*EnumEntryParam(nil)},
 		}},
 	}
 

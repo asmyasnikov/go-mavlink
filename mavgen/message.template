@@ -1,4 +1,4 @@
-package mavlink
+package message
 
 // MessageID typedef
 type MessageID uint32

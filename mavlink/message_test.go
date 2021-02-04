@@ -2,20 +2,12 @@ package mavlink
 
 import (
 	"bytes"
+	"github.com/asmyasnikov/go-mavlink/mavlink/mock"
+	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"github.com/stretchr/testify/require"
 	"math/rand"
 	"testing"
 )
-
-func init() {
-	Register(MSG_ID_PING_MOCK, "MSG_ID_PING_MOCK", 4, 0, func(p Packet) (Message, error) {
-		msg := new(pingMock)
-		if err := msg.Unmarshal(p.Payload()); err != nil {
-			return nil, err
-		}
-		return msg, nil
-	})
-}
 
 func TestRoundTripChannels(t *testing.T) {
 	rand.Seed(43)
@@ -23,25 +15,25 @@ func TestRoundTripChannels(t *testing.T) {
 	dec := NewDecoder(&buffer)
 	enc := NewEncoder(&buffer)
 
-	pings := make([]*pingMock, 0, 255)
-	processed := make([]*pingMock, 0, 255)
+	pings := make([]*mock.Ping, 0, 255)
+	processed := make([]*mock.Ping, 0, 255)
 
 	for i := 0; i < 255; i++ {
-		ping := &pingMock{
+		ping := &mock.Ping{
 			Seq: rand.Uint32(),
 		}
 		pings = append(pings, ping)
-		require.NoError(t, enc.Encode(MAVLINK_VERSION(i%2+1), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), ping))
+		require.NoError(t, enc.Encode(version.MAVLINK_VERSION(i%2+1), uint8(rand.Uint32()%uint32(^uint8(0))), uint8(rand.Uint32()%uint32(^uint8(0))), ping))
 	}
 	for {
-		packet, err := dec.Decode()
+		p, err := dec.Decode()
 		if err != nil {
 			break
 		}
-		require.Equal(t, packet.MsgID(), MSG_ID_PING_MOCK, "MsgID fail")
-		msg, err := packet.Message()
+		require.Equal(t, p.MsgID(), mock.MSG_ID_PING_MOCK, "MsgID fail")
+		msg, err := p.Message()
 		require.NoError(t, err)
-		ping, ok := msg.(*pingMock)
+		ping, ok := msg.(*mock.Ping)
 		require.True(t, ok)
 		processed = append(processed, ping)
 		if len(processed) == 255 {

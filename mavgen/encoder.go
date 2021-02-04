@@ -14,6 +14,10 @@ func encoderTemplate() string {
 		"import (\n" +
 		"\t\"fmt\"\n" +
 		"\t\"io\"\n" +
+		"    \"{{.CommonPackageURL}}/parser\"\n" +
+		"    \"{{.CommonPackageURL}}/packet\"\n" +
+		"    \"{{.CommonPackageURL}}/message\"\n" +
+		"    \"{{.CommonPackageURL}}/version\"\n" +
 		")\n" +
 		"\n" +
 		"// Encoder struct provide decoding processor\n" +
@@ -27,40 +31,13 @@ func encoderTemplate() string {
 		"\treturn e.currentSeqNum\n" +
 		"}\n" +
 		"\n" +
-		"func (e *Encoder) makePacket(version MAVLINK_VERSION, sysID uint8, compID uint8, message Message) (Packet, error) {\n" +
-		"\tpayload, err := message.Marshal()\n" +
-		"\tif err != nil {\n" +
-		"\t    return nil, err\n" +
-		"\t}\n" +
-		"    switch version {\n" +
-		"    case MAVLINK_V1:\n" +
-		"        return &packet1{\n" +
-		"            seqID: e.nextSeqNum(),\n" +
-		"            sysID: sysID,\n" +
-		"            compID: compID,\n" +
-		"            msgID: message.MsgID(),\n" +
-		"            payload: payload,\n" +
-		"        }, nil\n" +
-		"    case MAVLINK_V2:\n" +
-		"        return &packet2{\n" +
-		"            seqID: e.nextSeqNum(),\n" +
-		"            sysID: sysID,\n" +
-		"            compID: compID,\n" +
-		"            msgID: message.MsgID(),\n" +
-		"            payload: payload,\n" +
-		"        }, nil\n" +
-		"    default:\n" +
-		"        return nil, fmt.Errorf(\"Undefined mavlink version %d\", version)\n" +
-		"    }\n" +
-		"}\n" +
-		"\n" +
 		"// Encode encode packet to output stream. Method return error or nil\n" +
-		"func (e *Encoder) Encode(version MAVLINK_VERSION, sysID uint8, compID uint8, message Message) error {\n" +
-		"    packet, err := e.makePacket(version, sysID, compID, message)\n" +
+		"func (e *Encoder) Encode(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) error {\n" +
+		"    p, err := MakePacket(v, sysID, compID, e.nextSeqNum(), message)\n" +
 		"\tif err != nil {\n" +
 		"\t    return err\n" +
 		"\t}\n" +
-		"\tb, err := packet.Marshal()\n" +
+		"\tb, err := p.Marshal()\n" +
 		"\tif err != nil {\n" +
 		"\t    return err\n" +
 		"\t}\n" +
@@ -76,6 +53,18 @@ func encoderTemplate() string {
 		"\treturn &Encoder{\n" +
 		"\t\twriter:        w,\n" +
 		"\t\tcurrentSeqNum: 0,\n" +
+		"\t}\n" +
+		"}\n" +
+		"\n" +
+		"\n" +
+		"func MakePacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {\n" +
+		"\tswitch v {\n" +
+		"\tcase version.MAVLINK_V1:\n" +
+		"\t\treturn parser.MakePacketV1(sysID, compID, seqID, message)\n" +
+		"\tcase version.MAVLINK_V2:\n" +
+		"\t\treturn parser.MakePacketV2(sysID, compID, seqID, message)\n" +
+		"\tdefault:\n" +
+		"\t\treturn nil, fmt.Errorf(\"Unknown mavlink version %d\", v)\n" +
 		"\t}\n" +
 		"}\n" +
 		""

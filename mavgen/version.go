@@ -9,11 +9,14 @@ package main
 // versionTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
 func versionTemplate() string {
-	var tmpl = "package mavlink\n" +
+	var tmpl = "package version\n" +
+		"\n" +
+		"type MAVLINK_VERSION int\n" +
 		"\n" +
 		"const (\n" +
-		"    // Version of mavgen which generate this code or user defined (by mavgen flag -v) version of dialect\n" +
-		"    Version        = \"{{- .Version -}}\"\n" +
-		")"
+		"    MAVLINK_V1 MAVLINK_VERSION = 1\n" +
+		"    MAVLINK_V2 MAVLINK_VERSION = 2\n" +
+		")\n" +
+		""
 	return tmpl
 }

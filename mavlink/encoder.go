@@ -8,6 +8,10 @@ package mavlink
 
 import (
 	"fmt"
+	"github.com/asmyasnikov/go-mavlink/mavlink/message"
+	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
+	"github.com/asmyasnikov/go-mavlink/mavlink/parser"
+	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"io"
 )
 
@@ -22,40 +26,13 @@ func (e *Encoder) nextSeqNum() byte {
 	return e.currentSeqNum
 }
 
-func (e *Encoder) makePacket(version MAVLINK_VERSION, sysID uint8, compID uint8, message Message) (Packet, error) {
-	payload, err := message.Marshal()
-	if err != nil {
-		return nil, err
-	}
-	switch version {
-	case MAVLINK_V1:
-		return &packet1{
-			seqID:   e.nextSeqNum(),
-			sysID:   sysID,
-			compID:  compID,
-			msgID:   message.MsgID(),
-			payload: payload,
-		}, nil
-	case MAVLINK_V2:
-		return &packet2{
-			seqID:   e.nextSeqNum(),
-			sysID:   sysID,
-			compID:  compID,
-			msgID:   message.MsgID(),
-			payload: payload,
-		}, nil
-	default:
-		return nil, fmt.Errorf("Undefined mavlink version %d", version)
-	}
-}
-
 // Encode encode packet to output stream. Method return error or nil
-func (e *Encoder) Encode(version MAVLINK_VERSION, sysID uint8, compID uint8, message Message) error {
-	packet, err := e.makePacket(version, sysID, compID, message)
+func (e *Encoder) Encode(v version.MAVLINK_VERSION, sysID uint8, compID uint8, message message.Message) error {
+	p, err := MakePacket(v, sysID, compID, e.nextSeqNum(), message)
 	if err != nil {
 		return err
 	}
-	b, err := packet.Marshal()
+	b, err := p.Marshal()
 	if err != nil {
 		return err
 	}
@@ -71,5 +48,16 @@ func NewEncoder(w io.Writer) *Encoder {
 	return &Encoder{
 		writer:        w,
 		currentSeqNum: 0,
+	}
+}
+
+func MakePacket(v version.MAVLINK_VERSION, sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {
+	switch v {
+	case version.MAVLINK_V1:
+		return parser.MakePacketV1(sysID, compID, seqID, message)
+	case version.MAVLINK_V2:
+		return parser.MakePacketV2(sysID, compID, seqID, message)
+	default:
+		return nil, fmt.Errorf("Unknown mavlink version %d", v)
 	}
 }

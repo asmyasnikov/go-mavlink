@@ -1,0 +1,149 @@
+package parser
+
+import (
+    "sync"
+    "{{.CommonPackageURL}}/packet"
+    "{{.CommonPackageURL}}/register"
+    "{{.CommonPackageURL}}/errors"
+    "{{.CommonPackageURL}}/message"
+    "{{.CommonPackageURL}}/crc"
+)
+
+// MAVLINK{{.MavlinkVersion}}_PARSE_STATE typedef
+type MAVLINK{{.MavlinkVersion}}_PARSE_STATE int
+
+// MAVLINK{{.MavlinkVersion}}_PARSE_STATES
+const (
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT             MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_IDLE               MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_STX            MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_LENGTH         MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+{{- if eq .MavlinkVersion 2}}
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_INCOMPAT_FLAGS MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPAT_FLAGS   MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+{{- end}}
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SEQ            MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SYSID          MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPID         MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID1         MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+{{- if eq .MavlinkVersion 2}}
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID2         MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID3         MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+{{- end}}
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD        MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1           MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC        MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+	MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE   MAVLINK{{.MavlinkVersion}}_PARSE_STATE = iota
+)
+
+// parser{{.MavlinkVersion}} is a state machine which parse bytes to packet.Packet
+type parser{{.MavlinkVersion}} struct {
+    packet{{.MavlinkVersion}}
+	state       MAVLINK{{.MavlinkVersion}}_PARSE_STATE
+	crc         *crc.X25
+}
+
+var _parsersPool_v{{.MavlinkVersion}} = &sync.Pool{
+	New: func() interface{} {
+		return new(parser{{.MavlinkVersion}})
+	},
+}
+
+// Reset set parser to idle state
+func NewParserV{{.MavlinkVersion}}() Parser {
+    return _parsersPool_v{{.MavlinkVersion}}.Get().(Parser)
+}
+
+// Reset set parser to idle state
+func (p *parser{{.MavlinkVersion}}) Destroy() {
+	p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT
+	if p.crc != nil {
+		p.crc = nil
+	}
+	_parsersPool_v{{.MavlinkVersion}}.Put(p)
+}
+
+// ParseChar parse char to packet
+func (p *parser{{.MavlinkVersion}}) ParseChar(c byte) (packet.Packet, error) {
+    return p.parseChar(c)
+}
+
+func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}}, error) {
+	switch p.state {
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT,
+		 MAVLINK{{.MavlinkVersion}}_PARSE_STATE_IDLE,
+		 MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC,
+		 MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE :
+		if c == {{if eq .MavlinkVersion 2 -}} 0xfd {{- else -}} 0xfe {{- end}} {
+			p.crc = crc.NewX25()
+			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_STX
+		}
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_STX:
+		p.payload = make([]byte, 0, c)
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_LENGTH
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_LENGTH:
+{{- if eq .MavlinkVersion 2}}
+		p.incompatFlags = c
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_INCOMPAT_FLAGS
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_INCOMPAT_FLAGS:
+		p.compatFlags = c
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPAT_FLAGS
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPAT_FLAGS:
+{{- end}}
+		p.seqID = c
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SEQ
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SEQ:
+		p.sysID = c
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SYSID
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SYSID:
+		p.compID = c
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPID
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPID:
+		p.msgID = message.MessageID(c)
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID1
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID1:
+{{- if eq .MavlinkVersion 2}}
+		p.msgID += message.MessageID(c) << 8
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID2
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID2:
+		p.msgID += message.MessageID(c) << 8 * 2
+		p.crc.WriteByte(c)
+		p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID3
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID3:
+{{- end}}
+		p.payload = append(p.payload, c)
+		p.crc.WriteByte(c)
+		if len(p.payload) == cap(p.payload) {
+			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD
+		}
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD:
+        if info, err := register.Info(p.msgID); err != nil {
+            return nil, err
+        } else {
+            p.crc.WriteByte(info.Extra)
+        }
+		if c != uint8(p.crc.Sum16()&0xFF) {
+			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC
+			return nil, errors.ErrCrcFail
+		}
+        p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1:
+		if c == uint8(p.crc.Sum16()>>8) {
+			p.checksum = p.crc.Sum16()
+			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
+			return p.copy(), nil
+		}
+        p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC
+        return nil, errors.ErrCrcFail
+	}
+	return nil, nil
+}
+

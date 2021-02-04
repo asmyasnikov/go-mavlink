@@ -48,7 +48,7 @@ type Enum struct {
 
 // EnumEntry described schema tag entry
 type EnumEntry struct {
-	Value       uint32            `xml:"value,attr"`
+	Value       string            `xml:"value,attr"`
 	Name        string            `xml:"name,attr"`
 	Description string            `xml:"description"`
 	Params      []*EnumEntryParam `xml:"param"`
@@ -467,66 +467,144 @@ func (d *Dialect) needImportEncodingBinary() bool {
 	return false
 }
 
-func (d *Dialect) generateGo(w io.Writer, packageName string, commonPackage string) error {
-	// templatize to buffer, format it, then write out
-
+func (d *Dialect) generateFile(filePath string, packageName string, commonPackage string, imports []string, generator func(w io.Writer) error) error {
 	var bb bytes.Buffer
-
-	bb.WriteString("//////////////////////////////////////////////////\n")
-	bb.WriteString("//\n")
-	bb.WriteString("// NOTE: do not edit,\n")
-	bb.WriteString("// this file created automatically by mavgen.go\n")
-	bb.WriteString("//\n")
-	bb.WriteString("//////////////////////////////////////////////////\n\n")
-
+	bb.WriteString(generatedHeader)
 	bb.WriteString("package " + strings.ToLower(packageName) + "\n\n")
-
-	needImportParentMavlink := d.needImportParentMavlink()
-	needImportEncodingBinary := d.needImportEncodingBinary()
-	needImportFmt := d.needImportFmt()
-	needImportMath := d.needImportMath()
-
-	if needImportParentMavlink || needImportEncodingBinary || needImportFmt || needImportMath {
+	if len(imports) > 0 {
 		bb.WriteString("import (\n")
-		if needImportParentMavlink {
-			bb.WriteString("\"" + commonPackage + "\"\n")
-		}
-		if needImportEncodingBinary {
-			bb.WriteString("\"encoding/binary\"\n")
-		}
-		if needImportFmt {
-			bb.WriteString("\"fmt\"\n")
-		}
-		if needImportMath {
-			bb.WriteString("\"math\"\n")
+		for _, i := range imports {
+			bb.WriteString("\"" + i + "\"\n")
 		}
 		bb.WriteString(")\n")
 	}
-
-	err := d.generateEnums(&bb)
-	if err != nil {
+	if err := generator(&bb); err != nil {
 		return err
 	}
-	err = d.generateClasses(&bb)
-	if err != nil {
-		return err
-	}
-	err = d.generateMsgIds(&bb)
-	if err != nil {
-		return err
-	}
-
 	formatted, err := format.Source(bb.Bytes())
 	if err != nil {
 		formatted = bb.Bytes()
 	}
-
-	n, err := w.Write(formatted)
+	if err := os.MkdirAll(filepath.Dir(filePath), os.ModePerm); err != nil {
+		return err
+	}
+	f, err := os.Create(filePath)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	n, err := f.Write(formatted)
 	if err == nil && n != len(formatted) {
 		return io.ErrShortWrite
 	}
-
 	return err
+}
+
+func (d *Dialect) generateGo(dialectPath string, packageName string, commonPackage string) error {
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "version.go"),
+		packageName,
+		commonPackage,
+		nil,
+		d.generateVersion,
+	); err != nil {
+		return err
+	}
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "enums.go"),
+		packageName,
+		commonPackage,
+		func() []string {
+			if len(d.Enums) > 0 {
+				return []string{
+					"fmt",
+				}
+			}
+			return nil
+		}(),
+		d.generateEnums,
+	); err != nil {
+		return err
+	}
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "classes.go"),
+		packageName,
+		commonPackage,
+		append(
+			func() []string {
+				if len(d.Messages) > 0 {
+					return []string{
+						"fmt",
+						commonPackage + "/message",
+					}
+				}
+				return nil
+			}(),
+			append(
+				func() []string {
+					for _, m := range d.Messages {
+						for _, f := range m.Fields {
+							switch f.CType {
+							case "float", "double":
+								return []string{"math"}
+							}
+						}
+					}
+					return nil
+				}(),
+				func() []string {
+					for _, m := range d.Messages {
+						for _, f := range m.Fields {
+							switch f.CType {
+							case "uint16_t", "uint32_t", "uint64_t":
+								return []string{"encoding/binary"}
+							}
+						}
+					}
+					return nil
+				}()...
+			)...,
+		),
+		d.generateClasses,
+	)
+		err != nil {
+		return err
+	}
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "messages.go"),
+		packageName,
+		commonPackage,
+		func() []string {
+			if len(d.Messages) > 0 {
+				return []string{
+					commonPackage + "/message",
+				}
+			}
+			return nil
+		}(),
+		d.generateMsgIds,
+	); err != nil {
+		return err
+	}
+	if err := d.generateFile(
+		filepath.Join(dialectPath, "init.go"),
+		packageName,
+		commonPackage,
+		func() []string {
+			if len(d.Messages) > 0 {
+				return []string{
+					commonPackage + "/message",
+					commonPackage + "/packet",
+					commonPackage + "/register",
+				}
+			}
+			return nil
+		}(),
+		d.generateInit,
+	); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *Dialect) generateEnums(w io.Writer) error {
@@ -571,8 +649,8 @@ func (e {{$enumName}}) Bitmask() string {
 	for _, e := range d.Enums {
 		e.Description = strings.Replace(e.Description, "\n", " ", -1)
 		for i, ee := range e.Entries {
-			if ee.Value == 0 {
-				ee.Value = uint32(i)
+			if ee.Value == "" {
+				ee.Value = strconv.Itoa(i)
 			}
 			ee.Description = strings.Trim(strings.ReplaceAll(ee.Description, "\n", " "), " .")
 			if len(ee.Params) > 0 {
@@ -590,18 +668,33 @@ func (e {{$enumName}}) Bitmask() string {
 	return template.Must(template.New("enums").Parse(enumTmpl)).Execute(w, d)
 }
 
+func (d *Dialect) generateVersion(w io.Writer) error {
+	versionTmpl := `
+const (
+    // Version of mavgen which generate this code or user defined (by mavgen flag -v) version of dialect
+    Version        = "{{- .Version -}}"
+)
+`
+	return template.Must(template.New("version").Parse(versionTmpl)).Execute(w, d)
+}
+
 func (d *Dialect) generateMsgIds(w io.Writer) error {
 	msgIDTmpl := `
 {{if .Messages}}
 // Message IDs
 const ({{range .Messages}}
-	MSG_ID_{{.Name}} mavlink.MessageID = {{.ID}}{{end}}
+	MSG_ID_{{.Name}} message.MessageID = {{.ID}}{{end}}
 )
 {{end}}
+`
+	return template.Must(template.New("msgIds").Funcs(funcMap).Parse(msgIDTmpl)).Execute(w, d)
+}
 
+func (d *Dialect) generateInit(w io.Writer) error {
+	initTmpl := `
 {{if .Messages}}
 func init() { {{range .Messages}} 
-	mavlink.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.Size}}, {{.CRCExtra}}, func(p mavlink.Packet) (mavlink.Message, error) {
+	register.Register(MSG_ID_{{.Name}}, "MSG_ID_{{.Name}}", {{.Size}}, {{.CRCExtra}}, func(p packet.Packet) (message.Message, error) {
 		msg := new({{.Name | UpperCamelCase}})
 		if err := msg.Unmarshal(p.Payload()); err != nil {
 			return nil, err
@@ -610,7 +703,7 @@ func init() { {{range .Messages}}
 	}){{end}}
 } {{end}}
 `
-	return template.Must(template.New("msgIds").Funcs(funcMap).Parse(msgIDTmpl)).Execute(w, d)
+	return template.Must(template.New("init").Funcs(funcMap).Parse(initTmpl)).Execute(w, d)
 }
 
 var reTypeIsArray = regexp.MustCompile(`^(.+?)\[([0-9]+)\]$`)
@@ -629,7 +722,7 @@ type {{$name}} struct { {{range .Fields}}
 }
 
 // MsgID (generated function)
-func (m *{{$name}}) MsgID() mavlink.MessageID {
+func (m *{{$name}}) MsgID() message.MessageID {
 	return MSG_ID_{{.Name}}
 }
 

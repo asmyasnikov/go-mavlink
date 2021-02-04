@@ -14,51 +14,17 @@ func decoderTemplate() string {
 		"import (\n" +
 		"\t\"bufio\"\n" +
 		"\t\"io\"\n" +
+		"    \"{{.CommonPackageURL}}/packet\"\n" +
+		"    \"{{.CommonPackageURL}}/parser\"\n" +
 		")\n" +
-		"\n" +
-		"// Packet is the interface implemented by frames of every supported version.\n" +
-		"type Packet interface {\n" +
-		"\t// Nil returns true if packet is nil\n" +
-		"\tNil() bool\n" +
-		"\t// SysID returns system id\n" +
-		"\tSysID() uint8\n" +
-		"\t// CompID returns component id\n" +
-		"\tCompID() uint8\n" +
-		"\t// MsgID returns message id\n" +
-		"\tMsgID() MessageID\n" +
-		"\t// Checksum returns packet checksum\n" +
-		"\tChecksum() uint16\n" +
-		"\t// SeqID returns packet sequence number\n" +
-		"\tSeqID() uint8\n" +
-		"\t// Payload returns packet payload\n" +
-		"\tPayload() []byte\n" +
-		"\t// Assign assign internal fields from right hand side packet\n" +
-		"\t//Assign(rhs Packet) error\n" +
-		"\t// Copy returns deep copy of packet\n" +
-		"\tCopy() Packet\n" +
-		"\t// Message returns dialect message\n" +
-		"\tMessage() (Message, error)\n" +
-		"\t// String returns string representation of packet\n" +
-		"\tString() string\n" +
-		"    // Marshal encodes Packet to byte slice\n" +
-		"    Marshal() ([]byte, error)\n" +
-		"    // Unmarshal parses PAYLOAD and stores the result in Packet\n" +
-		"    Unmarshal(payload []byte) error\n" +
-		"}\n" +
-		"\n" +
-		"// Parser interface is abstract of parsers\n" +
-		"type Parser interface {\n" +
-		"\tParseChar(c byte) (Packet, error)\n" +
-		"    Destroy()\n" +
-		"}\n" +
 		"\n" +
 		"// Decoder struct provide decoding processor\n" +
 		"type Decoder struct {\n" +
 		"\treader      io.ByteReader\n" +
-		"\tparsers     []Parser\n" +
+		"\tparsers     []parser.Parser\n" +
 		"}\n" +
 		"\n" +
-		"func (d *Decoder) clearParser(parser Parser) {\n" +
+		"func (d *Decoder) clearParser(parser parser.Parser) {\n" +
 		"\tparser.Destroy()\n" +
 		"}\n" +
 		"\n" +
@@ -70,7 +36,7 @@ func decoderTemplate() string {
 		"}\n" +
 		"\n" +
 		"// Decode decode input stream to packet. Method return error or nil\n" +
-		"func (d *Decoder) Decode() (Packet, error) {\n" +
+		"func (d *Decoder) Decode() (packet.Packet, error) {\n" +
 		"\tfor {\n" +
 		"\t\tc, err := d.reader.ReadByte()\n" +
 		"\t\tif err != nil {\n" +
@@ -78,11 +44,11 @@ func decoderTemplate() string {
 		"\t\t}\n" +
 		"\t\tswitch c {\n" +
 		"\t\tcase 0xfe: // mavlink1\n" +
-		"\t\t\td.parsers = append(d.parsers, NewParserV1())\n" +
+		"\t\t\td.parsers = append(d.parsers, parser.NewParserV1())\n" +
 		"\t\tcase 0xfd: // mavlink2\n" +
-		"\t\t\td.parsers = append(d.parsers, NewParserV2())\n" +
+		"\t\t\td.parsers = append(d.parsers, parser.NewParserV2())\n" +
 		"\t\t}\n" +
-		"\t\tparsers := make([]Parser, 0, len(d.parsers))\n" +
+		"\t\tparsers := make([]parser.Parser, 0, len(d.parsers))\n" +
 		"\t\tfor _, parser := range d.parsers {\n" +
 		"\t\t\tif p, err := parser.ParseChar(c); err != nil {\n" +
 		"\t\t\t\td.clearParser(parser)\n" +
@@ -108,12 +74,8 @@ func decoderTemplate() string {
 		"func NewDecoder(r io.Reader) *Decoder {\n" +
 		"\treturn &Decoder{\n" +
 		"\t\treader:  byteReader(r),\n" +
-		"\t\tparsers: make([]Parser, 0),\n" +
+		"\t\tparsers: make([]parser.Parser, 0),\n" +
 		"\t}\n" +
-		"}\n" +
-		"\n" +
-		"func u16ToBytes(v uint16) []byte {\n" +
-		"\treturn []byte{byte(v & 0xff), byte(v >> 8)}\n" +
 		"}\n" +
 		""
 	return tmpl

@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"flag"
 	"github.com/asmyasnikov/go-mavlink/mavlink"
-	_ "github.com/asmyasnikov/go-mavlink/mavlink/ardupilotmega"
+	_ "github.com/asmyasnikov/go-mavlink/mavlink/dialects/ardupilotmega"
 	"io"
 	"log"
 	"os"

@@ -9,7 +9,7 @@ package main
 // messageTemplate is a generated function returning the template as a string.
 // That string should be parsed by the functions of the golang's template package.
 func messageTemplate() string {
-	var tmpl = "package mavlink\n" +
+	var tmpl = "package message\n" +
 		"\n" +
 		"// MessageID typedef\n" +
 		"type MessageID uint32\n" +
