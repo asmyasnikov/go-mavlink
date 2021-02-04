@@ -20,10 +20,7 @@ func init() {
 			50,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Heartbeat)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 	} {

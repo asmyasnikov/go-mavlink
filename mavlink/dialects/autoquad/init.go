@@ -20,10 +20,7 @@ func init() {
 			241,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AqTelemetryF)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_AQ_ESC_TELEMETRY: {
@@ -32,10 +29,7 @@ func init() {
 			115,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AqEscTelemetry)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SYS_STATUS: {
@@ -44,10 +38,7 @@ func init() {
 			124,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SysStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SYSTEM_TIME: {
@@ -56,10 +47,7 @@ func init() {
 			137,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SystemTime)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_PING: {
@@ -68,10 +56,7 @@ func init() {
 			237,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Ping)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_CHANGE_OPERATOR_CONTROL: {
@@ -80,10 +65,7 @@ func init() {
 			217,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ChangeOperatorControl)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_CHANGE_OPERATOR_CONTROL_ACK: {
@@ -92,10 +74,7 @@ func init() {
 			104,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ChangeOperatorControlAck)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_AUTH_KEY: {
@@ -104,10 +83,7 @@ func init() {
 			119,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AuthKey)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LINK_NODE_STATUS: {
@@ -116,10 +92,7 @@ func init() {
 			117,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LinkNodeStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SET_MODE: {
@@ -128,10 +101,7 @@ func init() {
 			89,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SetMode)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_PARAM_ACK_TRANSACTION: {
@@ -140,10 +110,7 @@ func init() {
 			137,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ParamAckTransaction)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_PARAM_REQUEST_READ: {
@@ -152,10 +119,7 @@ func init() {
 			214,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ParamRequestRead)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_PARAM_REQUEST_LIST: {
@@ -164,10 +128,7 @@ func init() {
 			159,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ParamRequestList)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_PARAM_VALUE: {
@@ -176,10 +137,7 @@ func init() {
 			220,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ParamValue)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_PARAM_SET: {
@@ -188,10 +146,7 @@ func init() {
 			168,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ParamSet)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS_RAW_INT: {
@@ -200,10 +155,7 @@ func init() {
 			24,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GpsRawInt)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS_STATUS: {
@@ -212,10 +164,7 @@ func init() {
 			23,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GpsStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SCALED_IMU: {
@@ -224,10 +173,7 @@ func init() {
 			170,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ScaledImu)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_RAW_IMU: {
@@ -236,10 +182,7 @@ func init() {
 			144,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(RawImu)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_RAW_PRESSURE: {
@@ -248,10 +191,7 @@ func init() {
 			67,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(RawPressure)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SCALED_PRESSURE: {
@@ -260,10 +200,7 @@ func init() {
 			115,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ScaledPressure)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ATTITUDE: {
@@ -272,10 +209,7 @@ func init() {
 			39,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Attitude)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ATTITUDE_QUATERNION: {
@@ -284,10 +218,7 @@ func init() {
 			246,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AttitudeQuaternion)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOCAL_POSITION_NED: {
@@ -296,10 +227,7 @@ func init() {
 			185,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LocalPositionNed)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GLOBAL_POSITION_INT: {
@@ -308,10 +236,7 @@ func init() {
 			104,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GlobalPositionInt)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_RC_CHANNELS_SCALED: {
@@ -320,10 +245,7 @@ func init() {
 			237,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(RcChannelsScaled)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_RC_CHANNELS_RAW: {
@@ -332,10 +254,7 @@ func init() {
 			244,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(RcChannelsRaw)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SERVO_OUTPUT_RAW: {
@@ -344,10 +263,7 @@ func init() {
 			222,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ServoOutputRaw)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_REQUEST_PARTIAL_LIST: {
@@ -356,10 +272,7 @@ func init() {
 			212,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionRequestPartialList)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_WRITE_PARTIAL_LIST: {
@@ -368,10 +281,7 @@ func init() {
 			9,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionWritePartialList)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_ITEM: {
@@ -380,10 +290,7 @@ func init() {
 			254,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionItem)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_REQUEST: {
@@ -392,10 +299,7 @@ func init() {
 			230,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionRequest)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_SET_CURRENT: {
@@ -404,10 +308,7 @@ func init() {
 			28,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionSetCurrent)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_CURRENT: {
@@ -416,10 +317,7 @@ func init() {
 			28,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionCurrent)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_REQUEST_LIST: {
@@ -428,10 +326,7 @@ func init() {
 			132,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionRequestList)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_COUNT: {
@@ -440,10 +335,7 @@ func init() {
 			221,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionCount)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_CLEAR_ALL: {
@@ -452,10 +344,7 @@ func init() {
 			232,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionClearAll)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_ITEM_REACHED: {
@@ -464,10 +353,7 @@ func init() {
 			11,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionItemReached)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_ACK: {
@@ -476,10 +362,7 @@ func init() {
 			153,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionAck)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SET_GPS_GLOBAL_ORIGIN: {
@@ -488,10 +371,7 @@ func init() {
 			41,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SetGpsGlobalOrigin)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS_GLOBAL_ORIGIN: {
@@ -500,10 +380,7 @@ func init() {
 			39,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GpsGlobalOrigin)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_PARAM_MAP_RC: {
@@ -512,10 +389,7 @@ func init() {
 			78,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ParamMapRc)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_REQUEST_INT: {
@@ -524,10 +398,7 @@ func init() {
 			196,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionRequestInt)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_CHANGED: {
@@ -536,10 +407,7 @@ func init() {
 			132,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionChanged)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SAFETY_SET_ALLOWED_AREA: {
@@ -548,10 +416,7 @@ func init() {
 			15,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SafetySetAllowedArea)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SAFETY_ALLOWED_AREA: {
@@ -560,10 +425,7 @@ func init() {
 			3,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SafetyAllowedArea)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ATTITUDE_QUATERNION_COV: {
@@ -572,10 +434,7 @@ func init() {
 			167,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AttitudeQuaternionCov)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_NAV_CONTROLLER_OUTPUT: {
@@ -584,10 +443,7 @@ func init() {
 			183,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(NavControllerOutput)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GLOBAL_POSITION_INT_COV: {
@@ -596,10 +452,7 @@ func init() {
 			119,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GlobalPositionIntCov)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOCAL_POSITION_NED_COV: {
@@ -608,10 +461,7 @@ func init() {
 			191,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LocalPositionNedCov)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_RC_CHANNELS: {
@@ -620,10 +470,7 @@ func init() {
 			118,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(RcChannels)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_REQUEST_DATA_STREAM: {
@@ -632,10 +479,7 @@ func init() {
 			148,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(RequestDataStream)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_DATA_STREAM: {
@@ -644,10 +488,7 @@ func init() {
 			21,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(DataStream)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MANUAL_CONTROL: {
@@ -656,10 +497,7 @@ func init() {
 			243,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ManualControl)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_RC_CHANNELS_OVERRIDE: {
@@ -668,10 +506,7 @@ func init() {
 			124,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(RcChannelsOverride)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MISSION_ITEM_INT: {
@@ -680,10 +515,7 @@ func init() {
 			38,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MissionItemInt)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_VFR_HUD: {
@@ -692,10 +524,7 @@ func init() {
 			20,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(VfrHud)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_COMMAND_INT: {
@@ -704,10 +533,7 @@ func init() {
 			158,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(CommandInt)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_COMMAND_LONG: {
@@ -716,10 +542,7 @@ func init() {
 			152,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(CommandLong)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_COMMAND_ACK: {
@@ -728,10 +551,7 @@ func init() {
 			143,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(CommandAck)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_COMMAND_CANCEL: {
@@ -740,10 +560,7 @@ func init() {
 			14,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(CommandCancel)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MANUAL_SETPOINT: {
@@ -752,10 +569,7 @@ func init() {
 			106,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ManualSetpoint)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SET_ATTITUDE_TARGET: {
@@ -764,10 +578,7 @@ func init() {
 			49,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SetAttitudeTarget)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ATTITUDE_TARGET: {
@@ -776,10 +587,7 @@ func init() {
 			22,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AttitudeTarget)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SET_POSITION_TARGET_LOCAL_NED: {
@@ -788,10 +596,7 @@ func init() {
 			143,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SetPositionTargetLocalNed)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_POSITION_TARGET_LOCAL_NED: {
@@ -800,10 +605,7 @@ func init() {
 			140,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(PositionTargetLocalNed)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SET_POSITION_TARGET_GLOBAL_INT: {
@@ -812,10 +614,7 @@ func init() {
 			5,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SetPositionTargetGlobalInt)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_POSITION_TARGET_GLOBAL_INT: {
@@ -824,10 +623,7 @@ func init() {
 			150,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(PositionTargetGlobalInt)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET: {
@@ -836,10 +632,7 @@ func init() {
 			231,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LocalPositionNedSystemGlobalOffset)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIL_STATE: {
@@ -848,10 +641,7 @@ func init() {
 			183,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HilState)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIL_CONTROLS: {
@@ -860,10 +650,7 @@ func init() {
 			63,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HilControls)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIL_RC_INPUTS_RAW: {
@@ -872,10 +659,7 @@ func init() {
 			54,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HilRcInputsRaw)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIL_ACTUATOR_CONTROLS: {
@@ -884,10 +668,7 @@ func init() {
 			47,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HilActuatorControls)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_OPTICAL_FLOW: {
@@ -896,10 +677,7 @@ func init() {
 			175,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(OpticalFlow)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE: {
@@ -908,10 +686,7 @@ func init() {
 			102,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GlobalVisionPositionEstimate)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_VISION_POSITION_ESTIMATE: {
@@ -920,10 +695,7 @@ func init() {
 			158,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(VisionPositionEstimate)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_VISION_SPEED_ESTIMATE: {
@@ -932,10 +704,7 @@ func init() {
 			208,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(VisionSpeedEstimate)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_VICON_POSITION_ESTIMATE: {
@@ -944,10 +713,7 @@ func init() {
 			56,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ViconPositionEstimate)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIGHRES_IMU: {
@@ -956,10 +722,7 @@ func init() {
 			93,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HighresImu)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_OPTICAL_FLOW_RAD: {
@@ -968,10 +731,7 @@ func init() {
 			138,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(OpticalFlowRad)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIL_SENSOR: {
@@ -980,10 +740,7 @@ func init() {
 			108,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HilSensor)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SIM_STATE: {
@@ -992,10 +749,7 @@ func init() {
 			32,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SimState)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_RADIO_STATUS: {
@@ -1004,10 +758,7 @@ func init() {
 			185,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(RadioStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_FILE_TRANSFER_PROTOCOL: {
@@ -1016,10 +767,7 @@ func init() {
 			84,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(FileTransferProtocol)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_TIMESYNC: {
@@ -1028,10 +776,7 @@ func init() {
 			34,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Timesync)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_CAMERA_TRIGGER: {
@@ -1040,10 +785,7 @@ func init() {
 			174,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(CameraTrigger)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIL_GPS: {
@@ -1052,10 +794,7 @@ func init() {
 			124,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HilGps)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIL_OPTICAL_FLOW: {
@@ -1064,10 +803,7 @@ func init() {
 			237,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HilOpticalFlow)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIL_STATE_QUATERNION: {
@@ -1076,10 +812,7 @@ func init() {
 			4,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HilStateQuaternion)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SCALED_IMU2: {
@@ -1088,10 +821,7 @@ func init() {
 			76,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ScaledImu2)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOG_REQUEST_LIST: {
@@ -1100,10 +830,7 @@ func init() {
 			128,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LogRequestList)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOG_ENTRY: {
@@ -1112,10 +839,7 @@ func init() {
 			56,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LogEntry)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOG_REQUEST_DATA: {
@@ -1124,10 +848,7 @@ func init() {
 			116,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LogRequestData)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOG_DATA: {
@@ -1136,10 +857,7 @@ func init() {
 			134,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LogData)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOG_ERASE: {
@@ -1148,10 +866,7 @@ func init() {
 			237,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LogErase)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LOG_REQUEST_END: {
@@ -1160,10 +875,7 @@ func init() {
 			203,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LogRequestEnd)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS_INJECT_DATA: {
@@ -1172,10 +884,7 @@ func init() {
 			250,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GpsInjectData)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS2_RAW: {
@@ -1184,10 +893,7 @@ func init() {
 			87,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Gps2Raw)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_POWER_STATUS: {
@@ -1196,10 +902,7 @@ func init() {
 			203,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(PowerStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SERIAL_CONTROL: {
@@ -1208,10 +911,7 @@ func init() {
 			220,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SerialControl)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS_RTK: {
@@ -1220,10 +920,7 @@ func init() {
 			25,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GpsRtk)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS2_RTK: {
@@ -1232,10 +929,7 @@ func init() {
 			226,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Gps2Rtk)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SCALED_IMU3: {
@@ -1244,10 +938,7 @@ func init() {
 			46,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ScaledImu3)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_DATA_TRANSMISSION_HANDSHAKE: {
@@ -1256,10 +947,7 @@ func init() {
 			29,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(DataTransmissionHandshake)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ENCAPSULATED_DATA: {
@@ -1268,10 +956,7 @@ func init() {
 			223,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(EncapsulatedData)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_DISTANCE_SENSOR: {
@@ -1280,10 +965,7 @@ func init() {
 			85,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(DistanceSensor)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_TERRAIN_REQUEST: {
@@ -1292,10 +974,7 @@ func init() {
 			6,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(TerrainRequest)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_TERRAIN_DATA: {
@@ -1304,10 +983,7 @@ func init() {
 			229,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(TerrainData)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_TERRAIN_CHECK: {
@@ -1316,10 +992,7 @@ func init() {
 			203,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(TerrainCheck)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_TERRAIN_REPORT: {
@@ -1328,10 +1001,7 @@ func init() {
 			1,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(TerrainReport)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SCALED_PRESSURE2: {
@@ -1340,10 +1010,7 @@ func init() {
 			195,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ScaledPressure2)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ATT_POS_MOCAP: {
@@ -1352,10 +1019,7 @@ func init() {
 			109,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AttPosMocap)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SET_ACTUATOR_CONTROL_TARGET: {
@@ -1364,10 +1028,7 @@ func init() {
 			168,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SetActuatorControlTarget)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ACTUATOR_CONTROL_TARGET: {
@@ -1376,10 +1037,7 @@ func init() {
 			181,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ActuatorControlTarget)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ALTITUDE: {
@@ -1388,10 +1046,7 @@ func init() {
 			47,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Altitude)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_RESOURCE_REQUEST: {
@@ -1400,10 +1055,7 @@ func init() {
 			72,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ResourceRequest)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SCALED_PRESSURE3: {
@@ -1412,10 +1064,7 @@ func init() {
 			131,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ScaledPressure3)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_FOLLOW_TARGET: {
@@ -1424,10 +1073,7 @@ func init() {
 			127,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(FollowTarget)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_CONTROL_SYSTEM_STATE: {
@@ -1436,10 +1082,7 @@ func init() {
 			103,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ControlSystemState)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_BATTERY_STATUS: {
@@ -1448,10 +1091,7 @@ func init() {
 			154,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(BatteryStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_AUTOPILOT_VERSION: {
@@ -1460,10 +1100,7 @@ func init() {
 			178,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AutopilotVersion)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_LANDING_TARGET: {
@@ -1472,10 +1109,7 @@ func init() {
 			200,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(LandingTarget)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_FENCE_STATUS: {
@@ -1484,10 +1118,7 @@ func init() {
 			189,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(FenceStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MAG_CAL_REPORT: {
@@ -1496,10 +1127,7 @@ func init() {
 			36,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MagCalReport)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_EFI_STATUS: {
@@ -1508,10 +1136,7 @@ func init() {
 			208,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(EfiStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ESTIMATOR_STATUS: {
@@ -1520,10 +1145,7 @@ func init() {
 			163,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(EstimatorStatus)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_WIND_COV: {
@@ -1532,10 +1154,7 @@ func init() {
 			105,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(WindCov)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS_INPUT: {
@@ -1544,10 +1163,7 @@ func init() {
 			151,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GpsInput)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_GPS_RTCM_DATA: {
@@ -1556,10 +1172,7 @@ func init() {
 			35,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(GpsRtcmData)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIGH_LATENCY: {
@@ -1568,10 +1181,7 @@ func init() {
 			150,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HighLatency)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HIGH_LATENCY2: {
@@ -1580,10 +1190,7 @@ func init() {
 			179,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HighLatency2)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_VIBRATION: {
@@ -1592,10 +1199,7 @@ func init() {
 			90,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Vibration)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HOME_POSITION: {
@@ -1604,10 +1208,7 @@ func init() {
 			104,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(HomePosition)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_SET_HOME_POSITION: {
@@ -1616,10 +1217,7 @@ func init() {
 			85,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(SetHomePosition)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MESSAGE_INTERVAL: {
@@ -1628,10 +1226,7 @@ func init() {
 			95,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MessageInterval)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_EXTENDED_SYS_STATE: {
@@ -1640,10 +1235,7 @@ func init() {
 			130,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(ExtendedSysState)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_ADSB_VEHICLE: {
@@ -1652,10 +1244,7 @@ func init() {
 			184,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(AdsbVehicle)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_COLLISION: {
@@ -1664,10 +1253,7 @@ func init() {
 			81,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Collision)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_V2_EXTENSION: {
@@ -1676,10 +1262,7 @@ func init() {
 			8,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(V2Extension)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_MEMORY_VECT: {
@@ -1688,10 +1271,7 @@ func init() {
 			204,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(MemoryVect)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_DEBUG_VECT: {
@@ -1700,10 +1280,7 @@ func init() {
 			49,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(DebugVect)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_NAMED_VALUE_FLOAT: {
@@ -1712,10 +1289,7 @@ func init() {
 			170,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(NamedValueFloat)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_NAMED_VALUE_INT: {
@@ -1724,10 +1298,7 @@ func init() {
 			44,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(NamedValueInt)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_STATUSTEXT: {
@@ -1736,10 +1307,7 @@ func init() {
 			83,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Statustext)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_DEBUG: {
@@ -1748,10 +1316,7 @@ func init() {
 			46,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Debug)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 		MSG_ID_HEARTBEAT: {
@@ -1760,10 +1325,7 @@ func init() {
 			50,
 			func(p packet.Packet) (message.Message, error) {
 				msg := new(Heartbeat)
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},
 	} {

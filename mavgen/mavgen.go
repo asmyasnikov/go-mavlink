@@ -695,10 +695,7 @@ func init() {
 			{{.CRCExtra}},
 			func(p packet.Packet) (message.Message, error) {
 				msg := new({{.Name | UpperCamelCase}})
-				if err := msg.Unmarshal(p.Payload()); err != nil {
-					return nil, err
-				}
-				return msg, nil
+				return msg, msg.Unmarshal(p.Payload())
 			},
 		},{{end}}
 	} {
