@@ -52,12 +52,12 @@ var _parsersPoolV2 = &sync.Pool{
 	},
 }
 
-// Reset set parser to idle state
+// NewParserV2 returns Parser from inner pool
 func NewParserV2() Parser {
 	return _parsersPoolV2.Get().(Parser)
 }
 
-// Reset set parser to idle state
+// Destroy set parser to idle state and return it into inner pool
 func (p *parser2) Destroy() {
 	p.state = MAVLINK2_PARSE_STATE_UNINIT
 	if p.crc != nil {
@@ -124,11 +124,11 @@ func (p *parser2) parseChar(c byte) (*packet2, error) {
 			p.state = MAVLINK2_PARSE_STATE_GOT_PAYLOAD
 		}
 	case MAVLINK2_PARSE_STATE_GOT_PAYLOAD:
-		if info, err := register.Info(p.msgID); err != nil {
+		info, err := register.Info(p.msgID)
+		if err != nil {
 			return nil, err
-		} else {
-			p.crc.WriteByte(info.Extra)
 		}
+		p.crc.WriteByte(info.Extra)
 		if c != uint8(p.crc.Sum16()&0xFF) {
 			p.state = MAVLINK2_PARSE_STATE_GOT_BAD_CRC
 			return nil, errors.ErrCrcFail
@@ -142,10 +142,9 @@ func (p *parser2) parseChar(c byte) (*packet2, error) {
 				return p.copy(), nil
 			}
 			p.state = MAVLINK2_PARSE_STATE_WAIT_SIGNATURE
-		} else {
-			p.state = MAVLINK2_PARSE_STATE_GOT_BAD_CRC
-			return nil, errors.ErrCrcFail
 		}
+		p.state = MAVLINK2_PARSE_STATE_GOT_BAD_CRC
+		return nil, errors.ErrCrcFail
 	case MAVLINK2_PARSE_STATE_WAIT_SIGNATURE:
 		p.signature = append(p.signature, c)
 		if len([]byte(p.signature)) == SIGNATURE_LEN {

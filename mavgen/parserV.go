@@ -63,12 +63,12 @@ func parserVTemplate() string {
 		"\t},\n" +
 		"}\n" +
 		"\n" +
-		"// Reset set parser to idle state\n" +
+		"// NewParserV{{.MavlinkVersion}} returns Parser from inner pool\n" +
 		"func NewParserV{{.MavlinkVersion}}() Parser {\n" +
 		"    return _parsersPoolV{{.MavlinkVersion}}.Get().(Parser)\n" +
 		"}\n" +
 		"\n" +
-		"// Reset set parser to idle state\n" +
+		"// Destroy set parser to idle state and return it into inner pool\n" +
 		"func (p *parser{{.MavlinkVersion}}) Destroy() {\n" +
 		"\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT\n" +
 		"\tif p.crc != nil {\n" +
@@ -139,11 +139,11 @@ func parserVTemplate() string {
 		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD\n" +
 		"\t\t}\n" +
 		"\tcase MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD:\n" +
-		"        if info, err := register.Info(p.msgID); err != nil {\n" +
+		"\t    info, err := register.Info(p.msgID)\n" +
+		"        if err != nil {\n" +
 		"            return nil, err\n" +
-		"        } else {\n" +
-		"            p.crc.WriteByte(info.Extra)\n" +
 		"        }\n" +
+		"        p.crc.WriteByte(info.Extra)\n" +
 		"\t\tif c != uint8(p.crc.Sum16()&0xFF) {\n" +
 		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC\n" +
 		"\t\t\treturn nil, errors.ErrCrcFail\n" +
@@ -162,10 +162,9 @@ func parserVTemplate() string {
 		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
 		"\t\t\treturn p.copy(), nil\n" +
 		"{{- end}}\n" +
-		"\t\t} else {\n" +
-		"            p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC\n" +
-		"            return nil, errors.ErrCrcFail\n" +
 		"        }\n" +
+		"        p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC\n" +
+		"        return nil, errors.ErrCrcFail\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"\tcase MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE:\n" +
 		"\t    p.signature = append(p.signature, c)\n" +

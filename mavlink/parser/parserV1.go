@@ -47,12 +47,12 @@ var _parsersPoolV1 = &sync.Pool{
 	},
 }
 
-// Reset set parser to idle state
+// NewParserV1 returns Parser from inner pool
 func NewParserV1() Parser {
 	return _parsersPoolV1.Get().(Parser)
 }
 
-// Reset set parser to idle state
+// Destroy set parser to idle state and return it into inner pool
 func (p *parser1) Destroy() {
 	p.state = MAVLINK1_PARSE_STATE_UNINIT
 	if p.crc != nil {
@@ -103,11 +103,11 @@ func (p *parser1) parseChar(c byte) (*packet1, error) {
 			p.state = MAVLINK1_PARSE_STATE_GOT_PAYLOAD
 		}
 	case MAVLINK1_PARSE_STATE_GOT_PAYLOAD:
-		if info, err := register.Info(p.msgID); err != nil {
+		info, err := register.Info(p.msgID)
+		if err != nil {
 			return nil, err
-		} else {
-			p.crc.WriteByte(info.Extra)
 		}
+		p.crc.WriteByte(info.Extra)
 		if c != uint8(p.crc.Sum16()&0xFF) {
 			p.state = MAVLINK1_PARSE_STATE_GOT_BAD_CRC
 			return nil, errors.ErrCrcFail
@@ -118,10 +118,9 @@ func (p *parser1) parseChar(c byte) (*packet1, error) {
 			p.checksum = p.crc.Sum16()
 			p.state = MAVLINK1_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
-		} else {
-			p.state = MAVLINK1_PARSE_STATE_GOT_BAD_CRC
-			return nil, errors.ErrCrcFail
 		}
+		p.state = MAVLINK1_PARSE_STATE_GOT_BAD_CRC
+		return nil, errors.ErrCrcFail
 	}
 	return nil, nil
 }

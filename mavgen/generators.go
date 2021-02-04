@@ -120,9 +120,10 @@ func generateCode(dialectDir string, data templateData, templateName string, tmp
 	}
 	formatted, err := format.Source(buffer.Bytes())
 	if err != nil {
+		for i, s := range strings.Split(buffer.String(), "\n") {
+			fmt.Println(i, ": ", s)
+		}
 		log.Fatal("couldn't format generated "+templateName+".go: ", err)
-		fmt.Print(buffer.Bytes())
-		formatted = buffer.Bytes()
 	}
 	n, err = file.Write(formatted)
 	if err != nil {

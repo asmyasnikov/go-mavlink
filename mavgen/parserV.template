@@ -52,12 +52,12 @@ var _parsersPoolV{{.MavlinkVersion}} = &sync.Pool{
 	},
 }
 
-// Reset set parser to idle state
+// NewParserV{{.MavlinkVersion}} returns Parser from inner pool
 func NewParserV{{.MavlinkVersion}}() Parser {
     return _parsersPoolV{{.MavlinkVersion}}.Get().(Parser)
 }
 
-// Reset set parser to idle state
+// Destroy set parser to idle state and return it into inner pool
 func (p *parser{{.MavlinkVersion}}) Destroy() {
 	p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT
 	if p.crc != nil {
@@ -128,11 +128,11 @@ func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}
 			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD
 		}
 	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD:
-        if info, err := register.Info(p.msgID); err != nil {
+	    info, err := register.Info(p.msgID)
+        if err != nil {
             return nil, err
-        } else {
-            p.crc.WriteByte(info.Extra)
         }
+        p.crc.WriteByte(info.Extra)
 		if c != uint8(p.crc.Sum16()&0xFF) {
 			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC
 			return nil, errors.ErrCrcFail
@@ -151,10 +151,9 @@ func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}
 			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
 {{- end}}
-		} else {
-            p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC
-            return nil, errors.ErrCrcFail
         }
+        p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC
+        return nil, errors.ErrCrcFail
 {{- if eq .MavlinkVersion 2}}
 	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE:
 	    p.signature = append(p.signature, c)
