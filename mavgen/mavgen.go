@@ -425,10 +425,9 @@ func GoTypeInfo(s string) (string, int, int) {
 		name, bitSize := c2goPrimitive(matches[1])
 		name = "[]" + name
 		return name, bitSize, arrayLen
-	} else {
-		name, bitSize := c2goPrimitive(s)
-		return name, bitSize, 0
 	}
+	name, bitSize := c2goPrimitive(s)
+	return name, bitSize, 0
 }
 
 func (d *Dialect) needImportParentMavlink() bool {
