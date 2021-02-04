@@ -23,6 +23,7 @@ type MAVLINK_IFLAG uint8
 // Signature type
 type Signature []byte
 
+// NewSignature creates signature
 func NewSignature(linkID byte, timestamp time.Time, signature [6]byte) Signature {
 	s := make([]byte, SIGNATURE_LEN)
 	s[0] = linkID
@@ -40,16 +41,6 @@ func NewSignature(linkID byte, timestamp time.Time, signature [6]byte) Signature
 // LinkID returns link id
 func (s Signature) LinkID() byte {
 	return s[0]
-}
-
-func uint48Encode(buf []byte, in uint64) []byte {
-	buf[0] = byte(in)
-	buf[1] = byte(in >> 8)
-	buf[2] = byte(in >> 16)
-	buf[3] = byte(in >> 24)
-	buf[4] = byte(in >> 32)
-	buf[5] = byte(in >> 40)
-	return buf[:6]
 }
 
 // 1st January 2015 GMT https://mavlink.io/en/guide/message_signing.html#timestamps
@@ -98,6 +89,7 @@ type packet2 struct {
 	signature     Signature
 }
 
+// NewPacketV2 creates new mavlink2.Packet
 func NewPacketV2(sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {
 	payload, err := message.Marshal()
 	if err != nil {

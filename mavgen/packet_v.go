@@ -31,6 +31,7 @@ func packet_vTemplate() string {
 		"// Signature type\n" +
 		"type Signature []byte\n" +
 		"\n" +
+		"// NewSignature creates signature\n" +
 		"func NewSignature(linkID byte, timestamp time.Time, signature [6]byte) Signature {\n" +
 		"    s := make([]byte, SIGNATURE_LEN)\n" +
 		"    s[0] = linkID\n" +
@@ -48,16 +49,6 @@ func packet_vTemplate() string {
 		"// LinkID returns link id\n" +
 		"func (s Signature) LinkID() byte {\n" +
 		"    return s[0]\n" +
-		"}\n" +
-		"\n" +
-		"func uint48Encode(buf []byte, in uint64) []byte {\n" +
-		"\tbuf[0] = byte(in)\n" +
-		"\tbuf[1] = byte(in >> 8)\n" +
-		"\tbuf[2] = byte(in >> 16)\n" +
-		"\tbuf[3] = byte(in >> 24)\n" +
-		"\tbuf[4] = byte(in >> 32)\n" +
-		"\tbuf[5] = byte(in >> 40)\n" +
-		"\treturn buf[:6]\n" +
 		"}\n" +
 		"\n" +
 		"// 1st January 2015 GMT https://mavlink.io/en/guide/message_signing.html#timestamps\n" +
@@ -114,6 +105,7 @@ func packet_vTemplate() string {
 		"{{- end}}\n" +
 		"}\n" +
 		"\n" +
+		"// NewPacketV{{.MavlinkVersion}} creates new mavlink{{.MavlinkVersion}}.Packet\n" +
 		"func NewPacketV{{.MavlinkVersion}}(sysID uint8, compID uint8, seqID uint8, message message.Message) (packet.Packet, error) {\n" +
 		"\tpayload, err := message.Marshal()\n" +
 		"\tif err != nil {\n" +
