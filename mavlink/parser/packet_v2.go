@@ -23,6 +23,20 @@ type MAVLINK_IFLAG uint8
 // Signature type
 type Signature []byte
 
+func NewSignature(linkID byte, timestamp time.Time, signature [6]byte) Signature {
+	s := make([]byte, SIGNATURE_LEN)
+	s[0] = linkID
+	t := timestamp.Sub(signatureReferenceDate) / (time.Microsecond * 10)
+	s[1] = byte(t)
+	s[2] = byte(t >> 8)
+	s[3] = byte(t >> 16)
+	s[4] = byte(t >> 24)
+	s[5] = byte(t >> 32)
+	s[6] = byte(t >> 40)
+	copy(s[7:], signature[:])
+	return s
+}
+
 // LinkID returns link id
 func (s Signature) LinkID() byte {
 	return s[0]
@@ -43,7 +57,7 @@ var signatureReferenceDate = time.Date(2015, 01, 01, 0, 0, 0, 0, time.UTC)
 
 // Timestamp returns timestamp of signature
 func (s Signature) Timestamp() time.Time {
-	return signatureReferenceDate.Add(time.Duration(uint64(s[6])<<40|uint64(s[5])<<32|uint64(s[4])<<24|uint64(s[3])<<16|uint64(s[2])<<8|uint64(s[1])) * 10 * time.Microsecond)
+	return signatureReferenceDate.Add(time.Duration(uint64(s[6])<<40|uint64(s[5])<<32|uint64(s[4])<<24|uint64(s[3])<<16|uint64(s[2])<<8|uint64(s[1])) * (10 * time.Microsecond))
 }
 
 // Timestamp returns link id
@@ -150,7 +164,7 @@ func (p *packet2) assign(rhs *packet2) error {
 	p.msgID = rhs.msgID
 	p.checksum = rhs.checksum
 	p.payload = append([]byte(nil), rhs.payload...)
-	p.signature = Signature(append([]byte(nil), []byte(rhs.signature)...))
+	p.signature = append([]byte(nil), []byte(rhs.signature)...)
 	return nil
 }
 
@@ -173,7 +187,7 @@ func (p *packet2) copy() *packet2 {
 	copy.msgID = p.msgID
 	copy.checksum = p.checksum
 	copy.payload = append([]byte(nil), p.payload...)
-	copy.signature = Signature(append([]byte(nil), []byte(p.signature)...))
+	copy.signature = append([]byte(nil), []byte(p.signature)...)
 	return copy
 }
 
