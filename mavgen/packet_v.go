@@ -64,9 +64,14 @@ func packet_vTemplate() string {
 		"    }, nil\n" +
 		"}\n" +
 		"\n" +
-		"// Nil returns true if packet is nil\n" +
-		"func (p *packet{{.MavlinkVersion}}) Nil() bool {\n" +
+		"// IsNil returns true if packet is nil\n" +
+		"func (p *packet{{.MavlinkVersion}}) IsNil() bool {\n" +
 		"    return p == nil\n" +
+		"}\n" +
+		"\n" +
+		"// IsSigned checks whether the frame contains a signature. It does not validate the signature\n" +
+		"func (p *packet{{.MavlinkVersion}}) IsSigned() bool {\n" +
+		"\treturn {{if eq .MavlinkVersion 2 -}} (INCOMPAT_FLAGS(p.incompatFlags) & INCOMPAT_FLAGS_SIGNED) != 0 {{- else -}} false {{- end}}\n" +
 		"}\n" +
 		"\n" +
 		"// SysID returns system id\n" +

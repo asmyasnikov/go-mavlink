@@ -53,9 +53,14 @@ func NewPacketV{{.MavlinkVersion}}(sysID uint8, compID uint8, seqID uint8, messa
     }, nil
 }
 
-// Nil returns true if packet is nil
-func (p *packet{{.MavlinkVersion}}) Nil() bool {
+// IsNil returns true if packet is nil
+func (p *packet{{.MavlinkVersion}}) IsNil() bool {
     return p == nil
+}
+
+// IsSigned checks whether the frame contains a signature. It does not validate the signature
+func (p *packet{{.MavlinkVersion}}) IsSigned() bool {
+	return {{if eq .MavlinkVersion 2 -}} (INCOMPAT_FLAGS(p.incompatFlags) & INCOMPAT_FLAGS_SIGNED) != 0 {{- else -}} false {{- end}}
 }
 
 // SysID returns system id

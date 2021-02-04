@@ -50,7 +50,7 @@ func BenchmarkDecoder(b *testing.B) {
 			if err != nil {
 				b.Fatal(err)
 			}
-			if packet.Nil() {
+			if packet.IsNil() {
 				b.Fatal("nil packet")
 			}
 			received++

@@ -20,8 +20,10 @@ func packetTemplate() string {
 		"\n" +
 		"// Packet is the interface implemented by frames of every supported version.\n" +
 		"type Packet interface {\n" +
-		"\t// Nil returns true if packet is nil\n" +
-		"\tNil() bool\n" +
+		"\t// IsNil returns true if packet is nil\n" +
+		"\tIsNil() bool\n" +
+		"\t// IsSigned checks whether the frame contains a signature. It does not validate the signature\n" +
+		"\tIsSigned() bool\n" +
 		"\t// SysID returns system id\n" +
 		"\tSysID() uint8\n" +
 		"\t// CompID returns component id\n" +

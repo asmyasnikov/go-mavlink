@@ -47,7 +47,7 @@ func (d *Decoder) Decode() (packet.Packet, error) {
 		for _, parser := range d.parsers {
 			if p, err := parser.ParseChar(c); err != nil {
 				d.clearParser(parser)
-			} else if !p.Nil() {
+			} else if !p.IsNil() {
 				d.clearParsers()
 				return p, nil
 			} else {

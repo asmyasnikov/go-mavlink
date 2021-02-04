@@ -47,9 +47,14 @@ func NewPacketV1(sysID uint8, compID uint8, seqID uint8, message message.Message
 	}, nil
 }
 
-// Nil returns true if packet is nil
-func (p *packet1) Nil() bool {
+// IsNil returns true if packet is nil
+func (p *packet1) IsNil() bool {
 	return p == nil
+}
+
+// IsSigned checks whether the frame contains a signature. It does not validate the signature
+func (p *packet1) IsSigned() bool {
+	return false
 }
 
 // SysID returns system id

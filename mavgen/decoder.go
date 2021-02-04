@@ -52,7 +52,7 @@ func decoderTemplate() string {
 		"\t\tfor _, parser := range d.parsers {\n" +
 		"\t\t\tif p, err := parser.ParseChar(c); err != nil {\n" +
 		"\t\t\t\td.clearParser(parser)\n" +
-		"\t\t\t} else if !p.Nil() {\n" +
+		"\t\t\t} else if !p.IsNil() {\n" +
 		"\t\t\t\td.clearParsers()\n" +
 		"\t\t\t\treturn p, nil\n" +
 		"\t\t\t} else {\n" +
