@@ -59,7 +59,7 @@ func packet_vTemplate() string {
 		"    return signatureReferenceDate.Add(time.Duration(uint64(s[6])<<40 | uint64(s[5])<<32 | uint64(s[4])<<24 | uint64(s[3])<<16 | uint64(s[2])<<8 | uint64(s[1])) * (10 * time.Microsecond))\n" +
 		"}\n" +
 		"\n" +
-		"// Timestamp returns link id\n" +
+		"// Signature returns signature slice\n" +
 		"func (s Signature) Signature() (signature [6]byte) {\n" +
 		"    copy(signature[:], s[7:])\n" +
 		"    return signature\n" +

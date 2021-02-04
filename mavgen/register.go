@@ -46,9 +46,8 @@ func registerTemplate() string {
 		"func Info(msgID message.MessageID) (*MessageInfo, error) {\n" +
 		"\tif info, ok := supported[msgID]; ok {\n" +
 		"\t    return info, nil\n" +
-		"\t} else {\n" +
-		"\t    return nil, errors.ErrUnknownMsgID\n" +
 		"\t}\n" +
+		"    return nil, errors.ErrUnknownMsgID\n" +
 		"}"
 	return tmpl
 }

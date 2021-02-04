@@ -51,7 +51,7 @@ func (s Signature) Timestamp() time.Time {
 	return signatureReferenceDate.Add(time.Duration(uint64(s[6])<<40|uint64(s[5])<<32|uint64(s[4])<<24|uint64(s[3])<<16|uint64(s[2])<<8|uint64(s[1])) * (10 * time.Microsecond))
 }
 
-// Timestamp returns link id
+// Signature returns signature slice
 func (s Signature) Signature() (signature [6]byte) {
 	copy(signature[:], s[7:])
 	return signature

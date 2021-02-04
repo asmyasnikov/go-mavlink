@@ -421,11 +421,10 @@ func GoTypeInfo(s string) (string, int, int) {
 		arrayLen, _ := strconv.Atoi(matches[2])
 		if matches[1] == "char" {
 			return "string", 8, arrayLen
-		} else {
-			name, bitSize := c2goPrimitive(matches[1])
-			name = "[]" + name
-			return name, bitSize, arrayLen
 		}
+		name, bitSize := c2goPrimitive(matches[1])
+		name = "[]" + name
+		return name, bitSize, arrayLen
 	} else {
 		name, bitSize := c2goPrimitive(s)
 		return name, bitSize, 0
