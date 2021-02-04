@@ -220,7 +220,7 @@ func (f *MessageField) PayloadPackSequence() string {
 	if f.ArrayLen > 0 {
 		// optimize to copy() if possible
 		if f.GoType == "string" || strings.HasSuffix(f.GoType, "uint8") || strings.HasSuffix(f.GoType, "byte") {
-			return fmt.Sprintf(`copy(payload[%d:], m.%s[:func(l, m int)int{ if l < m { return l }; return m }(len(m.%s), %d)])`, f.ByteOffset, name, name, f.ArrayLen)
+			return fmt.Sprintf(`copy(payload[%d:], m.%s)`, f.ByteOffset, name)
 		}
 
 		// pack each element in the array
@@ -266,7 +266,6 @@ func (f *MessageField) payloadUnpackPrimitive(offset string) string {
 // this message's fields into a byte slice called 'payload'
 func (f *MessageField) PayloadUnpackSequence() string {
 	name := UpperCamelCase(f.Name)
-
 	if f.ArrayLen > 0 {
 		if f.GoType == "string" {
 			return fmt.Sprintf("m.%s = string(payload[%d:%d])", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
@@ -283,7 +282,6 @@ func (f *MessageField) PayloadUnpackSequence() string {
 		s += fmt.Sprintf("}")
 		return s
 	}
-
 	return fmt.Sprintf("m.%s = %s", name, f.payloadUnpackPrimitive(fmt.Sprintf("%d", f.ByteOffset)))
 }
 
@@ -652,8 +650,9 @@ func (m *{{$name}}) Marshal() ([]byte, error) {
 }
 
 // Unmarshal (generated function)
-func (m *{{$name}}) Unmarshal(payload []byte) error { 
-	payload = append(make([]byte, {{.Size}}), payload...){{range .Fields}}
+func (m *{{$name}}) Unmarshal(data []byte) error {
+	payload = make([]byte, {{.Size}})
+	copy(payload[0:], data){{range .Fields}}
 	{{.PayloadUnpackSequence}}{{end}}
 	return nil
 }
