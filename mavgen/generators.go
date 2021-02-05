@@ -10,6 +10,7 @@
 //go:generate templify parserV.template
 //go:generate templify version.template
 //go:generate templify x25.template
+//go:generate templify signature.template
 
 package main
 
@@ -38,16 +39,17 @@ const (
 
 var (
 	independentTemplates = map[string](func() string){
-		"encoder":           encoderTemplate,
-		"decoder":           decoderTemplate,
-		"errors/errors":     errorsTemplate,
-		"helpers/helpers":   helpersTemplate,
-		"register/register": registerTemplate,
-		"message/message":   messageTemplate,
-		"version/version":   versionTemplate,
-		"packet/packet":     packetTemplate,
-		"parser/parser":     parserTemplate,
-		"crc/x25":           x25Template,
+		"encoder":             encoderTemplate,
+		"decoder":             decoderTemplate,
+		"errors/errors":       errorsTemplate,
+		"helpers/helpers":     helpersTemplate,
+		"register/register":   registerTemplate,
+		"message/message":     messageTemplate,
+		"version/version":     versionTemplate,
+		"packet/packet":       packetTemplate,
+		"parser/parser":       parserTemplate,
+		"signature/signature": signatureTemplate,
+		"crc/x25":             x25Template,
 	}
 	dependentTemplates = map[string](func() string){
 		"parser/packetV": packetVTemplate,

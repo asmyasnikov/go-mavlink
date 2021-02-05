@@ -8,13 +8,13 @@ package parser
 
 import (
 	"fmt"
-
 	"github.com/asmyasnikov/go-mavlink/mavlink/crc"
 	"github.com/asmyasnikov/go-mavlink/mavlink/errors"
 	"github.com/asmyasnikov/go-mavlink/mavlink/helpers"
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
+	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
 )
 
 const (
@@ -87,6 +87,11 @@ func (p *packet1) SeqID() uint8 {
 // Payload returns packet payload
 func (p *packet1) Payload() []byte {
 	return append([]byte(nil), p.payload...)
+}
+
+// Signature returns packet signature
+func (p *packet1) Signature() signature.Signature {
+	return nil
 }
 
 func (p *packet1) assign(rhs *packet1) error {

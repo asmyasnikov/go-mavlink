@@ -13,6 +13,7 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
+	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
 	"sync"
 )
 
@@ -200,7 +201,7 @@ func (p *parser2) parseChar(c byte) (*packet2, error) {
 		return nil, errors.ErrCrcFail
 	case MAVLINK2_PARSE_STATE_WAIT_SIGNATURE:
 		p.signature = append(p.signature, c)
-		if len([]byte(p.signature)) == SIGNATURE_LEN {
+		if len([]byte(p.signature)) == signature.SIGNATURE_LEN {
 			p.state = MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
 		}

@@ -13,6 +13,7 @@ func packetTemplate() string {
 		"\n" +
 		"import (\n" +
 		"    \"{{.CommonPackageURL}}/message\"\n" +
+		"    \"{{.CommonPackageURL}}/signature\"\n" +
 		")\n" +
 		"\n" +
 		"// MAGIC_NUMBER type\n" +
@@ -36,8 +37,8 @@ func packetTemplate() string {
 		"\tSeqID() uint8\n" +
 		"\t// Payload returns packet payload\n" +
 		"\tPayload() []byte\n" +
-		"\t// Assign assign internal fields from right hand side packet\n" +
-		"\t//Assign(rhs Packet) error\n" +
+		"\t// Signature returns packet signature\n" +
+		"\tSignature() signature.Signature\n" +
 		"\t// Copy returns deep copy of packet\n" +
 		"\tCopy() Packet\n" +
 		"\t// Message returns dialect message\n" +

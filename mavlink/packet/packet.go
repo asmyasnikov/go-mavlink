@@ -8,6 +8,7 @@ package packet
 
 import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
+	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
 )
 
 // MAGIC_NUMBER type
@@ -31,8 +32,8 @@ type Packet interface {
 	SeqID() uint8
 	// Payload returns packet payload
 	Payload() []byte
-	// Assign assign internal fields from right hand side packet
-	//Assign(rhs Packet) error
+	// Signature returns packet signature
+	Signature() signature.Signature
 	// Copy returns deep copy of packet
 	Copy() Packet
 	// Message returns dialect message

@@ -18,6 +18,9 @@ func parserVTemplate() string {
 		"    \"{{.CommonPackageURL}}/register\"\n" +
 		"    \"{{.CommonPackageURL}}/errors\"\n" +
 		"    \"{{.CommonPackageURL}}/message\"\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    \"{{.CommonPackageURL}}/signature\"\n" +
+		"{{- end}}\n" +
 		"    \"{{.CommonPackageURL}}/crc\"\n" +
 		")\n" +
 		"\n" +
@@ -209,7 +212,7 @@ func parserVTemplate() string {
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"\tcase MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE:\n" +
 		"\t    p.signature = append(p.signature, c)\n" +
-		"\t    if len([]byte(p.signature)) == SIGNATURE_LEN {\n" +
+		"\t    if len([]byte(p.signature)) == signature.SIGNATURE_LEN {\n" +
 		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
 		"\t\t\treturn p.copy(), nil\n" +
 		"\t    }\n" +

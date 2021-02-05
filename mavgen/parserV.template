@@ -7,6 +7,9 @@ import (
     "{{.CommonPackageURL}}/register"
     "{{.CommonPackageURL}}/errors"
     "{{.CommonPackageURL}}/message"
+{{- if eq .MavlinkVersion 2}}
+    "{{.CommonPackageURL}}/signature"
+{{- end}}
     "{{.CommonPackageURL}}/crc"
 )
 
@@ -198,7 +201,7 @@ func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}
 {{- if eq .MavlinkVersion 2}}
 	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE:
 	    p.signature = append(p.signature, c)
-	    if len([]byte(p.signature)) == SIGNATURE_LEN {
+	    if len([]byte(p.signature)) == signature.SIGNATURE_LEN {
 			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
 	    }
