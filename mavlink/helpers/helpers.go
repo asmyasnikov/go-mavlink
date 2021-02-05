@@ -17,7 +17,12 @@ func U16ToBytes(v uint16) []byte {
 
 // RandomByte generate random byte
 func RandomByte() byte {
-	var buf [1]byte
-	rand.Read(buf[:])
-	return buf[0]
+	return RandomBytes(1)[0]
+}
+
+// RandomBytes generate random byte
+func RandomBytes(size int) []byte {
+	buffer := make([]byte, size)
+	_, _ = rand.Read(buffer[:])
+	return buffer
 }

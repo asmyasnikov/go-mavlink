@@ -307,6 +307,36 @@ func packetVTemplate() string {
 		"{{- end}}\n" +
 		"\t)\n" +
 		"}\n" +
+		"\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"func (p *packet{{.MavlinkVersion}}) GenSignature(key *V2Key) *V2Signature {\n" +
+		"\tmsg := f.GetMessage().(*msg.MessageRaw)\n" +
+		"\th := sha256.New()\n" +
+		"\n" +
+		"\t// secret key\n" +
+		"\th.Write(key[:])\n" +
+		"\n" +
+		"\t// the signature covers the whole message, excluding the signature itself\n" +
+		"\tbuf := make([]byte, 6)\n" +
+		"\th.Write([]byte{V2MagicByte})\n" +
+		"\th.Write([]byte{byte(len(msg.Content))})\n" +
+		"\th.Write([]byte{f.IncompatibilityFlag})\n" +
+		"\th.Write([]byte{f.CompatibilityFlag})\n" +
+		"\th.Write([]byte{f.SequenceID})\n" +
+		"\th.Write([]byte{f.SystemID})\n" +
+		"\th.Write([]byte{f.ComponentID})\n" +
+		"\th.Write(uint24Encode(buf, f.Message.GetID()))\n" +
+		"\th.Write(msg.Content)\n" +
+		"\tbinary.LittleEndian.PutUint16(buf, f.Checksum)\n" +
+		"\th.Write(buf[:2])\n" +
+		"\th.Write([]byte{f.SignatureLinkID})\n" +
+		"\th.Write(uint48Encode(buf, f.SignatureTimestamp))\n" +
+		"\n" +
+		"\tsig := new(V2Signature)\n" +
+		"\tcopy(sig[:], h.Sum(nil)[:6])\n" +
+		"\treturn sig\n" +
+		"}\n" +
+		"{{- end}}\n" +
 		""
 	return tmpl
 }

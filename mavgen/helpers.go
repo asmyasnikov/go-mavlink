@@ -22,9 +22,14 @@ func helpersTemplate() string {
 		"\n" +
 		"// RandomByte generate random byte\n" +
 		"func RandomByte() byte {\n" +
-		"\tvar buf [1]byte\n" +
-		"\trand.Read(buf[:])\n" +
-		"\treturn buf[0]\n" +
+		"    return RandomBytes(1)[0]\n" +
+		"}\n" +
+		"\n" +
+		"// RandomBytes generate random byte\n" +
+		"func RandomBytes(size int) []byte {\n" +
+		"\tbuffer := make([]byte, size)\n" +
+		"\t_, _ = rand.Read(buffer[:])\n" +
+		"\treturn buffer\n" +
 		"}"
 	return tmpl
 }

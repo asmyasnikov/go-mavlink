@@ -263,3 +263,30 @@ func (p *packet2) String() string {
 		}(),
 	)
 }
+func (p *packet2) GenSignature(key *V2Key) *V2Signature {
+	msg := f.GetMessage().(*msg.MessageRaw)
+	h := sha256.New()
+
+	// secret key
+	h.Write(key[:])
+
+	// the signature covers the whole message, excluding the signature itself
+	buf := make([]byte, 6)
+	h.Write([]byte{V2MagicByte})
+	h.Write([]byte{byte(len(msg.Content))})
+	h.Write([]byte{f.IncompatibilityFlag})
+	h.Write([]byte{f.CompatibilityFlag})
+	h.Write([]byte{f.SequenceID})
+	h.Write([]byte{f.SystemID})
+	h.Write([]byte{f.ComponentID})
+	h.Write(uint24Encode(buf, f.Message.GetID()))
+	h.Write(msg.Content)
+	binary.LittleEndian.PutUint16(buf, f.Checksum)
+	h.Write(buf[:2])
+	h.Write([]byte{f.SignatureLinkID})
+	h.Write(uint48Encode(buf, f.SignatureTimestamp))
+
+	sig := new(V2Signature)
+	copy(sig[:], h.Sum(nil)[:6])
+	return sig
+}
