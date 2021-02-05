@@ -268,7 +268,7 @@ func (f *MessageField) PayloadUnpackSequence() string {
 	name := UpperCamelCase(f.Name)
 	if f.ArrayLen > 0 {
 		if f.GoType == "string" {
-			return fmt.Sprintf("m.%s = strings.TrimRight(string(payload[%d:%d]), string(byte(0)))", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
+			return fmt.Sprintf("m.%s = string(payload[%d:%d])", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
 		}
 		// optimize to copy() if possible
 		if strings.HasSuffix(f.GoType, "uint8") || strings.HasSuffix(f.GoType, "byte") {
@@ -747,7 +747,7 @@ func (m *{{$name}}) MsgID() message.MessageID {
 func (m *{{$name}}) String() string {
 	return fmt.Sprintf(
 		"&{{.DialectName}}.{{$name}}{ {{range $i, $v := .Fields}}{{if gt $i 0}}, {{end}}{{.Name | UpperCamelCase}}: {{if IsStringField .}}\"%s\"{{else}}{{if IsByteArrayField .}}%0X (\"%s\"){{else}}%+v{{if .Enum}}{{if eq .Display "bitmask"}} (%0{{.BitSize}}b){{end}}{{end}}{{end}}{{end}}{{end}} }", 
-		{{range .Fields}}m.{{.Name | UpperCamelCase}}{{if .Enum}}{{if eq .Display "bitmask"}}.Bitmask(), uint64(m.{{.Name | UpperCamelCase}}){{end}}{{end}}{{if IsByteArrayField .}}, string(m.{{.Name | UpperCamelCase}}[:]){{end}},
+		{{range .Fields}}{{if IsStringField .}}strings.TrimRight({{end}}m.{{.Name | UpperCamelCase}}{{if IsStringField .}}, string(byte(0))){{end}}{{if .Enum}}{{if eq .Display "bitmask"}}.Bitmask(), uint64(m.{{.Name | UpperCamelCase}}){{end}}{{end}}{{if IsByteArrayField .}}, string(m.{{.Name | UpperCamelCase}}[:]){{end}},
 {{end}}
 	)
 }
