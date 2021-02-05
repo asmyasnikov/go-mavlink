@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 	"math"
+	"strings"
 )
 
 // SysStatus struct (generated typeinfo)
@@ -221,7 +222,7 @@ func (m *ChangeOperatorControl) Unmarshal(data []byte) error {
 	m.TargetSystem = uint8(payload[0])
 	m.ControlRequest = uint8(payload[1])
 	m.Version = uint8(payload[2])
-	m.Passkey = string(payload[3:28])
+	m.Passkey = strings.TrimRight(string(payload[3:28]), string(byte(0)))
 	return nil
 }
 
@@ -297,7 +298,7 @@ func (m *AuthKey) Marshal() ([]byte, error) {
 func (m *AuthKey) Unmarshal(data []byte) error {
 	payload := make([]byte, 32)
 	copy(payload[0:], data)
-	m.Key = string(payload[0:32])
+	m.Key = strings.TrimRight(string(payload[0:32]), string(byte(0)))
 	return nil
 }
 
@@ -465,7 +466,7 @@ func (m *ParamAckTransaction) Unmarshal(data []byte) error {
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
 	m.TargetComponent = uint8(payload[5])
-	m.ParamID = string(payload[6:22])
+	m.ParamID = strings.TrimRight(string(payload[6:22]), string(byte(0)))
 	m.ParamType = MAV_PARAM_TYPE(payload[22])
 	m.ParamResult = PARAM_ACK(payload[23])
 	return nil
@@ -513,7 +514,7 @@ func (m *ParamRequestRead) Unmarshal(data []byte) error {
 	m.ParamIndex = int16(binary.LittleEndian.Uint16(payload[0:]))
 	m.TargetSystem = uint8(payload[2])
 	m.TargetComponent = uint8(payload[3])
-	m.ParamID = string(payload[4:20])
+	m.ParamID = strings.TrimRight(string(payload[4:20]), string(byte(0)))
 	return nil
 }
 
@@ -600,7 +601,7 @@ func (m *ParamValue) Unmarshal(data []byte) error {
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.ParamCount = uint16(binary.LittleEndian.Uint16(payload[4:]))
 	m.ParamIndex = uint16(binary.LittleEndian.Uint16(payload[6:]))
-	m.ParamID = string(payload[8:24])
+	m.ParamID = strings.TrimRight(string(payload[8:24]), string(byte(0)))
 	m.ParamType = MAV_PARAM_TYPE(payload[24])
 	return nil
 }
@@ -652,7 +653,7 @@ func (m *ParamSet) Unmarshal(data []byte) error {
 	m.ParamValue = math.Float32frombits(binary.LittleEndian.Uint32(payload[0:]))
 	m.TargetSystem = uint8(payload[4])
 	m.TargetComponent = uint8(payload[5])
-	m.ParamID = string(payload[6:22])
+	m.ParamID = strings.TrimRight(string(payload[6:22]), string(byte(0)))
 	m.ParamType = MAV_PARAM_TYPE(payload[22])
 	return nil
 }
@@ -2121,7 +2122,7 @@ func (m *ParamMapRc) Unmarshal(data []byte) error {
 	m.ParamIndex = int16(binary.LittleEndian.Uint16(payload[16:]))
 	m.TargetSystem = uint8(payload[18])
 	m.TargetComponent = uint8(payload[19])
-	m.ParamID = string(payload[20:36])
+	m.ParamID = strings.TrimRight(string(payload[20:36]), string(byte(0)))
 	m.ParameterRcChannelIndex = uint8(payload[36])
 	return nil
 }
@@ -8380,7 +8381,7 @@ func (m *AdsbVehicle) Unmarshal(data []byte) error {
 	m.Flags = ADSB_FLAGS(binary.LittleEndian.Uint16(payload[22:]))
 	m.Squawk = uint16(binary.LittleEndian.Uint16(payload[24:]))
 	m.AltitudeType = ADSB_ALTITUDE_TYPE(payload[26])
-	m.Callsign = string(payload[27:36])
+	m.Callsign = strings.TrimRight(string(payload[27:36]), string(byte(0)))
 	m.EmitterType = ADSB_EMITTER_TYPE(payload[36])
 	m.Tslc = uint8(payload[37])
 	return nil
@@ -8590,7 +8591,7 @@ func (m *DebugVect) Unmarshal(data []byte) error {
 	m.X = math.Float32frombits(binary.LittleEndian.Uint32(payload[8:]))
 	m.Y = math.Float32frombits(binary.LittleEndian.Uint32(payload[12:]))
 	m.Z = math.Float32frombits(binary.LittleEndian.Uint32(payload[16:]))
-	m.Name = string(payload[20:30])
+	m.Name = strings.TrimRight(string(payload[20:30]), string(byte(0)))
 	return nil
 }
 
@@ -8632,7 +8633,7 @@ func (m *NamedValueFloat) Unmarshal(data []byte) error {
 	copy(payload[0:], data)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = math.Float32frombits(binary.LittleEndian.Uint32(payload[4:]))
-	m.Name = string(payload[8:18])
+	m.Name = strings.TrimRight(string(payload[8:18]), string(byte(0)))
 	return nil
 }
 
@@ -8674,7 +8675,7 @@ func (m *NamedValueInt) Unmarshal(data []byte) error {
 	copy(payload[0:], data)
 	m.TimeBootMs = uint32(binary.LittleEndian.Uint32(payload[0:]))
 	m.Value = int32(binary.LittleEndian.Uint32(payload[4:]))
-	m.Name = string(payload[8:18])
+	m.Name = strings.TrimRight(string(payload[8:18]), string(byte(0)))
 	return nil
 }
 
@@ -8712,7 +8713,7 @@ func (m *Statustext) Unmarshal(data []byte) error {
 	payload := make([]byte, 51)
 	copy(payload[0:], data)
 	m.Severity = MAV_SEVERITY(payload[0])
-	m.Text = string(payload[1:51])
+	m.Text = strings.TrimRight(string(payload[1:51]), string(byte(0)))
 	return nil
 }
 

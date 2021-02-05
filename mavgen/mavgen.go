@@ -268,7 +268,7 @@ func (f *MessageField) PayloadUnpackSequence() string {
 	name := UpperCamelCase(f.Name)
 	if f.ArrayLen > 0 {
 		if f.GoType == "string" {
-			return fmt.Sprintf("m.%s = string(payload[%d:%d])", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
+			return fmt.Sprintf("m.%s = strings.TrimRight(string(payload[%d:%d]), string(byte(0)))", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
 		}
 		// optimize to copy() if possible
 		if strings.HasSuffix(f.GoType, "uint8") || strings.HasSuffix(f.GoType, "byte") {
@@ -496,6 +496,54 @@ func (d *Dialect) generateFile(filePath string, packageName string, commonPackag
 }
 
 func (d *Dialect) generateGo(dialectPath string, packageName string, commonPackage string) error {
+	// fill in missing enum values if necessary, and ensure description strings are valid.
+	for _, e := range d.Enums {
+		e.Description = strings.Replace(e.Description, "\n", " ", -1)
+		for i, ee := range e.Entries {
+			if ee.Value == "" {
+				ee.Value = strconv.Itoa(i)
+			}
+			ee.Description = strings.Trim(strings.ReplaceAll(ee.Description, "\n", " "), " .")
+			if len(ee.Params) > 0 {
+				if len(ee.Description) > 0 {
+					ee.Description += ". "
+				}
+				ee.Description += "Params: "
+			}
+			for _, pp := range ee.Params {
+				ee.Description += strconv.Itoa(int(pp.Index)) + ") " + pp.Description + "; "
+			}
+		}
+	}
+	for _, m := range d.Messages {
+		m.Description = strings.ReplaceAll(m.Description, "\n", "\n// ")
+		if len(m.DialectName) == 0 {
+			m.DialectName = baseName(d.FilePath)
+		}
+		for _, f := range m.Fields {
+			f.Description = strings.ReplaceAll(f.Description, "\n", " ")
+			f.Tags = map[string]string{}
+			goname, gosz, golen := GoTypeInfo(f.CType)
+			//if len(f.Enum) > 0 {
+			//	f.Tags["raw"] = f.CType
+			//}
+			if golen > 0 {
+				f.Tags["len"] = strconv.Itoa(golen)
+			}
+			f.GoType, f.BitSize, f.ArrayLen = goname, gosz, golen
+		}
+
+		// ensure fields are sorted according to their size,
+		// http://www.mavlink.org/mavlink/crc_extra_calculation
+		sort.Stable(sort.Reverse(m))
+
+		// once sorted, calculate offsets for use in payload packing/unpacking
+		offset := 0
+		for _, f := range m.Fields {
+			f.ByteOffset = offset
+			offset += f.SizeInBytes()
+		}
+	}
 	if err := d.generateFile(
 		filepath.Join(dialectPath, "version.go"),
 		packageName,
@@ -525,41 +573,30 @@ func (d *Dialect) generateGo(dialectPath string, packageName string, commonPacka
 		filepath.Join(dialectPath, "classes.go"),
 		packageName,
 		commonPackage,
-		append(
-			func() []string {
-				if len(d.Messages) > 0 {
-					return []string{
-						"fmt",
-						commonPackage + "/message",
+		func() []string {
+			data := make(map[string]struct{}, 0)
+			if len(d.Messages) > 0 {
+				data["fmt"] = struct{}{}
+				data[commonPackage + "/message"] = struct{}{}
+			}
+			for _, m := range d.Messages {
+				for _, f := range m.Fields {
+					switch f.GoType {
+					case "float32", "float64":
+						data["math"] = struct{}{}
+					case "uint16", "uint32", "uint64":
+						data["encoding/binary"] = struct{}{}
+					case "string":
+						data["strings"] = struct{}{}
 					}
 				}
-				return nil
-			}(),
-			append(
-				func() []string {
-					for _, m := range d.Messages {
-						for _, f := range m.Fields {
-							switch f.CType {
-							case "float", "double":
-								return []string{"math"}
-							}
-						}
-					}
-					return nil
-				}(),
-				func() []string {
-					for _, m := range d.Messages {
-						for _, f := range m.Fields {
-							switch f.CType {
-							case "uint16_t", "uint32_t", "uint64_t":
-								return []string{"encoding/binary"}
-							}
-						}
-					}
-					return nil
-				}()...,
-			)...,
-		),
+			}
+			imports := make([]string, 0, len(data))
+			for i := range data {
+				imports = append(imports, i)
+			}
+			return imports
+		}(),
 		d.generateClasses,
 	); err != nil {
 		return err
@@ -639,26 +676,6 @@ func (e {{$enumName}}) Bitmask() string {
 }
 {{end}}
 `
-	// fill in missing enum values if necessary, and ensure description strings are valid.
-	for _, e := range d.Enums {
-		e.Description = strings.Replace(e.Description, "\n", " ", -1)
-		for i, ee := range e.Entries {
-			if ee.Value == "" {
-				ee.Value = strconv.Itoa(i)
-			}
-			ee.Description = strings.Trim(strings.ReplaceAll(ee.Description, "\n", " "), " .")
-			if len(ee.Params) > 0 {
-				if len(ee.Description) > 0 {
-					ee.Description += ". "
-				}
-				ee.Description += "Params: "
-			}
-			for _, pp := range ee.Params {
-				ee.Description += strconv.Itoa(int(pp.Index)) + ") " + pp.Description + "; "
-			}
-		}
-	}
-
 	return template.Must(template.New("enums").Parse(enumTmpl)).Execute(w, d)
 }
 
@@ -751,36 +768,6 @@ func (m *{{$name}}) Unmarshal(data []byte) error {
 }
 {{end}}
 `
-	for _, m := range d.Messages {
-		m.Description = strings.ReplaceAll(m.Description, "\n", "\n// ")
-		if len(m.DialectName) == 0 {
-			m.DialectName = baseName(d.FilePath)
-		}
-		for _, f := range m.Fields {
-			f.Description = strings.ReplaceAll(f.Description, "\n", " ")
-			f.Tags = map[string]string{}
-			goname, gosz, golen := GoTypeInfo(f.CType)
-			//if len(f.Enum) > 0 {
-			//	f.Tags["raw"] = f.CType
-			//}
-			if golen > 0 {
-				f.Tags["len"] = strconv.Itoa(golen)
-			}
-			f.GoType, f.BitSize, f.ArrayLen = goname, gosz, golen
-		}
-
-		// ensure fields are sorted according to their size,
-		// http://www.mavlink.org/mavlink/crc_extra_calculation
-		sort.Stable(sort.Reverse(m))
-
-		// once sorted, calculate offsets for use in payload packing/unpacking
-		offset := 0
-		for _, f := range m.Fields {
-			f.ByteOffset = offset
-			offset += f.SizeInBytes()
-		}
-	}
-
 	return template.Must(template.New("classesTmpl").Funcs(funcMap).Parse(classesTmpl)).Execute(w, d)
 }
 
