@@ -7,6 +7,7 @@
 package parser
 
 import (
+	"fmt"
 	"github.com/asmyasnikov/go-mavlink/mavlink/crc"
 	"github.com/asmyasnikov/go-mavlink/mavlink/errors"
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
@@ -39,6 +40,47 @@ const (
 	MAVLINK2_PARSE_STATE_WAIT_SIGNATURE     MAVLINK2_PARSE_STATE = iota
 )
 
+func (s MAVLINK2_PARSE_STATE) String() string {
+	switch s {
+	case MAVLINK2_PARSE_STATE_UNINIT:
+		return "MAVLINK2_PARSE_STATE_UNINIT"
+	case MAVLINK2_PARSE_STATE_IDLE:
+		return "MAVLINK2_PARSE_STATE_IDLE"
+	case MAVLINK2_PARSE_STATE_GOT_STX:
+		return "MAVLINK2_PARSE_STATE_GOT_STX"
+	case MAVLINK2_PARSE_STATE_GOT_LENGTH:
+		return "MAVLINK2_PARSE_STATE_GOT_LENGTH"
+	case MAVLINK2_PARSE_STATE_GOT_INCOMPAT_FLAGS:
+		return "MAVLINK2_PARSE_STATE_GOT_INCOMPAT_FLAGS"
+	case MAVLINK2_PARSE_STATE_GOT_COMPAT_FLAGS:
+		return "MAVLINK2_PARSE_STATE_GOT_COMPAT_FLAGS"
+	case MAVLINK2_PARSE_STATE_GOT_SEQ:
+		return "MAVLINK2_PARSE_STATE_GOT_SEQ"
+	case MAVLINK2_PARSE_STATE_GOT_SYSID:
+		return "MAVLINK2_PARSE_STATE_GOT_SYSID"
+	case MAVLINK2_PARSE_STATE_GOT_COMPID:
+		return "MAVLINK2_PARSE_STATE_GOT_COMPID"
+	case MAVLINK2_PARSE_STATE_GOT_MSGID1:
+		return "MAVLINK2_PARSE_STATE_GOT_MSGID1"
+	case MAVLINK2_PARSE_STATE_GOT_MSGID2:
+		return "MAVLINK2_PARSE_STATE_GOT_MSGID2"
+	case MAVLINK2_PARSE_STATE_GOT_MSGID3:
+		return "MAVLINK2_PARSE_STATE_GOT_MSGID3"
+	case MAVLINK2_PARSE_STATE_GOT_PAYLOAD:
+		return "MAVLINK2_PARSE_STATE_GOT_PAYLOAD"
+	case MAVLINK2_PARSE_STATE_GOT_CRC1:
+		return "MAVLINK2_PARSE_STATE_GOT_CRC1"
+	case MAVLINK2_PARSE_STATE_GOT_BAD_CRC:
+		return "MAVLINK2_PARSE_STATE_GOT_BAD_CRC"
+	case MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE:
+		return "MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE"
+	case MAVLINK2_PARSE_STATE_WAIT_SIGNATURE:
+		return "MAVLINK2_PARSE_STATE_WAIT_SIGNATURE"
+	default:
+		return fmt.Sprintf("MAVLINK2_PARSE_STATE_UNKNOWN%d", s)
+	}
+}
+
 // parser2 is a state machine which parse bytes to packet.Packet
 type parser2 struct {
 	packet2
@@ -57,13 +99,22 @@ func NewParserV2() Parser {
 	return _parsersPoolV2.Get().(Parser)
 }
 
+// String returns string representation
+func (p *parser2) String() string {
+	return fmt.Sprintf("mavlink2.Parser{ state: %+v, packet: %+v }", p.state, p.packet2)
+}
+
 // Destroy set parser to idle state and return it into inner pool
 func (p *parser2) Destroy() {
+	_parsersPoolV2.Put(p.reset())
+}
+
+func (p *parser2) reset() *parser2 {
 	p.state = MAVLINK2_PARSE_STATE_UNINIT
 	if p.crc != nil {
 		p.crc = nil
 	}
-	_parsersPoolV2.Put(p)
+	return p
 }
 
 // ParseChar parse char to packet
@@ -141,7 +192,9 @@ func (p *parser2) parseChar(c byte) (*packet2, error) {
 				p.state = MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE
 				return p.copy(), nil
 			}
+			p.signature = nil
 			p.state = MAVLINK2_PARSE_STATE_WAIT_SIGNATURE
+			return nil, nil
 		}
 		p.state = MAVLINK2_PARSE_STATE_GOT_BAD_CRC
 		return nil, errors.ErrCrcFail

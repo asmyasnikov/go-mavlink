@@ -7,6 +7,7 @@
 package parser
 
 import (
+	"fmt"
 	"github.com/asmyasnikov/go-mavlink/mavlink/crc"
 	"github.com/asmyasnikov/go-mavlink/mavlink/errors"
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
@@ -34,6 +35,37 @@ const (
 	MAVLINK1_PARSE_STATE_GOT_GOOD_MESSAGE MAVLINK1_PARSE_STATE = iota
 )
 
+func (s MAVLINK1_PARSE_STATE) String() string {
+	switch s {
+	case MAVLINK1_PARSE_STATE_UNINIT:
+		return "MAVLINK1_PARSE_STATE_UNINIT"
+	case MAVLINK1_PARSE_STATE_IDLE:
+		return "MAVLINK1_PARSE_STATE_IDLE"
+	case MAVLINK1_PARSE_STATE_GOT_STX:
+		return "MAVLINK1_PARSE_STATE_GOT_STX"
+	case MAVLINK1_PARSE_STATE_GOT_LENGTH:
+		return "MAVLINK1_PARSE_STATE_GOT_LENGTH"
+	case MAVLINK1_PARSE_STATE_GOT_SEQ:
+		return "MAVLINK1_PARSE_STATE_GOT_SEQ"
+	case MAVLINK1_PARSE_STATE_GOT_SYSID:
+		return "MAVLINK1_PARSE_STATE_GOT_SYSID"
+	case MAVLINK1_PARSE_STATE_GOT_COMPID:
+		return "MAVLINK1_PARSE_STATE_GOT_COMPID"
+	case MAVLINK1_PARSE_STATE_GOT_MSGID1:
+		return "MAVLINK1_PARSE_STATE_GOT_MSGID1"
+	case MAVLINK1_PARSE_STATE_GOT_PAYLOAD:
+		return "MAVLINK1_PARSE_STATE_GOT_PAYLOAD"
+	case MAVLINK1_PARSE_STATE_GOT_CRC1:
+		return "MAVLINK1_PARSE_STATE_GOT_CRC1"
+	case MAVLINK1_PARSE_STATE_GOT_BAD_CRC:
+		return "MAVLINK1_PARSE_STATE_GOT_BAD_CRC"
+	case MAVLINK1_PARSE_STATE_GOT_GOOD_MESSAGE:
+		return "MAVLINK1_PARSE_STATE_GOT_GOOD_MESSAGE"
+	default:
+		return fmt.Sprintf("MAVLINK1_PARSE_STATE_UNKNOWN%d", s)
+	}
+}
+
 // parser1 is a state machine which parse bytes to packet.Packet
 type parser1 struct {
 	packet1
@@ -52,13 +84,22 @@ func NewParserV1() Parser {
 	return _parsersPoolV1.Get().(Parser)
 }
 
+// String returns string representation
+func (p *parser1) String() string {
+	return fmt.Sprintf("mavlink1.Parser{ state: %+v, packet: %+v }", p.state, p.packet1)
+}
+
 // Destroy set parser to idle state and return it into inner pool
 func (p *parser1) Destroy() {
+	_parsersPoolV1.Put(p.reset())
+}
+
+func (p *parser1) reset() *parser1 {
 	p.state = MAVLINK1_PARSE_STATE_UNINIT
 	if p.crc != nil {
 		p.crc = nil
 	}
-	_parsersPoolV1.Put(p)
+	return p
 }
 
 // ParseChar parse char to packet

@@ -214,18 +214,18 @@ func packetVTemplate() string {
 		"    if p == nil {\n" +
 		"        return errors.ErrNilPointerReference\n" +
 		"    }\n" +
-		"\tparser := _parsersPoolV{{.MavlinkVersion}}.Get().(*parser{{.MavlinkVersion}})\n" +
+		"\tparser := _parsersPoolV{{.MavlinkVersion}}.Get().(*parser{{.MavlinkVersion}}).reset()\n" +
 		"\tdefer parser.Destroy()\n" +
 		"\tfor _, c := range buffer {\n" +
 		"\t\tpacket, err := parser.parseChar(c)\n" +
 		"\t\tif err != nil {\n" +
-		"\t\t\treturn err\n" +
+		"\t\t\treturn fmt.Errorf(\"Unmarshal fail with error \\\"%+v\\\". Parser %+v\", err, parser)\n" +
 		"\t\t}\n" +
 		"\t\tif packet != nil {\n" +
 		"\t\t\treturn p.assign(packet)\n" +
 		"\t\t}\n" +
 		"\t}\n" +
-		"\treturn errors.ErrNoNewData\n" +
+		"\treturn fmt.Errorf(\"Unmarshal fail with error \\\"%+v\\\". Parser %+v\", errors.ErrNoNewData, parser)\n" +
 		"}\n" +
 		"\n" +
 		"// Marshal trying to serialize byte slice from packet\n" +

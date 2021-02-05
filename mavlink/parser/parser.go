@@ -13,5 +13,6 @@ import (
 // Parser interface is abstract of parsers
 type Parser interface {
 	ParseChar(c byte) (packet.Packet, error)
+	String() string
 	Destroy()
 }

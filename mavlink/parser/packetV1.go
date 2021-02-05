@@ -127,18 +127,18 @@ func (p *packet1) Unmarshal(buffer []byte) error {
 	if p == nil {
 		return errors.ErrNilPointerReference
 	}
-	parser := _parsersPoolV1.Get().(*parser1)
+	parser := _parsersPoolV1.Get().(*parser1).reset()
 	defer parser.Destroy()
 	for _, c := range buffer {
 		packet, err := parser.parseChar(c)
 		if err != nil {
-			return err
+			return fmt.Errorf("Unmarshal fail with error \"%+v\". Parser %+v", err, parser)
 		}
 		if packet != nil {
 			return p.assign(packet)
 		}
 	}
-	return errors.ErrNoNewData
+	return fmt.Errorf("Unmarshal fail with error \"%+v\". Parser %+v", errors.ErrNoNewData, parser)
 }
 
 // Marshal trying to serialize byte slice from packet

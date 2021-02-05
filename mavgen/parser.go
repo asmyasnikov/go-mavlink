@@ -18,6 +18,7 @@ func parserTemplate() string {
 		"// Parser interface is abstract of parsers\n" +
 		"type Parser interface {\n" +
 		"\tParseChar(c byte) (packet.Packet, error)\n" +
+		"    String() string\n" +
 		"    Destroy()\n" +
 		"}\n" +
 		""

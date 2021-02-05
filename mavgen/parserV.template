@@ -1,6 +1,7 @@
 package parser
 
 import (
+    "fmt"
     "sync"
     "{{.CommonPackageURL}}/packet"
     "{{.CommonPackageURL}}/register"
@@ -39,6 +40,35 @@ const (
 {{- end}}
 )
 
+func (s MAVLINK{{.MavlinkVersion}}_PARSE_STATE) String() string {
+    switch s {
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_IDLE: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_IDLE"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_STX: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_STX"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_LENGTH: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_LENGTH"
+{{- if eq .MavlinkVersion 2}}
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_INCOMPAT_FLAGS: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_INCOMPAT_FLAGS"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPAT_FLAGS: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPAT_FLAGS"
+{{- end}}
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SEQ: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SEQ"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SYSID: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_SYSID"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPID: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_COMPID"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID1: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID1"
+{{- if eq .MavlinkVersion 2}}
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID2: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID2"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID3: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_MSGID3"
+{{- end}}
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_PAYLOAD"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_CRC1"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_BAD_CRC"
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE"
+{{- if eq .MavlinkVersion 2}}
+	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE: return "MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE"
+{{- end}}
+    default: return fmt.Sprintf("MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNKNOWN%d", s)
+    }
+}
+
 // parser{{.MavlinkVersion}} is a state machine which parse bytes to packet.Packet
 type parser{{.MavlinkVersion}} struct {
     packet{{.MavlinkVersion}}
@@ -57,13 +87,22 @@ func NewParserV{{.MavlinkVersion}}() Parser {
     return _parsersPoolV{{.MavlinkVersion}}.Get().(Parser)
 }
 
+// String returns string representation
+func (p *parser{{.MavlinkVersion}}) String() string {
+    return fmt.Sprintf("mavlink{{.MavlinkVersion}}.Parser{ state: %+v, packet: %+v }", p.state, p.packet{{.MavlinkVersion}})
+}
+
 // Destroy set parser to idle state and return it into inner pool
 func (p *parser{{.MavlinkVersion}}) Destroy() {
+	_parsersPoolV{{.MavlinkVersion}}.Put(p.reset())
+}
+
+func (p *parser{{.MavlinkVersion}}) reset() *parser{{.MavlinkVersion}} {
 	p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_UNINIT
 	if p.crc != nil {
 		p.crc = nil
 	}
-	_parsersPoolV{{.MavlinkVersion}}.Put(p)
+	return p
 }
 
 // ParseChar parse char to packet
@@ -146,7 +185,9 @@ func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}
                 p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
                 return p.copy(), nil
             }
+            p.signature = nil
             p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE
+            return nil, nil
 {{- else}}
 			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
