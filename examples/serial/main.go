@@ -26,7 +26,7 @@ var (
 	baudrate   = flag.Int("b", 57600, "baudrate of serial port connection")
 	device     = flag.String("d", "/dev/ttyUSB0", "path of serial port device")
 	ro         = flag.Bool("ro", false, "read-only mode")
-	retryCount = flag.Int("retry-count", 2, "retry count for sending packets")
+	retryCount = flag.Int("retry-count", 1, "retry count for sending packets")
 	sysID      = flag.Int("sysID", 1, "System ID (copter)")
 )
 
@@ -47,9 +47,10 @@ func main() {
 	wg.Add(1)
 	go listenAndServe(&wg, port, *ro)
 	if !*ro {
-		wg.Add(2)
+		wg.Add(3)
 		go sendLoop(&wg, port)
 		go heartbeatLoop(&wg)
+		go handshake(&wg)
 	}
 	wg.Wait()
 }
@@ -157,20 +158,22 @@ func sendLoop(wg *sync.WaitGroup, writer io.Writer) {
 	defer wg.Done()
 	enc := mavlink.NewEncoder(writer)
 	for m := range sendChan {
-		p, err := mavlink.NewPacket(2, uint8(*sysID), uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER), m)
-		if err != nil {
-			log.Fatalf("Error on create packet: %+v", err)
-		}
-		if err := enc.Encode(p); err != nil {
-			log.Fatalf("Error on send loop: %+v", err)
-		} else {
-			log.Println("->", p)
+		for i := 0; i < *retryCount; i++ {
+			p, err := mavlink.NewPacket(2, uint8(*sysID), uint8(ardupilotmega.MAV_COMP_ID_MISSIONPLANNER), m)
+			if err != nil {
+				log.Fatalf("Error on create packet: %+v", err)
+			}
+			if err := enc.Encode(p); err != nil {
+				log.Fatalf("Error on send loop: %+v", err)
+			} else {
+				log.Println("->", p)
+			}
 		}
 	}
 }
 
 // https://mavlink.io/en/guide/mavlink_version.html#version_handshaking
-func handshake(wg *sync.WaitGroup, writer io.Writer) {
+func handshake(wg *sync.WaitGroup) {
 	defer wg.Done()
 	time.Sleep(time.Second)
 	sendChan <- makeHeartbeat()
