@@ -61,8 +61,8 @@ func TestPacketV2Signature(t *testing.T) {
 	payload, err := msg.Marshal()
 	require.NoError(t, err)
 	cases := []struct {
-		packet *packet2
-		bytes  []byte
+		packet    *packet2
+		bytes     []byte
 		signature Signature
 	}{
 		{
