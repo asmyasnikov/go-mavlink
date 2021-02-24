@@ -13,6 +13,7 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/parser"
 	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"io"
+	"time"
 )
 
 // Encoder struct provide decoding processor
@@ -30,6 +31,19 @@ func nextSeqNum() byte {
 // Encode encode packet to output stream. Method return error or nil on success
 func (e *Encoder) Encode(p packet.Packet) error {
 	b, err := p.Marshal()
+	if err != nil {
+		return err
+	}
+	n, err := e.writer.Write(b)
+	if len(b) != n {
+		return fmt.Errorf("writed %d bytes, but need to write %d bytes", n, len(b))
+	}
+	return err
+}
+
+// EncodeWithSignature encode packet with signature to output stream. Method return error or nil on success
+func (e *Encoder) EncodeWithSignature(p packet.Packet, linkID byte, timestamp time.Time, secretKey [32]byte) error {
+	b, err := p.MarshalWithSignature(linkID, timestamp, secretKey)
 	if err != nil {
 		return err
 	}

@@ -77,6 +77,7 @@ type parser{{.MavlinkVersion}} struct {
     packet{{.MavlinkVersion}}
 	state       MAVLINK{{.MavlinkVersion}}_PARSE_STATE
 	crc         *crc.X25
+	tail        []byte
 }
 
 var _parsersPoolV{{.MavlinkVersion}} = &sync.Pool{
@@ -188,7 +189,7 @@ func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}
                 p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
                 return p.copy(), nil
             }
-            p.signature = nil
+            p.tail = nil
             p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE
             return nil, nil
 {{- else}}
@@ -200,11 +201,17 @@ func (p *parser{{.MavlinkVersion}}) parseChar(c byte) (*packet{{.MavlinkVersion}
         return nil, errors.ErrCrcFail
 {{- if eq .MavlinkVersion 2}}
 	case MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE:
-	    p.signature = append(p.signature, c)
-	    if len([]byte(p.signature)) == signature.SIGNATURE_LEN {
-			p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE
+		p.tail = append(p.tail, c)
+		if len([]byte(p.tail)) == signature.SIGNATURE_LEN {
+    		if p.signature == nil {
+    		    p.signature = &signature.Signature{}
+    		}
+			if err := p.signature.Unmarshal(p.tail); err != nil {
+				return nil, err
+			}
+			p.state = MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
-	    }
+		}
 {{- end}}
 	}
 	return nil, nil

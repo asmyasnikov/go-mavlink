@@ -87,6 +87,7 @@ type parser2 struct {
 	packet2
 	state MAVLINK2_PARSE_STATE
 	crc   *crc.X25
+	tail  []byte
 }
 
 var _parsersPoolV2 = &sync.Pool{
@@ -193,15 +194,21 @@ func (p *parser2) parseChar(c byte) (*packet2, error) {
 				p.state = MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE
 				return p.copy(), nil
 			}
-			p.signature = nil
+			p.tail = nil
 			p.state = MAVLINK2_PARSE_STATE_WAIT_SIGNATURE
 			return nil, nil
 		}
 		p.state = MAVLINK2_PARSE_STATE_GOT_BAD_CRC
 		return nil, errors.ErrCrcFail
 	case MAVLINK2_PARSE_STATE_WAIT_SIGNATURE:
-		p.signature = append(p.signature, c)
-		if len([]byte(p.signature)) == signature.SIGNATURE_LEN {
+		p.tail = append(p.tail, c)
+		if len([]byte(p.tail)) == signature.SIGNATURE_LEN {
+			if p.signature == nil {
+				p.signature = &signature.Signature{}
+			}
+			if err := p.signature.Unmarshal(p.tail); err != nil {
+				return nil, err
+			}
 			p.state = MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE
 			return p.copy(), nil
 		}

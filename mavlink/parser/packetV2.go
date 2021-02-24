@@ -15,6 +15,7 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
+	"time"
 )
 
 // MAVLINK_IFLAG type
@@ -39,7 +40,7 @@ type packet2 struct {
 	msgID         message.MessageID // ID of message in payload
 	payload       []byte
 	checksum      uint16
-	signature     signature.Signature
+	signature     *signature.Signature
 }
 
 // NewPacketV2 creates new mavlink2.Packet
@@ -98,8 +99,8 @@ func (p *packet2) Payload() []byte {
 }
 
 // Signature returns packet signature
-func (p *packet2) Signature() signature.Signature {
-	return append([]byte(nil), p.signature...)
+func (p *packet2) Signature() *signature.Signature {
+	return p.signature.Copy()
 }
 
 func (p *packet2) assign(rhs *packet2) error {
@@ -114,7 +115,7 @@ func (p *packet2) assign(rhs *packet2) error {
 	p.msgID = rhs.msgID
 	p.checksum = rhs.checksum
 	p.payload = append([]byte(nil), rhs.payload...)
-	p.signature = append([]byte(nil), []byte(rhs.signature)...)
+	p.signature = rhs.signature.Copy()
 	return nil
 }
 
@@ -128,17 +129,17 @@ func (p *packet2) copy() *packet2 {
 	if p == nil {
 		return nil
 	}
-	copy := &packet2{}
-	copy.incompatFlags = p.incompatFlags
-	copy.compatFlags = p.compatFlags
-	copy.seqID = p.seqID
-	copy.sysID = p.sysID
-	copy.compID = p.compID
-	copy.msgID = p.msgID
-	copy.checksum = p.checksum
-	copy.payload = append([]byte(nil), p.payload...)
-	copy.signature = append([]byte(nil), []byte(p.signature)...)
-	return copy
+	c := &packet2{}
+	c.incompatFlags = p.incompatFlags
+	c.compatFlags = p.compatFlags
+	c.seqID = p.seqID
+	c.sysID = p.sysID
+	c.compID = p.compID
+	c.msgID = p.msgID
+	c.checksum = p.checksum
+	c.payload = append([]byte(nil), p.payload...)
+	c.signature = p.signature.Copy()
+	return c
 }
 
 // Unmarshal trying to de-serialize byte slice to packet
@@ -161,6 +162,17 @@ func (p *packet2) Unmarshal(buffer []byte) error {
 }
 
 // Marshal trying to serialize byte slice from packet
+// After Marshal() need to append signature if packet is signed
+//	if p.IsSigned() {
+//		if err := p.signature.Fix(bytes, secretKey); err != nil {
+//		    return nil, err
+//		}
+//		b, err := p.signature.Marshal()
+//		if err != nil {
+//			return nil, err
+//		}
+//		bytes = append(bytes,b...)
+//	}
 func (p *packet2) Marshal() ([]byte, error) {
 	if p == nil {
 		return nil, errors.ErrNilPointerReference
@@ -186,10 +198,27 @@ func (p *packet2) Marshal() ([]byte, error) {
 	// payload
 	bytes = append(bytes, p.payload...)
 	bytes = append(bytes, helpers.U16ToBytes(p.checksum)...)
-	if p.IsSigned() {
-		bytes = append(bytes, []byte(p.signature)...)
-	}
 	return bytes, nil
+}
+
+// Marshal trying to serialize byte slice from packet including signature at appendix
+func (p *packet2) MarshalWithSignature(linkID byte, timestamp time.Time, secretKey [32]byte) ([]byte, error) {
+	bytes, err := p.Marshal()
+	if err != nil {
+		return nil, err
+	}
+	if p.IsSigned() {
+		p.signature, err = signature.New(linkID, timestamp, secretKey, bytes)
+		if err != nil {
+			return nil, err
+		}
+		b, err := p.signature.Marshal()
+		if err != nil {
+			return nil, err
+		}
+		bytes = append(bytes, b...)
+	}
+	return bytes, err
 }
 
 func (p *packet2) prepare() error {
@@ -257,36 +286,9 @@ func (p *packet2) String() string {
 		p.checksum,
 		func() string {
 			if p.IsSigned() {
-				return fmt.Sprintf(", signature: %+v", p.signature)
+				return fmt.Sprintf(", signature: %+v", *p.signature)
 			}
 			return ""
 		}(),
 	)
-}
-func (p *packet2) GenSignature(key *V2Key) *V2Signature {
-	msg := f.GetMessage().(*msg.MessageRaw)
-	h := sha256.New()
-
-	// secret key
-	h.Write(key[:])
-
-	// the signature covers the whole message, excluding the signature itself
-	buf := make([]byte, 6)
-	h.Write([]byte{V2MagicByte})
-	h.Write([]byte{byte(len(msg.Content))})
-	h.Write([]byte{f.IncompatibilityFlag})
-	h.Write([]byte{f.CompatibilityFlag})
-	h.Write([]byte{f.SequenceID})
-	h.Write([]byte{f.SystemID})
-	h.Write([]byte{f.ComponentID})
-	h.Write(uint24Encode(buf, f.Message.GetID()))
-	h.Write(msg.Content)
-	binary.LittleEndian.PutUint16(buf, f.Checksum)
-	h.Write(buf[:2])
-	h.Write([]byte{f.SignatureLinkID})
-	h.Write(uint48Encode(buf, f.SignatureTimestamp))
-
-	sig := new(V2Signature)
-	copy(sig[:], h.Sum(nil)[:6])
-	return sig
 }

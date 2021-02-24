@@ -71,6 +71,7 @@ type parser1 struct {
 	packet1
 	state MAVLINK1_PARSE_STATE
 	crc   *crc.X25
+	tail  []byte
 }
 
 var _parsersPoolV1 = &sync.Pool{

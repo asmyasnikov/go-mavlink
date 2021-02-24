@@ -13,12 +13,13 @@ func packetVTemplate() string {
 		"\n" +
 		"import (\n" +
 		"    \"fmt\"\n" +
+		"    \"time\"\n" +
+		"    \"{{.CommonPackageURL}}/signature\"\n" +
 		"    \"{{.CommonPackageURL}}/packet\"\n" +
 		"    \"{{.CommonPackageURL}}/register\"\n" +
 		"    \"{{.CommonPackageURL}}/errors\"\n" +
 		"    \"{{.CommonPackageURL}}/helpers\"\n" +
 		"    \"{{.CommonPackageURL}}/message\"\n" +
-		"    \"{{.CommonPackageURL}}/signature\"\n" +
 		"    \"{{.CommonPackageURL}}/crc\"\n" +
 		")\n" +
 		"\n" +
@@ -52,7 +53,7 @@ func packetVTemplate() string {
 		"\tpayload       []byte\n" +
 		"\tchecksum      uint16\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\tsignature     signature.Signature\n" +
+		"    signature     *signature.Signature\n" +
 		"{{- end}}\n" +
 		"}\n" +
 		"\n" +
@@ -112,9 +113,9 @@ func packetVTemplate() string {
 		"}\n" +
 		"\n" +
 		"// Signature returns packet signature\n" +
-		"func (p *packet{{.MavlinkVersion}}) Signature() signature.Signature {\n" +
+		"func (p *packet{{.MavlinkVersion}}) Signature() *signature.Signature {\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    return append([]byte(nil), p.signature...)\n" +
+		"    return p.signature.Copy()\n" +
 		"{{- else}}\n" +
 		"    return nil\n" +
 		"{{- end}}\n" +
@@ -135,7 +136,7 @@ func packetVTemplate() string {
 		"    p.checksum = rhs.checksum\n" +
 		"    p.payload = append([]byte(nil), rhs.payload...)\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    p.signature = append([]byte(nil), []byte(rhs.signature)...)\n" +
+		"    p.signature = rhs.signature.Copy()\n" +
 		"{{- end}}\n" +
 		"    return nil\n" +
 		"}\n" +
@@ -150,21 +151,21 @@ func packetVTemplate() string {
 		"    if p == nil {\n" +
 		"        return nil\n" +
 		"    }\n" +
-		"    copy := &packet{{.MavlinkVersion}}{}\n" +
+		"    c := &packet{{.MavlinkVersion}}{}\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    copy.incompatFlags = p.incompatFlags\n" +
-		"    copy.compatFlags = p.compatFlags\n" +
+		"    c.incompatFlags = p.incompatFlags\n" +
+		"    c.compatFlags = p.compatFlags\n" +
 		"{{- end}}\n" +
-		"    copy.seqID = p.seqID\n" +
-		"    copy.sysID = p.sysID\n" +
-		"    copy.compID = p.compID\n" +
-		"    copy.msgID = p.msgID\n" +
-		"    copy.checksum = p.checksum\n" +
-		"    copy.payload = append([]byte(nil), p.payload...)\n" +
+		"    c.seqID = p.seqID\n" +
+		"    c.sysID = p.sysID\n" +
+		"    c.compID = p.compID\n" +
+		"    c.msgID = p.msgID\n" +
+		"    c.checksum = p.checksum\n" +
+		"    c.payload = append([]byte(nil), p.payload...)\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    copy.signature = append([]byte(nil), []byte(p.signature)...)\n" +
+		"    c.signature = p.signature.Copy()\n" +
 		"{{- end}}\n" +
-		"    return copy\n" +
+		"    return c\n" +
 		"}\n" +
 		"\n" +
 		"// Unmarshal trying to de-serialize byte slice to packet\n" +
@@ -187,6 +188,19 @@ func packetVTemplate() string {
 		"}\n" +
 		"\n" +
 		"// Marshal trying to serialize byte slice from packet\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"// After Marshal() need to append signature if packet is signed\n" +
+		"//\tif p.IsSigned() {\n" +
+		"//\t\tif err := p.signature.Fix(bytes, secretKey); err != nil {\n" +
+		"//\t\t    return nil, err\n" +
+		"//\t\t}\n" +
+		"//\t\tb, err := p.signature.Marshal()\n" +
+		"//\t\tif err != nil {\n" +
+		"//\t\t\treturn nil, err\n" +
+		"//\t\t}\n" +
+		"//\t\tbytes = append(bytes,b...)\n" +
+		"//\t}\n" +
+		"{{- end}}\n" +
 		"func (p *packet{{.MavlinkVersion}}) Marshal() ([]byte, error) {\n" +
 		"\tif p == nil {\n" +
 		"\t\treturn nil, errors.ErrNilPointerReference\n" +
@@ -216,12 +230,29 @@ func packetVTemplate() string {
 		"    // payload\n" +
 		"\tbytes = append(bytes, p.payload...)\n" +
 		"\tbytes = append(bytes, helpers.U16ToBytes(p.checksum)...)\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"\tif p.IsSigned() {\n" +
-		"\t    bytes = append(bytes, []byte(p.signature)...)\n" +
-		"\t}\n" +
-		"{{- end}}\n" +
 		"\treturn bytes, nil\n" +
+		"}\n" +
+		"\n" +
+		"// Marshal trying to serialize byte slice from packet including signature at appendix\n" +
+		"func (p *packet{{.MavlinkVersion}}) MarshalWithSignature(linkID byte, timestamp time.Time, secretKey [32]byte) ([]byte, error) {\n" +
+		"    bytes, err := p.Marshal()\n" +
+		"    if err != nil {\n" +
+		"        return nil, err\n" +
+		"    }\n" +
+		"{{- if eq .MavlinkVersion 2}}\n" +
+		"    if p.IsSigned() {\n" +
+		"        p.signature, err = signature.New(linkID, timestamp, secretKey, bytes)\n" +
+		"        if err != nil {\n" +
+		"            return nil, err\n" +
+		"        }\n" +
+		"        b, err := p.signature.Marshal()\n" +
+		"        if err != nil {\n" +
+		"            return nil, err\n" +
+		"        }\n" +
+		"        bytes = append(bytes, b...)\n" +
+		"    }\n" +
+		"{{- end}}\n" +
+		"    return bytes, err\n" +
 		"}\n" +
 		"\n" +
 		"func (p *packet{{.MavlinkVersion}}) prepare() error {\n" +
@@ -298,7 +329,7 @@ func packetVTemplate() string {
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"        func() string {\n" +
 		"            if p.IsSigned() {\n" +
-		"                return fmt.Sprintf(\", signature: %+v\", p.signature)\n" +
+		"                return fmt.Sprintf(\", signature: %+v\", *p.signature)\n" +
 		"            }\n" +
 		"            return \"\"\n" +
 		"        }(),\n" +
@@ -307,36 +338,6 @@ func packetVTemplate() string {
 		"{{- end}}\n" +
 		"\t)\n" +
 		"}\n" +
-		"\n" +
-		"{{- if eq .MavlinkVersion 2}}\n" +
-		"func (p *packet{{.MavlinkVersion}}) GenSignature(key *V2Key) *V2Signature {\n" +
-		"\tmsg := f.GetMessage().(*msg.MessageRaw)\n" +
-		"\th := sha256.New()\n" +
-		"\n" +
-		"\t// secret key\n" +
-		"\th.Write(key[:])\n" +
-		"\n" +
-		"\t// the signature covers the whole message, excluding the signature itself\n" +
-		"\tbuf := make([]byte, 6)\n" +
-		"\th.Write([]byte{V2MagicByte})\n" +
-		"\th.Write([]byte{byte(len(msg.Content))})\n" +
-		"\th.Write([]byte{f.IncompatibilityFlag})\n" +
-		"\th.Write([]byte{f.CompatibilityFlag})\n" +
-		"\th.Write([]byte{f.SequenceID})\n" +
-		"\th.Write([]byte{f.SystemID})\n" +
-		"\th.Write([]byte{f.ComponentID})\n" +
-		"\th.Write(uint24Encode(buf, f.Message.GetID()))\n" +
-		"\th.Write(msg.Content)\n" +
-		"\tbinary.LittleEndian.PutUint16(buf, f.Checksum)\n" +
-		"\th.Write(buf[:2])\n" +
-		"\th.Write([]byte{f.SignatureLinkID})\n" +
-		"\th.Write(uint48Encode(buf, f.SignatureTimestamp))\n" +
-		"\n" +
-		"\tsig := new(V2Signature)\n" +
-		"\tcopy(sig[:], h.Sum(nil)[:6])\n" +
-		"\treturn sig\n" +
-		"}\n" +
-		"{{- end}}\n" +
 		""
 	return tmpl
 }

@@ -12,6 +12,7 @@ func packetTemplate() string {
 	var tmpl = "package packet\n" +
 		"\n" +
 		"import (\n" +
+		"    \"time\"\n" +
 		"    \"{{.CommonPackageURL}}/message\"\n" +
 		"    \"{{.CommonPackageURL}}/signature\"\n" +
 		")\n" +
@@ -38,7 +39,7 @@ func packetTemplate() string {
 		"\t// Payload returns packet payload\n" +
 		"\tPayload() []byte\n" +
 		"\t// Signature returns packet signature\n" +
-		"\tSignature() signature.Signature\n" +
+		"\tSignature() *signature.Signature\n" +
 		"\t// Copy returns deep copy of packet\n" +
 		"\tCopy() Packet\n" +
 		"\t// Message returns dialect message\n" +
@@ -47,6 +48,8 @@ func packetTemplate() string {
 		"\tString() string\n" +
 		"    // Marshal encodes Packet to byte slice\n" +
 		"    Marshal() ([]byte, error)\n" +
+		"    // MarshalWithSignature encodes Packet to byte slice including signature at appendix\n" +
+		"    MarshalWithSignature(linkID byte, timestamp time.Time, secretKey [32]byte) ([]byte, error)\n" +
 		"    // Unmarshal parses PAYLOAD and stores the result in Packet\n" +
 		"    Unmarshal(payload []byte) error\n" +
 		"}\n" +

@@ -88,6 +88,7 @@ func parserVTemplate() string {
 		"    packet{{.MavlinkVersion}}\n" +
 		"\tstate       MAVLINK{{.MavlinkVersion}}_PARSE_STATE\n" +
 		"\tcrc         *crc.X25\n" +
+		"\ttail        []byte\n" +
 		"}\n" +
 		"\n" +
 		"var _parsersPoolV{{.MavlinkVersion}} = &sync.Pool{\n" +
@@ -199,7 +200,7 @@ func parserVTemplate() string {
 		"                p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
 		"                return p.copy(), nil\n" +
 		"            }\n" +
-		"            p.signature = nil\n" +
+		"            p.tail = nil\n" +
 		"            p.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE\n" +
 		"            return nil, nil\n" +
 		"{{- else}}\n" +
@@ -211,11 +212,17 @@ func parserVTemplate() string {
 		"        return nil, errors.ErrCrcFail\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
 		"\tcase MAVLINK{{.MavlinkVersion}}_PARSE_STATE_WAIT_SIGNATURE:\n" +
-		"\t    p.signature = append(p.signature, c)\n" +
-		"\t    if len([]byte(p.signature)) == signature.SIGNATURE_LEN {\n" +
-		"\t\t\tp.state = MAVLINK{{.MavlinkVersion}}_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
+		"\t\tp.tail = append(p.tail, c)\n" +
+		"\t\tif len([]byte(p.tail)) == signature.SIGNATURE_LEN {\n" +
+		"    \t\tif p.signature == nil {\n" +
+		"    \t\t    p.signature = &signature.Signature{}\n" +
+		"    \t\t}\n" +
+		"\t\t\tif err := p.signature.Unmarshal(p.tail); err != nil {\n" +
+		"\t\t\t\treturn nil, err\n" +
+		"\t\t\t}\n" +
+		"\t\t\tp.state = MAVLINK2_PARSE_STATE_GOT_GOOD_MESSAGE\n" +
 		"\t\t\treturn p.copy(), nil\n" +
-		"\t    }\n" +
+		"\t\t}\n" +
 		"{{- end}}\n" +
 		"\t}\n" +
 		"\treturn nil, nil\n" +

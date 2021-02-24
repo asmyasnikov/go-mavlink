@@ -15,6 +15,7 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
+	"time"
 )
 
 const (
@@ -90,7 +91,7 @@ func (p *packet1) Payload() []byte {
 }
 
 // Signature returns packet signature
-func (p *packet1) Signature() signature.Signature {
+func (p *packet1) Signature() *signature.Signature {
 	return nil
 }
 
@@ -117,14 +118,14 @@ func (p *packet1) copy() *packet1 {
 	if p == nil {
 		return nil
 	}
-	copy := &packet1{}
-	copy.seqID = p.seqID
-	copy.sysID = p.sysID
-	copy.compID = p.compID
-	copy.msgID = p.msgID
-	copy.checksum = p.checksum
-	copy.payload = append([]byte(nil), p.payload...)
-	return copy
+	c := &packet1{}
+	c.seqID = p.seqID
+	c.sysID = p.sysID
+	c.compID = p.compID
+	c.msgID = p.msgID
+	c.checksum = p.checksum
+	c.payload = append([]byte(nil), p.payload...)
+	return c
 }
 
 // Unmarshal trying to de-serialize byte slice to packet
@@ -169,6 +170,15 @@ func (p *packet1) Marshal() ([]byte, error) {
 	bytes = append(bytes, p.payload...)
 	bytes = append(bytes, helpers.U16ToBytes(p.checksum)...)
 	return bytes, nil
+}
+
+// Marshal trying to serialize byte slice from packet including signature at appendix
+func (p *packet1) MarshalWithSignature(linkID byte, timestamp time.Time, secretKey [32]byte) ([]byte, error) {
+	bytes, err := p.Marshal()
+	if err != nil {
+		return nil, err
+	}
+	return bytes, err
 }
 
 func (p *packet1) prepare() error {

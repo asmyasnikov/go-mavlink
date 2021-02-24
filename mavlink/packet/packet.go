@@ -9,6 +9,7 @@ package packet
 import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
+	"time"
 )
 
 // MAGIC_NUMBER type
@@ -33,7 +34,7 @@ type Packet interface {
 	// Payload returns packet payload
 	Payload() []byte
 	// Signature returns packet signature
-	Signature() signature.Signature
+	Signature() *signature.Signature
 	// Copy returns deep copy of packet
 	Copy() Packet
 	// Message returns dialect message
@@ -42,6 +43,8 @@ type Packet interface {
 	String() string
 	// Marshal encodes Packet to byte slice
 	Marshal() ([]byte, error)
+	// MarshalWithSignature encodes Packet to byte slice including signature at appendix
+	MarshalWithSignature(linkID byte, timestamp time.Time, secretKey [32]byte) ([]byte, error)
 	// Unmarshal parses PAYLOAD and stores the result in Packet
 	Unmarshal(payload []byte) error
 }

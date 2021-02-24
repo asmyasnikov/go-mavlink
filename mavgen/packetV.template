@@ -2,12 +2,13 @@ package parser
 
 import (
     "fmt"
+    "time"
+    "{{.CommonPackageURL}}/signature"
     "{{.CommonPackageURL}}/packet"
     "{{.CommonPackageURL}}/register"
     "{{.CommonPackageURL}}/errors"
     "{{.CommonPackageURL}}/helpers"
     "{{.CommonPackageURL}}/message"
-    "{{.CommonPackageURL}}/signature"
     "{{.CommonPackageURL}}/crc"
 )
 
@@ -41,7 +42,7 @@ type packet{{.MavlinkVersion}} struct {
 	payload       []byte
 	checksum      uint16
 {{- if eq .MavlinkVersion 2}}
-	signature     signature.Signature
+    signature     *signature.Signature
 {{- end}}
 }
 
@@ -101,9 +102,9 @@ func (p *packet{{.MavlinkVersion}}) Payload() []byte {
 }
 
 // Signature returns packet signature
-func (p *packet{{.MavlinkVersion}}) Signature() signature.Signature {
+func (p *packet{{.MavlinkVersion}}) Signature() *signature.Signature {
 {{- if eq .MavlinkVersion 2}}
-    return append([]byte(nil), p.signature...)
+    return p.signature.Copy()
 {{- else}}
     return nil
 {{- end}}
@@ -124,7 +125,7 @@ func (p *packet{{.MavlinkVersion}}) assign(rhs *packet{{.MavlinkVersion}}) error
     p.checksum = rhs.checksum
     p.payload = append([]byte(nil), rhs.payload...)
 {{- if eq .MavlinkVersion 2}}
-    p.signature = append([]byte(nil), []byte(rhs.signature)...)
+    p.signature = rhs.signature.Copy()
 {{- end}}
     return nil
 }
@@ -139,21 +140,21 @@ func (p *packet{{.MavlinkVersion}}) copy() *packet{{.MavlinkVersion}} {
     if p == nil {
         return nil
     }
-    copy := &packet{{.MavlinkVersion}}{}
+    c := &packet{{.MavlinkVersion}}{}
 {{- if eq .MavlinkVersion 2}}
-    copy.incompatFlags = p.incompatFlags
-    copy.compatFlags = p.compatFlags
+    c.incompatFlags = p.incompatFlags
+    c.compatFlags = p.compatFlags
 {{- end}}
-    copy.seqID = p.seqID
-    copy.sysID = p.sysID
-    copy.compID = p.compID
-    copy.msgID = p.msgID
-    copy.checksum = p.checksum
-    copy.payload = append([]byte(nil), p.payload...)
+    c.seqID = p.seqID
+    c.sysID = p.sysID
+    c.compID = p.compID
+    c.msgID = p.msgID
+    c.checksum = p.checksum
+    c.payload = append([]byte(nil), p.payload...)
 {{- if eq .MavlinkVersion 2}}
-    copy.signature = append([]byte(nil), []byte(p.signature)...)
+    c.signature = p.signature.Copy()
 {{- end}}
-    return copy
+    return c
 }
 
 // Unmarshal trying to de-serialize byte slice to packet
@@ -176,6 +177,19 @@ func (p *packet{{.MavlinkVersion}}) Unmarshal(buffer []byte) error {
 }
 
 // Marshal trying to serialize byte slice from packet
+{{- if eq .MavlinkVersion 2}}
+// After Marshal() need to append signature if packet is signed
+//	if p.IsSigned() {
+//		if err := p.signature.Fix(bytes, secretKey); err != nil {
+//		    return nil, err
+//		}
+//		b, err := p.signature.Marshal()
+//		if err != nil {
+//			return nil, err
+//		}
+//		bytes = append(bytes,b...)
+//	}
+{{- end}}
 func (p *packet{{.MavlinkVersion}}) Marshal() ([]byte, error) {
 	if p == nil {
 		return nil, errors.ErrNilPointerReference
@@ -205,12 +219,29 @@ func (p *packet{{.MavlinkVersion}}) Marshal() ([]byte, error) {
     // payload
 	bytes = append(bytes, p.payload...)
 	bytes = append(bytes, helpers.U16ToBytes(p.checksum)...)
-{{- if eq .MavlinkVersion 2}}
-	if p.IsSigned() {
-	    bytes = append(bytes, []byte(p.signature)...)
-	}
-{{- end}}
 	return bytes, nil
+}
+
+// Marshal trying to serialize byte slice from packet including signature at appendix
+func (p *packet{{.MavlinkVersion}}) MarshalWithSignature(linkID byte, timestamp time.Time, secretKey [32]byte) ([]byte, error) {
+    bytes, err := p.Marshal()
+    if err != nil {
+        return nil, err
+    }
+{{- if eq .MavlinkVersion 2}}
+    if p.IsSigned() {
+        p.signature, err = signature.New(linkID, timestamp, secretKey, bytes)
+        if err != nil {
+            return nil, err
+        }
+        b, err := p.signature.Marshal()
+        if err != nil {
+            return nil, err
+        }
+        bytes = append(bytes, b...)
+    }
+{{- end}}
+    return bytes, err
 }
 
 func (p *packet{{.MavlinkVersion}}) prepare() error {
@@ -287,7 +318,7 @@ func (p *packet{{.MavlinkVersion}}) String() string {
 {{- if eq .MavlinkVersion 2}}
         func() string {
             if p.IsSigned() {
-                return fmt.Sprintf(", signature: %+v", p.signature)
+                return fmt.Sprintf(", signature: %+v", *p.signature)
             }
             return ""
         }(),
@@ -296,33 +327,3 @@ func (p *packet{{.MavlinkVersion}}) String() string {
 {{- end}}
 	)
 }
-
-{{- if eq .MavlinkVersion 2}}
-func (p *packet{{.MavlinkVersion}}) GenSignature(key *V2Key) *V2Signature {
-	msg := f.GetMessage().(*msg.MessageRaw)
-	h := sha256.New()
-
-	// secret key
-	h.Write(key[:])
-
-	// the signature covers the whole message, excluding the signature itself
-	buf := make([]byte, 6)
-	h.Write([]byte{V2MagicByte})
-	h.Write([]byte{byte(len(msg.Content))})
-	h.Write([]byte{f.IncompatibilityFlag})
-	h.Write([]byte{f.CompatibilityFlag})
-	h.Write([]byte{f.SequenceID})
-	h.Write([]byte{f.SystemID})
-	h.Write([]byte{f.ComponentID})
-	h.Write(uint24Encode(buf, f.Message.GetID()))
-	h.Write(msg.Content)
-	binary.LittleEndian.PutUint16(buf, f.Checksum)
-	h.Write(buf[:2])
-	h.Write([]byte{f.SignatureLinkID})
-	h.Write(uint48Encode(buf, f.SignatureTimestamp))
-
-	sig := new(V2Signature)
-	copy(sig[:], h.Sum(nil)[:6])
-	return sig
-}
-{{- end}}

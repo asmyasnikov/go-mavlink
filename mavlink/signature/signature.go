@@ -7,58 +7,99 @@
 package signature
 
 import (
+	"crypto/sha256"
 	"fmt"
+	"github.com/asmyasnikov/go-mavlink/mavlink/helpers"
 	"time"
 )
 
 // Signature type
-type Signature []byte
+type Signature struct {
+	linkID    byte
+	timestamp time.Time
+	crc       [6]byte
+}
 
 const (
 	// SIGNATURE_LEN constant
 	SIGNATURE_LEN = 13
 )
 
-// NewSignature creates signature
-func NewSignature(linkID byte, timestamp time.Time, signature [6]byte) Signature {
-	s := make([]byte, SIGNATURE_LEN)
-	s[0] = linkID
-	t := timestamp.Sub(signatureReferenceDate) / (time.Microsecond * 10)
-	s[1] = byte(t)
-	s[2] = byte(t >> 8)
-	s[3] = byte(t >> 16)
-	s[4] = byte(t >> 24)
-	s[5] = byte(t >> 32)
-	s[6] = byte(t >> 40)
-	copy(s[7:], signature[:])
-	return s
+// New returns new Signature struct instance
+func New(linkID byte, timestamp time.Time, secret [32]byte, packet []byte) (*Signature, error) {
+	if timestamp.Sub(signatureReferenceDate) < 0 {
+		return nil, fmt.Errorf("bad timestamp %+v (must be newer than %+v)", timestamp, signatureReferenceDate)
+	}
+	timestamp = signatureReferenceDate.Add((timestamp.Sub(signatureReferenceDate) / (time.Microsecond * 10)) * (time.Microsecond * 10))
+	s := &Signature{
+		linkID:    linkID,
+		timestamp: timestamp,
+	}
+	t := uint64(s.timestamp.Sub(signatureReferenceDate) / (time.Microsecond * 10))
+	h := sha256.New()
+	h.Write(secret[:])
+	h.Write(packet[:])
+	h.Write([]byte{s.linkID})
+	h.Write(helpers.U48ToBytes(t))
+	copy(s.crc[:], h.Sum(nil)[:6])
+	return s, nil
+}
+
+// Copy returns copy of Signature struct instance
+func (s *Signature) Copy() *Signature {
+	if s == nil {
+		return nil
+	}
+	c := &Signature{
+		linkID:    s.linkID,
+		timestamp: s.timestamp,
+	}
+	copy(c.crc[:], s.crc[:])
+	return c
+}
+
+// Unmarshal returns de-serialized bytes to Signature struct
+func (s *Signature) Unmarshal(buffer []byte) error {
+	s.linkID = buffer[0]
+	s.timestamp = signatureReferenceDate.Add(time.Duration(helpers.BytesToU48(buffer[1:7])) * (time.Microsecond * 10))
+	copy(s.crc[:], buffer[7:13])
+	return nil
+}
+
+// Marshal returns serialized bytes from Signature struct
+func (s *Signature) Marshal() ([]byte, error) {
+	bytes := make([]byte, 0, SIGNATURE_LEN)
+	bytes = append(bytes, byte(s.linkID))
+	bytes = append(bytes, helpers.U48ToBytes(uint64(s.timestamp.Sub(signatureReferenceDate)/(time.Microsecond*10)))...)
+	bytes = append(bytes, s.crc[:]...)
+	return bytes, nil
 }
 
 // LinkID returns link id
-func (s Signature) LinkID() byte {
-	return s[0]
+func (s *Signature) LinkID() byte {
+	return s.linkID
 }
 
 // 1st January 2015 GMT https://mavlink.io/en/guide/message_signing.html#timestamps
 var signatureReferenceDate = time.Date(2015, 01, 01, 0, 0, 0, 0, time.UTC)
 
 // Timestamp returns timestamp of signature
-func (s Signature) Timestamp() time.Time {
-	return signatureReferenceDate.Add(time.Duration(uint64(s[6])<<40|uint64(s[5])<<32|uint64(s[4])<<24|uint64(s[3])<<16|uint64(s[2])<<8|uint64(s[1])) * (10 * time.Microsecond))
+func (s *Signature) Timestamp() time.Time {
+	return s.timestamp
 }
 
 // Signature returns signature slice
-func (s Signature) Signature() (signature [6]byte) {
-	copy(signature[:], s[7:])
-	return signature
+func (s *Signature) CRC() (crc [6]byte) {
+	copy(crc[:], s.crc[:])
+	return crc
 }
 
 // String function return string view of Packet struct
 func (s Signature) String() string {
 	return fmt.Sprintf(
-		"&Signature{ linkID: 0x%02X, timestamp: \"%+v\", signature: \"%06X\" }",
+		"&Signature{ linkID: 0x%02X, timestamp: \"%+v\", crc: \"%06X\" }",
 		s.LinkID(),
-		s.Timestamp(),
-		s.Signature(),
+		s.Timestamp().UTC(),
+		s.CRC(),
 	)
 }

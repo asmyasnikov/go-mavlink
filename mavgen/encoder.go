@@ -14,6 +14,7 @@ func encoderTemplate() string {
 		"import (\n" +
 		"\t\"fmt\"\n" +
 		"\t\"io\"\n" +
+		"\t\"time\"\n" +
 		"    \"{{.CommonPackageURL}}/parser\"\n" +
 		"    \"{{.CommonPackageURL}}/packet\"\n" +
 		"    \"{{.CommonPackageURL}}/message\"\n" +
@@ -35,6 +36,19 @@ func encoderTemplate() string {
 		"// Encode encode packet to output stream. Method return error or nil on success\n" +
 		"func (e *Encoder) Encode(p packet.Packet) error {\n" +
 		"\tb, err := p.Marshal()\n" +
+		"\tif err != nil {\n" +
+		"\t    return err\n" +
+		"\t}\n" +
+		"\tn, err := e.writer.Write(b)\n" +
+		"\tif len(b) != n {\n" +
+		"\t\treturn fmt.Errorf(\"writed %d bytes, but need to write %d bytes\", n, len(b))\n" +
+		"\t}\n" +
+		"\treturn err\n" +
+		"}\n" +
+		"\n" +
+		"// EncodeWithSignature encode packet with signature to output stream. Method return error or nil on success\n" +
+		"func (e *Encoder) EncodeWithSignature(p packet.Packet, linkID byte, timestamp time.Time, secretKey [32]byte) error {\n" +
+		"\tb, err := p.MarshalWithSignature(linkID, timestamp, secretKey)\n" +
 		"\tif err != nil {\n" +
 		"\t    return err\n" +
 		"\t}\n" +
