@@ -300,7 +300,7 @@ func packetVTemplate() string {
 		"\tif err != nil {\n" +
 		"\t\treturn nil, err\n" +
 		"\t}\n" +
-		"\treturn info.Constructor(p)\n" +
+		"\treturn info.Constructor(p.payload)\n" +
 		"}\n" +
 		"\n" +
 		"// String function return string view of Packet struct\n" +

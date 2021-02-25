@@ -4,14 +4,13 @@ import (
 	"encoding/binary"
 	"fmt"
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
-	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 )
 
 func init() {
-	register.Register(MSG_ID_PING_MOCK, "MSG_ID_PING_MOCK", 4, 0, func(p packet.Packet) (message.Message, error) {
+	register.Register(MSG_ID_PING_MOCK, "MSG_ID_PING_MOCK", 4, 0, func(bytes []byte) (message.Message, error) {
 		msg := new(Ping)
-		if err := msg.Unmarshal(p.Payload()); err != nil {
+		if err := msg.Unmarshal(bytes); err != nil {
 			return nil, err
 		}
 		return msg, nil

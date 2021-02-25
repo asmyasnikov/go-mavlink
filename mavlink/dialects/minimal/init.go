@@ -8,7 +8,6 @@ package minimal
 
 import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
-	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 )
 
@@ -18,9 +17,9 @@ func init() {
 			"MSG_ID_HEARTBEAT",
 			9,
 			50,
-			func(p packet.Packet) (message.Message, error) {
+			func(bytes []byte) (message.Message, error) {
 				msg := new(Heartbeat)
-				return msg, msg.Unmarshal(p.Payload())
+				return msg, msg.Unmarshal(bytes)
 			},
 		},
 	} {

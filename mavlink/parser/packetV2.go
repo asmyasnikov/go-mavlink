@@ -260,7 +260,7 @@ func (p *packet2) Message() (message.Message, error) {
 	if err != nil {
 		return nil, err
 	}
-	return info.Constructor(p)
+	return info.Constructor(p.payload)
 }
 
 // String function return string view of Packet struct

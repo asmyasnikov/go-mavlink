@@ -15,7 +15,6 @@ func registerTemplate() string {
 		"    \"strconv\"\n" +
 		"    \"{{.CommonPackageURL}}/errors\"\n" +
 		"    \"{{.CommonPackageURL}}/message\"\n" +
-		"    \"{{.CommonPackageURL}}/packet\"\n" +
 		")\n" +
 		"\n" +
 		"// MessageInfo type\n" +
@@ -23,13 +22,13 @@ func registerTemplate() string {
 		"    Name string\n" +
 		"    Size int\n" +
 		"    Extra uint8\n" +
-		"    Constructor func(p packet.Packet) (message.Message, error)\n" +
+		"    Constructor func(bytes []byte) (message.Message, error)\n" +
 		"}\n" +
 		"\n" +
 		"var supported = make(map[message.MessageID]*MessageInfo)\n" +
 		"\n" +
 		"// Register method provide register dialect message on decoder knowledge\n" +
-		"func Register(msgID message.MessageID, msgName string, msgSize int, crcExtra uint8, msgConstructor func(p packet.Packet) (message.Message, error)) {\n" +
+		"func Register(msgID message.MessageID, msgName string, msgSize int, crcExtra uint8, msgConstructor func(bytes []byte) (message.Message, error)) {\n" +
 		"\tif info, ok := supported[msgID]; ok {\n" +
 		"\t\tpanic(\"Message with ID = \" + strconv.Itoa(int(msgID)) + \" already exists. Fix collision '\" + msgName + \"' vs '\" + info.Name + \"' and re-run mavgen\")\n" +
 		"\t} else {\n" +
