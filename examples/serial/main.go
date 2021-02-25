@@ -27,7 +27,7 @@ var (
 	device     = flag.String("d", "/dev/ttyUSB0", "path of serial port device")
 	ro         = flag.Bool("ro", false, "read-only mode")
 	retryCount = flag.Int("retry-count", 1, "retry count for sending packets")
-	sysID      = flag.Int("sysID", 1, "System ID (copter)")
+	sysID      = flag.Int("sysID", 1, "System ID (control station)")
 )
 
 func main() {
