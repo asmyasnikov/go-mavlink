@@ -9,7 +9,6 @@ package register
 import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/errors"
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
-	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"strconv"
 )
 
@@ -18,13 +17,13 @@ type MessageInfo struct {
 	Name        string
 	Size        int
 	Extra       uint8
-	Constructor func(p packet.Packet) (message.Message, error)
+	Constructor func(bytes []byte) (message.Message, error)
 }
 
 var supported = make(map[message.MessageID]*MessageInfo)
 
 // Register method provide register dialect message on decoder knowledge
-func Register(msgID message.MessageID, msgName string, msgSize int, crcExtra uint8, msgConstructor func(p packet.Packet) (message.Message, error)) {
+func Register(msgID message.MessageID, msgName string, msgSize int, crcExtra uint8, msgConstructor func(bytes []byte) (message.Message, error)) {
 	if info, ok := supported[msgID]; ok {
 		panic("Message with ID = " + strconv.Itoa(int(msgID)) + " already exists. Fix collision '" + msgName + "' vs '" + info.Name + "' and re-run mavgen")
 	} else {

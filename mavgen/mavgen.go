@@ -625,7 +625,6 @@ func (d *Dialect) generateGo(dialectPath string, packageName string, commonPacka
 			if len(d.Messages) > 0 {
 				return []string{
 					commonPackage + "/message",
-					commonPackage + "/packet",
 					commonPackage + "/register",
 				}
 			}
@@ -710,9 +709,9 @@ func init() {
 			"MSG_ID_{{.Name}}",
 			{{.Size}},
 			{{.CRCExtra}},
-			func(p packet.Packet) (message.Message, error) {
+			func(bytes []byte) (message.Message, error) {
 				msg := new({{.Name | UpperCamelCase}})
-				return msg, msg.Unmarshal(p.Payload())
+				return msg, msg.Unmarshal(bytes)
 			},
 		},{{end}}
 	} {
