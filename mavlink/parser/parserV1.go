@@ -7,12 +7,12 @@
 package parser
 
 import (
+	"../crc"
+	"../errors"
+	"../message"
+	"../packet"
+	"../register"
 	"fmt"
-	"github.com/asmyasnikov/go-mavlink/mavlink/crc"
-	"github.com/asmyasnikov/go-mavlink/mavlink/errors"
-	"github.com/asmyasnikov/go-mavlink/mavlink/message"
-	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
-	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 	"sync"
 )
 

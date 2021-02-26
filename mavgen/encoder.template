@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"io"
 	"time"
-    "{{.CommonPackageURL}}/parser"
-    "{{.CommonPackageURL}}/packet"
-    "{{.CommonPackageURL}}/message"
-    "{{.CommonPackageURL}}/version"
+    "./parser"
+    "./packet"
+    "./message"
+    "./version"
 )
 
 // Encoder struct provide decoding processor

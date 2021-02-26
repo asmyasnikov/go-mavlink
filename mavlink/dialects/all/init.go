@@ -7,8 +7,8 @@
 package all
 
 import (
-	"github.com/asmyasnikov/go-mavlink/mavlink/message"
-	"github.com/asmyasnikov/go-mavlink/mavlink/register"
+	"../../message"
+	"../../register"
 )
 
 func init() {

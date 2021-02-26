@@ -7,9 +7,9 @@
 package signature
 
 import (
+	"../helpers"
 	"crypto/sha256"
 	"fmt"
-	"github.com/asmyasnikov/go-mavlink/mavlink/helpers"
 	"time"
 )
 

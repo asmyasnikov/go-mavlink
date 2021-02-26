@@ -7,8 +7,8 @@
 package register
 
 import (
-	"github.com/asmyasnikov/go-mavlink/mavlink/errors"
-	"github.com/asmyasnikov/go-mavlink/mavlink/message"
+	"../errors"
+	"../message"
 	"strconv"
 )
 

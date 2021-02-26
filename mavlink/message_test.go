@@ -1,9 +1,9 @@
 package mavlink
 
 import (
+	"../mock"
+	"../version"
 	"bytes"
-	"github.com/asmyasnikov/go-mavlink/mavlink/mock"
-	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"github.com/stretchr/testify/require"
 	"math/rand"
 	"testing"

@@ -3,14 +3,14 @@ package parser
 import (
     "fmt"
     "sync"
-    "{{.CommonPackageURL}}/packet"
-    "{{.CommonPackageURL}}/register"
-    "{{.CommonPackageURL}}/errors"
-    "{{.CommonPackageURL}}/message"
+    "../packet"
+    "../register"
+    "../errors"
+    "../message"
 {{- if eq .MavlinkVersion 2}}
-    "{{.CommonPackageURL}}/signature"
+    "../signature"
 {{- end}}
-    "{{.CommonPackageURL}}/crc"
+    "../crc"
 )
 
 // MAVLINK{{.MavlinkVersion}}_PARSE_STATE typedef

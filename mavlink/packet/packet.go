@@ -7,8 +7,8 @@
 package packet
 
 import (
-	"github.com/asmyasnikov/go-mavlink/mavlink/message"
-	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
+	"../message"
+	"../signature"
 	"time"
 )
 

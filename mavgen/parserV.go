@@ -14,14 +14,14 @@ func parserVTemplate() string {
 		"import (\n" +
 		"    \"fmt\"\n" +
 		"    \"sync\"\n" +
-		"    \"{{.CommonPackageURL}}/packet\"\n" +
-		"    \"{{.CommonPackageURL}}/register\"\n" +
-		"    \"{{.CommonPackageURL}}/errors\"\n" +
-		"    \"{{.CommonPackageURL}}/message\"\n" +
+		"    \"../packet\"\n" +
+		"    \"../register\"\n" +
+		"    \"../errors\"\n" +
+		"    \"../message\"\n" +
 		"{{- if eq .MavlinkVersion 2}}\n" +
-		"    \"{{.CommonPackageURL}}/signature\"\n" +
+		"    \"../signature\"\n" +
 		"{{- end}}\n" +
-		"    \"{{.CommonPackageURL}}/crc\"\n" +
+		"    \"../crc\"\n" +
 		")\n" +
 		"\n" +
 		"// MAVLINK{{.MavlinkVersion}}_PARSE_STATE typedef\n" +

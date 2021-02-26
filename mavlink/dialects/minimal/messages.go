@@ -7,7 +7,7 @@
 package minimal
 
 import (
-	"github.com/asmyasnikov/go-mavlink/mavlink/message"
+	"../../message"
 )
 
 // Message IDs

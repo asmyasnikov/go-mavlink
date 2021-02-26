@@ -14,8 +14,8 @@ func decoderTemplate() string {
 		"import (\n" +
 		"\t\"bufio\"\n" +
 		"\t\"io\"\n" +
-		"    \"{{.CommonPackageURL}}/packet\"\n" +
-		"    \"{{.CommonPackageURL}}/parser\"\n" +
+		"    \"./packet\"\n" +
+		"    \"./parser\"\n" +
 		")\n" +
 		"\n" +
 		"// Decoder struct provide decoding processor\n" +

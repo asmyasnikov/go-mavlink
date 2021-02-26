@@ -3,13 +3,13 @@ package parser
 import (
     "fmt"
     "time"
-    "{{.CommonPackageURL}}/signature"
-    "{{.CommonPackageURL}}/packet"
-    "{{.CommonPackageURL}}/register"
-    "{{.CommonPackageURL}}/errors"
-    "{{.CommonPackageURL}}/helpers"
-    "{{.CommonPackageURL}}/message"
-    "{{.CommonPackageURL}}/crc"
+    "../signature"
+    "../packet"
+    "../register"
+    "../errors"
+    "../helpers"
+    "../message"
+    "../crc"
 )
 
 {{if eq .MavlinkVersion 2 -}}

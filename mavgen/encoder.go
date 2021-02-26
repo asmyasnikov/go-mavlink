@@ -15,10 +15,10 @@ func encoderTemplate() string {
 		"\t\"fmt\"\n" +
 		"\t\"io\"\n" +
 		"\t\"time\"\n" +
-		"    \"{{.CommonPackageURL}}/parser\"\n" +
-		"    \"{{.CommonPackageURL}}/packet\"\n" +
-		"    \"{{.CommonPackageURL}}/message\"\n" +
-		"    \"{{.CommonPackageURL}}/version\"\n" +
+		"    \"./parser\"\n" +
+		"    \"./packet\"\n" +
+		"    \"./message\"\n" +
+		"    \"./version\"\n" +
 		")\n" +
 		"\n" +
 		"// Encoder struct provide decoding processor\n" +

@@ -1,11 +1,11 @@
 package parser
 
 import (
+	"../helpers"
+	"../mock"
+	"../packet"
+	"../signature"
 	"fmt"
-	"github.com/asmyasnikov/go-mavlink/mavlink/helpers"
-	"github.com/asmyasnikov/go-mavlink/mavlink/mock"
-	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
-	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
 	"github.com/stretchr/testify/require"
 	"testing"
 	"time"

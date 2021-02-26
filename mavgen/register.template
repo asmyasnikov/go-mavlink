@@ -2,8 +2,8 @@ package register
 
 import (
     "strconv"
-    "{{.CommonPackageURL}}/errors"
-    "{{.CommonPackageURL}}/message"
+    "../errors"
+    "../message"
 )
 
 // MessageInfo type

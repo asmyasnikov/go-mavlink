@@ -1,10 +1,10 @@
 package mavlink
 
 import (
+	"../mock"
+	"../version"
 	"bytes"
 	"fmt"
-	"github.com/asmyasnikov/go-mavlink/mavlink/mock"
-	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"math/rand"
 	"sync"
 	"testing"

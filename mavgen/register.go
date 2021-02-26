@@ -13,8 +13,8 @@ func registerTemplate() string {
 		"\n" +
 		"import (\n" +
 		"    \"strconv\"\n" +
-		"    \"{{.CommonPackageURL}}/errors\"\n" +
-		"    \"{{.CommonPackageURL}}/message\"\n" +
+		"    \"../errors\"\n" +
+		"    \"../message\"\n" +
 		")\n" +
 		"\n" +
 		"// MessageInfo type\n" +

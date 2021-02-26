@@ -7,9 +7,9 @@
 package ualberta
 
 import (
+	"../../message"
 	"encoding/binary"
 	"fmt"
-	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 	"math"
 	"strings"
 )

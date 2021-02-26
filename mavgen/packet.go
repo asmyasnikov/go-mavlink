@@ -13,8 +13,8 @@ func packetTemplate() string {
 		"\n" +
 		"import (\n" +
 		"    \"time\"\n" +
-		"    \"{{.CommonPackageURL}}/message\"\n" +
-		"    \"{{.CommonPackageURL}}/signature\"\n" +
+		"    \"../message\"\n" +
+		"    \"../signature\"\n" +
 		")\n" +
 		"\n" +
 		"// MAGIC_NUMBER type\n" +
