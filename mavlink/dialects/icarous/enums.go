@@ -8,10 +8,15 @@ package icarous
 
 import (
 	"fmt"
+	"strconv"
 )
 
 // ICAROUS_TRACK_BAND_TYPES type
 type ICAROUS_TRACK_BAND_TYPES int
+
+func (e ICAROUS_TRACK_BAND_TYPES) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ICAROUS_TRACK_BAND_TYPE_NONE enum
@@ -53,6 +58,10 @@ func (e ICAROUS_TRACK_BAND_TYPES) Bitmask() string {
 
 // ICAROUS_FMS_STATE type
 type ICAROUS_FMS_STATE int
+
+func (e ICAROUS_FMS_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ICAROUS_FMS_STATE_IDLE enum

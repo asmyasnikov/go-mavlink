@@ -8,10 +8,15 @@ package minimal
 
 import (
 	"fmt"
+	"strconv"
 )
 
 // MAV_AUTOPILOT type. Micro air vehicle / autopilot classes. This identifies the individual model.
 type MAV_AUTOPILOT int
+
+func (e MAV_AUTOPILOT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_AUTOPILOT_GENERIC enum. Generic autopilot, full support for everything
@@ -121,6 +126,10 @@ func (e MAV_AUTOPILOT) Bitmask() string {
 
 // MAV_TYPE type. MAVLINK component type reported in HEARTBEAT message. Flight controllers must report the type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA).
 type MAV_TYPE int
+
+func (e MAV_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_TYPE_GENERIC enum. Generic micro air vehicle
@@ -295,6 +304,10 @@ func (e MAV_TYPE) Bitmask() string {
 // MAV_MODE_FLAG type. These flags encode the MAV mode.
 type MAV_MODE_FLAG int
 
+func (e MAV_MODE_FLAG) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_MODE_FLAG_SAFETY_ARMED enum. 0b10000000 MAV safety set to armed. Motors are enabled / running / can start. Ready to fly. Additional note: this flag is to be ignore when sent in the command MAV_CMD_DO_SET_MODE and MAV_CMD_COMPONENT_ARM_DISARM shall be used instead. The flag can still be used to report the armed state
 	MAV_MODE_FLAG_SAFETY_ARMED MAV_MODE_FLAG = 128
@@ -356,6 +369,10 @@ func (e MAV_MODE_FLAG) Bitmask() string {
 // MAV_MODE_FLAG_DECODE_POSITION type. These values encode the bit positions of the decode position. These values can be used to read the value of a flag bit by combining the base_mode variable with AND with the flag position value. The result will be either 0 or 1, depending on if the flag is set or not.
 type MAV_MODE_FLAG_DECODE_POSITION int
 
+func (e MAV_MODE_FLAG_DECODE_POSITION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_MODE_FLAG_DECODE_POSITION_SAFETY enum. First bit:  10000000
 	MAV_MODE_FLAG_DECODE_POSITION_SAFETY MAV_MODE_FLAG_DECODE_POSITION = 128
@@ -416,6 +433,10 @@ func (e MAV_MODE_FLAG_DECODE_POSITION) Bitmask() string {
 
 // MAV_STATE type
 type MAV_STATE int
+
+func (e MAV_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_STATE_UNINIT enum. Uninitialized system, state is unknown
@@ -481,6 +502,10 @@ func (e MAV_STATE) Bitmask() string {
 
 // MAV_COMPONENT type. Component ids (values) for the different types and instances of onboard hardware/software that might make up a MAVLink system (autopilot, cameras, servos, GPS systems, avoidance systems etc.).       Components must use the appropriate ID in their source address when sending messages. Components can also use IDs to determine if they are the intended recipient of an incoming message. The MAV_COMP_ID_ALL value is used to indicate messages that must be processed by all components.       When creating new entries, components that can have multiple instances (e.g. cameras, servos etc.) should be allocated sequential values. An appropriate number of values should be left free after these components to allow the number of instances to be expanded.
 type MAV_COMPONENT int
+
+func (e MAV_COMPONENT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_COMP_ID_ALL enum. Target id (target_component) used to broadcast messages to all components of the receiving system. Components should attempt to process messages with this component ID and forward to components on any other interfaces. Note: This is not a valid *source* component id for a message

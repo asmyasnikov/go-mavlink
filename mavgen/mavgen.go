@@ -561,6 +561,7 @@ func (d *Dialect) generateGo(dialectPath string, packageName string, commonPacka
 			if len(d.Enums) > 0 {
 				return []string{
 					"fmt",
+					"strconv",
 				}
 			}
 			return nil
@@ -643,6 +644,10 @@ func (d *Dialect) generateEnums(w io.Writer) error {
 {{$enumName := .Name}}
 // {{$enumName}} type{{if .Description}}. {{.Description}}{{end}}
 type {{.Name}} int
+
+func (e {{.Name}}) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const ({{range .Entries}}
 	// {{.Name}} enum{{if .Description}}. {{.Description}}{{end}}

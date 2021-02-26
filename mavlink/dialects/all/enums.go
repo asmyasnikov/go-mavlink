@@ -8,10 +8,15 @@ package all
 
 import (
 	"fmt"
+	"strconv"
 )
 
 // ACCELCAL_VEHICLE_POS type
 type ACCELCAL_VEHICLE_POS int
+
+func (e ACCELCAL_VEHICLE_POS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ACCELCAL_VEHICLE_POS_LEVEL enum
@@ -74,6 +79,10 @@ func (e ACCELCAL_VEHICLE_POS) Bitmask() string {
 // HEADING_TYPE type
 type HEADING_TYPE int
 
+func (e HEADING_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// HEADING_TYPE_COURSE_OVER_GROUND enum
 	HEADING_TYPE_COURSE_OVER_GROUND HEADING_TYPE = 0
@@ -111,6 +120,10 @@ func (e HEADING_TYPE) Bitmask() string {
 // SPEED_TYPE type
 type SPEED_TYPE int
 
+func (e SPEED_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// SPEED_TYPE_AIRSPEED enum
 	SPEED_TYPE_AIRSPEED SPEED_TYPE = 0
@@ -147,6 +160,10 @@ func (e SPEED_TYPE) Bitmask() string {
 
 // MAV_CMD type
 type MAV_CMD int
+
+func (e MAV_CMD) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_CMD_DO_SET_RESUME_REPEAT_DIST enum. Set the distance to be repeated on mission resume. Params: 1) Distance.; 2) Empty.; 3) Empty.; 4) Empty.; 5) Empty.; 6) Empty.; 7) Empty.;
@@ -897,6 +914,10 @@ func (e MAV_CMD) Bitmask() string {
 // SCRIPTING_CMD type
 type SCRIPTING_CMD int
 
+func (e SCRIPTING_CMD) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// SCRIPTING_CMD_REPL_START enum. Start a REPL session
 	SCRIPTING_CMD_REPL_START SCRIPTING_CMD = 0
@@ -933,6 +954,10 @@ func (e SCRIPTING_CMD) Bitmask() string {
 
 // LIMITS_STATE type
 type LIMITS_STATE int
+
+func (e LIMITS_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// LIMITS_INIT enum. Pre-initialization
@@ -987,6 +1012,10 @@ func (e LIMITS_STATE) Bitmask() string {
 // LIMIT_MODULE type
 type LIMIT_MODULE int
 
+func (e LIMIT_MODULE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// LIMIT_GPSLOCK enum. Pre-initialization
 	LIMIT_GPSLOCK LIMIT_MODULE = 1
@@ -1028,6 +1057,10 @@ func (e LIMIT_MODULE) Bitmask() string {
 // RALLY_FLAGS type. Flags in RALLY_POINT message.
 type RALLY_FLAGS int
 
+func (e RALLY_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// FAVORABLE_WIND enum. Flag set when requiring favorable winds for landing
 	FAVORABLE_WIND RALLY_FLAGS = 1
@@ -1064,6 +1097,10 @@ func (e RALLY_FLAGS) Bitmask() string {
 
 // CAMERA_STATUS_TYPES type
 type CAMERA_STATUS_TYPES int
+
+func (e CAMERA_STATUS_TYPES) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// CAMERA_STATUS_TYPE_HEARTBEAT enum. Camera heartbeat, announce camera component ID at 1Hz
@@ -1122,6 +1159,10 @@ func (e CAMERA_STATUS_TYPES) Bitmask() string {
 // CAMERA_FEEDBACK_FLAGS type
 type CAMERA_FEEDBACK_FLAGS int
 
+func (e CAMERA_FEEDBACK_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// CAMERA_FEEDBACK_PHOTO enum. Shooting photos, not video
 	CAMERA_FEEDBACK_PHOTO CAMERA_FEEDBACK_FLAGS = 0
@@ -1170,6 +1211,10 @@ func (e CAMERA_FEEDBACK_FLAGS) Bitmask() string {
 
 // MAV_MODE_GIMBAL type
 type MAV_MODE_GIMBAL int
+
+func (e MAV_MODE_GIMBAL) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_MODE_GIMBAL_UNINITIALIZED enum. Gimbal is powered on but has not started initializing yet
@@ -1228,6 +1273,10 @@ func (e MAV_MODE_GIMBAL) Bitmask() string {
 // GIMBAL_AXIS type
 type GIMBAL_AXIS int
 
+func (e GIMBAL_AXIS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GIMBAL_AXIS_YAW enum. Gimbal yaw axis
 	GIMBAL_AXIS_YAW GIMBAL_AXIS = 0
@@ -1268,6 +1317,10 @@ func (e GIMBAL_AXIS) Bitmask() string {
 
 // GIMBAL_AXIS_CALIBRATION_STATUS type
 type GIMBAL_AXIS_CALIBRATION_STATUS int
+
+func (e GIMBAL_AXIS_CALIBRATION_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GIMBAL_AXIS_CALIBRATION_STATUS_IN_PROGRESS enum. Axis calibration is in progress
@@ -1310,6 +1363,10 @@ func (e GIMBAL_AXIS_CALIBRATION_STATUS) Bitmask() string {
 // GIMBAL_AXIS_CALIBRATION_REQUIRED type
 type GIMBAL_AXIS_CALIBRATION_REQUIRED int
 
+func (e GIMBAL_AXIS_CALIBRATION_REQUIRED) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GIMBAL_AXIS_CALIBRATION_REQUIRED_UNKNOWN enum. Whether or not this axis requires calibration is unknown at this time
 	GIMBAL_AXIS_CALIBRATION_REQUIRED_UNKNOWN GIMBAL_AXIS_CALIBRATION_REQUIRED = 0
@@ -1350,6 +1407,10 @@ func (e GIMBAL_AXIS_CALIBRATION_REQUIRED) Bitmask() string {
 
 // GOPRO_HEARTBEAT_STATUS type
 type GOPRO_HEARTBEAT_STATUS int
+
+func (e GOPRO_HEARTBEAT_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_HEARTBEAT_STATUS_DISCONNECTED enum. No GoPro connected
@@ -1396,6 +1457,10 @@ func (e GOPRO_HEARTBEAT_STATUS) Bitmask() string {
 // GOPRO_HEARTBEAT_FLAGS type
 type GOPRO_HEARTBEAT_FLAGS int
 
+func (e GOPRO_HEARTBEAT_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_FLAG_RECORDING enum. GoPro is currently recording
 	GOPRO_FLAG_RECORDING GOPRO_HEARTBEAT_FLAGS = 1
@@ -1428,6 +1493,10 @@ func (e GOPRO_HEARTBEAT_FLAGS) Bitmask() string {
 
 // GOPRO_REQUEST_STATUS type
 type GOPRO_REQUEST_STATUS int
+
+func (e GOPRO_REQUEST_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_REQUEST_SUCCESS enum. The write message with ID indicated succeeded
@@ -1465,6 +1534,10 @@ func (e GOPRO_REQUEST_STATUS) Bitmask() string {
 
 // GOPRO_COMMAND type
 type GOPRO_COMMAND int
+
+func (e GOPRO_COMMAND) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_COMMAND_POWER enum. (Get/Set)
@@ -1563,6 +1636,10 @@ func (e GOPRO_COMMAND) Bitmask() string {
 // GOPRO_CAPTURE_MODE type
 type GOPRO_CAPTURE_MODE int
 
+func (e GOPRO_CAPTURE_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_CAPTURE_MODE_VIDEO enum. Video mode
 	GOPRO_CAPTURE_MODE_VIDEO GOPRO_CAPTURE_MODE = 0
@@ -1623,6 +1700,10 @@ func (e GOPRO_CAPTURE_MODE) Bitmask() string {
 
 // GOPRO_RESOLUTION type
 type GOPRO_RESOLUTION int
+
+func (e GOPRO_RESOLUTION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_RESOLUTION_480p enum. 848 x 480 (480p)
@@ -1709,6 +1790,10 @@ func (e GOPRO_RESOLUTION) Bitmask() string {
 // GOPRO_FRAME_RATE type
 type GOPRO_FRAME_RATE int
 
+func (e GOPRO_FRAME_RATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_FRAME_RATE_12 enum. 12 FPS
 	GOPRO_FRAME_RATE_12 GOPRO_FRAME_RATE = 0
@@ -1794,6 +1879,10 @@ func (e GOPRO_FRAME_RATE) Bitmask() string {
 // GOPRO_FIELD_OF_VIEW type
 type GOPRO_FIELD_OF_VIEW int
 
+func (e GOPRO_FIELD_OF_VIEW) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_FIELD_OF_VIEW_WIDE enum. 0x00: Wide
 	GOPRO_FIELD_OF_VIEW_WIDE GOPRO_FIELD_OF_VIEW = 0
@@ -1835,6 +1924,10 @@ func (e GOPRO_FIELD_OF_VIEW) Bitmask() string {
 // GOPRO_VIDEO_SETTINGS_FLAGS type
 type GOPRO_VIDEO_SETTINGS_FLAGS int
 
+func (e GOPRO_VIDEO_SETTINGS_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_VIDEO_SETTINGS_TV_MODE enum. 0=NTSC, 1=PAL
 	GOPRO_VIDEO_SETTINGS_TV_MODE GOPRO_VIDEO_SETTINGS_FLAGS = 1
@@ -1867,6 +1960,10 @@ func (e GOPRO_VIDEO_SETTINGS_FLAGS) Bitmask() string {
 
 // GOPRO_PHOTO_RESOLUTION type
 type GOPRO_PHOTO_RESOLUTION int
+
+func (e GOPRO_PHOTO_RESOLUTION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_PHOTO_RESOLUTION_5MP_MEDIUM enum. 5MP Medium
@@ -1917,6 +2014,10 @@ func (e GOPRO_PHOTO_RESOLUTION) Bitmask() string {
 // GOPRO_PROTUNE_WHITE_BALANCE type
 type GOPRO_PROTUNE_WHITE_BALANCE int
 
+func (e GOPRO_PROTUNE_WHITE_BALANCE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_PROTUNE_WHITE_BALANCE_AUTO enum. Auto
 	GOPRO_PROTUNE_WHITE_BALANCE_AUTO GOPRO_PROTUNE_WHITE_BALANCE = 0
@@ -1966,6 +2067,10 @@ func (e GOPRO_PROTUNE_WHITE_BALANCE) Bitmask() string {
 // GOPRO_PROTUNE_COLOUR type
 type GOPRO_PROTUNE_COLOUR int
 
+func (e GOPRO_PROTUNE_COLOUR) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_PROTUNE_COLOUR_STANDARD enum. Auto
 	GOPRO_PROTUNE_COLOUR_STANDARD GOPRO_PROTUNE_COLOUR = 0
@@ -2002,6 +2107,10 @@ func (e GOPRO_PROTUNE_COLOUR) Bitmask() string {
 
 // GOPRO_PROTUNE_GAIN type
 type GOPRO_PROTUNE_GAIN int
+
+func (e GOPRO_PROTUNE_GAIN) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_PROTUNE_GAIN_400 enum. ISO 400
@@ -2052,6 +2161,10 @@ func (e GOPRO_PROTUNE_GAIN) Bitmask() string {
 // GOPRO_PROTUNE_SHARPNESS type
 type GOPRO_PROTUNE_SHARPNESS int
 
+func (e GOPRO_PROTUNE_SHARPNESS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_PROTUNE_SHARPNESS_LOW enum. Low Sharpness
 	GOPRO_PROTUNE_SHARPNESS_LOW GOPRO_PROTUNE_SHARPNESS = 0
@@ -2092,6 +2205,10 @@ func (e GOPRO_PROTUNE_SHARPNESS) Bitmask() string {
 
 // GOPRO_PROTUNE_EXPOSURE type
 type GOPRO_PROTUNE_EXPOSURE int
+
+func (e GOPRO_PROTUNE_EXPOSURE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_PROTUNE_EXPOSURE_NEG_5_0 enum. -5.0 EV (Hero 3+ Only)
@@ -2206,6 +2323,10 @@ func (e GOPRO_PROTUNE_EXPOSURE) Bitmask() string {
 // GOPRO_CHARGING type
 type GOPRO_CHARGING int
 
+func (e GOPRO_CHARGING) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GOPRO_CHARGING_DISABLED enum. Charging disabled
 	GOPRO_CHARGING_DISABLED GOPRO_CHARGING = 0
@@ -2242,6 +2363,10 @@ func (e GOPRO_CHARGING) Bitmask() string {
 
 // GOPRO_MODEL type
 type GOPRO_MODEL int
+
+func (e GOPRO_MODEL) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_MODEL_UNKNOWN enum. Unknown gopro model
@@ -2291,6 +2416,10 @@ func (e GOPRO_MODEL) Bitmask() string {
 
 // GOPRO_BURST_RATE type
 type GOPRO_BURST_RATE int
+
+func (e GOPRO_BURST_RATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GOPRO_BURST_RATE_3_IN_1_SECOND enum. 3 Shots / 1 Second
@@ -2357,6 +2486,10 @@ func (e GOPRO_BURST_RATE) Bitmask() string {
 // LED_CONTROL_PATTERN type
 type LED_CONTROL_PATTERN int
 
+func (e LED_CONTROL_PATTERN) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// LED_CONTROL_PATTERN_OFF enum. LED patterns off (return control to regular vehicle control)
 	LED_CONTROL_PATTERN_OFF LED_CONTROL_PATTERN = 0
@@ -2397,6 +2530,10 @@ func (e LED_CONTROL_PATTERN) Bitmask() string {
 
 // EKF_STATUS_FLAGS type. Flags in EKF_STATUS message.
 type EKF_STATUS_FLAGS int
+
+func (e EKF_STATUS_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// EKF_ATTITUDE enum. Set if EKF's attitude estimate is good
@@ -2471,6 +2608,10 @@ func (e EKF_STATUS_FLAGS) Bitmask() string {
 // PID_TUNING_AXIS type
 type PID_TUNING_AXIS int
 
+func (e PID_TUNING_AXIS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// PID_TUNING_ROLL enum
 	PID_TUNING_ROLL PID_TUNING_AXIS = 1
@@ -2524,6 +2665,10 @@ func (e PID_TUNING_AXIS) Bitmask() string {
 // MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS type. Special ACK block numbers control activation of dataflash log streaming.
 type MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS int
 
+func (e MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_REMOTE_LOG_DATA_BLOCK_STOP enum. UAV to stop sending DataFlash blocks
 	MAV_REMOTE_LOG_DATA_BLOCK_STOP MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS = 2147483645
@@ -2560,6 +2705,10 @@ func (e MAV_REMOTE_LOG_DATA_BLOCK_COMMANDS) Bitmask() string {
 
 // MAV_REMOTE_LOG_DATA_BLOCK_STATUSES type. Possible remote log data block statuses.
 type MAV_REMOTE_LOG_DATA_BLOCK_STATUSES int
+
+func (e MAV_REMOTE_LOG_DATA_BLOCK_STATUSES) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_REMOTE_LOG_DATA_BLOCK_NACK enum. This block has NOT been received
@@ -2598,6 +2747,10 @@ func (e MAV_REMOTE_LOG_DATA_BLOCK_STATUSES) Bitmask() string {
 // DEVICE_OP_BUSTYPE type. Bus types for device operations.
 type DEVICE_OP_BUSTYPE int
 
+func (e DEVICE_OP_BUSTYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// DEVICE_OP_BUSTYPE_I2C enum. I2C Device operation
 	DEVICE_OP_BUSTYPE_I2C DEVICE_OP_BUSTYPE = 0
@@ -2634,6 +2787,10 @@ func (e DEVICE_OP_BUSTYPE) Bitmask() string {
 
 // DEEPSTALL_STAGE type. Deepstall flight stage.
 type DEEPSTALL_STAGE int
+
+func (e DEEPSTALL_STAGE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// DEEPSTALL_STAGE_FLY_TO_LANDING enum. Flying to the landing point
@@ -2691,6 +2848,10 @@ func (e DEEPSTALL_STAGE) Bitmask() string {
 
 // PLANE_MODE type. A mapping of plane flight modes for custom_mode field of heartbeat.
 type PLANE_MODE int
+
+func (e PLANE_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// PLANE_MODE_MANUAL enum
@@ -2812,6 +2973,10 @@ func (e PLANE_MODE) Bitmask() string {
 
 // COPTER_MODE type. A mapping of copter flight modes for custom_mode field of heartbeat.
 type COPTER_MODE int
+
+func (e COPTER_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// COPTER_MODE_STABILIZE enum
@@ -2938,6 +3103,10 @@ func (e COPTER_MODE) Bitmask() string {
 // SUB_MODE type. A mapping of sub flight modes for custom_mode field of heartbeat.
 type SUB_MODE int
 
+func (e SUB_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// SUB_MODE_STABILIZE enum
 	SUB_MODE_STABILIZE SUB_MODE = 0
@@ -3002,6 +3171,10 @@ func (e SUB_MODE) Bitmask() string {
 
 // ROVER_MODE type. A mapping of rover flight modes for custom_mode field of heartbeat.
 type ROVER_MODE int
+
+func (e ROVER_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ROVER_MODE_MANUAL enum
@@ -3080,6 +3253,10 @@ func (e ROVER_MODE) Bitmask() string {
 // TRACKER_MODE type. A mapping of antenna tracker flight modes for custom_mode field of heartbeat.
 type TRACKER_MODE int
 
+func (e TRACKER_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// TRACKER_MODE_MANUAL enum
 	TRACKER_MODE_MANUAL TRACKER_MODE = 0
@@ -3132,6 +3309,10 @@ func (e TRACKER_MODE) Bitmask() string {
 
 // OSD_PARAM_CONFIG_TYPE type. The type of parameter for the OSD parameter editor.
 type OSD_PARAM_CONFIG_TYPE int
+
+func (e OSD_PARAM_CONFIG_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// OSD_PARAM_NONE enum
@@ -3198,6 +3379,10 @@ func (e OSD_PARAM_CONFIG_TYPE) Bitmask() string {
 // OSD_PARAM_CONFIG_ERROR type. The error type for the OSD parameter editor.
 type OSD_PARAM_CONFIG_ERROR int
 
+func (e OSD_PARAM_CONFIG_ERROR) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// OSD_PARAM_SUCCESS enum
 	OSD_PARAM_SUCCESS OSD_PARAM_CONFIG_ERROR = 0
@@ -3242,6 +3427,10 @@ func (e OSD_PARAM_CONFIG_ERROR) Bitmask() string {
 
 // FIRMWARE_VERSION_TYPE type. These values define the type of firmware release.  These values indicate the first version or release of this type.  For example the first alpha release would be 64, the second would be 65.
 type FIRMWARE_VERSION_TYPE int
+
+func (e FIRMWARE_VERSION_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// FIRMWARE_VERSION_TYPE_DEV enum. development release
@@ -3291,6 +3480,10 @@ func (e FIRMWARE_VERSION_TYPE) Bitmask() string {
 
 // HL_FAILURE_FLAG type. Flags to report failure cases over the high latency telemtry.
 type HL_FAILURE_FLAG int
+
+func (e HL_FAILURE_FLAG) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// HL_FAILURE_FLAG_GPS enum. GPS failure
@@ -3377,6 +3570,10 @@ func (e HL_FAILURE_FLAG) Bitmask() string {
 // MAV_GOTO type. Actions that may be specified in MAV_CMD_OVERRIDE_GOTO to override mission execution.
 type MAV_GOTO int
 
+func (e MAV_GOTO) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_GOTO_DO_HOLD enum. Hold at the current position
 	MAV_GOTO_DO_HOLD MAV_GOTO = 0
@@ -3421,6 +3618,10 @@ func (e MAV_GOTO) Bitmask() string {
 
 // MAV_MODE type. These defines are predefined OR-combined mode flags. There is no need to use values from this enum, but it                simplifies the use of the mode flags. Note that manual input is enabled in all modes as a safety override.
 type MAV_MODE int
+
+func (e MAV_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_MODE_PREFLIGHT enum. System is not ready to fly, booting, calibrating, etc. No flag is set
@@ -3494,6 +3695,10 @@ func (e MAV_MODE) Bitmask() string {
 
 // MAV_SYS_STATUS_SENSOR type. These encode the sensors whose status is sent as part of the SYS_STATUS message.
 type MAV_SYS_STATUS_SENSOR int
+
+func (e MAV_SYS_STATUS_SENSOR) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_SYS_STATUS_SENSOR_3D_GYRO enum. 0x01 3D gyro
@@ -3644,6 +3849,10 @@ func (e MAV_SYS_STATUS_SENSOR) Bitmask() string {
 // MAV_FRAME type
 type MAV_FRAME int
 
+func (e MAV_FRAME) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_FRAME_GLOBAL enum. Global (WGS84) coordinate frame + MSL altitude. First value / x: latitude, second value / y: longitude, third value / z: positive altitude over mean sea level (MSL)
 	MAV_FRAME_GLOBAL MAV_FRAME = 0
@@ -3761,6 +3970,10 @@ func (e MAV_FRAME) Bitmask() string {
 // MAVLINK_DATA_STREAM_TYPE type
 type MAVLINK_DATA_STREAM_TYPE int
 
+func (e MAVLINK_DATA_STREAM_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAVLINK_DATA_STREAM_IMG_JPEG enum
 	MAVLINK_DATA_STREAM_IMG_JPEG MAVLINK_DATA_STREAM_TYPE = 0
@@ -3814,6 +4027,10 @@ func (e MAVLINK_DATA_STREAM_TYPE) Bitmask() string {
 // FENCE_ACTION type
 type FENCE_ACTION int
 
+func (e FENCE_ACTION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// FENCE_ACTION_NONE enum. Disable fenced mode
 	FENCE_ACTION_NONE FENCE_ACTION = 0
@@ -3863,6 +4080,10 @@ func (e FENCE_ACTION) Bitmask() string {
 // FENCE_BREACH type
 type FENCE_BREACH int
 
+func (e FENCE_BREACH) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// FENCE_BREACH_NONE enum. No last fence breach
 	FENCE_BREACH_NONE FENCE_BREACH = 0
@@ -3908,6 +4129,10 @@ func (e FENCE_BREACH) Bitmask() string {
 // FENCE_MITIGATE type. Actions being taken to mitigate/prevent fence breach
 type FENCE_MITIGATE int
 
+func (e FENCE_MITIGATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// FENCE_MITIGATE_UNKNOWN enum. Unknown
 	FENCE_MITIGATE_UNKNOWN FENCE_MITIGATE = 0
@@ -3948,6 +4173,10 @@ func (e FENCE_MITIGATE) Bitmask() string {
 
 // MAV_MOUNT_MODE type. Enumeration of possible mount operation modes. This message is used by obsolete/deprecated gimbal messages.
 type MAV_MOUNT_MODE int
+
+func (e MAV_MOUNT_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_MOUNT_MODE_RETRACT enum. Load and keep safe position (Roll,Pitch,Yaw) from permant memory and stop stabilization
@@ -4005,6 +4234,10 @@ func (e MAV_MOUNT_MODE) Bitmask() string {
 
 // GIMBAL_DEVICE_CAP_FLAGS type. Gimbal device (low level) capability flags (bitmap)
 type GIMBAL_DEVICE_CAP_FLAGS int
+
+func (e GIMBAL_DEVICE_CAP_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GIMBAL_DEVICE_CAP_FLAGS_HAS_RETRACT enum. Gimbal device supports a retracted position
@@ -4082,6 +4315,10 @@ func (e GIMBAL_DEVICE_CAP_FLAGS) Bitmask() string {
 
 // GIMBAL_MANAGER_CAP_FLAGS type. Gimbal manager high level capability flags (bitmap). The first 16 bits are identical to the GIMBAL_DEVICE_CAP_FLAGS which are identical with GIMBAL_DEVICE_FLAGS. However, the gimbal manager does not need to copy the flags from the gimbal but can also enhance the capabilities and thus add flags.
 type GIMBAL_MANAGER_CAP_FLAGS int
+
+func (e GIMBAL_MANAGER_CAP_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GIMBAL_MANAGER_CAP_FLAGS_HAS_RETRACT enum. Based on GIMBAL_DEVICE_CAP_FLAGS_HAS_RETRACT
@@ -4168,6 +4405,10 @@ func (e GIMBAL_MANAGER_CAP_FLAGS) Bitmask() string {
 // GIMBAL_DEVICE_FLAGS type. Flags for gimbal device (lower level) operation.
 type GIMBAL_DEVICE_FLAGS int
 
+func (e GIMBAL_DEVICE_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GIMBAL_DEVICE_FLAGS_RETRACT enum. Set to retracted safe position (no stabilization), takes presedence over all other flags
 	GIMBAL_DEVICE_FLAGS_RETRACT GIMBAL_DEVICE_FLAGS = 1
@@ -4217,6 +4458,10 @@ func (e GIMBAL_DEVICE_FLAGS) Bitmask() string {
 // GIMBAL_MANAGER_FLAGS type. Flags for high level gimbal manager operation The first 16 bytes are identical to the GIMBAL_DEVICE_FLAGS.
 type GIMBAL_MANAGER_FLAGS int
 
+func (e GIMBAL_MANAGER_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GIMBAL_MANAGER_FLAGS_RETRACT enum. Based on GIMBAL_DEVICE_FLAGS_RETRACT
 	GIMBAL_MANAGER_FLAGS_RETRACT GIMBAL_MANAGER_FLAGS = 1
@@ -4265,6 +4510,10 @@ func (e GIMBAL_MANAGER_FLAGS) Bitmask() string {
 
 // GIMBAL_DEVICE_ERROR_FLAGS type. Gimbal device (low level) error flags (bitmap, 0 means no error)
 type GIMBAL_DEVICE_ERROR_FLAGS int
+
+func (e GIMBAL_DEVICE_ERROR_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GIMBAL_DEVICE_ERROR_FLAGS_AT_ROLL_LIMIT enum. Gimbal device is limited by hardware roll limit
@@ -4331,6 +4580,10 @@ func (e GIMBAL_DEVICE_ERROR_FLAGS) Bitmask() string {
 // GRIPPER_ACTIONS type. Gripper actions.
 type GRIPPER_ACTIONS int
 
+func (e GRIPPER_ACTIONS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// GRIPPER_ACTION_RELEASE enum. Gripper release cargo
 	GRIPPER_ACTION_RELEASE GRIPPER_ACTIONS = 0
@@ -4367,6 +4620,10 @@ func (e GRIPPER_ACTIONS) Bitmask() string {
 
 // WINCH_ACTIONS type. Winch actions.
 type WINCH_ACTIONS int
+
+func (e WINCH_ACTIONS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// WINCH_RELAXED enum. Relax winch
@@ -4408,6 +4665,10 @@ func (e WINCH_ACTIONS) Bitmask() string {
 
 // UAVCAN_NODE_HEALTH type. Generalized UAVCAN node health
 type UAVCAN_NODE_HEALTH int
+
+func (e UAVCAN_NODE_HEALTH) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// UAVCAN_NODE_HEALTH_OK enum. The node is functioning properly
@@ -4453,6 +4714,10 @@ func (e UAVCAN_NODE_HEALTH) Bitmask() string {
 
 // UAVCAN_NODE_MODE type. Generalized UAVCAN node mode
 type UAVCAN_NODE_MODE int
+
+func (e UAVCAN_NODE_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// UAVCAN_NODE_MODE_OPERATIONAL enum. The node is performing its primary functions
@@ -4502,6 +4767,10 @@ func (e UAVCAN_NODE_MODE) Bitmask() string {
 
 // ESC_CONNECTION_TYPE type. Indicates the ESC connection type.
 type ESC_CONNECTION_TYPE int
+
+func (e ESC_CONNECTION_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ESC_CONNECTION_TYPE_PPM enum. Traditional PPM ESC
@@ -4555,6 +4824,10 @@ func (e ESC_CONNECTION_TYPE) Bitmask() string {
 
 // ESC_FAILURE_FLAGS type. Flags to report ESC failures.
 type ESC_FAILURE_FLAGS int
+
+func (e ESC_FAILURE_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ESC_FAILURE_NONE enum. No ESC failure
@@ -4617,6 +4890,10 @@ func (e ESC_FAILURE_FLAGS) Bitmask() string {
 // STORAGE_STATUS type. Flags to indicate the status of camera storage.
 type STORAGE_STATUS int
 
+func (e STORAGE_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// STORAGE_STATUS_EMPTY enum. Storage is missing (no microSD card loaded for example.)
 	STORAGE_STATUS_EMPTY STORAGE_STATUS = 0
@@ -4661,6 +4938,10 @@ func (e STORAGE_STATUS) Bitmask() string {
 
 // STORAGE_TYPE type. Flags to indicate the type of storage.
 type STORAGE_TYPE int
+
+func (e STORAGE_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// STORAGE_TYPE_UNKNOWN enum. Storage type is not known
@@ -4727,6 +5008,10 @@ func (e STORAGE_TYPE) Bitmask() string {
 // ORBIT_YAW_BEHAVIOUR type. Yaw behaviour during orbit flight.
 type ORBIT_YAW_BEHAVIOUR int
 
+func (e ORBIT_YAW_BEHAVIOUR) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// ORBIT_YAW_BEHAVIOUR_HOLD_FRONT_TO_CIRCLE_CENTER enum. Vehicle front points to the center (default)
 	ORBIT_YAW_BEHAVIOUR_HOLD_FRONT_TO_CIRCLE_CENTER ORBIT_YAW_BEHAVIOUR = 0
@@ -4775,6 +5060,10 @@ func (e ORBIT_YAW_BEHAVIOUR) Bitmask() string {
 
 // WIFI_CONFIG_AP_RESPONSE type. Possible responses from a WIFI_CONFIG_AP message.
 type WIFI_CONFIG_AP_RESPONSE int
+
+func (e WIFI_CONFIG_AP_RESPONSE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// WIFI_CONFIG_AP_RESPONSE_UNDEFINED enum. Undefined response. Likely an indicative of a system that doesn't support this request
@@ -4829,6 +5118,10 @@ func (e WIFI_CONFIG_AP_RESPONSE) Bitmask() string {
 // CELLULAR_CONFIG_RESPONSE type. Possible responses from a CELLULAR_CONFIG message.
 type CELLULAR_CONFIG_RESPONSE int
 
+func (e CELLULAR_CONFIG_RESPONSE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// CELLULAR_CONFIG_RESPONSE_ACCEPTED enum. Changes accepted
 	CELLULAR_CONFIG_RESPONSE_ACCEPTED CELLULAR_CONFIG_RESPONSE = 0
@@ -4878,6 +5171,10 @@ func (e CELLULAR_CONFIG_RESPONSE) Bitmask() string {
 // WIFI_CONFIG_AP_MODE type. WiFi Mode.
 type WIFI_CONFIG_AP_MODE int
 
+func (e WIFI_CONFIG_AP_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// WIFI_CONFIG_AP_MODE_UNDEFINED enum. WiFi mode is undefined
 	WIFI_CONFIG_AP_MODE_UNDEFINED WIFI_CONFIG_AP_MODE = 0
@@ -4923,6 +5220,10 @@ func (e WIFI_CONFIG_AP_MODE) Bitmask() string {
 // COMP_METADATA_TYPE type. Possible values for COMPONENT_INFORMATION.comp_metadata_type.
 type COMP_METADATA_TYPE int
 
+func (e COMP_METADATA_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// COMP_METADATA_TYPE_VERSION enum. Version information which also includes information on other optional supported COMP_METADATA_TYPE's. Must be supported. Only downloadable from vehicle
 	COMP_METADATA_TYPE_VERSION COMP_METADATA_TYPE = 0
@@ -4964,6 +5265,10 @@ func (e COMP_METADATA_TYPE) Bitmask() string {
 // PARAM_TRANSACTION_TRANSPORT type. Possible transport layers to set and get parameters via mavlink during a parameter transaction.
 type PARAM_TRANSACTION_TRANSPORT int
 
+func (e PARAM_TRANSACTION_TRANSPORT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// PARAM_TRANSACTION_TRANSPORT_PARAM enum. Transaction over param transport
 	PARAM_TRANSACTION_TRANSPORT_PARAM PARAM_TRANSACTION_TRANSPORT = 0
@@ -5000,6 +5305,10 @@ func (e PARAM_TRANSACTION_TRANSPORT) Bitmask() string {
 
 // PARAM_TRANSACTION_ACTION type. Possible parameter transaction actions.
 type PARAM_TRANSACTION_ACTION int
+
+func (e PARAM_TRANSACTION_ACTION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// PARAM_TRANSACTION_ACTION_START enum. Commit the current parameter transaction
@@ -5041,6 +5350,10 @@ func (e PARAM_TRANSACTION_ACTION) Bitmask() string {
 
 // MAV_DATA_STREAM type. A data stream is not a fixed set of messages, but rather a      recommendation to the autopilot software. Individual autopilots may or may not obey      the recommended messages.
 type MAV_DATA_STREAM int
+
+func (e MAV_DATA_STREAM) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_DATA_STREAM_ALL enum. Enable all data streams
@@ -5107,6 +5420,10 @@ func (e MAV_DATA_STREAM) Bitmask() string {
 // MAV_ROI type. The ROI (region of interest) for the vehicle. This can be                 be used by the vehicle for camera/vehicle attitude alignment (see                 MAV_CMD_NAV_ROI).
 type MAV_ROI int
 
+func (e MAV_ROI) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ROI_NONE enum. No region of interest
 	MAV_ROI_NONE MAV_ROI = 0
@@ -5155,6 +5472,10 @@ func (e MAV_ROI) Bitmask() string {
 
 // MAV_CMD_ACK type. ACK / NACK / ERROR values as a result of MAV_CMDs and for mission item transmission.
 type MAV_CMD_ACK int
+
+func (e MAV_CMD_ACK) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_CMD_ACK_OK enum. Command / mission item is ok
@@ -5220,6 +5541,10 @@ func (e MAV_CMD_ACK) Bitmask() string {
 
 // MAV_PARAM_TYPE type. Specifies the datatype of a MAVLink parameter.
 type MAV_PARAM_TYPE int
+
+func (e MAV_PARAM_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_PARAM_TYPE_UINT8 enum. 8-bit unsigned integer
@@ -5289,6 +5614,10 @@ func (e MAV_PARAM_TYPE) Bitmask() string {
 
 // MAV_PARAM_EXT_TYPE type. Specifies the datatype of a MAVLink extended parameter.
 type MAV_PARAM_EXT_TYPE int
+
+func (e MAV_PARAM_EXT_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_PARAM_EXT_TYPE_UINT8 enum. 8-bit unsigned integer
@@ -5363,6 +5692,10 @@ func (e MAV_PARAM_EXT_TYPE) Bitmask() string {
 // MAV_RESULT type. Result from a MAVLink command (MAV_CMD)
 type MAV_RESULT int
 
+func (e MAV_RESULT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_RESULT_ACCEPTED enum. Command is valid (is supported and has valid parameters), and was executed
 	MAV_RESULT_ACCEPTED MAV_RESULT = 0
@@ -5419,6 +5752,10 @@ func (e MAV_RESULT) Bitmask() string {
 
 // MAV_MISSION_RESULT type. Result of mission operation (in a MISSION_ACK message).
 type MAV_MISSION_RESULT int
+
+func (e MAV_MISSION_RESULT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_MISSION_ACCEPTED enum. mission accepted OK
@@ -5513,6 +5850,10 @@ func (e MAV_MISSION_RESULT) Bitmask() string {
 // MAV_SEVERITY type. Indicates the severity level, generally used for status messages to indicate their relative urgency. Based on RFC-5424 using expanded definitions at: http://www.kiwisyslog.com/kb/info:-syslog-message-levels/.
 type MAV_SEVERITY int
 
+func (e MAV_SEVERITY) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_SEVERITY_EMERGENCY enum. System is unusable. This is a "panic" condition
 	MAV_SEVERITY_EMERGENCY MAV_SEVERITY = 0
@@ -5574,6 +5915,10 @@ func (e MAV_SEVERITY) Bitmask() string {
 // MAV_POWER_STATUS type. Power supply status flags (bitmask)
 type MAV_POWER_STATUS int
 
+func (e MAV_POWER_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_POWER_STATUS_BRICK_VALID enum. main brick power supply valid
 	MAV_POWER_STATUS_BRICK_VALID MAV_POWER_STATUS = 1
@@ -5626,6 +5971,10 @@ func (e MAV_POWER_STATUS) Bitmask() string {
 
 // SERIAL_CONTROL_DEV type. SERIAL_CONTROL device types
 type SERIAL_CONTROL_DEV int
+
+func (e SERIAL_CONTROL_DEV) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// SERIAL_CONTROL_DEV_TELEM1 enum. First telemetry port
@@ -5716,6 +6065,10 @@ func (e SERIAL_CONTROL_DEV) Bitmask() string {
 // SERIAL_CONTROL_FLAG type. SERIAL_CONTROL flags (bitmask)
 type SERIAL_CONTROL_FLAG int
 
+func (e SERIAL_CONTROL_FLAG) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// SERIAL_CONTROL_FLAG_REPLY enum. Set if this is a reply
 	SERIAL_CONTROL_FLAG_REPLY SERIAL_CONTROL_FLAG = 1
@@ -5765,6 +6118,10 @@ func (e SERIAL_CONTROL_FLAG) Bitmask() string {
 // MAV_DISTANCE_SENSOR type. Enumeration of distance sensor types
 type MAV_DISTANCE_SENSOR int
 
+func (e MAV_DISTANCE_SENSOR) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_DISTANCE_SENSOR_LASER enum. Laser rangefinder, e.g. LightWare SF02/F or PulsedLight units
 	MAV_DISTANCE_SENSOR_LASER MAV_DISTANCE_SENSOR = 0
@@ -5813,6 +6170,10 @@ func (e MAV_DISTANCE_SENSOR) Bitmask() string {
 
 // MAV_SENSOR_ORIENTATION type. Enumeration of sensor orientation, according to its rotations
 type MAV_SENSOR_ORIENTATION int
+
+func (e MAV_SENSOR_ORIENTATION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_SENSOR_ROTATION_NONE enum. Roll: 0, Pitch: 0, Yaw: 0
@@ -6011,6 +6372,10 @@ func (e MAV_SENSOR_ORIENTATION) Bitmask() string {
 // MAV_PROTOCOL_CAPABILITY type. Bitmask of (optional) autopilot capabilities (64 bit). If a bit is set, the autopilot supports this capability.
 type MAV_PROTOCOL_CAPABILITY int
 
+func (e MAV_PROTOCOL_CAPABILITY) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_PROTOCOL_CAPABILITY_MISSION_FLOAT enum. Autopilot supports MISSION float message type
 	MAV_PROTOCOL_CAPABILITY_MISSION_FLOAT MAV_PROTOCOL_CAPABILITY = 1
@@ -6108,6 +6473,10 @@ func (e MAV_PROTOCOL_CAPABILITY) Bitmask() string {
 // MAV_MISSION_TYPE type. Type of mission items being requested/sent in mission protocol.
 type MAV_MISSION_TYPE int
 
+func (e MAV_MISSION_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_MISSION_TYPE_MISSION enum. Items are mission commands for main mission
 	MAV_MISSION_TYPE_MISSION MAV_MISSION_TYPE = 0
@@ -6152,6 +6521,10 @@ func (e MAV_MISSION_TYPE) Bitmask() string {
 
 // MAV_ESTIMATOR_TYPE type. Enumeration of estimator types
 type MAV_ESTIMATOR_TYPE int
+
+func (e MAV_ESTIMATOR_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_ESTIMATOR_TYPE_UNKNOWN enum. Unknown type of the estimator
@@ -6218,6 +6591,10 @@ func (e MAV_ESTIMATOR_TYPE) Bitmask() string {
 // MAV_BATTERY_TYPE type. Enumeration of battery types
 type MAV_BATTERY_TYPE int
 
+func (e MAV_BATTERY_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_BATTERY_TYPE_UNKNOWN enum. Not specified
 	MAV_BATTERY_TYPE_UNKNOWN MAV_BATTERY_TYPE = 0
@@ -6267,6 +6644,10 @@ func (e MAV_BATTERY_TYPE) Bitmask() string {
 // MAV_BATTERY_FUNCTION type. Enumeration of battery functions
 type MAV_BATTERY_FUNCTION int
 
+func (e MAV_BATTERY_FUNCTION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_BATTERY_FUNCTION_UNKNOWN enum. Battery function is unknown
 	MAV_BATTERY_FUNCTION_UNKNOWN MAV_BATTERY_FUNCTION = 0
@@ -6315,6 +6696,10 @@ func (e MAV_BATTERY_FUNCTION) Bitmask() string {
 
 // MAV_BATTERY_CHARGE_STATE type. Enumeration for battery charge states.
 type MAV_BATTERY_CHARGE_STATE int
+
+func (e MAV_BATTERY_CHARGE_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_BATTERY_CHARGE_STATE_UNDEFINED enum. Low battery state is not provided
@@ -6377,6 +6762,10 @@ func (e MAV_BATTERY_CHARGE_STATE) Bitmask() string {
 // MAV_BATTERY_MODE type. Battery mode. Note, the normal operation mode (i.e. when flying) should be reported as MAV_BATTERY_MODE_UNKNOWN to allow message trimming in normal flight.
 type MAV_BATTERY_MODE int
 
+func (e MAV_BATTERY_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_BATTERY_MODE_UNKNOWN enum. Battery mode not supported/unknown battery mode/normal operation
 	MAV_BATTERY_MODE_UNKNOWN MAV_BATTERY_MODE = 0
@@ -6417,6 +6806,10 @@ func (e MAV_BATTERY_MODE) Bitmask() string {
 
 // MAV_BATTERY_FAULT type. Smart battery supply status/fault flags (bitmask) for health indication. The battery must also report either MAV_BATTERY_CHARGE_STATE_FAILED or MAV_BATTERY_CHARGE_STATE_UNHEALTHY if any of these are set.
 type MAV_BATTERY_FAULT int
+
+func (e MAV_BATTERY_FAULT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_BATTERY_FAULT_DEEP_DISCHARGE enum. Battery has deep discharged
@@ -6474,6 +6867,10 @@ func (e MAV_BATTERY_FAULT) Bitmask() string {
 
 // MAV_GENERATOR_STATUS_FLAG type. Flags to report status/failure cases for a power generator (used in GENERATOR_STATUS). Note that FAULTS are conditions that cause the generator to fail. Warnings are conditions that require attention before the next use (they indicate the system is not operating properly).
 type MAV_GENERATOR_STATUS_FLAG int
+
+func (e MAV_GENERATOR_STATUS_FLAG) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_GENERATOR_STATUS_FLAG_OFF enum. Generator is off
@@ -6596,6 +6993,10 @@ func (e MAV_GENERATOR_STATUS_FLAG) Bitmask() string {
 // MAV_VTOL_STATE type. Enumeration of VTOL states
 type MAV_VTOL_STATE int
 
+func (e MAV_VTOL_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_VTOL_STATE_UNDEFINED enum. MAV is not configured as VTOL
 	MAV_VTOL_STATE_UNDEFINED MAV_VTOL_STATE = 0
@@ -6644,6 +7045,10 @@ func (e MAV_VTOL_STATE) Bitmask() string {
 
 // MAV_LANDED_STATE type. Enumeration of landed detector states
 type MAV_LANDED_STATE int
+
+func (e MAV_LANDED_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_LANDED_STATE_UNDEFINED enum. MAV landed state is unknown
@@ -6694,6 +7099,10 @@ func (e MAV_LANDED_STATE) Bitmask() string {
 // ADSB_ALTITUDE_TYPE type. Enumeration of the ADSB altimeter types
 type ADSB_ALTITUDE_TYPE int
 
+func (e ADSB_ALTITUDE_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// ADSB_ALTITUDE_TYPE_PRESSURE_QNH enum. Altitude reported from a Baro source using QNH reference
 	ADSB_ALTITUDE_TYPE_PRESSURE_QNH ADSB_ALTITUDE_TYPE = 0
@@ -6730,6 +7139,10 @@ func (e ADSB_ALTITUDE_TYPE) Bitmask() string {
 
 // ADSB_EMITTER_TYPE type. ADSB classification for the type of vehicle emitting the transponder signal
 type ADSB_EMITTER_TYPE int
+
+func (e ADSB_EMITTER_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ADSB_EMITTER_TYPE_NO_INFO enum
@@ -6840,6 +7253,10 @@ func (e ADSB_EMITTER_TYPE) Bitmask() string {
 // ADSB_FLAGS type. These flags indicate status such as data validity of each data source. Set = data valid
 type ADSB_FLAGS int
 
+func (e ADSB_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// ADSB_FLAGS_VALID_COORDS enum
 	ADSB_FLAGS_VALID_COORDS ADSB_FLAGS = 1
@@ -6909,6 +7326,10 @@ func (e ADSB_FLAGS) Bitmask() string {
 // MAV_DO_REPOSITION_FLAGS type. Bitmap of options for the MAV_CMD_DO_REPOSITION
 type MAV_DO_REPOSITION_FLAGS int
 
+func (e MAV_DO_REPOSITION_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_DO_REPOSITION_FLAGS_CHANGE_MODE enum. The aircraft should immediately transition into guided. This should not be set for follow me applications
 	MAV_DO_REPOSITION_FLAGS_CHANGE_MODE MAV_DO_REPOSITION_FLAGS = 1
@@ -6941,6 +7362,10 @@ func (e MAV_DO_REPOSITION_FLAGS) Bitmask() string {
 
 // ESTIMATOR_STATUS_FLAGS type. Flags in ESTIMATOR_STATUS message
 type ESTIMATOR_STATUS_FLAGS int
+
+func (e ESTIMATOR_STATUS_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ESTIMATOR_ATTITUDE enum. True if the attitude estimate is good
@@ -7019,6 +7444,10 @@ func (e ESTIMATOR_STATUS_FLAGS) Bitmask() string {
 // MOTOR_TEST_ORDER type
 type MOTOR_TEST_ORDER int
 
+func (e MOTOR_TEST_ORDER) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MOTOR_TEST_ORDER_DEFAULT enum. default autopilot motor test method
 	MOTOR_TEST_ORDER_DEFAULT MOTOR_TEST_ORDER = 0
@@ -7059,6 +7488,10 @@ func (e MOTOR_TEST_ORDER) Bitmask() string {
 
 // MOTOR_TEST_THROTTLE_TYPE type
 type MOTOR_TEST_THROTTLE_TYPE int
+
+func (e MOTOR_TEST_THROTTLE_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MOTOR_TEST_THROTTLE_PERCENT enum. throttle as a percentage from 0 ~ 100
@@ -7104,6 +7537,10 @@ func (e MOTOR_TEST_THROTTLE_TYPE) Bitmask() string {
 
 // GPS_INPUT_IGNORE_FLAGS type
 type GPS_INPUT_IGNORE_FLAGS int
+
+func (e GPS_INPUT_IGNORE_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GPS_INPUT_IGNORE_FLAG_ALT enum. ignore altitude field
@@ -7166,6 +7603,10 @@ func (e GPS_INPUT_IGNORE_FLAGS) Bitmask() string {
 // MAV_COLLISION_ACTION type. Possible actions an aircraft can take to avoid a collision.
 type MAV_COLLISION_ACTION int
 
+func (e MAV_COLLISION_ACTION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_COLLISION_ACTION_NONE enum. Ignore any potential collisions
 	MAV_COLLISION_ACTION_NONE MAV_COLLISION_ACTION = 0
@@ -7223,6 +7664,10 @@ func (e MAV_COLLISION_ACTION) Bitmask() string {
 // MAV_COLLISION_THREAT_LEVEL type. Aircraft-rated danger from this threat.
 type MAV_COLLISION_THREAT_LEVEL int
 
+func (e MAV_COLLISION_THREAT_LEVEL) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_COLLISION_THREAT_LEVEL_NONE enum. Not a threat
 	MAV_COLLISION_THREAT_LEVEL_NONE MAV_COLLISION_THREAT_LEVEL = 0
@@ -7264,6 +7709,10 @@ func (e MAV_COLLISION_THREAT_LEVEL) Bitmask() string {
 // MAV_COLLISION_SRC type. Source of information about this collision.
 type MAV_COLLISION_SRC int
 
+func (e MAV_COLLISION_SRC) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_COLLISION_SRC_ADSB enum. ID field references ADSB_VEHICLE packets
 	MAV_COLLISION_SRC_ADSB MAV_COLLISION_SRC = 0
@@ -7300,6 +7749,10 @@ func (e MAV_COLLISION_SRC) Bitmask() string {
 
 // GPS_FIX_TYPE type. Type of GPS fix
 type GPS_FIX_TYPE int
+
+func (e GPS_FIX_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// GPS_FIX_TYPE_NO_GPS enum. No GPS connected
@@ -7366,6 +7819,10 @@ func (e GPS_FIX_TYPE) Bitmask() string {
 // RTK_BASELINE_COORDINATE_SYSTEM type. RTK GPS baseline coordinate system, used for RTK corrections
 type RTK_BASELINE_COORDINATE_SYSTEM int
 
+func (e RTK_BASELINE_COORDINATE_SYSTEM) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// RTK_BASELINE_COORDINATE_SYSTEM_ECEF enum. Earth-centered, Earth-fixed
 	RTK_BASELINE_COORDINATE_SYSTEM_ECEF RTK_BASELINE_COORDINATE_SYSTEM = 0
@@ -7402,6 +7859,10 @@ func (e RTK_BASELINE_COORDINATE_SYSTEM) Bitmask() string {
 
 // LANDING_TARGET_TYPE type. Type of landing target
 type LANDING_TARGET_TYPE int
+
+func (e LANDING_TARGET_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// LANDING_TARGET_TYPE_LIGHT_BEACON enum. Landing target signaled by light beacon (ex: IR-LOCK)
@@ -7447,6 +7908,10 @@ func (e LANDING_TARGET_TYPE) Bitmask() string {
 
 // VTOL_TRANSITION_HEADING type. Direction of VTOL transition
 type VTOL_TRANSITION_HEADING int
+
+func (e VTOL_TRANSITION_HEADING) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// VTOL_TRANSITION_HEADING_VEHICLE_DEFAULT enum. Respect the heading configuration of the vehicle
@@ -7496,6 +7961,10 @@ func (e VTOL_TRANSITION_HEADING) Bitmask() string {
 
 // CAMERA_CAP_FLAGS type. Camera capability flags (Bitmap)
 type CAMERA_CAP_FLAGS int
+
+func (e CAMERA_CAP_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// CAMERA_CAP_FLAGS_CAPTURE_VIDEO enum. Camera is able to record video
@@ -7574,6 +8043,10 @@ func (e CAMERA_CAP_FLAGS) Bitmask() string {
 // VIDEO_STREAM_STATUS_FLAGS type. Stream status flags (Bitmap)
 type VIDEO_STREAM_STATUS_FLAGS int
 
+func (e VIDEO_STREAM_STATUS_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// VIDEO_STREAM_STATUS_FLAGS_RUNNING enum. Stream is active (running)
 	VIDEO_STREAM_STATUS_FLAGS_RUNNING VIDEO_STREAM_STATUS_FLAGS = 1
@@ -7610,6 +8083,10 @@ func (e VIDEO_STREAM_STATUS_FLAGS) Bitmask() string {
 
 // VIDEO_STREAM_TYPE type. Video stream types
 type VIDEO_STREAM_TYPE int
+
+func (e VIDEO_STREAM_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// VIDEO_STREAM_TYPE_RTSP enum. Stream is RTSP
@@ -7656,6 +8133,10 @@ func (e VIDEO_STREAM_TYPE) Bitmask() string {
 // CAMERA_TRACKING_STATUS_FLAGS type. Camera tracking status flags
 type CAMERA_TRACKING_STATUS_FLAGS int
 
+func (e CAMERA_TRACKING_STATUS_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// CAMERA_TRACKING_STATUS_FLAGS_IDLE enum. Camera is not tracking
 	CAMERA_TRACKING_STATUS_FLAGS_IDLE CAMERA_TRACKING_STATUS_FLAGS = 0
@@ -7697,6 +8178,10 @@ func (e CAMERA_TRACKING_STATUS_FLAGS) Bitmask() string {
 // CAMERA_TRACKING_MODE type. Camera tracking modes
 type CAMERA_TRACKING_MODE int
 
+func (e CAMERA_TRACKING_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// CAMERA_TRACKING_NONE enum. Not tracking
 	CAMERA_TRACKING_NONE CAMERA_TRACKING_MODE = 0
@@ -7737,6 +8222,10 @@ func (e CAMERA_TRACKING_MODE) Bitmask() string {
 
 // CAMERA_TRACKING_TARGET_DATA type. Camera tracking target data (shows where tracked target is within image)
 type CAMERA_TRACKING_TARGET_DATA int
+
+func (e CAMERA_TRACKING_TARGET_DATA) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// CAMERA_TRACKING_TARGET_NONE enum. No target data
@@ -7783,6 +8272,10 @@ func (e CAMERA_TRACKING_TARGET_DATA) Bitmask() string {
 // CAMERA_ZOOM_TYPE type. Zoom types for MAV_CMD_SET_CAMERA_ZOOM
 type CAMERA_ZOOM_TYPE int
 
+func (e CAMERA_ZOOM_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// ZOOM_TYPE_STEP enum. Zoom one step increment (-1 for wide, 1 for tele)
 	ZOOM_TYPE_STEP CAMERA_ZOOM_TYPE = 0
@@ -7827,6 +8320,10 @@ func (e CAMERA_ZOOM_TYPE) Bitmask() string {
 
 // SET_FOCUS_TYPE type. Focus types for MAV_CMD_SET_CAMERA_FOCUS
 type SET_FOCUS_TYPE int
+
+func (e SET_FOCUS_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// FOCUS_TYPE_STEP enum. Focus one step increment (-1 for focusing in, 1 for focusing out towards infinity)
@@ -7873,6 +8370,10 @@ func (e SET_FOCUS_TYPE) Bitmask() string {
 // PARAM_ACK type. Result from PARAM_EXT_SET message (or a PARAM_SET within a transaction).
 type PARAM_ACK int
 
+func (e PARAM_ACK) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// PARAM_ACK_ACCEPTED enum. Parameter value ACCEPTED and SET
 	PARAM_ACK_ACCEPTED PARAM_ACK = 0
@@ -7918,6 +8419,10 @@ func (e PARAM_ACK) Bitmask() string {
 // CAMERA_MODE type. Camera Modes.
 type CAMERA_MODE int
 
+func (e CAMERA_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// CAMERA_MODE_IMAGE enum. Camera is in image/photo capture mode
 	CAMERA_MODE_IMAGE CAMERA_MODE = 0
@@ -7958,6 +8463,10 @@ func (e CAMERA_MODE) Bitmask() string {
 
 // MAV_ARM_AUTH_DENIED_REASON type
 type MAV_ARM_AUTH_DENIED_REASON int
+
+func (e MAV_ARM_AUTH_DENIED_REASON) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_ARM_AUTH_DENIED_REASON_GENERIC enum. Not a specific reason
@@ -8012,6 +8521,10 @@ func (e MAV_ARM_AUTH_DENIED_REASON) Bitmask() string {
 // RC_TYPE type. RC type
 type RC_TYPE int
 
+func (e RC_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// RC_TYPE_SPEKTRUM_DSM2 enum. Spektrum DSM2
 	RC_TYPE_SPEKTRUM_DSM2 RC_TYPE = 0
@@ -8048,6 +8561,10 @@ func (e RC_TYPE) Bitmask() string {
 
 // POSITION_TARGET_TYPEMASK type. Bitmap to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 9 is set the floats afx afy afz should be interpreted as force instead of acceleration.
 type POSITION_TARGET_TYPEMASK int
+
+func (e POSITION_TARGET_TYPEMASK) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// POSITION_TARGET_TYPEMASK_X_IGNORE enum. Ignore position x
@@ -8126,6 +8643,10 @@ func (e POSITION_TARGET_TYPEMASK) Bitmask() string {
 // ATTITUDE_TARGET_TYPEMASK type. Bitmap to indicate which dimensions should be ignored by the vehicle: a value of 0b00000000 indicates that none of the setpoint dimensions should be ignored.
 type ATTITUDE_TARGET_TYPEMASK int
 
+func (e ATTITUDE_TARGET_TYPEMASK) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// ATTITUDE_TARGET_TYPEMASK_BODY_ROLL_RATE_IGNORE enum. Ignore body roll rate
 	ATTITUDE_TARGET_TYPEMASK_BODY_ROLL_RATE_IGNORE ATTITUDE_TARGET_TYPEMASK = 1
@@ -8175,6 +8696,10 @@ func (e ATTITUDE_TARGET_TYPEMASK) Bitmask() string {
 // UTM_FLIGHT_STATE type. Airborne status of UAS.
 type UTM_FLIGHT_STATE int
 
+func (e UTM_FLIGHT_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// UTM_FLIGHT_STATE_UNKNOWN enum. The flight state can't be determined
 	UTM_FLIGHT_STATE_UNKNOWN UTM_FLIGHT_STATE = 1
@@ -8223,6 +8748,10 @@ func (e UTM_FLIGHT_STATE) Bitmask() string {
 
 // UTM_DATA_AVAIL_FLAGS type. Flags for the global position report.
 type UTM_DATA_AVAIL_FLAGS int
+
+func (e UTM_DATA_AVAIL_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// UTM_DATA_AVAIL_FLAGS_TIME_VALID enum. The field time contains valid data
@@ -8285,6 +8814,10 @@ func (e UTM_DATA_AVAIL_FLAGS) Bitmask() string {
 // CELLULAR_NETWORK_RADIO_TYPE type. Cellular network radio type
 type CELLULAR_NETWORK_RADIO_TYPE int
 
+func (e CELLULAR_NETWORK_RADIO_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// CELLULAR_NETWORK_RADIO_TYPE_NONE enum
 	CELLULAR_NETWORK_RADIO_TYPE_NONE CELLULAR_NETWORK_RADIO_TYPE = 0
@@ -8333,6 +8866,10 @@ func (e CELLULAR_NETWORK_RADIO_TYPE) Bitmask() string {
 
 // CELLULAR_STATUS_FLAG type. These flags encode the cellular network status
 type CELLULAR_STATUS_FLAG int
+
+func (e CELLULAR_STATUS_FLAG) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// CELLULAR_STATUS_FLAG_UNKNOWN enum. State unknown or not reportable
@@ -8415,6 +8952,10 @@ func (e CELLULAR_STATUS_FLAG) Bitmask() string {
 // CELLULAR_NETWORK_FAILED_REASON type. These flags are used to diagnose the failure state of CELLULAR_STATUS
 type CELLULAR_NETWORK_FAILED_REASON int
 
+func (e CELLULAR_NETWORK_FAILED_REASON) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// CELLULAR_NETWORK_FAILED_REASON_NONE enum. No error
 	CELLULAR_NETWORK_FAILED_REASON_NONE CELLULAR_NETWORK_FAILED_REASON = 0
@@ -8460,6 +9001,10 @@ func (e CELLULAR_NETWORK_FAILED_REASON) Bitmask() string {
 // PRECISION_LAND_MODE type. Precision land modes (used in MAV_CMD_NAV_LAND).
 type PRECISION_LAND_MODE int
 
+func (e PRECISION_LAND_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// PRECISION_LAND_MODE_DISABLED enum. Normal (non-precision) landing
 	PRECISION_LAND_MODE_DISABLED PRECISION_LAND_MODE = 0
@@ -8501,6 +9046,10 @@ func (e PRECISION_LAND_MODE) Bitmask() string {
 // PARACHUTE_ACTION type. Parachute actions. Trigger release and enable/disable auto-release.
 type PARACHUTE_ACTION int
 
+func (e PARACHUTE_ACTION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// PARACHUTE_DISABLE enum. Disable auto-release of parachute (i.e. release triggered by crash detectors)
 	PARACHUTE_DISABLE PARACHUTE_ACTION = 0
@@ -8541,6 +9090,10 @@ func (e PARACHUTE_ACTION) Bitmask() string {
 
 // MAV_TUNNEL_PAYLOAD_TYPE type
 type MAV_TUNNEL_PAYLOAD_TYPE int
+
+func (e MAV_TUNNEL_PAYLOAD_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_TUNNEL_PAYLOAD_TYPE_UNKNOWN enum. Encoding of payload unknown
@@ -8615,6 +9168,10 @@ func (e MAV_TUNNEL_PAYLOAD_TYPE) Bitmask() string {
 // MAV_ODID_ID_TYPE type
 type MAV_ODID_ID_TYPE int
 
+func (e MAV_ODID_ID_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_ID_TYPE_NONE enum. No type defined
 	MAV_ODID_ID_TYPE_NONE MAV_ODID_ID_TYPE = 0
@@ -8659,6 +9216,10 @@ func (e MAV_ODID_ID_TYPE) Bitmask() string {
 
 // MAV_ODID_UA_TYPE type
 type MAV_ODID_UA_TYPE int
+
+func (e MAV_ODID_UA_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_ODID_UA_TYPE_NONE enum. No UA (Unmanned Aircraft) type defined
@@ -8753,6 +9314,10 @@ func (e MAV_ODID_UA_TYPE) Bitmask() string {
 // MAV_ODID_STATUS type
 type MAV_ODID_STATUS int
 
+func (e MAV_ODID_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_STATUS_UNDECLARED enum. The status of the (UA) Unmanned Aircraft is undefined
 	MAV_ODID_STATUS_UNDECLARED MAV_ODID_STATUS = 0
@@ -8798,6 +9363,10 @@ func (e MAV_ODID_STATUS) Bitmask() string {
 // MAV_ODID_HEIGHT_REF type
 type MAV_ODID_HEIGHT_REF int
 
+func (e MAV_ODID_HEIGHT_REF) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_HEIGHT_REF_OVER_TAKEOFF enum. The height field is relative to the take-off location
 	MAV_ODID_HEIGHT_REF_OVER_TAKEOFF MAV_ODID_HEIGHT_REF = 0
@@ -8834,6 +9403,10 @@ func (e MAV_ODID_HEIGHT_REF) Bitmask() string {
 
 // MAV_ODID_HOR_ACC type
 type MAV_ODID_HOR_ACC int
+
+func (e MAV_ODID_HOR_ACC) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_ODID_HOR_ACC_UNKNOWN enum. The horizontal accuracy is unknown
@@ -8916,6 +9489,10 @@ func (e MAV_ODID_HOR_ACC) Bitmask() string {
 // MAV_ODID_VER_ACC type
 type MAV_ODID_VER_ACC int
 
+func (e MAV_ODID_VER_ACC) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_VER_ACC_UNKNOWN enum. The vertical accuracy is unknown
 	MAV_ODID_VER_ACC_UNKNOWN MAV_ODID_VER_ACC = 0
@@ -8973,6 +9550,10 @@ func (e MAV_ODID_VER_ACC) Bitmask() string {
 // MAV_ODID_SPEED_ACC type
 type MAV_ODID_SPEED_ACC int
 
+func (e MAV_ODID_SPEED_ACC) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_SPEED_ACC_UNKNOWN enum. The speed accuracy is unknown
 	MAV_ODID_SPEED_ACC_UNKNOWN MAV_ODID_SPEED_ACC = 0
@@ -9021,6 +9602,10 @@ func (e MAV_ODID_SPEED_ACC) Bitmask() string {
 
 // MAV_ODID_TIME_ACC type
 type MAV_ODID_TIME_ACC int
+
+func (e MAV_ODID_TIME_ACC) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_ODID_TIME_ACC_UNKNOWN enum. The timestamp accuracy is unknown
@@ -9115,6 +9700,10 @@ func (e MAV_ODID_TIME_ACC) Bitmask() string {
 // MAV_ODID_AUTH_TYPE type
 type MAV_ODID_AUTH_TYPE int
 
+func (e MAV_ODID_AUTH_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_AUTH_TYPE_NONE enum. No authentication type is specified
 	MAV_ODID_AUTH_TYPE_NONE MAV_ODID_AUTH_TYPE = 0
@@ -9164,6 +9753,10 @@ func (e MAV_ODID_AUTH_TYPE) Bitmask() string {
 // MAV_ODID_DESC_TYPE type
 type MAV_ODID_DESC_TYPE int
 
+func (e MAV_ODID_DESC_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_DESC_TYPE_TEXT enum. Free-form text description of the purpose of the flight
 	MAV_ODID_DESC_TYPE_TEXT MAV_ODID_DESC_TYPE = 0
@@ -9196,6 +9789,10 @@ func (e MAV_ODID_DESC_TYPE) Bitmask() string {
 
 // MAV_ODID_OPERATOR_LOCATION_TYPE type
 type MAV_ODID_OPERATOR_LOCATION_TYPE int
+
+func (e MAV_ODID_OPERATOR_LOCATION_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_ODID_OPERATOR_LOCATION_TYPE_TAKEOFF enum. The location of the operator is the same as the take-off location
@@ -9238,6 +9835,10 @@ func (e MAV_ODID_OPERATOR_LOCATION_TYPE) Bitmask() string {
 // MAV_ODID_CLASSIFICATION_TYPE type
 type MAV_ODID_CLASSIFICATION_TYPE int
 
+func (e MAV_ODID_CLASSIFICATION_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_CLASSIFICATION_TYPE_UNDECLARED enum. The classification type for the UA is undeclared
 	MAV_ODID_CLASSIFICATION_TYPE_UNDECLARED MAV_ODID_CLASSIFICATION_TYPE = 0
@@ -9274,6 +9875,10 @@ func (e MAV_ODID_CLASSIFICATION_TYPE) Bitmask() string {
 
 // MAV_ODID_CATEGORY_EU type
 type MAV_ODID_CATEGORY_EU int
+
+func (e MAV_ODID_CATEGORY_EU) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_ODID_CATEGORY_EU_UNDECLARED enum. The category for the UA, according to the EU specification, is undeclared
@@ -9319,6 +9924,10 @@ func (e MAV_ODID_CATEGORY_EU) Bitmask() string {
 
 // MAV_ODID_CLASS_EU type
 type MAV_ODID_CLASS_EU int
+
+func (e MAV_ODID_CLASS_EU) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_ODID_CLASS_EU_UNDECLARED enum. The class for the UA, according to the EU specification, is undeclared
@@ -9381,6 +9990,10 @@ func (e MAV_ODID_CLASS_EU) Bitmask() string {
 // MAV_ODID_OPERATOR_ID_TYPE type
 type MAV_ODID_OPERATOR_ID_TYPE int
 
+func (e MAV_ODID_OPERATOR_ID_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_ODID_OPERATOR_ID_TYPE_CAA enum. CAA (Civil Aviation Authority) registered operator ID
 	MAV_ODID_OPERATOR_ID_TYPE_CAA MAV_ODID_OPERATOR_ID_TYPE = 0
@@ -9413,6 +10026,10 @@ func (e MAV_ODID_OPERATOR_ID_TYPE) Bitmask() string {
 
 // TUNE_FORMAT type. Tune formats (used for vehicle buzzer/tone generation).
 type TUNE_FORMAT int
+
+func (e TUNE_FORMAT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// TUNE_FORMAT_QBASIC1_1 enum. Format is QBasic 1.1 Play: https://www.qbasic.net/en/reference/qb11/Statement/PLAY-006.htm
@@ -9451,6 +10068,10 @@ func (e TUNE_FORMAT) Bitmask() string {
 // COMPONENT_CAP_FLAGS type. Component capability flags (Bitmap)
 type COMPONENT_CAP_FLAGS int
 
+func (e COMPONENT_CAP_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// COMPONENT_CAP_FLAGS_PARAM enum. Component has parameters, and supports the parameter protocol (PARAM messages)
 	COMPONENT_CAP_FLAGS_PARAM COMPONENT_CAP_FLAGS = 1
@@ -9487,6 +10108,10 @@ func (e COMPONENT_CAP_FLAGS) Bitmask() string {
 
 // AIS_TYPE type. Type of AIS vessel, enum duplicated from AIS standard, https://gpsd.gitlab.io/gpsd/AIVDM.html
 type AIS_TYPE int
+
+func (e AIS_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// AIS_TYPE_UNKNOWN enum. Not available (default)
@@ -9917,6 +10542,10 @@ func (e AIS_TYPE) Bitmask() string {
 // AIS_NAV_STATUS type. Navigational status of AIS vessel, enum duplicated from AIS standard, https://gpsd.gitlab.io/gpsd/AIVDM.html
 type AIS_NAV_STATUS int
 
+func (e AIS_NAV_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// UNDER_WAY enum. Under way using engine
 	UNDER_WAY AIS_NAV_STATUS = 0
@@ -10010,6 +10639,10 @@ func (e AIS_NAV_STATUS) Bitmask() string {
 // AIS_FLAGS type. These flags are used in the AIS_VESSEL.fields bitmask to indicate validity of data in the other message fields. When set, the data is valid.
 type AIS_FLAGS int
 
+func (e AIS_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// AIS_FLAGS_POSITION_ACCURACY enum. 1 = Position accuracy less than 10m, 0 = position accuracy greater than 10m
 	AIS_FLAGS_POSITION_ACCURACY AIS_FLAGS = 1
@@ -10090,6 +10723,10 @@ func (e AIS_FLAGS) Bitmask() string {
 
 // FAILURE_UNIT type. List of possible units where failures can be injected.
 type FAILURE_UNIT int
+
+func (e FAILURE_UNIT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// FAILURE_UNIT_SENSOR_GYRO enum
@@ -10180,6 +10817,10 @@ func (e FAILURE_UNIT) Bitmask() string {
 // FAILURE_TYPE type. List of possible failure type to inject.
 type FAILURE_TYPE int
 
+func (e FAILURE_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// FAILURE_TYPE_OK enum. No failure injected, used to reset a previous failure
 	FAILURE_TYPE_OK FAILURE_TYPE = 0
@@ -10241,6 +10882,10 @@ func (e FAILURE_TYPE) Bitmask() string {
 // MAV_WINCH_STATUS_FLAG type. Winch status flags used in WINCH_STATUS
 type MAV_WINCH_STATUS_FLAG int
 
+func (e MAV_WINCH_STATUS_FLAG) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_WINCH_STATUS_HEALTHY enum. Winch is healthy
 	MAV_WINCH_STATUS_HEALTHY MAV_WINCH_STATUS_FLAG = 1
@@ -10285,6 +10930,10 @@ func (e MAV_WINCH_STATUS_FLAG) Bitmask() string {
 
 // MAG_CAL_STATUS type
 type MAG_CAL_STATUS int
+
+func (e MAG_CAL_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAG_CAL_NOT_STARTED enum
@@ -10346,6 +10995,10 @@ func (e MAG_CAL_STATUS) Bitmask() string {
 
 // MAV_AUTOPILOT type. Micro air vehicle / autopilot classes. This identifies the individual model.
 type MAV_AUTOPILOT int
+
+func (e MAV_AUTOPILOT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_AUTOPILOT_GENERIC enum. Generic autopilot, full support for everything
@@ -10455,6 +11108,10 @@ func (e MAV_AUTOPILOT) Bitmask() string {
 
 // MAV_TYPE type. MAVLINK component type reported in HEARTBEAT message. Flight controllers must report the type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA).
 type MAV_TYPE int
+
+func (e MAV_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_TYPE_GENERIC enum. Generic micro air vehicle
@@ -10629,6 +11286,10 @@ func (e MAV_TYPE) Bitmask() string {
 // MAV_MODE_FLAG type. These flags encode the MAV mode.
 type MAV_MODE_FLAG int
 
+func (e MAV_MODE_FLAG) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_MODE_FLAG_SAFETY_ARMED enum. 0b10000000 MAV safety set to armed. Motors are enabled / running / can start. Ready to fly. Additional note: this flag is to be ignore when sent in the command MAV_CMD_DO_SET_MODE and MAV_CMD_COMPONENT_ARM_DISARM shall be used instead. The flag can still be used to report the armed state
 	MAV_MODE_FLAG_SAFETY_ARMED MAV_MODE_FLAG = 128
@@ -10690,6 +11351,10 @@ func (e MAV_MODE_FLAG) Bitmask() string {
 // MAV_MODE_FLAG_DECODE_POSITION type. These values encode the bit positions of the decode position. These values can be used to read the value of a flag bit by combining the base_mode variable with AND with the flag position value. The result will be either 0 or 1, depending on if the flag is set or not.
 type MAV_MODE_FLAG_DECODE_POSITION int
 
+func (e MAV_MODE_FLAG_DECODE_POSITION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MAV_MODE_FLAG_DECODE_POSITION_SAFETY enum. First bit:  10000000
 	MAV_MODE_FLAG_DECODE_POSITION_SAFETY MAV_MODE_FLAG_DECODE_POSITION = 128
@@ -10750,6 +11415,10 @@ func (e MAV_MODE_FLAG_DECODE_POSITION) Bitmask() string {
 
 // MAV_STATE type
 type MAV_STATE int
+
+func (e MAV_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_STATE_UNINIT enum. Uninitialized system, state is unknown
@@ -10815,6 +11484,10 @@ func (e MAV_STATE) Bitmask() string {
 
 // MAV_COMPONENT type. Component ids (values) for the different types and instances of onboard hardware/software that might make up a MAVLink system (autopilot, cameras, servos, GPS systems, avoidance systems etc.).       Components must use the appropriate ID in their source address when sending messages. Components can also use IDs to determine if they are the intended recipient of an incoming message. The MAV_COMP_ID_ALL value is used to indicate messages that must be processed by all components.       When creating new entries, components that can have multiple instances (e.g. cameras, servos etc.) should be allocated sequential values. An appropriate number of values should be left free after these components to allow the number of instances to be expanded.
 type MAV_COMPONENT int
+
+func (e MAV_COMPONENT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// MAV_COMP_ID_ALL enum. Target id (target_component) used to broadcast messages to all components of the receiving system. Components should attempt to process messages with this component ID and forward to components on any other interfaces. Note: This is not a valid *source* component id for a message
@@ -11353,6 +12026,10 @@ func (e MAV_COMPONENT) Bitmask() string {
 // UAVIONIX_ADSB_OUT_DYNAMIC_STATE type. State flags for ADS-B transponder dynamic report
 type UAVIONIX_ADSB_OUT_DYNAMIC_STATE int
 
+func (e UAVIONIX_ADSB_OUT_DYNAMIC_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// UAVIONIX_ADSB_OUT_DYNAMIC_STATE_INTENT_CHANGE enum
 	UAVIONIX_ADSB_OUT_DYNAMIC_STATE_INTENT_CHANGE UAVIONIX_ADSB_OUT_DYNAMIC_STATE = 1
@@ -11402,6 +12079,10 @@ func (e UAVIONIX_ADSB_OUT_DYNAMIC_STATE) Bitmask() string {
 // UAVIONIX_ADSB_OUT_RF_SELECT type. Transceiver RF control flags for ADS-B transponder dynamic reports
 type UAVIONIX_ADSB_OUT_RF_SELECT int
 
+func (e UAVIONIX_ADSB_OUT_RF_SELECT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// UAVIONIX_ADSB_OUT_RF_SELECT_STANDBY enum
 	UAVIONIX_ADSB_OUT_RF_SELECT_STANDBY UAVIONIX_ADSB_OUT_RF_SELECT = 0
@@ -11442,6 +12123,10 @@ func (e UAVIONIX_ADSB_OUT_RF_SELECT) Bitmask() string {
 
 // UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX type. Status for ADS-B transponder dynamic input
 type UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX int
+
+func (e UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX_NONE_0 enum
@@ -11496,6 +12181,10 @@ func (e UAVIONIX_ADSB_OUT_DYNAMIC_GPS_FIX) Bitmask() string {
 // UAVIONIX_ADSB_RF_HEALTH type. Status flags for ADS-B transponder dynamic output
 type UAVIONIX_ADSB_RF_HEALTH int
 
+func (e UAVIONIX_ADSB_RF_HEALTH) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// UAVIONIX_ADSB_RF_HEALTH_INITIALIZING enum
 	UAVIONIX_ADSB_RF_HEALTH_INITIALIZING UAVIONIX_ADSB_RF_HEALTH = 0
@@ -11540,6 +12229,10 @@ func (e UAVIONIX_ADSB_RF_HEALTH) Bitmask() string {
 
 // UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE type. Definitions for aircraft size
 type UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE int
+
+func (e UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE_NO_DATA enum
@@ -11634,6 +12327,10 @@ func (e UAVIONIX_ADSB_OUT_CFG_AIRCRAFT_SIZE) Bitmask() string {
 // UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT type. GPS lataral offset encoding
 type UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT int
 
+func (e UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_NO_DATA enum
 	UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT_NO_DATA UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT = 0
@@ -11695,6 +12392,10 @@ func (e UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LAT) Bitmask() string {
 // UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON type. GPS longitudinal offset encoding
 type UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON int
 
+func (e UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON_NO_DATA enum
 	UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON_NO_DATA UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON = 0
@@ -11731,6 +12432,10 @@ func (e UAVIONIX_ADSB_OUT_CFG_GPS_OFFSET_LON) Bitmask() string {
 
 // UAVIONIX_ADSB_EMERGENCY_STATUS type. Emergency status encoding
 type UAVIONIX_ADSB_EMERGENCY_STATUS int
+
+func (e UAVIONIX_ADSB_EMERGENCY_STATUS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// UAVIONIX_ADSB_OUT_NO_EMERGENCY enum
@@ -11793,6 +12498,10 @@ func (e UAVIONIX_ADSB_EMERGENCY_STATUS) Bitmask() string {
 // ICAROUS_TRACK_BAND_TYPES type
 type ICAROUS_TRACK_BAND_TYPES int
 
+func (e ICAROUS_TRACK_BAND_TYPES) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// ICAROUS_TRACK_BAND_TYPE_NONE enum
 	ICAROUS_TRACK_BAND_TYPE_NONE ICAROUS_TRACK_BAND_TYPES = 0
@@ -11833,6 +12542,10 @@ func (e ICAROUS_TRACK_BAND_TYPES) Bitmask() string {
 
 // ICAROUS_FMS_STATE type
 type ICAROUS_FMS_STATE int
+
+func (e ICAROUS_FMS_STATE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// ICAROUS_FMS_STATE_IDLE enum
@@ -11887,6 +12600,10 @@ func (e ICAROUS_FMS_STATE) Bitmask() string {
 // UALBERTA_AUTOPILOT_MODE type. Available autopilot modes for ualberta uav
 type UALBERTA_AUTOPILOT_MODE int
 
+func (e UALBERTA_AUTOPILOT_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// MODE_MANUAL_DIRECT enum. Raw input pulse widts sent to output
 	MODE_MANUAL_DIRECT UALBERTA_AUTOPILOT_MODE = 1
@@ -11936,6 +12653,10 @@ func (e UALBERTA_AUTOPILOT_MODE) Bitmask() string {
 // UALBERTA_NAV_MODE type. Navigation filter mode
 type UALBERTA_NAV_MODE int
 
+func (e UALBERTA_NAV_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
 const (
 	// NAV_AHRS_INIT enum
 	NAV_AHRS_INIT UALBERTA_NAV_MODE = 1
@@ -11980,6 +12701,10 @@ func (e UALBERTA_NAV_MODE) Bitmask() string {
 
 // UALBERTA_PILOT_MODE type. Mode currently commanded by pilot
 type UALBERTA_PILOT_MODE int
+
+func (e UALBERTA_PILOT_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
 
 const (
 	// PILOT_MANUAL enum. sdf
