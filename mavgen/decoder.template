@@ -3,8 +3,8 @@ package mavlink
 import (
 	"bufio"
 	"io"
-    "./packet"
-    "./parser"
+    "{{.CommonPackageURL}}/packet"
+    "{{.CommonPackageURL}}/parser"
 )
 
 // Decoder struct provide decoding processor

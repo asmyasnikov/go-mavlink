@@ -7,11 +7,11 @@
 package mavlink
 
 import (
-	"./message"
-	"./packet"
-	"./parser"
-	"./version"
 	"fmt"
+	"github.com/asmyasnikov/go-mavlink/mavlink/message"
+	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
+	"github.com/asmyasnikov/go-mavlink/mavlink/parser"
+	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"io"
 	"time"
 )

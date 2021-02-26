@@ -12,7 +12,7 @@ func parserTemplate() string {
 	var tmpl = "package parser\n" +
 		"\n" +
 		"import (\n" +
-		"    \"../packet\"\n" +
+		"    \"{{.CommonPackageURL}}/packet\"\n" +
 		")\n" +
 		"\n" +
 		"// Parser interface is abstract of parsers\n" +

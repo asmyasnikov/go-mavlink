@@ -31,7 +31,7 @@ func main() {
 	}
 
 	if len(*commonPackage) == 0 {
-		*commonPackage = "../.."
+		*commonPackage = "github.com/asmyasnikov/go-mavlink/mavlink"
 	}
 
 	if err := generateDialect(nil, *commonPackage, *schemeFile); err != nil {

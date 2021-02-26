@@ -7,9 +7,9 @@
 package mavlink
 
 import (
-	"./packet"
-	"./parser"
 	"bufio"
+	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
+	"github.com/asmyasnikov/go-mavlink/mavlink/parser"
 	"io"
 )
 

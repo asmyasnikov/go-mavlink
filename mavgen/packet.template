@@ -2,8 +2,8 @@ package packet
 
 import (
     "time"
-    "../message"
-    "../signature"
+    "{{.CommonPackageURL}}/message"
+    "{{.CommonPackageURL}}/signature"
 )
 
 // MAGIC_NUMBER type

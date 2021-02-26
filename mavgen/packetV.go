@@ -14,13 +14,13 @@ func packetVTemplate() string {
 		"import (\n" +
 		"    \"fmt\"\n" +
 		"    \"time\"\n" +
-		"    \"../signature\"\n" +
-		"    \"../packet\"\n" +
-		"    \"../register\"\n" +
-		"    \"../errors\"\n" +
-		"    \"../helpers\"\n" +
-		"    \"../message\"\n" +
-		"    \"../crc\"\n" +
+		"    \"{{.CommonPackageURL}}/signature\"\n" +
+		"    \"{{.CommonPackageURL}}/packet\"\n" +
+		"    \"{{.CommonPackageURL}}/register\"\n" +
+		"    \"{{.CommonPackageURL}}/errors\"\n" +
+		"    \"{{.CommonPackageURL}}/helpers\"\n" +
+		"    \"{{.CommonPackageURL}}/message\"\n" +
+		"    \"{{.CommonPackageURL}}/crc\"\n" +
 		")\n" +
 		"\n" +
 		"{{if eq .MavlinkVersion 2 -}}\n" +

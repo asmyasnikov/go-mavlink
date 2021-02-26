@@ -7,8 +7,8 @@
 package autoquad
 
 import (
-	"../../message"
-	"../../register"
+	"github.com/asmyasnikov/go-mavlink/mavlink/message"
+	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 )
 
 func init() {

@@ -4,7 +4,7 @@ import (
     "fmt"
     "time"
     "crypto/sha256"
-    "../helpers"
+    "{{.CommonPackageURL}}/helpers"
 )
 
 // Signature type

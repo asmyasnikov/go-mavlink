@@ -15,7 +15,7 @@ func signatureTemplate() string {
 		"    \"fmt\"\n" +
 		"    \"time\"\n" +
 		"    \"crypto/sha256\"\n" +
-		"    \"../helpers\"\n" +
+		"    \"{{.CommonPackageURL}}/helpers\"\n" +
 		")\n" +
 		"\n" +
 		"// Signature type\n" +

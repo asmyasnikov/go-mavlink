@@ -1,10 +1,10 @@
 package mock
 
 import (
-	"../message"
-	"../register"
 	"encoding/binary"
 	"fmt"
+	"github.com/asmyasnikov/go-mavlink/mavlink/message"
+	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 )
 
 func init() {

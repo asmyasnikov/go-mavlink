@@ -7,7 +7,7 @@
 package ardupilotmega
 
 import (
-	"../../message"
+	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 )
 
 // Message IDs

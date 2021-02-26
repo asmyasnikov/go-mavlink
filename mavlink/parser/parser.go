@@ -7,7 +7,7 @@
 package parser
 
 import (
-	"../packet"
+	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 )
 
 // Parser interface is abstract of parsers
