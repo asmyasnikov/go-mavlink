@@ -41,6 +41,18 @@ func (m *Heartbeat) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Heartbeat) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Heartbeat.CustomMode":     m.CustomMode,
+		"Heartbeat.Type":           m.Type,
+		"Heartbeat.Autopilot":      m.Autopilot,
+		"Heartbeat.BaseMode":       m.BaseMode,
+		"Heartbeat.SystemStatus":   m.SystemStatus,
+		"Heartbeat.MavlinkVersion": m.MavlinkVersion,
+	}
+}
+
 // Marshal (generated function)
 func (m *Heartbeat) Marshal() ([]byte, error) {
 	payload := make([]byte, 9)

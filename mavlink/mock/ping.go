@@ -32,6 +32,13 @@ func (m *Ping) MsgID() message.MessageID {
 	return MSG_ID_PING_MOCK
 }
 
+// Dict func
+func (m *Ping) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Ping.Seq": m.Seq,
+	}
+}
+
 // String func
 func (m *Ping) String() string {
 	return fmt.Sprintf(

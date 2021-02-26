@@ -22,6 +22,8 @@ func messageTemplate() string {
 		"\tMsgID() MessageID\n" +
 		"    // String returns human-readable representation on Message\n" +
 		"\tString() string\n" +
+		"\t// Dict returns key-value dictionary of Message internal fields\n" +
+		"\tDict() map[string]interface{}\n" +
 		"    // Marshal encodes Packet to byte slice\n" +
 		"    Marshal() ([]byte, error)\n" +
 		"    // Unmarshal parses PAYLOAD and stores the result in Packet\n" +

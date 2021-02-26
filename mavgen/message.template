@@ -11,6 +11,8 @@ type Message interface {
 	MsgID() MessageID
     // String returns human-readable representation on Message
 	String() string
+	// Dict returns key-value dictionary of Message internal fields
+	Dict() map[string]interface{}
     // Marshal encodes Packet to byte slice
     Marshal() ([]byte, error)
     // Unmarshal parses PAYLOAD and stores the result in Packet

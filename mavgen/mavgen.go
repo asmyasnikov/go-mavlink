@@ -751,6 +751,13 @@ func (m *{{$name}}) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *{{$name}}) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		{{range .Fields}}"{{$name}}.{{.Name | UpperCamelCase}}": m.{{.Name | UpperCamelCase}},
+{{end}}	}
+}
+
 // Marshal (generated function)
 func (m *{{$name}}) Marshal() ([]byte, error) {
 	payload := make([]byte, {{ .Size }}){{range .Fields}}

@@ -35,6 +35,14 @@ func (m *FlexifunctionSet) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *FlexifunctionSet) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FlexifunctionSet.TargetSystem":    m.TargetSystem,
+		"FlexifunctionSet.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *FlexifunctionSet) Marshal() ([]byte, error) {
 	payload := make([]byte, 2)
@@ -75,6 +83,16 @@ func (m *FlexifunctionReadReq) String() string {
 		m.TargetSystem,
 		m.TargetComponent,
 	)
+}
+
+// ToMap (generated function)
+func (m *FlexifunctionReadReq) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FlexifunctionReadReq.ReadReqType":     m.ReadReqType,
+		"FlexifunctionReadReq.DataIndex":       m.DataIndex,
+		"FlexifunctionReadReq.TargetSystem":    m.TargetSystem,
+		"FlexifunctionReadReq.TargetComponent": m.TargetComponent,
+	}
 }
 
 // Marshal (generated function)
@@ -127,6 +145,19 @@ func (m *FlexifunctionBufferFunction) String() string {
 		m.TargetComponent,
 		m.Data,
 	)
+}
+
+// ToMap (generated function)
+func (m *FlexifunctionBufferFunction) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FlexifunctionBufferFunction.FuncIndex":       m.FuncIndex,
+		"FlexifunctionBufferFunction.FuncCount":       m.FuncCount,
+		"FlexifunctionBufferFunction.DataAddress":     m.DataAddress,
+		"FlexifunctionBufferFunction.DataSize":        m.DataSize,
+		"FlexifunctionBufferFunction.TargetSystem":    m.TargetSystem,
+		"FlexifunctionBufferFunction.TargetComponent": m.TargetComponent,
+		"FlexifunctionBufferFunction.Data":            m.Data,
+	}
 }
 
 // Marshal (generated function)
@@ -185,6 +216,16 @@ func (m *FlexifunctionBufferFunctionAck) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *FlexifunctionBufferFunctionAck) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FlexifunctionBufferFunctionAck.FuncIndex":       m.FuncIndex,
+		"FlexifunctionBufferFunctionAck.Result":          m.Result,
+		"FlexifunctionBufferFunctionAck.TargetSystem":    m.TargetSystem,
+		"FlexifunctionBufferFunctionAck.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *FlexifunctionBufferFunctionAck) Marshal() ([]byte, error) {
 	payload := make([]byte, 6)
@@ -233,6 +274,18 @@ func (m *FlexifunctionDirectory) String() string {
 		m.Count,
 		m.DirectoryData,
 	)
+}
+
+// ToMap (generated function)
+func (m *FlexifunctionDirectory) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FlexifunctionDirectory.TargetSystem":    m.TargetSystem,
+		"FlexifunctionDirectory.TargetComponent": m.TargetComponent,
+		"FlexifunctionDirectory.DirectoryType":   m.DirectoryType,
+		"FlexifunctionDirectory.StartIndex":      m.StartIndex,
+		"FlexifunctionDirectory.Count":           m.Count,
+		"FlexifunctionDirectory.DirectoryData":   m.DirectoryData,
+	}
 }
 
 // Marshal (generated function)
@@ -293,6 +346,18 @@ func (m *FlexifunctionDirectoryAck) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *FlexifunctionDirectoryAck) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FlexifunctionDirectoryAck.Result":          m.Result,
+		"FlexifunctionDirectoryAck.TargetSystem":    m.TargetSystem,
+		"FlexifunctionDirectoryAck.TargetComponent": m.TargetComponent,
+		"FlexifunctionDirectoryAck.DirectoryType":   m.DirectoryType,
+		"FlexifunctionDirectoryAck.StartIndex":      m.StartIndex,
+		"FlexifunctionDirectoryAck.Count":           m.Count,
+	}
+}
+
 // Marshal (generated function)
 func (m *FlexifunctionDirectoryAck) Marshal() ([]byte, error) {
 	payload := make([]byte, 7)
@@ -341,6 +406,15 @@ func (m *FlexifunctionCommand) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *FlexifunctionCommand) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FlexifunctionCommand.TargetSystem":    m.TargetSystem,
+		"FlexifunctionCommand.TargetComponent": m.TargetComponent,
+		"FlexifunctionCommand.CommandType":     m.CommandType,
+	}
+}
+
 // Marshal (generated function)
 func (m *FlexifunctionCommand) Marshal() ([]byte, error) {
 	payload := make([]byte, 3)
@@ -379,6 +453,14 @@ func (m *FlexifunctionCommandAck) String() string {
 		m.CommandType,
 		m.Result,
 	)
+}
+
+// ToMap (generated function)
+func (m *FlexifunctionCommandAck) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FlexifunctionCommandAck.CommandType": m.CommandType,
+		"FlexifunctionCommandAck.Result":      m.Result,
+	}
 }
 
 // Marshal (generated function)
@@ -467,6 +549,39 @@ func (m *SerialUdbExtraF2A) String() string {
 		m.SueHdop,
 		m.SueStatus,
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialUdbExtraF2A) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF2A.SueTime":           m.SueTime,
+		"SerialUdbExtraF2A.SueLatitude":       m.SueLatitude,
+		"SerialUdbExtraF2A.SueLongitude":      m.SueLongitude,
+		"SerialUdbExtraF2A.SueAltitude":       m.SueAltitude,
+		"SerialUdbExtraF2A.SueWaypointIndex":  m.SueWaypointIndex,
+		"SerialUdbExtraF2A.SueRmat0":          m.SueRmat0,
+		"SerialUdbExtraF2A.SueRmat1":          m.SueRmat1,
+		"SerialUdbExtraF2A.SueRmat2":          m.SueRmat2,
+		"SerialUdbExtraF2A.SueRmat3":          m.SueRmat3,
+		"SerialUdbExtraF2A.SueRmat4":          m.SueRmat4,
+		"SerialUdbExtraF2A.SueRmat5":          m.SueRmat5,
+		"SerialUdbExtraF2A.SueRmat6":          m.SueRmat6,
+		"SerialUdbExtraF2A.SueRmat7":          m.SueRmat7,
+		"SerialUdbExtraF2A.SueRmat8":          m.SueRmat8,
+		"SerialUdbExtraF2A.SueCog":            m.SueCog,
+		"SerialUdbExtraF2A.SueSog":            m.SueSog,
+		"SerialUdbExtraF2A.SueCPULoad":        m.SueCPULoad,
+		"SerialUdbExtraF2A.SueAirSpeed3dimu":  m.SueAirSpeed3dimu,
+		"SerialUdbExtraF2A.SueEstimatedWind0": m.SueEstimatedWind0,
+		"SerialUdbExtraF2A.SueEstimatedWind1": m.SueEstimatedWind1,
+		"SerialUdbExtraF2A.SueEstimatedWind2": m.SueEstimatedWind2,
+		"SerialUdbExtraF2A.SueMagfieldearth0": m.SueMagfieldearth0,
+		"SerialUdbExtraF2A.SueMagfieldearth1": m.SueMagfieldearth1,
+		"SerialUdbExtraF2A.SueMagfieldearth2": m.SueMagfieldearth2,
+		"SerialUdbExtraF2A.SueSvs":            m.SueSvs,
+		"SerialUdbExtraF2A.SueHdop":           m.SueHdop,
+		"SerialUdbExtraF2A.SueStatus":         m.SueStatus,
+	}
 }
 
 // Marshal (generated function)
@@ -653,6 +768,62 @@ func (m *SerialUdbExtraF2B) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF2B) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF2B.SueTime":                m.SueTime,
+		"SerialUdbExtraF2B.SueFlags":               m.SueFlags,
+		"SerialUdbExtraF2B.SueBaromPress":          m.SueBaromPress,
+		"SerialUdbExtraF2B.SueBaromAlt":            m.SueBaromAlt,
+		"SerialUdbExtraF2B.SuePwmInput1":           m.SuePwmInput1,
+		"SerialUdbExtraF2B.SuePwmInput2":           m.SuePwmInput2,
+		"SerialUdbExtraF2B.SuePwmInput3":           m.SuePwmInput3,
+		"SerialUdbExtraF2B.SuePwmInput4":           m.SuePwmInput4,
+		"SerialUdbExtraF2B.SuePwmInput5":           m.SuePwmInput5,
+		"SerialUdbExtraF2B.SuePwmInput6":           m.SuePwmInput6,
+		"SerialUdbExtraF2B.SuePwmInput7":           m.SuePwmInput7,
+		"SerialUdbExtraF2B.SuePwmInput8":           m.SuePwmInput8,
+		"SerialUdbExtraF2B.SuePwmInput9":           m.SuePwmInput9,
+		"SerialUdbExtraF2B.SuePwmInput10":          m.SuePwmInput10,
+		"SerialUdbExtraF2B.SuePwmInput11":          m.SuePwmInput11,
+		"SerialUdbExtraF2B.SuePwmInput12":          m.SuePwmInput12,
+		"SerialUdbExtraF2B.SuePwmOutput1":          m.SuePwmOutput1,
+		"SerialUdbExtraF2B.SuePwmOutput2":          m.SuePwmOutput2,
+		"SerialUdbExtraF2B.SuePwmOutput3":          m.SuePwmOutput3,
+		"SerialUdbExtraF2B.SuePwmOutput4":          m.SuePwmOutput4,
+		"SerialUdbExtraF2B.SuePwmOutput5":          m.SuePwmOutput5,
+		"SerialUdbExtraF2B.SuePwmOutput6":          m.SuePwmOutput6,
+		"SerialUdbExtraF2B.SuePwmOutput7":          m.SuePwmOutput7,
+		"SerialUdbExtraF2B.SuePwmOutput8":          m.SuePwmOutput8,
+		"SerialUdbExtraF2B.SuePwmOutput9":          m.SuePwmOutput9,
+		"SerialUdbExtraF2B.SuePwmOutput10":         m.SuePwmOutput10,
+		"SerialUdbExtraF2B.SuePwmOutput11":         m.SuePwmOutput11,
+		"SerialUdbExtraF2B.SuePwmOutput12":         m.SuePwmOutput12,
+		"SerialUdbExtraF2B.SueImuLocationX":        m.SueImuLocationX,
+		"SerialUdbExtraF2B.SueImuLocationY":        m.SueImuLocationY,
+		"SerialUdbExtraF2B.SueImuLocationZ":        m.SueImuLocationZ,
+		"SerialUdbExtraF2B.SueLocationErrorEarthX": m.SueLocationErrorEarthX,
+		"SerialUdbExtraF2B.SueLocationErrorEarthY": m.SueLocationErrorEarthY,
+		"SerialUdbExtraF2B.SueLocationErrorEarthZ": m.SueLocationErrorEarthZ,
+		"SerialUdbExtraF2B.SueOscFails":            m.SueOscFails,
+		"SerialUdbExtraF2B.SueImuVelocityX":        m.SueImuVelocityX,
+		"SerialUdbExtraF2B.SueImuVelocityY":        m.SueImuVelocityY,
+		"SerialUdbExtraF2B.SueImuVelocityZ":        m.SueImuVelocityZ,
+		"SerialUdbExtraF2B.SueWaypointGoalX":       m.SueWaypointGoalX,
+		"SerialUdbExtraF2B.SueWaypointGoalY":       m.SueWaypointGoalY,
+		"SerialUdbExtraF2B.SueWaypointGoalZ":       m.SueWaypointGoalZ,
+		"SerialUdbExtraF2B.SueAeroX":               m.SueAeroX,
+		"SerialUdbExtraF2B.SueAeroY":               m.SueAeroY,
+		"SerialUdbExtraF2B.SueAeroZ":               m.SueAeroZ,
+		"SerialUdbExtraF2B.SueBaromTemp":           m.SueBaromTemp,
+		"SerialUdbExtraF2B.SueBatVolt":             m.SueBatVolt,
+		"SerialUdbExtraF2B.SueBatAmp":              m.SueBatAmp,
+		"SerialUdbExtraF2B.SueBatAmpHours":         m.SueBatAmpHours,
+		"SerialUdbExtraF2B.SueDesiredHeight":       m.SueDesiredHeight,
+		"SerialUdbExtraF2B.SueMemoryStackFree":     m.SueMemoryStackFree,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF2B) Marshal() ([]byte, error) {
 	payload := make([]byte, 108)
@@ -803,6 +974,22 @@ func (m *SerialUdbExtraF4) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF4) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF4.SueRollStabilizationAilerons": m.SueRollStabilizationAilerons,
+		"SerialUdbExtraF4.SueRollStabilizationRudder":   m.SueRollStabilizationRudder,
+		"SerialUdbExtraF4.SuePitchStabilization":        m.SuePitchStabilization,
+		"SerialUdbExtraF4.SueYawStabilizationRudder":    m.SueYawStabilizationRudder,
+		"SerialUdbExtraF4.SueYawStabilizationAileron":   m.SueYawStabilizationAileron,
+		"SerialUdbExtraF4.SueAileronNavigation":         m.SueAileronNavigation,
+		"SerialUdbExtraF4.SueRudderNavigation":          m.SueRudderNavigation,
+		"SerialUdbExtraF4.SueAltitudeholdStabilized":    m.SueAltitudeholdStabilized,
+		"SerialUdbExtraF4.SueAltitudeholdWaypoint":      m.SueAltitudeholdWaypoint,
+		"SerialUdbExtraF4.SueRacingMode":                m.SueRacingMode,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF4) Marshal() ([]byte, error) {
 	payload := make([]byte, 10)
@@ -861,6 +1048,16 @@ func (m *SerialUdbExtraF5) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF5) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF5.SueYawkpAileron": m.SueYawkpAileron,
+		"SerialUdbExtraF5.SueYawkdAileron": m.SueYawkdAileron,
+		"SerialUdbExtraF5.SueRollkp":       m.SueRollkp,
+		"SerialUdbExtraF5.SueRollkd":       m.SueRollkd,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF5) Marshal() ([]byte, error) {
 	payload := make([]byte, 16)
@@ -907,6 +1104,17 @@ func (m *SerialUdbExtraF6) String() string {
 		m.SueRollElevMix,
 		m.SueElevatorBoost,
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialUdbExtraF6) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF6.SuePitchgain":     m.SuePitchgain,
+		"SerialUdbExtraF6.SuePitchkd":       m.SuePitchkd,
+		"SerialUdbExtraF6.SueRudderElevMix": m.SueRudderElevMix,
+		"SerialUdbExtraF6.SueRollElevMix":   m.SueRollElevMix,
+		"SerialUdbExtraF6.SueElevatorBoost": m.SueElevatorBoost,
+	}
 }
 
 // Marshal (generated function)
@@ -959,6 +1167,18 @@ func (m *SerialUdbExtraF7) String() string {
 		m.SueRudderBoost,
 		m.SueRtlPitchDown,
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialUdbExtraF7) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF7.SueYawkpRudder":  m.SueYawkpRudder,
+		"SerialUdbExtraF7.SueYawkdRudder":  m.SueYawkdRudder,
+		"SerialUdbExtraF7.SueRollkpRudder": m.SueRollkpRudder,
+		"SerialUdbExtraF7.SueRollkdRudder": m.SueRollkdRudder,
+		"SerialUdbExtraF7.SueRudderBoost":  m.SueRudderBoost,
+		"SerialUdbExtraF7.SueRtlPitchDown": m.SueRtlPitchDown,
+	}
 }
 
 // Marshal (generated function)
@@ -1017,6 +1237,19 @@ func (m *SerialUdbExtraF8) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF8) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF8.SueHeightTargetMax":    m.SueHeightTargetMax,
+		"SerialUdbExtraF8.SueHeightTargetMin":    m.SueHeightTargetMin,
+		"SerialUdbExtraF8.SueAltHoldThrottleMin": m.SueAltHoldThrottleMin,
+		"SerialUdbExtraF8.SueAltHoldThrottleMax": m.SueAltHoldThrottleMax,
+		"SerialUdbExtraF8.SueAltHoldPitchMin":    m.SueAltHoldPitchMin,
+		"SerialUdbExtraF8.SueAltHoldPitchMax":    m.SueAltHoldPitchMax,
+		"SerialUdbExtraF8.SueAltHoldPitchHigh":   m.SueAltHoldPitchHigh,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF8) Marshal() ([]byte, error) {
 	payload := make([]byte, 28)
@@ -1067,6 +1300,16 @@ func (m *SerialUdbExtraF13) String() string {
 		m.SueAltOrigin,
 		m.SueWeekNo,
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialUdbExtraF13) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF13.SueLatOrigin": m.SueLatOrigin,
+		"SerialUdbExtraF13.SueLonOrigin": m.SueLonOrigin,
+		"SerialUdbExtraF13.SueAltOrigin": m.SueAltOrigin,
+		"SerialUdbExtraF13.SueWeekNo":    m.SueWeekNo,
+	}
 }
 
 // Marshal (generated function)
@@ -1129,6 +1372,23 @@ func (m *SerialUdbExtraF14) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF14) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF14.SueTrapSource":     m.SueTrapSource,
+		"SerialUdbExtraF14.SueRcon":           m.SueRcon,
+		"SerialUdbExtraF14.SueTrapFlags":      m.SueTrapFlags,
+		"SerialUdbExtraF14.SueOscFailCount":   m.SueOscFailCount,
+		"SerialUdbExtraF14.SueWindEstimation": m.SueWindEstimation,
+		"SerialUdbExtraF14.SueGpsType":        m.SueGpsType,
+		"SerialUdbExtraF14.SueDr":             m.SueDr,
+		"SerialUdbExtraF14.SueBoardType":      m.SueBoardType,
+		"SerialUdbExtraF14.SueAirframe":       m.SueAirframe,
+		"SerialUdbExtraF14.SueClockConfig":    m.SueClockConfig,
+		"SerialUdbExtraF14.SueFlightPlanType": m.SueFlightPlanType,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF14) Marshal() ([]byte, error) {
 	payload := make([]byte, 17)
@@ -1185,6 +1445,14 @@ func (m *SerialUdbExtraF15) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF15) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF15.SueIDVehicleModelName":    m.SueIDVehicleModelName,
+		"SerialUdbExtraF15.SueIDVehicleRegistration": m.SueIDVehicleRegistration,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF15) Marshal() ([]byte, error) {
 	payload := make([]byte, 60)
@@ -1221,6 +1489,14 @@ func (m *SerialUdbExtraF16) String() string {
 		m.SueIDLeadPilot, string(m.SueIDLeadPilot[:]),
 		m.SueIDDiyDronesURL, string(m.SueIDDiyDronesURL[:]),
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialUdbExtraF16) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF16.SueIDLeadPilot":    m.SueIDLeadPilot,
+		"SerialUdbExtraF16.SueIDDiyDronesURL": m.SueIDDiyDronesURL,
+	}
 }
 
 // Marshal (generated function)
@@ -1269,6 +1545,19 @@ func (m *Altitudes) String() string {
 		m.AltRangeFinder,
 		m.AltExtra,
 	)
+}
+
+// ToMap (generated function)
+func (m *Altitudes) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Altitudes.TimeBootMs":     m.TimeBootMs,
+		"Altitudes.AltGps":         m.AltGps,
+		"Altitudes.AltImu":         m.AltImu,
+		"Altitudes.AltBarometric":  m.AltBarometric,
+		"Altitudes.AltOpticalFlow": m.AltOpticalFlow,
+		"Altitudes.AltRangeFinder": m.AltRangeFinder,
+		"Altitudes.AltExtra":       m.AltExtra,
+	}
 }
 
 // Marshal (generated function)
@@ -1329,6 +1618,19 @@ func (m *Airspeeds) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Airspeeds) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Airspeeds.TimeBootMs":         m.TimeBootMs,
+		"Airspeeds.AirspeedImu":        m.AirspeedImu,
+		"Airspeeds.AirspeedPitot":      m.AirspeedPitot,
+		"Airspeeds.AirspeedHotWire":    m.AirspeedHotWire,
+		"Airspeeds.AirspeedUltrasonic": m.AirspeedUltrasonic,
+		"Airspeeds.Aoa":                m.Aoa,
+		"Airspeeds.Aoy":                m.Aoy,
+	}
+}
+
 // Marshal (generated function)
 func (m *Airspeeds) Marshal() ([]byte, error) {
 	payload := make([]byte, 16)
@@ -1379,6 +1681,15 @@ func (m *SerialUdbExtraF17) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF17) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF17.SueFeedForward": m.SueFeedForward,
+		"SerialUdbExtraF17.SueTurnRateNav": m.SueTurnRateNav,
+		"SerialUdbExtraF17.SueTurnRateFbw": m.SueTurnRateFbw,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF17) Marshal() ([]byte, error) {
 	payload := make([]byte, 12)
@@ -1423,6 +1734,17 @@ func (m *SerialUdbExtraF18) String() string {
 		m.ElevatorTrimInverted,
 		m.ReferenceSpeed,
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialUdbExtraF18) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF18.AngleOfAttackNormal":   m.AngleOfAttackNormal,
+		"SerialUdbExtraF18.AngleOfAttackInverted": m.AngleOfAttackInverted,
+		"SerialUdbExtraF18.ElevatorTrimNormal":    m.ElevatorTrimNormal,
+		"SerialUdbExtraF18.ElevatorTrimInverted":  m.ElevatorTrimInverted,
+		"SerialUdbExtraF18.ReferenceSpeed":        m.ReferenceSpeed,
+	}
 }
 
 // Marshal (generated function)
@@ -1479,6 +1801,20 @@ func (m *SerialUdbExtraF19) String() string {
 		m.SueRudderOutputChannel,
 		m.SueRudderReversed,
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialUdbExtraF19) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF19.SueAileronOutputChannel":  m.SueAileronOutputChannel,
+		"SerialUdbExtraF19.SueAileronReversed":       m.SueAileronReversed,
+		"SerialUdbExtraF19.SueElevatorOutputChannel": m.SueElevatorOutputChannel,
+		"SerialUdbExtraF19.SueElevatorReversed":      m.SueElevatorReversed,
+		"SerialUdbExtraF19.SueThrottleOutputChannel": m.SueThrottleOutputChannel,
+		"SerialUdbExtraF19.SueThrottleReversed":      m.SueThrottleReversed,
+		"SerialUdbExtraF19.SueRudderOutputChannel":   m.SueRudderOutputChannel,
+		"SerialUdbExtraF19.SueRudderReversed":        m.SueRudderReversed,
+	}
 }
 
 // Marshal (generated function)
@@ -1553,6 +1889,25 @@ func (m *SerialUdbExtraF20) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF20) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF20.SueTrimValueInput1":  m.SueTrimValueInput1,
+		"SerialUdbExtraF20.SueTrimValueInput2":  m.SueTrimValueInput2,
+		"SerialUdbExtraF20.SueTrimValueInput3":  m.SueTrimValueInput3,
+		"SerialUdbExtraF20.SueTrimValueInput4":  m.SueTrimValueInput4,
+		"SerialUdbExtraF20.SueTrimValueInput5":  m.SueTrimValueInput5,
+		"SerialUdbExtraF20.SueTrimValueInput6":  m.SueTrimValueInput6,
+		"SerialUdbExtraF20.SueTrimValueInput7":  m.SueTrimValueInput7,
+		"SerialUdbExtraF20.SueTrimValueInput8":  m.SueTrimValueInput8,
+		"SerialUdbExtraF20.SueTrimValueInput9":  m.SueTrimValueInput9,
+		"SerialUdbExtraF20.SueTrimValueInput10": m.SueTrimValueInput10,
+		"SerialUdbExtraF20.SueTrimValueInput11": m.SueTrimValueInput11,
+		"SerialUdbExtraF20.SueTrimValueInput12": m.SueTrimValueInput12,
+		"SerialUdbExtraF20.SueNumberOfInputs":   m.SueNumberOfInputs,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF20) Marshal() ([]byte, error) {
 	payload := make([]byte, 25)
@@ -1621,6 +1976,18 @@ func (m *SerialUdbExtraF21) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SerialUdbExtraF21) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF21.SueAccelXOffset": m.SueAccelXOffset,
+		"SerialUdbExtraF21.SueAccelYOffset": m.SueAccelYOffset,
+		"SerialUdbExtraF21.SueAccelZOffset": m.SueAccelZOffset,
+		"SerialUdbExtraF21.SueGyroXOffset":  m.SueGyroXOffset,
+		"SerialUdbExtraF21.SueGyroYOffset":  m.SueGyroYOffset,
+		"SerialUdbExtraF21.SueGyroZOffset":  m.SueGyroZOffset,
+	}
+}
+
 // Marshal (generated function)
 func (m *SerialUdbExtraF21) Marshal() ([]byte, error) {
 	payload := make([]byte, 12)
@@ -1673,6 +2040,18 @@ func (m *SerialUdbExtraF22) String() string {
 		m.SueGyroYAtCalibration,
 		m.SueGyroZAtCalibration,
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialUdbExtraF22) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialUdbExtraF22.SueAccelXAtCalibration": m.SueAccelXAtCalibration,
+		"SerialUdbExtraF22.SueAccelYAtCalibration": m.SueAccelYAtCalibration,
+		"SerialUdbExtraF22.SueAccelZAtCalibration": m.SueAccelZAtCalibration,
+		"SerialUdbExtraF22.SueGyroXAtCalibration":  m.SueGyroXAtCalibration,
+		"SerialUdbExtraF22.SueGyroYAtCalibration":  m.SueGyroYAtCalibration,
+		"SerialUdbExtraF22.SueGyroZAtCalibration":  m.SueGyroZAtCalibration,
+	}
 }
 
 // Marshal (generated function)
@@ -1743,6 +2122,25 @@ func (m *SysStatus) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SysStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SysStatus.OnboardControlSensorsPresent": m.OnboardControlSensorsPresent,
+		"SysStatus.OnboardControlSensorsEnabled": m.OnboardControlSensorsEnabled,
+		"SysStatus.OnboardControlSensorsHealth":  m.OnboardControlSensorsHealth,
+		"SysStatus.Load":                         m.Load,
+		"SysStatus.VoltageBattery":               m.VoltageBattery,
+		"SysStatus.CurrentBattery":               m.CurrentBattery,
+		"SysStatus.DropRateComm":                 m.DropRateComm,
+		"SysStatus.ErrorsComm":                   m.ErrorsComm,
+		"SysStatus.ErrorsCount1":                 m.ErrorsCount1,
+		"SysStatus.ErrorsCount2":                 m.ErrorsCount2,
+		"SysStatus.ErrorsCount3":                 m.ErrorsCount3,
+		"SysStatus.ErrorsCount4":                 m.ErrorsCount4,
+		"SysStatus.BatteryRemaining":             m.BatteryRemaining,
+	}
+}
+
 // Marshal (generated function)
 func (m *SysStatus) Marshal() ([]byte, error) {
 	payload := make([]byte, 31)
@@ -1803,6 +2201,14 @@ func (m *SystemTime) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SystemTime) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SystemTime.TimeUnixUsec": m.TimeUnixUsec,
+		"SystemTime.TimeBootMs":   m.TimeBootMs,
+	}
+}
+
 // Marshal (generated function)
 func (m *SystemTime) Marshal() ([]byte, error) {
 	payload := make([]byte, 12)
@@ -1843,6 +2249,16 @@ func (m *Ping) String() string {
 		m.TargetSystem,
 		m.TargetComponent,
 	)
+}
+
+// ToMap (generated function)
+func (m *Ping) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Ping.TimeUsec":        m.TimeUsec,
+		"Ping.Seq":             m.Seq,
+		"Ping.TargetSystem":    m.TargetSystem,
+		"Ping.TargetComponent": m.TargetComponent,
+	}
 }
 
 // Marshal (generated function)
@@ -1891,6 +2307,16 @@ func (m *ChangeOperatorControl) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ChangeOperatorControl) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ChangeOperatorControl.TargetSystem":   m.TargetSystem,
+		"ChangeOperatorControl.ControlRequest": m.ControlRequest,
+		"ChangeOperatorControl.Version":        m.Version,
+		"ChangeOperatorControl.Passkey":        m.Passkey,
+	}
+}
+
 // Marshal (generated function)
 func (m *ChangeOperatorControl) Marshal() ([]byte, error) {
 	payload := make([]byte, 28)
@@ -1935,6 +2361,15 @@ func (m *ChangeOperatorControlAck) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ChangeOperatorControlAck) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ChangeOperatorControlAck.GcsSystemID":    m.GcsSystemID,
+		"ChangeOperatorControlAck.ControlRequest": m.ControlRequest,
+		"ChangeOperatorControlAck.Ack":            m.Ack,
+	}
+}
+
 // Marshal (generated function)
 func (m *ChangeOperatorControlAck) Marshal() ([]byte, error) {
 	payload := make([]byte, 3)
@@ -1971,6 +2406,13 @@ func (m *AuthKey) String() string {
 		"&common.AuthKey{ Key: \"%s\" }",
 		strings.TrimRight(m.Key, string(byte(0))),
 	)
+}
+
+// ToMap (generated function)
+func (m *AuthKey) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"AuthKey.Key": m.Key,
+	}
 }
 
 // Marshal (generated function)
@@ -2025,6 +2467,23 @@ func (m *LinkNodeStatus) String() string {
 		m.TxBuf,
 		m.RxBuf,
 	)
+}
+
+// ToMap (generated function)
+func (m *LinkNodeStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LinkNodeStatus.Timestamp":        m.Timestamp,
+		"LinkNodeStatus.TxRate":           m.TxRate,
+		"LinkNodeStatus.RxRate":           m.RxRate,
+		"LinkNodeStatus.MessagesSent":     m.MessagesSent,
+		"LinkNodeStatus.MessagesReceived": m.MessagesReceived,
+		"LinkNodeStatus.MessagesLost":     m.MessagesLost,
+		"LinkNodeStatus.RxParseErr":       m.RxParseErr,
+		"LinkNodeStatus.TxOverflows":      m.TxOverflows,
+		"LinkNodeStatus.RxOverflows":      m.RxOverflows,
+		"LinkNodeStatus.TxBuf":            m.TxBuf,
+		"LinkNodeStatus.RxBuf":            m.RxBuf,
+	}
 }
 
 // Marshal (generated function)
@@ -2085,6 +2544,15 @@ func (m *SetMode) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SetMode) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SetMode.CustomMode":   m.CustomMode,
+		"SetMode.TargetSystem": m.TargetSystem,
+		"SetMode.BaseMode":     m.BaseMode,
+	}
+}
+
 // Marshal (generated function)
 func (m *SetMode) Marshal() ([]byte, error) {
 	payload := make([]byte, 6)
@@ -2131,6 +2599,18 @@ func (m *ParamAckTransaction) String() string {
 		m.ParamType,
 		m.ParamResult,
 	)
+}
+
+// ToMap (generated function)
+func (m *ParamAckTransaction) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ParamAckTransaction.ParamValue":      m.ParamValue,
+		"ParamAckTransaction.TargetSystem":    m.TargetSystem,
+		"ParamAckTransaction.TargetComponent": m.TargetComponent,
+		"ParamAckTransaction.ParamID":         m.ParamID,
+		"ParamAckTransaction.ParamType":       m.ParamType,
+		"ParamAckTransaction.ParamResult":     m.ParamResult,
+	}
 }
 
 // Marshal (generated function)
@@ -2183,6 +2663,16 @@ func (m *ParamRequestRead) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ParamRequestRead) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ParamRequestRead.ParamIndex":      m.ParamIndex,
+		"ParamRequestRead.TargetSystem":    m.TargetSystem,
+		"ParamRequestRead.TargetComponent": m.TargetComponent,
+		"ParamRequestRead.ParamID":         m.ParamID,
+	}
+}
+
 // Marshal (generated function)
 func (m *ParamRequestRead) Marshal() ([]byte, error) {
 	payload := make([]byte, 20)
@@ -2223,6 +2713,14 @@ func (m *ParamRequestList) String() string {
 		m.TargetSystem,
 		m.TargetComponent,
 	)
+}
+
+// ToMap (generated function)
+func (m *ParamRequestList) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ParamRequestList.TargetSystem":    m.TargetSystem,
+		"ParamRequestList.TargetComponent": m.TargetComponent,
+	}
 }
 
 // Marshal (generated function)
@@ -2267,6 +2765,17 @@ func (m *ParamValue) String() string {
 		strings.TrimRight(m.ParamID, string(byte(0))),
 		m.ParamType,
 	)
+}
+
+// ToMap (generated function)
+func (m *ParamValue) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ParamValue.ParamValue": m.ParamValue,
+		"ParamValue.ParamCount": m.ParamCount,
+		"ParamValue.ParamIndex": m.ParamIndex,
+		"ParamValue.ParamID":    m.ParamID,
+		"ParamValue.ParamType":  m.ParamType,
+	}
 }
 
 // Marshal (generated function)
@@ -2319,6 +2828,17 @@ func (m *ParamSet) String() string {
 		strings.TrimRight(m.ParamID, string(byte(0))),
 		m.ParamType,
 	)
+}
+
+// ToMap (generated function)
+func (m *ParamSet) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ParamSet.ParamValue":      m.ParamValue,
+		"ParamSet.TargetSystem":    m.TargetSystem,
+		"ParamSet.TargetComponent": m.TargetComponent,
+		"ParamSet.ParamID":         m.ParamID,
+		"ParamSet.ParamType":       m.ParamType,
+	}
 }
 
 // Marshal (generated function)
@@ -2380,6 +2900,22 @@ func (m *GpsRawInt) String() string {
 		m.FixType,
 		m.SatellitesVisible,
 	)
+}
+
+// ToMap (generated function)
+func (m *GpsRawInt) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GpsRawInt.TimeUsec":          m.TimeUsec,
+		"GpsRawInt.Lat":               m.Lat,
+		"GpsRawInt.Lon":               m.Lon,
+		"GpsRawInt.Alt":               m.Alt,
+		"GpsRawInt.Eph":               m.Eph,
+		"GpsRawInt.Epv":               m.Epv,
+		"GpsRawInt.Vel":               m.Vel,
+		"GpsRawInt.Cog":               m.Cog,
+		"GpsRawInt.FixType":           m.FixType,
+		"GpsRawInt.SatellitesVisible": m.SatellitesVisible,
+	}
 }
 
 // Marshal (generated function)
@@ -2444,6 +2980,18 @@ func (m *GpsStatus) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *GpsStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GpsStatus.SatellitesVisible":  m.SatellitesVisible,
+		"GpsStatus.SatellitePrn":       m.SatellitePrn,
+		"GpsStatus.SatelliteUsed":      m.SatelliteUsed,
+		"GpsStatus.SatelliteElevation": m.SatelliteElevation,
+		"GpsStatus.SatelliteAzimuth":   m.SatelliteAzimuth,
+		"GpsStatus.SatelliteSnr":       m.SatelliteSnr,
+	}
+}
+
 // Marshal (generated function)
 func (m *GpsStatus) Marshal() ([]byte, error) {
 	payload := make([]byte, 101)
@@ -2504,6 +3052,22 @@ func (m *ScaledImu) String() string {
 		m.Ymag,
 		m.Zmag,
 	)
+}
+
+// ToMap (generated function)
+func (m *ScaledImu) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ScaledImu.TimeBootMs": m.TimeBootMs,
+		"ScaledImu.Xacc":       m.Xacc,
+		"ScaledImu.Yacc":       m.Yacc,
+		"ScaledImu.Zacc":       m.Zacc,
+		"ScaledImu.Xgyro":      m.Xgyro,
+		"ScaledImu.Ygyro":      m.Ygyro,
+		"ScaledImu.Zgyro":      m.Zgyro,
+		"ScaledImu.Xmag":       m.Xmag,
+		"ScaledImu.Ymag":       m.Ymag,
+		"ScaledImu.Zmag":       m.Zmag,
+	}
 }
 
 // Marshal (generated function)
@@ -2576,6 +3140,22 @@ func (m *RawImu) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *RawImu) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"RawImu.TimeUsec": m.TimeUsec,
+		"RawImu.Xacc":     m.Xacc,
+		"RawImu.Yacc":     m.Yacc,
+		"RawImu.Zacc":     m.Zacc,
+		"RawImu.Xgyro":    m.Xgyro,
+		"RawImu.Ygyro":    m.Ygyro,
+		"RawImu.Zgyro":    m.Zgyro,
+		"RawImu.Xmag":     m.Xmag,
+		"RawImu.Ymag":     m.Ymag,
+		"RawImu.Zmag":     m.Zmag,
+	}
+}
+
 // Marshal (generated function)
 func (m *RawImu) Marshal() ([]byte, error) {
 	payload := make([]byte, 26)
@@ -2636,6 +3216,17 @@ func (m *RawPressure) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *RawPressure) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"RawPressure.TimeUsec":    m.TimeUsec,
+		"RawPressure.PressAbs":    m.PressAbs,
+		"RawPressure.PressDiff1":  m.PressDiff1,
+		"RawPressure.PressDiff2":  m.PressDiff2,
+		"RawPressure.Temperature": m.Temperature,
+	}
+}
+
 // Marshal (generated function)
 func (m *RawPressure) Marshal() ([]byte, error) {
 	payload := make([]byte, 16)
@@ -2682,6 +3273,16 @@ func (m *ScaledPressure) String() string {
 		m.PressDiff,
 		m.Temperature,
 	)
+}
+
+// ToMap (generated function)
+func (m *ScaledPressure) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ScaledPressure.TimeBootMs":  m.TimeBootMs,
+		"ScaledPressure.PressAbs":    m.PressAbs,
+		"ScaledPressure.PressDiff":   m.PressDiff,
+		"ScaledPressure.Temperature": m.Temperature,
+	}
 }
 
 // Marshal (generated function)
@@ -2734,6 +3335,19 @@ func (m *Attitude) String() string {
 		m.Pitchspeed,
 		m.Yawspeed,
 	)
+}
+
+// ToMap (generated function)
+func (m *Attitude) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Attitude.TimeBootMs": m.TimeBootMs,
+		"Attitude.Roll":       m.Roll,
+		"Attitude.Pitch":      m.Pitch,
+		"Attitude.Yaw":        m.Yaw,
+		"Attitude.Rollspeed":  m.Rollspeed,
+		"Attitude.Pitchspeed": m.Pitchspeed,
+		"Attitude.Yawspeed":   m.Yawspeed,
+	}
 }
 
 // Marshal (generated function)
@@ -2796,6 +3410,20 @@ func (m *AttitudeQuaternion) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *AttitudeQuaternion) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"AttitudeQuaternion.TimeBootMs": m.TimeBootMs,
+		"AttitudeQuaternion.Q1":         m.Q1,
+		"AttitudeQuaternion.Q2":         m.Q2,
+		"AttitudeQuaternion.Q3":         m.Q3,
+		"AttitudeQuaternion.Q4":         m.Q4,
+		"AttitudeQuaternion.Rollspeed":  m.Rollspeed,
+		"AttitudeQuaternion.Pitchspeed": m.Pitchspeed,
+		"AttitudeQuaternion.Yawspeed":   m.Yawspeed,
+	}
+}
+
 // Marshal (generated function)
 func (m *AttitudeQuaternion) Marshal() ([]byte, error) {
 	payload := make([]byte, 32)
@@ -2854,6 +3482,19 @@ func (m *LocalPositionNed) String() string {
 		m.Vy,
 		m.Vz,
 	)
+}
+
+// ToMap (generated function)
+func (m *LocalPositionNed) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LocalPositionNed.TimeBootMs": m.TimeBootMs,
+		"LocalPositionNed.X":          m.X,
+		"LocalPositionNed.Y":          m.Y,
+		"LocalPositionNed.Z":          m.Z,
+		"LocalPositionNed.Vx":         m.Vx,
+		"LocalPositionNed.Vy":         m.Vy,
+		"LocalPositionNed.Vz":         m.Vz,
+	}
 }
 
 // Marshal (generated function)
@@ -2917,6 +3558,21 @@ func (m *GlobalPositionInt) String() string {
 		m.Vz,
 		m.Hdg,
 	)
+}
+
+// ToMap (generated function)
+func (m *GlobalPositionInt) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GlobalPositionInt.TimeBootMs":  m.TimeBootMs,
+		"GlobalPositionInt.Lat":         m.Lat,
+		"GlobalPositionInt.Lon":         m.Lon,
+		"GlobalPositionInt.Alt":         m.Alt,
+		"GlobalPositionInt.RelativeAlt": m.RelativeAlt,
+		"GlobalPositionInt.Vx":          m.Vx,
+		"GlobalPositionInt.Vy":          m.Vy,
+		"GlobalPositionInt.Vz":          m.Vz,
+		"GlobalPositionInt.Hdg":         m.Hdg,
+	}
 }
 
 // Marshal (generated function)
@@ -2987,6 +3643,23 @@ func (m *RcChannelsScaled) String() string {
 		m.Port,
 		m.Rssi,
 	)
+}
+
+// ToMap (generated function)
+func (m *RcChannelsScaled) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"RcChannelsScaled.TimeBootMs":  m.TimeBootMs,
+		"RcChannelsScaled.Chan1Scaled": m.Chan1Scaled,
+		"RcChannelsScaled.Chan2Scaled": m.Chan2Scaled,
+		"RcChannelsScaled.Chan3Scaled": m.Chan3Scaled,
+		"RcChannelsScaled.Chan4Scaled": m.Chan4Scaled,
+		"RcChannelsScaled.Chan5Scaled": m.Chan5Scaled,
+		"RcChannelsScaled.Chan6Scaled": m.Chan6Scaled,
+		"RcChannelsScaled.Chan7Scaled": m.Chan7Scaled,
+		"RcChannelsScaled.Chan8Scaled": m.Chan8Scaled,
+		"RcChannelsScaled.Port":        m.Port,
+		"RcChannelsScaled.Rssi":        m.Rssi,
+	}
 }
 
 // Marshal (generated function)
@@ -3063,6 +3736,23 @@ func (m *RcChannelsRaw) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *RcChannelsRaw) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"RcChannelsRaw.TimeBootMs": m.TimeBootMs,
+		"RcChannelsRaw.Chan1Raw":   m.Chan1Raw,
+		"RcChannelsRaw.Chan2Raw":   m.Chan2Raw,
+		"RcChannelsRaw.Chan3Raw":   m.Chan3Raw,
+		"RcChannelsRaw.Chan4Raw":   m.Chan4Raw,
+		"RcChannelsRaw.Chan5Raw":   m.Chan5Raw,
+		"RcChannelsRaw.Chan6Raw":   m.Chan6Raw,
+		"RcChannelsRaw.Chan7Raw":   m.Chan7Raw,
+		"RcChannelsRaw.Chan8Raw":   m.Chan8Raw,
+		"RcChannelsRaw.Port":       m.Port,
+		"RcChannelsRaw.Rssi":       m.Rssi,
+	}
+}
+
 // Marshal (generated function)
 func (m *RcChannelsRaw) Marshal() ([]byte, error) {
 	payload := make([]byte, 22)
@@ -3135,6 +3825,22 @@ func (m *ServoOutputRaw) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ServoOutputRaw) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ServoOutputRaw.TimeUsec":  m.TimeUsec,
+		"ServoOutputRaw.Servo1Raw": m.Servo1Raw,
+		"ServoOutputRaw.Servo2Raw": m.Servo2Raw,
+		"ServoOutputRaw.Servo3Raw": m.Servo3Raw,
+		"ServoOutputRaw.Servo4Raw": m.Servo4Raw,
+		"ServoOutputRaw.Servo5Raw": m.Servo5Raw,
+		"ServoOutputRaw.Servo6Raw": m.Servo6Raw,
+		"ServoOutputRaw.Servo7Raw": m.Servo7Raw,
+		"ServoOutputRaw.Servo8Raw": m.Servo8Raw,
+		"ServoOutputRaw.Port":      m.Port,
+	}
+}
+
 // Marshal (generated function)
 func (m *ServoOutputRaw) Marshal() ([]byte, error) {
 	payload := make([]byte, 21)
@@ -3193,6 +3899,16 @@ func (m *MissionRequestPartialList) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionRequestPartialList) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionRequestPartialList.StartIndex":      m.StartIndex,
+		"MissionRequestPartialList.EndIndex":        m.EndIndex,
+		"MissionRequestPartialList.TargetSystem":    m.TargetSystem,
+		"MissionRequestPartialList.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionRequestPartialList) Marshal() ([]byte, error) {
 	payload := make([]byte, 6)
@@ -3237,6 +3953,16 @@ func (m *MissionWritePartialList) String() string {
 		m.TargetSystem,
 		m.TargetComponent,
 	)
+}
+
+// ToMap (generated function)
+func (m *MissionWritePartialList) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionWritePartialList.StartIndex":      m.StartIndex,
+		"MissionWritePartialList.EndIndex":        m.EndIndex,
+		"MissionWritePartialList.TargetSystem":    m.TargetSystem,
+		"MissionWritePartialList.TargetComponent": m.TargetComponent,
+	}
 }
 
 // Marshal (generated function)
@@ -3306,6 +4032,26 @@ func (m *MissionItem) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionItem) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionItem.Param1":          m.Param1,
+		"MissionItem.Param2":          m.Param2,
+		"MissionItem.Param3":          m.Param3,
+		"MissionItem.Param4":          m.Param4,
+		"MissionItem.X":               m.X,
+		"MissionItem.Y":               m.Y,
+		"MissionItem.Z":               m.Z,
+		"MissionItem.Seq":             m.Seq,
+		"MissionItem.Command":         m.Command,
+		"MissionItem.TargetSystem":    m.TargetSystem,
+		"MissionItem.TargetComponent": m.TargetComponent,
+		"MissionItem.Frame":           m.Frame,
+		"MissionItem.Current":         m.Current,
+		"MissionItem.Autocontinue":    m.Autocontinue,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionItem) Marshal() ([]byte, error) {
 	payload := make([]byte, 37)
@@ -3370,6 +4116,15 @@ func (m *MissionRequest) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionRequest) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionRequest.Seq":             m.Seq,
+		"MissionRequest.TargetSystem":    m.TargetSystem,
+		"MissionRequest.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionRequest) Marshal() ([]byte, error) {
 	payload := make([]byte, 4)
@@ -3412,6 +4167,15 @@ func (m *MissionSetCurrent) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionSetCurrent) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionSetCurrent.Seq":             m.Seq,
+		"MissionSetCurrent.TargetSystem":    m.TargetSystem,
+		"MissionSetCurrent.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionSetCurrent) Marshal() ([]byte, error) {
 	payload := make([]byte, 4)
@@ -3450,6 +4214,13 @@ func (m *MissionCurrent) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionCurrent) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionCurrent.Seq": m.Seq,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionCurrent) Marshal() ([]byte, error) {
 	payload := make([]byte, 2)
@@ -3484,6 +4255,14 @@ func (m *MissionRequestList) String() string {
 		m.TargetSystem,
 		m.TargetComponent,
 	)
+}
+
+// ToMap (generated function)
+func (m *MissionRequestList) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionRequestList.TargetSystem":    m.TargetSystem,
+		"MissionRequestList.TargetComponent": m.TargetComponent,
+	}
 }
 
 // Marshal (generated function)
@@ -3526,6 +4305,15 @@ func (m *MissionCount) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionCount) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionCount.Count":           m.Count,
+		"MissionCount.TargetSystem":    m.TargetSystem,
+		"MissionCount.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionCount) Marshal() ([]byte, error) {
 	payload := make([]byte, 4)
@@ -3566,6 +4354,14 @@ func (m *MissionClearAll) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionClearAll) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionClearAll.TargetSystem":    m.TargetSystem,
+		"MissionClearAll.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionClearAll) Marshal() ([]byte, error) {
 	payload := make([]byte, 2)
@@ -3600,6 +4396,13 @@ func (m *MissionItemReached) String() string {
 		"&common.MissionItemReached{ Seq: %+v }",
 		m.Seq,
 	)
+}
+
+// ToMap (generated function)
+func (m *MissionItemReached) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionItemReached.Seq": m.Seq,
+	}
 }
 
 // Marshal (generated function)
@@ -3638,6 +4441,15 @@ func (m *MissionAck) String() string {
 		m.TargetComponent,
 		m.Type,
 	)
+}
+
+// ToMap (generated function)
+func (m *MissionAck) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionAck.TargetSystem":    m.TargetSystem,
+		"MissionAck.TargetComponent": m.TargetComponent,
+		"MissionAck.Type":            m.Type,
+	}
 }
 
 // Marshal (generated function)
@@ -3684,6 +4496,16 @@ func (m *SetGpsGlobalOrigin) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SetGpsGlobalOrigin) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SetGpsGlobalOrigin.Latitude":     m.Latitude,
+		"SetGpsGlobalOrigin.Longitude":    m.Longitude,
+		"SetGpsGlobalOrigin.Altitude":     m.Altitude,
+		"SetGpsGlobalOrigin.TargetSystem": m.TargetSystem,
+	}
+}
+
 // Marshal (generated function)
 func (m *SetGpsGlobalOrigin) Marshal() ([]byte, error) {
 	payload := make([]byte, 13)
@@ -3726,6 +4548,15 @@ func (m *GpsGlobalOrigin) String() string {
 		m.Longitude,
 		m.Altitude,
 	)
+}
+
+// ToMap (generated function)
+func (m *GpsGlobalOrigin) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GpsGlobalOrigin.Latitude":  m.Latitude,
+		"GpsGlobalOrigin.Longitude": m.Longitude,
+		"GpsGlobalOrigin.Altitude":  m.Altitude,
+	}
 }
 
 // Marshal (generated function)
@@ -3782,6 +4613,21 @@ func (m *ParamMapRc) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ParamMapRc) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ParamMapRc.ParamValue0":             m.ParamValue0,
+		"ParamMapRc.Scale":                   m.Scale,
+		"ParamMapRc.ParamValueMin":           m.ParamValueMin,
+		"ParamMapRc.ParamValueMax":           m.ParamValueMax,
+		"ParamMapRc.ParamIndex":              m.ParamIndex,
+		"ParamMapRc.TargetSystem":            m.TargetSystem,
+		"ParamMapRc.TargetComponent":         m.TargetComponent,
+		"ParamMapRc.ParamID":                 m.ParamID,
+		"ParamMapRc.ParameterRcChannelIndex": m.ParameterRcChannelIndex,
+	}
+}
+
 // Marshal (generated function)
 func (m *ParamMapRc) Marshal() ([]byte, error) {
 	payload := make([]byte, 37)
@@ -3836,6 +4682,15 @@ func (m *MissionRequestInt) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionRequestInt) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionRequestInt.Seq":             m.Seq,
+		"MissionRequestInt.TargetSystem":    m.TargetSystem,
+		"MissionRequestInt.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionRequestInt) Marshal() ([]byte, error) {
 	payload := make([]byte, 4)
@@ -3880,6 +4735,17 @@ func (m *MissionChanged) String() string {
 		m.OriginCompid,
 		m.MissionType,
 	)
+}
+
+// ToMap (generated function)
+func (m *MissionChanged) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionChanged.StartIndex":   m.StartIndex,
+		"MissionChanged.EndIndex":     m.EndIndex,
+		"MissionChanged.OriginSysid":  m.OriginSysid,
+		"MissionChanged.OriginCompid": m.OriginCompid,
+		"MissionChanged.MissionType":  m.MissionType,
+	}
 }
 
 // Marshal (generated function)
@@ -3938,6 +4804,21 @@ func (m *SafetySetAllowedArea) String() string {
 		m.TargetComponent,
 		m.Frame,
 	)
+}
+
+// ToMap (generated function)
+func (m *SafetySetAllowedArea) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SafetySetAllowedArea.P1x":             m.P1x,
+		"SafetySetAllowedArea.P1y":             m.P1y,
+		"SafetySetAllowedArea.P1z":             m.P1z,
+		"SafetySetAllowedArea.P2x":             m.P2x,
+		"SafetySetAllowedArea.P2y":             m.P2y,
+		"SafetySetAllowedArea.P2z":             m.P2z,
+		"SafetySetAllowedArea.TargetSystem":    m.TargetSystem,
+		"SafetySetAllowedArea.TargetComponent": m.TargetComponent,
+		"SafetySetAllowedArea.Frame":           m.Frame,
+	}
 }
 
 // Marshal (generated function)
@@ -4002,6 +4883,19 @@ func (m *SafetyAllowedArea) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SafetyAllowedArea) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SafetyAllowedArea.P1x":   m.P1x,
+		"SafetyAllowedArea.P1y":   m.P1y,
+		"SafetyAllowedArea.P1z":   m.P1z,
+		"SafetyAllowedArea.P2x":   m.P2x,
+		"SafetyAllowedArea.P2y":   m.P2y,
+		"SafetyAllowedArea.P2z":   m.P2z,
+		"SafetyAllowedArea.Frame": m.Frame,
+	}
+}
+
 // Marshal (generated function)
 func (m *SafetyAllowedArea) Marshal() ([]byte, error) {
 	payload := make([]byte, 25)
@@ -4056,6 +4950,18 @@ func (m *AttitudeQuaternionCov) String() string {
 		m.Yawspeed,
 		m.Covariance,
 	)
+}
+
+// ToMap (generated function)
+func (m *AttitudeQuaternionCov) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"AttitudeQuaternionCov.TimeUsec":   m.TimeUsec,
+		"AttitudeQuaternionCov.Q":          m.Q,
+		"AttitudeQuaternionCov.Rollspeed":  m.Rollspeed,
+		"AttitudeQuaternionCov.Pitchspeed": m.Pitchspeed,
+		"AttitudeQuaternionCov.Yawspeed":   m.Yawspeed,
+		"AttitudeQuaternionCov.Covariance": m.Covariance,
+	}
 }
 
 // Marshal (generated function)
@@ -4124,6 +5030,20 @@ func (m *NavControllerOutput) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *NavControllerOutput) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"NavControllerOutput.NavRoll":       m.NavRoll,
+		"NavControllerOutput.NavPitch":      m.NavPitch,
+		"NavControllerOutput.AltError":      m.AltError,
+		"NavControllerOutput.AspdError":     m.AspdError,
+		"NavControllerOutput.XtrackError":   m.XtrackError,
+		"NavControllerOutput.NavBearing":    m.NavBearing,
+		"NavControllerOutput.TargetBearing": m.TargetBearing,
+		"NavControllerOutput.WpDist":        m.WpDist,
+	}
+}
+
 // Marshal (generated function)
 func (m *NavControllerOutput) Marshal() ([]byte, error) {
 	payload := make([]byte, 26)
@@ -4188,6 +5108,22 @@ func (m *GlobalPositionIntCov) String() string {
 		m.Covariance,
 		m.EstimatorType,
 	)
+}
+
+// ToMap (generated function)
+func (m *GlobalPositionIntCov) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GlobalPositionIntCov.TimeUsec":      m.TimeUsec,
+		"GlobalPositionIntCov.Lat":           m.Lat,
+		"GlobalPositionIntCov.Lon":           m.Lon,
+		"GlobalPositionIntCov.Alt":           m.Alt,
+		"GlobalPositionIntCov.RelativeAlt":   m.RelativeAlt,
+		"GlobalPositionIntCov.Vx":            m.Vx,
+		"GlobalPositionIntCov.Vy":            m.Vy,
+		"GlobalPositionIntCov.Vz":            m.Vz,
+		"GlobalPositionIntCov.Covariance":    m.Covariance,
+		"GlobalPositionIntCov.EstimatorType": m.EstimatorType,
+	}
 }
 
 // Marshal (generated function)
@@ -4266,6 +5202,24 @@ func (m *LocalPositionNedCov) String() string {
 		m.Covariance,
 		m.EstimatorType,
 	)
+}
+
+// ToMap (generated function)
+func (m *LocalPositionNedCov) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LocalPositionNedCov.TimeUsec":      m.TimeUsec,
+		"LocalPositionNedCov.X":             m.X,
+		"LocalPositionNedCov.Y":             m.Y,
+		"LocalPositionNedCov.Z":             m.Z,
+		"LocalPositionNedCov.Vx":            m.Vx,
+		"LocalPositionNedCov.Vy":            m.Vy,
+		"LocalPositionNedCov.Vz":            m.Vz,
+		"LocalPositionNedCov.Ax":            m.Ax,
+		"LocalPositionNedCov.Ay":            m.Ay,
+		"LocalPositionNedCov.Az":            m.Az,
+		"LocalPositionNedCov.Covariance":    m.Covariance,
+		"LocalPositionNedCov.EstimatorType": m.EstimatorType,
+	}
 }
 
 // Marshal (generated function)
@@ -4368,6 +5322,33 @@ func (m *RcChannels) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *RcChannels) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"RcChannels.TimeBootMs": m.TimeBootMs,
+		"RcChannels.Chan1Raw":   m.Chan1Raw,
+		"RcChannels.Chan2Raw":   m.Chan2Raw,
+		"RcChannels.Chan3Raw":   m.Chan3Raw,
+		"RcChannels.Chan4Raw":   m.Chan4Raw,
+		"RcChannels.Chan5Raw":   m.Chan5Raw,
+		"RcChannels.Chan6Raw":   m.Chan6Raw,
+		"RcChannels.Chan7Raw":   m.Chan7Raw,
+		"RcChannels.Chan8Raw":   m.Chan8Raw,
+		"RcChannels.Chan9Raw":   m.Chan9Raw,
+		"RcChannels.Chan10Raw":  m.Chan10Raw,
+		"RcChannels.Chan11Raw":  m.Chan11Raw,
+		"RcChannels.Chan12Raw":  m.Chan12Raw,
+		"RcChannels.Chan13Raw":  m.Chan13Raw,
+		"RcChannels.Chan14Raw":  m.Chan14Raw,
+		"RcChannels.Chan15Raw":  m.Chan15Raw,
+		"RcChannels.Chan16Raw":  m.Chan16Raw,
+		"RcChannels.Chan17Raw":  m.Chan17Raw,
+		"RcChannels.Chan18Raw":  m.Chan18Raw,
+		"RcChannels.Chancount":  m.Chancount,
+		"RcChannels.Rssi":       m.Rssi,
+	}
+}
+
 // Marshal (generated function)
 func (m *RcChannels) Marshal() ([]byte, error) {
 	payload := make([]byte, 42)
@@ -4450,6 +5431,17 @@ func (m *RequestDataStream) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *RequestDataStream) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"RequestDataStream.ReqMessageRate":  m.ReqMessageRate,
+		"RequestDataStream.TargetSystem":    m.TargetSystem,
+		"RequestDataStream.TargetComponent": m.TargetComponent,
+		"RequestDataStream.ReqStreamID":     m.ReqStreamID,
+		"RequestDataStream.StartStop":       m.StartStop,
+	}
+}
+
 // Marshal (generated function)
 func (m *RequestDataStream) Marshal() ([]byte, error) {
 	payload := make([]byte, 6)
@@ -4494,6 +5486,15 @@ func (m *DataStream) String() string {
 		m.StreamID,
 		m.OnOff,
 	)
+}
+
+// ToMap (generated function)
+func (m *DataStream) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"DataStream.MessageRate": m.MessageRate,
+		"DataStream.StreamID":    m.StreamID,
+		"DataStream.OnOff":       m.OnOff,
+	}
 }
 
 // Marshal (generated function)
@@ -4542,6 +5543,18 @@ func (m *ManualControl) String() string {
 		m.Buttons,
 		m.Target,
 	)
+}
+
+// ToMap (generated function)
+func (m *ManualControl) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ManualControl.X":       m.X,
+		"ManualControl.Y":       m.Y,
+		"ManualControl.Z":       m.Z,
+		"ManualControl.R":       m.R,
+		"ManualControl.Buttons": m.Buttons,
+		"ManualControl.Target":  m.Target,
+	}
 }
 
 // Marshal (generated function)
@@ -4604,6 +5617,22 @@ func (m *RcChannelsOverride) String() string {
 		m.TargetSystem,
 		m.TargetComponent,
 	)
+}
+
+// ToMap (generated function)
+func (m *RcChannelsOverride) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"RcChannelsOverride.Chan1Raw":        m.Chan1Raw,
+		"RcChannelsOverride.Chan2Raw":        m.Chan2Raw,
+		"RcChannelsOverride.Chan3Raw":        m.Chan3Raw,
+		"RcChannelsOverride.Chan4Raw":        m.Chan4Raw,
+		"RcChannelsOverride.Chan5Raw":        m.Chan5Raw,
+		"RcChannelsOverride.Chan6Raw":        m.Chan6Raw,
+		"RcChannelsOverride.Chan7Raw":        m.Chan7Raw,
+		"RcChannelsOverride.Chan8Raw":        m.Chan8Raw,
+		"RcChannelsOverride.TargetSystem":    m.TargetSystem,
+		"RcChannelsOverride.TargetComponent": m.TargetComponent,
+	}
 }
 
 // Marshal (generated function)
@@ -4685,6 +5714,26 @@ func (m *MissionItemInt) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MissionItemInt) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MissionItemInt.Param1":          m.Param1,
+		"MissionItemInt.Param2":          m.Param2,
+		"MissionItemInt.Param3":          m.Param3,
+		"MissionItemInt.Param4":          m.Param4,
+		"MissionItemInt.X":               m.X,
+		"MissionItemInt.Y":               m.Y,
+		"MissionItemInt.Z":               m.Z,
+		"MissionItemInt.Seq":             m.Seq,
+		"MissionItemInt.Command":         m.Command,
+		"MissionItemInt.TargetSystem":    m.TargetSystem,
+		"MissionItemInt.TargetComponent": m.TargetComponent,
+		"MissionItemInt.Frame":           m.Frame,
+		"MissionItemInt.Current":         m.Current,
+		"MissionItemInt.Autocontinue":    m.Autocontinue,
+	}
+}
+
 // Marshal (generated function)
 func (m *MissionItemInt) Marshal() ([]byte, error) {
 	payload := make([]byte, 37)
@@ -4755,6 +5804,18 @@ func (m *VfrHud) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *VfrHud) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"VfrHud.Airspeed":    m.Airspeed,
+		"VfrHud.Groundspeed": m.Groundspeed,
+		"VfrHud.Alt":         m.Alt,
+		"VfrHud.Climb":       m.Climb,
+		"VfrHud.Heading":     m.Heading,
+		"VfrHud.Throttle":    m.Throttle,
+	}
+}
+
 // Marshal (generated function)
 func (m *VfrHud) Marshal() ([]byte, error) {
 	payload := make([]byte, 20)
@@ -4821,6 +5882,25 @@ func (m *CommandInt) String() string {
 		m.Current,
 		m.Autocontinue,
 	)
+}
+
+// ToMap (generated function)
+func (m *CommandInt) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"CommandInt.Param1":          m.Param1,
+		"CommandInt.Param2":          m.Param2,
+		"CommandInt.Param3":          m.Param3,
+		"CommandInt.Param4":          m.Param4,
+		"CommandInt.X":               m.X,
+		"CommandInt.Y":               m.Y,
+		"CommandInt.Z":               m.Z,
+		"CommandInt.Command":         m.Command,
+		"CommandInt.TargetSystem":    m.TargetSystem,
+		"CommandInt.TargetComponent": m.TargetComponent,
+		"CommandInt.Frame":           m.Frame,
+		"CommandInt.Current":         m.Current,
+		"CommandInt.Autocontinue":    m.Autocontinue,
+	}
 }
 
 // Marshal (generated function)
@@ -4901,6 +5981,23 @@ func (m *CommandLong) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *CommandLong) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"CommandLong.Param1":          m.Param1,
+		"CommandLong.Param2":          m.Param2,
+		"CommandLong.Param3":          m.Param3,
+		"CommandLong.Param4":          m.Param4,
+		"CommandLong.Param5":          m.Param5,
+		"CommandLong.Param6":          m.Param6,
+		"CommandLong.Param7":          m.Param7,
+		"CommandLong.Command":         m.Command,
+		"CommandLong.TargetSystem":    m.TargetSystem,
+		"CommandLong.TargetComponent": m.TargetComponent,
+		"CommandLong.Confirmation":    m.Confirmation,
+	}
+}
+
 // Marshal (generated function)
 func (m *CommandLong) Marshal() ([]byte, error) {
 	payload := make([]byte, 33)
@@ -4957,6 +6054,14 @@ func (m *CommandAck) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *CommandAck) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"CommandAck.Command": m.Command,
+		"CommandAck.Result":  m.Result,
+	}
+}
+
 // Marshal (generated function)
 func (m *CommandAck) Marshal() ([]byte, error) {
 	payload := make([]byte, 3)
@@ -4995,6 +6100,15 @@ func (m *CommandCancel) String() string {
 		m.TargetSystem,
 		m.TargetComponent,
 	)
+}
+
+// ToMap (generated function)
+func (m *CommandCancel) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"CommandCancel.Command":         m.Command,
+		"CommandCancel.TargetSystem":    m.TargetSystem,
+		"CommandCancel.TargetComponent": m.TargetComponent,
+	}
 }
 
 // Marshal (generated function)
@@ -5045,6 +6159,19 @@ func (m *ManualSetpoint) String() string {
 		m.ModeSwitch,
 		m.ManualOverrideSwitch,
 	)
+}
+
+// ToMap (generated function)
+func (m *ManualSetpoint) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ManualSetpoint.TimeBootMs":           m.TimeBootMs,
+		"ManualSetpoint.Roll":                 m.Roll,
+		"ManualSetpoint.Pitch":                m.Pitch,
+		"ManualSetpoint.Yaw":                  m.Yaw,
+		"ManualSetpoint.Thrust":               m.Thrust,
+		"ManualSetpoint.ModeSwitch":           m.ModeSwitch,
+		"ManualSetpoint.ManualOverrideSwitch": m.ManualOverrideSwitch,
+	}
 }
 
 // Marshal (generated function)
@@ -5107,6 +6234,21 @@ func (m *SetAttitudeTarget) String() string {
 		m.TargetComponent,
 		m.TypeMask.Bitmask(), uint64(m.TypeMask),
 	)
+}
+
+// ToMap (generated function)
+func (m *SetAttitudeTarget) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SetAttitudeTarget.TimeBootMs":      m.TimeBootMs,
+		"SetAttitudeTarget.Q":               m.Q,
+		"SetAttitudeTarget.BodyRollRate":    m.BodyRollRate,
+		"SetAttitudeTarget.BodyPitchRate":   m.BodyPitchRate,
+		"SetAttitudeTarget.BodyYawRate":     m.BodyYawRate,
+		"SetAttitudeTarget.Thrust":          m.Thrust,
+		"SetAttitudeTarget.TargetSystem":    m.TargetSystem,
+		"SetAttitudeTarget.TargetComponent": m.TargetComponent,
+		"SetAttitudeTarget.TypeMask":        m.TypeMask,
+	}
 }
 
 // Marshal (generated function)
@@ -5173,6 +6315,19 @@ func (m *AttitudeTarget) String() string {
 		m.Thrust,
 		m.TypeMask.Bitmask(), uint64(m.TypeMask),
 	)
+}
+
+// ToMap (generated function)
+func (m *AttitudeTarget) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"AttitudeTarget.TimeBootMs":    m.TimeBootMs,
+		"AttitudeTarget.Q":             m.Q,
+		"AttitudeTarget.BodyRollRate":  m.BodyRollRate,
+		"AttitudeTarget.BodyPitchRate": m.BodyPitchRate,
+		"AttitudeTarget.BodyYawRate":   m.BodyYawRate,
+		"AttitudeTarget.Thrust":        m.Thrust,
+		"AttitudeTarget.TypeMask":      m.TypeMask,
+	}
 }
 
 // Marshal (generated function)
@@ -5253,6 +6408,28 @@ func (m *SetPositionTargetLocalNed) String() string {
 		m.TargetComponent,
 		m.CoordinateFrame,
 	)
+}
+
+// ToMap (generated function)
+func (m *SetPositionTargetLocalNed) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SetPositionTargetLocalNed.TimeBootMs":      m.TimeBootMs,
+		"SetPositionTargetLocalNed.X":               m.X,
+		"SetPositionTargetLocalNed.Y":               m.Y,
+		"SetPositionTargetLocalNed.Z":               m.Z,
+		"SetPositionTargetLocalNed.Vx":              m.Vx,
+		"SetPositionTargetLocalNed.Vy":              m.Vy,
+		"SetPositionTargetLocalNed.Vz":              m.Vz,
+		"SetPositionTargetLocalNed.Afx":             m.Afx,
+		"SetPositionTargetLocalNed.Afy":             m.Afy,
+		"SetPositionTargetLocalNed.Afz":             m.Afz,
+		"SetPositionTargetLocalNed.Yaw":             m.Yaw,
+		"SetPositionTargetLocalNed.YawRate":         m.YawRate,
+		"SetPositionTargetLocalNed.TypeMask":        m.TypeMask,
+		"SetPositionTargetLocalNed.TargetSystem":    m.TargetSystem,
+		"SetPositionTargetLocalNed.TargetComponent": m.TargetComponent,
+		"SetPositionTargetLocalNed.CoordinateFrame": m.CoordinateFrame,
+	}
 }
 
 // Marshal (generated function)
@@ -5345,6 +6522,26 @@ func (m *PositionTargetLocalNed) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *PositionTargetLocalNed) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"PositionTargetLocalNed.TimeBootMs":      m.TimeBootMs,
+		"PositionTargetLocalNed.X":               m.X,
+		"PositionTargetLocalNed.Y":               m.Y,
+		"PositionTargetLocalNed.Z":               m.Z,
+		"PositionTargetLocalNed.Vx":              m.Vx,
+		"PositionTargetLocalNed.Vy":              m.Vy,
+		"PositionTargetLocalNed.Vz":              m.Vz,
+		"PositionTargetLocalNed.Afx":             m.Afx,
+		"PositionTargetLocalNed.Afy":             m.Afy,
+		"PositionTargetLocalNed.Afz":             m.Afz,
+		"PositionTargetLocalNed.Yaw":             m.Yaw,
+		"PositionTargetLocalNed.YawRate":         m.YawRate,
+		"PositionTargetLocalNed.TypeMask":        m.TypeMask,
+		"PositionTargetLocalNed.CoordinateFrame": m.CoordinateFrame,
+	}
+}
+
 // Marshal (generated function)
 func (m *PositionTargetLocalNed) Marshal() ([]byte, error) {
 	payload := make([]byte, 51)
@@ -5433,6 +6630,28 @@ func (m *SetPositionTargetGlobalInt) String() string {
 		m.TargetComponent,
 		m.CoordinateFrame,
 	)
+}
+
+// ToMap (generated function)
+func (m *SetPositionTargetGlobalInt) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SetPositionTargetGlobalInt.TimeBootMs":      m.TimeBootMs,
+		"SetPositionTargetGlobalInt.LatInt":          m.LatInt,
+		"SetPositionTargetGlobalInt.LonInt":          m.LonInt,
+		"SetPositionTargetGlobalInt.Alt":             m.Alt,
+		"SetPositionTargetGlobalInt.Vx":              m.Vx,
+		"SetPositionTargetGlobalInt.Vy":              m.Vy,
+		"SetPositionTargetGlobalInt.Vz":              m.Vz,
+		"SetPositionTargetGlobalInt.Afx":             m.Afx,
+		"SetPositionTargetGlobalInt.Afy":             m.Afy,
+		"SetPositionTargetGlobalInt.Afz":             m.Afz,
+		"SetPositionTargetGlobalInt.Yaw":             m.Yaw,
+		"SetPositionTargetGlobalInt.YawRate":         m.YawRate,
+		"SetPositionTargetGlobalInt.TypeMask":        m.TypeMask,
+		"SetPositionTargetGlobalInt.TargetSystem":    m.TargetSystem,
+		"SetPositionTargetGlobalInt.TargetComponent": m.TargetComponent,
+		"SetPositionTargetGlobalInt.CoordinateFrame": m.CoordinateFrame,
+	}
 }
 
 // Marshal (generated function)
@@ -5525,6 +6744,26 @@ func (m *PositionTargetGlobalInt) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *PositionTargetGlobalInt) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"PositionTargetGlobalInt.TimeBootMs":      m.TimeBootMs,
+		"PositionTargetGlobalInt.LatInt":          m.LatInt,
+		"PositionTargetGlobalInt.LonInt":          m.LonInt,
+		"PositionTargetGlobalInt.Alt":             m.Alt,
+		"PositionTargetGlobalInt.Vx":              m.Vx,
+		"PositionTargetGlobalInt.Vy":              m.Vy,
+		"PositionTargetGlobalInt.Vz":              m.Vz,
+		"PositionTargetGlobalInt.Afx":             m.Afx,
+		"PositionTargetGlobalInt.Afy":             m.Afy,
+		"PositionTargetGlobalInt.Afz":             m.Afz,
+		"PositionTargetGlobalInt.Yaw":             m.Yaw,
+		"PositionTargetGlobalInt.YawRate":         m.YawRate,
+		"PositionTargetGlobalInt.TypeMask":        m.TypeMask,
+		"PositionTargetGlobalInt.CoordinateFrame": m.CoordinateFrame,
+	}
+}
+
 // Marshal (generated function)
 func (m *PositionTargetGlobalInt) Marshal() ([]byte, error) {
 	payload := make([]byte, 51)
@@ -5595,6 +6834,19 @@ func (m *LocalPositionNedSystemGlobalOffset) String() string {
 		m.Pitch,
 		m.Yaw,
 	)
+}
+
+// ToMap (generated function)
+func (m *LocalPositionNedSystemGlobalOffset) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LocalPositionNedSystemGlobalOffset.TimeBootMs": m.TimeBootMs,
+		"LocalPositionNedSystemGlobalOffset.X":          m.X,
+		"LocalPositionNedSystemGlobalOffset.Y":          m.Y,
+		"LocalPositionNedSystemGlobalOffset.Z":          m.Z,
+		"LocalPositionNedSystemGlobalOffset.Roll":       m.Roll,
+		"LocalPositionNedSystemGlobalOffset.Pitch":      m.Pitch,
+		"LocalPositionNedSystemGlobalOffset.Yaw":        m.Yaw,
+	}
 }
 
 // Marshal (generated function)
@@ -5671,6 +6923,28 @@ func (m *HilState) String() string {
 		m.Yacc,
 		m.Zacc,
 	)
+}
+
+// ToMap (generated function)
+func (m *HilState) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HilState.TimeUsec":   m.TimeUsec,
+		"HilState.Roll":       m.Roll,
+		"HilState.Pitch":      m.Pitch,
+		"HilState.Yaw":        m.Yaw,
+		"HilState.Rollspeed":  m.Rollspeed,
+		"HilState.Pitchspeed": m.Pitchspeed,
+		"HilState.Yawspeed":   m.Yawspeed,
+		"HilState.Lat":        m.Lat,
+		"HilState.Lon":        m.Lon,
+		"HilState.Alt":        m.Alt,
+		"HilState.Vx":         m.Vx,
+		"HilState.Vy":         m.Vy,
+		"HilState.Vz":         m.Vz,
+		"HilState.Xacc":       m.Xacc,
+		"HilState.Yacc":       m.Yacc,
+		"HilState.Zacc":       m.Zacc,
+	}
 }
 
 // Marshal (generated function)
@@ -5757,6 +7031,23 @@ func (m *HilControls) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *HilControls) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HilControls.TimeUsec":      m.TimeUsec,
+		"HilControls.RollAilerons":  m.RollAilerons,
+		"HilControls.PitchElevator": m.PitchElevator,
+		"HilControls.YawRudder":     m.YawRudder,
+		"HilControls.Throttle":      m.Throttle,
+		"HilControls.Aux1":          m.Aux1,
+		"HilControls.Aux2":          m.Aux2,
+		"HilControls.Aux3":          m.Aux3,
+		"HilControls.Aux4":          m.Aux4,
+		"HilControls.Mode":          m.Mode,
+		"HilControls.NavMode":       m.NavMode,
+	}
+}
+
 // Marshal (generated function)
 func (m *HilControls) Marshal() ([]byte, error) {
 	payload := make([]byte, 42)
@@ -5837,6 +7128,26 @@ func (m *HilRcInputsRaw) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *HilRcInputsRaw) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HilRcInputsRaw.TimeUsec":  m.TimeUsec,
+		"HilRcInputsRaw.Chan1Raw":  m.Chan1Raw,
+		"HilRcInputsRaw.Chan2Raw":  m.Chan2Raw,
+		"HilRcInputsRaw.Chan3Raw":  m.Chan3Raw,
+		"HilRcInputsRaw.Chan4Raw":  m.Chan4Raw,
+		"HilRcInputsRaw.Chan5Raw":  m.Chan5Raw,
+		"HilRcInputsRaw.Chan6Raw":  m.Chan6Raw,
+		"HilRcInputsRaw.Chan7Raw":  m.Chan7Raw,
+		"HilRcInputsRaw.Chan8Raw":  m.Chan8Raw,
+		"HilRcInputsRaw.Chan9Raw":  m.Chan9Raw,
+		"HilRcInputsRaw.Chan10Raw": m.Chan10Raw,
+		"HilRcInputsRaw.Chan11Raw": m.Chan11Raw,
+		"HilRcInputsRaw.Chan12Raw": m.Chan12Raw,
+		"HilRcInputsRaw.Rssi":      m.Rssi,
+	}
+}
+
 // Marshal (generated function)
 func (m *HilRcInputsRaw) Marshal() ([]byte, error) {
 	payload := make([]byte, 33)
@@ -5903,6 +7214,16 @@ func (m *HilActuatorControls) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *HilActuatorControls) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HilActuatorControls.TimeUsec": m.TimeUsec,
+		"HilActuatorControls.Flags":    m.Flags,
+		"HilActuatorControls.Controls": m.Controls,
+		"HilActuatorControls.Mode":     m.Mode,
+	}
+}
+
 // Marshal (generated function)
 func (m *HilActuatorControls) Marshal() ([]byte, error) {
 	payload := make([]byte, 81)
@@ -5959,6 +7280,20 @@ func (m *OpticalFlow) String() string {
 		m.SensorID,
 		m.Quality,
 	)
+}
+
+// ToMap (generated function)
+func (m *OpticalFlow) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"OpticalFlow.TimeUsec":       m.TimeUsec,
+		"OpticalFlow.FlowCompMX":     m.FlowCompMX,
+		"OpticalFlow.FlowCompMY":     m.FlowCompMY,
+		"OpticalFlow.GroundDistance": m.GroundDistance,
+		"OpticalFlow.FlowX":          m.FlowX,
+		"OpticalFlow.FlowY":          m.FlowY,
+		"OpticalFlow.SensorID":       m.SensorID,
+		"OpticalFlow.Quality":        m.Quality,
+	}
 }
 
 // Marshal (generated function)
@@ -6021,6 +7356,19 @@ func (m *GlobalVisionPositionEstimate) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *GlobalVisionPositionEstimate) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GlobalVisionPositionEstimate.Usec":  m.Usec,
+		"GlobalVisionPositionEstimate.X":     m.X,
+		"GlobalVisionPositionEstimate.Y":     m.Y,
+		"GlobalVisionPositionEstimate.Z":     m.Z,
+		"GlobalVisionPositionEstimate.Roll":  m.Roll,
+		"GlobalVisionPositionEstimate.Pitch": m.Pitch,
+		"GlobalVisionPositionEstimate.Yaw":   m.Yaw,
+	}
+}
+
 // Marshal (generated function)
 func (m *GlobalVisionPositionEstimate) Marshal() ([]byte, error) {
 	payload := make([]byte, 32)
@@ -6079,6 +7427,19 @@ func (m *VisionPositionEstimate) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *VisionPositionEstimate) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"VisionPositionEstimate.Usec":  m.Usec,
+		"VisionPositionEstimate.X":     m.X,
+		"VisionPositionEstimate.Y":     m.Y,
+		"VisionPositionEstimate.Z":     m.Z,
+		"VisionPositionEstimate.Roll":  m.Roll,
+		"VisionPositionEstimate.Pitch": m.Pitch,
+		"VisionPositionEstimate.Yaw":   m.Yaw,
+	}
+}
+
 // Marshal (generated function)
 func (m *VisionPositionEstimate) Marshal() ([]byte, error) {
 	payload := make([]byte, 32)
@@ -6131,6 +7492,16 @@ func (m *VisionSpeedEstimate) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *VisionSpeedEstimate) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"VisionSpeedEstimate.Usec": m.Usec,
+		"VisionSpeedEstimate.X":    m.X,
+		"VisionSpeedEstimate.Y":    m.Y,
+		"VisionSpeedEstimate.Z":    m.Z,
+	}
+}
+
 // Marshal (generated function)
 func (m *VisionSpeedEstimate) Marshal() ([]byte, error) {
 	payload := make([]byte, 20)
@@ -6181,6 +7552,19 @@ func (m *ViconPositionEstimate) String() string {
 		m.Pitch,
 		m.Yaw,
 	)
+}
+
+// ToMap (generated function)
+func (m *ViconPositionEstimate) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ViconPositionEstimate.Usec":  m.Usec,
+		"ViconPositionEstimate.X":     m.X,
+		"ViconPositionEstimate.Y":     m.Y,
+		"ViconPositionEstimate.Z":     m.Z,
+		"ViconPositionEstimate.Roll":  m.Roll,
+		"ViconPositionEstimate.Pitch": m.Pitch,
+		"ViconPositionEstimate.Yaw":   m.Yaw,
+	}
 }
 
 // Marshal (generated function)
@@ -6255,6 +7639,27 @@ func (m *HighresImu) String() string {
 		m.Temperature,
 		m.FieldsUpdated,
 	)
+}
+
+// ToMap (generated function)
+func (m *HighresImu) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HighresImu.TimeUsec":      m.TimeUsec,
+		"HighresImu.Xacc":          m.Xacc,
+		"HighresImu.Yacc":          m.Yacc,
+		"HighresImu.Zacc":          m.Zacc,
+		"HighresImu.Xgyro":         m.Xgyro,
+		"HighresImu.Ygyro":         m.Ygyro,
+		"HighresImu.Zgyro":         m.Zgyro,
+		"HighresImu.Xmag":          m.Xmag,
+		"HighresImu.Ymag":          m.Ymag,
+		"HighresImu.Zmag":          m.Zmag,
+		"HighresImu.AbsPressure":   m.AbsPressure,
+		"HighresImu.DiffPressure":  m.DiffPressure,
+		"HighresImu.PressureAlt":   m.PressureAlt,
+		"HighresImu.Temperature":   m.Temperature,
+		"HighresImu.FieldsUpdated": m.FieldsUpdated,
+	}
 }
 
 // Marshal (generated function)
@@ -6341,6 +7746,24 @@ func (m *OpticalFlowRad) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *OpticalFlowRad) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"OpticalFlowRad.TimeUsec":            m.TimeUsec,
+		"OpticalFlowRad.IntegrationTimeUs":   m.IntegrationTimeUs,
+		"OpticalFlowRad.IntegratedX":         m.IntegratedX,
+		"OpticalFlowRad.IntegratedY":         m.IntegratedY,
+		"OpticalFlowRad.IntegratedXgyro":     m.IntegratedXgyro,
+		"OpticalFlowRad.IntegratedYgyro":     m.IntegratedYgyro,
+		"OpticalFlowRad.IntegratedZgyro":     m.IntegratedZgyro,
+		"OpticalFlowRad.TimeDeltaDistanceUs": m.TimeDeltaDistanceUs,
+		"OpticalFlowRad.Distance":            m.Distance,
+		"OpticalFlowRad.Temperature":         m.Temperature,
+		"OpticalFlowRad.SensorID":            m.SensorID,
+		"OpticalFlowRad.Quality":             m.Quality,
+	}
+}
+
 // Marshal (generated function)
 func (m *OpticalFlowRad) Marshal() ([]byte, error) {
 	payload := make([]byte, 44)
@@ -6423,6 +7846,27 @@ func (m *HilSensor) String() string {
 		m.Temperature,
 		m.FieldsUpdated,
 	)
+}
+
+// ToMap (generated function)
+func (m *HilSensor) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HilSensor.TimeUsec":      m.TimeUsec,
+		"HilSensor.Xacc":          m.Xacc,
+		"HilSensor.Yacc":          m.Yacc,
+		"HilSensor.Zacc":          m.Zacc,
+		"HilSensor.Xgyro":         m.Xgyro,
+		"HilSensor.Ygyro":         m.Ygyro,
+		"HilSensor.Zgyro":         m.Zgyro,
+		"HilSensor.Xmag":          m.Xmag,
+		"HilSensor.Ymag":          m.Ymag,
+		"HilSensor.Zmag":          m.Zmag,
+		"HilSensor.AbsPressure":   m.AbsPressure,
+		"HilSensor.DiffPressure":  m.DiffPressure,
+		"HilSensor.PressureAlt":   m.PressureAlt,
+		"HilSensor.Temperature":   m.Temperature,
+		"HilSensor.FieldsUpdated": m.FieldsUpdated,
+	}
 }
 
 // Marshal (generated function)
@@ -6527,6 +7971,33 @@ func (m *SimState) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SimState) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SimState.Q1":         m.Q1,
+		"SimState.Q2":         m.Q2,
+		"SimState.Q3":         m.Q3,
+		"SimState.Q4":         m.Q4,
+		"SimState.Roll":       m.Roll,
+		"SimState.Pitch":      m.Pitch,
+		"SimState.Yaw":        m.Yaw,
+		"SimState.Xacc":       m.Xacc,
+		"SimState.Yacc":       m.Yacc,
+		"SimState.Zacc":       m.Zacc,
+		"SimState.Xgyro":      m.Xgyro,
+		"SimState.Ygyro":      m.Ygyro,
+		"SimState.Zgyro":      m.Zgyro,
+		"SimState.Lat":        m.Lat,
+		"SimState.Lon":        m.Lon,
+		"SimState.Alt":        m.Alt,
+		"SimState.StdDevHorz": m.StdDevHorz,
+		"SimState.StdDevVert": m.StdDevVert,
+		"SimState.Vn":         m.Vn,
+		"SimState.Ve":         m.Ve,
+		"SimState.Vd":         m.Vd,
+	}
+}
+
 // Marshal (generated function)
 func (m *SimState) Marshal() ([]byte, error) {
 	payload := make([]byte, 84)
@@ -6613,6 +8084,19 @@ func (m *RadioStatus) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *RadioStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"RadioStatus.Rxerrors": m.Rxerrors,
+		"RadioStatus.Fixed":    m.Fixed,
+		"RadioStatus.Rssi":     m.Rssi,
+		"RadioStatus.Remrssi":  m.Remrssi,
+		"RadioStatus.Txbuf":    m.Txbuf,
+		"RadioStatus.Noise":    m.Noise,
+		"RadioStatus.Remnoise": m.Remnoise,
+	}
+}
+
 // Marshal (generated function)
 func (m *RadioStatus) Marshal() ([]byte, error) {
 	payload := make([]byte, 9)
@@ -6665,6 +8149,16 @@ func (m *FileTransferProtocol) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *FileTransferProtocol) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FileTransferProtocol.TargetNetwork":   m.TargetNetwork,
+		"FileTransferProtocol.TargetSystem":    m.TargetSystem,
+		"FileTransferProtocol.TargetComponent": m.TargetComponent,
+		"FileTransferProtocol.Payload":         m.Payload,
+	}
+}
+
 // Marshal (generated function)
 func (m *FileTransferProtocol) Marshal() ([]byte, error) {
 	payload := make([]byte, 254)
@@ -6707,6 +8201,14 @@ func (m *Timesync) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Timesync) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Timesync.Tc1": m.Tc1,
+		"Timesync.Ts1": m.Ts1,
+	}
+}
+
 // Marshal (generated function)
 func (m *Timesync) Marshal() ([]byte, error) {
 	payload := make([]byte, 16)
@@ -6743,6 +8245,14 @@ func (m *CameraTrigger) String() string {
 		m.TimeUsec,
 		m.Seq,
 	)
+}
+
+// ToMap (generated function)
+func (m *CameraTrigger) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"CameraTrigger.TimeUsec": m.TimeUsec,
+		"CameraTrigger.Seq":      m.Seq,
+	}
 }
 
 // Marshal (generated function)
@@ -6804,6 +8314,25 @@ func (m *HilGps) String() string {
 		m.FixType,
 		m.SatellitesVisible,
 	)
+}
+
+// ToMap (generated function)
+func (m *HilGps) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HilGps.TimeUsec":          m.TimeUsec,
+		"HilGps.Lat":               m.Lat,
+		"HilGps.Lon":               m.Lon,
+		"HilGps.Alt":               m.Alt,
+		"HilGps.Eph":               m.Eph,
+		"HilGps.Epv":               m.Epv,
+		"HilGps.Vel":               m.Vel,
+		"HilGps.Vn":                m.Vn,
+		"HilGps.Ve":                m.Ve,
+		"HilGps.Vd":                m.Vd,
+		"HilGps.Cog":               m.Cog,
+		"HilGps.FixType":           m.FixType,
+		"HilGps.SatellitesVisible": m.SatellitesVisible,
+	}
 }
 
 // Marshal (generated function)
@@ -6884,6 +8413,24 @@ func (m *HilOpticalFlow) String() string {
 		m.SensorID,
 		m.Quality,
 	)
+}
+
+// ToMap (generated function)
+func (m *HilOpticalFlow) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HilOpticalFlow.TimeUsec":            m.TimeUsec,
+		"HilOpticalFlow.IntegrationTimeUs":   m.IntegrationTimeUs,
+		"HilOpticalFlow.IntegratedX":         m.IntegratedX,
+		"HilOpticalFlow.IntegratedY":         m.IntegratedY,
+		"HilOpticalFlow.IntegratedXgyro":     m.IntegratedXgyro,
+		"HilOpticalFlow.IntegratedYgyro":     m.IntegratedYgyro,
+		"HilOpticalFlow.IntegratedZgyro":     m.IntegratedZgyro,
+		"HilOpticalFlow.TimeDeltaDistanceUs": m.TimeDeltaDistanceUs,
+		"HilOpticalFlow.Distance":            m.Distance,
+		"HilOpticalFlow.Temperature":         m.Temperature,
+		"HilOpticalFlow.SensorID":            m.SensorID,
+		"HilOpticalFlow.Quality":             m.Quality,
+	}
 }
 
 // Marshal (generated function)
@@ -6972,6 +8519,28 @@ func (m *HilStateQuaternion) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *HilStateQuaternion) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HilStateQuaternion.TimeUsec":           m.TimeUsec,
+		"HilStateQuaternion.AttitudeQuaternion": m.AttitudeQuaternion,
+		"HilStateQuaternion.Rollspeed":          m.Rollspeed,
+		"HilStateQuaternion.Pitchspeed":         m.Pitchspeed,
+		"HilStateQuaternion.Yawspeed":           m.Yawspeed,
+		"HilStateQuaternion.Lat":                m.Lat,
+		"HilStateQuaternion.Lon":                m.Lon,
+		"HilStateQuaternion.Alt":                m.Alt,
+		"HilStateQuaternion.Vx":                 m.Vx,
+		"HilStateQuaternion.Vy":                 m.Vy,
+		"HilStateQuaternion.Vz":                 m.Vz,
+		"HilStateQuaternion.IndAirspeed":        m.IndAirspeed,
+		"HilStateQuaternion.TrueAirspeed":       m.TrueAirspeed,
+		"HilStateQuaternion.Xacc":               m.Xacc,
+		"HilStateQuaternion.Yacc":               m.Yacc,
+		"HilStateQuaternion.Zacc":               m.Zacc,
+	}
+}
+
 // Marshal (generated function)
 func (m *HilStateQuaternion) Marshal() ([]byte, error) {
 	payload := make([]byte, 64)
@@ -7058,6 +8627,22 @@ func (m *ScaledImu2) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ScaledImu2) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ScaledImu2.TimeBootMs": m.TimeBootMs,
+		"ScaledImu2.Xacc":       m.Xacc,
+		"ScaledImu2.Yacc":       m.Yacc,
+		"ScaledImu2.Zacc":       m.Zacc,
+		"ScaledImu2.Xgyro":      m.Xgyro,
+		"ScaledImu2.Ygyro":      m.Ygyro,
+		"ScaledImu2.Zgyro":      m.Zgyro,
+		"ScaledImu2.Xmag":       m.Xmag,
+		"ScaledImu2.Ymag":       m.Ymag,
+		"ScaledImu2.Zmag":       m.Zmag,
+	}
+}
+
 // Marshal (generated function)
 func (m *ScaledImu2) Marshal() ([]byte, error) {
 	payload := make([]byte, 22)
@@ -7116,6 +8701,16 @@ func (m *LogRequestList) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *LogRequestList) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LogRequestList.Start":           m.Start,
+		"LogRequestList.End":             m.End,
+		"LogRequestList.TargetSystem":    m.TargetSystem,
+		"LogRequestList.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *LogRequestList) Marshal() ([]byte, error) {
 	payload := make([]byte, 6)
@@ -7162,6 +8757,17 @@ func (m *LogEntry) String() string {
 		m.NumLogs,
 		m.LastLogNum,
 	)
+}
+
+// ToMap (generated function)
+func (m *LogEntry) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LogEntry.TimeUtc":    m.TimeUtc,
+		"LogEntry.Size":       m.Size,
+		"LogEntry.ID":         m.ID,
+		"LogEntry.NumLogs":    m.NumLogs,
+		"LogEntry.LastLogNum": m.LastLogNum,
+	}
 }
 
 // Marshal (generated function)
@@ -7214,6 +8820,17 @@ func (m *LogRequestData) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *LogRequestData) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LogRequestData.Ofs":             m.Ofs,
+		"LogRequestData.Count":           m.Count,
+		"LogRequestData.ID":              m.ID,
+		"LogRequestData.TargetSystem":    m.TargetSystem,
+		"LogRequestData.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *LogRequestData) Marshal() ([]byte, error) {
 	payload := make([]byte, 12)
@@ -7262,6 +8879,16 @@ func (m *LogData) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *LogData) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LogData.Ofs":   m.Ofs,
+		"LogData.ID":    m.ID,
+		"LogData.Count": m.Count,
+		"LogData.Data":  m.Data,
+	}
+}
+
 // Marshal (generated function)
 func (m *LogData) Marshal() ([]byte, error) {
 	payload := make([]byte, 97)
@@ -7304,6 +8931,14 @@ func (m *LogErase) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *LogErase) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LogErase.TargetSystem":    m.TargetSystem,
+		"LogErase.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *LogErase) Marshal() ([]byte, error) {
 	payload := make([]byte, 2)
@@ -7340,6 +8975,14 @@ func (m *LogRequestEnd) String() string {
 		m.TargetSystem,
 		m.TargetComponent,
 	)
+}
+
+// ToMap (generated function)
+func (m *LogRequestEnd) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LogRequestEnd.TargetSystem":    m.TargetSystem,
+		"LogRequestEnd.TargetComponent": m.TargetComponent,
+	}
 }
 
 // Marshal (generated function)
@@ -7382,6 +9025,16 @@ func (m *GpsInjectData) String() string {
 		m.Len,
 		m.Data, string(m.Data[:]),
 	)
+}
+
+// ToMap (generated function)
+func (m *GpsInjectData) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GpsInjectData.TargetSystem":    m.TargetSystem,
+		"GpsInjectData.TargetComponent": m.TargetComponent,
+		"GpsInjectData.Len":             m.Len,
+		"GpsInjectData.Data":            m.Data,
+	}
 }
 
 // Marshal (generated function)
@@ -7446,6 +9099,24 @@ func (m *Gps2Raw) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Gps2Raw) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Gps2Raw.TimeUsec":          m.TimeUsec,
+		"Gps2Raw.Lat":               m.Lat,
+		"Gps2Raw.Lon":               m.Lon,
+		"Gps2Raw.Alt":               m.Alt,
+		"Gps2Raw.DgpsAge":           m.DgpsAge,
+		"Gps2Raw.Eph":               m.Eph,
+		"Gps2Raw.Epv":               m.Epv,
+		"Gps2Raw.Vel":               m.Vel,
+		"Gps2Raw.Cog":               m.Cog,
+		"Gps2Raw.FixType":           m.FixType,
+		"Gps2Raw.SatellitesVisible": m.SatellitesVisible,
+		"Gps2Raw.DgpsNumch":         m.DgpsNumch,
+	}
+}
+
 // Marshal (generated function)
 func (m *Gps2Raw) Marshal() ([]byte, error) {
 	payload := make([]byte, 35)
@@ -7506,6 +9177,15 @@ func (m *PowerStatus) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *PowerStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"PowerStatus.Vcc":    m.Vcc,
+		"PowerStatus.Vservo": m.Vservo,
+		"PowerStatus.Flags":  m.Flags,
+	}
+}
+
 // Marshal (generated function)
 func (m *PowerStatus) Marshal() ([]byte, error) {
 	payload := make([]byte, 6)
@@ -7552,6 +9232,18 @@ func (m *SerialControl) String() string {
 		m.Count,
 		m.Data, string(m.Data[:]),
 	)
+}
+
+// ToMap (generated function)
+func (m *SerialControl) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SerialControl.Baudrate": m.Baudrate,
+		"SerialControl.Timeout":  m.Timeout,
+		"SerialControl.Device":   m.Device,
+		"SerialControl.Flags":    m.Flags,
+		"SerialControl.Count":    m.Count,
+		"SerialControl.Data":     m.Data,
+	}
 }
 
 // Marshal (generated function)
@@ -7620,6 +9312,25 @@ func (m *GpsRtk) String() string {
 		m.Nsats,
 		m.BaselineCoordsType,
 	)
+}
+
+// ToMap (generated function)
+func (m *GpsRtk) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GpsRtk.TimeLastBaselineMs": m.TimeLastBaselineMs,
+		"GpsRtk.Tow":                m.Tow,
+		"GpsRtk.BaselineAMm":        m.BaselineAMm,
+		"GpsRtk.BaselineBMm":        m.BaselineBMm,
+		"GpsRtk.BaselineCMm":        m.BaselineCMm,
+		"GpsRtk.Accuracy":           m.Accuracy,
+		"GpsRtk.IarNumHypotheses":   m.IarNumHypotheses,
+		"GpsRtk.Wn":                 m.Wn,
+		"GpsRtk.RtkReceiverID":      m.RtkReceiverID,
+		"GpsRtk.RtkHealth":          m.RtkHealth,
+		"GpsRtk.RtkRate":            m.RtkRate,
+		"GpsRtk.Nsats":              m.Nsats,
+		"GpsRtk.BaselineCoordsType": m.BaselineCoordsType,
+	}
 }
 
 // Marshal (generated function)
@@ -7704,6 +9415,25 @@ func (m *Gps2Rtk) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Gps2Rtk) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Gps2Rtk.TimeLastBaselineMs": m.TimeLastBaselineMs,
+		"Gps2Rtk.Tow":                m.Tow,
+		"Gps2Rtk.BaselineAMm":        m.BaselineAMm,
+		"Gps2Rtk.BaselineBMm":        m.BaselineBMm,
+		"Gps2Rtk.BaselineCMm":        m.BaselineCMm,
+		"Gps2Rtk.Accuracy":           m.Accuracy,
+		"Gps2Rtk.IarNumHypotheses":   m.IarNumHypotheses,
+		"Gps2Rtk.Wn":                 m.Wn,
+		"Gps2Rtk.RtkReceiverID":      m.RtkReceiverID,
+		"Gps2Rtk.RtkHealth":          m.RtkHealth,
+		"Gps2Rtk.RtkRate":            m.RtkRate,
+		"Gps2Rtk.Nsats":              m.Nsats,
+		"Gps2Rtk.BaselineCoordsType": m.BaselineCoordsType,
+	}
+}
+
 // Marshal (generated function)
 func (m *Gps2Rtk) Marshal() ([]byte, error) {
 	payload := make([]byte, 35)
@@ -7780,6 +9510,22 @@ func (m *ScaledImu3) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ScaledImu3) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ScaledImu3.TimeBootMs": m.TimeBootMs,
+		"ScaledImu3.Xacc":       m.Xacc,
+		"ScaledImu3.Yacc":       m.Yacc,
+		"ScaledImu3.Zacc":       m.Zacc,
+		"ScaledImu3.Xgyro":      m.Xgyro,
+		"ScaledImu3.Ygyro":      m.Ygyro,
+		"ScaledImu3.Zgyro":      m.Zgyro,
+		"ScaledImu3.Xmag":       m.Xmag,
+		"ScaledImu3.Ymag":       m.Ymag,
+		"ScaledImu3.Zmag":       m.Zmag,
+	}
+}
+
 // Marshal (generated function)
 func (m *ScaledImu3) Marshal() ([]byte, error) {
 	payload := make([]byte, 22)
@@ -7844,6 +9590,19 @@ func (m *DataTransmissionHandshake) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *DataTransmissionHandshake) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"DataTransmissionHandshake.Size":       m.Size,
+		"DataTransmissionHandshake.Width":      m.Width,
+		"DataTransmissionHandshake.Height":     m.Height,
+		"DataTransmissionHandshake.Packets":    m.Packets,
+		"DataTransmissionHandshake.Type":       m.Type,
+		"DataTransmissionHandshake.Payload":    m.Payload,
+		"DataTransmissionHandshake.JpgQuality": m.JpgQuality,
+	}
+}
+
 // Marshal (generated function)
 func (m *DataTransmissionHandshake) Marshal() ([]byte, error) {
 	payload := make([]byte, 13)
@@ -7890,6 +9649,14 @@ func (m *EncapsulatedData) String() string {
 		m.Seqnr,
 		m.Data, string(m.Data[:]),
 	)
+}
+
+// ToMap (generated function)
+func (m *EncapsulatedData) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"EncapsulatedData.Seqnr": m.Seqnr,
+		"EncapsulatedData.Data":  m.Data,
+	}
 }
 
 // Marshal (generated function)
@@ -7940,6 +9707,20 @@ func (m *DistanceSensor) String() string {
 		m.Orientation,
 		m.Covariance,
 	)
+}
+
+// ToMap (generated function)
+func (m *DistanceSensor) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"DistanceSensor.TimeBootMs":      m.TimeBootMs,
+		"DistanceSensor.MinDistance":     m.MinDistance,
+		"DistanceSensor.MaxDistance":     m.MaxDistance,
+		"DistanceSensor.CurrentDistance": m.CurrentDistance,
+		"DistanceSensor.Type":            m.Type,
+		"DistanceSensor.ID":              m.ID,
+		"DistanceSensor.Orientation":     m.Orientation,
+		"DistanceSensor.Covariance":      m.Covariance,
+	}
 }
 
 // Marshal (generated function)
@@ -7996,6 +9777,16 @@ func (m *TerrainRequest) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *TerrainRequest) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"TerrainRequest.Mask":        m.Mask,
+		"TerrainRequest.Lat":         m.Lat,
+		"TerrainRequest.Lon":         m.Lon,
+		"TerrainRequest.GridSpacing": m.GridSpacing,
+	}
+}
+
 // Marshal (generated function)
 func (m *TerrainRequest) Marshal() ([]byte, error) {
 	payload := make([]byte, 18)
@@ -8042,6 +9833,17 @@ func (m *TerrainData) String() string {
 		m.Data,
 		m.Gridbit,
 	)
+}
+
+// ToMap (generated function)
+func (m *TerrainData) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"TerrainData.Lat":         m.Lat,
+		"TerrainData.Lon":         m.Lon,
+		"TerrainData.GridSpacing": m.GridSpacing,
+		"TerrainData.Data":        m.Data,
+		"TerrainData.Gridbit":     m.Gridbit,
+	}
 }
 
 // Marshal (generated function)
@@ -8092,6 +9894,14 @@ func (m *TerrainCheck) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *TerrainCheck) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"TerrainCheck.Lat": m.Lat,
+		"TerrainCheck.Lon": m.Lon,
+	}
+}
+
 // Marshal (generated function)
 func (m *TerrainCheck) Marshal() ([]byte, error) {
 	payload := make([]byte, 8)
@@ -8138,6 +9948,19 @@ func (m *TerrainReport) String() string {
 		m.Pending,
 		m.Loaded,
 	)
+}
+
+// ToMap (generated function)
+func (m *TerrainReport) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"TerrainReport.Lat":           m.Lat,
+		"TerrainReport.Lon":           m.Lon,
+		"TerrainReport.TerrainHeight": m.TerrainHeight,
+		"TerrainReport.CurrentHeight": m.CurrentHeight,
+		"TerrainReport.Spacing":       m.Spacing,
+		"TerrainReport.Pending":       m.Pending,
+		"TerrainReport.Loaded":        m.Loaded,
+	}
 }
 
 // Marshal (generated function)
@@ -8192,6 +10015,16 @@ func (m *ScaledPressure2) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ScaledPressure2) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ScaledPressure2.TimeBootMs":  m.TimeBootMs,
+		"ScaledPressure2.PressAbs":    m.PressAbs,
+		"ScaledPressure2.PressDiff":   m.PressDiff,
+		"ScaledPressure2.Temperature": m.Temperature,
+	}
+}
+
 // Marshal (generated function)
 func (m *ScaledPressure2) Marshal() ([]byte, error) {
 	payload := make([]byte, 14)
@@ -8238,6 +10071,17 @@ func (m *AttPosMocap) String() string {
 		m.Y,
 		m.Z,
 	)
+}
+
+// ToMap (generated function)
+func (m *AttPosMocap) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"AttPosMocap.TimeUsec": m.TimeUsec,
+		"AttPosMocap.Q":        m.Q,
+		"AttPosMocap.X":        m.X,
+		"AttPosMocap.Y":        m.Y,
+		"AttPosMocap.Z":        m.Z,
+	}
 }
 
 // Marshal (generated function)
@@ -8294,6 +10138,17 @@ func (m *SetActuatorControlTarget) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SetActuatorControlTarget) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SetActuatorControlTarget.TimeUsec":        m.TimeUsec,
+		"SetActuatorControlTarget.Controls":        m.Controls,
+		"SetActuatorControlTarget.GroupMlx":        m.GroupMlx,
+		"SetActuatorControlTarget.TargetSystem":    m.TargetSystem,
+		"SetActuatorControlTarget.TargetComponent": m.TargetComponent,
+	}
+}
+
 // Marshal (generated function)
 func (m *SetActuatorControlTarget) Marshal() ([]byte, error) {
 	payload := make([]byte, 43)
@@ -8342,6 +10197,15 @@ func (m *ActuatorControlTarget) String() string {
 		m.Controls,
 		m.GroupMlx,
 	)
+}
+
+// ToMap (generated function)
+func (m *ActuatorControlTarget) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ActuatorControlTarget.TimeUsec": m.TimeUsec,
+		"ActuatorControlTarget.Controls": m.Controls,
+		"ActuatorControlTarget.GroupMlx": m.GroupMlx,
+	}
 }
 
 // Marshal (generated function)
@@ -8398,6 +10262,19 @@ func (m *Altitude) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Altitude) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Altitude.TimeUsec":          m.TimeUsec,
+		"Altitude.AltitudeMonotonic": m.AltitudeMonotonic,
+		"Altitude.AltitudeAmsl":      m.AltitudeAmsl,
+		"Altitude.AltitudeLocal":     m.AltitudeLocal,
+		"Altitude.AltitudeRelative":  m.AltitudeRelative,
+		"Altitude.AltitudeTerrain":   m.AltitudeTerrain,
+		"Altitude.BottomClearance":   m.BottomClearance,
+	}
+}
+
 // Marshal (generated function)
 func (m *Altitude) Marshal() ([]byte, error) {
 	payload := make([]byte, 32)
@@ -8452,6 +10329,17 @@ func (m *ResourceRequest) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ResourceRequest) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ResourceRequest.RequestID":    m.RequestID,
+		"ResourceRequest.URIType":      m.URIType,
+		"ResourceRequest.URI":          m.URI,
+		"ResourceRequest.TransferType": m.TransferType,
+		"ResourceRequest.Storage":      m.Storage,
+	}
+}
+
 // Marshal (generated function)
 func (m *ResourceRequest) Marshal() ([]byte, error) {
 	payload := make([]byte, 243)
@@ -8498,6 +10386,16 @@ func (m *ScaledPressure3) String() string {
 		m.PressDiff,
 		m.Temperature,
 	)
+}
+
+// ToMap (generated function)
+func (m *ScaledPressure3) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ScaledPressure3.TimeBootMs":  m.TimeBootMs,
+		"ScaledPressure3.PressAbs":    m.PressAbs,
+		"ScaledPressure3.PressDiff":   m.PressDiff,
+		"ScaledPressure3.Temperature": m.Temperature,
+	}
 }
 
 // Marshal (generated function)
@@ -8558,6 +10456,23 @@ func (m *FollowTarget) String() string {
 		m.PositionCov,
 		m.EstCapabilities,
 	)
+}
+
+// ToMap (generated function)
+func (m *FollowTarget) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FollowTarget.Timestamp":       m.Timestamp,
+		"FollowTarget.CustomState":     m.CustomState,
+		"FollowTarget.Lat":             m.Lat,
+		"FollowTarget.Lon":             m.Lon,
+		"FollowTarget.Alt":             m.Alt,
+		"FollowTarget.Vel":             m.Vel,
+		"FollowTarget.Acc":             m.Acc,
+		"FollowTarget.AttitudeQ":       m.AttitudeQ,
+		"FollowTarget.Rates":           m.Rates,
+		"FollowTarget.PositionCov":     m.PositionCov,
+		"FollowTarget.EstCapabilities": m.EstCapabilities,
+	}
 }
 
 // Marshal (generated function)
@@ -8666,6 +10581,29 @@ func (m *ControlSystemState) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *ControlSystemState) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ControlSystemState.TimeUsec":    m.TimeUsec,
+		"ControlSystemState.XAcc":        m.XAcc,
+		"ControlSystemState.YAcc":        m.YAcc,
+		"ControlSystemState.ZAcc":        m.ZAcc,
+		"ControlSystemState.XVel":        m.XVel,
+		"ControlSystemState.YVel":        m.YVel,
+		"ControlSystemState.ZVel":        m.ZVel,
+		"ControlSystemState.XPos":        m.XPos,
+		"ControlSystemState.YPos":        m.YPos,
+		"ControlSystemState.ZPos":        m.ZPos,
+		"ControlSystemState.Airspeed":    m.Airspeed,
+		"ControlSystemState.VelVariance": m.VelVariance,
+		"ControlSystemState.PosVariance": m.PosVariance,
+		"ControlSystemState.Q":           m.Q,
+		"ControlSystemState.RollRate":    m.RollRate,
+		"ControlSystemState.PitchRate":   m.PitchRate,
+		"ControlSystemState.YawRate":     m.YawRate,
+	}
+}
+
 // Marshal (generated function)
 func (m *ControlSystemState) Marshal() ([]byte, error) {
 	payload := make([]byte, 100)
@@ -8760,6 +10698,21 @@ func (m *BatteryStatus) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *BatteryStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"BatteryStatus.CurrentConsumed":  m.CurrentConsumed,
+		"BatteryStatus.EnergyConsumed":   m.EnergyConsumed,
+		"BatteryStatus.Temperature":      m.Temperature,
+		"BatteryStatus.Voltages":         m.Voltages,
+		"BatteryStatus.CurrentBattery":   m.CurrentBattery,
+		"BatteryStatus.ID":               m.ID,
+		"BatteryStatus.BatteryFunction":  m.BatteryFunction,
+		"BatteryStatus.Type":             m.Type,
+		"BatteryStatus.BatteryRemaining": m.BatteryRemaining,
+	}
+}
+
 // Marshal (generated function)
 func (m *BatteryStatus) Marshal() ([]byte, error) {
 	payload := make([]byte, 36)
@@ -8834,6 +10787,23 @@ func (m *AutopilotVersion) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *AutopilotVersion) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"AutopilotVersion.Capabilities":            m.Capabilities,
+		"AutopilotVersion.UID":                     m.UID,
+		"AutopilotVersion.FlightSwVersion":         m.FlightSwVersion,
+		"AutopilotVersion.MiddlewareSwVersion":     m.MiddlewareSwVersion,
+		"AutopilotVersion.OsSwVersion":             m.OsSwVersion,
+		"AutopilotVersion.BoardVersion":            m.BoardVersion,
+		"AutopilotVersion.VendorID":                m.VendorID,
+		"AutopilotVersion.ProductID":               m.ProductID,
+		"AutopilotVersion.FlightCustomVersion":     m.FlightCustomVersion,
+		"AutopilotVersion.MiddlewareCustomVersion": m.MiddlewareCustomVersion,
+		"AutopilotVersion.OsCustomVersion":         m.OsCustomVersion,
+	}
+}
+
 // Marshal (generated function)
 func (m *AutopilotVersion) Marshal() ([]byte, error) {
 	payload := make([]byte, 60)
@@ -8902,6 +10872,20 @@ func (m *LandingTarget) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *LandingTarget) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"LandingTarget.TimeUsec":  m.TimeUsec,
+		"LandingTarget.AngleX":    m.AngleX,
+		"LandingTarget.AngleY":    m.AngleY,
+		"LandingTarget.Distance":  m.Distance,
+		"LandingTarget.SizeX":     m.SizeX,
+		"LandingTarget.SizeY":     m.SizeY,
+		"LandingTarget.TargetNum": m.TargetNum,
+		"LandingTarget.Frame":     m.Frame,
+	}
+}
+
 // Marshal (generated function)
 func (m *LandingTarget) Marshal() ([]byte, error) {
 	payload := make([]byte, 30)
@@ -8954,6 +10938,16 @@ func (m *FenceStatus) String() string {
 		m.BreachStatus,
 		m.BreachType,
 	)
+}
+
+// ToMap (generated function)
+func (m *FenceStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"FenceStatus.BreachTime":   m.BreachTime,
+		"FenceStatus.BreachCount":  m.BreachCount,
+		"FenceStatus.BreachStatus": m.BreachStatus,
+		"FenceStatus.BreachType":   m.BreachType,
+	}
 }
 
 // Marshal (generated function)
@@ -9020,6 +11014,26 @@ func (m *MagCalReport) String() string {
 		m.CalStatus,
 		m.Autosaved,
 	)
+}
+
+// ToMap (generated function)
+func (m *MagCalReport) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MagCalReport.Fitness":   m.Fitness,
+		"MagCalReport.OfsX":      m.OfsX,
+		"MagCalReport.OfsY":      m.OfsY,
+		"MagCalReport.OfsZ":      m.OfsZ,
+		"MagCalReport.DiagX":     m.DiagX,
+		"MagCalReport.DiagY":     m.DiagY,
+		"MagCalReport.DiagZ":     m.DiagZ,
+		"MagCalReport.OffdiagX":  m.OffdiagX,
+		"MagCalReport.OffdiagY":  m.OffdiagY,
+		"MagCalReport.OffdiagZ":  m.OffdiagZ,
+		"MagCalReport.CompassID": m.CompassID,
+		"MagCalReport.CalMask":   m.CalMask,
+		"MagCalReport.CalStatus": m.CalStatus,
+		"MagCalReport.Autosaved": m.Autosaved,
+	}
 }
 
 // Marshal (generated function)
@@ -9114,6 +11128,29 @@ func (m *EfiStatus) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *EfiStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"EfiStatus.EcuIndex":                  m.EcuIndex,
+		"EfiStatus.Rpm":                       m.Rpm,
+		"EfiStatus.FuelConsumed":              m.FuelConsumed,
+		"EfiStatus.FuelFlow":                  m.FuelFlow,
+		"EfiStatus.EngineLoad":                m.EngineLoad,
+		"EfiStatus.ThrottlePosition":          m.ThrottlePosition,
+		"EfiStatus.SparkDwellTime":            m.SparkDwellTime,
+		"EfiStatus.BarometricPressure":        m.BarometricPressure,
+		"EfiStatus.IntakeManifoldPressure":    m.IntakeManifoldPressure,
+		"EfiStatus.IntakeManifoldTemperature": m.IntakeManifoldTemperature,
+		"EfiStatus.CylinderHeadTemperature":   m.CylinderHeadTemperature,
+		"EfiStatus.IgnitionTiming":            m.IgnitionTiming,
+		"EfiStatus.InjectionTime":             m.InjectionTime,
+		"EfiStatus.ExhaustGasTemperature":     m.ExhaustGasTemperature,
+		"EfiStatus.ThrottleOut":               m.ThrottleOut,
+		"EfiStatus.PtCompensation":            m.PtCompensation,
+		"EfiStatus.Health":                    m.Health,
+	}
+}
+
 // Marshal (generated function)
 func (m *EfiStatus) Marshal() ([]byte, error) {
 	payload := make([]byte, 65)
@@ -9198,6 +11235,22 @@ func (m *EstimatorStatus) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *EstimatorStatus) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"EstimatorStatus.TimeUsec":         m.TimeUsec,
+		"EstimatorStatus.VelRatio":         m.VelRatio,
+		"EstimatorStatus.PosHorizRatio":    m.PosHorizRatio,
+		"EstimatorStatus.PosVertRatio":     m.PosVertRatio,
+		"EstimatorStatus.MagRatio":         m.MagRatio,
+		"EstimatorStatus.HaglRatio":        m.HaglRatio,
+		"EstimatorStatus.TasRatio":         m.TasRatio,
+		"EstimatorStatus.PosHorizAccuracy": m.PosHorizAccuracy,
+		"EstimatorStatus.PosVertAccuracy":  m.PosVertAccuracy,
+		"EstimatorStatus.Flags":            m.Flags,
+	}
+}
+
 // Marshal (generated function)
 func (m *EstimatorStatus) Marshal() ([]byte, error) {
 	payload := make([]byte, 42)
@@ -9264,6 +11317,21 @@ func (m *WindCov) String() string {
 		m.HorizAccuracy,
 		m.VertAccuracy,
 	)
+}
+
+// ToMap (generated function)
+func (m *WindCov) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"WindCov.TimeUsec":      m.TimeUsec,
+		"WindCov.WindX":         m.WindX,
+		"WindCov.WindY":         m.WindY,
+		"WindCov.WindZ":         m.WindZ,
+		"WindCov.VarHoriz":      m.VarHoriz,
+		"WindCov.VarVert":       m.VarVert,
+		"WindCov.WindAlt":       m.WindAlt,
+		"WindCov.HorizAccuracy": m.HorizAccuracy,
+		"WindCov.VertAccuracy":  m.VertAccuracy,
+	}
 }
 
 // Marshal (generated function)
@@ -9350,6 +11418,30 @@ func (m *GpsInput) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *GpsInput) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GpsInput.TimeUsec":          m.TimeUsec,
+		"GpsInput.TimeWeekMs":        m.TimeWeekMs,
+		"GpsInput.Lat":               m.Lat,
+		"GpsInput.Lon":               m.Lon,
+		"GpsInput.Alt":               m.Alt,
+		"GpsInput.Hdop":              m.Hdop,
+		"GpsInput.Vdop":              m.Vdop,
+		"GpsInput.Vn":                m.Vn,
+		"GpsInput.Ve":                m.Ve,
+		"GpsInput.Vd":                m.Vd,
+		"GpsInput.SpeedAccuracy":     m.SpeedAccuracy,
+		"GpsInput.HorizAccuracy":     m.HorizAccuracy,
+		"GpsInput.VertAccuracy":      m.VertAccuracy,
+		"GpsInput.IgnoreFlags":       m.IgnoreFlags,
+		"GpsInput.TimeWeek":          m.TimeWeek,
+		"GpsInput.GpsID":             m.GpsID,
+		"GpsInput.FixType":           m.FixType,
+		"GpsInput.SatellitesVisible": m.SatellitesVisible,
+	}
+}
+
 // Marshal (generated function)
 func (m *GpsInput) Marshal() ([]byte, error) {
 	payload := make([]byte, 63)
@@ -9420,6 +11512,15 @@ func (m *GpsRtcmData) String() string {
 		m.Len,
 		m.Data, string(m.Data[:]),
 	)
+}
+
+// ToMap (generated function)
+func (m *GpsRtcmData) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"GpsRtcmData.Flags": m.Flags,
+		"GpsRtcmData.Len":   m.Len,
+		"GpsRtcmData.Data":  m.Data,
+	}
 }
 
 // Marshal (generated function)
@@ -9504,6 +11605,36 @@ func (m *HighLatency) String() string {
 		m.Failsafe,
 		m.WpNum,
 	)
+}
+
+// ToMap (generated function)
+func (m *HighLatency) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HighLatency.CustomMode":       m.CustomMode,
+		"HighLatency.Latitude":         m.Latitude,
+		"HighLatency.Longitude":        m.Longitude,
+		"HighLatency.Roll":             m.Roll,
+		"HighLatency.Pitch":            m.Pitch,
+		"HighLatency.Heading":          m.Heading,
+		"HighLatency.HeadingSp":        m.HeadingSp,
+		"HighLatency.AltitudeAmsl":     m.AltitudeAmsl,
+		"HighLatency.AltitudeSp":       m.AltitudeSp,
+		"HighLatency.WpDistance":       m.WpDistance,
+		"HighLatency.BaseMode":         m.BaseMode,
+		"HighLatency.LandedState":      m.LandedState,
+		"HighLatency.Throttle":         m.Throttle,
+		"HighLatency.Airspeed":         m.Airspeed,
+		"HighLatency.AirspeedSp":       m.AirspeedSp,
+		"HighLatency.Groundspeed":      m.Groundspeed,
+		"HighLatency.ClimbRate":        m.ClimbRate,
+		"HighLatency.GpsNsat":          m.GpsNsat,
+		"HighLatency.GpsFixType":       m.GpsFixType,
+		"HighLatency.BatteryRemaining": m.BatteryRemaining,
+		"HighLatency.Temperature":      m.Temperature,
+		"HighLatency.TemperatureAir":   m.TemperatureAir,
+		"HighLatency.Failsafe":         m.Failsafe,
+		"HighLatency.WpNum":            m.WpNum,
+	}
 }
 
 // Marshal (generated function)
@@ -9638,6 +11769,39 @@ func (m *HighLatency2) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *HighLatency2) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HighLatency2.Timestamp":      m.Timestamp,
+		"HighLatency2.Latitude":       m.Latitude,
+		"HighLatency2.Longitude":      m.Longitude,
+		"HighLatency2.CustomMode":     m.CustomMode,
+		"HighLatency2.Altitude":       m.Altitude,
+		"HighLatency2.TargetAltitude": m.TargetAltitude,
+		"HighLatency2.TargetDistance": m.TargetDistance,
+		"HighLatency2.WpNum":          m.WpNum,
+		"HighLatency2.FailureFlags":   m.FailureFlags,
+		"HighLatency2.Type":           m.Type,
+		"HighLatency2.Autopilot":      m.Autopilot,
+		"HighLatency2.Heading":        m.Heading,
+		"HighLatency2.TargetHeading":  m.TargetHeading,
+		"HighLatency2.Throttle":       m.Throttle,
+		"HighLatency2.Airspeed":       m.Airspeed,
+		"HighLatency2.AirspeedSp":     m.AirspeedSp,
+		"HighLatency2.Groundspeed":    m.Groundspeed,
+		"HighLatency2.Windspeed":      m.Windspeed,
+		"HighLatency2.WindHeading":    m.WindHeading,
+		"HighLatency2.Eph":            m.Eph,
+		"HighLatency2.Epv":            m.Epv,
+		"HighLatency2.TemperatureAir": m.TemperatureAir,
+		"HighLatency2.ClimbRate":      m.ClimbRate,
+		"HighLatency2.Battery":        m.Battery,
+		"HighLatency2.Custom0":        m.Custom0,
+		"HighLatency2.Custom1":        m.Custom1,
+		"HighLatency2.Custom2":        m.Custom2,
+	}
+}
+
 // Marshal (generated function)
 func (m *HighLatency2) Marshal() ([]byte, error) {
 	payload := make([]byte, 42)
@@ -9736,6 +11900,19 @@ func (m *Vibration) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Vibration) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Vibration.TimeUsec":   m.TimeUsec,
+		"Vibration.VibrationX": m.VibrationX,
+		"Vibration.VibrationY": m.VibrationY,
+		"Vibration.VibrationZ": m.VibrationZ,
+		"Vibration.Clipping0":  m.Clipping0,
+		"Vibration.Clipping1":  m.Clipping1,
+		"Vibration.Clipping2":  m.Clipping2,
+	}
+}
+
 // Marshal (generated function)
 func (m *Vibration) Marshal() ([]byte, error) {
 	payload := make([]byte, 32)
@@ -9798,6 +11975,22 @@ func (m *HomePosition) String() string {
 		m.ApproachY,
 		m.ApproachZ,
 	)
+}
+
+// ToMap (generated function)
+func (m *HomePosition) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"HomePosition.Latitude":  m.Latitude,
+		"HomePosition.Longitude": m.Longitude,
+		"HomePosition.Altitude":  m.Altitude,
+		"HomePosition.X":         m.X,
+		"HomePosition.Y":         m.Y,
+		"HomePosition.Z":         m.Z,
+		"HomePosition.Q":         m.Q,
+		"HomePosition.ApproachX": m.ApproachX,
+		"HomePosition.ApproachY": m.ApproachY,
+		"HomePosition.ApproachZ": m.ApproachZ,
+	}
 }
 
 // Marshal (generated function)
@@ -9876,6 +12069,23 @@ func (m *SetHomePosition) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *SetHomePosition) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"SetHomePosition.Latitude":     m.Latitude,
+		"SetHomePosition.Longitude":    m.Longitude,
+		"SetHomePosition.Altitude":     m.Altitude,
+		"SetHomePosition.X":            m.X,
+		"SetHomePosition.Y":            m.Y,
+		"SetHomePosition.Z":            m.Z,
+		"SetHomePosition.Q":            m.Q,
+		"SetHomePosition.ApproachX":    m.ApproachX,
+		"SetHomePosition.ApproachY":    m.ApproachY,
+		"SetHomePosition.ApproachZ":    m.ApproachZ,
+		"SetHomePosition.TargetSystem": m.TargetSystem,
+	}
+}
+
 // Marshal (generated function)
 func (m *SetHomePosition) Marshal() ([]byte, error) {
 	payload := make([]byte, 53)
@@ -9936,6 +12146,14 @@ func (m *MessageInterval) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *MessageInterval) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MessageInterval.IntervalUs": m.IntervalUs,
+		"MessageInterval.MessageID":  m.MessageID,
+	}
+}
+
 // Marshal (generated function)
 func (m *MessageInterval) Marshal() ([]byte, error) {
 	payload := make([]byte, 6)
@@ -9972,6 +12190,14 @@ func (m *ExtendedSysState) String() string {
 		m.VtolState,
 		m.LandedState,
 	)
+}
+
+// ToMap (generated function)
+func (m *ExtendedSysState) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"ExtendedSysState.VtolState":   m.VtolState,
+		"ExtendedSysState.LandedState": m.LandedState,
+	}
 }
 
 // Marshal (generated function)
@@ -10032,6 +12258,25 @@ func (m *AdsbVehicle) String() string {
 		m.EmitterType,
 		m.Tslc,
 	)
+}
+
+// ToMap (generated function)
+func (m *AdsbVehicle) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"AdsbVehicle.IcaoAddress":  m.IcaoAddress,
+		"AdsbVehicle.Lat":          m.Lat,
+		"AdsbVehicle.Lon":          m.Lon,
+		"AdsbVehicle.Altitude":     m.Altitude,
+		"AdsbVehicle.Heading":      m.Heading,
+		"AdsbVehicle.HorVelocity":  m.HorVelocity,
+		"AdsbVehicle.VerVelocity":  m.VerVelocity,
+		"AdsbVehicle.Flags":        m.Flags,
+		"AdsbVehicle.Squawk":       m.Squawk,
+		"AdsbVehicle.AltitudeType": m.AltitudeType,
+		"AdsbVehicle.Callsign":     m.Callsign,
+		"AdsbVehicle.EmitterType":  m.EmitterType,
+		"AdsbVehicle.Tslc":         m.Tslc,
+	}
 }
 
 // Marshal (generated function)
@@ -10104,6 +12349,19 @@ func (m *Collision) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Collision) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Collision.ID":                     m.ID,
+		"Collision.TimeToMinimumDelta":     m.TimeToMinimumDelta,
+		"Collision.AltitudeMinimumDelta":   m.AltitudeMinimumDelta,
+		"Collision.HorizontalMinimumDelta": m.HorizontalMinimumDelta,
+		"Collision.Src":                    m.Src,
+		"Collision.Action":                 m.Action,
+		"Collision.ThreatLevel":            m.ThreatLevel,
+	}
+}
+
 // Marshal (generated function)
 func (m *Collision) Marshal() ([]byte, error) {
 	payload := make([]byte, 19)
@@ -10158,6 +12416,17 @@ func (m *V2Extension) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *V2Extension) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"V2Extension.MessageType":     m.MessageType,
+		"V2Extension.TargetNetwork":   m.TargetNetwork,
+		"V2Extension.TargetSystem":    m.TargetSystem,
+		"V2Extension.TargetComponent": m.TargetComponent,
+		"V2Extension.Payload":         m.Payload,
+	}
+}
+
 // Marshal (generated function)
 func (m *V2Extension) Marshal() ([]byte, error) {
 	payload := make([]byte, 254)
@@ -10204,6 +12473,16 @@ func (m *MemoryVect) String() string {
 		m.Type,
 		m.Value,
 	)
+}
+
+// ToMap (generated function)
+func (m *MemoryVect) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"MemoryVect.Address": m.Address,
+		"MemoryVect.Ver":     m.Ver,
+		"MemoryVect.Type":    m.Type,
+		"MemoryVect.Value":   m.Value,
+	}
 }
 
 // Marshal (generated function)
@@ -10258,6 +12537,17 @@ func (m *DebugVect) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *DebugVect) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"DebugVect.TimeUsec": m.TimeUsec,
+		"DebugVect.X":        m.X,
+		"DebugVect.Y":        m.Y,
+		"DebugVect.Z":        m.Z,
+		"DebugVect.Name":     m.Name,
+	}
+}
+
 // Marshal (generated function)
 func (m *DebugVect) Marshal() ([]byte, error) {
 	payload := make([]byte, 30)
@@ -10304,6 +12594,15 @@ func (m *NamedValueFloat) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *NamedValueFloat) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"NamedValueFloat.TimeBootMs": m.TimeBootMs,
+		"NamedValueFloat.Value":      m.Value,
+		"NamedValueFloat.Name":       m.Name,
+	}
+}
+
 // Marshal (generated function)
 func (m *NamedValueFloat) Marshal() ([]byte, error) {
 	payload := make([]byte, 18)
@@ -10346,6 +12645,15 @@ func (m *NamedValueInt) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *NamedValueInt) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"NamedValueInt.TimeBootMs": m.TimeBootMs,
+		"NamedValueInt.Value":      m.Value,
+		"NamedValueInt.Name":       m.Name,
+	}
+}
+
 // Marshal (generated function)
 func (m *NamedValueInt) Marshal() ([]byte, error) {
 	payload := make([]byte, 18)
@@ -10386,6 +12694,14 @@ func (m *Statustext) String() string {
 	)
 }
 
+// ToMap (generated function)
+func (m *Statustext) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Statustext.Severity": m.Severity,
+		"Statustext.Text":     m.Text,
+	}
+}
+
 // Marshal (generated function)
 func (m *Statustext) Marshal() ([]byte, error) {
 	payload := make([]byte, 51)
@@ -10424,6 +12740,15 @@ func (m *Debug) String() string {
 		m.Value,
 		m.Ind,
 	)
+}
+
+// ToMap (generated function)
+func (m *Debug) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Debug.TimeBootMs": m.TimeBootMs,
+		"Debug.Value":      m.Value,
+		"Debug.Ind":        m.Ind,
+	}
 }
 
 // Marshal (generated function)
@@ -10472,6 +12797,18 @@ func (m *Heartbeat) String() string {
 		m.SystemStatus,
 		m.MavlinkVersion,
 	)
+}
+
+// ToMap (generated function)
+func (m *Heartbeat) Dict() map[string]interface{} {
+	return map[string]interface{}{
+		"Heartbeat.CustomMode":     m.CustomMode,
+		"Heartbeat.Type":           m.Type,
+		"Heartbeat.Autopilot":      m.Autopilot,
+		"Heartbeat.BaseMode":       m.BaseMode,
+		"Heartbeat.SystemStatus":   m.SystemStatus,
+		"Heartbeat.MavlinkVersion": m.MavlinkVersion,
+	}
 }
 
 // Marshal (generated function)
