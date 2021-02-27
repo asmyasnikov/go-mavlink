@@ -14,8 +14,19 @@ import (
 // ICAROUS_TRACK_BAND_TYPES type
 type ICAROUS_TRACK_BAND_TYPES int
 
+// MarshalBinary generic func
 func (e ICAROUS_TRACK_BAND_TYPES) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *ICAROUS_TRACK_BAND_TYPES) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = ICAROUS_TRACK_BAND_TYPES(v)
+	return nil
 }
 
 const (
@@ -59,8 +70,19 @@ func (e ICAROUS_TRACK_BAND_TYPES) Bitmask() string {
 // ICAROUS_FMS_STATE type
 type ICAROUS_FMS_STATE int
 
+// MarshalBinary generic func
 func (e ICAROUS_FMS_STATE) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *ICAROUS_FMS_STATE) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = ICAROUS_FMS_STATE(v)
+	return nil
 }
 
 const (

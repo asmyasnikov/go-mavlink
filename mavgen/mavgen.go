@@ -645,8 +645,19 @@ func (d *Dialect) generateEnums(w io.Writer) error {
 // {{$enumName}} type{{if .Description}}. {{.Description}}{{end}}
 type {{.Name}} int
 
+// MarshalBinary generic func
 func (e {{.Name}}) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *{{.Name}}) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = {{.Name}}(v)
+	return nil
 }
 
 const ({{range .Entries}}

@@ -14,8 +14,19 @@ import (
 // MAV_AUTOPILOT type. Micro air vehicle / autopilot classes. This identifies the individual model.
 type MAV_AUTOPILOT int
 
+// MarshalBinary generic func
 func (e MAV_AUTOPILOT) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_AUTOPILOT) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_AUTOPILOT(v)
+	return nil
 }
 
 const (
@@ -127,8 +138,19 @@ func (e MAV_AUTOPILOT) Bitmask() string {
 // MAV_TYPE type. MAVLINK component type reported in HEARTBEAT message. Flight controllers must report the type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA).
 type MAV_TYPE int
 
+// MarshalBinary generic func
 func (e MAV_TYPE) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_TYPE) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_TYPE(v)
+	return nil
 }
 
 const (
@@ -304,8 +326,19 @@ func (e MAV_TYPE) Bitmask() string {
 // MAV_MODE_FLAG type. These flags encode the MAV mode.
 type MAV_MODE_FLAG int
 
+// MarshalBinary generic func
 func (e MAV_MODE_FLAG) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_MODE_FLAG) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_MODE_FLAG(v)
+	return nil
 }
 
 const (
@@ -369,8 +402,19 @@ func (e MAV_MODE_FLAG) Bitmask() string {
 // MAV_MODE_FLAG_DECODE_POSITION type. These values encode the bit positions of the decode position. These values can be used to read the value of a flag bit by combining the base_mode variable with AND with the flag position value. The result will be either 0 or 1, depending on if the flag is set or not.
 type MAV_MODE_FLAG_DECODE_POSITION int
 
+// MarshalBinary generic func
 func (e MAV_MODE_FLAG_DECODE_POSITION) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_MODE_FLAG_DECODE_POSITION) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_MODE_FLAG_DECODE_POSITION(v)
+	return nil
 }
 
 const (
@@ -434,8 +478,19 @@ func (e MAV_MODE_FLAG_DECODE_POSITION) Bitmask() string {
 // MAV_STATE type
 type MAV_STATE int
 
+// MarshalBinary generic func
 func (e MAV_STATE) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STATE) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STATE(v)
+	return nil
 }
 
 const (
@@ -503,8 +558,19 @@ func (e MAV_STATE) Bitmask() string {
 // MAV_COMPONENT type. Component ids (values) for the different types and instances of onboard hardware/software that might make up a MAVLink system (autopilot, cameras, servos, GPS systems, avoidance systems etc.).       Components must use the appropriate ID in their source address when sending messages. Components can also use IDs to determine if they are the intended recipient of an incoming message. The MAV_COMP_ID_ALL value is used to indicate messages that must be processed by all components.       When creating new entries, components that can have multiple instances (e.g. cameras, servos etc.) should be allocated sequential values. An appropriate number of values should be left free after these components to allow the number of instances to be expanded.
 type MAV_COMPONENT int
 
+// MarshalBinary generic func
 func (e MAV_COMPONENT) MarshalBinary() (data []byte, err error) {
 	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_COMPONENT) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_COMPONENT(v)
+	return nil
 }
 
 const (
