@@ -41,15 +41,24 @@ func (m *Heartbeat) String() string {
 	)
 }
 
+const (
+	HEARTBEAT_FIELD_CUSTOM_MODE     = "Heartbeat.CustomMode"
+	HEARTBEAT_FIELD_TYPE            = "Heartbeat.Type"
+	HEARTBEAT_FIELD_AUTOPILOT       = "Heartbeat.Autopilot"
+	HEARTBEAT_FIELD_BASE_MODE       = "Heartbeat.BaseMode"
+	HEARTBEAT_FIELD_SYSTEM_STATUS   = "Heartbeat.SystemStatus"
+	HEARTBEAT_FIELD_MAVLINK_VERSION = "Heartbeat.MavlinkVersion"
+)
+
 // ToMap (generated function)
 func (m *Heartbeat) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Heartbeat.CustomMode":     m.CustomMode,
-		"Heartbeat.Type":           m.Type,
-		"Heartbeat.Autopilot":      m.Autopilot,
-		"Heartbeat.BaseMode":       m.BaseMode,
-		"Heartbeat.SystemStatus":   m.SystemStatus,
-		"Heartbeat.MavlinkVersion": m.MavlinkVersion,
+		HEARTBEAT_FIELD_CUSTOM_MODE:     m.CustomMode,
+		HEARTBEAT_FIELD_TYPE:            m.Type,
+		HEARTBEAT_FIELD_AUTOPILOT:       m.Autopilot,
+		HEARTBEAT_FIELD_BASE_MODE:       m.BaseMode,
+		HEARTBEAT_FIELD_SYSTEM_STATUS:   m.SystemStatus,
+		HEARTBEAT_FIELD_MAVLINK_VERSION: m.MavlinkVersion,
 	}
 }
 

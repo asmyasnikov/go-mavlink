@@ -55,21 +55,36 @@ func (m *SensorOffsets) String() string {
 	)
 }
 
+const (
+	SENSOR_OFFSETS_FIELD_MAG_DECLINATION = "SensorOffsets.MagDeclination"
+	SENSOR_OFFSETS_FIELD_RAW_PRESS       = "SensorOffsets.RawPress"
+	SENSOR_OFFSETS_FIELD_RAW_TEMP        = "SensorOffsets.RawTemp"
+	SENSOR_OFFSETS_FIELD_GYRO_CAL_X      = "SensorOffsets.GyroCalX"
+	SENSOR_OFFSETS_FIELD_GYRO_CAL_Y      = "SensorOffsets.GyroCalY"
+	SENSOR_OFFSETS_FIELD_GYRO_CAL_Z      = "SensorOffsets.GyroCalZ"
+	SENSOR_OFFSETS_FIELD_ACCEL_CAL_X     = "SensorOffsets.AccelCalX"
+	SENSOR_OFFSETS_FIELD_ACCEL_CAL_Y     = "SensorOffsets.AccelCalY"
+	SENSOR_OFFSETS_FIELD_ACCEL_CAL_Z     = "SensorOffsets.AccelCalZ"
+	SENSOR_OFFSETS_FIELD_MAG_OFS_X       = "SensorOffsets.MagOfsX"
+	SENSOR_OFFSETS_FIELD_MAG_OFS_Y       = "SensorOffsets.MagOfsY"
+	SENSOR_OFFSETS_FIELD_MAG_OFS_Z       = "SensorOffsets.MagOfsZ"
+)
+
 // ToMap (generated function)
 func (m *SensorOffsets) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SensorOffsets.MagDeclination": m.MagDeclination,
-		"SensorOffsets.RawPress":       m.RawPress,
-		"SensorOffsets.RawTemp":        m.RawTemp,
-		"SensorOffsets.GyroCalX":       m.GyroCalX,
-		"SensorOffsets.GyroCalY":       m.GyroCalY,
-		"SensorOffsets.GyroCalZ":       m.GyroCalZ,
-		"SensorOffsets.AccelCalX":      m.AccelCalX,
-		"SensorOffsets.AccelCalY":      m.AccelCalY,
-		"SensorOffsets.AccelCalZ":      m.AccelCalZ,
-		"SensorOffsets.MagOfsX":        m.MagOfsX,
-		"SensorOffsets.MagOfsY":        m.MagOfsY,
-		"SensorOffsets.MagOfsZ":        m.MagOfsZ,
+		SENSOR_OFFSETS_FIELD_MAG_DECLINATION: m.MagDeclination,
+		SENSOR_OFFSETS_FIELD_RAW_PRESS:       m.RawPress,
+		SENSOR_OFFSETS_FIELD_RAW_TEMP:        m.RawTemp,
+		SENSOR_OFFSETS_FIELD_GYRO_CAL_X:      m.GyroCalX,
+		SENSOR_OFFSETS_FIELD_GYRO_CAL_Y:      m.GyroCalY,
+		SENSOR_OFFSETS_FIELD_GYRO_CAL_Z:      m.GyroCalZ,
+		SENSOR_OFFSETS_FIELD_ACCEL_CAL_X:     m.AccelCalX,
+		SENSOR_OFFSETS_FIELD_ACCEL_CAL_Y:     m.AccelCalY,
+		SENSOR_OFFSETS_FIELD_ACCEL_CAL_Z:     m.AccelCalZ,
+		SENSOR_OFFSETS_FIELD_MAG_OFS_X:       m.MagOfsX,
+		SENSOR_OFFSETS_FIELD_MAG_OFS_Y:       m.MagOfsY,
+		SENSOR_OFFSETS_FIELD_MAG_OFS_Z:       m.MagOfsZ,
 	}
 }
 
@@ -137,14 +152,22 @@ func (m *SetMagOffsets) String() string {
 	)
 }
 
+const (
+	SET_MAG_OFFSETS_FIELD_MAG_OFS_X        = "SetMagOffsets.MagOfsX"
+	SET_MAG_OFFSETS_FIELD_MAG_OFS_Y        = "SetMagOffsets.MagOfsY"
+	SET_MAG_OFFSETS_FIELD_MAG_OFS_Z        = "SetMagOffsets.MagOfsZ"
+	SET_MAG_OFFSETS_FIELD_TARGET_SYSTEM    = "SetMagOffsets.TargetSystem"
+	SET_MAG_OFFSETS_FIELD_TARGET_COMPONENT = "SetMagOffsets.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *SetMagOffsets) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SetMagOffsets.MagOfsX":         m.MagOfsX,
-		"SetMagOffsets.MagOfsY":         m.MagOfsY,
-		"SetMagOffsets.MagOfsZ":         m.MagOfsZ,
-		"SetMagOffsets.TargetSystem":    m.TargetSystem,
-		"SetMagOffsets.TargetComponent": m.TargetComponent,
+		SET_MAG_OFFSETS_FIELD_MAG_OFS_X:        m.MagOfsX,
+		SET_MAG_OFFSETS_FIELD_MAG_OFS_Y:        m.MagOfsY,
+		SET_MAG_OFFSETS_FIELD_MAG_OFS_Z:        m.MagOfsZ,
+		SET_MAG_OFFSETS_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		SET_MAG_OFFSETS_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -192,11 +215,16 @@ func (m *Meminfo) String() string {
 	)
 }
 
+const (
+	MEMINFO_FIELD_BRKVAL  = "Meminfo.Brkval"
+	MEMINFO_FIELD_FREEMEM = "Meminfo.Freemem"
+)
+
 // ToMap (generated function)
 func (m *Meminfo) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Meminfo.Brkval":  m.Brkval,
-		"Meminfo.Freemem": m.Freemem,
+		MEMINFO_FIELD_BRKVAL:  m.Brkval,
+		MEMINFO_FIELD_FREEMEM: m.Freemem,
 	}
 }
 
@@ -246,15 +274,24 @@ func (m *ApAdc) String() string {
 	)
 }
 
+const (
+	AP_ADC_FIELD_ADC1 = "ApAdc.Adc1"
+	AP_ADC_FIELD_ADC2 = "ApAdc.Adc2"
+	AP_ADC_FIELD_ADC3 = "ApAdc.Adc3"
+	AP_ADC_FIELD_ADC4 = "ApAdc.Adc4"
+	AP_ADC_FIELD_ADC5 = "ApAdc.Adc5"
+	AP_ADC_FIELD_ADC6 = "ApAdc.Adc6"
+)
+
 // ToMap (generated function)
 func (m *ApAdc) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ApAdc.Adc1": m.Adc1,
-		"ApAdc.Adc2": m.Adc2,
-		"ApAdc.Adc3": m.Adc3,
-		"ApAdc.Adc4": m.Adc4,
-		"ApAdc.Adc5": m.Adc5,
-		"ApAdc.Adc6": m.Adc6,
+		AP_ADC_FIELD_ADC1: m.Adc1,
+		AP_ADC_FIELD_ADC2: m.Adc2,
+		AP_ADC_FIELD_ADC3: m.Adc3,
+		AP_ADC_FIELD_ADC4: m.Adc4,
+		AP_ADC_FIELD_ADC5: m.Adc5,
+		AP_ADC_FIELD_ADC6: m.Adc6,
 	}
 }
 
@@ -322,20 +359,34 @@ func (m *DigicamConfigure) String() string {
 	)
 }
 
+const (
+	DIGICAM_CONFIGURE_FIELD_EXTRA_VALUE      = "DigicamConfigure.ExtraValue"
+	DIGICAM_CONFIGURE_FIELD_SHUTTER_SPEED    = "DigicamConfigure.ShutterSpeed"
+	DIGICAM_CONFIGURE_FIELD_TARGET_SYSTEM    = "DigicamConfigure.TargetSystem"
+	DIGICAM_CONFIGURE_FIELD_TARGET_COMPONENT = "DigicamConfigure.TargetComponent"
+	DIGICAM_CONFIGURE_FIELD_MODE             = "DigicamConfigure.Mode"
+	DIGICAM_CONFIGURE_FIELD_APERTURE         = "DigicamConfigure.Aperture"
+	DIGICAM_CONFIGURE_FIELD_ISO              = "DigicamConfigure.Iso"
+	DIGICAM_CONFIGURE_FIELD_EXPOSURE_TYPE    = "DigicamConfigure.ExposureType"
+	DIGICAM_CONFIGURE_FIELD_COMMAND_ID       = "DigicamConfigure.CommandID"
+	DIGICAM_CONFIGURE_FIELD_ENGINE_CUT_OFF   = "DigicamConfigure.EngineCutOff"
+	DIGICAM_CONFIGURE_FIELD_EXTRA_PARAM      = "DigicamConfigure.ExtraParam"
+)
+
 // ToMap (generated function)
 func (m *DigicamConfigure) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"DigicamConfigure.ExtraValue":      m.ExtraValue,
-		"DigicamConfigure.ShutterSpeed":    m.ShutterSpeed,
-		"DigicamConfigure.TargetSystem":    m.TargetSystem,
-		"DigicamConfigure.TargetComponent": m.TargetComponent,
-		"DigicamConfigure.Mode":            m.Mode,
-		"DigicamConfigure.Aperture":        m.Aperture,
-		"DigicamConfigure.Iso":             m.Iso,
-		"DigicamConfigure.ExposureType":    m.ExposureType,
-		"DigicamConfigure.CommandID":       m.CommandID,
-		"DigicamConfigure.EngineCutOff":    m.EngineCutOff,
-		"DigicamConfigure.ExtraParam":      m.ExtraParam,
+		DIGICAM_CONFIGURE_FIELD_EXTRA_VALUE:      m.ExtraValue,
+		DIGICAM_CONFIGURE_FIELD_SHUTTER_SPEED:    m.ShutterSpeed,
+		DIGICAM_CONFIGURE_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		DIGICAM_CONFIGURE_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		DIGICAM_CONFIGURE_FIELD_MODE:             m.Mode,
+		DIGICAM_CONFIGURE_FIELD_APERTURE:         m.Aperture,
+		DIGICAM_CONFIGURE_FIELD_ISO:              m.Iso,
+		DIGICAM_CONFIGURE_FIELD_EXPOSURE_TYPE:    m.ExposureType,
+		DIGICAM_CONFIGURE_FIELD_COMMAND_ID:       m.CommandID,
+		DIGICAM_CONFIGURE_FIELD_ENGINE_CUT_OFF:   m.EngineCutOff,
+		DIGICAM_CONFIGURE_FIELD_EXTRA_PARAM:      m.ExtraParam,
 	}
 }
 
@@ -411,19 +462,32 @@ func (m *DigicamControl) String() string {
 	)
 }
 
+const (
+	DIGICAM_CONTROL_FIELD_EXTRA_VALUE      = "DigicamControl.ExtraValue"
+	DIGICAM_CONTROL_FIELD_TARGET_SYSTEM    = "DigicamControl.TargetSystem"
+	DIGICAM_CONTROL_FIELD_TARGET_COMPONENT = "DigicamControl.TargetComponent"
+	DIGICAM_CONTROL_FIELD_SESSION          = "DigicamControl.Session"
+	DIGICAM_CONTROL_FIELD_ZOOM_POS         = "DigicamControl.ZoomPos"
+	DIGICAM_CONTROL_FIELD_ZOOM_STEP        = "DigicamControl.ZoomStep"
+	DIGICAM_CONTROL_FIELD_FOCUS_LOCK       = "DigicamControl.FocusLock"
+	DIGICAM_CONTROL_FIELD_SHOT             = "DigicamControl.Shot"
+	DIGICAM_CONTROL_FIELD_COMMAND_ID       = "DigicamControl.CommandID"
+	DIGICAM_CONTROL_FIELD_EXTRA_PARAM      = "DigicamControl.ExtraParam"
+)
+
 // ToMap (generated function)
 func (m *DigicamControl) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"DigicamControl.ExtraValue":      m.ExtraValue,
-		"DigicamControl.TargetSystem":    m.TargetSystem,
-		"DigicamControl.TargetComponent": m.TargetComponent,
-		"DigicamControl.Session":         m.Session,
-		"DigicamControl.ZoomPos":         m.ZoomPos,
-		"DigicamControl.ZoomStep":        m.ZoomStep,
-		"DigicamControl.FocusLock":       m.FocusLock,
-		"DigicamControl.Shot":            m.Shot,
-		"DigicamControl.CommandID":       m.CommandID,
-		"DigicamControl.ExtraParam":      m.ExtraParam,
+		DIGICAM_CONTROL_FIELD_EXTRA_VALUE:      m.ExtraValue,
+		DIGICAM_CONTROL_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		DIGICAM_CONTROL_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		DIGICAM_CONTROL_FIELD_SESSION:          m.Session,
+		DIGICAM_CONTROL_FIELD_ZOOM_POS:         m.ZoomPos,
+		DIGICAM_CONTROL_FIELD_ZOOM_STEP:        m.ZoomStep,
+		DIGICAM_CONTROL_FIELD_FOCUS_LOCK:       m.FocusLock,
+		DIGICAM_CONTROL_FIELD_SHOT:             m.Shot,
+		DIGICAM_CONTROL_FIELD_COMMAND_ID:       m.CommandID,
+		DIGICAM_CONTROL_FIELD_EXTRA_PARAM:      m.ExtraParam,
 	}
 }
 
@@ -489,15 +553,24 @@ func (m *MountConfigure) String() string {
 	)
 }
 
+const (
+	MOUNT_CONFIGURE_FIELD_TARGET_SYSTEM    = "MountConfigure.TargetSystem"
+	MOUNT_CONFIGURE_FIELD_TARGET_COMPONENT = "MountConfigure.TargetComponent"
+	MOUNT_CONFIGURE_FIELD_MOUNT_MODE       = "MountConfigure.MountMode"
+	MOUNT_CONFIGURE_FIELD_STAB_ROLL        = "MountConfigure.StabRoll"
+	MOUNT_CONFIGURE_FIELD_STAB_PITCH       = "MountConfigure.StabPitch"
+	MOUNT_CONFIGURE_FIELD_STAB_YAW         = "MountConfigure.StabYaw"
+)
+
 // ToMap (generated function)
 func (m *MountConfigure) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MountConfigure.TargetSystem":    m.TargetSystem,
-		"MountConfigure.TargetComponent": m.TargetComponent,
-		"MountConfigure.MountMode":       m.MountMode,
-		"MountConfigure.StabRoll":        m.StabRoll,
-		"MountConfigure.StabPitch":       m.StabPitch,
-		"MountConfigure.StabYaw":         m.StabYaw,
+		MOUNT_CONFIGURE_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MOUNT_CONFIGURE_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		MOUNT_CONFIGURE_FIELD_MOUNT_MODE:       m.MountMode,
+		MOUNT_CONFIGURE_FIELD_STAB_ROLL:        m.StabRoll,
+		MOUNT_CONFIGURE_FIELD_STAB_PITCH:       m.StabPitch,
+		MOUNT_CONFIGURE_FIELD_STAB_YAW:         m.StabYaw,
 	}
 }
 
@@ -555,15 +628,24 @@ func (m *MountControl) String() string {
 	)
 }
 
+const (
+	MOUNT_CONTROL_FIELD_INPUT_A          = "MountControl.InputA"
+	MOUNT_CONTROL_FIELD_INPUT_B          = "MountControl.InputB"
+	MOUNT_CONTROL_FIELD_INPUT_C          = "MountControl.InputC"
+	MOUNT_CONTROL_FIELD_TARGET_SYSTEM    = "MountControl.TargetSystem"
+	MOUNT_CONTROL_FIELD_TARGET_COMPONENT = "MountControl.TargetComponent"
+	MOUNT_CONTROL_FIELD_SAVE_POSITION    = "MountControl.SavePosition"
+)
+
 // ToMap (generated function)
 func (m *MountControl) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MountControl.InputA":          m.InputA,
-		"MountControl.InputB":          m.InputB,
-		"MountControl.InputC":          m.InputC,
-		"MountControl.TargetSystem":    m.TargetSystem,
-		"MountControl.TargetComponent": m.TargetComponent,
-		"MountControl.SavePosition":    m.SavePosition,
+		MOUNT_CONTROL_FIELD_INPUT_A:          m.InputA,
+		MOUNT_CONTROL_FIELD_INPUT_B:          m.InputB,
+		MOUNT_CONTROL_FIELD_INPUT_C:          m.InputC,
+		MOUNT_CONTROL_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MOUNT_CONTROL_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		MOUNT_CONTROL_FIELD_SAVE_POSITION:    m.SavePosition,
 	}
 }
 
@@ -619,14 +701,22 @@ func (m *MountStatus) String() string {
 	)
 }
 
+const (
+	MOUNT_STATUS_FIELD_POINTING_A       = "MountStatus.PointingA"
+	MOUNT_STATUS_FIELD_POINTING_B       = "MountStatus.PointingB"
+	MOUNT_STATUS_FIELD_POINTING_C       = "MountStatus.PointingC"
+	MOUNT_STATUS_FIELD_TARGET_SYSTEM    = "MountStatus.TargetSystem"
+	MOUNT_STATUS_FIELD_TARGET_COMPONENT = "MountStatus.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MountStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MountStatus.PointingA":       m.PointingA,
-		"MountStatus.PointingB":       m.PointingB,
-		"MountStatus.PointingC":       m.PointingC,
-		"MountStatus.TargetSystem":    m.TargetSystem,
-		"MountStatus.TargetComponent": m.TargetComponent,
+		MOUNT_STATUS_FIELD_POINTING_A:       m.PointingA,
+		MOUNT_STATUS_FIELD_POINTING_B:       m.PointingB,
+		MOUNT_STATUS_FIELD_POINTING_C:       m.PointingC,
+		MOUNT_STATUS_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MOUNT_STATUS_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -682,15 +772,24 @@ func (m *FencePoint) String() string {
 	)
 }
 
+const (
+	FENCE_POINT_FIELD_LAT              = "FencePoint.Lat"
+	FENCE_POINT_FIELD_LNG              = "FencePoint.Lng"
+	FENCE_POINT_FIELD_TARGET_SYSTEM    = "FencePoint.TargetSystem"
+	FENCE_POINT_FIELD_TARGET_COMPONENT = "FencePoint.TargetComponent"
+	FENCE_POINT_FIELD_IDX              = "FencePoint.Idx"
+	FENCE_POINT_FIELD_COUNT            = "FencePoint.Count"
+)
+
 // ToMap (generated function)
 func (m *FencePoint) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"FencePoint.Lat":             m.Lat,
-		"FencePoint.Lng":             m.Lng,
-		"FencePoint.TargetSystem":    m.TargetSystem,
-		"FencePoint.TargetComponent": m.TargetComponent,
-		"FencePoint.Idx":             m.Idx,
-		"FencePoint.Count":           m.Count,
+		FENCE_POINT_FIELD_LAT:              m.Lat,
+		FENCE_POINT_FIELD_LNG:              m.Lng,
+		FENCE_POINT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		FENCE_POINT_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		FENCE_POINT_FIELD_IDX:              m.Idx,
+		FENCE_POINT_FIELD_COUNT:            m.Count,
 	}
 }
 
@@ -742,12 +841,18 @@ func (m *FenceFetchPoint) String() string {
 	)
 }
 
+const (
+	FENCE_FETCH_POINT_FIELD_TARGET_SYSTEM    = "FenceFetchPoint.TargetSystem"
+	FENCE_FETCH_POINT_FIELD_TARGET_COMPONENT = "FenceFetchPoint.TargetComponent"
+	FENCE_FETCH_POINT_FIELD_IDX              = "FenceFetchPoint.Idx"
+)
+
 // ToMap (generated function)
 func (m *FenceFetchPoint) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"FenceFetchPoint.TargetSystem":    m.TargetSystem,
-		"FenceFetchPoint.TargetComponent": m.TargetComponent,
-		"FenceFetchPoint.Idx":             m.Idx,
+		FENCE_FETCH_POINT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		FENCE_FETCH_POINT_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		FENCE_FETCH_POINT_FIELD_IDX:              m.Idx,
 	}
 }
 
@@ -801,16 +906,26 @@ func (m *Ahrs) String() string {
 	)
 }
 
+const (
+	AHRS_FIELD_OMEGAIX      = "Ahrs.Omegaix"
+	AHRS_FIELD_OMEGAIY      = "Ahrs.Omegaiy"
+	AHRS_FIELD_OMEGAIZ      = "Ahrs.Omegaiz"
+	AHRS_FIELD_ACCEL_WEIGHT = "Ahrs.AccelWeight"
+	AHRS_FIELD_RENORM_VAL   = "Ahrs.RenormVal"
+	AHRS_FIELD_ERROR_RP     = "Ahrs.ErrorRp"
+	AHRS_FIELD_ERROR_YAW    = "Ahrs.ErrorYaw"
+)
+
 // ToMap (generated function)
 func (m *Ahrs) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Ahrs.Omegaix":     m.Omegaix,
-		"Ahrs.Omegaiy":     m.Omegaiy,
-		"Ahrs.Omegaiz":     m.Omegaiz,
-		"Ahrs.AccelWeight": m.AccelWeight,
-		"Ahrs.RenormVal":   m.RenormVal,
-		"Ahrs.ErrorRp":     m.ErrorRp,
-		"Ahrs.ErrorYaw":    m.ErrorYaw,
+		AHRS_FIELD_OMEGAIX:      m.Omegaix,
+		AHRS_FIELD_OMEGAIY:      m.Omegaiy,
+		AHRS_FIELD_OMEGAIZ:      m.Omegaiz,
+		AHRS_FIELD_ACCEL_WEIGHT: m.AccelWeight,
+		AHRS_FIELD_RENORM_VAL:   m.RenormVal,
+		AHRS_FIELD_ERROR_RP:     m.ErrorRp,
+		AHRS_FIELD_ERROR_YAW:    m.ErrorYaw,
 	}
 }
 
@@ -880,20 +995,34 @@ func (m *Simstate) String() string {
 	)
 }
 
+const (
+	SIMSTATE_FIELD_ROLL  = "Simstate.Roll"
+	SIMSTATE_FIELD_PITCH = "Simstate.Pitch"
+	SIMSTATE_FIELD_YAW   = "Simstate.Yaw"
+	SIMSTATE_FIELD_XACC  = "Simstate.Xacc"
+	SIMSTATE_FIELD_YACC  = "Simstate.Yacc"
+	SIMSTATE_FIELD_ZACC  = "Simstate.Zacc"
+	SIMSTATE_FIELD_XGYRO = "Simstate.Xgyro"
+	SIMSTATE_FIELD_YGYRO = "Simstate.Ygyro"
+	SIMSTATE_FIELD_ZGYRO = "Simstate.Zgyro"
+	SIMSTATE_FIELD_LAT   = "Simstate.Lat"
+	SIMSTATE_FIELD_LNG   = "Simstate.Lng"
+)
+
 // ToMap (generated function)
 func (m *Simstate) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Simstate.Roll":  m.Roll,
-		"Simstate.Pitch": m.Pitch,
-		"Simstate.Yaw":   m.Yaw,
-		"Simstate.Xacc":  m.Xacc,
-		"Simstate.Yacc":  m.Yacc,
-		"Simstate.Zacc":  m.Zacc,
-		"Simstate.Xgyro": m.Xgyro,
-		"Simstate.Ygyro": m.Ygyro,
-		"Simstate.Zgyro": m.Zgyro,
-		"Simstate.Lat":   m.Lat,
-		"Simstate.Lng":   m.Lng,
+		SIMSTATE_FIELD_ROLL:  m.Roll,
+		SIMSTATE_FIELD_PITCH: m.Pitch,
+		SIMSTATE_FIELD_YAW:   m.Yaw,
+		SIMSTATE_FIELD_XACC:  m.Xacc,
+		SIMSTATE_FIELD_YACC:  m.Yacc,
+		SIMSTATE_FIELD_ZACC:  m.Zacc,
+		SIMSTATE_FIELD_XGYRO: m.Xgyro,
+		SIMSTATE_FIELD_YGYRO: m.Ygyro,
+		SIMSTATE_FIELD_ZGYRO: m.Zgyro,
+		SIMSTATE_FIELD_LAT:   m.Lat,
+		SIMSTATE_FIELD_LNG:   m.Lng,
 	}
 }
 
@@ -953,11 +1082,16 @@ func (m *Hwstatus) String() string {
 	)
 }
 
+const (
+	HWSTATUS_FIELD_VCC    = "Hwstatus.Vcc"
+	HWSTATUS_FIELD_I2CERR = "Hwstatus.I2cerr"
+)
+
 // ToMap (generated function)
 func (m *Hwstatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Hwstatus.Vcc":    m.Vcc,
-		"Hwstatus.I2cerr": m.I2cerr,
+		HWSTATUS_FIELD_VCC:    m.Vcc,
+		HWSTATUS_FIELD_I2CERR: m.I2cerr,
 	}
 }
 
@@ -1009,16 +1143,26 @@ func (m *Radio) String() string {
 	)
 }
 
+const (
+	RADIO_FIELD_RXERRORS = "Radio.Rxerrors"
+	RADIO_FIELD_FIXED    = "Radio.Fixed"
+	RADIO_FIELD_RSSI     = "Radio.Rssi"
+	RADIO_FIELD_REMRSSI  = "Radio.Remrssi"
+	RADIO_FIELD_TXBUF    = "Radio.Txbuf"
+	RADIO_FIELD_NOISE    = "Radio.Noise"
+	RADIO_FIELD_REMNOISE = "Radio.Remnoise"
+)
+
 // ToMap (generated function)
 func (m *Radio) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Radio.Rxerrors": m.Rxerrors,
-		"Radio.Fixed":    m.Fixed,
-		"Radio.Rssi":     m.Rssi,
-		"Radio.Remrssi":  m.Remrssi,
-		"Radio.Txbuf":    m.Txbuf,
-		"Radio.Noise":    m.Noise,
-		"Radio.Remnoise": m.Remnoise,
+		RADIO_FIELD_RXERRORS: m.Rxerrors,
+		RADIO_FIELD_FIXED:    m.Fixed,
+		RADIO_FIELD_RSSI:     m.Rssi,
+		RADIO_FIELD_REMRSSI:  m.Remrssi,
+		RADIO_FIELD_TXBUF:    m.Txbuf,
+		RADIO_FIELD_NOISE:    m.Noise,
+		RADIO_FIELD_REMNOISE: m.Remnoise,
 	}
 }
 
@@ -1084,18 +1228,30 @@ func (m *LimitsStatus) String() string {
 	)
 }
 
+const (
+	LIMITS_STATUS_FIELD_LAST_TRIGGER   = "LimitsStatus.LastTrigger"
+	LIMITS_STATUS_FIELD_LAST_ACTION    = "LimitsStatus.LastAction"
+	LIMITS_STATUS_FIELD_LAST_RECOVERY  = "LimitsStatus.LastRecovery"
+	LIMITS_STATUS_FIELD_LAST_CLEAR     = "LimitsStatus.LastClear"
+	LIMITS_STATUS_FIELD_BREACH_COUNT   = "LimitsStatus.BreachCount"
+	LIMITS_STATUS_FIELD_LIMITS_STATE   = "LimitsStatus.LimitsState"
+	LIMITS_STATUS_FIELD_MODS_ENABLED   = "LimitsStatus.ModsEnabled"
+	LIMITS_STATUS_FIELD_MODS_REQUIRED  = "LimitsStatus.ModsRequired"
+	LIMITS_STATUS_FIELD_MODS_TRIGGERED = "LimitsStatus.ModsTriggered"
+)
+
 // ToMap (generated function)
 func (m *LimitsStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LimitsStatus.LastTrigger":   m.LastTrigger,
-		"LimitsStatus.LastAction":    m.LastAction,
-		"LimitsStatus.LastRecovery":  m.LastRecovery,
-		"LimitsStatus.LastClear":     m.LastClear,
-		"LimitsStatus.BreachCount":   m.BreachCount,
-		"LimitsStatus.LimitsState":   m.LimitsState,
-		"LimitsStatus.ModsEnabled":   m.ModsEnabled,
-		"LimitsStatus.ModsRequired":  m.ModsRequired,
-		"LimitsStatus.ModsTriggered": m.ModsTriggered,
+		LIMITS_STATUS_FIELD_LAST_TRIGGER:   m.LastTrigger,
+		LIMITS_STATUS_FIELD_LAST_ACTION:    m.LastAction,
+		LIMITS_STATUS_FIELD_LAST_RECOVERY:  m.LastRecovery,
+		LIMITS_STATUS_FIELD_LAST_CLEAR:     m.LastClear,
+		LIMITS_STATUS_FIELD_BREACH_COUNT:   m.BreachCount,
+		LIMITS_STATUS_FIELD_LIMITS_STATE:   m.LimitsState,
+		LIMITS_STATUS_FIELD_MODS_ENABLED:   m.ModsEnabled,
+		LIMITS_STATUS_FIELD_MODS_REQUIRED:  m.ModsRequired,
+		LIMITS_STATUS_FIELD_MODS_TRIGGERED: m.ModsTriggered,
 	}
 }
 
@@ -1153,12 +1309,18 @@ func (m *Wind) String() string {
 	)
 }
 
+const (
+	WIND_FIELD_DIRECTION = "Wind.Direction"
+	WIND_FIELD_SPEED     = "Wind.Speed"
+	WIND_FIELD_SPEED_Z   = "Wind.SpeedZ"
+)
+
 // ToMap (generated function)
 func (m *Wind) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Wind.Direction": m.Direction,
-		"Wind.Speed":     m.Speed,
-		"Wind.SpeedZ":    m.SpeedZ,
+		WIND_FIELD_DIRECTION: m.Direction,
+		WIND_FIELD_SPEED:     m.Speed,
+		WIND_FIELD_SPEED_Z:   m.SpeedZ,
 	}
 }
 
@@ -1204,12 +1366,18 @@ func (m *Data16) String() string {
 	)
 }
 
+const (
+	DATA16_FIELD_TYPE = "Data16.Type"
+	DATA16_FIELD_LEN  = "Data16.Len"
+	DATA16_FIELD_DATA = "Data16.Data"
+)
+
 // ToMap (generated function)
 func (m *Data16) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Data16.Type": m.Type,
-		"Data16.Len":  m.Len,
-		"Data16.Data": m.Data,
+		DATA16_FIELD_TYPE: m.Type,
+		DATA16_FIELD_LEN:  m.Len,
+		DATA16_FIELD_DATA: m.Data,
 	}
 }
 
@@ -1255,12 +1423,18 @@ func (m *Data32) String() string {
 	)
 }
 
+const (
+	DATA32_FIELD_TYPE = "Data32.Type"
+	DATA32_FIELD_LEN  = "Data32.Len"
+	DATA32_FIELD_DATA = "Data32.Data"
+)
+
 // ToMap (generated function)
 func (m *Data32) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Data32.Type": m.Type,
-		"Data32.Len":  m.Len,
-		"Data32.Data": m.Data,
+		DATA32_FIELD_TYPE: m.Type,
+		DATA32_FIELD_LEN:  m.Len,
+		DATA32_FIELD_DATA: m.Data,
 	}
 }
 
@@ -1306,12 +1480,18 @@ func (m *Data64) String() string {
 	)
 }
 
+const (
+	DATA64_FIELD_TYPE = "Data64.Type"
+	DATA64_FIELD_LEN  = "Data64.Len"
+	DATA64_FIELD_DATA = "Data64.Data"
+)
+
 // ToMap (generated function)
 func (m *Data64) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Data64.Type": m.Type,
-		"Data64.Len":  m.Len,
-		"Data64.Data": m.Data,
+		DATA64_FIELD_TYPE: m.Type,
+		DATA64_FIELD_LEN:  m.Len,
+		DATA64_FIELD_DATA: m.Data,
 	}
 }
 
@@ -1357,12 +1537,18 @@ func (m *Data96) String() string {
 	)
 }
 
+const (
+	DATA96_FIELD_TYPE = "Data96.Type"
+	DATA96_FIELD_LEN  = "Data96.Len"
+	DATA96_FIELD_DATA = "Data96.Data"
+)
+
 // ToMap (generated function)
 func (m *Data96) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Data96.Type": m.Type,
-		"Data96.Len":  m.Len,
-		"Data96.Data": m.Data,
+		DATA96_FIELD_TYPE: m.Type,
+		DATA96_FIELD_LEN:  m.Len,
+		DATA96_FIELD_DATA: m.Data,
 	}
 }
 
@@ -1406,11 +1592,16 @@ func (m *Rangefinder) String() string {
 	)
 }
 
+const (
+	RANGEFINDER_FIELD_DISTANCE = "Rangefinder.Distance"
+	RANGEFINDER_FIELD_VOLTAGE  = "Rangefinder.Voltage"
+)
+
 // ToMap (generated function)
 func (m *Rangefinder) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Rangefinder.Distance": m.Distance,
-		"Rangefinder.Voltage":  m.Voltage,
+		RANGEFINDER_FIELD_DISTANCE: m.Distance,
+		RANGEFINDER_FIELD_VOLTAGE:  m.Voltage,
 	}
 }
 
@@ -1472,21 +1663,36 @@ func (m *AirspeedAutocal) String() string {
 	)
 }
 
+const (
+	AIRSPEED_AUTOCAL_FIELD_VX            = "AirspeedAutocal.Vx"
+	AIRSPEED_AUTOCAL_FIELD_VY            = "AirspeedAutocal.Vy"
+	AIRSPEED_AUTOCAL_FIELD_VZ            = "AirspeedAutocal.Vz"
+	AIRSPEED_AUTOCAL_FIELD_DIFF_PRESSURE = "AirspeedAutocal.DiffPressure"
+	AIRSPEED_AUTOCAL_FIELD_EAS2TAS       = "AirspeedAutocal.Eas2tas"
+	AIRSPEED_AUTOCAL_FIELD_RATIO         = "AirspeedAutocal.Ratio"
+	AIRSPEED_AUTOCAL_FIELD_STATE_X       = "AirspeedAutocal.StateX"
+	AIRSPEED_AUTOCAL_FIELD_STATE_Y       = "AirspeedAutocal.StateY"
+	AIRSPEED_AUTOCAL_FIELD_STATE_Z       = "AirspeedAutocal.StateZ"
+	AIRSPEED_AUTOCAL_FIELD_PAX           = "AirspeedAutocal.Pax"
+	AIRSPEED_AUTOCAL_FIELD_PBY           = "AirspeedAutocal.Pby"
+	AIRSPEED_AUTOCAL_FIELD_PCZ           = "AirspeedAutocal.Pcz"
+)
+
 // ToMap (generated function)
 func (m *AirspeedAutocal) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AirspeedAutocal.Vx":           m.Vx,
-		"AirspeedAutocal.Vy":           m.Vy,
-		"AirspeedAutocal.Vz":           m.Vz,
-		"AirspeedAutocal.DiffPressure": m.DiffPressure,
-		"AirspeedAutocal.Eas2tas":      m.Eas2tas,
-		"AirspeedAutocal.Ratio":        m.Ratio,
-		"AirspeedAutocal.StateX":       m.StateX,
-		"AirspeedAutocal.StateY":       m.StateY,
-		"AirspeedAutocal.StateZ":       m.StateZ,
-		"AirspeedAutocal.Pax":          m.Pax,
-		"AirspeedAutocal.Pby":          m.Pby,
-		"AirspeedAutocal.Pcz":          m.Pcz,
+		AIRSPEED_AUTOCAL_FIELD_VX:            m.Vx,
+		AIRSPEED_AUTOCAL_FIELD_VY:            m.Vy,
+		AIRSPEED_AUTOCAL_FIELD_VZ:            m.Vz,
+		AIRSPEED_AUTOCAL_FIELD_DIFF_PRESSURE: m.DiffPressure,
+		AIRSPEED_AUTOCAL_FIELD_EAS2TAS:       m.Eas2tas,
+		AIRSPEED_AUTOCAL_FIELD_RATIO:         m.Ratio,
+		AIRSPEED_AUTOCAL_FIELD_STATE_X:       m.StateX,
+		AIRSPEED_AUTOCAL_FIELD_STATE_Y:       m.StateY,
+		AIRSPEED_AUTOCAL_FIELD_STATE_Z:       m.StateZ,
+		AIRSPEED_AUTOCAL_FIELD_PAX:           m.Pax,
+		AIRSPEED_AUTOCAL_FIELD_PBY:           m.Pby,
+		AIRSPEED_AUTOCAL_FIELD_PCZ:           m.Pcz,
 	}
 }
 
@@ -1564,19 +1770,32 @@ func (m *RallyPoint) String() string {
 	)
 }
 
+const (
+	RALLY_POINT_FIELD_LAT              = "RallyPoint.Lat"
+	RALLY_POINT_FIELD_LNG              = "RallyPoint.Lng"
+	RALLY_POINT_FIELD_ALT              = "RallyPoint.Alt"
+	RALLY_POINT_FIELD_BREAK_ALT        = "RallyPoint.BreakAlt"
+	RALLY_POINT_FIELD_LAND_DIR         = "RallyPoint.LandDir"
+	RALLY_POINT_FIELD_TARGET_SYSTEM    = "RallyPoint.TargetSystem"
+	RALLY_POINT_FIELD_TARGET_COMPONENT = "RallyPoint.TargetComponent"
+	RALLY_POINT_FIELD_IDX              = "RallyPoint.Idx"
+	RALLY_POINT_FIELD_COUNT            = "RallyPoint.Count"
+	RALLY_POINT_FIELD_FLAGS            = "RallyPoint.Flags"
+)
+
 // ToMap (generated function)
 func (m *RallyPoint) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RallyPoint.Lat":             m.Lat,
-		"RallyPoint.Lng":             m.Lng,
-		"RallyPoint.Alt":             m.Alt,
-		"RallyPoint.BreakAlt":        m.BreakAlt,
-		"RallyPoint.LandDir":         m.LandDir,
-		"RallyPoint.TargetSystem":    m.TargetSystem,
-		"RallyPoint.TargetComponent": m.TargetComponent,
-		"RallyPoint.Idx":             m.Idx,
-		"RallyPoint.Count":           m.Count,
-		"RallyPoint.Flags":           m.Flags,
+		RALLY_POINT_FIELD_LAT:              m.Lat,
+		RALLY_POINT_FIELD_LNG:              m.Lng,
+		RALLY_POINT_FIELD_ALT:              m.Alt,
+		RALLY_POINT_FIELD_BREAK_ALT:        m.BreakAlt,
+		RALLY_POINT_FIELD_LAND_DIR:         m.LandDir,
+		RALLY_POINT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		RALLY_POINT_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		RALLY_POINT_FIELD_IDX:              m.Idx,
+		RALLY_POINT_FIELD_COUNT:            m.Count,
+		RALLY_POINT_FIELD_FLAGS:            m.Flags,
 	}
 }
 
@@ -1636,12 +1855,18 @@ func (m *RallyFetchPoint) String() string {
 	)
 }
 
+const (
+	RALLY_FETCH_POINT_FIELD_TARGET_SYSTEM    = "RallyFetchPoint.TargetSystem"
+	RALLY_FETCH_POINT_FIELD_TARGET_COMPONENT = "RallyFetchPoint.TargetComponent"
+	RALLY_FETCH_POINT_FIELD_IDX              = "RallyFetchPoint.Idx"
+)
+
 // ToMap (generated function)
 func (m *RallyFetchPoint) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RallyFetchPoint.TargetSystem":    m.TargetSystem,
-		"RallyFetchPoint.TargetComponent": m.TargetComponent,
-		"RallyFetchPoint.Idx":             m.Idx,
+		RALLY_FETCH_POINT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		RALLY_FETCH_POINT_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		RALLY_FETCH_POINT_FIELD_IDX:              m.Idx,
 	}
 }
 
@@ -1693,15 +1918,24 @@ func (m *CompassmotStatus) String() string {
 	)
 }
 
+const (
+	COMPASSMOT_STATUS_FIELD_CURRENT       = "CompassmotStatus.Current"
+	COMPASSMOT_STATUS_FIELD_COMPENSATIONX = "CompassmotStatus.Compensationx"
+	COMPASSMOT_STATUS_FIELD_COMPENSATIONY = "CompassmotStatus.Compensationy"
+	COMPASSMOT_STATUS_FIELD_COMPENSATIONZ = "CompassmotStatus.Compensationz"
+	COMPASSMOT_STATUS_FIELD_THROTTLE      = "CompassmotStatus.Throttle"
+	COMPASSMOT_STATUS_FIELD_INTERFERENCE  = "CompassmotStatus.Interference"
+)
+
 // ToMap (generated function)
 func (m *CompassmotStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"CompassmotStatus.Current":       m.Current,
-		"CompassmotStatus.Compensationx": m.Compensationx,
-		"CompassmotStatus.Compensationy": m.Compensationy,
-		"CompassmotStatus.Compensationz": m.Compensationz,
-		"CompassmotStatus.Throttle":      m.Throttle,
-		"CompassmotStatus.Interference":  m.Interference,
+		COMPASSMOT_STATUS_FIELD_CURRENT:       m.Current,
+		COMPASSMOT_STATUS_FIELD_COMPENSATIONX: m.Compensationx,
+		COMPASSMOT_STATUS_FIELD_COMPENSATIONY: m.Compensationy,
+		COMPASSMOT_STATUS_FIELD_COMPENSATIONZ: m.Compensationz,
+		COMPASSMOT_STATUS_FIELD_THROTTLE:      m.Throttle,
+		COMPASSMOT_STATUS_FIELD_INTERFERENCE:  m.Interference,
 	}
 }
 
@@ -1759,15 +1993,24 @@ func (m *Ahrs2) String() string {
 	)
 }
 
+const (
+	AHRS2_FIELD_ROLL     = "Ahrs2.Roll"
+	AHRS2_FIELD_PITCH    = "Ahrs2.Pitch"
+	AHRS2_FIELD_YAW      = "Ahrs2.Yaw"
+	AHRS2_FIELD_ALTITUDE = "Ahrs2.Altitude"
+	AHRS2_FIELD_LAT      = "Ahrs2.Lat"
+	AHRS2_FIELD_LNG      = "Ahrs2.Lng"
+)
+
 // ToMap (generated function)
 func (m *Ahrs2) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Ahrs2.Roll":     m.Roll,
-		"Ahrs2.Pitch":    m.Pitch,
-		"Ahrs2.Yaw":      m.Yaw,
-		"Ahrs2.Altitude": m.Altitude,
-		"Ahrs2.Lat":      m.Lat,
-		"Ahrs2.Lng":      m.Lng,
+		AHRS2_FIELD_ROLL:     m.Roll,
+		AHRS2_FIELD_PITCH:    m.Pitch,
+		AHRS2_FIELD_YAW:      m.Yaw,
+		AHRS2_FIELD_ALTITUDE: m.Altitude,
+		AHRS2_FIELD_LAT:      m.Lat,
+		AHRS2_FIELD_LNG:      m.Lng,
 	}
 }
 
@@ -1831,18 +2074,30 @@ func (m *CameraStatus) String() string {
 	)
 }
 
+const (
+	CAMERA_STATUS_FIELD_TIME_USEC     = "CameraStatus.TimeUsec"
+	CAMERA_STATUS_FIELD_P1            = "CameraStatus.P1"
+	CAMERA_STATUS_FIELD_P2            = "CameraStatus.P2"
+	CAMERA_STATUS_FIELD_P3            = "CameraStatus.P3"
+	CAMERA_STATUS_FIELD_P4            = "CameraStatus.P4"
+	CAMERA_STATUS_FIELD_IMG_IDX       = "CameraStatus.ImgIdx"
+	CAMERA_STATUS_FIELD_TARGET_SYSTEM = "CameraStatus.TargetSystem"
+	CAMERA_STATUS_FIELD_CAM_IDX       = "CameraStatus.CamIdx"
+	CAMERA_STATUS_FIELD_EVENT_ID      = "CameraStatus.EventID"
+)
+
 // ToMap (generated function)
 func (m *CameraStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"CameraStatus.TimeUsec":     m.TimeUsec,
-		"CameraStatus.P1":           m.P1,
-		"CameraStatus.P2":           m.P2,
-		"CameraStatus.P3":           m.P3,
-		"CameraStatus.P4":           m.P4,
-		"CameraStatus.ImgIdx":       m.ImgIdx,
-		"CameraStatus.TargetSystem": m.TargetSystem,
-		"CameraStatus.CamIdx":       m.CamIdx,
-		"CameraStatus.EventID":      m.EventID,
+		CAMERA_STATUS_FIELD_TIME_USEC:     m.TimeUsec,
+		CAMERA_STATUS_FIELD_P1:            m.P1,
+		CAMERA_STATUS_FIELD_P2:            m.P2,
+		CAMERA_STATUS_FIELD_P3:            m.P3,
+		CAMERA_STATUS_FIELD_P4:            m.P4,
+		CAMERA_STATUS_FIELD_IMG_IDX:       m.ImgIdx,
+		CAMERA_STATUS_FIELD_TARGET_SYSTEM: m.TargetSystem,
+		CAMERA_STATUS_FIELD_CAM_IDX:       m.CamIdx,
+		CAMERA_STATUS_FIELD_EVENT_ID:      m.EventID,
 	}
 }
 
@@ -1920,22 +2175,38 @@ func (m *CameraFeedback) String() string {
 	)
 }
 
+const (
+	CAMERA_FEEDBACK_FIELD_TIME_USEC     = "CameraFeedback.TimeUsec"
+	CAMERA_FEEDBACK_FIELD_LAT           = "CameraFeedback.Lat"
+	CAMERA_FEEDBACK_FIELD_LNG           = "CameraFeedback.Lng"
+	CAMERA_FEEDBACK_FIELD_ALT_MSL       = "CameraFeedback.AltMsl"
+	CAMERA_FEEDBACK_FIELD_ALT_REL       = "CameraFeedback.AltRel"
+	CAMERA_FEEDBACK_FIELD_ROLL          = "CameraFeedback.Roll"
+	CAMERA_FEEDBACK_FIELD_PITCH         = "CameraFeedback.Pitch"
+	CAMERA_FEEDBACK_FIELD_YAW           = "CameraFeedback.Yaw"
+	CAMERA_FEEDBACK_FIELD_FOC_LEN       = "CameraFeedback.FocLen"
+	CAMERA_FEEDBACK_FIELD_IMG_IDX       = "CameraFeedback.ImgIdx"
+	CAMERA_FEEDBACK_FIELD_TARGET_SYSTEM = "CameraFeedback.TargetSystem"
+	CAMERA_FEEDBACK_FIELD_CAM_IDX       = "CameraFeedback.CamIdx"
+	CAMERA_FEEDBACK_FIELD_FLAGS         = "CameraFeedback.Flags"
+)
+
 // ToMap (generated function)
 func (m *CameraFeedback) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"CameraFeedback.TimeUsec":     m.TimeUsec,
-		"CameraFeedback.Lat":          m.Lat,
-		"CameraFeedback.Lng":          m.Lng,
-		"CameraFeedback.AltMsl":       m.AltMsl,
-		"CameraFeedback.AltRel":       m.AltRel,
-		"CameraFeedback.Roll":         m.Roll,
-		"CameraFeedback.Pitch":        m.Pitch,
-		"CameraFeedback.Yaw":          m.Yaw,
-		"CameraFeedback.FocLen":       m.FocLen,
-		"CameraFeedback.ImgIdx":       m.ImgIdx,
-		"CameraFeedback.TargetSystem": m.TargetSystem,
-		"CameraFeedback.CamIdx":       m.CamIdx,
-		"CameraFeedback.Flags":        m.Flags,
+		CAMERA_FEEDBACK_FIELD_TIME_USEC:     m.TimeUsec,
+		CAMERA_FEEDBACK_FIELD_LAT:           m.Lat,
+		CAMERA_FEEDBACK_FIELD_LNG:           m.Lng,
+		CAMERA_FEEDBACK_FIELD_ALT_MSL:       m.AltMsl,
+		CAMERA_FEEDBACK_FIELD_ALT_REL:       m.AltRel,
+		CAMERA_FEEDBACK_FIELD_ROLL:          m.Roll,
+		CAMERA_FEEDBACK_FIELD_PITCH:         m.Pitch,
+		CAMERA_FEEDBACK_FIELD_YAW:           m.Yaw,
+		CAMERA_FEEDBACK_FIELD_FOC_LEN:       m.FocLen,
+		CAMERA_FEEDBACK_FIELD_IMG_IDX:       m.ImgIdx,
+		CAMERA_FEEDBACK_FIELD_TARGET_SYSTEM: m.TargetSystem,
+		CAMERA_FEEDBACK_FIELD_CAM_IDX:       m.CamIdx,
+		CAMERA_FEEDBACK_FIELD_FLAGS:         m.Flags,
 	}
 }
 
@@ -1999,11 +2270,16 @@ func (m *Battery2) String() string {
 	)
 }
 
+const (
+	BATTERY2_FIELD_VOLTAGE         = "Battery2.Voltage"
+	BATTERY2_FIELD_CURRENT_BATTERY = "Battery2.CurrentBattery"
+)
+
 // ToMap (generated function)
 func (m *Battery2) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Battery2.Voltage":        m.Voltage,
-		"Battery2.CurrentBattery": m.CurrentBattery,
+		BATTERY2_FIELD_VOLTAGE:         m.Voltage,
+		BATTERY2_FIELD_CURRENT_BATTERY: m.CurrentBattery,
 	}
 }
 
@@ -2061,19 +2337,32 @@ func (m *Ahrs3) String() string {
 	)
 }
 
+const (
+	AHRS3_FIELD_ROLL     = "Ahrs3.Roll"
+	AHRS3_FIELD_PITCH    = "Ahrs3.Pitch"
+	AHRS3_FIELD_YAW      = "Ahrs3.Yaw"
+	AHRS3_FIELD_ALTITUDE = "Ahrs3.Altitude"
+	AHRS3_FIELD_LAT      = "Ahrs3.Lat"
+	AHRS3_FIELD_LNG      = "Ahrs3.Lng"
+	AHRS3_FIELD_V1       = "Ahrs3.V1"
+	AHRS3_FIELD_V2       = "Ahrs3.V2"
+	AHRS3_FIELD_V3       = "Ahrs3.V3"
+	AHRS3_FIELD_V4       = "Ahrs3.V4"
+)
+
 // ToMap (generated function)
 func (m *Ahrs3) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Ahrs3.Roll":     m.Roll,
-		"Ahrs3.Pitch":    m.Pitch,
-		"Ahrs3.Yaw":      m.Yaw,
-		"Ahrs3.Altitude": m.Altitude,
-		"Ahrs3.Lat":      m.Lat,
-		"Ahrs3.Lng":      m.Lng,
-		"Ahrs3.V1":       m.V1,
-		"Ahrs3.V2":       m.V2,
-		"Ahrs3.V3":       m.V3,
-		"Ahrs3.V4":       m.V4,
+		AHRS3_FIELD_ROLL:     m.Roll,
+		AHRS3_FIELD_PITCH:    m.Pitch,
+		AHRS3_FIELD_YAW:      m.Yaw,
+		AHRS3_FIELD_ALTITUDE: m.Altitude,
+		AHRS3_FIELD_LAT:      m.Lat,
+		AHRS3_FIELD_LNG:      m.Lng,
+		AHRS3_FIELD_V1:       m.V1,
+		AHRS3_FIELD_V2:       m.V2,
+		AHRS3_FIELD_V3:       m.V3,
+		AHRS3_FIELD_V4:       m.V4,
 	}
 }
 
@@ -2131,11 +2420,16 @@ func (m *AutopilotVersionRequest) String() string {
 	)
 }
 
+const (
+	AUTOPILOT_VERSION_REQUEST_FIELD_TARGET_SYSTEM    = "AutopilotVersionRequest.TargetSystem"
+	AUTOPILOT_VERSION_REQUEST_FIELD_TARGET_COMPONENT = "AutopilotVersionRequest.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *AutopilotVersionRequest) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AutopilotVersionRequest.TargetSystem":    m.TargetSystem,
-		"AutopilotVersionRequest.TargetComponent": m.TargetComponent,
+		AUTOPILOT_VERSION_REQUEST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		AUTOPILOT_VERSION_REQUEST_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -2181,13 +2475,20 @@ func (m *RemoteLogDataBlock) String() string {
 	)
 }
 
+const (
+	REMOTE_LOG_DATA_BLOCK_FIELD_SEQNO            = "RemoteLogDataBlock.Seqno"
+	REMOTE_LOG_DATA_BLOCK_FIELD_TARGET_SYSTEM    = "RemoteLogDataBlock.TargetSystem"
+	REMOTE_LOG_DATA_BLOCK_FIELD_TARGET_COMPONENT = "RemoteLogDataBlock.TargetComponent"
+	REMOTE_LOG_DATA_BLOCK_FIELD_DATA             = "RemoteLogDataBlock.Data"
+)
+
 // ToMap (generated function)
 func (m *RemoteLogDataBlock) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RemoteLogDataBlock.Seqno":           m.Seqno,
-		"RemoteLogDataBlock.TargetSystem":    m.TargetSystem,
-		"RemoteLogDataBlock.TargetComponent": m.TargetComponent,
-		"RemoteLogDataBlock.Data":            m.Data,
+		REMOTE_LOG_DATA_BLOCK_FIELD_SEQNO:            m.Seqno,
+		REMOTE_LOG_DATA_BLOCK_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		REMOTE_LOG_DATA_BLOCK_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		REMOTE_LOG_DATA_BLOCK_FIELD_DATA:             m.Data,
 	}
 }
 
@@ -2237,13 +2538,20 @@ func (m *RemoteLogBlockStatus) String() string {
 	)
 }
 
+const (
+	REMOTE_LOG_BLOCK_STATUS_FIELD_SEQNO            = "RemoteLogBlockStatus.Seqno"
+	REMOTE_LOG_BLOCK_STATUS_FIELD_TARGET_SYSTEM    = "RemoteLogBlockStatus.TargetSystem"
+	REMOTE_LOG_BLOCK_STATUS_FIELD_TARGET_COMPONENT = "RemoteLogBlockStatus.TargetComponent"
+	REMOTE_LOG_BLOCK_STATUS_FIELD_STATUS           = "RemoteLogBlockStatus.Status"
+)
+
 // ToMap (generated function)
 func (m *RemoteLogBlockStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RemoteLogBlockStatus.Seqno":           m.Seqno,
-		"RemoteLogBlockStatus.TargetSystem":    m.TargetSystem,
-		"RemoteLogBlockStatus.TargetComponent": m.TargetComponent,
-		"RemoteLogBlockStatus.Status":          m.Status,
+		REMOTE_LOG_BLOCK_STATUS_FIELD_SEQNO:            m.Seqno,
+		REMOTE_LOG_BLOCK_STATUS_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		REMOTE_LOG_BLOCK_STATUS_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		REMOTE_LOG_BLOCK_STATUS_FIELD_STATUS:           m.Status,
 	}
 }
 
@@ -2297,15 +2605,24 @@ func (m *LedControl) String() string {
 	)
 }
 
+const (
+	LED_CONTROL_FIELD_TARGET_SYSTEM    = "LedControl.TargetSystem"
+	LED_CONTROL_FIELD_TARGET_COMPONENT = "LedControl.TargetComponent"
+	LED_CONTROL_FIELD_INSTANCE         = "LedControl.Instance"
+	LED_CONTROL_FIELD_PATTERN          = "LedControl.Pattern"
+	LED_CONTROL_FIELD_CUSTOM_LEN       = "LedControl.CustomLen"
+	LED_CONTROL_FIELD_CUSTOM_BYTES     = "LedControl.CustomBytes"
+)
+
 // ToMap (generated function)
 func (m *LedControl) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LedControl.TargetSystem":    m.TargetSystem,
-		"LedControl.TargetComponent": m.TargetComponent,
-		"LedControl.Instance":        m.Instance,
-		"LedControl.Pattern":         m.Pattern,
-		"LedControl.CustomLen":       m.CustomLen,
-		"LedControl.CustomBytes":     m.CustomBytes,
+		LED_CONTROL_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		LED_CONTROL_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		LED_CONTROL_FIELD_INSTANCE:         m.Instance,
+		LED_CONTROL_FIELD_PATTERN:          m.Pattern,
+		LED_CONTROL_FIELD_CUSTOM_LEN:       m.CustomLen,
+		LED_CONTROL_FIELD_CUSTOM_BYTES:     m.CustomBytes,
 	}
 }
 
@@ -2369,18 +2686,30 @@ func (m *MagCalProgress) String() string {
 	)
 }
 
+const (
+	MAG_CAL_PROGRESS_FIELD_DIRECTION_X     = "MagCalProgress.DirectionX"
+	MAG_CAL_PROGRESS_FIELD_DIRECTION_Y     = "MagCalProgress.DirectionY"
+	MAG_CAL_PROGRESS_FIELD_DIRECTION_Z     = "MagCalProgress.DirectionZ"
+	MAG_CAL_PROGRESS_FIELD_COMPASS_ID      = "MagCalProgress.CompassID"
+	MAG_CAL_PROGRESS_FIELD_CAL_MASK        = "MagCalProgress.CalMask"
+	MAG_CAL_PROGRESS_FIELD_CAL_STATUS      = "MagCalProgress.CalStatus"
+	MAG_CAL_PROGRESS_FIELD_ATTEMPT         = "MagCalProgress.Attempt"
+	MAG_CAL_PROGRESS_FIELD_COMPLETION_PCT  = "MagCalProgress.CompletionPct"
+	MAG_CAL_PROGRESS_FIELD_COMPLETION_MASK = "MagCalProgress.CompletionMask"
+)
+
 // ToMap (generated function)
 func (m *MagCalProgress) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MagCalProgress.DirectionX":     m.DirectionX,
-		"MagCalProgress.DirectionY":     m.DirectionY,
-		"MagCalProgress.DirectionZ":     m.DirectionZ,
-		"MagCalProgress.CompassID":      m.CompassID,
-		"MagCalProgress.CalMask":        m.CalMask,
-		"MagCalProgress.CalStatus":      m.CalStatus,
-		"MagCalProgress.Attempt":        m.Attempt,
-		"MagCalProgress.CompletionPct":  m.CompletionPct,
-		"MagCalProgress.CompletionMask": m.CompletionMask,
+		MAG_CAL_PROGRESS_FIELD_DIRECTION_X:     m.DirectionX,
+		MAG_CAL_PROGRESS_FIELD_DIRECTION_Y:     m.DirectionY,
+		MAG_CAL_PROGRESS_FIELD_DIRECTION_Z:     m.DirectionZ,
+		MAG_CAL_PROGRESS_FIELD_COMPASS_ID:      m.CompassID,
+		MAG_CAL_PROGRESS_FIELD_CAL_MASK:        m.CalMask,
+		MAG_CAL_PROGRESS_FIELD_CAL_STATUS:      m.CalStatus,
+		MAG_CAL_PROGRESS_FIELD_ATTEMPT:         m.Attempt,
+		MAG_CAL_PROGRESS_FIELD_COMPLETION_PCT:  m.CompletionPct,
+		MAG_CAL_PROGRESS_FIELD_COMPLETION_MASK: m.CompletionMask,
 	}
 }
 
@@ -2444,15 +2773,24 @@ func (m *EkfStatusReport) String() string {
 	)
 }
 
+const (
+	EKF_STATUS_REPORT_FIELD_VELOCITY_VARIANCE    = "EkfStatusReport.VelocityVariance"
+	EKF_STATUS_REPORT_FIELD_POS_HORIZ_VARIANCE   = "EkfStatusReport.PosHorizVariance"
+	EKF_STATUS_REPORT_FIELD_POS_VERT_VARIANCE    = "EkfStatusReport.PosVertVariance"
+	EKF_STATUS_REPORT_FIELD_COMPASS_VARIANCE     = "EkfStatusReport.CompassVariance"
+	EKF_STATUS_REPORT_FIELD_TERRAIN_ALT_VARIANCE = "EkfStatusReport.TerrainAltVariance"
+	EKF_STATUS_REPORT_FIELD_FLAGS                = "EkfStatusReport.Flags"
+)
+
 // ToMap (generated function)
 func (m *EkfStatusReport) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"EkfStatusReport.VelocityVariance":   m.VelocityVariance,
-		"EkfStatusReport.PosHorizVariance":   m.PosHorizVariance,
-		"EkfStatusReport.PosVertVariance":    m.PosVertVariance,
-		"EkfStatusReport.CompassVariance":    m.CompassVariance,
-		"EkfStatusReport.TerrainAltVariance": m.TerrainAltVariance,
-		"EkfStatusReport.Flags":              m.Flags,
+		EKF_STATUS_REPORT_FIELD_VELOCITY_VARIANCE:    m.VelocityVariance,
+		EKF_STATUS_REPORT_FIELD_POS_HORIZ_VARIANCE:   m.PosHorizVariance,
+		EKF_STATUS_REPORT_FIELD_POS_VERT_VARIANCE:    m.PosVertVariance,
+		EKF_STATUS_REPORT_FIELD_COMPASS_VARIANCE:     m.CompassVariance,
+		EKF_STATUS_REPORT_FIELD_TERRAIN_ALT_VARIANCE: m.TerrainAltVariance,
+		EKF_STATUS_REPORT_FIELD_FLAGS:                m.Flags,
 	}
 }
 
@@ -2512,16 +2850,26 @@ func (m *PidTuning) String() string {
 	)
 }
 
+const (
+	PID_TUNING_FIELD_DESIRED  = "PidTuning.Desired"
+	PID_TUNING_FIELD_ACHIEVED = "PidTuning.Achieved"
+	PID_TUNING_FIELD_FF       = "PidTuning.Ff"
+	PID_TUNING_FIELD_P        = "PidTuning.P"
+	PID_TUNING_FIELD_I        = "PidTuning.I"
+	PID_TUNING_FIELD_D        = "PidTuning.D"
+	PID_TUNING_FIELD_AXIS     = "PidTuning.Axis"
+)
+
 // ToMap (generated function)
 func (m *PidTuning) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"PidTuning.Desired":  m.Desired,
-		"PidTuning.Achieved": m.Achieved,
-		"PidTuning.Ff":       m.Ff,
-		"PidTuning.P":        m.P,
-		"PidTuning.I":        m.I,
-		"PidTuning.D":        m.D,
-		"PidTuning.Axis":     m.Axis,
+		PID_TUNING_FIELD_DESIRED:  m.Desired,
+		PID_TUNING_FIELD_ACHIEVED: m.Achieved,
+		PID_TUNING_FIELD_FF:       m.Ff,
+		PID_TUNING_FIELD_P:        m.P,
+		PID_TUNING_FIELD_I:        m.I,
+		PID_TUNING_FIELD_D:        m.D,
+		PID_TUNING_FIELD_AXIS:     m.Axis,
 	}
 }
 
@@ -2589,19 +2937,32 @@ func (m *Deepstall) String() string {
 	)
 }
 
+const (
+	DEEPSTALL_FIELD_LANDING_LAT              = "Deepstall.LandingLat"
+	DEEPSTALL_FIELD_LANDING_LON              = "Deepstall.LandingLon"
+	DEEPSTALL_FIELD_PATH_LAT                 = "Deepstall.PathLat"
+	DEEPSTALL_FIELD_PATH_LON                 = "Deepstall.PathLon"
+	DEEPSTALL_FIELD_ARC_ENTRY_LAT            = "Deepstall.ArcEntryLat"
+	DEEPSTALL_FIELD_ARC_ENTRY_LON            = "Deepstall.ArcEntryLon"
+	DEEPSTALL_FIELD_ALTITUDE                 = "Deepstall.Altitude"
+	DEEPSTALL_FIELD_EXPECTED_TRAVEL_DISTANCE = "Deepstall.ExpectedTravelDistance"
+	DEEPSTALL_FIELD_CROSS_TRACK_ERROR        = "Deepstall.CrossTrackError"
+	DEEPSTALL_FIELD_STAGE                    = "Deepstall.Stage"
+)
+
 // ToMap (generated function)
 func (m *Deepstall) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Deepstall.LandingLat":             m.LandingLat,
-		"Deepstall.LandingLon":             m.LandingLon,
-		"Deepstall.PathLat":                m.PathLat,
-		"Deepstall.PathLon":                m.PathLon,
-		"Deepstall.ArcEntryLat":            m.ArcEntryLat,
-		"Deepstall.ArcEntryLon":            m.ArcEntryLon,
-		"Deepstall.Altitude":               m.Altitude,
-		"Deepstall.ExpectedTravelDistance": m.ExpectedTravelDistance,
-		"Deepstall.CrossTrackError":        m.CrossTrackError,
-		"Deepstall.Stage":                  m.Stage,
+		DEEPSTALL_FIELD_LANDING_LAT:              m.LandingLat,
+		DEEPSTALL_FIELD_LANDING_LON:              m.LandingLon,
+		DEEPSTALL_FIELD_PATH_LAT:                 m.PathLat,
+		DEEPSTALL_FIELD_PATH_LON:                 m.PathLon,
+		DEEPSTALL_FIELD_ARC_ENTRY_LAT:            m.ArcEntryLat,
+		DEEPSTALL_FIELD_ARC_ENTRY_LON:            m.ArcEntryLon,
+		DEEPSTALL_FIELD_ALTITUDE:                 m.Altitude,
+		DEEPSTALL_FIELD_EXPECTED_TRAVEL_DISTANCE: m.ExpectedTravelDistance,
+		DEEPSTALL_FIELD_CROSS_TRACK_ERROR:        m.CrossTrackError,
+		DEEPSTALL_FIELD_STAGE:                    m.Stage,
 	}
 }
 
@@ -2679,21 +3040,36 @@ func (m *GimbalReport) String() string {
 	)
 }
 
+const (
+	GIMBAL_REPORT_FIELD_DELTA_TIME       = "GimbalReport.DeltaTime"
+	GIMBAL_REPORT_FIELD_DELTA_ANGLE_X    = "GimbalReport.DeltaAngleX"
+	GIMBAL_REPORT_FIELD_DELTA_ANGLE_Y    = "GimbalReport.DeltaAngleY"
+	GIMBAL_REPORT_FIELD_DELTA_ANGLE_Z    = "GimbalReport.DeltaAngleZ"
+	GIMBAL_REPORT_FIELD_DELTA_VELOCITY_X = "GimbalReport.DeltaVelocityX"
+	GIMBAL_REPORT_FIELD_DELTA_VELOCITY_Y = "GimbalReport.DeltaVelocityY"
+	GIMBAL_REPORT_FIELD_DELTA_VELOCITY_Z = "GimbalReport.DeltaVelocityZ"
+	GIMBAL_REPORT_FIELD_JOINT_ROLL       = "GimbalReport.JointRoll"
+	GIMBAL_REPORT_FIELD_JOINT_EL         = "GimbalReport.JointEl"
+	GIMBAL_REPORT_FIELD_JOINT_AZ         = "GimbalReport.JointAz"
+	GIMBAL_REPORT_FIELD_TARGET_SYSTEM    = "GimbalReport.TargetSystem"
+	GIMBAL_REPORT_FIELD_TARGET_COMPONENT = "GimbalReport.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *GimbalReport) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GimbalReport.DeltaTime":       m.DeltaTime,
-		"GimbalReport.DeltaAngleX":     m.DeltaAngleX,
-		"GimbalReport.DeltaAngleY":     m.DeltaAngleY,
-		"GimbalReport.DeltaAngleZ":     m.DeltaAngleZ,
-		"GimbalReport.DeltaVelocityX":  m.DeltaVelocityX,
-		"GimbalReport.DeltaVelocityY":  m.DeltaVelocityY,
-		"GimbalReport.DeltaVelocityZ":  m.DeltaVelocityZ,
-		"GimbalReport.JointRoll":       m.JointRoll,
-		"GimbalReport.JointEl":         m.JointEl,
-		"GimbalReport.JointAz":         m.JointAz,
-		"GimbalReport.TargetSystem":    m.TargetSystem,
-		"GimbalReport.TargetComponent": m.TargetComponent,
+		GIMBAL_REPORT_FIELD_DELTA_TIME:       m.DeltaTime,
+		GIMBAL_REPORT_FIELD_DELTA_ANGLE_X:    m.DeltaAngleX,
+		GIMBAL_REPORT_FIELD_DELTA_ANGLE_Y:    m.DeltaAngleY,
+		GIMBAL_REPORT_FIELD_DELTA_ANGLE_Z:    m.DeltaAngleZ,
+		GIMBAL_REPORT_FIELD_DELTA_VELOCITY_X: m.DeltaVelocityX,
+		GIMBAL_REPORT_FIELD_DELTA_VELOCITY_Y: m.DeltaVelocityY,
+		GIMBAL_REPORT_FIELD_DELTA_VELOCITY_Z: m.DeltaVelocityZ,
+		GIMBAL_REPORT_FIELD_JOINT_ROLL:       m.JointRoll,
+		GIMBAL_REPORT_FIELD_JOINT_EL:         m.JointEl,
+		GIMBAL_REPORT_FIELD_JOINT_AZ:         m.JointAz,
+		GIMBAL_REPORT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		GIMBAL_REPORT_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -2761,14 +3137,22 @@ func (m *GimbalControl) String() string {
 	)
 }
 
+const (
+	GIMBAL_CONTROL_FIELD_DEMANDED_RATE_X  = "GimbalControl.DemandedRateX"
+	GIMBAL_CONTROL_FIELD_DEMANDED_RATE_Y  = "GimbalControl.DemandedRateY"
+	GIMBAL_CONTROL_FIELD_DEMANDED_RATE_Z  = "GimbalControl.DemandedRateZ"
+	GIMBAL_CONTROL_FIELD_TARGET_SYSTEM    = "GimbalControl.TargetSystem"
+	GIMBAL_CONTROL_FIELD_TARGET_COMPONENT = "GimbalControl.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *GimbalControl) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GimbalControl.DemandedRateX":   m.DemandedRateX,
-		"GimbalControl.DemandedRateY":   m.DemandedRateY,
-		"GimbalControl.DemandedRateZ":   m.DemandedRateZ,
-		"GimbalControl.TargetSystem":    m.TargetSystem,
-		"GimbalControl.TargetComponent": m.TargetComponent,
+		GIMBAL_CONTROL_FIELD_DEMANDED_RATE_X:  m.DemandedRateX,
+		GIMBAL_CONTROL_FIELD_DEMANDED_RATE_Y:  m.DemandedRateY,
+		GIMBAL_CONTROL_FIELD_DEMANDED_RATE_Z:  m.DemandedRateZ,
+		GIMBAL_CONTROL_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		GIMBAL_CONTROL_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -2822,14 +3206,22 @@ func (m *GimbalTorqueCmdReport) String() string {
 	)
 }
 
+const (
+	GIMBAL_TORQUE_CMD_REPORT_FIELD_RL_TORQUE_CMD    = "GimbalTorqueCmdReport.RlTorqueCmd"
+	GIMBAL_TORQUE_CMD_REPORT_FIELD_EL_TORQUE_CMD    = "GimbalTorqueCmdReport.ElTorqueCmd"
+	GIMBAL_TORQUE_CMD_REPORT_FIELD_AZ_TORQUE_CMD    = "GimbalTorqueCmdReport.AzTorqueCmd"
+	GIMBAL_TORQUE_CMD_REPORT_FIELD_TARGET_SYSTEM    = "GimbalTorqueCmdReport.TargetSystem"
+	GIMBAL_TORQUE_CMD_REPORT_FIELD_TARGET_COMPONENT = "GimbalTorqueCmdReport.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *GimbalTorqueCmdReport) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GimbalTorqueCmdReport.RlTorqueCmd":     m.RlTorqueCmd,
-		"GimbalTorqueCmdReport.ElTorqueCmd":     m.ElTorqueCmd,
-		"GimbalTorqueCmdReport.AzTorqueCmd":     m.AzTorqueCmd,
-		"GimbalTorqueCmdReport.TargetSystem":    m.TargetSystem,
-		"GimbalTorqueCmdReport.TargetComponent": m.TargetComponent,
+		GIMBAL_TORQUE_CMD_REPORT_FIELD_RL_TORQUE_CMD:    m.RlTorqueCmd,
+		GIMBAL_TORQUE_CMD_REPORT_FIELD_EL_TORQUE_CMD:    m.ElTorqueCmd,
+		GIMBAL_TORQUE_CMD_REPORT_FIELD_AZ_TORQUE_CMD:    m.AzTorqueCmd,
+		GIMBAL_TORQUE_CMD_REPORT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		GIMBAL_TORQUE_CMD_REPORT_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -2879,12 +3271,18 @@ func (m *GoproHeartbeat) String() string {
 	)
 }
 
+const (
+	GOPRO_HEARTBEAT_FIELD_STATUS       = "GoproHeartbeat.Status"
+	GOPRO_HEARTBEAT_FIELD_CAPTURE_MODE = "GoproHeartbeat.CaptureMode"
+	GOPRO_HEARTBEAT_FIELD_FLAGS        = "GoproHeartbeat.Flags"
+)
+
 // ToMap (generated function)
 func (m *GoproHeartbeat) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GoproHeartbeat.Status":      m.Status,
-		"GoproHeartbeat.CaptureMode": m.CaptureMode,
-		"GoproHeartbeat.Flags":       m.Flags,
+		GOPRO_HEARTBEAT_FIELD_STATUS:       m.Status,
+		GOPRO_HEARTBEAT_FIELD_CAPTURE_MODE: m.CaptureMode,
+		GOPRO_HEARTBEAT_FIELD_FLAGS:        m.Flags,
 	}
 }
 
@@ -2930,12 +3328,18 @@ func (m *GoproGetRequest) String() string {
 	)
 }
 
+const (
+	GOPRO_GET_REQUEST_FIELD_TARGET_SYSTEM    = "GoproGetRequest.TargetSystem"
+	GOPRO_GET_REQUEST_FIELD_TARGET_COMPONENT = "GoproGetRequest.TargetComponent"
+	GOPRO_GET_REQUEST_FIELD_CMD_ID           = "GoproGetRequest.CmdID"
+)
+
 // ToMap (generated function)
 func (m *GoproGetRequest) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GoproGetRequest.TargetSystem":    m.TargetSystem,
-		"GoproGetRequest.TargetComponent": m.TargetComponent,
-		"GoproGetRequest.CmdID":           m.CmdID,
+		GOPRO_GET_REQUEST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		GOPRO_GET_REQUEST_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		GOPRO_GET_REQUEST_FIELD_CMD_ID:           m.CmdID,
 	}
 }
 
@@ -2981,12 +3385,18 @@ func (m *GoproGetResponse) String() string {
 	)
 }
 
+const (
+	GOPRO_GET_RESPONSE_FIELD_CMD_ID = "GoproGetResponse.CmdID"
+	GOPRO_GET_RESPONSE_FIELD_STATUS = "GoproGetResponse.Status"
+	GOPRO_GET_RESPONSE_FIELD_VALUE  = "GoproGetResponse.Value"
+)
+
 // ToMap (generated function)
 func (m *GoproGetResponse) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GoproGetResponse.CmdID":  m.CmdID,
-		"GoproGetResponse.Status": m.Status,
-		"GoproGetResponse.Value":  m.Value,
+		GOPRO_GET_RESPONSE_FIELD_CMD_ID: m.CmdID,
+		GOPRO_GET_RESPONSE_FIELD_STATUS: m.Status,
+		GOPRO_GET_RESPONSE_FIELD_VALUE:  m.Value,
 	}
 }
 
@@ -3034,13 +3444,20 @@ func (m *GoproSetRequest) String() string {
 	)
 }
 
+const (
+	GOPRO_SET_REQUEST_FIELD_TARGET_SYSTEM    = "GoproSetRequest.TargetSystem"
+	GOPRO_SET_REQUEST_FIELD_TARGET_COMPONENT = "GoproSetRequest.TargetComponent"
+	GOPRO_SET_REQUEST_FIELD_CMD_ID           = "GoproSetRequest.CmdID"
+	GOPRO_SET_REQUEST_FIELD_VALUE            = "GoproSetRequest.Value"
+)
+
 // ToMap (generated function)
 func (m *GoproSetRequest) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GoproSetRequest.TargetSystem":    m.TargetSystem,
-		"GoproSetRequest.TargetComponent": m.TargetComponent,
-		"GoproSetRequest.CmdID":           m.CmdID,
-		"GoproSetRequest.Value":           m.Value,
+		GOPRO_SET_REQUEST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		GOPRO_SET_REQUEST_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		GOPRO_SET_REQUEST_FIELD_CMD_ID:           m.CmdID,
+		GOPRO_SET_REQUEST_FIELD_VALUE:            m.Value,
 	}
 }
 
@@ -3086,11 +3503,16 @@ func (m *GoproSetResponse) String() string {
 	)
 }
 
+const (
+	GOPRO_SET_RESPONSE_FIELD_CMD_ID = "GoproSetResponse.CmdID"
+	GOPRO_SET_RESPONSE_FIELD_STATUS = "GoproSetResponse.Status"
+)
+
 // ToMap (generated function)
 func (m *GoproSetResponse) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GoproSetResponse.CmdID":  m.CmdID,
-		"GoproSetResponse.Status": m.Status,
+		GOPRO_SET_RESPONSE_FIELD_CMD_ID: m.CmdID,
+		GOPRO_SET_RESPONSE_FIELD_STATUS: m.Status,
 	}
 }
 
@@ -3132,11 +3554,16 @@ func (m *Rpm) String() string {
 	)
 }
 
+const (
+	RPM_FIELD_RPM1 = "Rpm.Rpm1"
+	RPM_FIELD_RPM2 = "Rpm.Rpm2"
+)
+
 // ToMap (generated function)
 func (m *Rpm) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Rpm.Rpm1": m.Rpm1,
-		"Rpm.Rpm2": m.Rpm2,
+		RPM_FIELD_RPM1: m.Rpm1,
+		RPM_FIELD_RPM2: m.Rpm2,
 	}
 }
 
@@ -3200,22 +3627,38 @@ func (m *SysStatus) String() string {
 	)
 }
 
+const (
+	SYS_STATUS_FIELD_ONBOARD_CONTROL_SENSORS_PRESENT = "SysStatus.OnboardControlSensorsPresent"
+	SYS_STATUS_FIELD_ONBOARD_CONTROL_SENSORS_ENABLED = "SysStatus.OnboardControlSensorsEnabled"
+	SYS_STATUS_FIELD_ONBOARD_CONTROL_SENSORS_HEALTH  = "SysStatus.OnboardControlSensorsHealth"
+	SYS_STATUS_FIELD_LOAD                            = "SysStatus.Load"
+	SYS_STATUS_FIELD_VOLTAGE_BATTERY                 = "SysStatus.VoltageBattery"
+	SYS_STATUS_FIELD_CURRENT_BATTERY                 = "SysStatus.CurrentBattery"
+	SYS_STATUS_FIELD_DROP_RATE_COMM                  = "SysStatus.DropRateComm"
+	SYS_STATUS_FIELD_ERRORS_COMM                     = "SysStatus.ErrorsComm"
+	SYS_STATUS_FIELD_ERRORS_COUNT1                   = "SysStatus.ErrorsCount1"
+	SYS_STATUS_FIELD_ERRORS_COUNT2                   = "SysStatus.ErrorsCount2"
+	SYS_STATUS_FIELD_ERRORS_COUNT3                   = "SysStatus.ErrorsCount3"
+	SYS_STATUS_FIELD_ERRORS_COUNT4                   = "SysStatus.ErrorsCount4"
+	SYS_STATUS_FIELD_BATTERY_REMAINING               = "SysStatus.BatteryRemaining"
+)
+
 // ToMap (generated function)
 func (m *SysStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SysStatus.OnboardControlSensorsPresent": m.OnboardControlSensorsPresent,
-		"SysStatus.OnboardControlSensorsEnabled": m.OnboardControlSensorsEnabled,
-		"SysStatus.OnboardControlSensorsHealth":  m.OnboardControlSensorsHealth,
-		"SysStatus.Load":                         m.Load,
-		"SysStatus.VoltageBattery":               m.VoltageBattery,
-		"SysStatus.CurrentBattery":               m.CurrentBattery,
-		"SysStatus.DropRateComm":                 m.DropRateComm,
-		"SysStatus.ErrorsComm":                   m.ErrorsComm,
-		"SysStatus.ErrorsCount1":                 m.ErrorsCount1,
-		"SysStatus.ErrorsCount2":                 m.ErrorsCount2,
-		"SysStatus.ErrorsCount3":                 m.ErrorsCount3,
-		"SysStatus.ErrorsCount4":                 m.ErrorsCount4,
-		"SysStatus.BatteryRemaining":             m.BatteryRemaining,
+		SYS_STATUS_FIELD_ONBOARD_CONTROL_SENSORS_PRESENT: m.OnboardControlSensorsPresent,
+		SYS_STATUS_FIELD_ONBOARD_CONTROL_SENSORS_ENABLED: m.OnboardControlSensorsEnabled,
+		SYS_STATUS_FIELD_ONBOARD_CONTROL_SENSORS_HEALTH:  m.OnboardControlSensorsHealth,
+		SYS_STATUS_FIELD_LOAD:                            m.Load,
+		SYS_STATUS_FIELD_VOLTAGE_BATTERY:                 m.VoltageBattery,
+		SYS_STATUS_FIELD_CURRENT_BATTERY:                 m.CurrentBattery,
+		SYS_STATUS_FIELD_DROP_RATE_COMM:                  m.DropRateComm,
+		SYS_STATUS_FIELD_ERRORS_COMM:                     m.ErrorsComm,
+		SYS_STATUS_FIELD_ERRORS_COUNT1:                   m.ErrorsCount1,
+		SYS_STATUS_FIELD_ERRORS_COUNT2:                   m.ErrorsCount2,
+		SYS_STATUS_FIELD_ERRORS_COUNT3:                   m.ErrorsCount3,
+		SYS_STATUS_FIELD_ERRORS_COUNT4:                   m.ErrorsCount4,
+		SYS_STATUS_FIELD_BATTERY_REMAINING:               m.BatteryRemaining,
 	}
 }
 
@@ -3279,11 +3722,16 @@ func (m *SystemTime) String() string {
 	)
 }
 
+const (
+	SYSTEM_TIME_FIELD_TIME_UNIX_USEC = "SystemTime.TimeUnixUsec"
+	SYSTEM_TIME_FIELD_TIME_BOOT_MS   = "SystemTime.TimeBootMs"
+)
+
 // ToMap (generated function)
 func (m *SystemTime) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SystemTime.TimeUnixUsec": m.TimeUnixUsec,
-		"SystemTime.TimeBootMs":   m.TimeBootMs,
+		SYSTEM_TIME_FIELD_TIME_UNIX_USEC: m.TimeUnixUsec,
+		SYSTEM_TIME_FIELD_TIME_BOOT_MS:   m.TimeBootMs,
 	}
 }
 
@@ -3329,13 +3777,20 @@ func (m *Ping) String() string {
 	)
 }
 
+const (
+	PING_FIELD_TIME_USEC        = "Ping.TimeUsec"
+	PING_FIELD_SEQ              = "Ping.Seq"
+	PING_FIELD_TARGET_SYSTEM    = "Ping.TargetSystem"
+	PING_FIELD_TARGET_COMPONENT = "Ping.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *Ping) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Ping.TimeUsec":        m.TimeUsec,
-		"Ping.Seq":             m.Seq,
-		"Ping.TargetSystem":    m.TargetSystem,
-		"Ping.TargetComponent": m.TargetComponent,
+		PING_FIELD_TIME_USEC:        m.TimeUsec,
+		PING_FIELD_SEQ:              m.Seq,
+		PING_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		PING_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -3385,13 +3840,20 @@ func (m *ChangeOperatorControl) String() string {
 	)
 }
 
+const (
+	CHANGE_OPERATOR_CONTROL_FIELD_TARGET_SYSTEM   = "ChangeOperatorControl.TargetSystem"
+	CHANGE_OPERATOR_CONTROL_FIELD_CONTROL_REQUEST = "ChangeOperatorControl.ControlRequest"
+	CHANGE_OPERATOR_CONTROL_FIELD_VERSION         = "ChangeOperatorControl.Version"
+	CHANGE_OPERATOR_CONTROL_FIELD_PASSKEY         = "ChangeOperatorControl.Passkey"
+)
+
 // ToMap (generated function)
 func (m *ChangeOperatorControl) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ChangeOperatorControl.TargetSystem":   m.TargetSystem,
-		"ChangeOperatorControl.ControlRequest": m.ControlRequest,
-		"ChangeOperatorControl.Version":        m.Version,
-		"ChangeOperatorControl.Passkey":        m.Passkey,
+		CHANGE_OPERATOR_CONTROL_FIELD_TARGET_SYSTEM:   m.TargetSystem,
+		CHANGE_OPERATOR_CONTROL_FIELD_CONTROL_REQUEST: m.ControlRequest,
+		CHANGE_OPERATOR_CONTROL_FIELD_VERSION:         m.Version,
+		CHANGE_OPERATOR_CONTROL_FIELD_PASSKEY:         m.Passkey,
 	}
 }
 
@@ -3439,12 +3901,18 @@ func (m *ChangeOperatorControlAck) String() string {
 	)
 }
 
+const (
+	CHANGE_OPERATOR_CONTROL_ACK_FIELD_GCS_SYSTEM_ID   = "ChangeOperatorControlAck.GcsSystemID"
+	CHANGE_OPERATOR_CONTROL_ACK_FIELD_CONTROL_REQUEST = "ChangeOperatorControlAck.ControlRequest"
+	CHANGE_OPERATOR_CONTROL_ACK_FIELD_ACK             = "ChangeOperatorControlAck.Ack"
+)
+
 // ToMap (generated function)
 func (m *ChangeOperatorControlAck) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ChangeOperatorControlAck.GcsSystemID":    m.GcsSystemID,
-		"ChangeOperatorControlAck.ControlRequest": m.ControlRequest,
-		"ChangeOperatorControlAck.Ack":            m.Ack,
+		CHANGE_OPERATOR_CONTROL_ACK_FIELD_GCS_SYSTEM_ID:   m.GcsSystemID,
+		CHANGE_OPERATOR_CONTROL_ACK_FIELD_CONTROL_REQUEST: m.ControlRequest,
+		CHANGE_OPERATOR_CONTROL_ACK_FIELD_ACK:             m.Ack,
 	}
 }
 
@@ -3486,10 +3954,14 @@ func (m *AuthKey) String() string {
 	)
 }
 
+const (
+	AUTH_KEY_FIELD_KEY = "AuthKey.Key"
+)
+
 // ToMap (generated function)
 func (m *AuthKey) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AuthKey.Key": m.Key,
+		AUTH_KEY_FIELD_KEY: m.Key,
 	}
 }
 
@@ -3547,20 +4019,34 @@ func (m *LinkNodeStatus) String() string {
 	)
 }
 
+const (
+	LINK_NODE_STATUS_FIELD_TIMESTAMP         = "LinkNodeStatus.Timestamp"
+	LINK_NODE_STATUS_FIELD_TX_RATE           = "LinkNodeStatus.TxRate"
+	LINK_NODE_STATUS_FIELD_RX_RATE           = "LinkNodeStatus.RxRate"
+	LINK_NODE_STATUS_FIELD_MESSAGES_SENT     = "LinkNodeStatus.MessagesSent"
+	LINK_NODE_STATUS_FIELD_MESSAGES_RECEIVED = "LinkNodeStatus.MessagesReceived"
+	LINK_NODE_STATUS_FIELD_MESSAGES_LOST     = "LinkNodeStatus.MessagesLost"
+	LINK_NODE_STATUS_FIELD_RX_PARSE_ERR      = "LinkNodeStatus.RxParseErr"
+	LINK_NODE_STATUS_FIELD_TX_OVERFLOWS      = "LinkNodeStatus.TxOverflows"
+	LINK_NODE_STATUS_FIELD_RX_OVERFLOWS      = "LinkNodeStatus.RxOverflows"
+	LINK_NODE_STATUS_FIELD_TX_BUF            = "LinkNodeStatus.TxBuf"
+	LINK_NODE_STATUS_FIELD_RX_BUF            = "LinkNodeStatus.RxBuf"
+)
+
 // ToMap (generated function)
 func (m *LinkNodeStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LinkNodeStatus.Timestamp":        m.Timestamp,
-		"LinkNodeStatus.TxRate":           m.TxRate,
-		"LinkNodeStatus.RxRate":           m.RxRate,
-		"LinkNodeStatus.MessagesSent":     m.MessagesSent,
-		"LinkNodeStatus.MessagesReceived": m.MessagesReceived,
-		"LinkNodeStatus.MessagesLost":     m.MessagesLost,
-		"LinkNodeStatus.RxParseErr":       m.RxParseErr,
-		"LinkNodeStatus.TxOverflows":      m.TxOverflows,
-		"LinkNodeStatus.RxOverflows":      m.RxOverflows,
-		"LinkNodeStatus.TxBuf":            m.TxBuf,
-		"LinkNodeStatus.RxBuf":            m.RxBuf,
+		LINK_NODE_STATUS_FIELD_TIMESTAMP:         m.Timestamp,
+		LINK_NODE_STATUS_FIELD_TX_RATE:           m.TxRate,
+		LINK_NODE_STATUS_FIELD_RX_RATE:           m.RxRate,
+		LINK_NODE_STATUS_FIELD_MESSAGES_SENT:     m.MessagesSent,
+		LINK_NODE_STATUS_FIELD_MESSAGES_RECEIVED: m.MessagesReceived,
+		LINK_NODE_STATUS_FIELD_MESSAGES_LOST:     m.MessagesLost,
+		LINK_NODE_STATUS_FIELD_RX_PARSE_ERR:      m.RxParseErr,
+		LINK_NODE_STATUS_FIELD_TX_OVERFLOWS:      m.TxOverflows,
+		LINK_NODE_STATUS_FIELD_RX_OVERFLOWS:      m.RxOverflows,
+		LINK_NODE_STATUS_FIELD_TX_BUF:            m.TxBuf,
+		LINK_NODE_STATUS_FIELD_RX_BUF:            m.RxBuf,
 	}
 }
 
@@ -3622,12 +4108,18 @@ func (m *SetMode) String() string {
 	)
 }
 
+const (
+	SET_MODE_FIELD_CUSTOM_MODE   = "SetMode.CustomMode"
+	SET_MODE_FIELD_TARGET_SYSTEM = "SetMode.TargetSystem"
+	SET_MODE_FIELD_BASE_MODE     = "SetMode.BaseMode"
+)
+
 // ToMap (generated function)
 func (m *SetMode) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SetMode.CustomMode":   m.CustomMode,
-		"SetMode.TargetSystem": m.TargetSystem,
-		"SetMode.BaseMode":     m.BaseMode,
+		SET_MODE_FIELD_CUSTOM_MODE:   m.CustomMode,
+		SET_MODE_FIELD_TARGET_SYSTEM: m.TargetSystem,
+		SET_MODE_FIELD_BASE_MODE:     m.BaseMode,
 	}
 }
 
@@ -3679,15 +4171,24 @@ func (m *ParamAckTransaction) String() string {
 	)
 }
 
+const (
+	PARAM_ACK_TRANSACTION_FIELD_PARAM_VALUE      = "ParamAckTransaction.ParamValue"
+	PARAM_ACK_TRANSACTION_FIELD_TARGET_SYSTEM    = "ParamAckTransaction.TargetSystem"
+	PARAM_ACK_TRANSACTION_FIELD_TARGET_COMPONENT = "ParamAckTransaction.TargetComponent"
+	PARAM_ACK_TRANSACTION_FIELD_PARAM_ID         = "ParamAckTransaction.ParamID"
+	PARAM_ACK_TRANSACTION_FIELD_PARAM_TYPE       = "ParamAckTransaction.ParamType"
+	PARAM_ACK_TRANSACTION_FIELD_PARAM_RESULT     = "ParamAckTransaction.ParamResult"
+)
+
 // ToMap (generated function)
 func (m *ParamAckTransaction) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ParamAckTransaction.ParamValue":      m.ParamValue,
-		"ParamAckTransaction.TargetSystem":    m.TargetSystem,
-		"ParamAckTransaction.TargetComponent": m.TargetComponent,
-		"ParamAckTransaction.ParamID":         m.ParamID,
-		"ParamAckTransaction.ParamType":       m.ParamType,
-		"ParamAckTransaction.ParamResult":     m.ParamResult,
+		PARAM_ACK_TRANSACTION_FIELD_PARAM_VALUE:      m.ParamValue,
+		PARAM_ACK_TRANSACTION_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		PARAM_ACK_TRANSACTION_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		PARAM_ACK_TRANSACTION_FIELD_PARAM_ID:         m.ParamID,
+		PARAM_ACK_TRANSACTION_FIELD_PARAM_TYPE:       m.ParamType,
+		PARAM_ACK_TRANSACTION_FIELD_PARAM_RESULT:     m.ParamResult,
 	}
 }
 
@@ -3741,13 +4242,20 @@ func (m *ParamRequestRead) String() string {
 	)
 }
 
+const (
+	PARAM_REQUEST_READ_FIELD_PARAM_INDEX      = "ParamRequestRead.ParamIndex"
+	PARAM_REQUEST_READ_FIELD_TARGET_SYSTEM    = "ParamRequestRead.TargetSystem"
+	PARAM_REQUEST_READ_FIELD_TARGET_COMPONENT = "ParamRequestRead.TargetComponent"
+	PARAM_REQUEST_READ_FIELD_PARAM_ID         = "ParamRequestRead.ParamID"
+)
+
 // ToMap (generated function)
 func (m *ParamRequestRead) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ParamRequestRead.ParamIndex":      m.ParamIndex,
-		"ParamRequestRead.TargetSystem":    m.TargetSystem,
-		"ParamRequestRead.TargetComponent": m.TargetComponent,
-		"ParamRequestRead.ParamID":         m.ParamID,
+		PARAM_REQUEST_READ_FIELD_PARAM_INDEX:      m.ParamIndex,
+		PARAM_REQUEST_READ_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		PARAM_REQUEST_READ_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		PARAM_REQUEST_READ_FIELD_PARAM_ID:         m.ParamID,
 	}
 }
 
@@ -3793,11 +4301,16 @@ func (m *ParamRequestList) String() string {
 	)
 }
 
+const (
+	PARAM_REQUEST_LIST_FIELD_TARGET_SYSTEM    = "ParamRequestList.TargetSystem"
+	PARAM_REQUEST_LIST_FIELD_TARGET_COMPONENT = "ParamRequestList.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *ParamRequestList) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ParamRequestList.TargetSystem":    m.TargetSystem,
-		"ParamRequestList.TargetComponent": m.TargetComponent,
+		PARAM_REQUEST_LIST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		PARAM_REQUEST_LIST_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -3845,14 +4358,22 @@ func (m *ParamValue) String() string {
 	)
 }
 
+const (
+	PARAM_VALUE_FIELD_PARAM_VALUE = "ParamValue.ParamValue"
+	PARAM_VALUE_FIELD_PARAM_COUNT = "ParamValue.ParamCount"
+	PARAM_VALUE_FIELD_PARAM_INDEX = "ParamValue.ParamIndex"
+	PARAM_VALUE_FIELD_PARAM_ID    = "ParamValue.ParamID"
+	PARAM_VALUE_FIELD_PARAM_TYPE  = "ParamValue.ParamType"
+)
+
 // ToMap (generated function)
 func (m *ParamValue) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ParamValue.ParamValue": m.ParamValue,
-		"ParamValue.ParamCount": m.ParamCount,
-		"ParamValue.ParamIndex": m.ParamIndex,
-		"ParamValue.ParamID":    m.ParamID,
-		"ParamValue.ParamType":  m.ParamType,
+		PARAM_VALUE_FIELD_PARAM_VALUE: m.ParamValue,
+		PARAM_VALUE_FIELD_PARAM_COUNT: m.ParamCount,
+		PARAM_VALUE_FIELD_PARAM_INDEX: m.ParamIndex,
+		PARAM_VALUE_FIELD_PARAM_ID:    m.ParamID,
+		PARAM_VALUE_FIELD_PARAM_TYPE:  m.ParamType,
 	}
 }
 
@@ -3908,14 +4429,22 @@ func (m *ParamSet) String() string {
 	)
 }
 
+const (
+	PARAM_SET_FIELD_PARAM_VALUE      = "ParamSet.ParamValue"
+	PARAM_SET_FIELD_TARGET_SYSTEM    = "ParamSet.TargetSystem"
+	PARAM_SET_FIELD_TARGET_COMPONENT = "ParamSet.TargetComponent"
+	PARAM_SET_FIELD_PARAM_ID         = "ParamSet.ParamID"
+	PARAM_SET_FIELD_PARAM_TYPE       = "ParamSet.ParamType"
+)
+
 // ToMap (generated function)
 func (m *ParamSet) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ParamSet.ParamValue":      m.ParamValue,
-		"ParamSet.TargetSystem":    m.TargetSystem,
-		"ParamSet.TargetComponent": m.TargetComponent,
-		"ParamSet.ParamID":         m.ParamID,
-		"ParamSet.ParamType":       m.ParamType,
+		PARAM_SET_FIELD_PARAM_VALUE:      m.ParamValue,
+		PARAM_SET_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		PARAM_SET_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		PARAM_SET_FIELD_PARAM_ID:         m.ParamID,
+		PARAM_SET_FIELD_PARAM_TYPE:       m.ParamType,
 	}
 }
 
@@ -3980,19 +4509,32 @@ func (m *GpsRawInt) String() string {
 	)
 }
 
+const (
+	GPS_RAW_INT_FIELD_TIME_USEC          = "GpsRawInt.TimeUsec"
+	GPS_RAW_INT_FIELD_LAT                = "GpsRawInt.Lat"
+	GPS_RAW_INT_FIELD_LON                = "GpsRawInt.Lon"
+	GPS_RAW_INT_FIELD_ALT                = "GpsRawInt.Alt"
+	GPS_RAW_INT_FIELD_EPH                = "GpsRawInt.Eph"
+	GPS_RAW_INT_FIELD_EPV                = "GpsRawInt.Epv"
+	GPS_RAW_INT_FIELD_VEL                = "GpsRawInt.Vel"
+	GPS_RAW_INT_FIELD_COG                = "GpsRawInt.Cog"
+	GPS_RAW_INT_FIELD_FIX_TYPE           = "GpsRawInt.FixType"
+	GPS_RAW_INT_FIELD_SATELLITES_VISIBLE = "GpsRawInt.SatellitesVisible"
+)
+
 // ToMap (generated function)
 func (m *GpsRawInt) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GpsRawInt.TimeUsec":          m.TimeUsec,
-		"GpsRawInt.Lat":               m.Lat,
-		"GpsRawInt.Lon":               m.Lon,
-		"GpsRawInt.Alt":               m.Alt,
-		"GpsRawInt.Eph":               m.Eph,
-		"GpsRawInt.Epv":               m.Epv,
-		"GpsRawInt.Vel":               m.Vel,
-		"GpsRawInt.Cog":               m.Cog,
-		"GpsRawInt.FixType":           m.FixType,
-		"GpsRawInt.SatellitesVisible": m.SatellitesVisible,
+		GPS_RAW_INT_FIELD_TIME_USEC:          m.TimeUsec,
+		GPS_RAW_INT_FIELD_LAT:                m.Lat,
+		GPS_RAW_INT_FIELD_LON:                m.Lon,
+		GPS_RAW_INT_FIELD_ALT:                m.Alt,
+		GPS_RAW_INT_FIELD_EPH:                m.Eph,
+		GPS_RAW_INT_FIELD_EPV:                m.Epv,
+		GPS_RAW_INT_FIELD_VEL:                m.Vel,
+		GPS_RAW_INT_FIELD_COG:                m.Cog,
+		GPS_RAW_INT_FIELD_FIX_TYPE:           m.FixType,
+		GPS_RAW_INT_FIELD_SATELLITES_VISIBLE: m.SatellitesVisible,
 	}
 }
 
@@ -4058,15 +4600,24 @@ func (m *GpsStatus) String() string {
 	)
 }
 
+const (
+	GPS_STATUS_FIELD_SATELLITES_VISIBLE  = "GpsStatus.SatellitesVisible"
+	GPS_STATUS_FIELD_SATELLITE_PRN       = "GpsStatus.SatellitePrn"
+	GPS_STATUS_FIELD_SATELLITE_USED      = "GpsStatus.SatelliteUsed"
+	GPS_STATUS_FIELD_SATELLITE_ELEVATION = "GpsStatus.SatelliteElevation"
+	GPS_STATUS_FIELD_SATELLITE_AZIMUTH   = "GpsStatus.SatelliteAzimuth"
+	GPS_STATUS_FIELD_SATELLITE_SNR       = "GpsStatus.SatelliteSnr"
+)
+
 // ToMap (generated function)
 func (m *GpsStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GpsStatus.SatellitesVisible":  m.SatellitesVisible,
-		"GpsStatus.SatellitePrn":       m.SatellitePrn,
-		"GpsStatus.SatelliteUsed":      m.SatelliteUsed,
-		"GpsStatus.SatelliteElevation": m.SatelliteElevation,
-		"GpsStatus.SatelliteAzimuth":   m.SatelliteAzimuth,
-		"GpsStatus.SatelliteSnr":       m.SatelliteSnr,
+		GPS_STATUS_FIELD_SATELLITES_VISIBLE:  m.SatellitesVisible,
+		GPS_STATUS_FIELD_SATELLITE_PRN:       m.SatellitePrn,
+		GPS_STATUS_FIELD_SATELLITE_USED:      m.SatelliteUsed,
+		GPS_STATUS_FIELD_SATELLITE_ELEVATION: m.SatelliteElevation,
+		GPS_STATUS_FIELD_SATELLITE_AZIMUTH:   m.SatelliteAzimuth,
+		GPS_STATUS_FIELD_SATELLITE_SNR:       m.SatelliteSnr,
 	}
 }
 
@@ -4132,19 +4683,32 @@ func (m *ScaledImu) String() string {
 	)
 }
 
+const (
+	SCALED_IMU_FIELD_TIME_BOOT_MS = "ScaledImu.TimeBootMs"
+	SCALED_IMU_FIELD_XACC         = "ScaledImu.Xacc"
+	SCALED_IMU_FIELD_YACC         = "ScaledImu.Yacc"
+	SCALED_IMU_FIELD_ZACC         = "ScaledImu.Zacc"
+	SCALED_IMU_FIELD_XGYRO        = "ScaledImu.Xgyro"
+	SCALED_IMU_FIELD_YGYRO        = "ScaledImu.Ygyro"
+	SCALED_IMU_FIELD_ZGYRO        = "ScaledImu.Zgyro"
+	SCALED_IMU_FIELD_XMAG         = "ScaledImu.Xmag"
+	SCALED_IMU_FIELD_YMAG         = "ScaledImu.Ymag"
+	SCALED_IMU_FIELD_ZMAG         = "ScaledImu.Zmag"
+)
+
 // ToMap (generated function)
 func (m *ScaledImu) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ScaledImu.TimeBootMs": m.TimeBootMs,
-		"ScaledImu.Xacc":       m.Xacc,
-		"ScaledImu.Yacc":       m.Yacc,
-		"ScaledImu.Zacc":       m.Zacc,
-		"ScaledImu.Xgyro":      m.Xgyro,
-		"ScaledImu.Ygyro":      m.Ygyro,
-		"ScaledImu.Zgyro":      m.Zgyro,
-		"ScaledImu.Xmag":       m.Xmag,
-		"ScaledImu.Ymag":       m.Ymag,
-		"ScaledImu.Zmag":       m.Zmag,
+		SCALED_IMU_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		SCALED_IMU_FIELD_XACC:         m.Xacc,
+		SCALED_IMU_FIELD_YACC:         m.Yacc,
+		SCALED_IMU_FIELD_ZACC:         m.Zacc,
+		SCALED_IMU_FIELD_XGYRO:        m.Xgyro,
+		SCALED_IMU_FIELD_YGYRO:        m.Ygyro,
+		SCALED_IMU_FIELD_ZGYRO:        m.Zgyro,
+		SCALED_IMU_FIELD_XMAG:         m.Xmag,
+		SCALED_IMU_FIELD_YMAG:         m.Ymag,
+		SCALED_IMU_FIELD_ZMAG:         m.Zmag,
 	}
 }
 
@@ -4218,19 +4782,32 @@ func (m *RawImu) String() string {
 	)
 }
 
+const (
+	RAW_IMU_FIELD_TIME_USEC = "RawImu.TimeUsec"
+	RAW_IMU_FIELD_XACC      = "RawImu.Xacc"
+	RAW_IMU_FIELD_YACC      = "RawImu.Yacc"
+	RAW_IMU_FIELD_ZACC      = "RawImu.Zacc"
+	RAW_IMU_FIELD_XGYRO     = "RawImu.Xgyro"
+	RAW_IMU_FIELD_YGYRO     = "RawImu.Ygyro"
+	RAW_IMU_FIELD_ZGYRO     = "RawImu.Zgyro"
+	RAW_IMU_FIELD_XMAG      = "RawImu.Xmag"
+	RAW_IMU_FIELD_YMAG      = "RawImu.Ymag"
+	RAW_IMU_FIELD_ZMAG      = "RawImu.Zmag"
+)
+
 // ToMap (generated function)
 func (m *RawImu) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RawImu.TimeUsec": m.TimeUsec,
-		"RawImu.Xacc":     m.Xacc,
-		"RawImu.Yacc":     m.Yacc,
-		"RawImu.Zacc":     m.Zacc,
-		"RawImu.Xgyro":    m.Xgyro,
-		"RawImu.Ygyro":    m.Ygyro,
-		"RawImu.Zgyro":    m.Zgyro,
-		"RawImu.Xmag":     m.Xmag,
-		"RawImu.Ymag":     m.Ymag,
-		"RawImu.Zmag":     m.Zmag,
+		RAW_IMU_FIELD_TIME_USEC: m.TimeUsec,
+		RAW_IMU_FIELD_XACC:      m.Xacc,
+		RAW_IMU_FIELD_YACC:      m.Yacc,
+		RAW_IMU_FIELD_ZACC:      m.Zacc,
+		RAW_IMU_FIELD_XGYRO:     m.Xgyro,
+		RAW_IMU_FIELD_YGYRO:     m.Ygyro,
+		RAW_IMU_FIELD_ZGYRO:     m.Zgyro,
+		RAW_IMU_FIELD_XMAG:      m.Xmag,
+		RAW_IMU_FIELD_YMAG:      m.Ymag,
+		RAW_IMU_FIELD_ZMAG:      m.Zmag,
 	}
 }
 
@@ -4294,14 +4871,22 @@ func (m *RawPressure) String() string {
 	)
 }
 
+const (
+	RAW_PRESSURE_FIELD_TIME_USEC   = "RawPressure.TimeUsec"
+	RAW_PRESSURE_FIELD_PRESS_ABS   = "RawPressure.PressAbs"
+	RAW_PRESSURE_FIELD_PRESS_DIFF1 = "RawPressure.PressDiff1"
+	RAW_PRESSURE_FIELD_PRESS_DIFF2 = "RawPressure.PressDiff2"
+	RAW_PRESSURE_FIELD_TEMPERATURE = "RawPressure.Temperature"
+)
+
 // ToMap (generated function)
 func (m *RawPressure) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RawPressure.TimeUsec":    m.TimeUsec,
-		"RawPressure.PressAbs":    m.PressAbs,
-		"RawPressure.PressDiff1":  m.PressDiff1,
-		"RawPressure.PressDiff2":  m.PressDiff2,
-		"RawPressure.Temperature": m.Temperature,
+		RAW_PRESSURE_FIELD_TIME_USEC:   m.TimeUsec,
+		RAW_PRESSURE_FIELD_PRESS_ABS:   m.PressAbs,
+		RAW_PRESSURE_FIELD_PRESS_DIFF1: m.PressDiff1,
+		RAW_PRESSURE_FIELD_PRESS_DIFF2: m.PressDiff2,
+		RAW_PRESSURE_FIELD_TEMPERATURE: m.Temperature,
 	}
 }
 
@@ -4353,13 +4938,20 @@ func (m *ScaledPressure) String() string {
 	)
 }
 
+const (
+	SCALED_PRESSURE_FIELD_TIME_BOOT_MS = "ScaledPressure.TimeBootMs"
+	SCALED_PRESSURE_FIELD_PRESS_ABS    = "ScaledPressure.PressAbs"
+	SCALED_PRESSURE_FIELD_PRESS_DIFF   = "ScaledPressure.PressDiff"
+	SCALED_PRESSURE_FIELD_TEMPERATURE  = "ScaledPressure.Temperature"
+)
+
 // ToMap (generated function)
 func (m *ScaledPressure) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ScaledPressure.TimeBootMs":  m.TimeBootMs,
-		"ScaledPressure.PressAbs":    m.PressAbs,
-		"ScaledPressure.PressDiff":   m.PressDiff,
-		"ScaledPressure.Temperature": m.Temperature,
+		SCALED_PRESSURE_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		SCALED_PRESSURE_FIELD_PRESS_ABS:    m.PressAbs,
+		SCALED_PRESSURE_FIELD_PRESS_DIFF:   m.PressDiff,
+		SCALED_PRESSURE_FIELD_TEMPERATURE:  m.Temperature,
 	}
 }
 
@@ -4415,16 +5007,26 @@ func (m *Attitude) String() string {
 	)
 }
 
+const (
+	ATTITUDE_FIELD_TIME_BOOT_MS = "Attitude.TimeBootMs"
+	ATTITUDE_FIELD_ROLL         = "Attitude.Roll"
+	ATTITUDE_FIELD_PITCH        = "Attitude.Pitch"
+	ATTITUDE_FIELD_YAW          = "Attitude.Yaw"
+	ATTITUDE_FIELD_ROLLSPEED    = "Attitude.Rollspeed"
+	ATTITUDE_FIELD_PITCHSPEED   = "Attitude.Pitchspeed"
+	ATTITUDE_FIELD_YAWSPEED     = "Attitude.Yawspeed"
+)
+
 // ToMap (generated function)
 func (m *Attitude) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Attitude.TimeBootMs": m.TimeBootMs,
-		"Attitude.Roll":       m.Roll,
-		"Attitude.Pitch":      m.Pitch,
-		"Attitude.Yaw":        m.Yaw,
-		"Attitude.Rollspeed":  m.Rollspeed,
-		"Attitude.Pitchspeed": m.Pitchspeed,
-		"Attitude.Yawspeed":   m.Yawspeed,
+		ATTITUDE_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		ATTITUDE_FIELD_ROLL:         m.Roll,
+		ATTITUDE_FIELD_PITCH:        m.Pitch,
+		ATTITUDE_FIELD_YAW:          m.Yaw,
+		ATTITUDE_FIELD_ROLLSPEED:    m.Rollspeed,
+		ATTITUDE_FIELD_PITCHSPEED:   m.Pitchspeed,
+		ATTITUDE_FIELD_YAWSPEED:     m.Yawspeed,
 	}
 }
 
@@ -4488,17 +5090,28 @@ func (m *AttitudeQuaternion) String() string {
 	)
 }
 
+const (
+	ATTITUDE_QUATERNION_FIELD_TIME_BOOT_MS = "AttitudeQuaternion.TimeBootMs"
+	ATTITUDE_QUATERNION_FIELD_Q1           = "AttitudeQuaternion.Q1"
+	ATTITUDE_QUATERNION_FIELD_Q2           = "AttitudeQuaternion.Q2"
+	ATTITUDE_QUATERNION_FIELD_Q3           = "AttitudeQuaternion.Q3"
+	ATTITUDE_QUATERNION_FIELD_Q4           = "AttitudeQuaternion.Q4"
+	ATTITUDE_QUATERNION_FIELD_ROLLSPEED    = "AttitudeQuaternion.Rollspeed"
+	ATTITUDE_QUATERNION_FIELD_PITCHSPEED   = "AttitudeQuaternion.Pitchspeed"
+	ATTITUDE_QUATERNION_FIELD_YAWSPEED     = "AttitudeQuaternion.Yawspeed"
+)
+
 // ToMap (generated function)
 func (m *AttitudeQuaternion) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AttitudeQuaternion.TimeBootMs": m.TimeBootMs,
-		"AttitudeQuaternion.Q1":         m.Q1,
-		"AttitudeQuaternion.Q2":         m.Q2,
-		"AttitudeQuaternion.Q3":         m.Q3,
-		"AttitudeQuaternion.Q4":         m.Q4,
-		"AttitudeQuaternion.Rollspeed":  m.Rollspeed,
-		"AttitudeQuaternion.Pitchspeed": m.Pitchspeed,
-		"AttitudeQuaternion.Yawspeed":   m.Yawspeed,
+		ATTITUDE_QUATERNION_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		ATTITUDE_QUATERNION_FIELD_Q1:           m.Q1,
+		ATTITUDE_QUATERNION_FIELD_Q2:           m.Q2,
+		ATTITUDE_QUATERNION_FIELD_Q3:           m.Q3,
+		ATTITUDE_QUATERNION_FIELD_Q4:           m.Q4,
+		ATTITUDE_QUATERNION_FIELD_ROLLSPEED:    m.Rollspeed,
+		ATTITUDE_QUATERNION_FIELD_PITCHSPEED:   m.Pitchspeed,
+		ATTITUDE_QUATERNION_FIELD_YAWSPEED:     m.Yawspeed,
 	}
 }
 
@@ -4562,16 +5175,26 @@ func (m *LocalPositionNed) String() string {
 	)
 }
 
+const (
+	LOCAL_POSITION_NED_FIELD_TIME_BOOT_MS = "LocalPositionNed.TimeBootMs"
+	LOCAL_POSITION_NED_FIELD_X            = "LocalPositionNed.X"
+	LOCAL_POSITION_NED_FIELD_Y            = "LocalPositionNed.Y"
+	LOCAL_POSITION_NED_FIELD_Z            = "LocalPositionNed.Z"
+	LOCAL_POSITION_NED_FIELD_VX           = "LocalPositionNed.Vx"
+	LOCAL_POSITION_NED_FIELD_VY           = "LocalPositionNed.Vy"
+	LOCAL_POSITION_NED_FIELD_VZ           = "LocalPositionNed.Vz"
+)
+
 // ToMap (generated function)
 func (m *LocalPositionNed) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LocalPositionNed.TimeBootMs": m.TimeBootMs,
-		"LocalPositionNed.X":          m.X,
-		"LocalPositionNed.Y":          m.Y,
-		"LocalPositionNed.Z":          m.Z,
-		"LocalPositionNed.Vx":         m.Vx,
-		"LocalPositionNed.Vy":         m.Vy,
-		"LocalPositionNed.Vz":         m.Vz,
+		LOCAL_POSITION_NED_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		LOCAL_POSITION_NED_FIELD_X:            m.X,
+		LOCAL_POSITION_NED_FIELD_Y:            m.Y,
+		LOCAL_POSITION_NED_FIELD_Z:            m.Z,
+		LOCAL_POSITION_NED_FIELD_VX:           m.Vx,
+		LOCAL_POSITION_NED_FIELD_VY:           m.Vy,
+		LOCAL_POSITION_NED_FIELD_VZ:           m.Vz,
 	}
 }
 
@@ -4638,18 +5261,30 @@ func (m *GlobalPositionInt) String() string {
 	)
 }
 
+const (
+	GLOBAL_POSITION_INT_FIELD_TIME_BOOT_MS = "GlobalPositionInt.TimeBootMs"
+	GLOBAL_POSITION_INT_FIELD_LAT          = "GlobalPositionInt.Lat"
+	GLOBAL_POSITION_INT_FIELD_LON          = "GlobalPositionInt.Lon"
+	GLOBAL_POSITION_INT_FIELD_ALT          = "GlobalPositionInt.Alt"
+	GLOBAL_POSITION_INT_FIELD_RELATIVE_ALT = "GlobalPositionInt.RelativeAlt"
+	GLOBAL_POSITION_INT_FIELD_VX           = "GlobalPositionInt.Vx"
+	GLOBAL_POSITION_INT_FIELD_VY           = "GlobalPositionInt.Vy"
+	GLOBAL_POSITION_INT_FIELD_VZ           = "GlobalPositionInt.Vz"
+	GLOBAL_POSITION_INT_FIELD_HDG          = "GlobalPositionInt.Hdg"
+)
+
 // ToMap (generated function)
 func (m *GlobalPositionInt) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GlobalPositionInt.TimeBootMs":  m.TimeBootMs,
-		"GlobalPositionInt.Lat":         m.Lat,
-		"GlobalPositionInt.Lon":         m.Lon,
-		"GlobalPositionInt.Alt":         m.Alt,
-		"GlobalPositionInt.RelativeAlt": m.RelativeAlt,
-		"GlobalPositionInt.Vx":          m.Vx,
-		"GlobalPositionInt.Vy":          m.Vy,
-		"GlobalPositionInt.Vz":          m.Vz,
-		"GlobalPositionInt.Hdg":         m.Hdg,
+		GLOBAL_POSITION_INT_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		GLOBAL_POSITION_INT_FIELD_LAT:          m.Lat,
+		GLOBAL_POSITION_INT_FIELD_LON:          m.Lon,
+		GLOBAL_POSITION_INT_FIELD_ALT:          m.Alt,
+		GLOBAL_POSITION_INT_FIELD_RELATIVE_ALT: m.RelativeAlt,
+		GLOBAL_POSITION_INT_FIELD_VX:           m.Vx,
+		GLOBAL_POSITION_INT_FIELD_VY:           m.Vy,
+		GLOBAL_POSITION_INT_FIELD_VZ:           m.Vz,
+		GLOBAL_POSITION_INT_FIELD_HDG:          m.Hdg,
 	}
 }
 
@@ -4723,20 +5358,34 @@ func (m *RcChannelsScaled) String() string {
 	)
 }
 
+const (
+	RC_CHANNELS_SCALED_FIELD_TIME_BOOT_MS = "RcChannelsScaled.TimeBootMs"
+	RC_CHANNELS_SCALED_FIELD_CHAN1_SCALED = "RcChannelsScaled.Chan1Scaled"
+	RC_CHANNELS_SCALED_FIELD_CHAN2_SCALED = "RcChannelsScaled.Chan2Scaled"
+	RC_CHANNELS_SCALED_FIELD_CHAN3_SCALED = "RcChannelsScaled.Chan3Scaled"
+	RC_CHANNELS_SCALED_FIELD_CHAN4_SCALED = "RcChannelsScaled.Chan4Scaled"
+	RC_CHANNELS_SCALED_FIELD_CHAN5_SCALED = "RcChannelsScaled.Chan5Scaled"
+	RC_CHANNELS_SCALED_FIELD_CHAN6_SCALED = "RcChannelsScaled.Chan6Scaled"
+	RC_CHANNELS_SCALED_FIELD_CHAN7_SCALED = "RcChannelsScaled.Chan7Scaled"
+	RC_CHANNELS_SCALED_FIELD_CHAN8_SCALED = "RcChannelsScaled.Chan8Scaled"
+	RC_CHANNELS_SCALED_FIELD_PORT         = "RcChannelsScaled.Port"
+	RC_CHANNELS_SCALED_FIELD_RSSI         = "RcChannelsScaled.Rssi"
+)
+
 // ToMap (generated function)
 func (m *RcChannelsScaled) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RcChannelsScaled.TimeBootMs":  m.TimeBootMs,
-		"RcChannelsScaled.Chan1Scaled": m.Chan1Scaled,
-		"RcChannelsScaled.Chan2Scaled": m.Chan2Scaled,
-		"RcChannelsScaled.Chan3Scaled": m.Chan3Scaled,
-		"RcChannelsScaled.Chan4Scaled": m.Chan4Scaled,
-		"RcChannelsScaled.Chan5Scaled": m.Chan5Scaled,
-		"RcChannelsScaled.Chan6Scaled": m.Chan6Scaled,
-		"RcChannelsScaled.Chan7Scaled": m.Chan7Scaled,
-		"RcChannelsScaled.Chan8Scaled": m.Chan8Scaled,
-		"RcChannelsScaled.Port":        m.Port,
-		"RcChannelsScaled.Rssi":        m.Rssi,
+		RC_CHANNELS_SCALED_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		RC_CHANNELS_SCALED_FIELD_CHAN1_SCALED: m.Chan1Scaled,
+		RC_CHANNELS_SCALED_FIELD_CHAN2_SCALED: m.Chan2Scaled,
+		RC_CHANNELS_SCALED_FIELD_CHAN3_SCALED: m.Chan3Scaled,
+		RC_CHANNELS_SCALED_FIELD_CHAN4_SCALED: m.Chan4Scaled,
+		RC_CHANNELS_SCALED_FIELD_CHAN5_SCALED: m.Chan5Scaled,
+		RC_CHANNELS_SCALED_FIELD_CHAN6_SCALED: m.Chan6Scaled,
+		RC_CHANNELS_SCALED_FIELD_CHAN7_SCALED: m.Chan7Scaled,
+		RC_CHANNELS_SCALED_FIELD_CHAN8_SCALED: m.Chan8Scaled,
+		RC_CHANNELS_SCALED_FIELD_PORT:         m.Port,
+		RC_CHANNELS_SCALED_FIELD_RSSI:         m.Rssi,
 	}
 }
 
@@ -4814,20 +5463,34 @@ func (m *RcChannelsRaw) String() string {
 	)
 }
 
+const (
+	RC_CHANNELS_RAW_FIELD_TIME_BOOT_MS = "RcChannelsRaw.TimeBootMs"
+	RC_CHANNELS_RAW_FIELD_CHAN1_RAW    = "RcChannelsRaw.Chan1Raw"
+	RC_CHANNELS_RAW_FIELD_CHAN2_RAW    = "RcChannelsRaw.Chan2Raw"
+	RC_CHANNELS_RAW_FIELD_CHAN3_RAW    = "RcChannelsRaw.Chan3Raw"
+	RC_CHANNELS_RAW_FIELD_CHAN4_RAW    = "RcChannelsRaw.Chan4Raw"
+	RC_CHANNELS_RAW_FIELD_CHAN5_RAW    = "RcChannelsRaw.Chan5Raw"
+	RC_CHANNELS_RAW_FIELD_CHAN6_RAW    = "RcChannelsRaw.Chan6Raw"
+	RC_CHANNELS_RAW_FIELD_CHAN7_RAW    = "RcChannelsRaw.Chan7Raw"
+	RC_CHANNELS_RAW_FIELD_CHAN8_RAW    = "RcChannelsRaw.Chan8Raw"
+	RC_CHANNELS_RAW_FIELD_PORT         = "RcChannelsRaw.Port"
+	RC_CHANNELS_RAW_FIELD_RSSI         = "RcChannelsRaw.Rssi"
+)
+
 // ToMap (generated function)
 func (m *RcChannelsRaw) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RcChannelsRaw.TimeBootMs": m.TimeBootMs,
-		"RcChannelsRaw.Chan1Raw":   m.Chan1Raw,
-		"RcChannelsRaw.Chan2Raw":   m.Chan2Raw,
-		"RcChannelsRaw.Chan3Raw":   m.Chan3Raw,
-		"RcChannelsRaw.Chan4Raw":   m.Chan4Raw,
-		"RcChannelsRaw.Chan5Raw":   m.Chan5Raw,
-		"RcChannelsRaw.Chan6Raw":   m.Chan6Raw,
-		"RcChannelsRaw.Chan7Raw":   m.Chan7Raw,
-		"RcChannelsRaw.Chan8Raw":   m.Chan8Raw,
-		"RcChannelsRaw.Port":       m.Port,
-		"RcChannelsRaw.Rssi":       m.Rssi,
+		RC_CHANNELS_RAW_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		RC_CHANNELS_RAW_FIELD_CHAN1_RAW:    m.Chan1Raw,
+		RC_CHANNELS_RAW_FIELD_CHAN2_RAW:    m.Chan2Raw,
+		RC_CHANNELS_RAW_FIELD_CHAN3_RAW:    m.Chan3Raw,
+		RC_CHANNELS_RAW_FIELD_CHAN4_RAW:    m.Chan4Raw,
+		RC_CHANNELS_RAW_FIELD_CHAN5_RAW:    m.Chan5Raw,
+		RC_CHANNELS_RAW_FIELD_CHAN6_RAW:    m.Chan6Raw,
+		RC_CHANNELS_RAW_FIELD_CHAN7_RAW:    m.Chan7Raw,
+		RC_CHANNELS_RAW_FIELD_CHAN8_RAW:    m.Chan8Raw,
+		RC_CHANNELS_RAW_FIELD_PORT:         m.Port,
+		RC_CHANNELS_RAW_FIELD_RSSI:         m.Rssi,
 	}
 }
 
@@ -4903,19 +5566,32 @@ func (m *ServoOutputRaw) String() string {
 	)
 }
 
+const (
+	SERVO_OUTPUT_RAW_FIELD_TIME_USEC  = "ServoOutputRaw.TimeUsec"
+	SERVO_OUTPUT_RAW_FIELD_SERVO1_RAW = "ServoOutputRaw.Servo1Raw"
+	SERVO_OUTPUT_RAW_FIELD_SERVO2_RAW = "ServoOutputRaw.Servo2Raw"
+	SERVO_OUTPUT_RAW_FIELD_SERVO3_RAW = "ServoOutputRaw.Servo3Raw"
+	SERVO_OUTPUT_RAW_FIELD_SERVO4_RAW = "ServoOutputRaw.Servo4Raw"
+	SERVO_OUTPUT_RAW_FIELD_SERVO5_RAW = "ServoOutputRaw.Servo5Raw"
+	SERVO_OUTPUT_RAW_FIELD_SERVO6_RAW = "ServoOutputRaw.Servo6Raw"
+	SERVO_OUTPUT_RAW_FIELD_SERVO7_RAW = "ServoOutputRaw.Servo7Raw"
+	SERVO_OUTPUT_RAW_FIELD_SERVO8_RAW = "ServoOutputRaw.Servo8Raw"
+	SERVO_OUTPUT_RAW_FIELD_PORT       = "ServoOutputRaw.Port"
+)
+
 // ToMap (generated function)
 func (m *ServoOutputRaw) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ServoOutputRaw.TimeUsec":  m.TimeUsec,
-		"ServoOutputRaw.Servo1Raw": m.Servo1Raw,
-		"ServoOutputRaw.Servo2Raw": m.Servo2Raw,
-		"ServoOutputRaw.Servo3Raw": m.Servo3Raw,
-		"ServoOutputRaw.Servo4Raw": m.Servo4Raw,
-		"ServoOutputRaw.Servo5Raw": m.Servo5Raw,
-		"ServoOutputRaw.Servo6Raw": m.Servo6Raw,
-		"ServoOutputRaw.Servo7Raw": m.Servo7Raw,
-		"ServoOutputRaw.Servo8Raw": m.Servo8Raw,
-		"ServoOutputRaw.Port":      m.Port,
+		SERVO_OUTPUT_RAW_FIELD_TIME_USEC:  m.TimeUsec,
+		SERVO_OUTPUT_RAW_FIELD_SERVO1_RAW: m.Servo1Raw,
+		SERVO_OUTPUT_RAW_FIELD_SERVO2_RAW: m.Servo2Raw,
+		SERVO_OUTPUT_RAW_FIELD_SERVO3_RAW: m.Servo3Raw,
+		SERVO_OUTPUT_RAW_FIELD_SERVO4_RAW: m.Servo4Raw,
+		SERVO_OUTPUT_RAW_FIELD_SERVO5_RAW: m.Servo5Raw,
+		SERVO_OUTPUT_RAW_FIELD_SERVO6_RAW: m.Servo6Raw,
+		SERVO_OUTPUT_RAW_FIELD_SERVO7_RAW: m.Servo7Raw,
+		SERVO_OUTPUT_RAW_FIELD_SERVO8_RAW: m.Servo8Raw,
+		SERVO_OUTPUT_RAW_FIELD_PORT:       m.Port,
 	}
 }
 
@@ -4977,13 +5653,20 @@ func (m *MissionRequestPartialList) String() string {
 	)
 }
 
+const (
+	MISSION_REQUEST_PARTIAL_LIST_FIELD_START_INDEX      = "MissionRequestPartialList.StartIndex"
+	MISSION_REQUEST_PARTIAL_LIST_FIELD_END_INDEX        = "MissionRequestPartialList.EndIndex"
+	MISSION_REQUEST_PARTIAL_LIST_FIELD_TARGET_SYSTEM    = "MissionRequestPartialList.TargetSystem"
+	MISSION_REQUEST_PARTIAL_LIST_FIELD_TARGET_COMPONENT = "MissionRequestPartialList.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MissionRequestPartialList) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionRequestPartialList.StartIndex":      m.StartIndex,
-		"MissionRequestPartialList.EndIndex":        m.EndIndex,
-		"MissionRequestPartialList.TargetSystem":    m.TargetSystem,
-		"MissionRequestPartialList.TargetComponent": m.TargetComponent,
+		MISSION_REQUEST_PARTIAL_LIST_FIELD_START_INDEX:      m.StartIndex,
+		MISSION_REQUEST_PARTIAL_LIST_FIELD_END_INDEX:        m.EndIndex,
+		MISSION_REQUEST_PARTIAL_LIST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_REQUEST_PARTIAL_LIST_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -5033,13 +5716,20 @@ func (m *MissionWritePartialList) String() string {
 	)
 }
 
+const (
+	MISSION_WRITE_PARTIAL_LIST_FIELD_START_INDEX      = "MissionWritePartialList.StartIndex"
+	MISSION_WRITE_PARTIAL_LIST_FIELD_END_INDEX        = "MissionWritePartialList.EndIndex"
+	MISSION_WRITE_PARTIAL_LIST_FIELD_TARGET_SYSTEM    = "MissionWritePartialList.TargetSystem"
+	MISSION_WRITE_PARTIAL_LIST_FIELD_TARGET_COMPONENT = "MissionWritePartialList.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MissionWritePartialList) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionWritePartialList.StartIndex":      m.StartIndex,
-		"MissionWritePartialList.EndIndex":        m.EndIndex,
-		"MissionWritePartialList.TargetSystem":    m.TargetSystem,
-		"MissionWritePartialList.TargetComponent": m.TargetComponent,
+		MISSION_WRITE_PARTIAL_LIST_FIELD_START_INDEX:      m.StartIndex,
+		MISSION_WRITE_PARTIAL_LIST_FIELD_END_INDEX:        m.EndIndex,
+		MISSION_WRITE_PARTIAL_LIST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_WRITE_PARTIAL_LIST_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -5110,23 +5800,40 @@ func (m *MissionItem) String() string {
 	)
 }
 
+const (
+	MISSION_ITEM_FIELD_PARAM1           = "MissionItem.Param1"
+	MISSION_ITEM_FIELD_PARAM2           = "MissionItem.Param2"
+	MISSION_ITEM_FIELD_PARAM3           = "MissionItem.Param3"
+	MISSION_ITEM_FIELD_PARAM4           = "MissionItem.Param4"
+	MISSION_ITEM_FIELD_X                = "MissionItem.X"
+	MISSION_ITEM_FIELD_Y                = "MissionItem.Y"
+	MISSION_ITEM_FIELD_Z                = "MissionItem.Z"
+	MISSION_ITEM_FIELD_SEQ              = "MissionItem.Seq"
+	MISSION_ITEM_FIELD_COMMAND          = "MissionItem.Command"
+	MISSION_ITEM_FIELD_TARGET_SYSTEM    = "MissionItem.TargetSystem"
+	MISSION_ITEM_FIELD_TARGET_COMPONENT = "MissionItem.TargetComponent"
+	MISSION_ITEM_FIELD_FRAME            = "MissionItem.Frame"
+	MISSION_ITEM_FIELD_CURRENT          = "MissionItem.Current"
+	MISSION_ITEM_FIELD_AUTOCONTINUE     = "MissionItem.Autocontinue"
+)
+
 // ToMap (generated function)
 func (m *MissionItem) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionItem.Param1":          m.Param1,
-		"MissionItem.Param2":          m.Param2,
-		"MissionItem.Param3":          m.Param3,
-		"MissionItem.Param4":          m.Param4,
-		"MissionItem.X":               m.X,
-		"MissionItem.Y":               m.Y,
-		"MissionItem.Z":               m.Z,
-		"MissionItem.Seq":             m.Seq,
-		"MissionItem.Command":         m.Command,
-		"MissionItem.TargetSystem":    m.TargetSystem,
-		"MissionItem.TargetComponent": m.TargetComponent,
-		"MissionItem.Frame":           m.Frame,
-		"MissionItem.Current":         m.Current,
-		"MissionItem.Autocontinue":    m.Autocontinue,
+		MISSION_ITEM_FIELD_PARAM1:           m.Param1,
+		MISSION_ITEM_FIELD_PARAM2:           m.Param2,
+		MISSION_ITEM_FIELD_PARAM3:           m.Param3,
+		MISSION_ITEM_FIELD_PARAM4:           m.Param4,
+		MISSION_ITEM_FIELD_X:                m.X,
+		MISSION_ITEM_FIELD_Y:                m.Y,
+		MISSION_ITEM_FIELD_Z:                m.Z,
+		MISSION_ITEM_FIELD_SEQ:              m.Seq,
+		MISSION_ITEM_FIELD_COMMAND:          m.Command,
+		MISSION_ITEM_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_ITEM_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		MISSION_ITEM_FIELD_FRAME:            m.Frame,
+		MISSION_ITEM_FIELD_CURRENT:          m.Current,
+		MISSION_ITEM_FIELD_AUTOCONTINUE:     m.Autocontinue,
 	}
 }
 
@@ -5194,12 +5901,18 @@ func (m *MissionRequest) String() string {
 	)
 }
 
+const (
+	MISSION_REQUEST_FIELD_SEQ              = "MissionRequest.Seq"
+	MISSION_REQUEST_FIELD_TARGET_SYSTEM    = "MissionRequest.TargetSystem"
+	MISSION_REQUEST_FIELD_TARGET_COMPONENT = "MissionRequest.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MissionRequest) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionRequest.Seq":             m.Seq,
-		"MissionRequest.TargetSystem":    m.TargetSystem,
-		"MissionRequest.TargetComponent": m.TargetComponent,
+		MISSION_REQUEST_FIELD_SEQ:              m.Seq,
+		MISSION_REQUEST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_REQUEST_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -5245,12 +5958,18 @@ func (m *MissionSetCurrent) String() string {
 	)
 }
 
+const (
+	MISSION_SET_CURRENT_FIELD_SEQ              = "MissionSetCurrent.Seq"
+	MISSION_SET_CURRENT_FIELD_TARGET_SYSTEM    = "MissionSetCurrent.TargetSystem"
+	MISSION_SET_CURRENT_FIELD_TARGET_COMPONENT = "MissionSetCurrent.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MissionSetCurrent) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionSetCurrent.Seq":             m.Seq,
-		"MissionSetCurrent.TargetSystem":    m.TargetSystem,
-		"MissionSetCurrent.TargetComponent": m.TargetComponent,
+		MISSION_SET_CURRENT_FIELD_SEQ:              m.Seq,
+		MISSION_SET_CURRENT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_SET_CURRENT_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -5292,10 +6011,14 @@ func (m *MissionCurrent) String() string {
 	)
 }
 
+const (
+	MISSION_CURRENT_FIELD_SEQ = "MissionCurrent.Seq"
+)
+
 // ToMap (generated function)
 func (m *MissionCurrent) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionCurrent.Seq": m.Seq,
+		MISSION_CURRENT_FIELD_SEQ: m.Seq,
 	}
 }
 
@@ -5335,11 +6058,16 @@ func (m *MissionRequestList) String() string {
 	)
 }
 
+const (
+	MISSION_REQUEST_LIST_FIELD_TARGET_SYSTEM    = "MissionRequestList.TargetSystem"
+	MISSION_REQUEST_LIST_FIELD_TARGET_COMPONENT = "MissionRequestList.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MissionRequestList) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionRequestList.TargetSystem":    m.TargetSystem,
-		"MissionRequestList.TargetComponent": m.TargetComponent,
+		MISSION_REQUEST_LIST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_REQUEST_LIST_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -5383,12 +6111,18 @@ func (m *MissionCount) String() string {
 	)
 }
 
+const (
+	MISSION_COUNT_FIELD_COUNT            = "MissionCount.Count"
+	MISSION_COUNT_FIELD_TARGET_SYSTEM    = "MissionCount.TargetSystem"
+	MISSION_COUNT_FIELD_TARGET_COMPONENT = "MissionCount.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MissionCount) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionCount.Count":           m.Count,
-		"MissionCount.TargetSystem":    m.TargetSystem,
-		"MissionCount.TargetComponent": m.TargetComponent,
+		MISSION_COUNT_FIELD_COUNT:            m.Count,
+		MISSION_COUNT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_COUNT_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -5432,11 +6166,16 @@ func (m *MissionClearAll) String() string {
 	)
 }
 
+const (
+	MISSION_CLEAR_ALL_FIELD_TARGET_SYSTEM    = "MissionClearAll.TargetSystem"
+	MISSION_CLEAR_ALL_FIELD_TARGET_COMPONENT = "MissionClearAll.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MissionClearAll) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionClearAll.TargetSystem":    m.TargetSystem,
-		"MissionClearAll.TargetComponent": m.TargetComponent,
+		MISSION_CLEAR_ALL_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_CLEAR_ALL_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -5476,10 +6215,14 @@ func (m *MissionItemReached) String() string {
 	)
 }
 
+const (
+	MISSION_ITEM_REACHED_FIELD_SEQ = "MissionItemReached.Seq"
+)
+
 // ToMap (generated function)
 func (m *MissionItemReached) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionItemReached.Seq": m.Seq,
+		MISSION_ITEM_REACHED_FIELD_SEQ: m.Seq,
 	}
 }
 
@@ -5521,12 +6264,18 @@ func (m *MissionAck) String() string {
 	)
 }
 
+const (
+	MISSION_ACK_FIELD_TARGET_SYSTEM    = "MissionAck.TargetSystem"
+	MISSION_ACK_FIELD_TARGET_COMPONENT = "MissionAck.TargetComponent"
+	MISSION_ACK_FIELD_TYPE             = "MissionAck.Type"
+)
+
 // ToMap (generated function)
 func (m *MissionAck) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionAck.TargetSystem":    m.TargetSystem,
-		"MissionAck.TargetComponent": m.TargetComponent,
-		"MissionAck.Type":            m.Type,
+		MISSION_ACK_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_ACK_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		MISSION_ACK_FIELD_TYPE:             m.Type,
 	}
 }
 
@@ -5574,13 +6323,20 @@ func (m *SetGpsGlobalOrigin) String() string {
 	)
 }
 
+const (
+	SET_GPS_GLOBAL_ORIGIN_FIELD_LATITUDE      = "SetGpsGlobalOrigin.Latitude"
+	SET_GPS_GLOBAL_ORIGIN_FIELD_LONGITUDE     = "SetGpsGlobalOrigin.Longitude"
+	SET_GPS_GLOBAL_ORIGIN_FIELD_ALTITUDE      = "SetGpsGlobalOrigin.Altitude"
+	SET_GPS_GLOBAL_ORIGIN_FIELD_TARGET_SYSTEM = "SetGpsGlobalOrigin.TargetSystem"
+)
+
 // ToMap (generated function)
 func (m *SetGpsGlobalOrigin) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SetGpsGlobalOrigin.Latitude":     m.Latitude,
-		"SetGpsGlobalOrigin.Longitude":    m.Longitude,
-		"SetGpsGlobalOrigin.Altitude":     m.Altitude,
-		"SetGpsGlobalOrigin.TargetSystem": m.TargetSystem,
+		SET_GPS_GLOBAL_ORIGIN_FIELD_LATITUDE:      m.Latitude,
+		SET_GPS_GLOBAL_ORIGIN_FIELD_LONGITUDE:     m.Longitude,
+		SET_GPS_GLOBAL_ORIGIN_FIELD_ALTITUDE:      m.Altitude,
+		SET_GPS_GLOBAL_ORIGIN_FIELD_TARGET_SYSTEM: m.TargetSystem,
 	}
 }
 
@@ -5628,12 +6384,18 @@ func (m *GpsGlobalOrigin) String() string {
 	)
 }
 
+const (
+	GPS_GLOBAL_ORIGIN_FIELD_LATITUDE  = "GpsGlobalOrigin.Latitude"
+	GPS_GLOBAL_ORIGIN_FIELD_LONGITUDE = "GpsGlobalOrigin.Longitude"
+	GPS_GLOBAL_ORIGIN_FIELD_ALTITUDE  = "GpsGlobalOrigin.Altitude"
+)
+
 // ToMap (generated function)
 func (m *GpsGlobalOrigin) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GpsGlobalOrigin.Latitude":  m.Latitude,
-		"GpsGlobalOrigin.Longitude": m.Longitude,
-		"GpsGlobalOrigin.Altitude":  m.Altitude,
+		GPS_GLOBAL_ORIGIN_FIELD_LATITUDE:  m.Latitude,
+		GPS_GLOBAL_ORIGIN_FIELD_LONGITUDE: m.Longitude,
+		GPS_GLOBAL_ORIGIN_FIELD_ALTITUDE:  m.Altitude,
 	}
 }
 
@@ -5691,18 +6453,30 @@ func (m *ParamMapRc) String() string {
 	)
 }
 
+const (
+	PARAM_MAP_RC_FIELD_PARAM_VALUE0               = "ParamMapRc.ParamValue0"
+	PARAM_MAP_RC_FIELD_SCALE                      = "ParamMapRc.Scale"
+	PARAM_MAP_RC_FIELD_PARAM_VALUE_MIN            = "ParamMapRc.ParamValueMin"
+	PARAM_MAP_RC_FIELD_PARAM_VALUE_MAX            = "ParamMapRc.ParamValueMax"
+	PARAM_MAP_RC_FIELD_PARAM_INDEX                = "ParamMapRc.ParamIndex"
+	PARAM_MAP_RC_FIELD_TARGET_SYSTEM              = "ParamMapRc.TargetSystem"
+	PARAM_MAP_RC_FIELD_TARGET_COMPONENT           = "ParamMapRc.TargetComponent"
+	PARAM_MAP_RC_FIELD_PARAM_ID                   = "ParamMapRc.ParamID"
+	PARAM_MAP_RC_FIELD_PARAMETER_RC_CHANNEL_INDEX = "ParamMapRc.ParameterRcChannelIndex"
+)
+
 // ToMap (generated function)
 func (m *ParamMapRc) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ParamMapRc.ParamValue0":             m.ParamValue0,
-		"ParamMapRc.Scale":                   m.Scale,
-		"ParamMapRc.ParamValueMin":           m.ParamValueMin,
-		"ParamMapRc.ParamValueMax":           m.ParamValueMax,
-		"ParamMapRc.ParamIndex":              m.ParamIndex,
-		"ParamMapRc.TargetSystem":            m.TargetSystem,
-		"ParamMapRc.TargetComponent":         m.TargetComponent,
-		"ParamMapRc.ParamID":                 m.ParamID,
-		"ParamMapRc.ParameterRcChannelIndex": m.ParameterRcChannelIndex,
+		PARAM_MAP_RC_FIELD_PARAM_VALUE0:               m.ParamValue0,
+		PARAM_MAP_RC_FIELD_SCALE:                      m.Scale,
+		PARAM_MAP_RC_FIELD_PARAM_VALUE_MIN:            m.ParamValueMin,
+		PARAM_MAP_RC_FIELD_PARAM_VALUE_MAX:            m.ParamValueMax,
+		PARAM_MAP_RC_FIELD_PARAM_INDEX:                m.ParamIndex,
+		PARAM_MAP_RC_FIELD_TARGET_SYSTEM:              m.TargetSystem,
+		PARAM_MAP_RC_FIELD_TARGET_COMPONENT:           m.TargetComponent,
+		PARAM_MAP_RC_FIELD_PARAM_ID:                   m.ParamID,
+		PARAM_MAP_RC_FIELD_PARAMETER_RC_CHANNEL_INDEX: m.ParameterRcChannelIndex,
 	}
 }
 
@@ -5760,12 +6534,18 @@ func (m *MissionRequestInt) String() string {
 	)
 }
 
+const (
+	MISSION_REQUEST_INT_FIELD_SEQ              = "MissionRequestInt.Seq"
+	MISSION_REQUEST_INT_FIELD_TARGET_SYSTEM    = "MissionRequestInt.TargetSystem"
+	MISSION_REQUEST_INT_FIELD_TARGET_COMPONENT = "MissionRequestInt.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *MissionRequestInt) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionRequestInt.Seq":             m.Seq,
-		"MissionRequestInt.TargetSystem":    m.TargetSystem,
-		"MissionRequestInt.TargetComponent": m.TargetComponent,
+		MISSION_REQUEST_INT_FIELD_SEQ:              m.Seq,
+		MISSION_REQUEST_INT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_REQUEST_INT_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -5815,14 +6595,22 @@ func (m *MissionChanged) String() string {
 	)
 }
 
+const (
+	MISSION_CHANGED_FIELD_START_INDEX   = "MissionChanged.StartIndex"
+	MISSION_CHANGED_FIELD_END_INDEX     = "MissionChanged.EndIndex"
+	MISSION_CHANGED_FIELD_ORIGIN_SYSID  = "MissionChanged.OriginSysid"
+	MISSION_CHANGED_FIELD_ORIGIN_COMPID = "MissionChanged.OriginCompid"
+	MISSION_CHANGED_FIELD_MISSION_TYPE  = "MissionChanged.MissionType"
+)
+
 // ToMap (generated function)
 func (m *MissionChanged) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionChanged.StartIndex":   m.StartIndex,
-		"MissionChanged.EndIndex":     m.EndIndex,
-		"MissionChanged.OriginSysid":  m.OriginSysid,
-		"MissionChanged.OriginCompid": m.OriginCompid,
-		"MissionChanged.MissionType":  m.MissionType,
+		MISSION_CHANGED_FIELD_START_INDEX:   m.StartIndex,
+		MISSION_CHANGED_FIELD_END_INDEX:     m.EndIndex,
+		MISSION_CHANGED_FIELD_ORIGIN_SYSID:  m.OriginSysid,
+		MISSION_CHANGED_FIELD_ORIGIN_COMPID: m.OriginCompid,
+		MISSION_CHANGED_FIELD_MISSION_TYPE:  m.MissionType,
 	}
 }
 
@@ -5884,18 +6672,30 @@ func (m *SafetySetAllowedArea) String() string {
 	)
 }
 
+const (
+	SAFETY_SET_ALLOWED_AREA_FIELD_P1X              = "SafetySetAllowedArea.P1x"
+	SAFETY_SET_ALLOWED_AREA_FIELD_P1Y              = "SafetySetAllowedArea.P1y"
+	SAFETY_SET_ALLOWED_AREA_FIELD_P1Z              = "SafetySetAllowedArea.P1z"
+	SAFETY_SET_ALLOWED_AREA_FIELD_P2X              = "SafetySetAllowedArea.P2x"
+	SAFETY_SET_ALLOWED_AREA_FIELD_P2Y              = "SafetySetAllowedArea.P2y"
+	SAFETY_SET_ALLOWED_AREA_FIELD_P2Z              = "SafetySetAllowedArea.P2z"
+	SAFETY_SET_ALLOWED_AREA_FIELD_TARGET_SYSTEM    = "SafetySetAllowedArea.TargetSystem"
+	SAFETY_SET_ALLOWED_AREA_FIELD_TARGET_COMPONENT = "SafetySetAllowedArea.TargetComponent"
+	SAFETY_SET_ALLOWED_AREA_FIELD_FRAME            = "SafetySetAllowedArea.Frame"
+)
+
 // ToMap (generated function)
 func (m *SafetySetAllowedArea) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SafetySetAllowedArea.P1x":             m.P1x,
-		"SafetySetAllowedArea.P1y":             m.P1y,
-		"SafetySetAllowedArea.P1z":             m.P1z,
-		"SafetySetAllowedArea.P2x":             m.P2x,
-		"SafetySetAllowedArea.P2y":             m.P2y,
-		"SafetySetAllowedArea.P2z":             m.P2z,
-		"SafetySetAllowedArea.TargetSystem":    m.TargetSystem,
-		"SafetySetAllowedArea.TargetComponent": m.TargetComponent,
-		"SafetySetAllowedArea.Frame":           m.Frame,
+		SAFETY_SET_ALLOWED_AREA_FIELD_P1X:              m.P1x,
+		SAFETY_SET_ALLOWED_AREA_FIELD_P1Y:              m.P1y,
+		SAFETY_SET_ALLOWED_AREA_FIELD_P1Z:              m.P1z,
+		SAFETY_SET_ALLOWED_AREA_FIELD_P2X:              m.P2x,
+		SAFETY_SET_ALLOWED_AREA_FIELD_P2Y:              m.P2y,
+		SAFETY_SET_ALLOWED_AREA_FIELD_P2Z:              m.P2z,
+		SAFETY_SET_ALLOWED_AREA_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		SAFETY_SET_ALLOWED_AREA_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		SAFETY_SET_ALLOWED_AREA_FIELD_FRAME:            m.Frame,
 	}
 }
 
@@ -5961,16 +6761,26 @@ func (m *SafetyAllowedArea) String() string {
 	)
 }
 
+const (
+	SAFETY_ALLOWED_AREA_FIELD_P1X   = "SafetyAllowedArea.P1x"
+	SAFETY_ALLOWED_AREA_FIELD_P1Y   = "SafetyAllowedArea.P1y"
+	SAFETY_ALLOWED_AREA_FIELD_P1Z   = "SafetyAllowedArea.P1z"
+	SAFETY_ALLOWED_AREA_FIELD_P2X   = "SafetyAllowedArea.P2x"
+	SAFETY_ALLOWED_AREA_FIELD_P2Y   = "SafetyAllowedArea.P2y"
+	SAFETY_ALLOWED_AREA_FIELD_P2Z   = "SafetyAllowedArea.P2z"
+	SAFETY_ALLOWED_AREA_FIELD_FRAME = "SafetyAllowedArea.Frame"
+)
+
 // ToMap (generated function)
 func (m *SafetyAllowedArea) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SafetyAllowedArea.P1x":   m.P1x,
-		"SafetyAllowedArea.P1y":   m.P1y,
-		"SafetyAllowedArea.P1z":   m.P1z,
-		"SafetyAllowedArea.P2x":   m.P2x,
-		"SafetyAllowedArea.P2y":   m.P2y,
-		"SafetyAllowedArea.P2z":   m.P2z,
-		"SafetyAllowedArea.Frame": m.Frame,
+		SAFETY_ALLOWED_AREA_FIELD_P1X:   m.P1x,
+		SAFETY_ALLOWED_AREA_FIELD_P1Y:   m.P1y,
+		SAFETY_ALLOWED_AREA_FIELD_P1Z:   m.P1z,
+		SAFETY_ALLOWED_AREA_FIELD_P2X:   m.P2x,
+		SAFETY_ALLOWED_AREA_FIELD_P2Y:   m.P2y,
+		SAFETY_ALLOWED_AREA_FIELD_P2Z:   m.P2z,
+		SAFETY_ALLOWED_AREA_FIELD_FRAME: m.Frame,
 	}
 }
 
@@ -6030,15 +6840,24 @@ func (m *AttitudeQuaternionCov) String() string {
 	)
 }
 
+const (
+	ATTITUDE_QUATERNION_COV_FIELD_TIME_USEC  = "AttitudeQuaternionCov.TimeUsec"
+	ATTITUDE_QUATERNION_COV_FIELD_Q          = "AttitudeQuaternionCov.Q"
+	ATTITUDE_QUATERNION_COV_FIELD_ROLLSPEED  = "AttitudeQuaternionCov.Rollspeed"
+	ATTITUDE_QUATERNION_COV_FIELD_PITCHSPEED = "AttitudeQuaternionCov.Pitchspeed"
+	ATTITUDE_QUATERNION_COV_FIELD_YAWSPEED   = "AttitudeQuaternionCov.Yawspeed"
+	ATTITUDE_QUATERNION_COV_FIELD_COVARIANCE = "AttitudeQuaternionCov.Covariance"
+)
+
 // ToMap (generated function)
 func (m *AttitudeQuaternionCov) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AttitudeQuaternionCov.TimeUsec":   m.TimeUsec,
-		"AttitudeQuaternionCov.Q":          m.Q,
-		"AttitudeQuaternionCov.Rollspeed":  m.Rollspeed,
-		"AttitudeQuaternionCov.Pitchspeed": m.Pitchspeed,
-		"AttitudeQuaternionCov.Yawspeed":   m.Yawspeed,
-		"AttitudeQuaternionCov.Covariance": m.Covariance,
+		ATTITUDE_QUATERNION_COV_FIELD_TIME_USEC:  m.TimeUsec,
+		ATTITUDE_QUATERNION_COV_FIELD_Q:          m.Q,
+		ATTITUDE_QUATERNION_COV_FIELD_ROLLSPEED:  m.Rollspeed,
+		ATTITUDE_QUATERNION_COV_FIELD_PITCHSPEED: m.Pitchspeed,
+		ATTITUDE_QUATERNION_COV_FIELD_YAWSPEED:   m.Yawspeed,
+		ATTITUDE_QUATERNION_COV_FIELD_COVARIANCE: m.Covariance,
 	}
 }
 
@@ -6108,17 +6927,28 @@ func (m *NavControllerOutput) String() string {
 	)
 }
 
+const (
+	NAV_CONTROLLER_OUTPUT_FIELD_NAV_ROLL       = "NavControllerOutput.NavRoll"
+	NAV_CONTROLLER_OUTPUT_FIELD_NAV_PITCH      = "NavControllerOutput.NavPitch"
+	NAV_CONTROLLER_OUTPUT_FIELD_ALT_ERROR      = "NavControllerOutput.AltError"
+	NAV_CONTROLLER_OUTPUT_FIELD_ASPD_ERROR     = "NavControllerOutput.AspdError"
+	NAV_CONTROLLER_OUTPUT_FIELD_XTRACK_ERROR   = "NavControllerOutput.XtrackError"
+	NAV_CONTROLLER_OUTPUT_FIELD_NAV_BEARING    = "NavControllerOutput.NavBearing"
+	NAV_CONTROLLER_OUTPUT_FIELD_TARGET_BEARING = "NavControllerOutput.TargetBearing"
+	NAV_CONTROLLER_OUTPUT_FIELD_WP_DIST        = "NavControllerOutput.WpDist"
+)
+
 // ToMap (generated function)
 func (m *NavControllerOutput) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"NavControllerOutput.NavRoll":       m.NavRoll,
-		"NavControllerOutput.NavPitch":      m.NavPitch,
-		"NavControllerOutput.AltError":      m.AltError,
-		"NavControllerOutput.AspdError":     m.AspdError,
-		"NavControllerOutput.XtrackError":   m.XtrackError,
-		"NavControllerOutput.NavBearing":    m.NavBearing,
-		"NavControllerOutput.TargetBearing": m.TargetBearing,
-		"NavControllerOutput.WpDist":        m.WpDist,
+		NAV_CONTROLLER_OUTPUT_FIELD_NAV_ROLL:       m.NavRoll,
+		NAV_CONTROLLER_OUTPUT_FIELD_NAV_PITCH:      m.NavPitch,
+		NAV_CONTROLLER_OUTPUT_FIELD_ALT_ERROR:      m.AltError,
+		NAV_CONTROLLER_OUTPUT_FIELD_ASPD_ERROR:     m.AspdError,
+		NAV_CONTROLLER_OUTPUT_FIELD_XTRACK_ERROR:   m.XtrackError,
+		NAV_CONTROLLER_OUTPUT_FIELD_NAV_BEARING:    m.NavBearing,
+		NAV_CONTROLLER_OUTPUT_FIELD_TARGET_BEARING: m.TargetBearing,
+		NAV_CONTROLLER_OUTPUT_FIELD_WP_DIST:        m.WpDist,
 	}
 }
 
@@ -6188,19 +7018,32 @@ func (m *GlobalPositionIntCov) String() string {
 	)
 }
 
+const (
+	GLOBAL_POSITION_INT_COV_FIELD_TIME_USEC      = "GlobalPositionIntCov.TimeUsec"
+	GLOBAL_POSITION_INT_COV_FIELD_LAT            = "GlobalPositionIntCov.Lat"
+	GLOBAL_POSITION_INT_COV_FIELD_LON            = "GlobalPositionIntCov.Lon"
+	GLOBAL_POSITION_INT_COV_FIELD_ALT            = "GlobalPositionIntCov.Alt"
+	GLOBAL_POSITION_INT_COV_FIELD_RELATIVE_ALT   = "GlobalPositionIntCov.RelativeAlt"
+	GLOBAL_POSITION_INT_COV_FIELD_VX             = "GlobalPositionIntCov.Vx"
+	GLOBAL_POSITION_INT_COV_FIELD_VY             = "GlobalPositionIntCov.Vy"
+	GLOBAL_POSITION_INT_COV_FIELD_VZ             = "GlobalPositionIntCov.Vz"
+	GLOBAL_POSITION_INT_COV_FIELD_COVARIANCE     = "GlobalPositionIntCov.Covariance"
+	GLOBAL_POSITION_INT_COV_FIELD_ESTIMATOR_TYPE = "GlobalPositionIntCov.EstimatorType"
+)
+
 // ToMap (generated function)
 func (m *GlobalPositionIntCov) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GlobalPositionIntCov.TimeUsec":      m.TimeUsec,
-		"GlobalPositionIntCov.Lat":           m.Lat,
-		"GlobalPositionIntCov.Lon":           m.Lon,
-		"GlobalPositionIntCov.Alt":           m.Alt,
-		"GlobalPositionIntCov.RelativeAlt":   m.RelativeAlt,
-		"GlobalPositionIntCov.Vx":            m.Vx,
-		"GlobalPositionIntCov.Vy":            m.Vy,
-		"GlobalPositionIntCov.Vz":            m.Vz,
-		"GlobalPositionIntCov.Covariance":    m.Covariance,
-		"GlobalPositionIntCov.EstimatorType": m.EstimatorType,
+		GLOBAL_POSITION_INT_COV_FIELD_TIME_USEC:      m.TimeUsec,
+		GLOBAL_POSITION_INT_COV_FIELD_LAT:            m.Lat,
+		GLOBAL_POSITION_INT_COV_FIELD_LON:            m.Lon,
+		GLOBAL_POSITION_INT_COV_FIELD_ALT:            m.Alt,
+		GLOBAL_POSITION_INT_COV_FIELD_RELATIVE_ALT:   m.RelativeAlt,
+		GLOBAL_POSITION_INT_COV_FIELD_VX:             m.Vx,
+		GLOBAL_POSITION_INT_COV_FIELD_VY:             m.Vy,
+		GLOBAL_POSITION_INT_COV_FIELD_VZ:             m.Vz,
+		GLOBAL_POSITION_INT_COV_FIELD_COVARIANCE:     m.Covariance,
+		GLOBAL_POSITION_INT_COV_FIELD_ESTIMATOR_TYPE: m.EstimatorType,
 	}
 }
 
@@ -6282,21 +7125,36 @@ func (m *LocalPositionNedCov) String() string {
 	)
 }
 
+const (
+	LOCAL_POSITION_NED_COV_FIELD_TIME_USEC      = "LocalPositionNedCov.TimeUsec"
+	LOCAL_POSITION_NED_COV_FIELD_X              = "LocalPositionNedCov.X"
+	LOCAL_POSITION_NED_COV_FIELD_Y              = "LocalPositionNedCov.Y"
+	LOCAL_POSITION_NED_COV_FIELD_Z              = "LocalPositionNedCov.Z"
+	LOCAL_POSITION_NED_COV_FIELD_VX             = "LocalPositionNedCov.Vx"
+	LOCAL_POSITION_NED_COV_FIELD_VY             = "LocalPositionNedCov.Vy"
+	LOCAL_POSITION_NED_COV_FIELD_VZ             = "LocalPositionNedCov.Vz"
+	LOCAL_POSITION_NED_COV_FIELD_AX             = "LocalPositionNedCov.Ax"
+	LOCAL_POSITION_NED_COV_FIELD_AY             = "LocalPositionNedCov.Ay"
+	LOCAL_POSITION_NED_COV_FIELD_AZ             = "LocalPositionNedCov.Az"
+	LOCAL_POSITION_NED_COV_FIELD_COVARIANCE     = "LocalPositionNedCov.Covariance"
+	LOCAL_POSITION_NED_COV_FIELD_ESTIMATOR_TYPE = "LocalPositionNedCov.EstimatorType"
+)
+
 // ToMap (generated function)
 func (m *LocalPositionNedCov) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LocalPositionNedCov.TimeUsec":      m.TimeUsec,
-		"LocalPositionNedCov.X":             m.X,
-		"LocalPositionNedCov.Y":             m.Y,
-		"LocalPositionNedCov.Z":             m.Z,
-		"LocalPositionNedCov.Vx":            m.Vx,
-		"LocalPositionNedCov.Vy":            m.Vy,
-		"LocalPositionNedCov.Vz":            m.Vz,
-		"LocalPositionNedCov.Ax":            m.Ax,
-		"LocalPositionNedCov.Ay":            m.Ay,
-		"LocalPositionNedCov.Az":            m.Az,
-		"LocalPositionNedCov.Covariance":    m.Covariance,
-		"LocalPositionNedCov.EstimatorType": m.EstimatorType,
+		LOCAL_POSITION_NED_COV_FIELD_TIME_USEC:      m.TimeUsec,
+		LOCAL_POSITION_NED_COV_FIELD_X:              m.X,
+		LOCAL_POSITION_NED_COV_FIELD_Y:              m.Y,
+		LOCAL_POSITION_NED_COV_FIELD_Z:              m.Z,
+		LOCAL_POSITION_NED_COV_FIELD_VX:             m.Vx,
+		LOCAL_POSITION_NED_COV_FIELD_VY:             m.Vy,
+		LOCAL_POSITION_NED_COV_FIELD_VZ:             m.Vz,
+		LOCAL_POSITION_NED_COV_FIELD_AX:             m.Ax,
+		LOCAL_POSITION_NED_COV_FIELD_AY:             m.Ay,
+		LOCAL_POSITION_NED_COV_FIELD_AZ:             m.Az,
+		LOCAL_POSITION_NED_COV_FIELD_COVARIANCE:     m.Covariance,
+		LOCAL_POSITION_NED_COV_FIELD_ESTIMATOR_TYPE: m.EstimatorType,
 	}
 }
 
@@ -6400,30 +7258,54 @@ func (m *RcChannels) String() string {
 	)
 }
 
+const (
+	RC_CHANNELS_FIELD_TIME_BOOT_MS = "RcChannels.TimeBootMs"
+	RC_CHANNELS_FIELD_CHAN1_RAW    = "RcChannels.Chan1Raw"
+	RC_CHANNELS_FIELD_CHAN2_RAW    = "RcChannels.Chan2Raw"
+	RC_CHANNELS_FIELD_CHAN3_RAW    = "RcChannels.Chan3Raw"
+	RC_CHANNELS_FIELD_CHAN4_RAW    = "RcChannels.Chan4Raw"
+	RC_CHANNELS_FIELD_CHAN5_RAW    = "RcChannels.Chan5Raw"
+	RC_CHANNELS_FIELD_CHAN6_RAW    = "RcChannels.Chan6Raw"
+	RC_CHANNELS_FIELD_CHAN7_RAW    = "RcChannels.Chan7Raw"
+	RC_CHANNELS_FIELD_CHAN8_RAW    = "RcChannels.Chan8Raw"
+	RC_CHANNELS_FIELD_CHAN9_RAW    = "RcChannels.Chan9Raw"
+	RC_CHANNELS_FIELD_CHAN10_RAW   = "RcChannels.Chan10Raw"
+	RC_CHANNELS_FIELD_CHAN11_RAW   = "RcChannels.Chan11Raw"
+	RC_CHANNELS_FIELD_CHAN12_RAW   = "RcChannels.Chan12Raw"
+	RC_CHANNELS_FIELD_CHAN13_RAW   = "RcChannels.Chan13Raw"
+	RC_CHANNELS_FIELD_CHAN14_RAW   = "RcChannels.Chan14Raw"
+	RC_CHANNELS_FIELD_CHAN15_RAW   = "RcChannels.Chan15Raw"
+	RC_CHANNELS_FIELD_CHAN16_RAW   = "RcChannels.Chan16Raw"
+	RC_CHANNELS_FIELD_CHAN17_RAW   = "RcChannels.Chan17Raw"
+	RC_CHANNELS_FIELD_CHAN18_RAW   = "RcChannels.Chan18Raw"
+	RC_CHANNELS_FIELD_CHANCOUNT    = "RcChannels.Chancount"
+	RC_CHANNELS_FIELD_RSSI         = "RcChannels.Rssi"
+)
+
 // ToMap (generated function)
 func (m *RcChannels) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RcChannels.TimeBootMs": m.TimeBootMs,
-		"RcChannels.Chan1Raw":   m.Chan1Raw,
-		"RcChannels.Chan2Raw":   m.Chan2Raw,
-		"RcChannels.Chan3Raw":   m.Chan3Raw,
-		"RcChannels.Chan4Raw":   m.Chan4Raw,
-		"RcChannels.Chan5Raw":   m.Chan5Raw,
-		"RcChannels.Chan6Raw":   m.Chan6Raw,
-		"RcChannels.Chan7Raw":   m.Chan7Raw,
-		"RcChannels.Chan8Raw":   m.Chan8Raw,
-		"RcChannels.Chan9Raw":   m.Chan9Raw,
-		"RcChannels.Chan10Raw":  m.Chan10Raw,
-		"RcChannels.Chan11Raw":  m.Chan11Raw,
-		"RcChannels.Chan12Raw":  m.Chan12Raw,
-		"RcChannels.Chan13Raw":  m.Chan13Raw,
-		"RcChannels.Chan14Raw":  m.Chan14Raw,
-		"RcChannels.Chan15Raw":  m.Chan15Raw,
-		"RcChannels.Chan16Raw":  m.Chan16Raw,
-		"RcChannels.Chan17Raw":  m.Chan17Raw,
-		"RcChannels.Chan18Raw":  m.Chan18Raw,
-		"RcChannels.Chancount":  m.Chancount,
-		"RcChannels.Rssi":       m.Rssi,
+		RC_CHANNELS_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		RC_CHANNELS_FIELD_CHAN1_RAW:    m.Chan1Raw,
+		RC_CHANNELS_FIELD_CHAN2_RAW:    m.Chan2Raw,
+		RC_CHANNELS_FIELD_CHAN3_RAW:    m.Chan3Raw,
+		RC_CHANNELS_FIELD_CHAN4_RAW:    m.Chan4Raw,
+		RC_CHANNELS_FIELD_CHAN5_RAW:    m.Chan5Raw,
+		RC_CHANNELS_FIELD_CHAN6_RAW:    m.Chan6Raw,
+		RC_CHANNELS_FIELD_CHAN7_RAW:    m.Chan7Raw,
+		RC_CHANNELS_FIELD_CHAN8_RAW:    m.Chan8Raw,
+		RC_CHANNELS_FIELD_CHAN9_RAW:    m.Chan9Raw,
+		RC_CHANNELS_FIELD_CHAN10_RAW:   m.Chan10Raw,
+		RC_CHANNELS_FIELD_CHAN11_RAW:   m.Chan11Raw,
+		RC_CHANNELS_FIELD_CHAN12_RAW:   m.Chan12Raw,
+		RC_CHANNELS_FIELD_CHAN13_RAW:   m.Chan13Raw,
+		RC_CHANNELS_FIELD_CHAN14_RAW:   m.Chan14Raw,
+		RC_CHANNELS_FIELD_CHAN15_RAW:   m.Chan15Raw,
+		RC_CHANNELS_FIELD_CHAN16_RAW:   m.Chan16Raw,
+		RC_CHANNELS_FIELD_CHAN17_RAW:   m.Chan17Raw,
+		RC_CHANNELS_FIELD_CHAN18_RAW:   m.Chan18Raw,
+		RC_CHANNELS_FIELD_CHANCOUNT:    m.Chancount,
+		RC_CHANNELS_FIELD_RSSI:         m.Rssi,
 	}
 }
 
@@ -6509,14 +7391,22 @@ func (m *RequestDataStream) String() string {
 	)
 }
 
+const (
+	REQUEST_DATA_STREAM_FIELD_REQ_MESSAGE_RATE = "RequestDataStream.ReqMessageRate"
+	REQUEST_DATA_STREAM_FIELD_TARGET_SYSTEM    = "RequestDataStream.TargetSystem"
+	REQUEST_DATA_STREAM_FIELD_TARGET_COMPONENT = "RequestDataStream.TargetComponent"
+	REQUEST_DATA_STREAM_FIELD_REQ_STREAM_ID    = "RequestDataStream.ReqStreamID"
+	REQUEST_DATA_STREAM_FIELD_START_STOP       = "RequestDataStream.StartStop"
+)
+
 // ToMap (generated function)
 func (m *RequestDataStream) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RequestDataStream.ReqMessageRate":  m.ReqMessageRate,
-		"RequestDataStream.TargetSystem":    m.TargetSystem,
-		"RequestDataStream.TargetComponent": m.TargetComponent,
-		"RequestDataStream.ReqStreamID":     m.ReqStreamID,
-		"RequestDataStream.StartStop":       m.StartStop,
+		REQUEST_DATA_STREAM_FIELD_REQ_MESSAGE_RATE: m.ReqMessageRate,
+		REQUEST_DATA_STREAM_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		REQUEST_DATA_STREAM_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		REQUEST_DATA_STREAM_FIELD_REQ_STREAM_ID:    m.ReqStreamID,
+		REQUEST_DATA_STREAM_FIELD_START_STOP:       m.StartStop,
 	}
 }
 
@@ -6566,12 +7456,18 @@ func (m *DataStream) String() string {
 	)
 }
 
+const (
+	DATA_STREAM_FIELD_MESSAGE_RATE = "DataStream.MessageRate"
+	DATA_STREAM_FIELD_STREAM_ID    = "DataStream.StreamID"
+	DATA_STREAM_FIELD_ON_OFF       = "DataStream.OnOff"
+)
+
 // ToMap (generated function)
 func (m *DataStream) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"DataStream.MessageRate": m.MessageRate,
-		"DataStream.StreamID":    m.StreamID,
-		"DataStream.OnOff":       m.OnOff,
+		DATA_STREAM_FIELD_MESSAGE_RATE: m.MessageRate,
+		DATA_STREAM_FIELD_STREAM_ID:    m.StreamID,
+		DATA_STREAM_FIELD_ON_OFF:       m.OnOff,
 	}
 }
 
@@ -6623,15 +7519,24 @@ func (m *ManualControl) String() string {
 	)
 }
 
+const (
+	MANUAL_CONTROL_FIELD_X       = "ManualControl.X"
+	MANUAL_CONTROL_FIELD_Y       = "ManualControl.Y"
+	MANUAL_CONTROL_FIELD_Z       = "ManualControl.Z"
+	MANUAL_CONTROL_FIELD_R       = "ManualControl.R"
+	MANUAL_CONTROL_FIELD_BUTTONS = "ManualControl.Buttons"
+	MANUAL_CONTROL_FIELD_TARGET  = "ManualControl.Target"
+)
+
 // ToMap (generated function)
 func (m *ManualControl) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ManualControl.X":       m.X,
-		"ManualControl.Y":       m.Y,
-		"ManualControl.Z":       m.Z,
-		"ManualControl.R":       m.R,
-		"ManualControl.Buttons": m.Buttons,
-		"ManualControl.Target":  m.Target,
+		MANUAL_CONTROL_FIELD_X:       m.X,
+		MANUAL_CONTROL_FIELD_Y:       m.Y,
+		MANUAL_CONTROL_FIELD_Z:       m.Z,
+		MANUAL_CONTROL_FIELD_R:       m.R,
+		MANUAL_CONTROL_FIELD_BUTTONS: m.Buttons,
+		MANUAL_CONTROL_FIELD_TARGET:  m.Target,
 	}
 }
 
@@ -6697,19 +7602,32 @@ func (m *RcChannelsOverride) String() string {
 	)
 }
 
+const (
+	RC_CHANNELS_OVERRIDE_FIELD_CHAN1_RAW        = "RcChannelsOverride.Chan1Raw"
+	RC_CHANNELS_OVERRIDE_FIELD_CHAN2_RAW        = "RcChannelsOverride.Chan2Raw"
+	RC_CHANNELS_OVERRIDE_FIELD_CHAN3_RAW        = "RcChannelsOverride.Chan3Raw"
+	RC_CHANNELS_OVERRIDE_FIELD_CHAN4_RAW        = "RcChannelsOverride.Chan4Raw"
+	RC_CHANNELS_OVERRIDE_FIELD_CHAN5_RAW        = "RcChannelsOverride.Chan5Raw"
+	RC_CHANNELS_OVERRIDE_FIELD_CHAN6_RAW        = "RcChannelsOverride.Chan6Raw"
+	RC_CHANNELS_OVERRIDE_FIELD_CHAN7_RAW        = "RcChannelsOverride.Chan7Raw"
+	RC_CHANNELS_OVERRIDE_FIELD_CHAN8_RAW        = "RcChannelsOverride.Chan8Raw"
+	RC_CHANNELS_OVERRIDE_FIELD_TARGET_SYSTEM    = "RcChannelsOverride.TargetSystem"
+	RC_CHANNELS_OVERRIDE_FIELD_TARGET_COMPONENT = "RcChannelsOverride.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *RcChannelsOverride) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RcChannelsOverride.Chan1Raw":        m.Chan1Raw,
-		"RcChannelsOverride.Chan2Raw":        m.Chan2Raw,
-		"RcChannelsOverride.Chan3Raw":        m.Chan3Raw,
-		"RcChannelsOverride.Chan4Raw":        m.Chan4Raw,
-		"RcChannelsOverride.Chan5Raw":        m.Chan5Raw,
-		"RcChannelsOverride.Chan6Raw":        m.Chan6Raw,
-		"RcChannelsOverride.Chan7Raw":        m.Chan7Raw,
-		"RcChannelsOverride.Chan8Raw":        m.Chan8Raw,
-		"RcChannelsOverride.TargetSystem":    m.TargetSystem,
-		"RcChannelsOverride.TargetComponent": m.TargetComponent,
+		RC_CHANNELS_OVERRIDE_FIELD_CHAN1_RAW:        m.Chan1Raw,
+		RC_CHANNELS_OVERRIDE_FIELD_CHAN2_RAW:        m.Chan2Raw,
+		RC_CHANNELS_OVERRIDE_FIELD_CHAN3_RAW:        m.Chan3Raw,
+		RC_CHANNELS_OVERRIDE_FIELD_CHAN4_RAW:        m.Chan4Raw,
+		RC_CHANNELS_OVERRIDE_FIELD_CHAN5_RAW:        m.Chan5Raw,
+		RC_CHANNELS_OVERRIDE_FIELD_CHAN6_RAW:        m.Chan6Raw,
+		RC_CHANNELS_OVERRIDE_FIELD_CHAN7_RAW:        m.Chan7Raw,
+		RC_CHANNELS_OVERRIDE_FIELD_CHAN8_RAW:        m.Chan8Raw,
+		RC_CHANNELS_OVERRIDE_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		RC_CHANNELS_OVERRIDE_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -6792,23 +7710,40 @@ func (m *MissionItemInt) String() string {
 	)
 }
 
+const (
+	MISSION_ITEM_INT_FIELD_PARAM1           = "MissionItemInt.Param1"
+	MISSION_ITEM_INT_FIELD_PARAM2           = "MissionItemInt.Param2"
+	MISSION_ITEM_INT_FIELD_PARAM3           = "MissionItemInt.Param3"
+	MISSION_ITEM_INT_FIELD_PARAM4           = "MissionItemInt.Param4"
+	MISSION_ITEM_INT_FIELD_X                = "MissionItemInt.X"
+	MISSION_ITEM_INT_FIELD_Y                = "MissionItemInt.Y"
+	MISSION_ITEM_INT_FIELD_Z                = "MissionItemInt.Z"
+	MISSION_ITEM_INT_FIELD_SEQ              = "MissionItemInt.Seq"
+	MISSION_ITEM_INT_FIELD_COMMAND          = "MissionItemInt.Command"
+	MISSION_ITEM_INT_FIELD_TARGET_SYSTEM    = "MissionItemInt.TargetSystem"
+	MISSION_ITEM_INT_FIELD_TARGET_COMPONENT = "MissionItemInt.TargetComponent"
+	MISSION_ITEM_INT_FIELD_FRAME            = "MissionItemInt.Frame"
+	MISSION_ITEM_INT_FIELD_CURRENT          = "MissionItemInt.Current"
+	MISSION_ITEM_INT_FIELD_AUTOCONTINUE     = "MissionItemInt.Autocontinue"
+)
+
 // ToMap (generated function)
 func (m *MissionItemInt) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MissionItemInt.Param1":          m.Param1,
-		"MissionItemInt.Param2":          m.Param2,
-		"MissionItemInt.Param3":          m.Param3,
-		"MissionItemInt.Param4":          m.Param4,
-		"MissionItemInt.X":               m.X,
-		"MissionItemInt.Y":               m.Y,
-		"MissionItemInt.Z":               m.Z,
-		"MissionItemInt.Seq":             m.Seq,
-		"MissionItemInt.Command":         m.Command,
-		"MissionItemInt.TargetSystem":    m.TargetSystem,
-		"MissionItemInt.TargetComponent": m.TargetComponent,
-		"MissionItemInt.Frame":           m.Frame,
-		"MissionItemInt.Current":         m.Current,
-		"MissionItemInt.Autocontinue":    m.Autocontinue,
+		MISSION_ITEM_INT_FIELD_PARAM1:           m.Param1,
+		MISSION_ITEM_INT_FIELD_PARAM2:           m.Param2,
+		MISSION_ITEM_INT_FIELD_PARAM3:           m.Param3,
+		MISSION_ITEM_INT_FIELD_PARAM4:           m.Param4,
+		MISSION_ITEM_INT_FIELD_X:                m.X,
+		MISSION_ITEM_INT_FIELD_Y:                m.Y,
+		MISSION_ITEM_INT_FIELD_Z:                m.Z,
+		MISSION_ITEM_INT_FIELD_SEQ:              m.Seq,
+		MISSION_ITEM_INT_FIELD_COMMAND:          m.Command,
+		MISSION_ITEM_INT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		MISSION_ITEM_INT_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		MISSION_ITEM_INT_FIELD_FRAME:            m.Frame,
+		MISSION_ITEM_INT_FIELD_CURRENT:          m.Current,
+		MISSION_ITEM_INT_FIELD_AUTOCONTINUE:     m.Autocontinue,
 	}
 }
 
@@ -6882,15 +7817,24 @@ func (m *VfrHud) String() string {
 	)
 }
 
+const (
+	VFR_HUD_FIELD_AIRSPEED    = "VfrHud.Airspeed"
+	VFR_HUD_FIELD_GROUNDSPEED = "VfrHud.Groundspeed"
+	VFR_HUD_FIELD_ALT         = "VfrHud.Alt"
+	VFR_HUD_FIELD_CLIMB       = "VfrHud.Climb"
+	VFR_HUD_FIELD_HEADING     = "VfrHud.Heading"
+	VFR_HUD_FIELD_THROTTLE    = "VfrHud.Throttle"
+)
+
 // ToMap (generated function)
 func (m *VfrHud) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"VfrHud.Airspeed":    m.Airspeed,
-		"VfrHud.Groundspeed": m.Groundspeed,
-		"VfrHud.Alt":         m.Alt,
-		"VfrHud.Climb":       m.Climb,
-		"VfrHud.Heading":     m.Heading,
-		"VfrHud.Throttle":    m.Throttle,
+		VFR_HUD_FIELD_AIRSPEED:    m.Airspeed,
+		VFR_HUD_FIELD_GROUNDSPEED: m.Groundspeed,
+		VFR_HUD_FIELD_ALT:         m.Alt,
+		VFR_HUD_FIELD_CLIMB:       m.Climb,
+		VFR_HUD_FIELD_HEADING:     m.Heading,
+		VFR_HUD_FIELD_THROTTLE:    m.Throttle,
 	}
 }
 
@@ -6962,22 +7906,38 @@ func (m *CommandInt) String() string {
 	)
 }
 
+const (
+	COMMAND_INT_FIELD_PARAM1           = "CommandInt.Param1"
+	COMMAND_INT_FIELD_PARAM2           = "CommandInt.Param2"
+	COMMAND_INT_FIELD_PARAM3           = "CommandInt.Param3"
+	COMMAND_INT_FIELD_PARAM4           = "CommandInt.Param4"
+	COMMAND_INT_FIELD_X                = "CommandInt.X"
+	COMMAND_INT_FIELD_Y                = "CommandInt.Y"
+	COMMAND_INT_FIELD_Z                = "CommandInt.Z"
+	COMMAND_INT_FIELD_COMMAND          = "CommandInt.Command"
+	COMMAND_INT_FIELD_TARGET_SYSTEM    = "CommandInt.TargetSystem"
+	COMMAND_INT_FIELD_TARGET_COMPONENT = "CommandInt.TargetComponent"
+	COMMAND_INT_FIELD_FRAME            = "CommandInt.Frame"
+	COMMAND_INT_FIELD_CURRENT          = "CommandInt.Current"
+	COMMAND_INT_FIELD_AUTOCONTINUE     = "CommandInt.Autocontinue"
+)
+
 // ToMap (generated function)
 func (m *CommandInt) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"CommandInt.Param1":          m.Param1,
-		"CommandInt.Param2":          m.Param2,
-		"CommandInt.Param3":          m.Param3,
-		"CommandInt.Param4":          m.Param4,
-		"CommandInt.X":               m.X,
-		"CommandInt.Y":               m.Y,
-		"CommandInt.Z":               m.Z,
-		"CommandInt.Command":         m.Command,
-		"CommandInt.TargetSystem":    m.TargetSystem,
-		"CommandInt.TargetComponent": m.TargetComponent,
-		"CommandInt.Frame":           m.Frame,
-		"CommandInt.Current":         m.Current,
-		"CommandInt.Autocontinue":    m.Autocontinue,
+		COMMAND_INT_FIELD_PARAM1:           m.Param1,
+		COMMAND_INT_FIELD_PARAM2:           m.Param2,
+		COMMAND_INT_FIELD_PARAM3:           m.Param3,
+		COMMAND_INT_FIELD_PARAM4:           m.Param4,
+		COMMAND_INT_FIELD_X:                m.X,
+		COMMAND_INT_FIELD_Y:                m.Y,
+		COMMAND_INT_FIELD_Z:                m.Z,
+		COMMAND_INT_FIELD_COMMAND:          m.Command,
+		COMMAND_INT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		COMMAND_INT_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		COMMAND_INT_FIELD_FRAME:            m.Frame,
+		COMMAND_INT_FIELD_CURRENT:          m.Current,
+		COMMAND_INT_FIELD_AUTOCONTINUE:     m.Autocontinue,
 	}
 }
 
@@ -7059,20 +8019,34 @@ func (m *CommandLong) String() string {
 	)
 }
 
+const (
+	COMMAND_LONG_FIELD_PARAM1           = "CommandLong.Param1"
+	COMMAND_LONG_FIELD_PARAM2           = "CommandLong.Param2"
+	COMMAND_LONG_FIELD_PARAM3           = "CommandLong.Param3"
+	COMMAND_LONG_FIELD_PARAM4           = "CommandLong.Param4"
+	COMMAND_LONG_FIELD_PARAM5           = "CommandLong.Param5"
+	COMMAND_LONG_FIELD_PARAM6           = "CommandLong.Param6"
+	COMMAND_LONG_FIELD_PARAM7           = "CommandLong.Param7"
+	COMMAND_LONG_FIELD_COMMAND          = "CommandLong.Command"
+	COMMAND_LONG_FIELD_TARGET_SYSTEM    = "CommandLong.TargetSystem"
+	COMMAND_LONG_FIELD_TARGET_COMPONENT = "CommandLong.TargetComponent"
+	COMMAND_LONG_FIELD_CONFIRMATION     = "CommandLong.Confirmation"
+)
+
 // ToMap (generated function)
 func (m *CommandLong) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"CommandLong.Param1":          m.Param1,
-		"CommandLong.Param2":          m.Param2,
-		"CommandLong.Param3":          m.Param3,
-		"CommandLong.Param4":          m.Param4,
-		"CommandLong.Param5":          m.Param5,
-		"CommandLong.Param6":          m.Param6,
-		"CommandLong.Param7":          m.Param7,
-		"CommandLong.Command":         m.Command,
-		"CommandLong.TargetSystem":    m.TargetSystem,
-		"CommandLong.TargetComponent": m.TargetComponent,
-		"CommandLong.Confirmation":    m.Confirmation,
+		COMMAND_LONG_FIELD_PARAM1:           m.Param1,
+		COMMAND_LONG_FIELD_PARAM2:           m.Param2,
+		COMMAND_LONG_FIELD_PARAM3:           m.Param3,
+		COMMAND_LONG_FIELD_PARAM4:           m.Param4,
+		COMMAND_LONG_FIELD_PARAM5:           m.Param5,
+		COMMAND_LONG_FIELD_PARAM6:           m.Param6,
+		COMMAND_LONG_FIELD_PARAM7:           m.Param7,
+		COMMAND_LONG_FIELD_COMMAND:          m.Command,
+		COMMAND_LONG_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		COMMAND_LONG_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		COMMAND_LONG_FIELD_CONFIRMATION:     m.Confirmation,
 	}
 }
 
@@ -7132,11 +8106,16 @@ func (m *CommandAck) String() string {
 	)
 }
 
+const (
+	COMMAND_ACK_FIELD_COMMAND = "CommandAck.Command"
+	COMMAND_ACK_FIELD_RESULT  = "CommandAck.Result"
+)
+
 // ToMap (generated function)
 func (m *CommandAck) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"CommandAck.Command": m.Command,
-		"CommandAck.Result":  m.Result,
+		COMMAND_ACK_FIELD_COMMAND: m.Command,
+		COMMAND_ACK_FIELD_RESULT:  m.Result,
 	}
 }
 
@@ -7180,12 +8159,18 @@ func (m *CommandCancel) String() string {
 	)
 }
 
+const (
+	COMMAND_CANCEL_FIELD_COMMAND          = "CommandCancel.Command"
+	COMMAND_CANCEL_FIELD_TARGET_SYSTEM    = "CommandCancel.TargetSystem"
+	COMMAND_CANCEL_FIELD_TARGET_COMPONENT = "CommandCancel.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *CommandCancel) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"CommandCancel.Command":         m.Command,
-		"CommandCancel.TargetSystem":    m.TargetSystem,
-		"CommandCancel.TargetComponent": m.TargetComponent,
+		COMMAND_CANCEL_FIELD_COMMAND:          m.Command,
+		COMMAND_CANCEL_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		COMMAND_CANCEL_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -7239,16 +8224,26 @@ func (m *ManualSetpoint) String() string {
 	)
 }
 
+const (
+	MANUAL_SETPOINT_FIELD_TIME_BOOT_MS           = "ManualSetpoint.TimeBootMs"
+	MANUAL_SETPOINT_FIELD_ROLL                   = "ManualSetpoint.Roll"
+	MANUAL_SETPOINT_FIELD_PITCH                  = "ManualSetpoint.Pitch"
+	MANUAL_SETPOINT_FIELD_YAW                    = "ManualSetpoint.Yaw"
+	MANUAL_SETPOINT_FIELD_THRUST                 = "ManualSetpoint.Thrust"
+	MANUAL_SETPOINT_FIELD_MODE_SWITCH            = "ManualSetpoint.ModeSwitch"
+	MANUAL_SETPOINT_FIELD_MANUAL_OVERRIDE_SWITCH = "ManualSetpoint.ManualOverrideSwitch"
+)
+
 // ToMap (generated function)
 func (m *ManualSetpoint) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ManualSetpoint.TimeBootMs":           m.TimeBootMs,
-		"ManualSetpoint.Roll":                 m.Roll,
-		"ManualSetpoint.Pitch":                m.Pitch,
-		"ManualSetpoint.Yaw":                  m.Yaw,
-		"ManualSetpoint.Thrust":               m.Thrust,
-		"ManualSetpoint.ModeSwitch":           m.ModeSwitch,
-		"ManualSetpoint.ManualOverrideSwitch": m.ManualOverrideSwitch,
+		MANUAL_SETPOINT_FIELD_TIME_BOOT_MS:           m.TimeBootMs,
+		MANUAL_SETPOINT_FIELD_ROLL:                   m.Roll,
+		MANUAL_SETPOINT_FIELD_PITCH:                  m.Pitch,
+		MANUAL_SETPOINT_FIELD_YAW:                    m.Yaw,
+		MANUAL_SETPOINT_FIELD_THRUST:                 m.Thrust,
+		MANUAL_SETPOINT_FIELD_MODE_SWITCH:            m.ModeSwitch,
+		MANUAL_SETPOINT_FIELD_MANUAL_OVERRIDE_SWITCH: m.ManualOverrideSwitch,
 	}
 }
 
@@ -7314,18 +8309,30 @@ func (m *SetAttitudeTarget) String() string {
 	)
 }
 
+const (
+	SET_ATTITUDE_TARGET_FIELD_TIME_BOOT_MS     = "SetAttitudeTarget.TimeBootMs"
+	SET_ATTITUDE_TARGET_FIELD_Q                = "SetAttitudeTarget.Q"
+	SET_ATTITUDE_TARGET_FIELD_BODY_ROLL_RATE   = "SetAttitudeTarget.BodyRollRate"
+	SET_ATTITUDE_TARGET_FIELD_BODY_PITCH_RATE  = "SetAttitudeTarget.BodyPitchRate"
+	SET_ATTITUDE_TARGET_FIELD_BODY_YAW_RATE    = "SetAttitudeTarget.BodyYawRate"
+	SET_ATTITUDE_TARGET_FIELD_THRUST           = "SetAttitudeTarget.Thrust"
+	SET_ATTITUDE_TARGET_FIELD_TARGET_SYSTEM    = "SetAttitudeTarget.TargetSystem"
+	SET_ATTITUDE_TARGET_FIELD_TARGET_COMPONENT = "SetAttitudeTarget.TargetComponent"
+	SET_ATTITUDE_TARGET_FIELD_TYPE_MASK        = "SetAttitudeTarget.TypeMask"
+)
+
 // ToMap (generated function)
 func (m *SetAttitudeTarget) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SetAttitudeTarget.TimeBootMs":      m.TimeBootMs,
-		"SetAttitudeTarget.Q":               m.Q,
-		"SetAttitudeTarget.BodyRollRate":    m.BodyRollRate,
-		"SetAttitudeTarget.BodyPitchRate":   m.BodyPitchRate,
-		"SetAttitudeTarget.BodyYawRate":     m.BodyYawRate,
-		"SetAttitudeTarget.Thrust":          m.Thrust,
-		"SetAttitudeTarget.TargetSystem":    m.TargetSystem,
-		"SetAttitudeTarget.TargetComponent": m.TargetComponent,
-		"SetAttitudeTarget.TypeMask":        m.TypeMask,
+		SET_ATTITUDE_TARGET_FIELD_TIME_BOOT_MS:     m.TimeBootMs,
+		SET_ATTITUDE_TARGET_FIELD_Q:                m.Q,
+		SET_ATTITUDE_TARGET_FIELD_BODY_ROLL_RATE:   m.BodyRollRate,
+		SET_ATTITUDE_TARGET_FIELD_BODY_PITCH_RATE:  m.BodyPitchRate,
+		SET_ATTITUDE_TARGET_FIELD_BODY_YAW_RATE:    m.BodyYawRate,
+		SET_ATTITUDE_TARGET_FIELD_THRUST:           m.Thrust,
+		SET_ATTITUDE_TARGET_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		SET_ATTITUDE_TARGET_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		SET_ATTITUDE_TARGET_FIELD_TYPE_MASK:        m.TypeMask,
 	}
 }
 
@@ -7395,16 +8402,26 @@ func (m *AttitudeTarget) String() string {
 	)
 }
 
+const (
+	ATTITUDE_TARGET_FIELD_TIME_BOOT_MS    = "AttitudeTarget.TimeBootMs"
+	ATTITUDE_TARGET_FIELD_Q               = "AttitudeTarget.Q"
+	ATTITUDE_TARGET_FIELD_BODY_ROLL_RATE  = "AttitudeTarget.BodyRollRate"
+	ATTITUDE_TARGET_FIELD_BODY_PITCH_RATE = "AttitudeTarget.BodyPitchRate"
+	ATTITUDE_TARGET_FIELD_BODY_YAW_RATE   = "AttitudeTarget.BodyYawRate"
+	ATTITUDE_TARGET_FIELD_THRUST          = "AttitudeTarget.Thrust"
+	ATTITUDE_TARGET_FIELD_TYPE_MASK       = "AttitudeTarget.TypeMask"
+)
+
 // ToMap (generated function)
 func (m *AttitudeTarget) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AttitudeTarget.TimeBootMs":    m.TimeBootMs,
-		"AttitudeTarget.Q":             m.Q,
-		"AttitudeTarget.BodyRollRate":  m.BodyRollRate,
-		"AttitudeTarget.BodyPitchRate": m.BodyPitchRate,
-		"AttitudeTarget.BodyYawRate":   m.BodyYawRate,
-		"AttitudeTarget.Thrust":        m.Thrust,
-		"AttitudeTarget.TypeMask":      m.TypeMask,
+		ATTITUDE_TARGET_FIELD_TIME_BOOT_MS:    m.TimeBootMs,
+		ATTITUDE_TARGET_FIELD_Q:               m.Q,
+		ATTITUDE_TARGET_FIELD_BODY_ROLL_RATE:  m.BodyRollRate,
+		ATTITUDE_TARGET_FIELD_BODY_PITCH_RATE: m.BodyPitchRate,
+		ATTITUDE_TARGET_FIELD_BODY_YAW_RATE:   m.BodyYawRate,
+		ATTITUDE_TARGET_FIELD_THRUST:          m.Thrust,
+		ATTITUDE_TARGET_FIELD_TYPE_MASK:       m.TypeMask,
 	}
 }
 
@@ -7488,25 +8505,44 @@ func (m *SetPositionTargetLocalNed) String() string {
 	)
 }
 
+const (
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_TIME_BOOT_MS     = "SetPositionTargetLocalNed.TimeBootMs"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_X                = "SetPositionTargetLocalNed.X"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_Y                = "SetPositionTargetLocalNed.Y"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_Z                = "SetPositionTargetLocalNed.Z"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_VX               = "SetPositionTargetLocalNed.Vx"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_VY               = "SetPositionTargetLocalNed.Vy"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_VZ               = "SetPositionTargetLocalNed.Vz"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_AFX              = "SetPositionTargetLocalNed.Afx"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_AFY              = "SetPositionTargetLocalNed.Afy"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_AFZ              = "SetPositionTargetLocalNed.Afz"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_YAW              = "SetPositionTargetLocalNed.Yaw"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_YAW_RATE         = "SetPositionTargetLocalNed.YawRate"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_TYPE_MASK        = "SetPositionTargetLocalNed.TypeMask"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_TARGET_SYSTEM    = "SetPositionTargetLocalNed.TargetSystem"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_TARGET_COMPONENT = "SetPositionTargetLocalNed.TargetComponent"
+	SET_POSITION_TARGET_LOCAL_NED_FIELD_COORDINATE_FRAME = "SetPositionTargetLocalNed.CoordinateFrame"
+)
+
 // ToMap (generated function)
 func (m *SetPositionTargetLocalNed) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SetPositionTargetLocalNed.TimeBootMs":      m.TimeBootMs,
-		"SetPositionTargetLocalNed.X":               m.X,
-		"SetPositionTargetLocalNed.Y":               m.Y,
-		"SetPositionTargetLocalNed.Z":               m.Z,
-		"SetPositionTargetLocalNed.Vx":              m.Vx,
-		"SetPositionTargetLocalNed.Vy":              m.Vy,
-		"SetPositionTargetLocalNed.Vz":              m.Vz,
-		"SetPositionTargetLocalNed.Afx":             m.Afx,
-		"SetPositionTargetLocalNed.Afy":             m.Afy,
-		"SetPositionTargetLocalNed.Afz":             m.Afz,
-		"SetPositionTargetLocalNed.Yaw":             m.Yaw,
-		"SetPositionTargetLocalNed.YawRate":         m.YawRate,
-		"SetPositionTargetLocalNed.TypeMask":        m.TypeMask,
-		"SetPositionTargetLocalNed.TargetSystem":    m.TargetSystem,
-		"SetPositionTargetLocalNed.TargetComponent": m.TargetComponent,
-		"SetPositionTargetLocalNed.CoordinateFrame": m.CoordinateFrame,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_TIME_BOOT_MS:     m.TimeBootMs,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_X:                m.X,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_Y:                m.Y,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_Z:                m.Z,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_VX:               m.Vx,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_VY:               m.Vy,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_VZ:               m.Vz,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_AFX:              m.Afx,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_AFY:              m.Afy,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_AFZ:              m.Afz,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_YAW:              m.Yaw,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_YAW_RATE:         m.YawRate,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_TYPE_MASK:        m.TypeMask,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		SET_POSITION_TARGET_LOCAL_NED_FIELD_COORDINATE_FRAME: m.CoordinateFrame,
 	}
 }
 
@@ -7600,23 +8636,40 @@ func (m *PositionTargetLocalNed) String() string {
 	)
 }
 
+const (
+	POSITION_TARGET_LOCAL_NED_FIELD_TIME_BOOT_MS     = "PositionTargetLocalNed.TimeBootMs"
+	POSITION_TARGET_LOCAL_NED_FIELD_X                = "PositionTargetLocalNed.X"
+	POSITION_TARGET_LOCAL_NED_FIELD_Y                = "PositionTargetLocalNed.Y"
+	POSITION_TARGET_LOCAL_NED_FIELD_Z                = "PositionTargetLocalNed.Z"
+	POSITION_TARGET_LOCAL_NED_FIELD_VX               = "PositionTargetLocalNed.Vx"
+	POSITION_TARGET_LOCAL_NED_FIELD_VY               = "PositionTargetLocalNed.Vy"
+	POSITION_TARGET_LOCAL_NED_FIELD_VZ               = "PositionTargetLocalNed.Vz"
+	POSITION_TARGET_LOCAL_NED_FIELD_AFX              = "PositionTargetLocalNed.Afx"
+	POSITION_TARGET_LOCAL_NED_FIELD_AFY              = "PositionTargetLocalNed.Afy"
+	POSITION_TARGET_LOCAL_NED_FIELD_AFZ              = "PositionTargetLocalNed.Afz"
+	POSITION_TARGET_LOCAL_NED_FIELD_YAW              = "PositionTargetLocalNed.Yaw"
+	POSITION_TARGET_LOCAL_NED_FIELD_YAW_RATE         = "PositionTargetLocalNed.YawRate"
+	POSITION_TARGET_LOCAL_NED_FIELD_TYPE_MASK        = "PositionTargetLocalNed.TypeMask"
+	POSITION_TARGET_LOCAL_NED_FIELD_COORDINATE_FRAME = "PositionTargetLocalNed.CoordinateFrame"
+)
+
 // ToMap (generated function)
 func (m *PositionTargetLocalNed) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"PositionTargetLocalNed.TimeBootMs":      m.TimeBootMs,
-		"PositionTargetLocalNed.X":               m.X,
-		"PositionTargetLocalNed.Y":               m.Y,
-		"PositionTargetLocalNed.Z":               m.Z,
-		"PositionTargetLocalNed.Vx":              m.Vx,
-		"PositionTargetLocalNed.Vy":              m.Vy,
-		"PositionTargetLocalNed.Vz":              m.Vz,
-		"PositionTargetLocalNed.Afx":             m.Afx,
-		"PositionTargetLocalNed.Afy":             m.Afy,
-		"PositionTargetLocalNed.Afz":             m.Afz,
-		"PositionTargetLocalNed.Yaw":             m.Yaw,
-		"PositionTargetLocalNed.YawRate":         m.YawRate,
-		"PositionTargetLocalNed.TypeMask":        m.TypeMask,
-		"PositionTargetLocalNed.CoordinateFrame": m.CoordinateFrame,
+		POSITION_TARGET_LOCAL_NED_FIELD_TIME_BOOT_MS:     m.TimeBootMs,
+		POSITION_TARGET_LOCAL_NED_FIELD_X:                m.X,
+		POSITION_TARGET_LOCAL_NED_FIELD_Y:                m.Y,
+		POSITION_TARGET_LOCAL_NED_FIELD_Z:                m.Z,
+		POSITION_TARGET_LOCAL_NED_FIELD_VX:               m.Vx,
+		POSITION_TARGET_LOCAL_NED_FIELD_VY:               m.Vy,
+		POSITION_TARGET_LOCAL_NED_FIELD_VZ:               m.Vz,
+		POSITION_TARGET_LOCAL_NED_FIELD_AFX:              m.Afx,
+		POSITION_TARGET_LOCAL_NED_FIELD_AFY:              m.Afy,
+		POSITION_TARGET_LOCAL_NED_FIELD_AFZ:              m.Afz,
+		POSITION_TARGET_LOCAL_NED_FIELD_YAW:              m.Yaw,
+		POSITION_TARGET_LOCAL_NED_FIELD_YAW_RATE:         m.YawRate,
+		POSITION_TARGET_LOCAL_NED_FIELD_TYPE_MASK:        m.TypeMask,
+		POSITION_TARGET_LOCAL_NED_FIELD_COORDINATE_FRAME: m.CoordinateFrame,
 	}
 }
 
@@ -7710,25 +8763,44 @@ func (m *SetPositionTargetGlobalInt) String() string {
 	)
 }
 
+const (
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_TIME_BOOT_MS     = "SetPositionTargetGlobalInt.TimeBootMs"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_LAT_INT          = "SetPositionTargetGlobalInt.LatInt"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_LON_INT          = "SetPositionTargetGlobalInt.LonInt"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_ALT              = "SetPositionTargetGlobalInt.Alt"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_VX               = "SetPositionTargetGlobalInt.Vx"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_VY               = "SetPositionTargetGlobalInt.Vy"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_VZ               = "SetPositionTargetGlobalInt.Vz"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_AFX              = "SetPositionTargetGlobalInt.Afx"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_AFY              = "SetPositionTargetGlobalInt.Afy"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_AFZ              = "SetPositionTargetGlobalInt.Afz"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_YAW              = "SetPositionTargetGlobalInt.Yaw"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_YAW_RATE         = "SetPositionTargetGlobalInt.YawRate"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_TYPE_MASK        = "SetPositionTargetGlobalInt.TypeMask"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_TARGET_SYSTEM    = "SetPositionTargetGlobalInt.TargetSystem"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_TARGET_COMPONENT = "SetPositionTargetGlobalInt.TargetComponent"
+	SET_POSITION_TARGET_GLOBAL_INT_FIELD_COORDINATE_FRAME = "SetPositionTargetGlobalInt.CoordinateFrame"
+)
+
 // ToMap (generated function)
 func (m *SetPositionTargetGlobalInt) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SetPositionTargetGlobalInt.TimeBootMs":      m.TimeBootMs,
-		"SetPositionTargetGlobalInt.LatInt":          m.LatInt,
-		"SetPositionTargetGlobalInt.LonInt":          m.LonInt,
-		"SetPositionTargetGlobalInt.Alt":             m.Alt,
-		"SetPositionTargetGlobalInt.Vx":              m.Vx,
-		"SetPositionTargetGlobalInt.Vy":              m.Vy,
-		"SetPositionTargetGlobalInt.Vz":              m.Vz,
-		"SetPositionTargetGlobalInt.Afx":             m.Afx,
-		"SetPositionTargetGlobalInt.Afy":             m.Afy,
-		"SetPositionTargetGlobalInt.Afz":             m.Afz,
-		"SetPositionTargetGlobalInt.Yaw":             m.Yaw,
-		"SetPositionTargetGlobalInt.YawRate":         m.YawRate,
-		"SetPositionTargetGlobalInt.TypeMask":        m.TypeMask,
-		"SetPositionTargetGlobalInt.TargetSystem":    m.TargetSystem,
-		"SetPositionTargetGlobalInt.TargetComponent": m.TargetComponent,
-		"SetPositionTargetGlobalInt.CoordinateFrame": m.CoordinateFrame,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_TIME_BOOT_MS:     m.TimeBootMs,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_LAT_INT:          m.LatInt,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_LON_INT:          m.LonInt,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_ALT:              m.Alt,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_VX:               m.Vx,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_VY:               m.Vy,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_VZ:               m.Vz,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_AFX:              m.Afx,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_AFY:              m.Afy,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_AFZ:              m.Afz,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_YAW:              m.Yaw,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_YAW_RATE:         m.YawRate,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_TYPE_MASK:        m.TypeMask,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		SET_POSITION_TARGET_GLOBAL_INT_FIELD_COORDINATE_FRAME: m.CoordinateFrame,
 	}
 }
 
@@ -7822,23 +8894,40 @@ func (m *PositionTargetGlobalInt) String() string {
 	)
 }
 
+const (
+	POSITION_TARGET_GLOBAL_INT_FIELD_TIME_BOOT_MS     = "PositionTargetGlobalInt.TimeBootMs"
+	POSITION_TARGET_GLOBAL_INT_FIELD_LAT_INT          = "PositionTargetGlobalInt.LatInt"
+	POSITION_TARGET_GLOBAL_INT_FIELD_LON_INT          = "PositionTargetGlobalInt.LonInt"
+	POSITION_TARGET_GLOBAL_INT_FIELD_ALT              = "PositionTargetGlobalInt.Alt"
+	POSITION_TARGET_GLOBAL_INT_FIELD_VX               = "PositionTargetGlobalInt.Vx"
+	POSITION_TARGET_GLOBAL_INT_FIELD_VY               = "PositionTargetGlobalInt.Vy"
+	POSITION_TARGET_GLOBAL_INT_FIELD_VZ               = "PositionTargetGlobalInt.Vz"
+	POSITION_TARGET_GLOBAL_INT_FIELD_AFX              = "PositionTargetGlobalInt.Afx"
+	POSITION_TARGET_GLOBAL_INT_FIELD_AFY              = "PositionTargetGlobalInt.Afy"
+	POSITION_TARGET_GLOBAL_INT_FIELD_AFZ              = "PositionTargetGlobalInt.Afz"
+	POSITION_TARGET_GLOBAL_INT_FIELD_YAW              = "PositionTargetGlobalInt.Yaw"
+	POSITION_TARGET_GLOBAL_INT_FIELD_YAW_RATE         = "PositionTargetGlobalInt.YawRate"
+	POSITION_TARGET_GLOBAL_INT_FIELD_TYPE_MASK        = "PositionTargetGlobalInt.TypeMask"
+	POSITION_TARGET_GLOBAL_INT_FIELD_COORDINATE_FRAME = "PositionTargetGlobalInt.CoordinateFrame"
+)
+
 // ToMap (generated function)
 func (m *PositionTargetGlobalInt) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"PositionTargetGlobalInt.TimeBootMs":      m.TimeBootMs,
-		"PositionTargetGlobalInt.LatInt":          m.LatInt,
-		"PositionTargetGlobalInt.LonInt":          m.LonInt,
-		"PositionTargetGlobalInt.Alt":             m.Alt,
-		"PositionTargetGlobalInt.Vx":              m.Vx,
-		"PositionTargetGlobalInt.Vy":              m.Vy,
-		"PositionTargetGlobalInt.Vz":              m.Vz,
-		"PositionTargetGlobalInt.Afx":             m.Afx,
-		"PositionTargetGlobalInt.Afy":             m.Afy,
-		"PositionTargetGlobalInt.Afz":             m.Afz,
-		"PositionTargetGlobalInt.Yaw":             m.Yaw,
-		"PositionTargetGlobalInt.YawRate":         m.YawRate,
-		"PositionTargetGlobalInt.TypeMask":        m.TypeMask,
-		"PositionTargetGlobalInt.CoordinateFrame": m.CoordinateFrame,
+		POSITION_TARGET_GLOBAL_INT_FIELD_TIME_BOOT_MS:     m.TimeBootMs,
+		POSITION_TARGET_GLOBAL_INT_FIELD_LAT_INT:          m.LatInt,
+		POSITION_TARGET_GLOBAL_INT_FIELD_LON_INT:          m.LonInt,
+		POSITION_TARGET_GLOBAL_INT_FIELD_ALT:              m.Alt,
+		POSITION_TARGET_GLOBAL_INT_FIELD_VX:               m.Vx,
+		POSITION_TARGET_GLOBAL_INT_FIELD_VY:               m.Vy,
+		POSITION_TARGET_GLOBAL_INT_FIELD_VZ:               m.Vz,
+		POSITION_TARGET_GLOBAL_INT_FIELD_AFX:              m.Afx,
+		POSITION_TARGET_GLOBAL_INT_FIELD_AFY:              m.Afy,
+		POSITION_TARGET_GLOBAL_INT_FIELD_AFZ:              m.Afz,
+		POSITION_TARGET_GLOBAL_INT_FIELD_YAW:              m.Yaw,
+		POSITION_TARGET_GLOBAL_INT_FIELD_YAW_RATE:         m.YawRate,
+		POSITION_TARGET_GLOBAL_INT_FIELD_TYPE_MASK:        m.TypeMask,
+		POSITION_TARGET_GLOBAL_INT_FIELD_COORDINATE_FRAME: m.CoordinateFrame,
 	}
 }
 
@@ -7914,16 +9003,26 @@ func (m *LocalPositionNedSystemGlobalOffset) String() string {
 	)
 }
 
+const (
+	LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_TIME_BOOT_MS = "LocalPositionNedSystemGlobalOffset.TimeBootMs"
+	LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_X            = "LocalPositionNedSystemGlobalOffset.X"
+	LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_Y            = "LocalPositionNedSystemGlobalOffset.Y"
+	LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_Z            = "LocalPositionNedSystemGlobalOffset.Z"
+	LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_ROLL         = "LocalPositionNedSystemGlobalOffset.Roll"
+	LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_PITCH        = "LocalPositionNedSystemGlobalOffset.Pitch"
+	LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_YAW          = "LocalPositionNedSystemGlobalOffset.Yaw"
+)
+
 // ToMap (generated function)
 func (m *LocalPositionNedSystemGlobalOffset) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LocalPositionNedSystemGlobalOffset.TimeBootMs": m.TimeBootMs,
-		"LocalPositionNedSystemGlobalOffset.X":          m.X,
-		"LocalPositionNedSystemGlobalOffset.Y":          m.Y,
-		"LocalPositionNedSystemGlobalOffset.Z":          m.Z,
-		"LocalPositionNedSystemGlobalOffset.Roll":       m.Roll,
-		"LocalPositionNedSystemGlobalOffset.Pitch":      m.Pitch,
-		"LocalPositionNedSystemGlobalOffset.Yaw":        m.Yaw,
+		LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_X:            m.X,
+		LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_Y:            m.Y,
+		LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_Z:            m.Z,
+		LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_ROLL:         m.Roll,
+		LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_PITCH:        m.Pitch,
+		LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET_FIELD_YAW:          m.Yaw,
 	}
 }
 
@@ -8003,25 +9102,44 @@ func (m *HilState) String() string {
 	)
 }
 
+const (
+	HIL_STATE_FIELD_TIME_USEC  = "HilState.TimeUsec"
+	HIL_STATE_FIELD_ROLL       = "HilState.Roll"
+	HIL_STATE_FIELD_PITCH      = "HilState.Pitch"
+	HIL_STATE_FIELD_YAW        = "HilState.Yaw"
+	HIL_STATE_FIELD_ROLLSPEED  = "HilState.Rollspeed"
+	HIL_STATE_FIELD_PITCHSPEED = "HilState.Pitchspeed"
+	HIL_STATE_FIELD_YAWSPEED   = "HilState.Yawspeed"
+	HIL_STATE_FIELD_LAT        = "HilState.Lat"
+	HIL_STATE_FIELD_LON        = "HilState.Lon"
+	HIL_STATE_FIELD_ALT        = "HilState.Alt"
+	HIL_STATE_FIELD_VX         = "HilState.Vx"
+	HIL_STATE_FIELD_VY         = "HilState.Vy"
+	HIL_STATE_FIELD_VZ         = "HilState.Vz"
+	HIL_STATE_FIELD_XACC       = "HilState.Xacc"
+	HIL_STATE_FIELD_YACC       = "HilState.Yacc"
+	HIL_STATE_FIELD_ZACC       = "HilState.Zacc"
+)
+
 // ToMap (generated function)
 func (m *HilState) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HilState.TimeUsec":   m.TimeUsec,
-		"HilState.Roll":       m.Roll,
-		"HilState.Pitch":      m.Pitch,
-		"HilState.Yaw":        m.Yaw,
-		"HilState.Rollspeed":  m.Rollspeed,
-		"HilState.Pitchspeed": m.Pitchspeed,
-		"HilState.Yawspeed":   m.Yawspeed,
-		"HilState.Lat":        m.Lat,
-		"HilState.Lon":        m.Lon,
-		"HilState.Alt":        m.Alt,
-		"HilState.Vx":         m.Vx,
-		"HilState.Vy":         m.Vy,
-		"HilState.Vz":         m.Vz,
-		"HilState.Xacc":       m.Xacc,
-		"HilState.Yacc":       m.Yacc,
-		"HilState.Zacc":       m.Zacc,
+		HIL_STATE_FIELD_TIME_USEC:  m.TimeUsec,
+		HIL_STATE_FIELD_ROLL:       m.Roll,
+		HIL_STATE_FIELD_PITCH:      m.Pitch,
+		HIL_STATE_FIELD_YAW:        m.Yaw,
+		HIL_STATE_FIELD_ROLLSPEED:  m.Rollspeed,
+		HIL_STATE_FIELD_PITCHSPEED: m.Pitchspeed,
+		HIL_STATE_FIELD_YAWSPEED:   m.Yawspeed,
+		HIL_STATE_FIELD_LAT:        m.Lat,
+		HIL_STATE_FIELD_LON:        m.Lon,
+		HIL_STATE_FIELD_ALT:        m.Alt,
+		HIL_STATE_FIELD_VX:         m.Vx,
+		HIL_STATE_FIELD_VY:         m.Vy,
+		HIL_STATE_FIELD_VZ:         m.Vz,
+		HIL_STATE_FIELD_XACC:       m.Xacc,
+		HIL_STATE_FIELD_YACC:       m.Yacc,
+		HIL_STATE_FIELD_ZACC:       m.Zacc,
 	}
 }
 
@@ -8109,20 +9227,34 @@ func (m *HilControls) String() string {
 	)
 }
 
+const (
+	HIL_CONTROLS_FIELD_TIME_USEC      = "HilControls.TimeUsec"
+	HIL_CONTROLS_FIELD_ROLL_AILERONS  = "HilControls.RollAilerons"
+	HIL_CONTROLS_FIELD_PITCH_ELEVATOR = "HilControls.PitchElevator"
+	HIL_CONTROLS_FIELD_YAW_RUDDER     = "HilControls.YawRudder"
+	HIL_CONTROLS_FIELD_THROTTLE       = "HilControls.Throttle"
+	HIL_CONTROLS_FIELD_AUX1           = "HilControls.Aux1"
+	HIL_CONTROLS_FIELD_AUX2           = "HilControls.Aux2"
+	HIL_CONTROLS_FIELD_AUX3           = "HilControls.Aux3"
+	HIL_CONTROLS_FIELD_AUX4           = "HilControls.Aux4"
+	HIL_CONTROLS_FIELD_MODE           = "HilControls.Mode"
+	HIL_CONTROLS_FIELD_NAV_MODE       = "HilControls.NavMode"
+)
+
 // ToMap (generated function)
 func (m *HilControls) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HilControls.TimeUsec":      m.TimeUsec,
-		"HilControls.RollAilerons":  m.RollAilerons,
-		"HilControls.PitchElevator": m.PitchElevator,
-		"HilControls.YawRudder":     m.YawRudder,
-		"HilControls.Throttle":      m.Throttle,
-		"HilControls.Aux1":          m.Aux1,
-		"HilControls.Aux2":          m.Aux2,
-		"HilControls.Aux3":          m.Aux3,
-		"HilControls.Aux4":          m.Aux4,
-		"HilControls.Mode":          m.Mode,
-		"HilControls.NavMode":       m.NavMode,
+		HIL_CONTROLS_FIELD_TIME_USEC:      m.TimeUsec,
+		HIL_CONTROLS_FIELD_ROLL_AILERONS:  m.RollAilerons,
+		HIL_CONTROLS_FIELD_PITCH_ELEVATOR: m.PitchElevator,
+		HIL_CONTROLS_FIELD_YAW_RUDDER:     m.YawRudder,
+		HIL_CONTROLS_FIELD_THROTTLE:       m.Throttle,
+		HIL_CONTROLS_FIELD_AUX1:           m.Aux1,
+		HIL_CONTROLS_FIELD_AUX2:           m.Aux2,
+		HIL_CONTROLS_FIELD_AUX3:           m.Aux3,
+		HIL_CONTROLS_FIELD_AUX4:           m.Aux4,
+		HIL_CONTROLS_FIELD_MODE:           m.Mode,
+		HIL_CONTROLS_FIELD_NAV_MODE:       m.NavMode,
 	}
 }
 
@@ -8206,23 +9338,40 @@ func (m *HilRcInputsRaw) String() string {
 	)
 }
 
+const (
+	HIL_RC_INPUTS_RAW_FIELD_TIME_USEC  = "HilRcInputsRaw.TimeUsec"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN1_RAW  = "HilRcInputsRaw.Chan1Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN2_RAW  = "HilRcInputsRaw.Chan2Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN3_RAW  = "HilRcInputsRaw.Chan3Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN4_RAW  = "HilRcInputsRaw.Chan4Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN5_RAW  = "HilRcInputsRaw.Chan5Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN6_RAW  = "HilRcInputsRaw.Chan6Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN7_RAW  = "HilRcInputsRaw.Chan7Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN8_RAW  = "HilRcInputsRaw.Chan8Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN9_RAW  = "HilRcInputsRaw.Chan9Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN10_RAW = "HilRcInputsRaw.Chan10Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN11_RAW = "HilRcInputsRaw.Chan11Raw"
+	HIL_RC_INPUTS_RAW_FIELD_CHAN12_RAW = "HilRcInputsRaw.Chan12Raw"
+	HIL_RC_INPUTS_RAW_FIELD_RSSI       = "HilRcInputsRaw.Rssi"
+)
+
 // ToMap (generated function)
 func (m *HilRcInputsRaw) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HilRcInputsRaw.TimeUsec":  m.TimeUsec,
-		"HilRcInputsRaw.Chan1Raw":  m.Chan1Raw,
-		"HilRcInputsRaw.Chan2Raw":  m.Chan2Raw,
-		"HilRcInputsRaw.Chan3Raw":  m.Chan3Raw,
-		"HilRcInputsRaw.Chan4Raw":  m.Chan4Raw,
-		"HilRcInputsRaw.Chan5Raw":  m.Chan5Raw,
-		"HilRcInputsRaw.Chan6Raw":  m.Chan6Raw,
-		"HilRcInputsRaw.Chan7Raw":  m.Chan7Raw,
-		"HilRcInputsRaw.Chan8Raw":  m.Chan8Raw,
-		"HilRcInputsRaw.Chan9Raw":  m.Chan9Raw,
-		"HilRcInputsRaw.Chan10Raw": m.Chan10Raw,
-		"HilRcInputsRaw.Chan11Raw": m.Chan11Raw,
-		"HilRcInputsRaw.Chan12Raw": m.Chan12Raw,
-		"HilRcInputsRaw.Rssi":      m.Rssi,
+		HIL_RC_INPUTS_RAW_FIELD_TIME_USEC:  m.TimeUsec,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN1_RAW:  m.Chan1Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN2_RAW:  m.Chan2Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN3_RAW:  m.Chan3Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN4_RAW:  m.Chan4Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN5_RAW:  m.Chan5Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN6_RAW:  m.Chan6Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN7_RAW:  m.Chan7Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN8_RAW:  m.Chan8Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN9_RAW:  m.Chan9Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN10_RAW: m.Chan10Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN11_RAW: m.Chan11Raw,
+		HIL_RC_INPUTS_RAW_FIELD_CHAN12_RAW: m.Chan12Raw,
+		HIL_RC_INPUTS_RAW_FIELD_RSSI:       m.Rssi,
 	}
 }
 
@@ -8292,13 +9441,20 @@ func (m *HilActuatorControls) String() string {
 	)
 }
 
+const (
+	HIL_ACTUATOR_CONTROLS_FIELD_TIME_USEC = "HilActuatorControls.TimeUsec"
+	HIL_ACTUATOR_CONTROLS_FIELD_FLAGS     = "HilActuatorControls.Flags"
+	HIL_ACTUATOR_CONTROLS_FIELD_CONTROLS  = "HilActuatorControls.Controls"
+	HIL_ACTUATOR_CONTROLS_FIELD_MODE      = "HilActuatorControls.Mode"
+)
+
 // ToMap (generated function)
 func (m *HilActuatorControls) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HilActuatorControls.TimeUsec": m.TimeUsec,
-		"HilActuatorControls.Flags":    m.Flags,
-		"HilActuatorControls.Controls": m.Controls,
-		"HilActuatorControls.Mode":     m.Mode,
+		HIL_ACTUATOR_CONTROLS_FIELD_TIME_USEC: m.TimeUsec,
+		HIL_ACTUATOR_CONTROLS_FIELD_FLAGS:     m.Flags,
+		HIL_ACTUATOR_CONTROLS_FIELD_CONTROLS:  m.Controls,
+		HIL_ACTUATOR_CONTROLS_FIELD_MODE:      m.Mode,
 	}
 }
 
@@ -8360,17 +9516,28 @@ func (m *OpticalFlow) String() string {
 	)
 }
 
+const (
+	OPTICAL_FLOW_FIELD_TIME_USEC       = "OpticalFlow.TimeUsec"
+	OPTICAL_FLOW_FIELD_FLOW_COMP_M_X   = "OpticalFlow.FlowCompMX"
+	OPTICAL_FLOW_FIELD_FLOW_COMP_M_Y   = "OpticalFlow.FlowCompMY"
+	OPTICAL_FLOW_FIELD_GROUND_DISTANCE = "OpticalFlow.GroundDistance"
+	OPTICAL_FLOW_FIELD_FLOW_X          = "OpticalFlow.FlowX"
+	OPTICAL_FLOW_FIELD_FLOW_Y          = "OpticalFlow.FlowY"
+	OPTICAL_FLOW_FIELD_SENSOR_ID       = "OpticalFlow.SensorID"
+	OPTICAL_FLOW_FIELD_QUALITY         = "OpticalFlow.Quality"
+)
+
 // ToMap (generated function)
 func (m *OpticalFlow) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"OpticalFlow.TimeUsec":       m.TimeUsec,
-		"OpticalFlow.FlowCompMX":     m.FlowCompMX,
-		"OpticalFlow.FlowCompMY":     m.FlowCompMY,
-		"OpticalFlow.GroundDistance": m.GroundDistance,
-		"OpticalFlow.FlowX":          m.FlowX,
-		"OpticalFlow.FlowY":          m.FlowY,
-		"OpticalFlow.SensorID":       m.SensorID,
-		"OpticalFlow.Quality":        m.Quality,
+		OPTICAL_FLOW_FIELD_TIME_USEC:       m.TimeUsec,
+		OPTICAL_FLOW_FIELD_FLOW_COMP_M_X:   m.FlowCompMX,
+		OPTICAL_FLOW_FIELD_FLOW_COMP_M_Y:   m.FlowCompMY,
+		OPTICAL_FLOW_FIELD_GROUND_DISTANCE: m.GroundDistance,
+		OPTICAL_FLOW_FIELD_FLOW_X:          m.FlowX,
+		OPTICAL_FLOW_FIELD_FLOW_Y:          m.FlowY,
+		OPTICAL_FLOW_FIELD_SENSOR_ID:       m.SensorID,
+		OPTICAL_FLOW_FIELD_QUALITY:         m.Quality,
 	}
 }
 
@@ -8434,16 +9601,26 @@ func (m *GlobalVisionPositionEstimate) String() string {
 	)
 }
 
+const (
+	GLOBAL_VISION_POSITION_ESTIMATE_FIELD_USEC  = "GlobalVisionPositionEstimate.Usec"
+	GLOBAL_VISION_POSITION_ESTIMATE_FIELD_X     = "GlobalVisionPositionEstimate.X"
+	GLOBAL_VISION_POSITION_ESTIMATE_FIELD_Y     = "GlobalVisionPositionEstimate.Y"
+	GLOBAL_VISION_POSITION_ESTIMATE_FIELD_Z     = "GlobalVisionPositionEstimate.Z"
+	GLOBAL_VISION_POSITION_ESTIMATE_FIELD_ROLL  = "GlobalVisionPositionEstimate.Roll"
+	GLOBAL_VISION_POSITION_ESTIMATE_FIELD_PITCH = "GlobalVisionPositionEstimate.Pitch"
+	GLOBAL_VISION_POSITION_ESTIMATE_FIELD_YAW   = "GlobalVisionPositionEstimate.Yaw"
+)
+
 // ToMap (generated function)
 func (m *GlobalVisionPositionEstimate) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GlobalVisionPositionEstimate.Usec":  m.Usec,
-		"GlobalVisionPositionEstimate.X":     m.X,
-		"GlobalVisionPositionEstimate.Y":     m.Y,
-		"GlobalVisionPositionEstimate.Z":     m.Z,
-		"GlobalVisionPositionEstimate.Roll":  m.Roll,
-		"GlobalVisionPositionEstimate.Pitch": m.Pitch,
-		"GlobalVisionPositionEstimate.Yaw":   m.Yaw,
+		GLOBAL_VISION_POSITION_ESTIMATE_FIELD_USEC:  m.Usec,
+		GLOBAL_VISION_POSITION_ESTIMATE_FIELD_X:     m.X,
+		GLOBAL_VISION_POSITION_ESTIMATE_FIELD_Y:     m.Y,
+		GLOBAL_VISION_POSITION_ESTIMATE_FIELD_Z:     m.Z,
+		GLOBAL_VISION_POSITION_ESTIMATE_FIELD_ROLL:  m.Roll,
+		GLOBAL_VISION_POSITION_ESTIMATE_FIELD_PITCH: m.Pitch,
+		GLOBAL_VISION_POSITION_ESTIMATE_FIELD_YAW:   m.Yaw,
 	}
 }
 
@@ -8505,16 +9682,26 @@ func (m *VisionPositionEstimate) String() string {
 	)
 }
 
+const (
+	VISION_POSITION_ESTIMATE_FIELD_USEC  = "VisionPositionEstimate.Usec"
+	VISION_POSITION_ESTIMATE_FIELD_X     = "VisionPositionEstimate.X"
+	VISION_POSITION_ESTIMATE_FIELD_Y     = "VisionPositionEstimate.Y"
+	VISION_POSITION_ESTIMATE_FIELD_Z     = "VisionPositionEstimate.Z"
+	VISION_POSITION_ESTIMATE_FIELD_ROLL  = "VisionPositionEstimate.Roll"
+	VISION_POSITION_ESTIMATE_FIELD_PITCH = "VisionPositionEstimate.Pitch"
+	VISION_POSITION_ESTIMATE_FIELD_YAW   = "VisionPositionEstimate.Yaw"
+)
+
 // ToMap (generated function)
 func (m *VisionPositionEstimate) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"VisionPositionEstimate.Usec":  m.Usec,
-		"VisionPositionEstimate.X":     m.X,
-		"VisionPositionEstimate.Y":     m.Y,
-		"VisionPositionEstimate.Z":     m.Z,
-		"VisionPositionEstimate.Roll":  m.Roll,
-		"VisionPositionEstimate.Pitch": m.Pitch,
-		"VisionPositionEstimate.Yaw":   m.Yaw,
+		VISION_POSITION_ESTIMATE_FIELD_USEC:  m.Usec,
+		VISION_POSITION_ESTIMATE_FIELD_X:     m.X,
+		VISION_POSITION_ESTIMATE_FIELD_Y:     m.Y,
+		VISION_POSITION_ESTIMATE_FIELD_Z:     m.Z,
+		VISION_POSITION_ESTIMATE_FIELD_ROLL:  m.Roll,
+		VISION_POSITION_ESTIMATE_FIELD_PITCH: m.Pitch,
+		VISION_POSITION_ESTIMATE_FIELD_YAW:   m.Yaw,
 	}
 }
 
@@ -8570,13 +9757,20 @@ func (m *VisionSpeedEstimate) String() string {
 	)
 }
 
+const (
+	VISION_SPEED_ESTIMATE_FIELD_USEC = "VisionSpeedEstimate.Usec"
+	VISION_SPEED_ESTIMATE_FIELD_X    = "VisionSpeedEstimate.X"
+	VISION_SPEED_ESTIMATE_FIELD_Y    = "VisionSpeedEstimate.Y"
+	VISION_SPEED_ESTIMATE_FIELD_Z    = "VisionSpeedEstimate.Z"
+)
+
 // ToMap (generated function)
 func (m *VisionSpeedEstimate) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"VisionSpeedEstimate.Usec": m.Usec,
-		"VisionSpeedEstimate.X":    m.X,
-		"VisionSpeedEstimate.Y":    m.Y,
-		"VisionSpeedEstimate.Z":    m.Z,
+		VISION_SPEED_ESTIMATE_FIELD_USEC: m.Usec,
+		VISION_SPEED_ESTIMATE_FIELD_X:    m.X,
+		VISION_SPEED_ESTIMATE_FIELD_Y:    m.Y,
+		VISION_SPEED_ESTIMATE_FIELD_Z:    m.Z,
 	}
 }
 
@@ -8632,16 +9826,26 @@ func (m *ViconPositionEstimate) String() string {
 	)
 }
 
+const (
+	VICON_POSITION_ESTIMATE_FIELD_USEC  = "ViconPositionEstimate.Usec"
+	VICON_POSITION_ESTIMATE_FIELD_X     = "ViconPositionEstimate.X"
+	VICON_POSITION_ESTIMATE_FIELD_Y     = "ViconPositionEstimate.Y"
+	VICON_POSITION_ESTIMATE_FIELD_Z     = "ViconPositionEstimate.Z"
+	VICON_POSITION_ESTIMATE_FIELD_ROLL  = "ViconPositionEstimate.Roll"
+	VICON_POSITION_ESTIMATE_FIELD_PITCH = "ViconPositionEstimate.Pitch"
+	VICON_POSITION_ESTIMATE_FIELD_YAW   = "ViconPositionEstimate.Yaw"
+)
+
 // ToMap (generated function)
 func (m *ViconPositionEstimate) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ViconPositionEstimate.Usec":  m.Usec,
-		"ViconPositionEstimate.X":     m.X,
-		"ViconPositionEstimate.Y":     m.Y,
-		"ViconPositionEstimate.Z":     m.Z,
-		"ViconPositionEstimate.Roll":  m.Roll,
-		"ViconPositionEstimate.Pitch": m.Pitch,
-		"ViconPositionEstimate.Yaw":   m.Yaw,
+		VICON_POSITION_ESTIMATE_FIELD_USEC:  m.Usec,
+		VICON_POSITION_ESTIMATE_FIELD_X:     m.X,
+		VICON_POSITION_ESTIMATE_FIELD_Y:     m.Y,
+		VICON_POSITION_ESTIMATE_FIELD_Z:     m.Z,
+		VICON_POSITION_ESTIMATE_FIELD_ROLL:  m.Roll,
+		VICON_POSITION_ESTIMATE_FIELD_PITCH: m.Pitch,
+		VICON_POSITION_ESTIMATE_FIELD_YAW:   m.Yaw,
 	}
 }
 
@@ -8719,24 +9923,42 @@ func (m *HighresImu) String() string {
 	)
 }
 
+const (
+	HIGHRES_IMU_FIELD_TIME_USEC      = "HighresImu.TimeUsec"
+	HIGHRES_IMU_FIELD_XACC           = "HighresImu.Xacc"
+	HIGHRES_IMU_FIELD_YACC           = "HighresImu.Yacc"
+	HIGHRES_IMU_FIELD_ZACC           = "HighresImu.Zacc"
+	HIGHRES_IMU_FIELD_XGYRO          = "HighresImu.Xgyro"
+	HIGHRES_IMU_FIELD_YGYRO          = "HighresImu.Ygyro"
+	HIGHRES_IMU_FIELD_ZGYRO          = "HighresImu.Zgyro"
+	HIGHRES_IMU_FIELD_XMAG           = "HighresImu.Xmag"
+	HIGHRES_IMU_FIELD_YMAG           = "HighresImu.Ymag"
+	HIGHRES_IMU_FIELD_ZMAG           = "HighresImu.Zmag"
+	HIGHRES_IMU_FIELD_ABS_PRESSURE   = "HighresImu.AbsPressure"
+	HIGHRES_IMU_FIELD_DIFF_PRESSURE  = "HighresImu.DiffPressure"
+	HIGHRES_IMU_FIELD_PRESSURE_ALT   = "HighresImu.PressureAlt"
+	HIGHRES_IMU_FIELD_TEMPERATURE    = "HighresImu.Temperature"
+	HIGHRES_IMU_FIELD_FIELDS_UPDATED = "HighresImu.FieldsUpdated"
+)
+
 // ToMap (generated function)
 func (m *HighresImu) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HighresImu.TimeUsec":      m.TimeUsec,
-		"HighresImu.Xacc":          m.Xacc,
-		"HighresImu.Yacc":          m.Yacc,
-		"HighresImu.Zacc":          m.Zacc,
-		"HighresImu.Xgyro":         m.Xgyro,
-		"HighresImu.Ygyro":         m.Ygyro,
-		"HighresImu.Zgyro":         m.Zgyro,
-		"HighresImu.Xmag":          m.Xmag,
-		"HighresImu.Ymag":          m.Ymag,
-		"HighresImu.Zmag":          m.Zmag,
-		"HighresImu.AbsPressure":   m.AbsPressure,
-		"HighresImu.DiffPressure":  m.DiffPressure,
-		"HighresImu.PressureAlt":   m.PressureAlt,
-		"HighresImu.Temperature":   m.Temperature,
-		"HighresImu.FieldsUpdated": m.FieldsUpdated,
+		HIGHRES_IMU_FIELD_TIME_USEC:      m.TimeUsec,
+		HIGHRES_IMU_FIELD_XACC:           m.Xacc,
+		HIGHRES_IMU_FIELD_YACC:           m.Yacc,
+		HIGHRES_IMU_FIELD_ZACC:           m.Zacc,
+		HIGHRES_IMU_FIELD_XGYRO:          m.Xgyro,
+		HIGHRES_IMU_FIELD_YGYRO:          m.Ygyro,
+		HIGHRES_IMU_FIELD_ZGYRO:          m.Zgyro,
+		HIGHRES_IMU_FIELD_XMAG:           m.Xmag,
+		HIGHRES_IMU_FIELD_YMAG:           m.Ymag,
+		HIGHRES_IMU_FIELD_ZMAG:           m.Zmag,
+		HIGHRES_IMU_FIELD_ABS_PRESSURE:   m.AbsPressure,
+		HIGHRES_IMU_FIELD_DIFF_PRESSURE:  m.DiffPressure,
+		HIGHRES_IMU_FIELD_PRESSURE_ALT:   m.PressureAlt,
+		HIGHRES_IMU_FIELD_TEMPERATURE:    m.Temperature,
+		HIGHRES_IMU_FIELD_FIELDS_UPDATED: m.FieldsUpdated,
 	}
 }
 
@@ -8824,21 +10046,36 @@ func (m *OpticalFlowRad) String() string {
 	)
 }
 
+const (
+	OPTICAL_FLOW_RAD_FIELD_TIME_USEC              = "OpticalFlowRad.TimeUsec"
+	OPTICAL_FLOW_RAD_FIELD_INTEGRATION_TIME_US    = "OpticalFlowRad.IntegrationTimeUs"
+	OPTICAL_FLOW_RAD_FIELD_INTEGRATED_X           = "OpticalFlowRad.IntegratedX"
+	OPTICAL_FLOW_RAD_FIELD_INTEGRATED_Y           = "OpticalFlowRad.IntegratedY"
+	OPTICAL_FLOW_RAD_FIELD_INTEGRATED_XGYRO       = "OpticalFlowRad.IntegratedXgyro"
+	OPTICAL_FLOW_RAD_FIELD_INTEGRATED_YGYRO       = "OpticalFlowRad.IntegratedYgyro"
+	OPTICAL_FLOW_RAD_FIELD_INTEGRATED_ZGYRO       = "OpticalFlowRad.IntegratedZgyro"
+	OPTICAL_FLOW_RAD_FIELD_TIME_DELTA_DISTANCE_US = "OpticalFlowRad.TimeDeltaDistanceUs"
+	OPTICAL_FLOW_RAD_FIELD_DISTANCE               = "OpticalFlowRad.Distance"
+	OPTICAL_FLOW_RAD_FIELD_TEMPERATURE            = "OpticalFlowRad.Temperature"
+	OPTICAL_FLOW_RAD_FIELD_SENSOR_ID              = "OpticalFlowRad.SensorID"
+	OPTICAL_FLOW_RAD_FIELD_QUALITY                = "OpticalFlowRad.Quality"
+)
+
 // ToMap (generated function)
 func (m *OpticalFlowRad) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"OpticalFlowRad.TimeUsec":            m.TimeUsec,
-		"OpticalFlowRad.IntegrationTimeUs":   m.IntegrationTimeUs,
-		"OpticalFlowRad.IntegratedX":         m.IntegratedX,
-		"OpticalFlowRad.IntegratedY":         m.IntegratedY,
-		"OpticalFlowRad.IntegratedXgyro":     m.IntegratedXgyro,
-		"OpticalFlowRad.IntegratedYgyro":     m.IntegratedYgyro,
-		"OpticalFlowRad.IntegratedZgyro":     m.IntegratedZgyro,
-		"OpticalFlowRad.TimeDeltaDistanceUs": m.TimeDeltaDistanceUs,
-		"OpticalFlowRad.Distance":            m.Distance,
-		"OpticalFlowRad.Temperature":         m.Temperature,
-		"OpticalFlowRad.SensorID":            m.SensorID,
-		"OpticalFlowRad.Quality":             m.Quality,
+		OPTICAL_FLOW_RAD_FIELD_TIME_USEC:              m.TimeUsec,
+		OPTICAL_FLOW_RAD_FIELD_INTEGRATION_TIME_US:    m.IntegrationTimeUs,
+		OPTICAL_FLOW_RAD_FIELD_INTEGRATED_X:           m.IntegratedX,
+		OPTICAL_FLOW_RAD_FIELD_INTEGRATED_Y:           m.IntegratedY,
+		OPTICAL_FLOW_RAD_FIELD_INTEGRATED_XGYRO:       m.IntegratedXgyro,
+		OPTICAL_FLOW_RAD_FIELD_INTEGRATED_YGYRO:       m.IntegratedYgyro,
+		OPTICAL_FLOW_RAD_FIELD_INTEGRATED_ZGYRO:       m.IntegratedZgyro,
+		OPTICAL_FLOW_RAD_FIELD_TIME_DELTA_DISTANCE_US: m.TimeDeltaDistanceUs,
+		OPTICAL_FLOW_RAD_FIELD_DISTANCE:               m.Distance,
+		OPTICAL_FLOW_RAD_FIELD_TEMPERATURE:            m.Temperature,
+		OPTICAL_FLOW_RAD_FIELD_SENSOR_ID:              m.SensorID,
+		OPTICAL_FLOW_RAD_FIELD_QUALITY:                m.Quality,
 	}
 }
 
@@ -8926,24 +10163,42 @@ func (m *HilSensor) String() string {
 	)
 }
 
+const (
+	HIL_SENSOR_FIELD_TIME_USEC      = "HilSensor.TimeUsec"
+	HIL_SENSOR_FIELD_XACC           = "HilSensor.Xacc"
+	HIL_SENSOR_FIELD_YACC           = "HilSensor.Yacc"
+	HIL_SENSOR_FIELD_ZACC           = "HilSensor.Zacc"
+	HIL_SENSOR_FIELD_XGYRO          = "HilSensor.Xgyro"
+	HIL_SENSOR_FIELD_YGYRO          = "HilSensor.Ygyro"
+	HIL_SENSOR_FIELD_ZGYRO          = "HilSensor.Zgyro"
+	HIL_SENSOR_FIELD_XMAG           = "HilSensor.Xmag"
+	HIL_SENSOR_FIELD_YMAG           = "HilSensor.Ymag"
+	HIL_SENSOR_FIELD_ZMAG           = "HilSensor.Zmag"
+	HIL_SENSOR_FIELD_ABS_PRESSURE   = "HilSensor.AbsPressure"
+	HIL_SENSOR_FIELD_DIFF_PRESSURE  = "HilSensor.DiffPressure"
+	HIL_SENSOR_FIELD_PRESSURE_ALT   = "HilSensor.PressureAlt"
+	HIL_SENSOR_FIELD_TEMPERATURE    = "HilSensor.Temperature"
+	HIL_SENSOR_FIELD_FIELDS_UPDATED = "HilSensor.FieldsUpdated"
+)
+
 // ToMap (generated function)
 func (m *HilSensor) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HilSensor.TimeUsec":      m.TimeUsec,
-		"HilSensor.Xacc":          m.Xacc,
-		"HilSensor.Yacc":          m.Yacc,
-		"HilSensor.Zacc":          m.Zacc,
-		"HilSensor.Xgyro":         m.Xgyro,
-		"HilSensor.Ygyro":         m.Ygyro,
-		"HilSensor.Zgyro":         m.Zgyro,
-		"HilSensor.Xmag":          m.Xmag,
-		"HilSensor.Ymag":          m.Ymag,
-		"HilSensor.Zmag":          m.Zmag,
-		"HilSensor.AbsPressure":   m.AbsPressure,
-		"HilSensor.DiffPressure":  m.DiffPressure,
-		"HilSensor.PressureAlt":   m.PressureAlt,
-		"HilSensor.Temperature":   m.Temperature,
-		"HilSensor.FieldsUpdated": m.FieldsUpdated,
+		HIL_SENSOR_FIELD_TIME_USEC:      m.TimeUsec,
+		HIL_SENSOR_FIELD_XACC:           m.Xacc,
+		HIL_SENSOR_FIELD_YACC:           m.Yacc,
+		HIL_SENSOR_FIELD_ZACC:           m.Zacc,
+		HIL_SENSOR_FIELD_XGYRO:          m.Xgyro,
+		HIL_SENSOR_FIELD_YGYRO:          m.Ygyro,
+		HIL_SENSOR_FIELD_ZGYRO:          m.Zgyro,
+		HIL_SENSOR_FIELD_XMAG:           m.Xmag,
+		HIL_SENSOR_FIELD_YMAG:           m.Ymag,
+		HIL_SENSOR_FIELD_ZMAG:           m.Zmag,
+		HIL_SENSOR_FIELD_ABS_PRESSURE:   m.AbsPressure,
+		HIL_SENSOR_FIELD_DIFF_PRESSURE:  m.DiffPressure,
+		HIL_SENSOR_FIELD_PRESSURE_ALT:   m.PressureAlt,
+		HIL_SENSOR_FIELD_TEMPERATURE:    m.Temperature,
+		HIL_SENSOR_FIELD_FIELDS_UPDATED: m.FieldsUpdated,
 	}
 }
 
@@ -9049,30 +10304,54 @@ func (m *SimState) String() string {
 	)
 }
 
+const (
+	SIM_STATE_FIELD_Q1           = "SimState.Q1"
+	SIM_STATE_FIELD_Q2           = "SimState.Q2"
+	SIM_STATE_FIELD_Q3           = "SimState.Q3"
+	SIM_STATE_FIELD_Q4           = "SimState.Q4"
+	SIM_STATE_FIELD_ROLL         = "SimState.Roll"
+	SIM_STATE_FIELD_PITCH        = "SimState.Pitch"
+	SIM_STATE_FIELD_YAW          = "SimState.Yaw"
+	SIM_STATE_FIELD_XACC         = "SimState.Xacc"
+	SIM_STATE_FIELD_YACC         = "SimState.Yacc"
+	SIM_STATE_FIELD_ZACC         = "SimState.Zacc"
+	SIM_STATE_FIELD_XGYRO        = "SimState.Xgyro"
+	SIM_STATE_FIELD_YGYRO        = "SimState.Ygyro"
+	SIM_STATE_FIELD_ZGYRO        = "SimState.Zgyro"
+	SIM_STATE_FIELD_LAT          = "SimState.Lat"
+	SIM_STATE_FIELD_LON          = "SimState.Lon"
+	SIM_STATE_FIELD_ALT          = "SimState.Alt"
+	SIM_STATE_FIELD_STD_DEV_HORZ = "SimState.StdDevHorz"
+	SIM_STATE_FIELD_STD_DEV_VERT = "SimState.StdDevVert"
+	SIM_STATE_FIELD_VN           = "SimState.Vn"
+	SIM_STATE_FIELD_VE           = "SimState.Ve"
+	SIM_STATE_FIELD_VD           = "SimState.Vd"
+)
+
 // ToMap (generated function)
 func (m *SimState) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SimState.Q1":         m.Q1,
-		"SimState.Q2":         m.Q2,
-		"SimState.Q3":         m.Q3,
-		"SimState.Q4":         m.Q4,
-		"SimState.Roll":       m.Roll,
-		"SimState.Pitch":      m.Pitch,
-		"SimState.Yaw":        m.Yaw,
-		"SimState.Xacc":       m.Xacc,
-		"SimState.Yacc":       m.Yacc,
-		"SimState.Zacc":       m.Zacc,
-		"SimState.Xgyro":      m.Xgyro,
-		"SimState.Ygyro":      m.Ygyro,
-		"SimState.Zgyro":      m.Zgyro,
-		"SimState.Lat":        m.Lat,
-		"SimState.Lon":        m.Lon,
-		"SimState.Alt":        m.Alt,
-		"SimState.StdDevHorz": m.StdDevHorz,
-		"SimState.StdDevVert": m.StdDevVert,
-		"SimState.Vn":         m.Vn,
-		"SimState.Ve":         m.Ve,
-		"SimState.Vd":         m.Vd,
+		SIM_STATE_FIELD_Q1:           m.Q1,
+		SIM_STATE_FIELD_Q2:           m.Q2,
+		SIM_STATE_FIELD_Q3:           m.Q3,
+		SIM_STATE_FIELD_Q4:           m.Q4,
+		SIM_STATE_FIELD_ROLL:         m.Roll,
+		SIM_STATE_FIELD_PITCH:        m.Pitch,
+		SIM_STATE_FIELD_YAW:          m.Yaw,
+		SIM_STATE_FIELD_XACC:         m.Xacc,
+		SIM_STATE_FIELD_YACC:         m.Yacc,
+		SIM_STATE_FIELD_ZACC:         m.Zacc,
+		SIM_STATE_FIELD_XGYRO:        m.Xgyro,
+		SIM_STATE_FIELD_YGYRO:        m.Ygyro,
+		SIM_STATE_FIELD_ZGYRO:        m.Zgyro,
+		SIM_STATE_FIELD_LAT:          m.Lat,
+		SIM_STATE_FIELD_LON:          m.Lon,
+		SIM_STATE_FIELD_ALT:          m.Alt,
+		SIM_STATE_FIELD_STD_DEV_HORZ: m.StdDevHorz,
+		SIM_STATE_FIELD_STD_DEV_VERT: m.StdDevVert,
+		SIM_STATE_FIELD_VN:           m.Vn,
+		SIM_STATE_FIELD_VE:           m.Ve,
+		SIM_STATE_FIELD_VD:           m.Vd,
 	}
 }
 
@@ -9162,16 +10441,26 @@ func (m *RadioStatus) String() string {
 	)
 }
 
+const (
+	RADIO_STATUS_FIELD_RXERRORS = "RadioStatus.Rxerrors"
+	RADIO_STATUS_FIELD_FIXED    = "RadioStatus.Fixed"
+	RADIO_STATUS_FIELD_RSSI     = "RadioStatus.Rssi"
+	RADIO_STATUS_FIELD_REMRSSI  = "RadioStatus.Remrssi"
+	RADIO_STATUS_FIELD_TXBUF    = "RadioStatus.Txbuf"
+	RADIO_STATUS_FIELD_NOISE    = "RadioStatus.Noise"
+	RADIO_STATUS_FIELD_REMNOISE = "RadioStatus.Remnoise"
+)
+
 // ToMap (generated function)
 func (m *RadioStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RadioStatus.Rxerrors": m.Rxerrors,
-		"RadioStatus.Fixed":    m.Fixed,
-		"RadioStatus.Rssi":     m.Rssi,
-		"RadioStatus.Remrssi":  m.Remrssi,
-		"RadioStatus.Txbuf":    m.Txbuf,
-		"RadioStatus.Noise":    m.Noise,
-		"RadioStatus.Remnoise": m.Remnoise,
+		RADIO_STATUS_FIELD_RXERRORS: m.Rxerrors,
+		RADIO_STATUS_FIELD_FIXED:    m.Fixed,
+		RADIO_STATUS_FIELD_RSSI:     m.Rssi,
+		RADIO_STATUS_FIELD_REMRSSI:  m.Remrssi,
+		RADIO_STATUS_FIELD_TXBUF:    m.Txbuf,
+		RADIO_STATUS_FIELD_NOISE:    m.Noise,
+		RADIO_STATUS_FIELD_REMNOISE: m.Remnoise,
 	}
 }
 
@@ -9227,13 +10516,20 @@ func (m *FileTransferProtocol) String() string {
 	)
 }
 
+const (
+	FILE_TRANSFER_PROTOCOL_FIELD_TARGET_NETWORK   = "FileTransferProtocol.TargetNetwork"
+	FILE_TRANSFER_PROTOCOL_FIELD_TARGET_SYSTEM    = "FileTransferProtocol.TargetSystem"
+	FILE_TRANSFER_PROTOCOL_FIELD_TARGET_COMPONENT = "FileTransferProtocol.TargetComponent"
+	FILE_TRANSFER_PROTOCOL_FIELD_PAYLOAD          = "FileTransferProtocol.Payload"
+)
+
 // ToMap (generated function)
 func (m *FileTransferProtocol) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"FileTransferProtocol.TargetNetwork":   m.TargetNetwork,
-		"FileTransferProtocol.TargetSystem":    m.TargetSystem,
-		"FileTransferProtocol.TargetComponent": m.TargetComponent,
-		"FileTransferProtocol.Payload":         m.Payload,
+		FILE_TRANSFER_PROTOCOL_FIELD_TARGET_NETWORK:   m.TargetNetwork,
+		FILE_TRANSFER_PROTOCOL_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		FILE_TRANSFER_PROTOCOL_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		FILE_TRANSFER_PROTOCOL_FIELD_PAYLOAD:          m.Payload,
 	}
 }
 
@@ -9279,11 +10575,16 @@ func (m *Timesync) String() string {
 	)
 }
 
+const (
+	TIMESYNC_FIELD_TC1 = "Timesync.Tc1"
+	TIMESYNC_FIELD_TS1 = "Timesync.Ts1"
+)
+
 // ToMap (generated function)
 func (m *Timesync) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Timesync.Tc1": m.Tc1,
-		"Timesync.Ts1": m.Ts1,
+		TIMESYNC_FIELD_TC1: m.Tc1,
+		TIMESYNC_FIELD_TS1: m.Ts1,
 	}
 }
 
@@ -9325,11 +10626,16 @@ func (m *CameraTrigger) String() string {
 	)
 }
 
+const (
+	CAMERA_TRIGGER_FIELD_TIME_USEC = "CameraTrigger.TimeUsec"
+	CAMERA_TRIGGER_FIELD_SEQ       = "CameraTrigger.Seq"
+)
+
 // ToMap (generated function)
 func (m *CameraTrigger) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"CameraTrigger.TimeUsec": m.TimeUsec,
-		"CameraTrigger.Seq":      m.Seq,
+		CAMERA_TRIGGER_FIELD_TIME_USEC: m.TimeUsec,
+		CAMERA_TRIGGER_FIELD_SEQ:       m.Seq,
 	}
 }
 
@@ -9394,22 +10700,38 @@ func (m *HilGps) String() string {
 	)
 }
 
+const (
+	HIL_GPS_FIELD_TIME_USEC          = "HilGps.TimeUsec"
+	HIL_GPS_FIELD_LAT                = "HilGps.Lat"
+	HIL_GPS_FIELD_LON                = "HilGps.Lon"
+	HIL_GPS_FIELD_ALT                = "HilGps.Alt"
+	HIL_GPS_FIELD_EPH                = "HilGps.Eph"
+	HIL_GPS_FIELD_EPV                = "HilGps.Epv"
+	HIL_GPS_FIELD_VEL                = "HilGps.Vel"
+	HIL_GPS_FIELD_VN                 = "HilGps.Vn"
+	HIL_GPS_FIELD_VE                 = "HilGps.Ve"
+	HIL_GPS_FIELD_VD                 = "HilGps.Vd"
+	HIL_GPS_FIELD_COG                = "HilGps.Cog"
+	HIL_GPS_FIELD_FIX_TYPE           = "HilGps.FixType"
+	HIL_GPS_FIELD_SATELLITES_VISIBLE = "HilGps.SatellitesVisible"
+)
+
 // ToMap (generated function)
 func (m *HilGps) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HilGps.TimeUsec":          m.TimeUsec,
-		"HilGps.Lat":               m.Lat,
-		"HilGps.Lon":               m.Lon,
-		"HilGps.Alt":               m.Alt,
-		"HilGps.Eph":               m.Eph,
-		"HilGps.Epv":               m.Epv,
-		"HilGps.Vel":               m.Vel,
-		"HilGps.Vn":                m.Vn,
-		"HilGps.Ve":                m.Ve,
-		"HilGps.Vd":                m.Vd,
-		"HilGps.Cog":               m.Cog,
-		"HilGps.FixType":           m.FixType,
-		"HilGps.SatellitesVisible": m.SatellitesVisible,
+		HIL_GPS_FIELD_TIME_USEC:          m.TimeUsec,
+		HIL_GPS_FIELD_LAT:                m.Lat,
+		HIL_GPS_FIELD_LON:                m.Lon,
+		HIL_GPS_FIELD_ALT:                m.Alt,
+		HIL_GPS_FIELD_EPH:                m.Eph,
+		HIL_GPS_FIELD_EPV:                m.Epv,
+		HIL_GPS_FIELD_VEL:                m.Vel,
+		HIL_GPS_FIELD_VN:                 m.Vn,
+		HIL_GPS_FIELD_VE:                 m.Ve,
+		HIL_GPS_FIELD_VD:                 m.Vd,
+		HIL_GPS_FIELD_COG:                m.Cog,
+		HIL_GPS_FIELD_FIX_TYPE:           m.FixType,
+		HIL_GPS_FIELD_SATELLITES_VISIBLE: m.SatellitesVisible,
 	}
 }
 
@@ -9493,21 +10815,36 @@ func (m *HilOpticalFlow) String() string {
 	)
 }
 
+const (
+	HIL_OPTICAL_FLOW_FIELD_TIME_USEC              = "HilOpticalFlow.TimeUsec"
+	HIL_OPTICAL_FLOW_FIELD_INTEGRATION_TIME_US    = "HilOpticalFlow.IntegrationTimeUs"
+	HIL_OPTICAL_FLOW_FIELD_INTEGRATED_X           = "HilOpticalFlow.IntegratedX"
+	HIL_OPTICAL_FLOW_FIELD_INTEGRATED_Y           = "HilOpticalFlow.IntegratedY"
+	HIL_OPTICAL_FLOW_FIELD_INTEGRATED_XGYRO       = "HilOpticalFlow.IntegratedXgyro"
+	HIL_OPTICAL_FLOW_FIELD_INTEGRATED_YGYRO       = "HilOpticalFlow.IntegratedYgyro"
+	HIL_OPTICAL_FLOW_FIELD_INTEGRATED_ZGYRO       = "HilOpticalFlow.IntegratedZgyro"
+	HIL_OPTICAL_FLOW_FIELD_TIME_DELTA_DISTANCE_US = "HilOpticalFlow.TimeDeltaDistanceUs"
+	HIL_OPTICAL_FLOW_FIELD_DISTANCE               = "HilOpticalFlow.Distance"
+	HIL_OPTICAL_FLOW_FIELD_TEMPERATURE            = "HilOpticalFlow.Temperature"
+	HIL_OPTICAL_FLOW_FIELD_SENSOR_ID              = "HilOpticalFlow.SensorID"
+	HIL_OPTICAL_FLOW_FIELD_QUALITY                = "HilOpticalFlow.Quality"
+)
+
 // ToMap (generated function)
 func (m *HilOpticalFlow) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HilOpticalFlow.TimeUsec":            m.TimeUsec,
-		"HilOpticalFlow.IntegrationTimeUs":   m.IntegrationTimeUs,
-		"HilOpticalFlow.IntegratedX":         m.IntegratedX,
-		"HilOpticalFlow.IntegratedY":         m.IntegratedY,
-		"HilOpticalFlow.IntegratedXgyro":     m.IntegratedXgyro,
-		"HilOpticalFlow.IntegratedYgyro":     m.IntegratedYgyro,
-		"HilOpticalFlow.IntegratedZgyro":     m.IntegratedZgyro,
-		"HilOpticalFlow.TimeDeltaDistanceUs": m.TimeDeltaDistanceUs,
-		"HilOpticalFlow.Distance":            m.Distance,
-		"HilOpticalFlow.Temperature":         m.Temperature,
-		"HilOpticalFlow.SensorID":            m.SensorID,
-		"HilOpticalFlow.Quality":             m.Quality,
+		HIL_OPTICAL_FLOW_FIELD_TIME_USEC:              m.TimeUsec,
+		HIL_OPTICAL_FLOW_FIELD_INTEGRATION_TIME_US:    m.IntegrationTimeUs,
+		HIL_OPTICAL_FLOW_FIELD_INTEGRATED_X:           m.IntegratedX,
+		HIL_OPTICAL_FLOW_FIELD_INTEGRATED_Y:           m.IntegratedY,
+		HIL_OPTICAL_FLOW_FIELD_INTEGRATED_XGYRO:       m.IntegratedXgyro,
+		HIL_OPTICAL_FLOW_FIELD_INTEGRATED_YGYRO:       m.IntegratedYgyro,
+		HIL_OPTICAL_FLOW_FIELD_INTEGRATED_ZGYRO:       m.IntegratedZgyro,
+		HIL_OPTICAL_FLOW_FIELD_TIME_DELTA_DISTANCE_US: m.TimeDeltaDistanceUs,
+		HIL_OPTICAL_FLOW_FIELD_DISTANCE:               m.Distance,
+		HIL_OPTICAL_FLOW_FIELD_TEMPERATURE:            m.Temperature,
+		HIL_OPTICAL_FLOW_FIELD_SENSOR_ID:              m.SensorID,
+		HIL_OPTICAL_FLOW_FIELD_QUALITY:                m.Quality,
 	}
 }
 
@@ -9597,25 +10934,44 @@ func (m *HilStateQuaternion) String() string {
 	)
 }
 
+const (
+	HIL_STATE_QUATERNION_FIELD_TIME_USEC           = "HilStateQuaternion.TimeUsec"
+	HIL_STATE_QUATERNION_FIELD_ATTITUDE_QUATERNION = "HilStateQuaternion.AttitudeQuaternion"
+	HIL_STATE_QUATERNION_FIELD_ROLLSPEED           = "HilStateQuaternion.Rollspeed"
+	HIL_STATE_QUATERNION_FIELD_PITCHSPEED          = "HilStateQuaternion.Pitchspeed"
+	HIL_STATE_QUATERNION_FIELD_YAWSPEED            = "HilStateQuaternion.Yawspeed"
+	HIL_STATE_QUATERNION_FIELD_LAT                 = "HilStateQuaternion.Lat"
+	HIL_STATE_QUATERNION_FIELD_LON                 = "HilStateQuaternion.Lon"
+	HIL_STATE_QUATERNION_FIELD_ALT                 = "HilStateQuaternion.Alt"
+	HIL_STATE_QUATERNION_FIELD_VX                  = "HilStateQuaternion.Vx"
+	HIL_STATE_QUATERNION_FIELD_VY                  = "HilStateQuaternion.Vy"
+	HIL_STATE_QUATERNION_FIELD_VZ                  = "HilStateQuaternion.Vz"
+	HIL_STATE_QUATERNION_FIELD_IND_AIRSPEED        = "HilStateQuaternion.IndAirspeed"
+	HIL_STATE_QUATERNION_FIELD_TRUE_AIRSPEED       = "HilStateQuaternion.TrueAirspeed"
+	HIL_STATE_QUATERNION_FIELD_XACC                = "HilStateQuaternion.Xacc"
+	HIL_STATE_QUATERNION_FIELD_YACC                = "HilStateQuaternion.Yacc"
+	HIL_STATE_QUATERNION_FIELD_ZACC                = "HilStateQuaternion.Zacc"
+)
+
 // ToMap (generated function)
 func (m *HilStateQuaternion) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HilStateQuaternion.TimeUsec":           m.TimeUsec,
-		"HilStateQuaternion.AttitudeQuaternion": m.AttitudeQuaternion,
-		"HilStateQuaternion.Rollspeed":          m.Rollspeed,
-		"HilStateQuaternion.Pitchspeed":         m.Pitchspeed,
-		"HilStateQuaternion.Yawspeed":           m.Yawspeed,
-		"HilStateQuaternion.Lat":                m.Lat,
-		"HilStateQuaternion.Lon":                m.Lon,
-		"HilStateQuaternion.Alt":                m.Alt,
-		"HilStateQuaternion.Vx":                 m.Vx,
-		"HilStateQuaternion.Vy":                 m.Vy,
-		"HilStateQuaternion.Vz":                 m.Vz,
-		"HilStateQuaternion.IndAirspeed":        m.IndAirspeed,
-		"HilStateQuaternion.TrueAirspeed":       m.TrueAirspeed,
-		"HilStateQuaternion.Xacc":               m.Xacc,
-		"HilStateQuaternion.Yacc":               m.Yacc,
-		"HilStateQuaternion.Zacc":               m.Zacc,
+		HIL_STATE_QUATERNION_FIELD_TIME_USEC:           m.TimeUsec,
+		HIL_STATE_QUATERNION_FIELD_ATTITUDE_QUATERNION: m.AttitudeQuaternion,
+		HIL_STATE_QUATERNION_FIELD_ROLLSPEED:           m.Rollspeed,
+		HIL_STATE_QUATERNION_FIELD_PITCHSPEED:          m.Pitchspeed,
+		HIL_STATE_QUATERNION_FIELD_YAWSPEED:            m.Yawspeed,
+		HIL_STATE_QUATERNION_FIELD_LAT:                 m.Lat,
+		HIL_STATE_QUATERNION_FIELD_LON:                 m.Lon,
+		HIL_STATE_QUATERNION_FIELD_ALT:                 m.Alt,
+		HIL_STATE_QUATERNION_FIELD_VX:                  m.Vx,
+		HIL_STATE_QUATERNION_FIELD_VY:                  m.Vy,
+		HIL_STATE_QUATERNION_FIELD_VZ:                  m.Vz,
+		HIL_STATE_QUATERNION_FIELD_IND_AIRSPEED:        m.IndAirspeed,
+		HIL_STATE_QUATERNION_FIELD_TRUE_AIRSPEED:       m.TrueAirspeed,
+		HIL_STATE_QUATERNION_FIELD_XACC:                m.Xacc,
+		HIL_STATE_QUATERNION_FIELD_YACC:                m.Yacc,
+		HIL_STATE_QUATERNION_FIELD_ZACC:                m.Zacc,
 	}
 }
 
@@ -9705,19 +11061,32 @@ func (m *ScaledImu2) String() string {
 	)
 }
 
+const (
+	SCALED_IMU2_FIELD_TIME_BOOT_MS = "ScaledImu2.TimeBootMs"
+	SCALED_IMU2_FIELD_XACC         = "ScaledImu2.Xacc"
+	SCALED_IMU2_FIELD_YACC         = "ScaledImu2.Yacc"
+	SCALED_IMU2_FIELD_ZACC         = "ScaledImu2.Zacc"
+	SCALED_IMU2_FIELD_XGYRO        = "ScaledImu2.Xgyro"
+	SCALED_IMU2_FIELD_YGYRO        = "ScaledImu2.Ygyro"
+	SCALED_IMU2_FIELD_ZGYRO        = "ScaledImu2.Zgyro"
+	SCALED_IMU2_FIELD_XMAG         = "ScaledImu2.Xmag"
+	SCALED_IMU2_FIELD_YMAG         = "ScaledImu2.Ymag"
+	SCALED_IMU2_FIELD_ZMAG         = "ScaledImu2.Zmag"
+)
+
 // ToMap (generated function)
 func (m *ScaledImu2) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ScaledImu2.TimeBootMs": m.TimeBootMs,
-		"ScaledImu2.Xacc":       m.Xacc,
-		"ScaledImu2.Yacc":       m.Yacc,
-		"ScaledImu2.Zacc":       m.Zacc,
-		"ScaledImu2.Xgyro":      m.Xgyro,
-		"ScaledImu2.Ygyro":      m.Ygyro,
-		"ScaledImu2.Zgyro":      m.Zgyro,
-		"ScaledImu2.Xmag":       m.Xmag,
-		"ScaledImu2.Ymag":       m.Ymag,
-		"ScaledImu2.Zmag":       m.Zmag,
+		SCALED_IMU2_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		SCALED_IMU2_FIELD_XACC:         m.Xacc,
+		SCALED_IMU2_FIELD_YACC:         m.Yacc,
+		SCALED_IMU2_FIELD_ZACC:         m.Zacc,
+		SCALED_IMU2_FIELD_XGYRO:        m.Xgyro,
+		SCALED_IMU2_FIELD_YGYRO:        m.Ygyro,
+		SCALED_IMU2_FIELD_ZGYRO:        m.Zgyro,
+		SCALED_IMU2_FIELD_XMAG:         m.Xmag,
+		SCALED_IMU2_FIELD_YMAG:         m.Ymag,
+		SCALED_IMU2_FIELD_ZMAG:         m.Zmag,
 	}
 }
 
@@ -9779,13 +11148,20 @@ func (m *LogRequestList) String() string {
 	)
 }
 
+const (
+	LOG_REQUEST_LIST_FIELD_START            = "LogRequestList.Start"
+	LOG_REQUEST_LIST_FIELD_END              = "LogRequestList.End"
+	LOG_REQUEST_LIST_FIELD_TARGET_SYSTEM    = "LogRequestList.TargetSystem"
+	LOG_REQUEST_LIST_FIELD_TARGET_COMPONENT = "LogRequestList.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *LogRequestList) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LogRequestList.Start":           m.Start,
-		"LogRequestList.End":             m.End,
-		"LogRequestList.TargetSystem":    m.TargetSystem,
-		"LogRequestList.TargetComponent": m.TargetComponent,
+		LOG_REQUEST_LIST_FIELD_START:            m.Start,
+		LOG_REQUEST_LIST_FIELD_END:              m.End,
+		LOG_REQUEST_LIST_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		LOG_REQUEST_LIST_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -9837,14 +11213,22 @@ func (m *LogEntry) String() string {
 	)
 }
 
+const (
+	LOG_ENTRY_FIELD_TIME_UTC     = "LogEntry.TimeUtc"
+	LOG_ENTRY_FIELD_SIZE         = "LogEntry.Size"
+	LOG_ENTRY_FIELD_ID           = "LogEntry.ID"
+	LOG_ENTRY_FIELD_NUM_LOGS     = "LogEntry.NumLogs"
+	LOG_ENTRY_FIELD_LAST_LOG_NUM = "LogEntry.LastLogNum"
+)
+
 // ToMap (generated function)
 func (m *LogEntry) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LogEntry.TimeUtc":    m.TimeUtc,
-		"LogEntry.Size":       m.Size,
-		"LogEntry.ID":         m.ID,
-		"LogEntry.NumLogs":    m.NumLogs,
-		"LogEntry.LastLogNum": m.LastLogNum,
+		LOG_ENTRY_FIELD_TIME_UTC:     m.TimeUtc,
+		LOG_ENTRY_FIELD_SIZE:         m.Size,
+		LOG_ENTRY_FIELD_ID:           m.ID,
+		LOG_ENTRY_FIELD_NUM_LOGS:     m.NumLogs,
+		LOG_ENTRY_FIELD_LAST_LOG_NUM: m.LastLogNum,
 	}
 }
 
@@ -9898,14 +11282,22 @@ func (m *LogRequestData) String() string {
 	)
 }
 
+const (
+	LOG_REQUEST_DATA_FIELD_OFS              = "LogRequestData.Ofs"
+	LOG_REQUEST_DATA_FIELD_COUNT            = "LogRequestData.Count"
+	LOG_REQUEST_DATA_FIELD_ID               = "LogRequestData.ID"
+	LOG_REQUEST_DATA_FIELD_TARGET_SYSTEM    = "LogRequestData.TargetSystem"
+	LOG_REQUEST_DATA_FIELD_TARGET_COMPONENT = "LogRequestData.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *LogRequestData) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LogRequestData.Ofs":             m.Ofs,
-		"LogRequestData.Count":           m.Count,
-		"LogRequestData.ID":              m.ID,
-		"LogRequestData.TargetSystem":    m.TargetSystem,
-		"LogRequestData.TargetComponent": m.TargetComponent,
+		LOG_REQUEST_DATA_FIELD_OFS:              m.Ofs,
+		LOG_REQUEST_DATA_FIELD_COUNT:            m.Count,
+		LOG_REQUEST_DATA_FIELD_ID:               m.ID,
+		LOG_REQUEST_DATA_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		LOG_REQUEST_DATA_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -9957,13 +11349,20 @@ func (m *LogData) String() string {
 	)
 }
 
+const (
+	LOG_DATA_FIELD_OFS   = "LogData.Ofs"
+	LOG_DATA_FIELD_ID    = "LogData.ID"
+	LOG_DATA_FIELD_COUNT = "LogData.Count"
+	LOG_DATA_FIELD_DATA  = "LogData.Data"
+)
+
 // ToMap (generated function)
 func (m *LogData) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LogData.Ofs":   m.Ofs,
-		"LogData.ID":    m.ID,
-		"LogData.Count": m.Count,
-		"LogData.Data":  m.Data,
+		LOG_DATA_FIELD_OFS:   m.Ofs,
+		LOG_DATA_FIELD_ID:    m.ID,
+		LOG_DATA_FIELD_COUNT: m.Count,
+		LOG_DATA_FIELD_DATA:  m.Data,
 	}
 }
 
@@ -10009,11 +11408,16 @@ func (m *LogErase) String() string {
 	)
 }
 
+const (
+	LOG_ERASE_FIELD_TARGET_SYSTEM    = "LogErase.TargetSystem"
+	LOG_ERASE_FIELD_TARGET_COMPONENT = "LogErase.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *LogErase) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LogErase.TargetSystem":    m.TargetSystem,
-		"LogErase.TargetComponent": m.TargetComponent,
+		LOG_ERASE_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		LOG_ERASE_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -10055,11 +11459,16 @@ func (m *LogRequestEnd) String() string {
 	)
 }
 
+const (
+	LOG_REQUEST_END_FIELD_TARGET_SYSTEM    = "LogRequestEnd.TargetSystem"
+	LOG_REQUEST_END_FIELD_TARGET_COMPONENT = "LogRequestEnd.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *LogRequestEnd) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LogRequestEnd.TargetSystem":    m.TargetSystem,
-		"LogRequestEnd.TargetComponent": m.TargetComponent,
+		LOG_REQUEST_END_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		LOG_REQUEST_END_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -10105,13 +11514,20 @@ func (m *GpsInjectData) String() string {
 	)
 }
 
+const (
+	GPS_INJECT_DATA_FIELD_TARGET_SYSTEM    = "GpsInjectData.TargetSystem"
+	GPS_INJECT_DATA_FIELD_TARGET_COMPONENT = "GpsInjectData.TargetComponent"
+	GPS_INJECT_DATA_FIELD_LEN              = "GpsInjectData.Len"
+	GPS_INJECT_DATA_FIELD_DATA             = "GpsInjectData.Data"
+)
+
 // ToMap (generated function)
 func (m *GpsInjectData) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GpsInjectData.TargetSystem":    m.TargetSystem,
-		"GpsInjectData.TargetComponent": m.TargetComponent,
-		"GpsInjectData.Len":             m.Len,
-		"GpsInjectData.Data":            m.Data,
+		GPS_INJECT_DATA_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		GPS_INJECT_DATA_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		GPS_INJECT_DATA_FIELD_LEN:              m.Len,
+		GPS_INJECT_DATA_FIELD_DATA:             m.Data,
 	}
 }
 
@@ -10177,21 +11593,36 @@ func (m *Gps2Raw) String() string {
 	)
 }
 
+const (
+	GPS2_RAW_FIELD_TIME_USEC          = "Gps2Raw.TimeUsec"
+	GPS2_RAW_FIELD_LAT                = "Gps2Raw.Lat"
+	GPS2_RAW_FIELD_LON                = "Gps2Raw.Lon"
+	GPS2_RAW_FIELD_ALT                = "Gps2Raw.Alt"
+	GPS2_RAW_FIELD_DGPS_AGE           = "Gps2Raw.DgpsAge"
+	GPS2_RAW_FIELD_EPH                = "Gps2Raw.Eph"
+	GPS2_RAW_FIELD_EPV                = "Gps2Raw.Epv"
+	GPS2_RAW_FIELD_VEL                = "Gps2Raw.Vel"
+	GPS2_RAW_FIELD_COG                = "Gps2Raw.Cog"
+	GPS2_RAW_FIELD_FIX_TYPE           = "Gps2Raw.FixType"
+	GPS2_RAW_FIELD_SATELLITES_VISIBLE = "Gps2Raw.SatellitesVisible"
+	GPS2_RAW_FIELD_DGPS_NUMCH         = "Gps2Raw.DgpsNumch"
+)
+
 // ToMap (generated function)
 func (m *Gps2Raw) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Gps2Raw.TimeUsec":          m.TimeUsec,
-		"Gps2Raw.Lat":               m.Lat,
-		"Gps2Raw.Lon":               m.Lon,
-		"Gps2Raw.Alt":               m.Alt,
-		"Gps2Raw.DgpsAge":           m.DgpsAge,
-		"Gps2Raw.Eph":               m.Eph,
-		"Gps2Raw.Epv":               m.Epv,
-		"Gps2Raw.Vel":               m.Vel,
-		"Gps2Raw.Cog":               m.Cog,
-		"Gps2Raw.FixType":           m.FixType,
-		"Gps2Raw.SatellitesVisible": m.SatellitesVisible,
-		"Gps2Raw.DgpsNumch":         m.DgpsNumch,
+		GPS2_RAW_FIELD_TIME_USEC:          m.TimeUsec,
+		GPS2_RAW_FIELD_LAT:                m.Lat,
+		GPS2_RAW_FIELD_LON:                m.Lon,
+		GPS2_RAW_FIELD_ALT:                m.Alt,
+		GPS2_RAW_FIELD_DGPS_AGE:           m.DgpsAge,
+		GPS2_RAW_FIELD_EPH:                m.Eph,
+		GPS2_RAW_FIELD_EPV:                m.Epv,
+		GPS2_RAW_FIELD_VEL:                m.Vel,
+		GPS2_RAW_FIELD_COG:                m.Cog,
+		GPS2_RAW_FIELD_FIX_TYPE:           m.FixType,
+		GPS2_RAW_FIELD_SATELLITES_VISIBLE: m.SatellitesVisible,
+		GPS2_RAW_FIELD_DGPS_NUMCH:         m.DgpsNumch,
 	}
 }
 
@@ -10255,12 +11686,18 @@ func (m *PowerStatus) String() string {
 	)
 }
 
+const (
+	POWER_STATUS_FIELD_VCC    = "PowerStatus.Vcc"
+	POWER_STATUS_FIELD_VSERVO = "PowerStatus.Vservo"
+	POWER_STATUS_FIELD_FLAGS  = "PowerStatus.Flags"
+)
+
 // ToMap (generated function)
 func (m *PowerStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"PowerStatus.Vcc":    m.Vcc,
-		"PowerStatus.Vservo": m.Vservo,
-		"PowerStatus.Flags":  m.Flags,
+		POWER_STATUS_FIELD_VCC:    m.Vcc,
+		POWER_STATUS_FIELD_VSERVO: m.Vservo,
+		POWER_STATUS_FIELD_FLAGS:  m.Flags,
 	}
 }
 
@@ -10312,15 +11749,24 @@ func (m *SerialControl) String() string {
 	)
 }
 
+const (
+	SERIAL_CONTROL_FIELD_BAUDRATE = "SerialControl.Baudrate"
+	SERIAL_CONTROL_FIELD_TIMEOUT  = "SerialControl.Timeout"
+	SERIAL_CONTROL_FIELD_DEVICE   = "SerialControl.Device"
+	SERIAL_CONTROL_FIELD_FLAGS    = "SerialControl.Flags"
+	SERIAL_CONTROL_FIELD_COUNT    = "SerialControl.Count"
+	SERIAL_CONTROL_FIELD_DATA     = "SerialControl.Data"
+)
+
 // ToMap (generated function)
 func (m *SerialControl) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SerialControl.Baudrate": m.Baudrate,
-		"SerialControl.Timeout":  m.Timeout,
-		"SerialControl.Device":   m.Device,
-		"SerialControl.Flags":    m.Flags,
-		"SerialControl.Count":    m.Count,
-		"SerialControl.Data":     m.Data,
+		SERIAL_CONTROL_FIELD_BAUDRATE: m.Baudrate,
+		SERIAL_CONTROL_FIELD_TIMEOUT:  m.Timeout,
+		SERIAL_CONTROL_FIELD_DEVICE:   m.Device,
+		SERIAL_CONTROL_FIELD_FLAGS:    m.Flags,
+		SERIAL_CONTROL_FIELD_COUNT:    m.Count,
+		SERIAL_CONTROL_FIELD_DATA:     m.Data,
 	}
 }
 
@@ -10392,22 +11838,38 @@ func (m *GpsRtk) String() string {
 	)
 }
 
+const (
+	GPS_RTK_FIELD_TIME_LAST_BASELINE_MS = "GpsRtk.TimeLastBaselineMs"
+	GPS_RTK_FIELD_TOW                   = "GpsRtk.Tow"
+	GPS_RTK_FIELD_BASELINE_A_MM         = "GpsRtk.BaselineAMm"
+	GPS_RTK_FIELD_BASELINE_B_MM         = "GpsRtk.BaselineBMm"
+	GPS_RTK_FIELD_BASELINE_C_MM         = "GpsRtk.BaselineCMm"
+	GPS_RTK_FIELD_ACCURACY              = "GpsRtk.Accuracy"
+	GPS_RTK_FIELD_IAR_NUM_HYPOTHESES    = "GpsRtk.IarNumHypotheses"
+	GPS_RTK_FIELD_WN                    = "GpsRtk.Wn"
+	GPS_RTK_FIELD_RTK_RECEIVER_ID       = "GpsRtk.RtkReceiverID"
+	GPS_RTK_FIELD_RTK_HEALTH            = "GpsRtk.RtkHealth"
+	GPS_RTK_FIELD_RTK_RATE              = "GpsRtk.RtkRate"
+	GPS_RTK_FIELD_NSATS                 = "GpsRtk.Nsats"
+	GPS_RTK_FIELD_BASELINE_COORDS_TYPE  = "GpsRtk.BaselineCoordsType"
+)
+
 // ToMap (generated function)
 func (m *GpsRtk) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GpsRtk.TimeLastBaselineMs": m.TimeLastBaselineMs,
-		"GpsRtk.Tow":                m.Tow,
-		"GpsRtk.BaselineAMm":        m.BaselineAMm,
-		"GpsRtk.BaselineBMm":        m.BaselineBMm,
-		"GpsRtk.BaselineCMm":        m.BaselineCMm,
-		"GpsRtk.Accuracy":           m.Accuracy,
-		"GpsRtk.IarNumHypotheses":   m.IarNumHypotheses,
-		"GpsRtk.Wn":                 m.Wn,
-		"GpsRtk.RtkReceiverID":      m.RtkReceiverID,
-		"GpsRtk.RtkHealth":          m.RtkHealth,
-		"GpsRtk.RtkRate":            m.RtkRate,
-		"GpsRtk.Nsats":              m.Nsats,
-		"GpsRtk.BaselineCoordsType": m.BaselineCoordsType,
+		GPS_RTK_FIELD_TIME_LAST_BASELINE_MS: m.TimeLastBaselineMs,
+		GPS_RTK_FIELD_TOW:                   m.Tow,
+		GPS_RTK_FIELD_BASELINE_A_MM:         m.BaselineAMm,
+		GPS_RTK_FIELD_BASELINE_B_MM:         m.BaselineBMm,
+		GPS_RTK_FIELD_BASELINE_C_MM:         m.BaselineCMm,
+		GPS_RTK_FIELD_ACCURACY:              m.Accuracy,
+		GPS_RTK_FIELD_IAR_NUM_HYPOTHESES:    m.IarNumHypotheses,
+		GPS_RTK_FIELD_WN:                    m.Wn,
+		GPS_RTK_FIELD_RTK_RECEIVER_ID:       m.RtkReceiverID,
+		GPS_RTK_FIELD_RTK_HEALTH:            m.RtkHealth,
+		GPS_RTK_FIELD_RTK_RATE:              m.RtkRate,
+		GPS_RTK_FIELD_NSATS:                 m.Nsats,
+		GPS_RTK_FIELD_BASELINE_COORDS_TYPE:  m.BaselineCoordsType,
 	}
 }
 
@@ -10493,22 +11955,38 @@ func (m *Gps2Rtk) String() string {
 	)
 }
 
+const (
+	GPS2_RTK_FIELD_TIME_LAST_BASELINE_MS = "Gps2Rtk.TimeLastBaselineMs"
+	GPS2_RTK_FIELD_TOW                   = "Gps2Rtk.Tow"
+	GPS2_RTK_FIELD_BASELINE_A_MM         = "Gps2Rtk.BaselineAMm"
+	GPS2_RTK_FIELD_BASELINE_B_MM         = "Gps2Rtk.BaselineBMm"
+	GPS2_RTK_FIELD_BASELINE_C_MM         = "Gps2Rtk.BaselineCMm"
+	GPS2_RTK_FIELD_ACCURACY              = "Gps2Rtk.Accuracy"
+	GPS2_RTK_FIELD_IAR_NUM_HYPOTHESES    = "Gps2Rtk.IarNumHypotheses"
+	GPS2_RTK_FIELD_WN                    = "Gps2Rtk.Wn"
+	GPS2_RTK_FIELD_RTK_RECEIVER_ID       = "Gps2Rtk.RtkReceiverID"
+	GPS2_RTK_FIELD_RTK_HEALTH            = "Gps2Rtk.RtkHealth"
+	GPS2_RTK_FIELD_RTK_RATE              = "Gps2Rtk.RtkRate"
+	GPS2_RTK_FIELD_NSATS                 = "Gps2Rtk.Nsats"
+	GPS2_RTK_FIELD_BASELINE_COORDS_TYPE  = "Gps2Rtk.BaselineCoordsType"
+)
+
 // ToMap (generated function)
 func (m *Gps2Rtk) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Gps2Rtk.TimeLastBaselineMs": m.TimeLastBaselineMs,
-		"Gps2Rtk.Tow":                m.Tow,
-		"Gps2Rtk.BaselineAMm":        m.BaselineAMm,
-		"Gps2Rtk.BaselineBMm":        m.BaselineBMm,
-		"Gps2Rtk.BaselineCMm":        m.BaselineCMm,
-		"Gps2Rtk.Accuracy":           m.Accuracy,
-		"Gps2Rtk.IarNumHypotheses":   m.IarNumHypotheses,
-		"Gps2Rtk.Wn":                 m.Wn,
-		"Gps2Rtk.RtkReceiverID":      m.RtkReceiverID,
-		"Gps2Rtk.RtkHealth":          m.RtkHealth,
-		"Gps2Rtk.RtkRate":            m.RtkRate,
-		"Gps2Rtk.Nsats":              m.Nsats,
-		"Gps2Rtk.BaselineCoordsType": m.BaselineCoordsType,
+		GPS2_RTK_FIELD_TIME_LAST_BASELINE_MS: m.TimeLastBaselineMs,
+		GPS2_RTK_FIELD_TOW:                   m.Tow,
+		GPS2_RTK_FIELD_BASELINE_A_MM:         m.BaselineAMm,
+		GPS2_RTK_FIELD_BASELINE_B_MM:         m.BaselineBMm,
+		GPS2_RTK_FIELD_BASELINE_C_MM:         m.BaselineCMm,
+		GPS2_RTK_FIELD_ACCURACY:              m.Accuracy,
+		GPS2_RTK_FIELD_IAR_NUM_HYPOTHESES:    m.IarNumHypotheses,
+		GPS2_RTK_FIELD_WN:                    m.Wn,
+		GPS2_RTK_FIELD_RTK_RECEIVER_ID:       m.RtkReceiverID,
+		GPS2_RTK_FIELD_RTK_HEALTH:            m.RtkHealth,
+		GPS2_RTK_FIELD_RTK_RATE:              m.RtkRate,
+		GPS2_RTK_FIELD_NSATS:                 m.Nsats,
+		GPS2_RTK_FIELD_BASELINE_COORDS_TYPE:  m.BaselineCoordsType,
 	}
 }
 
@@ -10588,19 +12066,32 @@ func (m *ScaledImu3) String() string {
 	)
 }
 
+const (
+	SCALED_IMU3_FIELD_TIME_BOOT_MS = "ScaledImu3.TimeBootMs"
+	SCALED_IMU3_FIELD_XACC         = "ScaledImu3.Xacc"
+	SCALED_IMU3_FIELD_YACC         = "ScaledImu3.Yacc"
+	SCALED_IMU3_FIELD_ZACC         = "ScaledImu3.Zacc"
+	SCALED_IMU3_FIELD_XGYRO        = "ScaledImu3.Xgyro"
+	SCALED_IMU3_FIELD_YGYRO        = "ScaledImu3.Ygyro"
+	SCALED_IMU3_FIELD_ZGYRO        = "ScaledImu3.Zgyro"
+	SCALED_IMU3_FIELD_XMAG         = "ScaledImu3.Xmag"
+	SCALED_IMU3_FIELD_YMAG         = "ScaledImu3.Ymag"
+	SCALED_IMU3_FIELD_ZMAG         = "ScaledImu3.Zmag"
+)
+
 // ToMap (generated function)
 func (m *ScaledImu3) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ScaledImu3.TimeBootMs": m.TimeBootMs,
-		"ScaledImu3.Xacc":       m.Xacc,
-		"ScaledImu3.Yacc":       m.Yacc,
-		"ScaledImu3.Zacc":       m.Zacc,
-		"ScaledImu3.Xgyro":      m.Xgyro,
-		"ScaledImu3.Ygyro":      m.Ygyro,
-		"ScaledImu3.Zgyro":      m.Zgyro,
-		"ScaledImu3.Xmag":       m.Xmag,
-		"ScaledImu3.Ymag":       m.Ymag,
-		"ScaledImu3.Zmag":       m.Zmag,
+		SCALED_IMU3_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		SCALED_IMU3_FIELD_XACC:         m.Xacc,
+		SCALED_IMU3_FIELD_YACC:         m.Yacc,
+		SCALED_IMU3_FIELD_ZACC:         m.Zacc,
+		SCALED_IMU3_FIELD_XGYRO:        m.Xgyro,
+		SCALED_IMU3_FIELD_YGYRO:        m.Ygyro,
+		SCALED_IMU3_FIELD_ZGYRO:        m.Zgyro,
+		SCALED_IMU3_FIELD_XMAG:         m.Xmag,
+		SCALED_IMU3_FIELD_YMAG:         m.Ymag,
+		SCALED_IMU3_FIELD_ZMAG:         m.Zmag,
 	}
 }
 
@@ -10668,16 +12159,26 @@ func (m *DataTransmissionHandshake) String() string {
 	)
 }
 
+const (
+	DATA_TRANSMISSION_HANDSHAKE_FIELD_SIZE        = "DataTransmissionHandshake.Size"
+	DATA_TRANSMISSION_HANDSHAKE_FIELD_WIDTH       = "DataTransmissionHandshake.Width"
+	DATA_TRANSMISSION_HANDSHAKE_FIELD_HEIGHT      = "DataTransmissionHandshake.Height"
+	DATA_TRANSMISSION_HANDSHAKE_FIELD_PACKETS     = "DataTransmissionHandshake.Packets"
+	DATA_TRANSMISSION_HANDSHAKE_FIELD_TYPE        = "DataTransmissionHandshake.Type"
+	DATA_TRANSMISSION_HANDSHAKE_FIELD_PAYLOAD     = "DataTransmissionHandshake.Payload"
+	DATA_TRANSMISSION_HANDSHAKE_FIELD_JPG_QUALITY = "DataTransmissionHandshake.JpgQuality"
+)
+
 // ToMap (generated function)
 func (m *DataTransmissionHandshake) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"DataTransmissionHandshake.Size":       m.Size,
-		"DataTransmissionHandshake.Width":      m.Width,
-		"DataTransmissionHandshake.Height":     m.Height,
-		"DataTransmissionHandshake.Packets":    m.Packets,
-		"DataTransmissionHandshake.Type":       m.Type,
-		"DataTransmissionHandshake.Payload":    m.Payload,
-		"DataTransmissionHandshake.JpgQuality": m.JpgQuality,
+		DATA_TRANSMISSION_HANDSHAKE_FIELD_SIZE:        m.Size,
+		DATA_TRANSMISSION_HANDSHAKE_FIELD_WIDTH:       m.Width,
+		DATA_TRANSMISSION_HANDSHAKE_FIELD_HEIGHT:      m.Height,
+		DATA_TRANSMISSION_HANDSHAKE_FIELD_PACKETS:     m.Packets,
+		DATA_TRANSMISSION_HANDSHAKE_FIELD_TYPE:        m.Type,
+		DATA_TRANSMISSION_HANDSHAKE_FIELD_PAYLOAD:     m.Payload,
+		DATA_TRANSMISSION_HANDSHAKE_FIELD_JPG_QUALITY: m.JpgQuality,
 	}
 }
 
@@ -10729,11 +12230,16 @@ func (m *EncapsulatedData) String() string {
 	)
 }
 
+const (
+	ENCAPSULATED_DATA_FIELD_SEQNR = "EncapsulatedData.Seqnr"
+	ENCAPSULATED_DATA_FIELD_DATA  = "EncapsulatedData.Data"
+)
+
 // ToMap (generated function)
 func (m *EncapsulatedData) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"EncapsulatedData.Seqnr": m.Seqnr,
-		"EncapsulatedData.Data":  m.Data,
+		ENCAPSULATED_DATA_FIELD_SEQNR: m.Seqnr,
+		ENCAPSULATED_DATA_FIELD_DATA:  m.Data,
 	}
 }
 
@@ -10787,17 +12293,28 @@ func (m *DistanceSensor) String() string {
 	)
 }
 
+const (
+	DISTANCE_SENSOR_FIELD_TIME_BOOT_MS     = "DistanceSensor.TimeBootMs"
+	DISTANCE_SENSOR_FIELD_MIN_DISTANCE     = "DistanceSensor.MinDistance"
+	DISTANCE_SENSOR_FIELD_MAX_DISTANCE     = "DistanceSensor.MaxDistance"
+	DISTANCE_SENSOR_FIELD_CURRENT_DISTANCE = "DistanceSensor.CurrentDistance"
+	DISTANCE_SENSOR_FIELD_TYPE             = "DistanceSensor.Type"
+	DISTANCE_SENSOR_FIELD_ID               = "DistanceSensor.ID"
+	DISTANCE_SENSOR_FIELD_ORIENTATION      = "DistanceSensor.Orientation"
+	DISTANCE_SENSOR_FIELD_COVARIANCE       = "DistanceSensor.Covariance"
+)
+
 // ToMap (generated function)
 func (m *DistanceSensor) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"DistanceSensor.TimeBootMs":      m.TimeBootMs,
-		"DistanceSensor.MinDistance":     m.MinDistance,
-		"DistanceSensor.MaxDistance":     m.MaxDistance,
-		"DistanceSensor.CurrentDistance": m.CurrentDistance,
-		"DistanceSensor.Type":            m.Type,
-		"DistanceSensor.ID":              m.ID,
-		"DistanceSensor.Orientation":     m.Orientation,
-		"DistanceSensor.Covariance":      m.Covariance,
+		DISTANCE_SENSOR_FIELD_TIME_BOOT_MS:     m.TimeBootMs,
+		DISTANCE_SENSOR_FIELD_MIN_DISTANCE:     m.MinDistance,
+		DISTANCE_SENSOR_FIELD_MAX_DISTANCE:     m.MaxDistance,
+		DISTANCE_SENSOR_FIELD_CURRENT_DISTANCE: m.CurrentDistance,
+		DISTANCE_SENSOR_FIELD_TYPE:             m.Type,
+		DISTANCE_SENSOR_FIELD_ID:               m.ID,
+		DISTANCE_SENSOR_FIELD_ORIENTATION:      m.Orientation,
+		DISTANCE_SENSOR_FIELD_COVARIANCE:       m.Covariance,
 	}
 }
 
@@ -10855,13 +12372,20 @@ func (m *TerrainRequest) String() string {
 	)
 }
 
+const (
+	TERRAIN_REQUEST_FIELD_MASK         = "TerrainRequest.Mask"
+	TERRAIN_REQUEST_FIELD_LAT          = "TerrainRequest.Lat"
+	TERRAIN_REQUEST_FIELD_LON          = "TerrainRequest.Lon"
+	TERRAIN_REQUEST_FIELD_GRID_SPACING = "TerrainRequest.GridSpacing"
+)
+
 // ToMap (generated function)
 func (m *TerrainRequest) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"TerrainRequest.Mask":        m.Mask,
-		"TerrainRequest.Lat":         m.Lat,
-		"TerrainRequest.Lon":         m.Lon,
-		"TerrainRequest.GridSpacing": m.GridSpacing,
+		TERRAIN_REQUEST_FIELD_MASK:         m.Mask,
+		TERRAIN_REQUEST_FIELD_LAT:          m.Lat,
+		TERRAIN_REQUEST_FIELD_LON:          m.Lon,
+		TERRAIN_REQUEST_FIELD_GRID_SPACING: m.GridSpacing,
 	}
 }
 
@@ -10913,14 +12437,22 @@ func (m *TerrainData) String() string {
 	)
 }
 
+const (
+	TERRAIN_DATA_FIELD_LAT          = "TerrainData.Lat"
+	TERRAIN_DATA_FIELD_LON          = "TerrainData.Lon"
+	TERRAIN_DATA_FIELD_GRID_SPACING = "TerrainData.GridSpacing"
+	TERRAIN_DATA_FIELD_DATA         = "TerrainData.Data"
+	TERRAIN_DATA_FIELD_GRIDBIT      = "TerrainData.Gridbit"
+)
+
 // ToMap (generated function)
 func (m *TerrainData) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"TerrainData.Lat":         m.Lat,
-		"TerrainData.Lon":         m.Lon,
-		"TerrainData.GridSpacing": m.GridSpacing,
-		"TerrainData.Data":        m.Data,
-		"TerrainData.Gridbit":     m.Gridbit,
+		TERRAIN_DATA_FIELD_LAT:          m.Lat,
+		TERRAIN_DATA_FIELD_LON:          m.Lon,
+		TERRAIN_DATA_FIELD_GRID_SPACING: m.GridSpacing,
+		TERRAIN_DATA_FIELD_DATA:         m.Data,
+		TERRAIN_DATA_FIELD_GRIDBIT:      m.Gridbit,
 	}
 }
 
@@ -10972,11 +12504,16 @@ func (m *TerrainCheck) String() string {
 	)
 }
 
+const (
+	TERRAIN_CHECK_FIELD_LAT = "TerrainCheck.Lat"
+	TERRAIN_CHECK_FIELD_LON = "TerrainCheck.Lon"
+)
+
 // ToMap (generated function)
 func (m *TerrainCheck) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"TerrainCheck.Lat": m.Lat,
-		"TerrainCheck.Lon": m.Lon,
+		TERRAIN_CHECK_FIELD_LAT: m.Lat,
+		TERRAIN_CHECK_FIELD_LON: m.Lon,
 	}
 }
 
@@ -11028,16 +12565,26 @@ func (m *TerrainReport) String() string {
 	)
 }
 
+const (
+	TERRAIN_REPORT_FIELD_LAT            = "TerrainReport.Lat"
+	TERRAIN_REPORT_FIELD_LON            = "TerrainReport.Lon"
+	TERRAIN_REPORT_FIELD_TERRAIN_HEIGHT = "TerrainReport.TerrainHeight"
+	TERRAIN_REPORT_FIELD_CURRENT_HEIGHT = "TerrainReport.CurrentHeight"
+	TERRAIN_REPORT_FIELD_SPACING        = "TerrainReport.Spacing"
+	TERRAIN_REPORT_FIELD_PENDING        = "TerrainReport.Pending"
+	TERRAIN_REPORT_FIELD_LOADED         = "TerrainReport.Loaded"
+)
+
 // ToMap (generated function)
 func (m *TerrainReport) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"TerrainReport.Lat":           m.Lat,
-		"TerrainReport.Lon":           m.Lon,
-		"TerrainReport.TerrainHeight": m.TerrainHeight,
-		"TerrainReport.CurrentHeight": m.CurrentHeight,
-		"TerrainReport.Spacing":       m.Spacing,
-		"TerrainReport.Pending":       m.Pending,
-		"TerrainReport.Loaded":        m.Loaded,
+		TERRAIN_REPORT_FIELD_LAT:            m.Lat,
+		TERRAIN_REPORT_FIELD_LON:            m.Lon,
+		TERRAIN_REPORT_FIELD_TERRAIN_HEIGHT: m.TerrainHeight,
+		TERRAIN_REPORT_FIELD_CURRENT_HEIGHT: m.CurrentHeight,
+		TERRAIN_REPORT_FIELD_SPACING:        m.Spacing,
+		TERRAIN_REPORT_FIELD_PENDING:        m.Pending,
+		TERRAIN_REPORT_FIELD_LOADED:         m.Loaded,
 	}
 }
 
@@ -11093,13 +12640,20 @@ func (m *ScaledPressure2) String() string {
 	)
 }
 
+const (
+	SCALED_PRESSURE2_FIELD_TIME_BOOT_MS = "ScaledPressure2.TimeBootMs"
+	SCALED_PRESSURE2_FIELD_PRESS_ABS    = "ScaledPressure2.PressAbs"
+	SCALED_PRESSURE2_FIELD_PRESS_DIFF   = "ScaledPressure2.PressDiff"
+	SCALED_PRESSURE2_FIELD_TEMPERATURE  = "ScaledPressure2.Temperature"
+)
+
 // ToMap (generated function)
 func (m *ScaledPressure2) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ScaledPressure2.TimeBootMs":  m.TimeBootMs,
-		"ScaledPressure2.PressAbs":    m.PressAbs,
-		"ScaledPressure2.PressDiff":   m.PressDiff,
-		"ScaledPressure2.Temperature": m.Temperature,
+		SCALED_PRESSURE2_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		SCALED_PRESSURE2_FIELD_PRESS_ABS:    m.PressAbs,
+		SCALED_PRESSURE2_FIELD_PRESS_DIFF:   m.PressDiff,
+		SCALED_PRESSURE2_FIELD_TEMPERATURE:  m.Temperature,
 	}
 }
 
@@ -11151,14 +12705,22 @@ func (m *AttPosMocap) String() string {
 	)
 }
 
+const (
+	ATT_POS_MOCAP_FIELD_TIME_USEC = "AttPosMocap.TimeUsec"
+	ATT_POS_MOCAP_FIELD_Q         = "AttPosMocap.Q"
+	ATT_POS_MOCAP_FIELD_X         = "AttPosMocap.X"
+	ATT_POS_MOCAP_FIELD_Y         = "AttPosMocap.Y"
+	ATT_POS_MOCAP_FIELD_Z         = "AttPosMocap.Z"
+)
+
 // ToMap (generated function)
 func (m *AttPosMocap) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AttPosMocap.TimeUsec": m.TimeUsec,
-		"AttPosMocap.Q":        m.Q,
-		"AttPosMocap.X":        m.X,
-		"AttPosMocap.Y":        m.Y,
-		"AttPosMocap.Z":        m.Z,
+		ATT_POS_MOCAP_FIELD_TIME_USEC: m.TimeUsec,
+		ATT_POS_MOCAP_FIELD_Q:         m.Q,
+		ATT_POS_MOCAP_FIELD_X:         m.X,
+		ATT_POS_MOCAP_FIELD_Y:         m.Y,
+		ATT_POS_MOCAP_FIELD_Z:         m.Z,
 	}
 }
 
@@ -11216,14 +12778,22 @@ func (m *SetActuatorControlTarget) String() string {
 	)
 }
 
+const (
+	SET_ACTUATOR_CONTROL_TARGET_FIELD_TIME_USEC        = "SetActuatorControlTarget.TimeUsec"
+	SET_ACTUATOR_CONTROL_TARGET_FIELD_CONTROLS         = "SetActuatorControlTarget.Controls"
+	SET_ACTUATOR_CONTROL_TARGET_FIELD_GROUP_MLX        = "SetActuatorControlTarget.GroupMlx"
+	SET_ACTUATOR_CONTROL_TARGET_FIELD_TARGET_SYSTEM    = "SetActuatorControlTarget.TargetSystem"
+	SET_ACTUATOR_CONTROL_TARGET_FIELD_TARGET_COMPONENT = "SetActuatorControlTarget.TargetComponent"
+)
+
 // ToMap (generated function)
 func (m *SetActuatorControlTarget) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SetActuatorControlTarget.TimeUsec":        m.TimeUsec,
-		"SetActuatorControlTarget.Controls":        m.Controls,
-		"SetActuatorControlTarget.GroupMlx":        m.GroupMlx,
-		"SetActuatorControlTarget.TargetSystem":    m.TargetSystem,
-		"SetActuatorControlTarget.TargetComponent": m.TargetComponent,
+		SET_ACTUATOR_CONTROL_TARGET_FIELD_TIME_USEC:        m.TimeUsec,
+		SET_ACTUATOR_CONTROL_TARGET_FIELD_CONTROLS:         m.Controls,
+		SET_ACTUATOR_CONTROL_TARGET_FIELD_GROUP_MLX:        m.GroupMlx,
+		SET_ACTUATOR_CONTROL_TARGET_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		SET_ACTUATOR_CONTROL_TARGET_FIELD_TARGET_COMPONENT: m.TargetComponent,
 	}
 }
 
@@ -11277,12 +12847,18 @@ func (m *ActuatorControlTarget) String() string {
 	)
 }
 
+const (
+	ACTUATOR_CONTROL_TARGET_FIELD_TIME_USEC = "ActuatorControlTarget.TimeUsec"
+	ACTUATOR_CONTROL_TARGET_FIELD_CONTROLS  = "ActuatorControlTarget.Controls"
+	ACTUATOR_CONTROL_TARGET_FIELD_GROUP_MLX = "ActuatorControlTarget.GroupMlx"
+)
+
 // ToMap (generated function)
 func (m *ActuatorControlTarget) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ActuatorControlTarget.TimeUsec": m.TimeUsec,
-		"ActuatorControlTarget.Controls": m.Controls,
-		"ActuatorControlTarget.GroupMlx": m.GroupMlx,
+		ACTUATOR_CONTROL_TARGET_FIELD_TIME_USEC: m.TimeUsec,
+		ACTUATOR_CONTROL_TARGET_FIELD_CONTROLS:  m.Controls,
+		ACTUATOR_CONTROL_TARGET_FIELD_GROUP_MLX: m.GroupMlx,
 	}
 }
 
@@ -11340,16 +12916,26 @@ func (m *Altitude) String() string {
 	)
 }
 
+const (
+	ALTITUDE_FIELD_TIME_USEC          = "Altitude.TimeUsec"
+	ALTITUDE_FIELD_ALTITUDE_MONOTONIC = "Altitude.AltitudeMonotonic"
+	ALTITUDE_FIELD_ALTITUDE_AMSL      = "Altitude.AltitudeAmsl"
+	ALTITUDE_FIELD_ALTITUDE_LOCAL     = "Altitude.AltitudeLocal"
+	ALTITUDE_FIELD_ALTITUDE_RELATIVE  = "Altitude.AltitudeRelative"
+	ALTITUDE_FIELD_ALTITUDE_TERRAIN   = "Altitude.AltitudeTerrain"
+	ALTITUDE_FIELD_BOTTOM_CLEARANCE   = "Altitude.BottomClearance"
+)
+
 // ToMap (generated function)
 func (m *Altitude) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Altitude.TimeUsec":          m.TimeUsec,
-		"Altitude.AltitudeMonotonic": m.AltitudeMonotonic,
-		"Altitude.AltitudeAmsl":      m.AltitudeAmsl,
-		"Altitude.AltitudeLocal":     m.AltitudeLocal,
-		"Altitude.AltitudeRelative":  m.AltitudeRelative,
-		"Altitude.AltitudeTerrain":   m.AltitudeTerrain,
-		"Altitude.BottomClearance":   m.BottomClearance,
+		ALTITUDE_FIELD_TIME_USEC:          m.TimeUsec,
+		ALTITUDE_FIELD_ALTITUDE_MONOTONIC: m.AltitudeMonotonic,
+		ALTITUDE_FIELD_ALTITUDE_AMSL:      m.AltitudeAmsl,
+		ALTITUDE_FIELD_ALTITUDE_LOCAL:     m.AltitudeLocal,
+		ALTITUDE_FIELD_ALTITUDE_RELATIVE:  m.AltitudeRelative,
+		ALTITUDE_FIELD_ALTITUDE_TERRAIN:   m.AltitudeTerrain,
+		ALTITUDE_FIELD_BOTTOM_CLEARANCE:   m.BottomClearance,
 	}
 }
 
@@ -11407,14 +12993,22 @@ func (m *ResourceRequest) String() string {
 	)
 }
 
+const (
+	RESOURCE_REQUEST_FIELD_REQUEST_ID    = "ResourceRequest.RequestID"
+	RESOURCE_REQUEST_FIELD_URI_TYPE      = "ResourceRequest.URIType"
+	RESOURCE_REQUEST_FIELD_URI           = "ResourceRequest.URI"
+	RESOURCE_REQUEST_FIELD_TRANSFER_TYPE = "ResourceRequest.TransferType"
+	RESOURCE_REQUEST_FIELD_STORAGE       = "ResourceRequest.Storage"
+)
+
 // ToMap (generated function)
 func (m *ResourceRequest) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ResourceRequest.RequestID":    m.RequestID,
-		"ResourceRequest.URIType":      m.URIType,
-		"ResourceRequest.URI":          m.URI,
-		"ResourceRequest.TransferType": m.TransferType,
-		"ResourceRequest.Storage":      m.Storage,
+		RESOURCE_REQUEST_FIELD_REQUEST_ID:    m.RequestID,
+		RESOURCE_REQUEST_FIELD_URI_TYPE:      m.URIType,
+		RESOURCE_REQUEST_FIELD_URI:           m.URI,
+		RESOURCE_REQUEST_FIELD_TRANSFER_TYPE: m.TransferType,
+		RESOURCE_REQUEST_FIELD_STORAGE:       m.Storage,
 	}
 }
 
@@ -11466,13 +13060,20 @@ func (m *ScaledPressure3) String() string {
 	)
 }
 
+const (
+	SCALED_PRESSURE3_FIELD_TIME_BOOT_MS = "ScaledPressure3.TimeBootMs"
+	SCALED_PRESSURE3_FIELD_PRESS_ABS    = "ScaledPressure3.PressAbs"
+	SCALED_PRESSURE3_FIELD_PRESS_DIFF   = "ScaledPressure3.PressDiff"
+	SCALED_PRESSURE3_FIELD_TEMPERATURE  = "ScaledPressure3.Temperature"
+)
+
 // ToMap (generated function)
 func (m *ScaledPressure3) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ScaledPressure3.TimeBootMs":  m.TimeBootMs,
-		"ScaledPressure3.PressAbs":    m.PressAbs,
-		"ScaledPressure3.PressDiff":   m.PressDiff,
-		"ScaledPressure3.Temperature": m.Temperature,
+		SCALED_PRESSURE3_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		SCALED_PRESSURE3_FIELD_PRESS_ABS:    m.PressAbs,
+		SCALED_PRESSURE3_FIELD_PRESS_DIFF:   m.PressDiff,
+		SCALED_PRESSURE3_FIELD_TEMPERATURE:  m.Temperature,
 	}
 }
 
@@ -11536,20 +13137,34 @@ func (m *FollowTarget) String() string {
 	)
 }
 
+const (
+	FOLLOW_TARGET_FIELD_TIMESTAMP        = "FollowTarget.Timestamp"
+	FOLLOW_TARGET_FIELD_CUSTOM_STATE     = "FollowTarget.CustomState"
+	FOLLOW_TARGET_FIELD_LAT              = "FollowTarget.Lat"
+	FOLLOW_TARGET_FIELD_LON              = "FollowTarget.Lon"
+	FOLLOW_TARGET_FIELD_ALT              = "FollowTarget.Alt"
+	FOLLOW_TARGET_FIELD_VEL              = "FollowTarget.Vel"
+	FOLLOW_TARGET_FIELD_ACC              = "FollowTarget.Acc"
+	FOLLOW_TARGET_FIELD_ATTITUDE_Q       = "FollowTarget.AttitudeQ"
+	FOLLOW_TARGET_FIELD_RATES            = "FollowTarget.Rates"
+	FOLLOW_TARGET_FIELD_POSITION_COV     = "FollowTarget.PositionCov"
+	FOLLOW_TARGET_FIELD_EST_CAPABILITIES = "FollowTarget.EstCapabilities"
+)
+
 // ToMap (generated function)
 func (m *FollowTarget) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"FollowTarget.Timestamp":       m.Timestamp,
-		"FollowTarget.CustomState":     m.CustomState,
-		"FollowTarget.Lat":             m.Lat,
-		"FollowTarget.Lon":             m.Lon,
-		"FollowTarget.Alt":             m.Alt,
-		"FollowTarget.Vel":             m.Vel,
-		"FollowTarget.Acc":             m.Acc,
-		"FollowTarget.AttitudeQ":       m.AttitudeQ,
-		"FollowTarget.Rates":           m.Rates,
-		"FollowTarget.PositionCov":     m.PositionCov,
-		"FollowTarget.EstCapabilities": m.EstCapabilities,
+		FOLLOW_TARGET_FIELD_TIMESTAMP:        m.Timestamp,
+		FOLLOW_TARGET_FIELD_CUSTOM_STATE:     m.CustomState,
+		FOLLOW_TARGET_FIELD_LAT:              m.Lat,
+		FOLLOW_TARGET_FIELD_LON:              m.Lon,
+		FOLLOW_TARGET_FIELD_ALT:              m.Alt,
+		FOLLOW_TARGET_FIELD_VEL:              m.Vel,
+		FOLLOW_TARGET_FIELD_ACC:              m.Acc,
+		FOLLOW_TARGET_FIELD_ATTITUDE_Q:       m.AttitudeQ,
+		FOLLOW_TARGET_FIELD_RATES:            m.Rates,
+		FOLLOW_TARGET_FIELD_POSITION_COV:     m.PositionCov,
+		FOLLOW_TARGET_FIELD_EST_CAPABILITIES: m.EstCapabilities,
 	}
 }
 
@@ -11659,26 +13274,46 @@ func (m *ControlSystemState) String() string {
 	)
 }
 
+const (
+	CONTROL_SYSTEM_STATE_FIELD_TIME_USEC    = "ControlSystemState.TimeUsec"
+	CONTROL_SYSTEM_STATE_FIELD_X_ACC        = "ControlSystemState.XAcc"
+	CONTROL_SYSTEM_STATE_FIELD_Y_ACC        = "ControlSystemState.YAcc"
+	CONTROL_SYSTEM_STATE_FIELD_Z_ACC        = "ControlSystemState.ZAcc"
+	CONTROL_SYSTEM_STATE_FIELD_X_VEL        = "ControlSystemState.XVel"
+	CONTROL_SYSTEM_STATE_FIELD_Y_VEL        = "ControlSystemState.YVel"
+	CONTROL_SYSTEM_STATE_FIELD_Z_VEL        = "ControlSystemState.ZVel"
+	CONTROL_SYSTEM_STATE_FIELD_X_POS        = "ControlSystemState.XPos"
+	CONTROL_SYSTEM_STATE_FIELD_Y_POS        = "ControlSystemState.YPos"
+	CONTROL_SYSTEM_STATE_FIELD_Z_POS        = "ControlSystemState.ZPos"
+	CONTROL_SYSTEM_STATE_FIELD_AIRSPEED     = "ControlSystemState.Airspeed"
+	CONTROL_SYSTEM_STATE_FIELD_VEL_VARIANCE = "ControlSystemState.VelVariance"
+	CONTROL_SYSTEM_STATE_FIELD_POS_VARIANCE = "ControlSystemState.PosVariance"
+	CONTROL_SYSTEM_STATE_FIELD_Q            = "ControlSystemState.Q"
+	CONTROL_SYSTEM_STATE_FIELD_ROLL_RATE    = "ControlSystemState.RollRate"
+	CONTROL_SYSTEM_STATE_FIELD_PITCH_RATE   = "ControlSystemState.PitchRate"
+	CONTROL_SYSTEM_STATE_FIELD_YAW_RATE     = "ControlSystemState.YawRate"
+)
+
 // ToMap (generated function)
 func (m *ControlSystemState) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ControlSystemState.TimeUsec":    m.TimeUsec,
-		"ControlSystemState.XAcc":        m.XAcc,
-		"ControlSystemState.YAcc":        m.YAcc,
-		"ControlSystemState.ZAcc":        m.ZAcc,
-		"ControlSystemState.XVel":        m.XVel,
-		"ControlSystemState.YVel":        m.YVel,
-		"ControlSystemState.ZVel":        m.ZVel,
-		"ControlSystemState.XPos":        m.XPos,
-		"ControlSystemState.YPos":        m.YPos,
-		"ControlSystemState.ZPos":        m.ZPos,
-		"ControlSystemState.Airspeed":    m.Airspeed,
-		"ControlSystemState.VelVariance": m.VelVariance,
-		"ControlSystemState.PosVariance": m.PosVariance,
-		"ControlSystemState.Q":           m.Q,
-		"ControlSystemState.RollRate":    m.RollRate,
-		"ControlSystemState.PitchRate":   m.PitchRate,
-		"ControlSystemState.YawRate":     m.YawRate,
+		CONTROL_SYSTEM_STATE_FIELD_TIME_USEC:    m.TimeUsec,
+		CONTROL_SYSTEM_STATE_FIELD_X_ACC:        m.XAcc,
+		CONTROL_SYSTEM_STATE_FIELD_Y_ACC:        m.YAcc,
+		CONTROL_SYSTEM_STATE_FIELD_Z_ACC:        m.ZAcc,
+		CONTROL_SYSTEM_STATE_FIELD_X_VEL:        m.XVel,
+		CONTROL_SYSTEM_STATE_FIELD_Y_VEL:        m.YVel,
+		CONTROL_SYSTEM_STATE_FIELD_Z_VEL:        m.ZVel,
+		CONTROL_SYSTEM_STATE_FIELD_X_POS:        m.XPos,
+		CONTROL_SYSTEM_STATE_FIELD_Y_POS:        m.YPos,
+		CONTROL_SYSTEM_STATE_FIELD_Z_POS:        m.ZPos,
+		CONTROL_SYSTEM_STATE_FIELD_AIRSPEED:     m.Airspeed,
+		CONTROL_SYSTEM_STATE_FIELD_VEL_VARIANCE: m.VelVariance,
+		CONTROL_SYSTEM_STATE_FIELD_POS_VARIANCE: m.PosVariance,
+		CONTROL_SYSTEM_STATE_FIELD_Q:            m.Q,
+		CONTROL_SYSTEM_STATE_FIELD_ROLL_RATE:    m.RollRate,
+		CONTROL_SYSTEM_STATE_FIELD_PITCH_RATE:   m.PitchRate,
+		CONTROL_SYSTEM_STATE_FIELD_YAW_RATE:     m.YawRate,
 	}
 }
 
@@ -11776,18 +13411,30 @@ func (m *BatteryStatus) String() string {
 	)
 }
 
+const (
+	BATTERY_STATUS_FIELD_CURRENT_CONSUMED  = "BatteryStatus.CurrentConsumed"
+	BATTERY_STATUS_FIELD_ENERGY_CONSUMED   = "BatteryStatus.EnergyConsumed"
+	BATTERY_STATUS_FIELD_TEMPERATURE       = "BatteryStatus.Temperature"
+	BATTERY_STATUS_FIELD_VOLTAGES          = "BatteryStatus.Voltages"
+	BATTERY_STATUS_FIELD_CURRENT_BATTERY   = "BatteryStatus.CurrentBattery"
+	BATTERY_STATUS_FIELD_ID                = "BatteryStatus.ID"
+	BATTERY_STATUS_FIELD_BATTERY_FUNCTION  = "BatteryStatus.BatteryFunction"
+	BATTERY_STATUS_FIELD_TYPE              = "BatteryStatus.Type"
+	BATTERY_STATUS_FIELD_BATTERY_REMAINING = "BatteryStatus.BatteryRemaining"
+)
+
 // ToMap (generated function)
 func (m *BatteryStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"BatteryStatus.CurrentConsumed":  m.CurrentConsumed,
-		"BatteryStatus.EnergyConsumed":   m.EnergyConsumed,
-		"BatteryStatus.Temperature":      m.Temperature,
-		"BatteryStatus.Voltages":         m.Voltages,
-		"BatteryStatus.CurrentBattery":   m.CurrentBattery,
-		"BatteryStatus.ID":               m.ID,
-		"BatteryStatus.BatteryFunction":  m.BatteryFunction,
-		"BatteryStatus.Type":             m.Type,
-		"BatteryStatus.BatteryRemaining": m.BatteryRemaining,
+		BATTERY_STATUS_FIELD_CURRENT_CONSUMED:  m.CurrentConsumed,
+		BATTERY_STATUS_FIELD_ENERGY_CONSUMED:   m.EnergyConsumed,
+		BATTERY_STATUS_FIELD_TEMPERATURE:       m.Temperature,
+		BATTERY_STATUS_FIELD_VOLTAGES:          m.Voltages,
+		BATTERY_STATUS_FIELD_CURRENT_BATTERY:   m.CurrentBattery,
+		BATTERY_STATUS_FIELD_ID:                m.ID,
+		BATTERY_STATUS_FIELD_BATTERY_FUNCTION:  m.BatteryFunction,
+		BATTERY_STATUS_FIELD_TYPE:              m.Type,
+		BATTERY_STATUS_FIELD_BATTERY_REMAINING: m.BatteryRemaining,
 	}
 }
 
@@ -11865,20 +13512,34 @@ func (m *AutopilotVersion) String() string {
 	)
 }
 
+const (
+	AUTOPILOT_VERSION_FIELD_CAPABILITIES              = "AutopilotVersion.Capabilities"
+	AUTOPILOT_VERSION_FIELD_UID                       = "AutopilotVersion.UID"
+	AUTOPILOT_VERSION_FIELD_FLIGHT_SW_VERSION         = "AutopilotVersion.FlightSwVersion"
+	AUTOPILOT_VERSION_FIELD_MIDDLEWARE_SW_VERSION     = "AutopilotVersion.MiddlewareSwVersion"
+	AUTOPILOT_VERSION_FIELD_OS_SW_VERSION             = "AutopilotVersion.OsSwVersion"
+	AUTOPILOT_VERSION_FIELD_BOARD_VERSION             = "AutopilotVersion.BoardVersion"
+	AUTOPILOT_VERSION_FIELD_VENDOR_ID                 = "AutopilotVersion.VendorID"
+	AUTOPILOT_VERSION_FIELD_PRODUCT_ID                = "AutopilotVersion.ProductID"
+	AUTOPILOT_VERSION_FIELD_FLIGHT_CUSTOM_VERSION     = "AutopilotVersion.FlightCustomVersion"
+	AUTOPILOT_VERSION_FIELD_MIDDLEWARE_CUSTOM_VERSION = "AutopilotVersion.MiddlewareCustomVersion"
+	AUTOPILOT_VERSION_FIELD_OS_CUSTOM_VERSION         = "AutopilotVersion.OsCustomVersion"
+)
+
 // ToMap (generated function)
 func (m *AutopilotVersion) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AutopilotVersion.Capabilities":            m.Capabilities,
-		"AutopilotVersion.UID":                     m.UID,
-		"AutopilotVersion.FlightSwVersion":         m.FlightSwVersion,
-		"AutopilotVersion.MiddlewareSwVersion":     m.MiddlewareSwVersion,
-		"AutopilotVersion.OsSwVersion":             m.OsSwVersion,
-		"AutopilotVersion.BoardVersion":            m.BoardVersion,
-		"AutopilotVersion.VendorID":                m.VendorID,
-		"AutopilotVersion.ProductID":               m.ProductID,
-		"AutopilotVersion.FlightCustomVersion":     m.FlightCustomVersion,
-		"AutopilotVersion.MiddlewareCustomVersion": m.MiddlewareCustomVersion,
-		"AutopilotVersion.OsCustomVersion":         m.OsCustomVersion,
+		AUTOPILOT_VERSION_FIELD_CAPABILITIES:              m.Capabilities,
+		AUTOPILOT_VERSION_FIELD_UID:                       m.UID,
+		AUTOPILOT_VERSION_FIELD_FLIGHT_SW_VERSION:         m.FlightSwVersion,
+		AUTOPILOT_VERSION_FIELD_MIDDLEWARE_SW_VERSION:     m.MiddlewareSwVersion,
+		AUTOPILOT_VERSION_FIELD_OS_SW_VERSION:             m.OsSwVersion,
+		AUTOPILOT_VERSION_FIELD_BOARD_VERSION:             m.BoardVersion,
+		AUTOPILOT_VERSION_FIELD_VENDOR_ID:                 m.VendorID,
+		AUTOPILOT_VERSION_FIELD_PRODUCT_ID:                m.ProductID,
+		AUTOPILOT_VERSION_FIELD_FLIGHT_CUSTOM_VERSION:     m.FlightCustomVersion,
+		AUTOPILOT_VERSION_FIELD_MIDDLEWARE_CUSTOM_VERSION: m.MiddlewareCustomVersion,
+		AUTOPILOT_VERSION_FIELD_OS_CUSTOM_VERSION:         m.OsCustomVersion,
 	}
 }
 
@@ -11950,17 +13611,28 @@ func (m *LandingTarget) String() string {
 	)
 }
 
+const (
+	LANDING_TARGET_FIELD_TIME_USEC  = "LandingTarget.TimeUsec"
+	LANDING_TARGET_FIELD_ANGLE_X    = "LandingTarget.AngleX"
+	LANDING_TARGET_FIELD_ANGLE_Y    = "LandingTarget.AngleY"
+	LANDING_TARGET_FIELD_DISTANCE   = "LandingTarget.Distance"
+	LANDING_TARGET_FIELD_SIZE_X     = "LandingTarget.SizeX"
+	LANDING_TARGET_FIELD_SIZE_Y     = "LandingTarget.SizeY"
+	LANDING_TARGET_FIELD_TARGET_NUM = "LandingTarget.TargetNum"
+	LANDING_TARGET_FIELD_FRAME      = "LandingTarget.Frame"
+)
+
 // ToMap (generated function)
 func (m *LandingTarget) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"LandingTarget.TimeUsec":  m.TimeUsec,
-		"LandingTarget.AngleX":    m.AngleX,
-		"LandingTarget.AngleY":    m.AngleY,
-		"LandingTarget.Distance":  m.Distance,
-		"LandingTarget.SizeX":     m.SizeX,
-		"LandingTarget.SizeY":     m.SizeY,
-		"LandingTarget.TargetNum": m.TargetNum,
-		"LandingTarget.Frame":     m.Frame,
+		LANDING_TARGET_FIELD_TIME_USEC:  m.TimeUsec,
+		LANDING_TARGET_FIELD_ANGLE_X:    m.AngleX,
+		LANDING_TARGET_FIELD_ANGLE_Y:    m.AngleY,
+		LANDING_TARGET_FIELD_DISTANCE:   m.Distance,
+		LANDING_TARGET_FIELD_SIZE_X:     m.SizeX,
+		LANDING_TARGET_FIELD_SIZE_Y:     m.SizeY,
+		LANDING_TARGET_FIELD_TARGET_NUM: m.TargetNum,
+		LANDING_TARGET_FIELD_FRAME:      m.Frame,
 	}
 }
 
@@ -12018,13 +13690,20 @@ func (m *FenceStatus) String() string {
 	)
 }
 
+const (
+	FENCE_STATUS_FIELD_BREACH_TIME   = "FenceStatus.BreachTime"
+	FENCE_STATUS_FIELD_BREACH_COUNT  = "FenceStatus.BreachCount"
+	FENCE_STATUS_FIELD_BREACH_STATUS = "FenceStatus.BreachStatus"
+	FENCE_STATUS_FIELD_BREACH_TYPE   = "FenceStatus.BreachType"
+)
+
 // ToMap (generated function)
 func (m *FenceStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"FenceStatus.BreachTime":   m.BreachTime,
-		"FenceStatus.BreachCount":  m.BreachCount,
-		"FenceStatus.BreachStatus": m.BreachStatus,
-		"FenceStatus.BreachType":   m.BreachType,
+		FENCE_STATUS_FIELD_BREACH_TIME:   m.BreachTime,
+		FENCE_STATUS_FIELD_BREACH_COUNT:  m.BreachCount,
+		FENCE_STATUS_FIELD_BREACH_STATUS: m.BreachStatus,
+		FENCE_STATUS_FIELD_BREACH_TYPE:   m.BreachType,
 	}
 }
 
@@ -12094,23 +13773,40 @@ func (m *MagCalReport) String() string {
 	)
 }
 
+const (
+	MAG_CAL_REPORT_FIELD_FITNESS    = "MagCalReport.Fitness"
+	MAG_CAL_REPORT_FIELD_OFS_X      = "MagCalReport.OfsX"
+	MAG_CAL_REPORT_FIELD_OFS_Y      = "MagCalReport.OfsY"
+	MAG_CAL_REPORT_FIELD_OFS_Z      = "MagCalReport.OfsZ"
+	MAG_CAL_REPORT_FIELD_DIAG_X     = "MagCalReport.DiagX"
+	MAG_CAL_REPORT_FIELD_DIAG_Y     = "MagCalReport.DiagY"
+	MAG_CAL_REPORT_FIELD_DIAG_Z     = "MagCalReport.DiagZ"
+	MAG_CAL_REPORT_FIELD_OFFDIAG_X  = "MagCalReport.OffdiagX"
+	MAG_CAL_REPORT_FIELD_OFFDIAG_Y  = "MagCalReport.OffdiagY"
+	MAG_CAL_REPORT_FIELD_OFFDIAG_Z  = "MagCalReport.OffdiagZ"
+	MAG_CAL_REPORT_FIELD_COMPASS_ID = "MagCalReport.CompassID"
+	MAG_CAL_REPORT_FIELD_CAL_MASK   = "MagCalReport.CalMask"
+	MAG_CAL_REPORT_FIELD_CAL_STATUS = "MagCalReport.CalStatus"
+	MAG_CAL_REPORT_FIELD_AUTOSAVED  = "MagCalReport.Autosaved"
+)
+
 // ToMap (generated function)
 func (m *MagCalReport) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MagCalReport.Fitness":   m.Fitness,
-		"MagCalReport.OfsX":      m.OfsX,
-		"MagCalReport.OfsY":      m.OfsY,
-		"MagCalReport.OfsZ":      m.OfsZ,
-		"MagCalReport.DiagX":     m.DiagX,
-		"MagCalReport.DiagY":     m.DiagY,
-		"MagCalReport.DiagZ":     m.DiagZ,
-		"MagCalReport.OffdiagX":  m.OffdiagX,
-		"MagCalReport.OffdiagY":  m.OffdiagY,
-		"MagCalReport.OffdiagZ":  m.OffdiagZ,
-		"MagCalReport.CompassID": m.CompassID,
-		"MagCalReport.CalMask":   m.CalMask,
-		"MagCalReport.CalStatus": m.CalStatus,
-		"MagCalReport.Autosaved": m.Autosaved,
+		MAG_CAL_REPORT_FIELD_FITNESS:    m.Fitness,
+		MAG_CAL_REPORT_FIELD_OFS_X:      m.OfsX,
+		MAG_CAL_REPORT_FIELD_OFS_Y:      m.OfsY,
+		MAG_CAL_REPORT_FIELD_OFS_Z:      m.OfsZ,
+		MAG_CAL_REPORT_FIELD_DIAG_X:     m.DiagX,
+		MAG_CAL_REPORT_FIELD_DIAG_Y:     m.DiagY,
+		MAG_CAL_REPORT_FIELD_DIAG_Z:     m.DiagZ,
+		MAG_CAL_REPORT_FIELD_OFFDIAG_X:  m.OffdiagX,
+		MAG_CAL_REPORT_FIELD_OFFDIAG_Y:  m.OffdiagY,
+		MAG_CAL_REPORT_FIELD_OFFDIAG_Z:  m.OffdiagZ,
+		MAG_CAL_REPORT_FIELD_COMPASS_ID: m.CompassID,
+		MAG_CAL_REPORT_FIELD_CAL_MASK:   m.CalMask,
+		MAG_CAL_REPORT_FIELD_CAL_STATUS: m.CalStatus,
+		MAG_CAL_REPORT_FIELD_AUTOSAVED:  m.Autosaved,
 	}
 }
 
@@ -12206,26 +13902,46 @@ func (m *EfiStatus) String() string {
 	)
 }
 
+const (
+	EFI_STATUS_FIELD_ECU_INDEX                   = "EfiStatus.EcuIndex"
+	EFI_STATUS_FIELD_RPM                         = "EfiStatus.Rpm"
+	EFI_STATUS_FIELD_FUEL_CONSUMED               = "EfiStatus.FuelConsumed"
+	EFI_STATUS_FIELD_FUEL_FLOW                   = "EfiStatus.FuelFlow"
+	EFI_STATUS_FIELD_ENGINE_LOAD                 = "EfiStatus.EngineLoad"
+	EFI_STATUS_FIELD_THROTTLE_POSITION           = "EfiStatus.ThrottlePosition"
+	EFI_STATUS_FIELD_SPARK_DWELL_TIME            = "EfiStatus.SparkDwellTime"
+	EFI_STATUS_FIELD_BAROMETRIC_PRESSURE         = "EfiStatus.BarometricPressure"
+	EFI_STATUS_FIELD_INTAKE_MANIFOLD_PRESSURE    = "EfiStatus.IntakeManifoldPressure"
+	EFI_STATUS_FIELD_INTAKE_MANIFOLD_TEMPERATURE = "EfiStatus.IntakeManifoldTemperature"
+	EFI_STATUS_FIELD_CYLINDER_HEAD_TEMPERATURE   = "EfiStatus.CylinderHeadTemperature"
+	EFI_STATUS_FIELD_IGNITION_TIMING             = "EfiStatus.IgnitionTiming"
+	EFI_STATUS_FIELD_INJECTION_TIME              = "EfiStatus.InjectionTime"
+	EFI_STATUS_FIELD_EXHAUST_GAS_TEMPERATURE     = "EfiStatus.ExhaustGasTemperature"
+	EFI_STATUS_FIELD_THROTTLE_OUT                = "EfiStatus.ThrottleOut"
+	EFI_STATUS_FIELD_PT_COMPENSATION             = "EfiStatus.PtCompensation"
+	EFI_STATUS_FIELD_HEALTH                      = "EfiStatus.Health"
+)
+
 // ToMap (generated function)
 func (m *EfiStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"EfiStatus.EcuIndex":                  m.EcuIndex,
-		"EfiStatus.Rpm":                       m.Rpm,
-		"EfiStatus.FuelConsumed":              m.FuelConsumed,
-		"EfiStatus.FuelFlow":                  m.FuelFlow,
-		"EfiStatus.EngineLoad":                m.EngineLoad,
-		"EfiStatus.ThrottlePosition":          m.ThrottlePosition,
-		"EfiStatus.SparkDwellTime":            m.SparkDwellTime,
-		"EfiStatus.BarometricPressure":        m.BarometricPressure,
-		"EfiStatus.IntakeManifoldPressure":    m.IntakeManifoldPressure,
-		"EfiStatus.IntakeManifoldTemperature": m.IntakeManifoldTemperature,
-		"EfiStatus.CylinderHeadTemperature":   m.CylinderHeadTemperature,
-		"EfiStatus.IgnitionTiming":            m.IgnitionTiming,
-		"EfiStatus.InjectionTime":             m.InjectionTime,
-		"EfiStatus.ExhaustGasTemperature":     m.ExhaustGasTemperature,
-		"EfiStatus.ThrottleOut":               m.ThrottleOut,
-		"EfiStatus.PtCompensation":            m.PtCompensation,
-		"EfiStatus.Health":                    m.Health,
+		EFI_STATUS_FIELD_ECU_INDEX:                   m.EcuIndex,
+		EFI_STATUS_FIELD_RPM:                         m.Rpm,
+		EFI_STATUS_FIELD_FUEL_CONSUMED:               m.FuelConsumed,
+		EFI_STATUS_FIELD_FUEL_FLOW:                   m.FuelFlow,
+		EFI_STATUS_FIELD_ENGINE_LOAD:                 m.EngineLoad,
+		EFI_STATUS_FIELD_THROTTLE_POSITION:           m.ThrottlePosition,
+		EFI_STATUS_FIELD_SPARK_DWELL_TIME:            m.SparkDwellTime,
+		EFI_STATUS_FIELD_BAROMETRIC_PRESSURE:         m.BarometricPressure,
+		EFI_STATUS_FIELD_INTAKE_MANIFOLD_PRESSURE:    m.IntakeManifoldPressure,
+		EFI_STATUS_FIELD_INTAKE_MANIFOLD_TEMPERATURE: m.IntakeManifoldTemperature,
+		EFI_STATUS_FIELD_CYLINDER_HEAD_TEMPERATURE:   m.CylinderHeadTemperature,
+		EFI_STATUS_FIELD_IGNITION_TIMING:             m.IgnitionTiming,
+		EFI_STATUS_FIELD_INJECTION_TIME:              m.InjectionTime,
+		EFI_STATUS_FIELD_EXHAUST_GAS_TEMPERATURE:     m.ExhaustGasTemperature,
+		EFI_STATUS_FIELD_THROTTLE_OUT:                m.ThrottleOut,
+		EFI_STATUS_FIELD_PT_COMPENSATION:             m.PtCompensation,
+		EFI_STATUS_FIELD_HEALTH:                      m.Health,
 	}
 }
 
@@ -12313,19 +14029,32 @@ func (m *EstimatorStatus) String() string {
 	)
 }
 
+const (
+	ESTIMATOR_STATUS_FIELD_TIME_USEC          = "EstimatorStatus.TimeUsec"
+	ESTIMATOR_STATUS_FIELD_VEL_RATIO          = "EstimatorStatus.VelRatio"
+	ESTIMATOR_STATUS_FIELD_POS_HORIZ_RATIO    = "EstimatorStatus.PosHorizRatio"
+	ESTIMATOR_STATUS_FIELD_POS_VERT_RATIO     = "EstimatorStatus.PosVertRatio"
+	ESTIMATOR_STATUS_FIELD_MAG_RATIO          = "EstimatorStatus.MagRatio"
+	ESTIMATOR_STATUS_FIELD_HAGL_RATIO         = "EstimatorStatus.HaglRatio"
+	ESTIMATOR_STATUS_FIELD_TAS_RATIO          = "EstimatorStatus.TasRatio"
+	ESTIMATOR_STATUS_FIELD_POS_HORIZ_ACCURACY = "EstimatorStatus.PosHorizAccuracy"
+	ESTIMATOR_STATUS_FIELD_POS_VERT_ACCURACY  = "EstimatorStatus.PosVertAccuracy"
+	ESTIMATOR_STATUS_FIELD_FLAGS              = "EstimatorStatus.Flags"
+)
+
 // ToMap (generated function)
 func (m *EstimatorStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"EstimatorStatus.TimeUsec":         m.TimeUsec,
-		"EstimatorStatus.VelRatio":         m.VelRatio,
-		"EstimatorStatus.PosHorizRatio":    m.PosHorizRatio,
-		"EstimatorStatus.PosVertRatio":     m.PosVertRatio,
-		"EstimatorStatus.MagRatio":         m.MagRatio,
-		"EstimatorStatus.HaglRatio":        m.HaglRatio,
-		"EstimatorStatus.TasRatio":         m.TasRatio,
-		"EstimatorStatus.PosHorizAccuracy": m.PosHorizAccuracy,
-		"EstimatorStatus.PosVertAccuracy":  m.PosVertAccuracy,
-		"EstimatorStatus.Flags":            m.Flags,
+		ESTIMATOR_STATUS_FIELD_TIME_USEC:          m.TimeUsec,
+		ESTIMATOR_STATUS_FIELD_VEL_RATIO:          m.VelRatio,
+		ESTIMATOR_STATUS_FIELD_POS_HORIZ_RATIO:    m.PosHorizRatio,
+		ESTIMATOR_STATUS_FIELD_POS_VERT_RATIO:     m.PosVertRatio,
+		ESTIMATOR_STATUS_FIELD_MAG_RATIO:          m.MagRatio,
+		ESTIMATOR_STATUS_FIELD_HAGL_RATIO:         m.HaglRatio,
+		ESTIMATOR_STATUS_FIELD_TAS_RATIO:          m.TasRatio,
+		ESTIMATOR_STATUS_FIELD_POS_HORIZ_ACCURACY: m.PosHorizAccuracy,
+		ESTIMATOR_STATUS_FIELD_POS_VERT_ACCURACY:  m.PosVertAccuracy,
+		ESTIMATOR_STATUS_FIELD_FLAGS:              m.Flags,
 	}
 }
 
@@ -12397,18 +14126,30 @@ func (m *WindCov) String() string {
 	)
 }
 
+const (
+	WIND_COV_FIELD_TIME_USEC      = "WindCov.TimeUsec"
+	WIND_COV_FIELD_WIND_X         = "WindCov.WindX"
+	WIND_COV_FIELD_WIND_Y         = "WindCov.WindY"
+	WIND_COV_FIELD_WIND_Z         = "WindCov.WindZ"
+	WIND_COV_FIELD_VAR_HORIZ      = "WindCov.VarHoriz"
+	WIND_COV_FIELD_VAR_VERT       = "WindCov.VarVert"
+	WIND_COV_FIELD_WIND_ALT       = "WindCov.WindAlt"
+	WIND_COV_FIELD_HORIZ_ACCURACY = "WindCov.HorizAccuracy"
+	WIND_COV_FIELD_VERT_ACCURACY  = "WindCov.VertAccuracy"
+)
+
 // ToMap (generated function)
 func (m *WindCov) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"WindCov.TimeUsec":      m.TimeUsec,
-		"WindCov.WindX":         m.WindX,
-		"WindCov.WindY":         m.WindY,
-		"WindCov.WindZ":         m.WindZ,
-		"WindCov.VarHoriz":      m.VarHoriz,
-		"WindCov.VarVert":       m.VarVert,
-		"WindCov.WindAlt":       m.WindAlt,
-		"WindCov.HorizAccuracy": m.HorizAccuracy,
-		"WindCov.VertAccuracy":  m.VertAccuracy,
+		WIND_COV_FIELD_TIME_USEC:      m.TimeUsec,
+		WIND_COV_FIELD_WIND_X:         m.WindX,
+		WIND_COV_FIELD_WIND_Y:         m.WindY,
+		WIND_COV_FIELD_WIND_Z:         m.WindZ,
+		WIND_COV_FIELD_VAR_HORIZ:      m.VarHoriz,
+		WIND_COV_FIELD_VAR_VERT:       m.VarVert,
+		WIND_COV_FIELD_WIND_ALT:       m.WindAlt,
+		WIND_COV_FIELD_HORIZ_ACCURACY: m.HorizAccuracy,
+		WIND_COV_FIELD_VERT_ACCURACY:  m.VertAccuracy,
 	}
 }
 
@@ -12496,27 +14237,48 @@ func (m *GpsInput) String() string {
 	)
 }
 
+const (
+	GPS_INPUT_FIELD_TIME_USEC          = "GpsInput.TimeUsec"
+	GPS_INPUT_FIELD_TIME_WEEK_MS       = "GpsInput.TimeWeekMs"
+	GPS_INPUT_FIELD_LAT                = "GpsInput.Lat"
+	GPS_INPUT_FIELD_LON                = "GpsInput.Lon"
+	GPS_INPUT_FIELD_ALT                = "GpsInput.Alt"
+	GPS_INPUT_FIELD_HDOP               = "GpsInput.Hdop"
+	GPS_INPUT_FIELD_VDOP               = "GpsInput.Vdop"
+	GPS_INPUT_FIELD_VN                 = "GpsInput.Vn"
+	GPS_INPUT_FIELD_VE                 = "GpsInput.Ve"
+	GPS_INPUT_FIELD_VD                 = "GpsInput.Vd"
+	GPS_INPUT_FIELD_SPEED_ACCURACY     = "GpsInput.SpeedAccuracy"
+	GPS_INPUT_FIELD_HORIZ_ACCURACY     = "GpsInput.HorizAccuracy"
+	GPS_INPUT_FIELD_VERT_ACCURACY      = "GpsInput.VertAccuracy"
+	GPS_INPUT_FIELD_IGNORE_FLAGS       = "GpsInput.IgnoreFlags"
+	GPS_INPUT_FIELD_TIME_WEEK          = "GpsInput.TimeWeek"
+	GPS_INPUT_FIELD_GPS_ID             = "GpsInput.GpsID"
+	GPS_INPUT_FIELD_FIX_TYPE           = "GpsInput.FixType"
+	GPS_INPUT_FIELD_SATELLITES_VISIBLE = "GpsInput.SatellitesVisible"
+)
+
 // ToMap (generated function)
 func (m *GpsInput) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GpsInput.TimeUsec":          m.TimeUsec,
-		"GpsInput.TimeWeekMs":        m.TimeWeekMs,
-		"GpsInput.Lat":               m.Lat,
-		"GpsInput.Lon":               m.Lon,
-		"GpsInput.Alt":               m.Alt,
-		"GpsInput.Hdop":              m.Hdop,
-		"GpsInput.Vdop":              m.Vdop,
-		"GpsInput.Vn":                m.Vn,
-		"GpsInput.Ve":                m.Ve,
-		"GpsInput.Vd":                m.Vd,
-		"GpsInput.SpeedAccuracy":     m.SpeedAccuracy,
-		"GpsInput.HorizAccuracy":     m.HorizAccuracy,
-		"GpsInput.VertAccuracy":      m.VertAccuracy,
-		"GpsInput.IgnoreFlags":       m.IgnoreFlags,
-		"GpsInput.TimeWeek":          m.TimeWeek,
-		"GpsInput.GpsID":             m.GpsID,
-		"GpsInput.FixType":           m.FixType,
-		"GpsInput.SatellitesVisible": m.SatellitesVisible,
+		GPS_INPUT_FIELD_TIME_USEC:          m.TimeUsec,
+		GPS_INPUT_FIELD_TIME_WEEK_MS:       m.TimeWeekMs,
+		GPS_INPUT_FIELD_LAT:                m.Lat,
+		GPS_INPUT_FIELD_LON:                m.Lon,
+		GPS_INPUT_FIELD_ALT:                m.Alt,
+		GPS_INPUT_FIELD_HDOP:               m.Hdop,
+		GPS_INPUT_FIELD_VDOP:               m.Vdop,
+		GPS_INPUT_FIELD_VN:                 m.Vn,
+		GPS_INPUT_FIELD_VE:                 m.Ve,
+		GPS_INPUT_FIELD_VD:                 m.Vd,
+		GPS_INPUT_FIELD_SPEED_ACCURACY:     m.SpeedAccuracy,
+		GPS_INPUT_FIELD_HORIZ_ACCURACY:     m.HorizAccuracy,
+		GPS_INPUT_FIELD_VERT_ACCURACY:      m.VertAccuracy,
+		GPS_INPUT_FIELD_IGNORE_FLAGS:       m.IgnoreFlags,
+		GPS_INPUT_FIELD_TIME_WEEK:          m.TimeWeek,
+		GPS_INPUT_FIELD_GPS_ID:             m.GpsID,
+		GPS_INPUT_FIELD_FIX_TYPE:           m.FixType,
+		GPS_INPUT_FIELD_SATELLITES_VISIBLE: m.SatellitesVisible,
 	}
 }
 
@@ -12592,12 +14354,18 @@ func (m *GpsRtcmData) String() string {
 	)
 }
 
+const (
+	GPS_RTCM_DATA_FIELD_FLAGS = "GpsRtcmData.Flags"
+	GPS_RTCM_DATA_FIELD_LEN   = "GpsRtcmData.Len"
+	GPS_RTCM_DATA_FIELD_DATA  = "GpsRtcmData.Data"
+)
+
 // ToMap (generated function)
 func (m *GpsRtcmData) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"GpsRtcmData.Flags": m.Flags,
-		"GpsRtcmData.Len":   m.Len,
-		"GpsRtcmData.Data":  m.Data,
+		GPS_RTCM_DATA_FIELD_FLAGS: m.Flags,
+		GPS_RTCM_DATA_FIELD_LEN:   m.Len,
+		GPS_RTCM_DATA_FIELD_DATA:  m.Data,
 	}
 }
 
@@ -12685,33 +14453,60 @@ func (m *HighLatency) String() string {
 	)
 }
 
+const (
+	HIGH_LATENCY_FIELD_CUSTOM_MODE       = "HighLatency.CustomMode"
+	HIGH_LATENCY_FIELD_LATITUDE          = "HighLatency.Latitude"
+	HIGH_LATENCY_FIELD_LONGITUDE         = "HighLatency.Longitude"
+	HIGH_LATENCY_FIELD_ROLL              = "HighLatency.Roll"
+	HIGH_LATENCY_FIELD_PITCH             = "HighLatency.Pitch"
+	HIGH_LATENCY_FIELD_HEADING           = "HighLatency.Heading"
+	HIGH_LATENCY_FIELD_HEADING_SP        = "HighLatency.HeadingSp"
+	HIGH_LATENCY_FIELD_ALTITUDE_AMSL     = "HighLatency.AltitudeAmsl"
+	HIGH_LATENCY_FIELD_ALTITUDE_SP       = "HighLatency.AltitudeSp"
+	HIGH_LATENCY_FIELD_WP_DISTANCE       = "HighLatency.WpDistance"
+	HIGH_LATENCY_FIELD_BASE_MODE         = "HighLatency.BaseMode"
+	HIGH_LATENCY_FIELD_LANDED_STATE      = "HighLatency.LandedState"
+	HIGH_LATENCY_FIELD_THROTTLE          = "HighLatency.Throttle"
+	HIGH_LATENCY_FIELD_AIRSPEED          = "HighLatency.Airspeed"
+	HIGH_LATENCY_FIELD_AIRSPEED_SP       = "HighLatency.AirspeedSp"
+	HIGH_LATENCY_FIELD_GROUNDSPEED       = "HighLatency.Groundspeed"
+	HIGH_LATENCY_FIELD_CLIMB_RATE        = "HighLatency.ClimbRate"
+	HIGH_LATENCY_FIELD_GPS_NSAT          = "HighLatency.GpsNsat"
+	HIGH_LATENCY_FIELD_GPS_FIX_TYPE      = "HighLatency.GpsFixType"
+	HIGH_LATENCY_FIELD_BATTERY_REMAINING = "HighLatency.BatteryRemaining"
+	HIGH_LATENCY_FIELD_TEMPERATURE       = "HighLatency.Temperature"
+	HIGH_LATENCY_FIELD_TEMPERATURE_AIR   = "HighLatency.TemperatureAir"
+	HIGH_LATENCY_FIELD_FAILSAFE          = "HighLatency.Failsafe"
+	HIGH_LATENCY_FIELD_WP_NUM            = "HighLatency.WpNum"
+)
+
 // ToMap (generated function)
 func (m *HighLatency) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HighLatency.CustomMode":       m.CustomMode,
-		"HighLatency.Latitude":         m.Latitude,
-		"HighLatency.Longitude":        m.Longitude,
-		"HighLatency.Roll":             m.Roll,
-		"HighLatency.Pitch":            m.Pitch,
-		"HighLatency.Heading":          m.Heading,
-		"HighLatency.HeadingSp":        m.HeadingSp,
-		"HighLatency.AltitudeAmsl":     m.AltitudeAmsl,
-		"HighLatency.AltitudeSp":       m.AltitudeSp,
-		"HighLatency.WpDistance":       m.WpDistance,
-		"HighLatency.BaseMode":         m.BaseMode,
-		"HighLatency.LandedState":      m.LandedState,
-		"HighLatency.Throttle":         m.Throttle,
-		"HighLatency.Airspeed":         m.Airspeed,
-		"HighLatency.AirspeedSp":       m.AirspeedSp,
-		"HighLatency.Groundspeed":      m.Groundspeed,
-		"HighLatency.ClimbRate":        m.ClimbRate,
-		"HighLatency.GpsNsat":          m.GpsNsat,
-		"HighLatency.GpsFixType":       m.GpsFixType,
-		"HighLatency.BatteryRemaining": m.BatteryRemaining,
-		"HighLatency.Temperature":      m.Temperature,
-		"HighLatency.TemperatureAir":   m.TemperatureAir,
-		"HighLatency.Failsafe":         m.Failsafe,
-		"HighLatency.WpNum":            m.WpNum,
+		HIGH_LATENCY_FIELD_CUSTOM_MODE:       m.CustomMode,
+		HIGH_LATENCY_FIELD_LATITUDE:          m.Latitude,
+		HIGH_LATENCY_FIELD_LONGITUDE:         m.Longitude,
+		HIGH_LATENCY_FIELD_ROLL:              m.Roll,
+		HIGH_LATENCY_FIELD_PITCH:             m.Pitch,
+		HIGH_LATENCY_FIELD_HEADING:           m.Heading,
+		HIGH_LATENCY_FIELD_HEADING_SP:        m.HeadingSp,
+		HIGH_LATENCY_FIELD_ALTITUDE_AMSL:     m.AltitudeAmsl,
+		HIGH_LATENCY_FIELD_ALTITUDE_SP:       m.AltitudeSp,
+		HIGH_LATENCY_FIELD_WP_DISTANCE:       m.WpDistance,
+		HIGH_LATENCY_FIELD_BASE_MODE:         m.BaseMode,
+		HIGH_LATENCY_FIELD_LANDED_STATE:      m.LandedState,
+		HIGH_LATENCY_FIELD_THROTTLE:          m.Throttle,
+		HIGH_LATENCY_FIELD_AIRSPEED:          m.Airspeed,
+		HIGH_LATENCY_FIELD_AIRSPEED_SP:       m.AirspeedSp,
+		HIGH_LATENCY_FIELD_GROUNDSPEED:       m.Groundspeed,
+		HIGH_LATENCY_FIELD_CLIMB_RATE:        m.ClimbRate,
+		HIGH_LATENCY_FIELD_GPS_NSAT:          m.GpsNsat,
+		HIGH_LATENCY_FIELD_GPS_FIX_TYPE:      m.GpsFixType,
+		HIGH_LATENCY_FIELD_BATTERY_REMAINING: m.BatteryRemaining,
+		HIGH_LATENCY_FIELD_TEMPERATURE:       m.Temperature,
+		HIGH_LATENCY_FIELD_TEMPERATURE_AIR:   m.TemperatureAir,
+		HIGH_LATENCY_FIELD_FAILSAFE:          m.Failsafe,
+		HIGH_LATENCY_FIELD_WP_NUM:            m.WpNum,
 	}
 }
 
@@ -12847,36 +14642,66 @@ func (m *HighLatency2) String() string {
 	)
 }
 
+const (
+	HIGH_LATENCY2_FIELD_TIMESTAMP       = "HighLatency2.Timestamp"
+	HIGH_LATENCY2_FIELD_LATITUDE        = "HighLatency2.Latitude"
+	HIGH_LATENCY2_FIELD_LONGITUDE       = "HighLatency2.Longitude"
+	HIGH_LATENCY2_FIELD_CUSTOM_MODE     = "HighLatency2.CustomMode"
+	HIGH_LATENCY2_FIELD_ALTITUDE        = "HighLatency2.Altitude"
+	HIGH_LATENCY2_FIELD_TARGET_ALTITUDE = "HighLatency2.TargetAltitude"
+	HIGH_LATENCY2_FIELD_TARGET_DISTANCE = "HighLatency2.TargetDistance"
+	HIGH_LATENCY2_FIELD_WP_NUM          = "HighLatency2.WpNum"
+	HIGH_LATENCY2_FIELD_FAILURE_FLAGS   = "HighLatency2.FailureFlags"
+	HIGH_LATENCY2_FIELD_TYPE            = "HighLatency2.Type"
+	HIGH_LATENCY2_FIELD_AUTOPILOT       = "HighLatency2.Autopilot"
+	HIGH_LATENCY2_FIELD_HEADING         = "HighLatency2.Heading"
+	HIGH_LATENCY2_FIELD_TARGET_HEADING  = "HighLatency2.TargetHeading"
+	HIGH_LATENCY2_FIELD_THROTTLE        = "HighLatency2.Throttle"
+	HIGH_LATENCY2_FIELD_AIRSPEED        = "HighLatency2.Airspeed"
+	HIGH_LATENCY2_FIELD_AIRSPEED_SP     = "HighLatency2.AirspeedSp"
+	HIGH_LATENCY2_FIELD_GROUNDSPEED     = "HighLatency2.Groundspeed"
+	HIGH_LATENCY2_FIELD_WINDSPEED       = "HighLatency2.Windspeed"
+	HIGH_LATENCY2_FIELD_WIND_HEADING    = "HighLatency2.WindHeading"
+	HIGH_LATENCY2_FIELD_EPH             = "HighLatency2.Eph"
+	HIGH_LATENCY2_FIELD_EPV             = "HighLatency2.Epv"
+	HIGH_LATENCY2_FIELD_TEMPERATURE_AIR = "HighLatency2.TemperatureAir"
+	HIGH_LATENCY2_FIELD_CLIMB_RATE      = "HighLatency2.ClimbRate"
+	HIGH_LATENCY2_FIELD_BATTERY         = "HighLatency2.Battery"
+	HIGH_LATENCY2_FIELD_CUSTOM0         = "HighLatency2.Custom0"
+	HIGH_LATENCY2_FIELD_CUSTOM1         = "HighLatency2.Custom1"
+	HIGH_LATENCY2_FIELD_CUSTOM2         = "HighLatency2.Custom2"
+)
+
 // ToMap (generated function)
 func (m *HighLatency2) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HighLatency2.Timestamp":      m.Timestamp,
-		"HighLatency2.Latitude":       m.Latitude,
-		"HighLatency2.Longitude":      m.Longitude,
-		"HighLatency2.CustomMode":     m.CustomMode,
-		"HighLatency2.Altitude":       m.Altitude,
-		"HighLatency2.TargetAltitude": m.TargetAltitude,
-		"HighLatency2.TargetDistance": m.TargetDistance,
-		"HighLatency2.WpNum":          m.WpNum,
-		"HighLatency2.FailureFlags":   m.FailureFlags,
-		"HighLatency2.Type":           m.Type,
-		"HighLatency2.Autopilot":      m.Autopilot,
-		"HighLatency2.Heading":        m.Heading,
-		"HighLatency2.TargetHeading":  m.TargetHeading,
-		"HighLatency2.Throttle":       m.Throttle,
-		"HighLatency2.Airspeed":       m.Airspeed,
-		"HighLatency2.AirspeedSp":     m.AirspeedSp,
-		"HighLatency2.Groundspeed":    m.Groundspeed,
-		"HighLatency2.Windspeed":      m.Windspeed,
-		"HighLatency2.WindHeading":    m.WindHeading,
-		"HighLatency2.Eph":            m.Eph,
-		"HighLatency2.Epv":            m.Epv,
-		"HighLatency2.TemperatureAir": m.TemperatureAir,
-		"HighLatency2.ClimbRate":      m.ClimbRate,
-		"HighLatency2.Battery":        m.Battery,
-		"HighLatency2.Custom0":        m.Custom0,
-		"HighLatency2.Custom1":        m.Custom1,
-		"HighLatency2.Custom2":        m.Custom2,
+		HIGH_LATENCY2_FIELD_TIMESTAMP:       m.Timestamp,
+		HIGH_LATENCY2_FIELD_LATITUDE:        m.Latitude,
+		HIGH_LATENCY2_FIELD_LONGITUDE:       m.Longitude,
+		HIGH_LATENCY2_FIELD_CUSTOM_MODE:     m.CustomMode,
+		HIGH_LATENCY2_FIELD_ALTITUDE:        m.Altitude,
+		HIGH_LATENCY2_FIELD_TARGET_ALTITUDE: m.TargetAltitude,
+		HIGH_LATENCY2_FIELD_TARGET_DISTANCE: m.TargetDistance,
+		HIGH_LATENCY2_FIELD_WP_NUM:          m.WpNum,
+		HIGH_LATENCY2_FIELD_FAILURE_FLAGS:   m.FailureFlags,
+		HIGH_LATENCY2_FIELD_TYPE:            m.Type,
+		HIGH_LATENCY2_FIELD_AUTOPILOT:       m.Autopilot,
+		HIGH_LATENCY2_FIELD_HEADING:         m.Heading,
+		HIGH_LATENCY2_FIELD_TARGET_HEADING:  m.TargetHeading,
+		HIGH_LATENCY2_FIELD_THROTTLE:        m.Throttle,
+		HIGH_LATENCY2_FIELD_AIRSPEED:        m.Airspeed,
+		HIGH_LATENCY2_FIELD_AIRSPEED_SP:     m.AirspeedSp,
+		HIGH_LATENCY2_FIELD_GROUNDSPEED:     m.Groundspeed,
+		HIGH_LATENCY2_FIELD_WINDSPEED:       m.Windspeed,
+		HIGH_LATENCY2_FIELD_WIND_HEADING:    m.WindHeading,
+		HIGH_LATENCY2_FIELD_EPH:             m.Eph,
+		HIGH_LATENCY2_FIELD_EPV:             m.Epv,
+		HIGH_LATENCY2_FIELD_TEMPERATURE_AIR: m.TemperatureAir,
+		HIGH_LATENCY2_FIELD_CLIMB_RATE:      m.ClimbRate,
+		HIGH_LATENCY2_FIELD_BATTERY:         m.Battery,
+		HIGH_LATENCY2_FIELD_CUSTOM0:         m.Custom0,
+		HIGH_LATENCY2_FIELD_CUSTOM1:         m.Custom1,
+		HIGH_LATENCY2_FIELD_CUSTOM2:         m.Custom2,
 	}
 }
 
@@ -12978,16 +14803,26 @@ func (m *Vibration) String() string {
 	)
 }
 
+const (
+	VIBRATION_FIELD_TIME_USEC   = "Vibration.TimeUsec"
+	VIBRATION_FIELD_VIBRATION_X = "Vibration.VibrationX"
+	VIBRATION_FIELD_VIBRATION_Y = "Vibration.VibrationY"
+	VIBRATION_FIELD_VIBRATION_Z = "Vibration.VibrationZ"
+	VIBRATION_FIELD_CLIPPING_0  = "Vibration.Clipping0"
+	VIBRATION_FIELD_CLIPPING_1  = "Vibration.Clipping1"
+	VIBRATION_FIELD_CLIPPING_2  = "Vibration.Clipping2"
+)
+
 // ToMap (generated function)
 func (m *Vibration) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Vibration.TimeUsec":   m.TimeUsec,
-		"Vibration.VibrationX": m.VibrationX,
-		"Vibration.VibrationY": m.VibrationY,
-		"Vibration.VibrationZ": m.VibrationZ,
-		"Vibration.Clipping0":  m.Clipping0,
-		"Vibration.Clipping1":  m.Clipping1,
-		"Vibration.Clipping2":  m.Clipping2,
+		VIBRATION_FIELD_TIME_USEC:   m.TimeUsec,
+		VIBRATION_FIELD_VIBRATION_X: m.VibrationX,
+		VIBRATION_FIELD_VIBRATION_Y: m.VibrationY,
+		VIBRATION_FIELD_VIBRATION_Z: m.VibrationZ,
+		VIBRATION_FIELD_CLIPPING_0:  m.Clipping0,
+		VIBRATION_FIELD_CLIPPING_1:  m.Clipping1,
+		VIBRATION_FIELD_CLIPPING_2:  m.Clipping2,
 	}
 }
 
@@ -13055,19 +14890,32 @@ func (m *HomePosition) String() string {
 	)
 }
 
+const (
+	HOME_POSITION_FIELD_LATITUDE   = "HomePosition.Latitude"
+	HOME_POSITION_FIELD_LONGITUDE  = "HomePosition.Longitude"
+	HOME_POSITION_FIELD_ALTITUDE   = "HomePosition.Altitude"
+	HOME_POSITION_FIELD_X          = "HomePosition.X"
+	HOME_POSITION_FIELD_Y          = "HomePosition.Y"
+	HOME_POSITION_FIELD_Z          = "HomePosition.Z"
+	HOME_POSITION_FIELD_Q          = "HomePosition.Q"
+	HOME_POSITION_FIELD_APPROACH_X = "HomePosition.ApproachX"
+	HOME_POSITION_FIELD_APPROACH_Y = "HomePosition.ApproachY"
+	HOME_POSITION_FIELD_APPROACH_Z = "HomePosition.ApproachZ"
+)
+
 // ToMap (generated function)
 func (m *HomePosition) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"HomePosition.Latitude":  m.Latitude,
-		"HomePosition.Longitude": m.Longitude,
-		"HomePosition.Altitude":  m.Altitude,
-		"HomePosition.X":         m.X,
-		"HomePosition.Y":         m.Y,
-		"HomePosition.Z":         m.Z,
-		"HomePosition.Q":         m.Q,
-		"HomePosition.ApproachX": m.ApproachX,
-		"HomePosition.ApproachY": m.ApproachY,
-		"HomePosition.ApproachZ": m.ApproachZ,
+		HOME_POSITION_FIELD_LATITUDE:   m.Latitude,
+		HOME_POSITION_FIELD_LONGITUDE:  m.Longitude,
+		HOME_POSITION_FIELD_ALTITUDE:   m.Altitude,
+		HOME_POSITION_FIELD_X:          m.X,
+		HOME_POSITION_FIELD_Y:          m.Y,
+		HOME_POSITION_FIELD_Z:          m.Z,
+		HOME_POSITION_FIELD_Q:          m.Q,
+		HOME_POSITION_FIELD_APPROACH_X: m.ApproachX,
+		HOME_POSITION_FIELD_APPROACH_Y: m.ApproachY,
+		HOME_POSITION_FIELD_APPROACH_Z: m.ApproachZ,
 	}
 }
 
@@ -13147,20 +14995,34 @@ func (m *SetHomePosition) String() string {
 	)
 }
 
+const (
+	SET_HOME_POSITION_FIELD_LATITUDE      = "SetHomePosition.Latitude"
+	SET_HOME_POSITION_FIELD_LONGITUDE     = "SetHomePosition.Longitude"
+	SET_HOME_POSITION_FIELD_ALTITUDE      = "SetHomePosition.Altitude"
+	SET_HOME_POSITION_FIELD_X             = "SetHomePosition.X"
+	SET_HOME_POSITION_FIELD_Y             = "SetHomePosition.Y"
+	SET_HOME_POSITION_FIELD_Z             = "SetHomePosition.Z"
+	SET_HOME_POSITION_FIELD_Q             = "SetHomePosition.Q"
+	SET_HOME_POSITION_FIELD_APPROACH_X    = "SetHomePosition.ApproachX"
+	SET_HOME_POSITION_FIELD_APPROACH_Y    = "SetHomePosition.ApproachY"
+	SET_HOME_POSITION_FIELD_APPROACH_Z    = "SetHomePosition.ApproachZ"
+	SET_HOME_POSITION_FIELD_TARGET_SYSTEM = "SetHomePosition.TargetSystem"
+)
+
 // ToMap (generated function)
 func (m *SetHomePosition) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"SetHomePosition.Latitude":     m.Latitude,
-		"SetHomePosition.Longitude":    m.Longitude,
-		"SetHomePosition.Altitude":     m.Altitude,
-		"SetHomePosition.X":            m.X,
-		"SetHomePosition.Y":            m.Y,
-		"SetHomePosition.Z":            m.Z,
-		"SetHomePosition.Q":            m.Q,
-		"SetHomePosition.ApproachX":    m.ApproachX,
-		"SetHomePosition.ApproachY":    m.ApproachY,
-		"SetHomePosition.ApproachZ":    m.ApproachZ,
-		"SetHomePosition.TargetSystem": m.TargetSystem,
+		SET_HOME_POSITION_FIELD_LATITUDE:      m.Latitude,
+		SET_HOME_POSITION_FIELD_LONGITUDE:     m.Longitude,
+		SET_HOME_POSITION_FIELD_ALTITUDE:      m.Altitude,
+		SET_HOME_POSITION_FIELD_X:             m.X,
+		SET_HOME_POSITION_FIELD_Y:             m.Y,
+		SET_HOME_POSITION_FIELD_Z:             m.Z,
+		SET_HOME_POSITION_FIELD_Q:             m.Q,
+		SET_HOME_POSITION_FIELD_APPROACH_X:    m.ApproachX,
+		SET_HOME_POSITION_FIELD_APPROACH_Y:    m.ApproachY,
+		SET_HOME_POSITION_FIELD_APPROACH_Z:    m.ApproachZ,
+		SET_HOME_POSITION_FIELD_TARGET_SYSTEM: m.TargetSystem,
 	}
 }
 
@@ -13224,11 +15086,16 @@ func (m *MessageInterval) String() string {
 	)
 }
 
+const (
+	MESSAGE_INTERVAL_FIELD_INTERVAL_US = "MessageInterval.IntervalUs"
+	MESSAGE_INTERVAL_FIELD_MESSAGE_ID  = "MessageInterval.MessageID"
+)
+
 // ToMap (generated function)
 func (m *MessageInterval) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MessageInterval.IntervalUs": m.IntervalUs,
-		"MessageInterval.MessageID":  m.MessageID,
+		MESSAGE_INTERVAL_FIELD_INTERVAL_US: m.IntervalUs,
+		MESSAGE_INTERVAL_FIELD_MESSAGE_ID:  m.MessageID,
 	}
 }
 
@@ -13270,11 +15137,16 @@ func (m *ExtendedSysState) String() string {
 	)
 }
 
+const (
+	EXTENDED_SYS_STATE_FIELD_VTOL_STATE   = "ExtendedSysState.VtolState"
+	EXTENDED_SYS_STATE_FIELD_LANDED_STATE = "ExtendedSysState.LandedState"
+)
+
 // ToMap (generated function)
 func (m *ExtendedSysState) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"ExtendedSysState.VtolState":   m.VtolState,
-		"ExtendedSysState.LandedState": m.LandedState,
+		EXTENDED_SYS_STATE_FIELD_VTOL_STATE:   m.VtolState,
+		EXTENDED_SYS_STATE_FIELD_LANDED_STATE: m.LandedState,
 	}
 }
 
@@ -13338,22 +15210,38 @@ func (m *AdsbVehicle) String() string {
 	)
 }
 
+const (
+	ADSB_VEHICLE_FIELD_ICAO_ADDRESS  = "AdsbVehicle.IcaoAddress"
+	ADSB_VEHICLE_FIELD_LAT           = "AdsbVehicle.Lat"
+	ADSB_VEHICLE_FIELD_LON           = "AdsbVehicle.Lon"
+	ADSB_VEHICLE_FIELD_ALTITUDE      = "AdsbVehicle.Altitude"
+	ADSB_VEHICLE_FIELD_HEADING       = "AdsbVehicle.Heading"
+	ADSB_VEHICLE_FIELD_HOR_VELOCITY  = "AdsbVehicle.HorVelocity"
+	ADSB_VEHICLE_FIELD_VER_VELOCITY  = "AdsbVehicle.VerVelocity"
+	ADSB_VEHICLE_FIELD_FLAGS         = "AdsbVehicle.Flags"
+	ADSB_VEHICLE_FIELD_SQUAWK        = "AdsbVehicle.Squawk"
+	ADSB_VEHICLE_FIELD_ALTITUDE_TYPE = "AdsbVehicle.AltitudeType"
+	ADSB_VEHICLE_FIELD_CALLSIGN      = "AdsbVehicle.Callsign"
+	ADSB_VEHICLE_FIELD_EMITTER_TYPE  = "AdsbVehicle.EmitterType"
+	ADSB_VEHICLE_FIELD_TSLC          = "AdsbVehicle.Tslc"
+)
+
 // ToMap (generated function)
 func (m *AdsbVehicle) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"AdsbVehicle.IcaoAddress":  m.IcaoAddress,
-		"AdsbVehicle.Lat":          m.Lat,
-		"AdsbVehicle.Lon":          m.Lon,
-		"AdsbVehicle.Altitude":     m.Altitude,
-		"AdsbVehicle.Heading":      m.Heading,
-		"AdsbVehicle.HorVelocity":  m.HorVelocity,
-		"AdsbVehicle.VerVelocity":  m.VerVelocity,
-		"AdsbVehicle.Flags":        m.Flags,
-		"AdsbVehicle.Squawk":       m.Squawk,
-		"AdsbVehicle.AltitudeType": m.AltitudeType,
-		"AdsbVehicle.Callsign":     m.Callsign,
-		"AdsbVehicle.EmitterType":  m.EmitterType,
-		"AdsbVehicle.Tslc":         m.Tslc,
+		ADSB_VEHICLE_FIELD_ICAO_ADDRESS:  m.IcaoAddress,
+		ADSB_VEHICLE_FIELD_LAT:           m.Lat,
+		ADSB_VEHICLE_FIELD_LON:           m.Lon,
+		ADSB_VEHICLE_FIELD_ALTITUDE:      m.Altitude,
+		ADSB_VEHICLE_FIELD_HEADING:       m.Heading,
+		ADSB_VEHICLE_FIELD_HOR_VELOCITY:  m.HorVelocity,
+		ADSB_VEHICLE_FIELD_VER_VELOCITY:  m.VerVelocity,
+		ADSB_VEHICLE_FIELD_FLAGS:         m.Flags,
+		ADSB_VEHICLE_FIELD_SQUAWK:        m.Squawk,
+		ADSB_VEHICLE_FIELD_ALTITUDE_TYPE: m.AltitudeType,
+		ADSB_VEHICLE_FIELD_CALLSIGN:      m.Callsign,
+		ADSB_VEHICLE_FIELD_EMITTER_TYPE:  m.EmitterType,
+		ADSB_VEHICLE_FIELD_TSLC:          m.Tslc,
 	}
 }
 
@@ -13427,16 +15315,26 @@ func (m *Collision) String() string {
 	)
 }
 
+const (
+	COLLISION_FIELD_ID                       = "Collision.ID"
+	COLLISION_FIELD_TIME_TO_MINIMUM_DELTA    = "Collision.TimeToMinimumDelta"
+	COLLISION_FIELD_ALTITUDE_MINIMUM_DELTA   = "Collision.AltitudeMinimumDelta"
+	COLLISION_FIELD_HORIZONTAL_MINIMUM_DELTA = "Collision.HorizontalMinimumDelta"
+	COLLISION_FIELD_SRC                      = "Collision.Src"
+	COLLISION_FIELD_ACTION                   = "Collision.Action"
+	COLLISION_FIELD_THREAT_LEVEL             = "Collision.ThreatLevel"
+)
+
 // ToMap (generated function)
 func (m *Collision) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Collision.ID":                     m.ID,
-		"Collision.TimeToMinimumDelta":     m.TimeToMinimumDelta,
-		"Collision.AltitudeMinimumDelta":   m.AltitudeMinimumDelta,
-		"Collision.HorizontalMinimumDelta": m.HorizontalMinimumDelta,
-		"Collision.Src":                    m.Src,
-		"Collision.Action":                 m.Action,
-		"Collision.ThreatLevel":            m.ThreatLevel,
+		COLLISION_FIELD_ID:                       m.ID,
+		COLLISION_FIELD_TIME_TO_MINIMUM_DELTA:    m.TimeToMinimumDelta,
+		COLLISION_FIELD_ALTITUDE_MINIMUM_DELTA:   m.AltitudeMinimumDelta,
+		COLLISION_FIELD_HORIZONTAL_MINIMUM_DELTA: m.HorizontalMinimumDelta,
+		COLLISION_FIELD_SRC:                      m.Src,
+		COLLISION_FIELD_ACTION:                   m.Action,
+		COLLISION_FIELD_THREAT_LEVEL:             m.ThreatLevel,
 	}
 }
 
@@ -13494,14 +15392,22 @@ func (m *V2Extension) String() string {
 	)
 }
 
+const (
+	V2_EXTENSION_FIELD_MESSAGE_TYPE     = "V2Extension.MessageType"
+	V2_EXTENSION_FIELD_TARGET_NETWORK   = "V2Extension.TargetNetwork"
+	V2_EXTENSION_FIELD_TARGET_SYSTEM    = "V2Extension.TargetSystem"
+	V2_EXTENSION_FIELD_TARGET_COMPONENT = "V2Extension.TargetComponent"
+	V2_EXTENSION_FIELD_PAYLOAD          = "V2Extension.Payload"
+)
+
 // ToMap (generated function)
 func (m *V2Extension) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"V2Extension.MessageType":     m.MessageType,
-		"V2Extension.TargetNetwork":   m.TargetNetwork,
-		"V2Extension.TargetSystem":    m.TargetSystem,
-		"V2Extension.TargetComponent": m.TargetComponent,
-		"V2Extension.Payload":         m.Payload,
+		V2_EXTENSION_FIELD_MESSAGE_TYPE:     m.MessageType,
+		V2_EXTENSION_FIELD_TARGET_NETWORK:   m.TargetNetwork,
+		V2_EXTENSION_FIELD_TARGET_SYSTEM:    m.TargetSystem,
+		V2_EXTENSION_FIELD_TARGET_COMPONENT: m.TargetComponent,
+		V2_EXTENSION_FIELD_PAYLOAD:          m.Payload,
 	}
 }
 
@@ -13553,13 +15459,20 @@ func (m *MemoryVect) String() string {
 	)
 }
 
+const (
+	MEMORY_VECT_FIELD_ADDRESS = "MemoryVect.Address"
+	MEMORY_VECT_FIELD_VER     = "MemoryVect.Ver"
+	MEMORY_VECT_FIELD_TYPE    = "MemoryVect.Type"
+	MEMORY_VECT_FIELD_VALUE   = "MemoryVect.Value"
+)
+
 // ToMap (generated function)
 func (m *MemoryVect) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"MemoryVect.Address": m.Address,
-		"MemoryVect.Ver":     m.Ver,
-		"MemoryVect.Type":    m.Type,
-		"MemoryVect.Value":   m.Value,
+		MEMORY_VECT_FIELD_ADDRESS: m.Address,
+		MEMORY_VECT_FIELD_VER:     m.Ver,
+		MEMORY_VECT_FIELD_TYPE:    m.Type,
+		MEMORY_VECT_FIELD_VALUE:   m.Value,
 	}
 }
 
@@ -13615,14 +15528,22 @@ func (m *DebugVect) String() string {
 	)
 }
 
+const (
+	DEBUG_VECT_FIELD_TIME_USEC = "DebugVect.TimeUsec"
+	DEBUG_VECT_FIELD_X         = "DebugVect.X"
+	DEBUG_VECT_FIELD_Y         = "DebugVect.Y"
+	DEBUG_VECT_FIELD_Z         = "DebugVect.Z"
+	DEBUG_VECT_FIELD_NAME      = "DebugVect.Name"
+)
+
 // ToMap (generated function)
 func (m *DebugVect) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"DebugVect.TimeUsec": m.TimeUsec,
-		"DebugVect.X":        m.X,
-		"DebugVect.Y":        m.Y,
-		"DebugVect.Z":        m.Z,
-		"DebugVect.Name":     m.Name,
+		DEBUG_VECT_FIELD_TIME_USEC: m.TimeUsec,
+		DEBUG_VECT_FIELD_X:         m.X,
+		DEBUG_VECT_FIELD_Y:         m.Y,
+		DEBUG_VECT_FIELD_Z:         m.Z,
+		DEBUG_VECT_FIELD_NAME:      m.Name,
 	}
 }
 
@@ -13672,12 +15593,18 @@ func (m *NamedValueFloat) String() string {
 	)
 }
 
+const (
+	NAMED_VALUE_FLOAT_FIELD_TIME_BOOT_MS = "NamedValueFloat.TimeBootMs"
+	NAMED_VALUE_FLOAT_FIELD_VALUE        = "NamedValueFloat.Value"
+	NAMED_VALUE_FLOAT_FIELD_NAME         = "NamedValueFloat.Name"
+)
+
 // ToMap (generated function)
 func (m *NamedValueFloat) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"NamedValueFloat.TimeBootMs": m.TimeBootMs,
-		"NamedValueFloat.Value":      m.Value,
-		"NamedValueFloat.Name":       m.Name,
+		NAMED_VALUE_FLOAT_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		NAMED_VALUE_FLOAT_FIELD_VALUE:        m.Value,
+		NAMED_VALUE_FLOAT_FIELD_NAME:         m.Name,
 	}
 }
 
@@ -13723,12 +15650,18 @@ func (m *NamedValueInt) String() string {
 	)
 }
 
+const (
+	NAMED_VALUE_INT_FIELD_TIME_BOOT_MS = "NamedValueInt.TimeBootMs"
+	NAMED_VALUE_INT_FIELD_VALUE        = "NamedValueInt.Value"
+	NAMED_VALUE_INT_FIELD_NAME         = "NamedValueInt.Name"
+)
+
 // ToMap (generated function)
 func (m *NamedValueInt) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"NamedValueInt.TimeBootMs": m.TimeBootMs,
-		"NamedValueInt.Value":      m.Value,
-		"NamedValueInt.Name":       m.Name,
+		NAMED_VALUE_INT_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		NAMED_VALUE_INT_FIELD_VALUE:        m.Value,
+		NAMED_VALUE_INT_FIELD_NAME:         m.Name,
 	}
 }
 
@@ -13772,11 +15705,16 @@ func (m *Statustext) String() string {
 	)
 }
 
+const (
+	STATUSTEXT_FIELD_SEVERITY = "Statustext.Severity"
+	STATUSTEXT_FIELD_TEXT     = "Statustext.Text"
+)
+
 // ToMap (generated function)
 func (m *Statustext) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Statustext.Severity": m.Severity,
-		"Statustext.Text":     m.Text,
+		STATUSTEXT_FIELD_SEVERITY: m.Severity,
+		STATUSTEXT_FIELD_TEXT:     m.Text,
 	}
 }
 
@@ -13820,12 +15758,18 @@ func (m *Debug) String() string {
 	)
 }
 
+const (
+	DEBUG_FIELD_TIME_BOOT_MS = "Debug.TimeBootMs"
+	DEBUG_FIELD_VALUE        = "Debug.Value"
+	DEBUG_FIELD_IND          = "Debug.Ind"
+)
+
 // ToMap (generated function)
 func (m *Debug) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Debug.TimeBootMs": m.TimeBootMs,
-		"Debug.Value":      m.Value,
-		"Debug.Ind":        m.Ind,
+		DEBUG_FIELD_TIME_BOOT_MS: m.TimeBootMs,
+		DEBUG_FIELD_VALUE:        m.Value,
+		DEBUG_FIELD_IND:          m.Ind,
 	}
 }
 
@@ -13877,15 +15821,24 @@ func (m *Heartbeat) String() string {
 	)
 }
 
+const (
+	HEARTBEAT_FIELD_CUSTOM_MODE     = "Heartbeat.CustomMode"
+	HEARTBEAT_FIELD_TYPE            = "Heartbeat.Type"
+	HEARTBEAT_FIELD_AUTOPILOT       = "Heartbeat.Autopilot"
+	HEARTBEAT_FIELD_BASE_MODE       = "Heartbeat.BaseMode"
+	HEARTBEAT_FIELD_SYSTEM_STATUS   = "Heartbeat.SystemStatus"
+	HEARTBEAT_FIELD_MAVLINK_VERSION = "Heartbeat.MavlinkVersion"
+)
+
 // ToMap (generated function)
 func (m *Heartbeat) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"Heartbeat.CustomMode":     m.CustomMode,
-		"Heartbeat.Type":           m.Type,
-		"Heartbeat.Autopilot":      m.Autopilot,
-		"Heartbeat.BaseMode":       m.BaseMode,
-		"Heartbeat.SystemStatus":   m.SystemStatus,
-		"Heartbeat.MavlinkVersion": m.MavlinkVersion,
+		HEARTBEAT_FIELD_CUSTOM_MODE:     m.CustomMode,
+		HEARTBEAT_FIELD_TYPE:            m.Type,
+		HEARTBEAT_FIELD_AUTOPILOT:       m.Autopilot,
+		HEARTBEAT_FIELD_BASE_MODE:       m.BaseMode,
+		HEARTBEAT_FIELD_SYSTEM_STATUS:   m.SystemStatus,
+		HEARTBEAT_FIELD_MAVLINK_VERSION: m.MavlinkVersion,
 	}
 }
 
@@ -13945,16 +15898,26 @@ func (m *NavFilterBias) String() string {
 	)
 }
 
+const (
+	NAV_FILTER_BIAS_FIELD_USEC    = "NavFilterBias.Usec"
+	NAV_FILTER_BIAS_FIELD_ACCEL_0 = "NavFilterBias.Accel0"
+	NAV_FILTER_BIAS_FIELD_ACCEL_1 = "NavFilterBias.Accel1"
+	NAV_FILTER_BIAS_FIELD_ACCEL_2 = "NavFilterBias.Accel2"
+	NAV_FILTER_BIAS_FIELD_GYRO_0  = "NavFilterBias.Gyro0"
+	NAV_FILTER_BIAS_FIELD_GYRO_1  = "NavFilterBias.Gyro1"
+	NAV_FILTER_BIAS_FIELD_GYRO_2  = "NavFilterBias.Gyro2"
+)
+
 // ToMap (generated function)
 func (m *NavFilterBias) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"NavFilterBias.Usec":   m.Usec,
-		"NavFilterBias.Accel0": m.Accel0,
-		"NavFilterBias.Accel1": m.Accel1,
-		"NavFilterBias.Accel2": m.Accel2,
-		"NavFilterBias.Gyro0":  m.Gyro0,
-		"NavFilterBias.Gyro1":  m.Gyro1,
-		"NavFilterBias.Gyro2":  m.Gyro2,
+		NAV_FILTER_BIAS_FIELD_USEC:    m.Usec,
+		NAV_FILTER_BIAS_FIELD_ACCEL_0: m.Accel0,
+		NAV_FILTER_BIAS_FIELD_ACCEL_1: m.Accel1,
+		NAV_FILTER_BIAS_FIELD_ACCEL_2: m.Accel2,
+		NAV_FILTER_BIAS_FIELD_GYRO_0:  m.Gyro0,
+		NAV_FILTER_BIAS_FIELD_GYRO_1:  m.Gyro1,
+		NAV_FILTER_BIAS_FIELD_GYRO_2:  m.Gyro2,
 	}
 }
 
@@ -14014,15 +15977,24 @@ func (m *RadioCalibration) String() string {
 	)
 }
 
+const (
+	RADIO_CALIBRATION_FIELD_AILERON  = "RadioCalibration.Aileron"
+	RADIO_CALIBRATION_FIELD_ELEVATOR = "RadioCalibration.Elevator"
+	RADIO_CALIBRATION_FIELD_RUDDER   = "RadioCalibration.Rudder"
+	RADIO_CALIBRATION_FIELD_GYRO     = "RadioCalibration.Gyro"
+	RADIO_CALIBRATION_FIELD_PITCH    = "RadioCalibration.Pitch"
+	RADIO_CALIBRATION_FIELD_THROTTLE = "RadioCalibration.Throttle"
+)
+
 // ToMap (generated function)
 func (m *RadioCalibration) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"RadioCalibration.Aileron":  m.Aileron,
-		"RadioCalibration.Elevator": m.Elevator,
-		"RadioCalibration.Rudder":   m.Rudder,
-		"RadioCalibration.Gyro":     m.Gyro,
-		"RadioCalibration.Pitch":    m.Pitch,
-		"RadioCalibration.Throttle": m.Throttle,
+		RADIO_CALIBRATION_FIELD_AILERON:  m.Aileron,
+		RADIO_CALIBRATION_FIELD_ELEVATOR: m.Elevator,
+		RADIO_CALIBRATION_FIELD_RUDDER:   m.Rudder,
+		RADIO_CALIBRATION_FIELD_GYRO:     m.Gyro,
+		RADIO_CALIBRATION_FIELD_PITCH:    m.Pitch,
+		RADIO_CALIBRATION_FIELD_THROTTLE: m.Throttle,
 	}
 }
 
@@ -14098,12 +16070,18 @@ func (m *UalbertaSysStatus) String() string {
 	)
 }
 
+const (
+	UALBERTA_SYS_STATUS_FIELD_MODE     = "UalbertaSysStatus.Mode"
+	UALBERTA_SYS_STATUS_FIELD_NAV_MODE = "UalbertaSysStatus.NavMode"
+	UALBERTA_SYS_STATUS_FIELD_PILOT    = "UalbertaSysStatus.Pilot"
+)
+
 // ToMap (generated function)
 func (m *UalbertaSysStatus) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		"UalbertaSysStatus.Mode":    m.Mode,
-		"UalbertaSysStatus.NavMode": m.NavMode,
-		"UalbertaSysStatus.Pilot":   m.Pilot,
+		UALBERTA_SYS_STATUS_FIELD_MODE:     m.Mode,
+		UALBERTA_SYS_STATUS_FIELD_NAV_MODE: m.NavMode,
+		UALBERTA_SYS_STATUS_FIELD_PILOT:    m.Pilot,
 	}
 }
 

@@ -91,6 +91,7 @@ type MessageField struct {
 }
 
 var funcMap = template.FuncMap{
+	"ToUpper":          strings.ToUpper,
 	"UpperCamelCase":   UpperCamelCase,
 	"IsByteArrayField": IsByteArrayField,
 	"IsStringField":    IsStringField,
@@ -578,7 +579,7 @@ func (d *Dialect) generateGo(dialectPath string, packageName string, commonPacka
 			data := make(map[string]struct{}, 0)
 			if len(d.Messages) > 0 {
 				data["fmt"] = struct{}{}
-				data[commonPackage + "/message"] = struct{}{}
+				data[commonPackage+"/message"] = struct{}{}
 			}
 			for _, m := range d.Messages {
 				for _, f := range m.Fields {
@@ -746,6 +747,7 @@ var reTypeIsArray = regexp.MustCompile(`^(.+?)\[([0-9]+)\]$`)
 func (d *Dialect) generateClasses(w io.Writer) error {
 	classesTmpl := `
 {{range .Messages}}
+{{$nameOrigin := .Name}}
 {{$name := .Name | UpperCamelCase}}
 // {{$name}} struct (generated typeinfo)  
 // {{.Description}}
@@ -767,10 +769,14 @@ func (m *{{$name}}) String() string {
 	)
 }
 
+const (
+	{{range .Fields}}{{$nameOrigin}}_FIELD_{{.Name | ToUpper}} = "{{$name}}.{{.Name | UpperCamelCase}}"
+{{end}})
+
 // ToMap (generated function)
 func (m *{{$name}}) Dict() map[string]interface{} {
 	return map[string]interface{}{
-		{{range .Fields}}"{{$name}}.{{.Name | UpperCamelCase}}": m.{{.Name | UpperCamelCase}},
+		{{range .Fields}}{{$nameOrigin}}_FIELD_{{.Name | ToUpper}}: m.{{.Name | UpperCamelCase}},
 {{end}}	}
 }
 
