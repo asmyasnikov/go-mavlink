@@ -12,6 +12,7 @@ var (
 	schemeFile      = flag.String("f", "", "mavlink xml-definition file input")
 	commonPackage   = flag.String("c", "", "common mavlink package path used for import from go code. For example \"github.com/asmyasnikov/go-mavlink/generated/mavlink1\"")
 	generateCommons = flag.Bool("p", false, "generate common mavlink package")
+	json            = flag.Bool("json", false, "generate json marshalers/unmarshalers")
 )
 
 type templateData struct {
@@ -34,7 +35,7 @@ func main() {
 		*commonPackage = "github.com/asmyasnikov/go-mavlink/mavlink"
 	}
 
-	if err := generateDialect(nil, *commonPackage, *schemeFile); err != nil {
+	if err := generateDialect(nil, *commonPackage, *schemeFile, *json); err != nil {
 		log.Fatal(err)
 	}
 

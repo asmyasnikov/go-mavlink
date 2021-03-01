@@ -62,21 +62,14 @@ func baseName(s string) string {
 	return strings.TrimSuffix(filepath.Base(s), filepath.Ext(s))
 }
 
-func findOutFile(scheme string) string {
-	dir, err := os.Getwd()
-	if err != nil {
-		log.Fatal("Getwd(): ", err)
-	}
-	return filepath.Join(dir, baseName(scheme), baseName(scheme)+".go")
-}
-
-func generateDialect(dialectPath *string, commonPackage string, schemeFile string) error {
+func generateDialect(dialectPath *string, commonPackage string, schemeFile string, json bool) error {
 	d, err := ParseDialect(schemeFile)
 	if err != nil {
 		return err
 	}
 
 	d.FilePath = schemeFile
+	d.JSON = json
 
 	baseName := baseName(schemeFile)
 

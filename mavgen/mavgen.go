@@ -5,6 +5,9 @@ import (
 	"encoding/xml"
 	"fmt"
 	"github.com/howeyc/crc16"
+	"github.com/mailru/easyjson/bootstrap"
+	_ "github.com/mailru/easyjson/gen"
+	"github.com/mailru/easyjson/parser"
 	"go/format"
 	"io"
 	"io/ioutil"
@@ -31,6 +34,7 @@ var (
 
 // Dialect described root tag of schema
 type Dialect struct {
+	JSON     bool
 	FilePath string
 	XMLName  xml.Name   `xml:"mavlink"`
 	Version  string     `xml:"version"`
@@ -494,6 +498,26 @@ func (d *Dialect) generateFile(filePath string, packageName string, commonPackag
 	if err == nil && n != len(formatted) {
 		return io.ErrShortWrite
 	}
+	if d.JSON {
+		p := parser.Parser{
+			AllStructs: true,
+		}
+		if err := p.Parse(filePath, false); err != nil {
+			return fmt.Errorf("Error parsing %v: %v", filePath, err)
+		}
+		if len(p.StructNames) > 0 {
+			g := bootstrap.Generator{
+				PkgPath:   p.PkgPath,
+				PkgName:   p.PkgName,
+				Types:     p.StructNames,
+				OutName:   strings.ReplaceAll(filePath, ".go", "_easyjson.go"),
+				OmitEmpty: true,
+			}
+			if err := g.Run(); err != nil {
+				return fmt.Errorf("JSON marshaller/unmarshaller Bootstrap failed: %v", err)
+			}
+		}
+	}
 	return err
 }
 
@@ -637,6 +661,7 @@ func (d *Dialect) generateGo(dialectPath string, packageName string, commonPacka
 	); err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -747,13 +772,14 @@ var reTypeIsArray = regexp.MustCompile(`^(.+?)\[([0-9]+)\]$`)
 // is expedient and correct. optimize this if/when needed.
 func (d *Dialect) generateClasses(w io.Writer) error {
 	classesTmpl := `
+{{$json := .JSON}}
 {{range .Messages}}
 {{$nameOrigin := .Name}}
 {{$name := .Name | UpperCamelCase}}
 // {{$name}} struct (generated typeinfo)  
 // {{.Description}}
 type {{$name}} struct { {{range .Fields}}
-  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{ else }} {{.GoType}} {{ end }} ` + "`" + `json:"{{.Name | UpperCamelCase}}" {{if .Tags}}{{range $k, $v := .Tags}}{{$k}}:"{{$v}}" {{end}}{{end}}` + "`" + `// {{if .Units}}[ {{.Units}} ] {{end}}{{.Description}}{{end}}
+  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{ else }} {{.GoType}} {{ end }} ` + "`" + `{{if $json}}json:"{{.Name | UpperCamelCase}}" {{end}}{{if .Tags}}{{range $k, $v := .Tags}}{{$k}}:"{{$v}}" {{end}}{{end}}` + "`" + `// {{if .Units}}[ {{.Units}} ] {{end}}{{.Description}}{{end}}
 }
 
 // MsgID (generated function)
