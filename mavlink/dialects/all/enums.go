@@ -212,6 +212,8 @@ func (e *MAV_CMD) UnmarshalBinary(data []byte) error {
 const (
 	// MAV_CMD_DO_SET_RESUME_REPEAT_DIST enum. Set the distance to be repeated on mission resume. Params: 1) Distance.; 2) Empty.; 3) Empty.; 4) Empty.; 5) Empty.; 6) Empty.; 7) Empty.;
 	MAV_CMD_DO_SET_RESUME_REPEAT_DIST MAV_CMD = 215
+	// MAV_CMD_DO_SPRAYER enum. Control attached liquid sprayer. Params: 1) 0: disable sprayer. 1: enable sprayer.; 2) Empty.; 3) Empty.; 4) Empty.; 5) Empty.; 6) Empty.; 7) Empty.;
+	MAV_CMD_DO_SPRAYER MAV_CMD = 216
 	// MAV_CMD_NAV_ALTITUDE_WAIT enum. Mission command to wait for an altitude or downwards vertical speed. This is meant for high altitude balloon launches, allowing the aircraft to be idle until either an altitude is reached or a negative vertical speed is reached (indicating early balloon burst). The wiggle time is how often to wiggle the control surfaces to prevent them seizing up. Params: 1) Altitude.; 2) Descent speed.; 3) How long to wiggle the control surfaces to prevent them seizing up.; 4) Empty.; 5) Empty.; 6) Empty.; 7) Empty.;
 	MAV_CMD_NAV_ALTITUDE_WAIT MAV_CMD = 83
 	// MAV_CMD_POWER_OFF_INITIATED enum. A system wide power-off event has been initiated. Params: 1) Empty.; 2) Empty.; 3) Empty.; 4) Empty.; 5) Empty.; 6) Empty.; 7) Empty.;
@@ -270,7 +272,7 @@ const (
 	MAV_CMD_NAV_LOITER_TIME MAV_CMD = 19
 	// MAV_CMD_NAV_RETURN_TO_LAUNCH enum. Return to launch location. Params: 1) Empty; 2) Empty; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
 	MAV_CMD_NAV_RETURN_TO_LAUNCH MAV_CMD = 20
-	// MAV_CMD_NAV_LAND enum. Land at location. Params: 1) Minimum target altitude if landing is aborted (0 = undefined/use system default).; 2) Precision land mode.; 3) Empty; 4) Desired yaw angle. NaN to use the current system yaw heading mode (e.g. yaw towards next waypoint, yaw to home, etc.).; 5) Latitude.; 6) Longitude.; 7) Landing altitude (ground level in current frame).;
+	// MAV_CMD_NAV_LAND enum. Land at location. Params: 1) Minimum target altitude if landing is aborted (0 = undefined/use system default).; 2) Precision land mode.; 3) Empty.; 4) Desired yaw angle. NaN to use the current system yaw heading mode (e.g. yaw towards next waypoint, yaw to home, etc.).; 5) Latitude.; 6) Longitude.; 7) Landing altitude (ground level in current frame).;
 	MAV_CMD_NAV_LAND MAV_CMD = 21
 	// MAV_CMD_NAV_TAKEOFF enum. Takeoff from ground / hand. Vehicles that support multiple takeoff modes (e.g. VTOL quadplane) should take off using the currently configured mode. Params: 1) Minimum pitch (if airspeed sensor present), desired pitch without sensor; 2) Empty; 3) Empty; 4) Yaw angle (if magnetometer present), ignored without magnetometer. NaN to use the current system yaw heading mode (e.g. yaw towards next waypoint, yaw to home, etc.).; 5) Latitude; 6) Longitude; 7) Altitude;
 	MAV_CMD_NAV_TAKEOFF MAV_CMD = 22
@@ -338,7 +340,7 @@ const (
 	MAV_CMD_DO_REPEAT_SERVO MAV_CMD = 184
 	// MAV_CMD_DO_FLIGHTTERMINATION enum. Terminate flight immediately. Params: 1) Flight termination activated if &gt; 0.5; 2) Empty; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
 	MAV_CMD_DO_FLIGHTTERMINATION MAV_CMD = 185
-	// MAV_CMD_DO_CHANGE_ALTITUDE enum. Change altitude set point. Params: 1) Altitude; 2) Frame of new altitude.; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
+	// MAV_CMD_DO_CHANGE_ALTITUDE enum. Change altitude set point. Params: 1) Altitude.; 2) Frame of new altitude.; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
 	MAV_CMD_DO_CHANGE_ALTITUDE MAV_CMD = 186
 	// MAV_CMD_DO_SET_ACTUATOR enum. Sets actuators (e.g. servos) to a desired value. The actuator numbers are mapped to specific outputs (e.g. on any MAIN or AUX PWM or UAVCAN) using a flight-stack specific mechanism (i.e. a parameter). Params: 1) Actuator 1 value, scaled from [-1 to 1]. NaN to ignore.; 2) Actuator 2 value, scaled from [-1 to 1]. NaN to ignore.; 3) Actuator 3 value, scaled from [-1 to 1]. NaN to ignore.; 4) Actuator 4 value, scaled from [-1 to 1]. NaN to ignore.; 5) Actuator 5 value, scaled from [-1 to 1]. NaN to ignore.; 6) Actuator 6 value, scaled from [-1 to 1]. NaN to ignore.; 7) Index of actuator set (i.e if set to 1, Actuator 1 becomes Actuator 7);
 	MAV_CMD_DO_SET_ACTUATOR MAV_CMD = 187
@@ -356,7 +358,7 @@ const (
 	MAV_CMD_DO_SET_REVERSE MAV_CMD = 194
 	// MAV_CMD_DO_SET_ROI_LOCATION enum. Sets the region of interest (ROI) to a location. This can then be used by the vehicle's control system to control the vehicle attitude and the attitude of various sensors such as cameras. This command can be sent to a gimbal manager but not to a gimbal device. A gimbal is not to react to this message. Params: 1) Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).; 2) Empty; 3) Empty; 4) Empty; 5) Latitude of ROI location; 6) Longitude of ROI location; 7) Altitude of ROI location;
 	MAV_CMD_DO_SET_ROI_LOCATION MAV_CMD = 195
-	// MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET enum. Sets the region of interest (ROI) to be toward next waypoint, with optional pitch/roll/yaw offset. This can then be used by the vehicle's control system to control the vehicle attitude and the attitude of various sensors such as cameras. This command can be sent to a gimbal manager but not to a gimbal device. A gimbal device is not to react to this message. Params: 1) Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).; 2) Empty; 3) Empty; 4) Empty; 5) Pitch offset from next waypoint, positive pitching up; 6) roll offset from next waypoint, positive rolling to the right; 7) yaw offset from next waypoint, positive yawing to the right;
+	// MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET enum. Sets the region of interest (ROI) to be toward next waypoint, with optional pitch/roll/yaw offset. This can then be used by the vehicle's control system to control the vehicle attitude and the attitude of various sensors such as cameras. This command can be sent to a gimbal manager but not to a gimbal device. A gimbal device is not to react to this message. Params: 1) Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).; 2) Empty; 3) Empty; 4) Empty; 5) Pitch offset from next waypoint, positive pitching up; 6) Roll offset from next waypoint, positive rolling to the right; 7) Yaw offset from next waypoint, positive yawing to the right;
 	MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET MAV_CMD = 196
 	// MAV_CMD_DO_SET_ROI_NONE enum. Cancels any previous ROI command returning the vehicle/sensors to default flight characteristics. This can then be used by the vehicle's control system to control the vehicle attitude and the attitude of various sensors such as cameras. This command can be sent to a gimbal manager but not to a gimbal device. A gimbal device is not to react to this message. After this command the gimbal manager should go back to manual input if available, and otherwise assume a neutral position. Params: 1) Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).; 2) Empty; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
 	MAV_CMD_DO_SET_ROI_NONE MAV_CMD = 197
@@ -518,7 +520,7 @@ const (
 	MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE MAV_CMD = 4001
 	// MAV_CMD_CONDITION_GATE enum. Delay mission state machine until gate has been reached. Params: 1) Geometry: 0: orthogonal to path between previous and next waypoint.; 2) Altitude: 0: ignore altitude; 3) Empty; 4) Empty; 5) Latitude; 6) Longitude; 7) Altitude;
 	MAV_CMD_CONDITION_GATE MAV_CMD = 4501
-	// MAV_CMD_NAV_FENCE_RETURN_POINT enum. Fence return point. There can only be one fence return point. Params: 1) Reserved; 2) Reserved; 3) Reserved; 4) Reserved; 5) Latitude; 6) Longitude; 7) Altitude;
+	// MAV_CMD_NAV_FENCE_RETURN_POINT enum. Fence return point (there can only be one such point in a geofence definition). If rally points are supported they should be used instead. Params: 1) Reserved; 2) Reserved; 3) Reserved; 4) Reserved; 5) Latitude; 6) Longitude; 7) Altitude;
 	MAV_CMD_NAV_FENCE_RETURN_POINT MAV_CMD = 5000
 	// MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION enum. Fence vertex for an inclusion polygon (the polygon must not be self-intersecting). The vehicle must stay within this area. Minimum of 3 vertices required. Params: 1) Polygon vertex count; 2) Vehicle must be inside ALL inclusion zones in a single group, vehicle must be inside at least one group, must be the same for all points in each polygon; 3) Reserved; 4) Reserved; 5) Latitude; 6) Longitude; 7) Reserved;
 	MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION MAV_CMD = 5001
@@ -570,190 +572,203 @@ const (
 	MAV_CMD_USER_4 MAV_CMD = 31013
 	// MAV_CMD_USER_5 enum. User defined command. Ground Station will not show the Vehicle as flying through this item. Example: MAV_CMD_DO_SET_PARAMETER item. Params: 1) User defined; 2) User defined; 3) User defined; 4) User defined; 5) User defined; 6) User defined; 7) User defined;
 	MAV_CMD_USER_5 MAV_CMD = 31014
+	// MAV_CMD_STORM32_DO_GIMBAL_MANAGER_CONTROL_PITCHYAW enum. Command to a gimbal manager to control the gimbal tilt and pan angles. It is possible to set combinations of the values below. E.g. an angle as well as a desired angular rate can be used to get to this angle at a certain angular rate, or an angular rate only will result in continuous turning. NaN is to be used to signal unset. A gimbal device is never to react to this command. Params: 1) Pitch/tilt angle (positive: tilt up, NaN to be ignored).; 2) Yaw/pan angle (positive: pan to the right, the frame is determined by the STORM32_GIMBAL_DEVICE_FLAGS_YAW_ABSOLUTE flag, NaN to be ignored).; 3) Pitch/tilt rate (positive: tilt up, NaN to be ignored).; 4) Yaw/pan rate (positive: pan to the right, the frame is determined by the STORM32_GIMBAL_DEVICE_FLAGS_YAW_ABSOLUTE flag, NaN to be ignored).; 5) Gimbal device flags.; 6) Gimbal manager flags.; 7) Gimbal ID of the gimbal manager to address (component ID or 1-6 for non-MAVLink gimbal, 0 for all gimbals, send command multiple times for more than one but not all gimbals). The client is copied into bits 8-15.;
+	MAV_CMD_STORM32_DO_GIMBAL_MANAGER_CONTROL_PITCHYAW MAV_CMD = 60002
+	// MAV_CMD_STORM32_DO_GIMBAL_MANAGER_SETUP enum. Command to configure a gimbal manager. A gimbal device is never to react to this command. The selected profile is reported in the STORM32_GIMBAL_MANAGER_STATUS message. Params: 1) Gimbal manager profile (0 = default).; 2) Gimbal manager setup flags (0 = none).; 7) Gimbal ID of the gimbal manager to address (component ID or 1-6 for non-MAVLink gimbal, 0 for all gimbals). Send command multiple times for more than one but not all gimbals.;
+	MAV_CMD_STORM32_DO_GIMBAL_MANAGER_SETUP MAV_CMD = 60010
+	// MAV_CMD_STORM32_DO_GIMBAL_ACTION enum. Command to initiate gimbal actions. Usually performed by the gimbal device, but some can also be done by the gimbal manager. It is hence best to broadcast this command. Params: 1) Gimbal action to initiate (0 = none).; 7) Gimbal ID of the gimbal to address (component ID or 1-6 for non-MAVLink gimbal, 0 for all gimbals). Send command multiple times for more than one but not all gimbals.;
+	MAV_CMD_STORM32_DO_GIMBAL_ACTION MAV_CMD = 60011
+	// MAV_CMD_QSHOT_DO_CONFIGURE enum. Command to set the shot manager mode. Params: 1) Set shot mode.; 2) Set shot state or command. The allowed values are specific to the selected shot mode.;
+	MAV_CMD_QSHOT_DO_CONFIGURE MAV_CMD = 60020
 )
 
 func (e MAV_CMD) String() string {
 	if name, ok := map[MAV_CMD]string{
-		MAV_CMD_DO_SET_RESUME_REPEAT_DIST:          "MAV_CMD_DO_SET_RESUME_REPEAT_DIST",
-		MAV_CMD_NAV_ALTITUDE_WAIT:                  "MAV_CMD_NAV_ALTITUDE_WAIT",
-		MAV_CMD_POWER_OFF_INITIATED:                "MAV_CMD_POWER_OFF_INITIATED",
-		MAV_CMD_SOLO_BTN_FLY_CLICK:                 "MAV_CMD_SOLO_BTN_FLY_CLICK",
-		MAV_CMD_SOLO_BTN_FLY_HOLD:                  "MAV_CMD_SOLO_BTN_FLY_HOLD",
-		MAV_CMD_SOLO_BTN_PAUSE_CLICK:               "MAV_CMD_SOLO_BTN_PAUSE_CLICK",
-		MAV_CMD_FIXED_MAG_CAL:                      "MAV_CMD_FIXED_MAG_CAL",
-		MAV_CMD_FIXED_MAG_CAL_FIELD:                "MAV_CMD_FIXED_MAG_CAL_FIELD",
-		MAV_CMD_DO_START_MAG_CAL:                   "MAV_CMD_DO_START_MAG_CAL",
-		MAV_CMD_DO_ACCEPT_MAG_CAL:                  "MAV_CMD_DO_ACCEPT_MAG_CAL",
-		MAV_CMD_DO_CANCEL_MAG_CAL:                  "MAV_CMD_DO_CANCEL_MAG_CAL",
-		MAV_CMD_ACCELCAL_VEHICLE_POS:               "MAV_CMD_ACCELCAL_VEHICLE_POS",
-		MAV_CMD_DO_SEND_BANNER:                     "MAV_CMD_DO_SEND_BANNER",
-		MAV_CMD_SET_FACTORY_TEST_MODE:              "MAV_CMD_SET_FACTORY_TEST_MODE",
-		MAV_CMD_GIMBAL_RESET:                       "MAV_CMD_GIMBAL_RESET",
-		MAV_CMD_GIMBAL_AXIS_CALIBRATION_STATUS:     "MAV_CMD_GIMBAL_AXIS_CALIBRATION_STATUS",
-		MAV_CMD_GIMBAL_REQUEST_AXIS_CALIBRATION:    "MAV_CMD_GIMBAL_REQUEST_AXIS_CALIBRATION",
-		MAV_CMD_GIMBAL_FULL_RESET:                  "MAV_CMD_GIMBAL_FULL_RESET",
-		MAV_CMD_FLASH_BOOTLOADER:                   "MAV_CMD_FLASH_BOOTLOADER",
-		MAV_CMD_BATTERY_RESET:                      "MAV_CMD_BATTERY_RESET",
-		MAV_CMD_DEBUG_TRAP:                         "MAV_CMD_DEBUG_TRAP",
-		MAV_CMD_SCRIPTING:                          "MAV_CMD_SCRIPTING",
-		MAV_CMD_GUIDED_CHANGE_SPEED:                "MAV_CMD_GUIDED_CHANGE_SPEED",
-		MAV_CMD_GUIDED_CHANGE_ALTITUDE:             "MAV_CMD_GUIDED_CHANGE_ALTITUDE",
-		MAV_CMD_GUIDED_CHANGE_HEADING:              "MAV_CMD_GUIDED_CHANGE_HEADING",
-		MAV_CMD_NAV_WAYPOINT:                       "MAV_CMD_NAV_WAYPOINT",
-		MAV_CMD_NAV_LOITER_UNLIM:                   "MAV_CMD_NAV_LOITER_UNLIM",
-		MAV_CMD_NAV_LOITER_TURNS:                   "MAV_CMD_NAV_LOITER_TURNS",
-		MAV_CMD_NAV_LOITER_TIME:                    "MAV_CMD_NAV_LOITER_TIME",
-		MAV_CMD_NAV_RETURN_TO_LAUNCH:               "MAV_CMD_NAV_RETURN_TO_LAUNCH",
-		MAV_CMD_NAV_LAND:                           "MAV_CMD_NAV_LAND",
-		MAV_CMD_NAV_TAKEOFF:                        "MAV_CMD_NAV_TAKEOFF",
-		MAV_CMD_NAV_LAND_LOCAL:                     "MAV_CMD_NAV_LAND_LOCAL",
-		MAV_CMD_NAV_TAKEOFF_LOCAL:                  "MAV_CMD_NAV_TAKEOFF_LOCAL",
-		MAV_CMD_NAV_FOLLOW:                         "MAV_CMD_NAV_FOLLOW",
-		MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT:        "MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT",
-		MAV_CMD_NAV_LOITER_TO_ALT:                  "MAV_CMD_NAV_LOITER_TO_ALT",
-		MAV_CMD_DO_FOLLOW:                          "MAV_CMD_DO_FOLLOW",
-		MAV_CMD_DO_FOLLOW_REPOSITION:               "MAV_CMD_DO_FOLLOW_REPOSITION",
-		MAV_CMD_DO_ORBIT:                           "MAV_CMD_DO_ORBIT",
-		MAV_CMD_NAV_ROI:                            "MAV_CMD_NAV_ROI",
-		MAV_CMD_NAV_PATHPLANNING:                   "MAV_CMD_NAV_PATHPLANNING",
-		MAV_CMD_NAV_SPLINE_WAYPOINT:                "MAV_CMD_NAV_SPLINE_WAYPOINT",
-		MAV_CMD_NAV_VTOL_TAKEOFF:                   "MAV_CMD_NAV_VTOL_TAKEOFF",
-		MAV_CMD_NAV_VTOL_LAND:                      "MAV_CMD_NAV_VTOL_LAND",
-		MAV_CMD_NAV_GUIDED_ENABLE:                  "MAV_CMD_NAV_GUIDED_ENABLE",
-		MAV_CMD_NAV_DELAY:                          "MAV_CMD_NAV_DELAY",
-		MAV_CMD_NAV_PAYLOAD_PLACE:                  "MAV_CMD_NAV_PAYLOAD_PLACE",
-		MAV_CMD_NAV_LAST:                           "MAV_CMD_NAV_LAST",
-		MAV_CMD_CONDITION_DELAY:                    "MAV_CMD_CONDITION_DELAY",
-		MAV_CMD_CONDITION_CHANGE_ALT:               "MAV_CMD_CONDITION_CHANGE_ALT",
-		MAV_CMD_CONDITION_DISTANCE:                 "MAV_CMD_CONDITION_DISTANCE",
-		MAV_CMD_CONDITION_YAW:                      "MAV_CMD_CONDITION_YAW",
-		MAV_CMD_CONDITION_LAST:                     "MAV_CMD_CONDITION_LAST",
-		MAV_CMD_DO_SET_MODE:                        "MAV_CMD_DO_SET_MODE",
-		MAV_CMD_DO_JUMP:                            "MAV_CMD_DO_JUMP",
-		MAV_CMD_DO_CHANGE_SPEED:                    "MAV_CMD_DO_CHANGE_SPEED",
-		MAV_CMD_DO_SET_HOME:                        "MAV_CMD_DO_SET_HOME",
-		MAV_CMD_DO_SET_PARAMETER:                   "MAV_CMD_DO_SET_PARAMETER",
-		MAV_CMD_DO_SET_RELAY:                       "MAV_CMD_DO_SET_RELAY",
-		MAV_CMD_DO_REPEAT_RELAY:                    "MAV_CMD_DO_REPEAT_RELAY",
-		MAV_CMD_DO_SET_SERVO:                       "MAV_CMD_DO_SET_SERVO",
-		MAV_CMD_DO_REPEAT_SERVO:                    "MAV_CMD_DO_REPEAT_SERVO",
-		MAV_CMD_DO_FLIGHTTERMINATION:               "MAV_CMD_DO_FLIGHTTERMINATION",
-		MAV_CMD_DO_CHANGE_ALTITUDE:                 "MAV_CMD_DO_CHANGE_ALTITUDE",
-		MAV_CMD_DO_SET_ACTUATOR:                    "MAV_CMD_DO_SET_ACTUATOR",
-		MAV_CMD_DO_LAND_START:                      "MAV_CMD_DO_LAND_START",
-		MAV_CMD_DO_RALLY_LAND:                      "MAV_CMD_DO_RALLY_LAND",
-		MAV_CMD_DO_GO_AROUND:                       "MAV_CMD_DO_GO_AROUND",
-		MAV_CMD_DO_REPOSITION:                      "MAV_CMD_DO_REPOSITION",
-		MAV_CMD_DO_PAUSE_CONTINUE:                  "MAV_CMD_DO_PAUSE_CONTINUE",
-		MAV_CMD_DO_SET_REVERSE:                     "MAV_CMD_DO_SET_REVERSE",
-		MAV_CMD_DO_SET_ROI_LOCATION:                "MAV_CMD_DO_SET_ROI_LOCATION",
-		MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET:           "MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET",
-		MAV_CMD_DO_SET_ROI_NONE:                    "MAV_CMD_DO_SET_ROI_NONE",
-		MAV_CMD_DO_SET_ROI_SYSID:                   "MAV_CMD_DO_SET_ROI_SYSID",
-		MAV_CMD_DO_CONTROL_VIDEO:                   "MAV_CMD_DO_CONTROL_VIDEO",
-		MAV_CMD_DO_SET_ROI:                         "MAV_CMD_DO_SET_ROI",
-		MAV_CMD_DO_DIGICAM_CONFIGURE:               "MAV_CMD_DO_DIGICAM_CONFIGURE",
-		MAV_CMD_DO_DIGICAM_CONTROL:                 "MAV_CMD_DO_DIGICAM_CONTROL",
-		MAV_CMD_DO_MOUNT_CONFIGURE:                 "MAV_CMD_DO_MOUNT_CONFIGURE",
-		MAV_CMD_DO_MOUNT_CONTROL:                   "MAV_CMD_DO_MOUNT_CONTROL",
-		MAV_CMD_DO_SET_CAM_TRIGG_DIST:              "MAV_CMD_DO_SET_CAM_TRIGG_DIST",
-		MAV_CMD_DO_FENCE_ENABLE:                    "MAV_CMD_DO_FENCE_ENABLE",
-		MAV_CMD_DO_PARACHUTE:                       "MAV_CMD_DO_PARACHUTE",
-		MAV_CMD_DO_MOTOR_TEST:                      "MAV_CMD_DO_MOTOR_TEST",
-		MAV_CMD_DO_INVERTED_FLIGHT:                 "MAV_CMD_DO_INVERTED_FLIGHT",
-		MAV_CMD_DO_GRIPPER:                         "MAV_CMD_DO_GRIPPER",
-		MAV_CMD_DO_AUTOTUNE_ENABLE:                 "MAV_CMD_DO_AUTOTUNE_ENABLE",
-		MAV_CMD_NAV_SET_YAW_SPEED:                  "MAV_CMD_NAV_SET_YAW_SPEED",
-		MAV_CMD_DO_SET_CAM_TRIGG_INTERVAL:          "MAV_CMD_DO_SET_CAM_TRIGG_INTERVAL",
-		MAV_CMD_DO_MOUNT_CONTROL_QUAT:              "MAV_CMD_DO_MOUNT_CONTROL_QUAT",
-		MAV_CMD_DO_GUIDED_MASTER:                   "MAV_CMD_DO_GUIDED_MASTER",
-		MAV_CMD_DO_GUIDED_LIMITS:                   "MAV_CMD_DO_GUIDED_LIMITS",
-		MAV_CMD_DO_ENGINE_CONTROL:                  "MAV_CMD_DO_ENGINE_CONTROL",
-		MAV_CMD_DO_SET_MISSION_CURRENT:             "MAV_CMD_DO_SET_MISSION_CURRENT",
-		MAV_CMD_DO_LAST:                            "MAV_CMD_DO_LAST",
-		MAV_CMD_PREFLIGHT_CALIBRATION:              "MAV_CMD_PREFLIGHT_CALIBRATION",
-		MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS:       "MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS",
-		MAV_CMD_PREFLIGHT_UAVCAN:                   "MAV_CMD_PREFLIGHT_UAVCAN",
-		MAV_CMD_PREFLIGHT_STORAGE:                  "MAV_CMD_PREFLIGHT_STORAGE",
-		MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN:          "MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN",
-		MAV_CMD_DO_UPGRADE:                         "MAV_CMD_DO_UPGRADE",
-		MAV_CMD_OVERRIDE_GOTO:                      "MAV_CMD_OVERRIDE_GOTO",
-		MAV_CMD_OBLIQUE_SURVEY:                     "MAV_CMD_OBLIQUE_SURVEY",
-		MAV_CMD_MISSION_START:                      "MAV_CMD_MISSION_START",
-		MAV_CMD_COMPONENT_ARM_DISARM:               "MAV_CMD_COMPONENT_ARM_DISARM",
-		MAV_CMD_ILLUMINATOR_ON_OFF:                 "MAV_CMD_ILLUMINATOR_ON_OFF",
-		MAV_CMD_GET_HOME_POSITION:                  "MAV_CMD_GET_HOME_POSITION",
-		MAV_CMD_INJECT_FAILURE:                     "MAV_CMD_INJECT_FAILURE",
-		MAV_CMD_START_RX_PAIR:                      "MAV_CMD_START_RX_PAIR",
-		MAV_CMD_GET_MESSAGE_INTERVAL:               "MAV_CMD_GET_MESSAGE_INTERVAL",
-		MAV_CMD_SET_MESSAGE_INTERVAL:               "MAV_CMD_SET_MESSAGE_INTERVAL",
-		MAV_CMD_REQUEST_MESSAGE:                    "MAV_CMD_REQUEST_MESSAGE",
-		MAV_CMD_REQUEST_PROTOCOL_VERSION:           "MAV_CMD_REQUEST_PROTOCOL_VERSION",
-		MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES:     "MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES",
-		MAV_CMD_REQUEST_CAMERA_INFORMATION:         "MAV_CMD_REQUEST_CAMERA_INFORMATION",
-		MAV_CMD_REQUEST_CAMERA_SETTINGS:            "MAV_CMD_REQUEST_CAMERA_SETTINGS",
-		MAV_CMD_REQUEST_STORAGE_INFORMATION:        "MAV_CMD_REQUEST_STORAGE_INFORMATION",
-		MAV_CMD_STORAGE_FORMAT:                     "MAV_CMD_STORAGE_FORMAT",
-		MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS:      "MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS",
-		MAV_CMD_REQUEST_FLIGHT_INFORMATION:         "MAV_CMD_REQUEST_FLIGHT_INFORMATION",
-		MAV_CMD_RESET_CAMERA_SETTINGS:              "MAV_CMD_RESET_CAMERA_SETTINGS",
-		MAV_CMD_SET_CAMERA_MODE:                    "MAV_CMD_SET_CAMERA_MODE",
-		MAV_CMD_SET_CAMERA_ZOOM:                    "MAV_CMD_SET_CAMERA_ZOOM",
-		MAV_CMD_SET_CAMERA_FOCUS:                   "MAV_CMD_SET_CAMERA_FOCUS",
-		MAV_CMD_JUMP_TAG:                           "MAV_CMD_JUMP_TAG",
-		MAV_CMD_DO_JUMP_TAG:                        "MAV_CMD_DO_JUMP_TAG",
-		MAV_CMD_PARAM_TRANSACTION:                  "MAV_CMD_PARAM_TRANSACTION",
-		MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW:         "MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW",
-		MAV_CMD_DO_GIMBAL_MANAGER_CONFIGURE:        "MAV_CMD_DO_GIMBAL_MANAGER_CONFIGURE",
-		MAV_CMD_IMAGE_START_CAPTURE:                "MAV_CMD_IMAGE_START_CAPTURE",
-		MAV_CMD_IMAGE_STOP_CAPTURE:                 "MAV_CMD_IMAGE_STOP_CAPTURE",
-		MAV_CMD_REQUEST_CAMERA_IMAGE_CAPTURE:       "MAV_CMD_REQUEST_CAMERA_IMAGE_CAPTURE",
-		MAV_CMD_DO_TRIGGER_CONTROL:                 "MAV_CMD_DO_TRIGGER_CONTROL",
-		MAV_CMD_CAMERA_TRACK_POINT:                 "MAV_CMD_CAMERA_TRACK_POINT",
-		MAV_CMD_CAMERA_TRACK_RECTANGLE:             "MAV_CMD_CAMERA_TRACK_RECTANGLE",
-		MAV_CMD_CAMERA_STOP_TRACKING:               "MAV_CMD_CAMERA_STOP_TRACKING",
-		MAV_CMD_VIDEO_START_CAPTURE:                "MAV_CMD_VIDEO_START_CAPTURE",
-		MAV_CMD_VIDEO_STOP_CAPTURE:                 "MAV_CMD_VIDEO_STOP_CAPTURE",
-		MAV_CMD_VIDEO_START_STREAMING:              "MAV_CMD_VIDEO_START_STREAMING",
-		MAV_CMD_VIDEO_STOP_STREAMING:               "MAV_CMD_VIDEO_STOP_STREAMING",
-		MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION:   "MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION",
-		MAV_CMD_REQUEST_VIDEO_STREAM_STATUS:        "MAV_CMD_REQUEST_VIDEO_STREAM_STATUS",
-		MAV_CMD_LOGGING_START:                      "MAV_CMD_LOGGING_START",
-		MAV_CMD_LOGGING_STOP:                       "MAV_CMD_LOGGING_STOP",
-		MAV_CMD_AIRFRAME_CONFIGURATION:             "MAV_CMD_AIRFRAME_CONFIGURATION",
-		MAV_CMD_CONTROL_HIGH_LATENCY:               "MAV_CMD_CONTROL_HIGH_LATENCY",
-		MAV_CMD_PANORAMA_CREATE:                    "MAV_CMD_PANORAMA_CREATE",
-		MAV_CMD_DO_VTOL_TRANSITION:                 "MAV_CMD_DO_VTOL_TRANSITION",
-		MAV_CMD_ARM_AUTHORIZATION_REQUEST:          "MAV_CMD_ARM_AUTHORIZATION_REQUEST",
-		MAV_CMD_SET_GUIDED_SUBMODE_STANDARD:        "MAV_CMD_SET_GUIDED_SUBMODE_STANDARD",
-		MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE:          "MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE",
-		MAV_CMD_CONDITION_GATE:                     "MAV_CMD_CONDITION_GATE",
-		MAV_CMD_NAV_FENCE_RETURN_POINT:             "MAV_CMD_NAV_FENCE_RETURN_POINT",
-		MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION: "MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION",
-		MAV_CMD_NAV_FENCE_POLYGON_VERTEX_EXCLUSION: "MAV_CMD_NAV_FENCE_POLYGON_VERTEX_EXCLUSION",
-		MAV_CMD_NAV_FENCE_CIRCLE_INCLUSION:         "MAV_CMD_NAV_FENCE_CIRCLE_INCLUSION",
-		MAV_CMD_NAV_FENCE_CIRCLE_EXCLUSION:         "MAV_CMD_NAV_FENCE_CIRCLE_EXCLUSION",
-		MAV_CMD_NAV_RALLY_POINT:                    "MAV_CMD_NAV_RALLY_POINT",
-		MAV_CMD_UAVCAN_GET_NODE_INFO:               "MAV_CMD_UAVCAN_GET_NODE_INFO",
-		MAV_CMD_PAYLOAD_PREPARE_DEPLOY:             "MAV_CMD_PAYLOAD_PREPARE_DEPLOY",
-		MAV_CMD_PAYLOAD_CONTROL_DEPLOY:             "MAV_CMD_PAYLOAD_CONTROL_DEPLOY",
-		MAV_CMD_FIXED_MAG_CAL_YAW:                  "MAV_CMD_FIXED_MAG_CAL_YAW",
-		MAV_CMD_DO_WINCH:                           "MAV_CMD_DO_WINCH",
-		MAV_CMD_WAYPOINT_USER_1:                    "MAV_CMD_WAYPOINT_USER_1",
-		MAV_CMD_WAYPOINT_USER_2:                    "MAV_CMD_WAYPOINT_USER_2",
-		MAV_CMD_WAYPOINT_USER_3:                    "MAV_CMD_WAYPOINT_USER_3",
-		MAV_CMD_WAYPOINT_USER_4:                    "MAV_CMD_WAYPOINT_USER_4",
-		MAV_CMD_WAYPOINT_USER_5:                    "MAV_CMD_WAYPOINT_USER_5",
-		MAV_CMD_SPATIAL_USER_1:                     "MAV_CMD_SPATIAL_USER_1",
-		MAV_CMD_SPATIAL_USER_2:                     "MAV_CMD_SPATIAL_USER_2",
-		MAV_CMD_SPATIAL_USER_3:                     "MAV_CMD_SPATIAL_USER_3",
-		MAV_CMD_SPATIAL_USER_4:                     "MAV_CMD_SPATIAL_USER_4",
-		MAV_CMD_SPATIAL_USER_5:                     "MAV_CMD_SPATIAL_USER_5",
-		MAV_CMD_USER_1:                             "MAV_CMD_USER_1",
-		MAV_CMD_USER_2:                             "MAV_CMD_USER_2",
-		MAV_CMD_USER_3:                             "MAV_CMD_USER_3",
-		MAV_CMD_USER_4:                             "MAV_CMD_USER_4",
-		MAV_CMD_USER_5:                             "MAV_CMD_USER_5",
+		MAV_CMD_DO_SET_RESUME_REPEAT_DIST:                  "MAV_CMD_DO_SET_RESUME_REPEAT_DIST",
+		MAV_CMD_DO_SPRAYER:                                 "MAV_CMD_DO_SPRAYER",
+		MAV_CMD_NAV_ALTITUDE_WAIT:                          "MAV_CMD_NAV_ALTITUDE_WAIT",
+		MAV_CMD_POWER_OFF_INITIATED:                        "MAV_CMD_POWER_OFF_INITIATED",
+		MAV_CMD_SOLO_BTN_FLY_CLICK:                         "MAV_CMD_SOLO_BTN_FLY_CLICK",
+		MAV_CMD_SOLO_BTN_FLY_HOLD:                          "MAV_CMD_SOLO_BTN_FLY_HOLD",
+		MAV_CMD_SOLO_BTN_PAUSE_CLICK:                       "MAV_CMD_SOLO_BTN_PAUSE_CLICK",
+		MAV_CMD_FIXED_MAG_CAL:                              "MAV_CMD_FIXED_MAG_CAL",
+		MAV_CMD_FIXED_MAG_CAL_FIELD:                        "MAV_CMD_FIXED_MAG_CAL_FIELD",
+		MAV_CMD_DO_START_MAG_CAL:                           "MAV_CMD_DO_START_MAG_CAL",
+		MAV_CMD_DO_ACCEPT_MAG_CAL:                          "MAV_CMD_DO_ACCEPT_MAG_CAL",
+		MAV_CMD_DO_CANCEL_MAG_CAL:                          "MAV_CMD_DO_CANCEL_MAG_CAL",
+		MAV_CMD_ACCELCAL_VEHICLE_POS:                       "MAV_CMD_ACCELCAL_VEHICLE_POS",
+		MAV_CMD_DO_SEND_BANNER:                             "MAV_CMD_DO_SEND_BANNER",
+		MAV_CMD_SET_FACTORY_TEST_MODE:                      "MAV_CMD_SET_FACTORY_TEST_MODE",
+		MAV_CMD_GIMBAL_RESET:                               "MAV_CMD_GIMBAL_RESET",
+		MAV_CMD_GIMBAL_AXIS_CALIBRATION_STATUS:             "MAV_CMD_GIMBAL_AXIS_CALIBRATION_STATUS",
+		MAV_CMD_GIMBAL_REQUEST_AXIS_CALIBRATION:            "MAV_CMD_GIMBAL_REQUEST_AXIS_CALIBRATION",
+		MAV_CMD_GIMBAL_FULL_RESET:                          "MAV_CMD_GIMBAL_FULL_RESET",
+		MAV_CMD_FLASH_BOOTLOADER:                           "MAV_CMD_FLASH_BOOTLOADER",
+		MAV_CMD_BATTERY_RESET:                              "MAV_CMD_BATTERY_RESET",
+		MAV_CMD_DEBUG_TRAP:                                 "MAV_CMD_DEBUG_TRAP",
+		MAV_CMD_SCRIPTING:                                  "MAV_CMD_SCRIPTING",
+		MAV_CMD_GUIDED_CHANGE_SPEED:                        "MAV_CMD_GUIDED_CHANGE_SPEED",
+		MAV_CMD_GUIDED_CHANGE_ALTITUDE:                     "MAV_CMD_GUIDED_CHANGE_ALTITUDE",
+		MAV_CMD_GUIDED_CHANGE_HEADING:                      "MAV_CMD_GUIDED_CHANGE_HEADING",
+		MAV_CMD_NAV_WAYPOINT:                               "MAV_CMD_NAV_WAYPOINT",
+		MAV_CMD_NAV_LOITER_UNLIM:                           "MAV_CMD_NAV_LOITER_UNLIM",
+		MAV_CMD_NAV_LOITER_TURNS:                           "MAV_CMD_NAV_LOITER_TURNS",
+		MAV_CMD_NAV_LOITER_TIME:                            "MAV_CMD_NAV_LOITER_TIME",
+		MAV_CMD_NAV_RETURN_TO_LAUNCH:                       "MAV_CMD_NAV_RETURN_TO_LAUNCH",
+		MAV_CMD_NAV_LAND:                                   "MAV_CMD_NAV_LAND",
+		MAV_CMD_NAV_TAKEOFF:                                "MAV_CMD_NAV_TAKEOFF",
+		MAV_CMD_NAV_LAND_LOCAL:                             "MAV_CMD_NAV_LAND_LOCAL",
+		MAV_CMD_NAV_TAKEOFF_LOCAL:                          "MAV_CMD_NAV_TAKEOFF_LOCAL",
+		MAV_CMD_NAV_FOLLOW:                                 "MAV_CMD_NAV_FOLLOW",
+		MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT:                "MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT",
+		MAV_CMD_NAV_LOITER_TO_ALT:                          "MAV_CMD_NAV_LOITER_TO_ALT",
+		MAV_CMD_DO_FOLLOW:                                  "MAV_CMD_DO_FOLLOW",
+		MAV_CMD_DO_FOLLOW_REPOSITION:                       "MAV_CMD_DO_FOLLOW_REPOSITION",
+		MAV_CMD_DO_ORBIT:                                   "MAV_CMD_DO_ORBIT",
+		MAV_CMD_NAV_ROI:                                    "MAV_CMD_NAV_ROI",
+		MAV_CMD_NAV_PATHPLANNING:                           "MAV_CMD_NAV_PATHPLANNING",
+		MAV_CMD_NAV_SPLINE_WAYPOINT:                        "MAV_CMD_NAV_SPLINE_WAYPOINT",
+		MAV_CMD_NAV_VTOL_TAKEOFF:                           "MAV_CMD_NAV_VTOL_TAKEOFF",
+		MAV_CMD_NAV_VTOL_LAND:                              "MAV_CMD_NAV_VTOL_LAND",
+		MAV_CMD_NAV_GUIDED_ENABLE:                          "MAV_CMD_NAV_GUIDED_ENABLE",
+		MAV_CMD_NAV_DELAY:                                  "MAV_CMD_NAV_DELAY",
+		MAV_CMD_NAV_PAYLOAD_PLACE:                          "MAV_CMD_NAV_PAYLOAD_PLACE",
+		MAV_CMD_NAV_LAST:                                   "MAV_CMD_NAV_LAST",
+		MAV_CMD_CONDITION_DELAY:                            "MAV_CMD_CONDITION_DELAY",
+		MAV_CMD_CONDITION_CHANGE_ALT:                       "MAV_CMD_CONDITION_CHANGE_ALT",
+		MAV_CMD_CONDITION_DISTANCE:                         "MAV_CMD_CONDITION_DISTANCE",
+		MAV_CMD_CONDITION_YAW:                              "MAV_CMD_CONDITION_YAW",
+		MAV_CMD_CONDITION_LAST:                             "MAV_CMD_CONDITION_LAST",
+		MAV_CMD_DO_SET_MODE:                                "MAV_CMD_DO_SET_MODE",
+		MAV_CMD_DO_JUMP:                                    "MAV_CMD_DO_JUMP",
+		MAV_CMD_DO_CHANGE_SPEED:                            "MAV_CMD_DO_CHANGE_SPEED",
+		MAV_CMD_DO_SET_HOME:                                "MAV_CMD_DO_SET_HOME",
+		MAV_CMD_DO_SET_PARAMETER:                           "MAV_CMD_DO_SET_PARAMETER",
+		MAV_CMD_DO_SET_RELAY:                               "MAV_CMD_DO_SET_RELAY",
+		MAV_CMD_DO_REPEAT_RELAY:                            "MAV_CMD_DO_REPEAT_RELAY",
+		MAV_CMD_DO_SET_SERVO:                               "MAV_CMD_DO_SET_SERVO",
+		MAV_CMD_DO_REPEAT_SERVO:                            "MAV_CMD_DO_REPEAT_SERVO",
+		MAV_CMD_DO_FLIGHTTERMINATION:                       "MAV_CMD_DO_FLIGHTTERMINATION",
+		MAV_CMD_DO_CHANGE_ALTITUDE:                         "MAV_CMD_DO_CHANGE_ALTITUDE",
+		MAV_CMD_DO_SET_ACTUATOR:                            "MAV_CMD_DO_SET_ACTUATOR",
+		MAV_CMD_DO_LAND_START:                              "MAV_CMD_DO_LAND_START",
+		MAV_CMD_DO_RALLY_LAND:                              "MAV_CMD_DO_RALLY_LAND",
+		MAV_CMD_DO_GO_AROUND:                               "MAV_CMD_DO_GO_AROUND",
+		MAV_CMD_DO_REPOSITION:                              "MAV_CMD_DO_REPOSITION",
+		MAV_CMD_DO_PAUSE_CONTINUE:                          "MAV_CMD_DO_PAUSE_CONTINUE",
+		MAV_CMD_DO_SET_REVERSE:                             "MAV_CMD_DO_SET_REVERSE",
+		MAV_CMD_DO_SET_ROI_LOCATION:                        "MAV_CMD_DO_SET_ROI_LOCATION",
+		MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET:                   "MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET",
+		MAV_CMD_DO_SET_ROI_NONE:                            "MAV_CMD_DO_SET_ROI_NONE",
+		MAV_CMD_DO_SET_ROI_SYSID:                           "MAV_CMD_DO_SET_ROI_SYSID",
+		MAV_CMD_DO_CONTROL_VIDEO:                           "MAV_CMD_DO_CONTROL_VIDEO",
+		MAV_CMD_DO_SET_ROI:                                 "MAV_CMD_DO_SET_ROI",
+		MAV_CMD_DO_DIGICAM_CONFIGURE:                       "MAV_CMD_DO_DIGICAM_CONFIGURE",
+		MAV_CMD_DO_DIGICAM_CONTROL:                         "MAV_CMD_DO_DIGICAM_CONTROL",
+		MAV_CMD_DO_MOUNT_CONFIGURE:                         "MAV_CMD_DO_MOUNT_CONFIGURE",
+		MAV_CMD_DO_MOUNT_CONTROL:                           "MAV_CMD_DO_MOUNT_CONTROL",
+		MAV_CMD_DO_SET_CAM_TRIGG_DIST:                      "MAV_CMD_DO_SET_CAM_TRIGG_DIST",
+		MAV_CMD_DO_FENCE_ENABLE:                            "MAV_CMD_DO_FENCE_ENABLE",
+		MAV_CMD_DO_PARACHUTE:                               "MAV_CMD_DO_PARACHUTE",
+		MAV_CMD_DO_MOTOR_TEST:                              "MAV_CMD_DO_MOTOR_TEST",
+		MAV_CMD_DO_INVERTED_FLIGHT:                         "MAV_CMD_DO_INVERTED_FLIGHT",
+		MAV_CMD_DO_GRIPPER:                                 "MAV_CMD_DO_GRIPPER",
+		MAV_CMD_DO_AUTOTUNE_ENABLE:                         "MAV_CMD_DO_AUTOTUNE_ENABLE",
+		MAV_CMD_NAV_SET_YAW_SPEED:                          "MAV_CMD_NAV_SET_YAW_SPEED",
+		MAV_CMD_DO_SET_CAM_TRIGG_INTERVAL:                  "MAV_CMD_DO_SET_CAM_TRIGG_INTERVAL",
+		MAV_CMD_DO_MOUNT_CONTROL_QUAT:                      "MAV_CMD_DO_MOUNT_CONTROL_QUAT",
+		MAV_CMD_DO_GUIDED_MASTER:                           "MAV_CMD_DO_GUIDED_MASTER",
+		MAV_CMD_DO_GUIDED_LIMITS:                           "MAV_CMD_DO_GUIDED_LIMITS",
+		MAV_CMD_DO_ENGINE_CONTROL:                          "MAV_CMD_DO_ENGINE_CONTROL",
+		MAV_CMD_DO_SET_MISSION_CURRENT:                     "MAV_CMD_DO_SET_MISSION_CURRENT",
+		MAV_CMD_DO_LAST:                                    "MAV_CMD_DO_LAST",
+		MAV_CMD_PREFLIGHT_CALIBRATION:                      "MAV_CMD_PREFLIGHT_CALIBRATION",
+		MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS:               "MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS",
+		MAV_CMD_PREFLIGHT_UAVCAN:                           "MAV_CMD_PREFLIGHT_UAVCAN",
+		MAV_CMD_PREFLIGHT_STORAGE:                          "MAV_CMD_PREFLIGHT_STORAGE",
+		MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN:                  "MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN",
+		MAV_CMD_DO_UPGRADE:                                 "MAV_CMD_DO_UPGRADE",
+		MAV_CMD_OVERRIDE_GOTO:                              "MAV_CMD_OVERRIDE_GOTO",
+		MAV_CMD_OBLIQUE_SURVEY:                             "MAV_CMD_OBLIQUE_SURVEY",
+		MAV_CMD_MISSION_START:                              "MAV_CMD_MISSION_START",
+		MAV_CMD_COMPONENT_ARM_DISARM:                       "MAV_CMD_COMPONENT_ARM_DISARM",
+		MAV_CMD_ILLUMINATOR_ON_OFF:                         "MAV_CMD_ILLUMINATOR_ON_OFF",
+		MAV_CMD_GET_HOME_POSITION:                          "MAV_CMD_GET_HOME_POSITION",
+		MAV_CMD_INJECT_FAILURE:                             "MAV_CMD_INJECT_FAILURE",
+		MAV_CMD_START_RX_PAIR:                              "MAV_CMD_START_RX_PAIR",
+		MAV_CMD_GET_MESSAGE_INTERVAL:                       "MAV_CMD_GET_MESSAGE_INTERVAL",
+		MAV_CMD_SET_MESSAGE_INTERVAL:                       "MAV_CMD_SET_MESSAGE_INTERVAL",
+		MAV_CMD_REQUEST_MESSAGE:                            "MAV_CMD_REQUEST_MESSAGE",
+		MAV_CMD_REQUEST_PROTOCOL_VERSION:                   "MAV_CMD_REQUEST_PROTOCOL_VERSION",
+		MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES:             "MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES",
+		MAV_CMD_REQUEST_CAMERA_INFORMATION:                 "MAV_CMD_REQUEST_CAMERA_INFORMATION",
+		MAV_CMD_REQUEST_CAMERA_SETTINGS:                    "MAV_CMD_REQUEST_CAMERA_SETTINGS",
+		MAV_CMD_REQUEST_STORAGE_INFORMATION:                "MAV_CMD_REQUEST_STORAGE_INFORMATION",
+		MAV_CMD_STORAGE_FORMAT:                             "MAV_CMD_STORAGE_FORMAT",
+		MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS:              "MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS",
+		MAV_CMD_REQUEST_FLIGHT_INFORMATION:                 "MAV_CMD_REQUEST_FLIGHT_INFORMATION",
+		MAV_CMD_RESET_CAMERA_SETTINGS:                      "MAV_CMD_RESET_CAMERA_SETTINGS",
+		MAV_CMD_SET_CAMERA_MODE:                            "MAV_CMD_SET_CAMERA_MODE",
+		MAV_CMD_SET_CAMERA_ZOOM:                            "MAV_CMD_SET_CAMERA_ZOOM",
+		MAV_CMD_SET_CAMERA_FOCUS:                           "MAV_CMD_SET_CAMERA_FOCUS",
+		MAV_CMD_JUMP_TAG:                                   "MAV_CMD_JUMP_TAG",
+		MAV_CMD_DO_JUMP_TAG:                                "MAV_CMD_DO_JUMP_TAG",
+		MAV_CMD_PARAM_TRANSACTION:                          "MAV_CMD_PARAM_TRANSACTION",
+		MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW:                 "MAV_CMD_DO_GIMBAL_MANAGER_PITCHYAW",
+		MAV_CMD_DO_GIMBAL_MANAGER_CONFIGURE:                "MAV_CMD_DO_GIMBAL_MANAGER_CONFIGURE",
+		MAV_CMD_IMAGE_START_CAPTURE:                        "MAV_CMD_IMAGE_START_CAPTURE",
+		MAV_CMD_IMAGE_STOP_CAPTURE:                         "MAV_CMD_IMAGE_STOP_CAPTURE",
+		MAV_CMD_REQUEST_CAMERA_IMAGE_CAPTURE:               "MAV_CMD_REQUEST_CAMERA_IMAGE_CAPTURE",
+		MAV_CMD_DO_TRIGGER_CONTROL:                         "MAV_CMD_DO_TRIGGER_CONTROL",
+		MAV_CMD_CAMERA_TRACK_POINT:                         "MAV_CMD_CAMERA_TRACK_POINT",
+		MAV_CMD_CAMERA_TRACK_RECTANGLE:                     "MAV_CMD_CAMERA_TRACK_RECTANGLE",
+		MAV_CMD_CAMERA_STOP_TRACKING:                       "MAV_CMD_CAMERA_STOP_TRACKING",
+		MAV_CMD_VIDEO_START_CAPTURE:                        "MAV_CMD_VIDEO_START_CAPTURE",
+		MAV_CMD_VIDEO_STOP_CAPTURE:                         "MAV_CMD_VIDEO_STOP_CAPTURE",
+		MAV_CMD_VIDEO_START_STREAMING:                      "MAV_CMD_VIDEO_START_STREAMING",
+		MAV_CMD_VIDEO_STOP_STREAMING:                       "MAV_CMD_VIDEO_STOP_STREAMING",
+		MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION:           "MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION",
+		MAV_CMD_REQUEST_VIDEO_STREAM_STATUS:                "MAV_CMD_REQUEST_VIDEO_STREAM_STATUS",
+		MAV_CMD_LOGGING_START:                              "MAV_CMD_LOGGING_START",
+		MAV_CMD_LOGGING_STOP:                               "MAV_CMD_LOGGING_STOP",
+		MAV_CMD_AIRFRAME_CONFIGURATION:                     "MAV_CMD_AIRFRAME_CONFIGURATION",
+		MAV_CMD_CONTROL_HIGH_LATENCY:                       "MAV_CMD_CONTROL_HIGH_LATENCY",
+		MAV_CMD_PANORAMA_CREATE:                            "MAV_CMD_PANORAMA_CREATE",
+		MAV_CMD_DO_VTOL_TRANSITION:                         "MAV_CMD_DO_VTOL_TRANSITION",
+		MAV_CMD_ARM_AUTHORIZATION_REQUEST:                  "MAV_CMD_ARM_AUTHORIZATION_REQUEST",
+		MAV_CMD_SET_GUIDED_SUBMODE_STANDARD:                "MAV_CMD_SET_GUIDED_SUBMODE_STANDARD",
+		MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE:                  "MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE",
+		MAV_CMD_CONDITION_GATE:                             "MAV_CMD_CONDITION_GATE",
+		MAV_CMD_NAV_FENCE_RETURN_POINT:                     "MAV_CMD_NAV_FENCE_RETURN_POINT",
+		MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION:         "MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION",
+		MAV_CMD_NAV_FENCE_POLYGON_VERTEX_EXCLUSION:         "MAV_CMD_NAV_FENCE_POLYGON_VERTEX_EXCLUSION",
+		MAV_CMD_NAV_FENCE_CIRCLE_INCLUSION:                 "MAV_CMD_NAV_FENCE_CIRCLE_INCLUSION",
+		MAV_CMD_NAV_FENCE_CIRCLE_EXCLUSION:                 "MAV_CMD_NAV_FENCE_CIRCLE_EXCLUSION",
+		MAV_CMD_NAV_RALLY_POINT:                            "MAV_CMD_NAV_RALLY_POINT",
+		MAV_CMD_UAVCAN_GET_NODE_INFO:                       "MAV_CMD_UAVCAN_GET_NODE_INFO",
+		MAV_CMD_PAYLOAD_PREPARE_DEPLOY:                     "MAV_CMD_PAYLOAD_PREPARE_DEPLOY",
+		MAV_CMD_PAYLOAD_CONTROL_DEPLOY:                     "MAV_CMD_PAYLOAD_CONTROL_DEPLOY",
+		MAV_CMD_FIXED_MAG_CAL_YAW:                          "MAV_CMD_FIXED_MAG_CAL_YAW",
+		MAV_CMD_DO_WINCH:                                   "MAV_CMD_DO_WINCH",
+		MAV_CMD_WAYPOINT_USER_1:                            "MAV_CMD_WAYPOINT_USER_1",
+		MAV_CMD_WAYPOINT_USER_2:                            "MAV_CMD_WAYPOINT_USER_2",
+		MAV_CMD_WAYPOINT_USER_3:                            "MAV_CMD_WAYPOINT_USER_3",
+		MAV_CMD_WAYPOINT_USER_4:                            "MAV_CMD_WAYPOINT_USER_4",
+		MAV_CMD_WAYPOINT_USER_5:                            "MAV_CMD_WAYPOINT_USER_5",
+		MAV_CMD_SPATIAL_USER_1:                             "MAV_CMD_SPATIAL_USER_1",
+		MAV_CMD_SPATIAL_USER_2:                             "MAV_CMD_SPATIAL_USER_2",
+		MAV_CMD_SPATIAL_USER_3:                             "MAV_CMD_SPATIAL_USER_3",
+		MAV_CMD_SPATIAL_USER_4:                             "MAV_CMD_SPATIAL_USER_4",
+		MAV_CMD_SPATIAL_USER_5:                             "MAV_CMD_SPATIAL_USER_5",
+		MAV_CMD_USER_1:                                     "MAV_CMD_USER_1",
+		MAV_CMD_USER_2:                                     "MAV_CMD_USER_2",
+		MAV_CMD_USER_3:                                     "MAV_CMD_USER_3",
+		MAV_CMD_USER_4:                                     "MAV_CMD_USER_4",
+		MAV_CMD_USER_5:                                     "MAV_CMD_USER_5",
+		MAV_CMD_STORM32_DO_GIMBAL_MANAGER_CONTROL_PITCHYAW: "MAV_CMD_STORM32_DO_GIMBAL_MANAGER_CONTROL_PITCHYAW",
+		MAV_CMD_STORM32_DO_GIMBAL_MANAGER_SETUP:            "MAV_CMD_STORM32_DO_GIMBAL_MANAGER_SETUP",
+		MAV_CMD_STORM32_DO_GIMBAL_ACTION:                   "MAV_CMD_STORM32_DO_GIMBAL_ACTION",
+		MAV_CMD_QSHOT_DO_CONFIGURE:                         "MAV_CMD_QSHOT_DO_CONFIGURE",
 	}[e]; ok {
 		return name
 	}
@@ -765,6 +780,7 @@ func (e MAV_CMD) Bitmask() string {
 	bitmap := ""
 	for _, entry := range []MAV_CMD{
 		MAV_CMD_DO_SET_RESUME_REPEAT_DIST,
+		MAV_CMD_DO_SPRAYER,
 		MAV_CMD_NAV_ALTITUDE_WAIT,
 		MAV_CMD_POWER_OFF_INITIATED,
 		MAV_CMD_SOLO_BTN_FLY_CLICK,
@@ -944,6 +960,10 @@ func (e MAV_CMD) Bitmask() string {
 		MAV_CMD_USER_3,
 		MAV_CMD_USER_4,
 		MAV_CMD_USER_5,
+		MAV_CMD_STORM32_DO_GIMBAL_MANAGER_CONTROL_PITCHYAW,
+		MAV_CMD_STORM32_DO_GIMBAL_MANAGER_SETUP,
+		MAV_CMD_STORM32_DO_GIMBAL_ACTION,
+		MAV_CMD_QSHOT_DO_CONFIGURE,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {
@@ -3340,6 +3360,8 @@ const (
 	PLANE_MODE_QAUTOTUNE PLANE_MODE = 22
 	// PLANE_MODE_QACRO enum
 	PLANE_MODE_QACRO PLANE_MODE = 23
+	// PLANE_MODE_THERMAL enum
+	PLANE_MODE_THERMAL PLANE_MODE = 24
 )
 
 func (e PLANE_MODE) String() string {
@@ -3367,6 +3389,7 @@ func (e PLANE_MODE) String() string {
 		PLANE_MODE_QRTL:          "PLANE_MODE_QRTL",
 		PLANE_MODE_QAUTOTUNE:     "PLANE_MODE_QAUTOTUNE",
 		PLANE_MODE_QACRO:         "PLANE_MODE_QACRO",
+		PLANE_MODE_THERMAL:       "PLANE_MODE_THERMAL",
 	}[e]; ok {
 		return name
 	}
@@ -3400,6 +3423,7 @@ func (e PLANE_MODE) Bitmask() string {
 		PLANE_MODE_QRTL,
 		PLANE_MODE_QAUTOTUNE,
 		PLANE_MODE_QACRO,
+		PLANE_MODE_THERMAL,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {
@@ -4322,6 +4346,8 @@ const (
 	MAV_SYS_STATUS_PREARM_CHECK MAV_SYS_STATUS_SENSOR = 268435456
 	// MAV_SYS_STATUS_OBSTACLE_AVOIDANCE enum. 0x20000000 Avoidance/collision prevention
 	MAV_SYS_STATUS_OBSTACLE_AVOIDANCE MAV_SYS_STATUS_SENSOR = 536870912
+	// MAV_SYS_STATUS_SENSOR_PROPULSION enum. 0x40000000 propulsion (actuator, esc, motor or propellor)
+	MAV_SYS_STATUS_SENSOR_PROPULSION MAV_SYS_STATUS_SENSOR = 1073741824
 )
 
 func (e MAV_SYS_STATUS_SENSOR) String() string {
@@ -4356,6 +4382,7 @@ func (e MAV_SYS_STATUS_SENSOR) String() string {
 		MAV_SYS_STATUS_SENSOR_SATCOM:                 "MAV_SYS_STATUS_SENSOR_SATCOM",
 		MAV_SYS_STATUS_PREARM_CHECK:                  "MAV_SYS_STATUS_PREARM_CHECK",
 		MAV_SYS_STATUS_OBSTACLE_AVOIDANCE:            "MAV_SYS_STATUS_OBSTACLE_AVOIDANCE",
+		MAV_SYS_STATUS_SENSOR_PROPULSION:             "MAV_SYS_STATUS_SENSOR_PROPULSION",
 	}[e]; ok {
 		return name
 	}
@@ -4396,6 +4423,7 @@ func (e MAV_SYS_STATUS_SENSOR) Bitmask() string {
 		MAV_SYS_STATUS_SENSOR_SATCOM,
 		MAV_SYS_STATUS_PREARM_CHECK,
 		MAV_SYS_STATUS_OBSTACLE_AVOIDANCE,
+		MAV_SYS_STATUS_SENSOR_PROPULSION,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {
@@ -9514,19 +9542,19 @@ func (e *CAMERA_TRACKING_MODE) UnmarshalBinary(data []byte) error {
 }
 
 const (
-	// CAMERA_TRACKING_NONE enum. Not tracking
-	CAMERA_TRACKING_NONE CAMERA_TRACKING_MODE = 0
-	// CAMERA_TRACKING_POINT enum. Target is a point
-	CAMERA_TRACKING_POINT CAMERA_TRACKING_MODE = 1
-	// CAMERA_TRACKING_RECTANGLE enum. Target is a rectangle
-	CAMERA_TRACKING_RECTANGLE CAMERA_TRACKING_MODE = 2
+	// CAMERA_TRACKING_MODE_NONE enum. Not tracking
+	CAMERA_TRACKING_MODE_NONE CAMERA_TRACKING_MODE = 0
+	// CAMERA_TRACKING_MODE_POINT enum. Target is a point
+	CAMERA_TRACKING_MODE_POINT CAMERA_TRACKING_MODE = 1
+	// CAMERA_TRACKING_MODE_RECTANGLE enum. Target is a rectangle
+	CAMERA_TRACKING_MODE_RECTANGLE CAMERA_TRACKING_MODE = 2
 )
 
 func (e CAMERA_TRACKING_MODE) String() string {
 	if name, ok := map[CAMERA_TRACKING_MODE]string{
-		CAMERA_TRACKING_NONE:      "CAMERA_TRACKING_NONE",
-		CAMERA_TRACKING_POINT:     "CAMERA_TRACKING_POINT",
-		CAMERA_TRACKING_RECTANGLE: "CAMERA_TRACKING_RECTANGLE",
+		CAMERA_TRACKING_MODE_NONE:      "CAMERA_TRACKING_MODE_NONE",
+		CAMERA_TRACKING_MODE_POINT:     "CAMERA_TRACKING_MODE_POINT",
+		CAMERA_TRACKING_MODE_RECTANGLE: "CAMERA_TRACKING_MODE_RECTANGLE",
 	}[e]; ok {
 		return name
 	}
@@ -9537,9 +9565,9 @@ func (e CAMERA_TRACKING_MODE) String() string {
 func (e CAMERA_TRACKING_MODE) Bitmask() string {
 	bitmap := ""
 	for _, entry := range []CAMERA_TRACKING_MODE{
-		CAMERA_TRACKING_NONE,
-		CAMERA_TRACKING_POINT,
-		CAMERA_TRACKING_RECTANGLE,
+		CAMERA_TRACKING_MODE_NONE,
+		CAMERA_TRACKING_MODE_POINT,
+		CAMERA_TRACKING_MODE_RECTANGLE,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {
@@ -9570,22 +9598,22 @@ func (e *CAMERA_TRACKING_TARGET_DATA) UnmarshalBinary(data []byte) error {
 }
 
 const (
-	// CAMERA_TRACKING_TARGET_NONE enum. No target data
-	CAMERA_TRACKING_TARGET_NONE CAMERA_TRACKING_TARGET_DATA = 0
-	// CAMERA_TRACKING_TARGET_EMBEDDED enum. Target data embedded in image data (proprietary)
-	CAMERA_TRACKING_TARGET_EMBEDDED CAMERA_TRACKING_TARGET_DATA = 1
-	// CAMERA_TRACKING_TARGET_RENDERED enum. Target data rendered in image
-	CAMERA_TRACKING_TARGET_RENDERED CAMERA_TRACKING_TARGET_DATA = 2
-	// CAMERA_TRACKING_TARGET_IN_STATUS enum. Target data within status message (Point or Rectangle)
-	CAMERA_TRACKING_TARGET_IN_STATUS CAMERA_TRACKING_TARGET_DATA = 4
+	// CAMERA_TRACKING_TARGET_DATA_NONE enum. No target data
+	CAMERA_TRACKING_TARGET_DATA_NONE CAMERA_TRACKING_TARGET_DATA = 0
+	// CAMERA_TRACKING_TARGET_DATA_EMBEDDED enum. Target data embedded in image data (proprietary)
+	CAMERA_TRACKING_TARGET_DATA_EMBEDDED CAMERA_TRACKING_TARGET_DATA = 1
+	// CAMERA_TRACKING_TARGET_DATA_RENDERED enum. Target data rendered in image
+	CAMERA_TRACKING_TARGET_DATA_RENDERED CAMERA_TRACKING_TARGET_DATA = 2
+	// CAMERA_TRACKING_TARGET_DATA_IN_STATUS enum. Target data within status message (Point or Rectangle)
+	CAMERA_TRACKING_TARGET_DATA_IN_STATUS CAMERA_TRACKING_TARGET_DATA = 4
 )
 
 func (e CAMERA_TRACKING_TARGET_DATA) String() string {
 	if name, ok := map[CAMERA_TRACKING_TARGET_DATA]string{
-		CAMERA_TRACKING_TARGET_NONE:      "CAMERA_TRACKING_TARGET_NONE",
-		CAMERA_TRACKING_TARGET_EMBEDDED:  "CAMERA_TRACKING_TARGET_EMBEDDED",
-		CAMERA_TRACKING_TARGET_RENDERED:  "CAMERA_TRACKING_TARGET_RENDERED",
-		CAMERA_TRACKING_TARGET_IN_STATUS: "CAMERA_TRACKING_TARGET_IN_STATUS",
+		CAMERA_TRACKING_TARGET_DATA_NONE:      "CAMERA_TRACKING_TARGET_DATA_NONE",
+		CAMERA_TRACKING_TARGET_DATA_EMBEDDED:  "CAMERA_TRACKING_TARGET_DATA_EMBEDDED",
+		CAMERA_TRACKING_TARGET_DATA_RENDERED:  "CAMERA_TRACKING_TARGET_DATA_RENDERED",
+		CAMERA_TRACKING_TARGET_DATA_IN_STATUS: "CAMERA_TRACKING_TARGET_DATA_IN_STATUS",
 	}[e]; ok {
 		return name
 	}
@@ -9596,10 +9624,10 @@ func (e CAMERA_TRACKING_TARGET_DATA) String() string {
 func (e CAMERA_TRACKING_TARGET_DATA) Bitmask() string {
 	bitmap := ""
 	for _, entry := range []CAMERA_TRACKING_TARGET_DATA{
-		CAMERA_TRACKING_TARGET_NONE,
-		CAMERA_TRACKING_TARGET_EMBEDDED,
-		CAMERA_TRACKING_TARGET_RENDERED,
-		CAMERA_TRACKING_TARGET_IN_STATUS,
+		CAMERA_TRACKING_TARGET_DATA_NONE,
+		CAMERA_TRACKING_TARGET_DATA_EMBEDDED,
+		CAMERA_TRACKING_TARGET_DATA_RENDERED,
+		CAMERA_TRACKING_TARGET_DATA_IN_STATUS,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {
@@ -14724,6 +14752,838 @@ func (e UALBERTA_PILOT_MODE) Bitmask() string {
 		PILOT_MANUAL,
 		PILOT_AUTO,
 		PILOT_ROTO,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_TUNNEL_PAYLOAD_TYPE type
+type MAV_STORM32_TUNNEL_PAYLOAD_TYPE int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_TUNNEL_PAYLOAD_TYPE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_TUNNEL_PAYLOAD_TYPE) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_TUNNEL_PAYLOAD_TYPE(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_IN enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_IN MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 200
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_OUT enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_OUT MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 201
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_IN enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_IN MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 202
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_OUT enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_OUT MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 203
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_IN enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_IN MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 204
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_OUT enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_OUT MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 205
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED6 enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED6 MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 206
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED7 enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED7 MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 207
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED8 enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED8 MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 208
+	// MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED9 enum. Registered for STorM32 gimbal controller
+	MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED9 MAV_STORM32_TUNNEL_PAYLOAD_TYPE = 209
+)
+
+func (e MAV_STORM32_TUNNEL_PAYLOAD_TYPE) String() string {
+	if name, ok := map[MAV_STORM32_TUNNEL_PAYLOAD_TYPE]string{
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_IN:    "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_IN",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_OUT:   "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_OUT",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_IN:    "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_IN",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_OUT:   "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_OUT",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_IN:    "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_IN",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_OUT:   "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_OUT",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED6: "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED6",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED7: "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED7",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED8: "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED8",
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED9: "MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED9",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_TUNNEL_PAYLOAD_TYPE_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_TUNNEL_PAYLOAD_TYPE enums
+func (e MAV_STORM32_TUNNEL_PAYLOAD_TYPE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_TUNNEL_PAYLOAD_TYPE{
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_IN,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH1_OUT,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_IN,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH2_OUT,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_IN,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_CH3_OUT,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED6,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED7,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED8,
+		MAV_STORM32_TUNNEL_PAYLOAD_TYPE_STORM32_RESERVED9,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS type. Gimbal device capability flags.
+type MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RETRACT enum. Gimbal device supports a retracted position
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RETRACT MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 1
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_NEUTRAL enum. Gimbal device supports a horizontal, forward looking position, stabilized. Can also be used to reset the gimbal's orientation
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_NEUTRAL MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 2
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_AXIS enum. Gimbal device supports rotating around roll axis
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_AXIS MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 4
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_FOLLOW enum. Gimbal device supports to follow a roll angle relative to the vehicle
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_FOLLOW MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 8
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_LOCK enum. Gimbal device supports locking to an roll angle (generally that's the default)
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_LOCK MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 16
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_AXIS enum. Gimbal device supports rotating around pitch axis
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_AXIS MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 32
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_FOLLOW enum. Gimbal device supports to follow a pitch angle relative to the vehicle
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_FOLLOW MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 64
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_LOCK enum. Gimbal device supports locking to an pitch angle (generally that's the default)
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_LOCK MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 128
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_AXIS enum. Gimbal device supports rotating around yaw axis
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_AXIS MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 256
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_FOLLOW enum. Gimbal device supports to follow a yaw angle relative to the vehicle (generally that's the default)
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_FOLLOW MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 512
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_LOCK enum. Gimbal device supports locking to a heading angle
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_LOCK MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 1024
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_INFINITE_YAW enum. Gimbal device supports yawing/panning infinitely (e.g. using a slip ring)
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_INFINITE_YAW MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 2048
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ABSOLUTE_YAW enum. Gimbal device supports absolute yaw angles (this usually requires support by an autopilot, and can be dynamic, i.e., go on and off during runtime)
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ABSOLUTE_YAW MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 65536
+	// MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RC enum. Gimbal device supports control via an RC input signal
+	MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RC MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS = 131072
+)
+
+func (e MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS]string{
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RETRACT:      "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RETRACT",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_NEUTRAL:      "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_NEUTRAL",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_AXIS:    "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_AXIS",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_FOLLOW:  "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_FOLLOW",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_LOCK:    "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_LOCK",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_AXIS:   "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_AXIS",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_FOLLOW: "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_FOLLOW",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_LOCK:   "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_LOCK",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_AXIS:     "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_AXIS",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_FOLLOW:   "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_FOLLOW",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_LOCK:     "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_LOCK",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_INFINITE_YAW: "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_INFINITE_YAW",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ABSOLUTE_YAW: "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ABSOLUTE_YAW",
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RC:           "MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RC",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS enums
+func (e MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS{
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RETRACT,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_NEUTRAL,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_AXIS,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_FOLLOW,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ROLL_LOCK,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_AXIS,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_FOLLOW,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_PITCH_LOCK,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_AXIS,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_FOLLOW,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_YAW_LOCK,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_INFINITE_YAW,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_ABSOLUTE_YAW,
+		MAV_STORM32_GIMBAL_DEVICE_CAP_FLAGS_HAS_RC,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_DEVICE_FLAGS type. Flags for gimbal device operation. Used for setting and reporting, unless specified otherwise. Settings which are in violation of the capability flags are ignored by the gimbal device.
+type MAV_STORM32_GIMBAL_DEVICE_FLAGS int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_DEVICE_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_DEVICE_FLAGS) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_DEVICE_FLAGS(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_RETRACT enum. Retracted safe position (no stabilization), takes presedence over NEUTRAL flag. If supported by the gimbal, the angles in the retracted position can be set in addition
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_RETRACT MAV_STORM32_GIMBAL_DEVICE_FLAGS = 1
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_NEUTRAL enum. Neutral position (horizontal, forward looking, with stabiliziation)
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_NEUTRAL MAV_STORM32_GIMBAL_DEVICE_FLAGS = 2
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_ROLL_LOCK enum. Lock roll angle to absolute angle relative to horizon (not relative to drone). This is generally the default
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_ROLL_LOCK MAV_STORM32_GIMBAL_DEVICE_FLAGS = 4
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_PITCH_LOCK enum. Lock pitch angle to absolute angle relative to horizon (not relative to drone). This is generally the default
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_PITCH_LOCK MAV_STORM32_GIMBAL_DEVICE_FLAGS = 8
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_LOCK enum. Lock yaw angle to absolute angle relative to earth (not relative to drone). When the YAW_ABSOLUTE flag is set, the quaternion is in the Earth frame with the x-axis pointing North (yaw absolute), else it is in the Earth frame rotated so that the x-axis is pointing forward (yaw relative to vehicle)
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_LOCK MAV_STORM32_GIMBAL_DEVICE_FLAGS = 16
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_CAN_ACCEPT_YAW_ABSOLUTE enum. Gimbal device can accept absolute yaw angle input. This flag cannot be set, is only for reporting (attempts to set it are rejected by the gimbal device)
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_CAN_ACCEPT_YAW_ABSOLUTE MAV_STORM32_GIMBAL_DEVICE_FLAGS = 256
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_ABSOLUTE enum. Yaw angle is absolute (is only accepted if CAN_ACCEPT_YAW_ABSOLUTE is set). If this flag is set, the quaternion is in the Earth frame with the x-axis pointing North (yaw absolute), else it is in the Earth frame rotated so that the x-axis is pointing forward (yaw relative to vehicle)
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_ABSOLUTE MAV_STORM32_GIMBAL_DEVICE_FLAGS = 512
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_EXCLUSIVE enum. RC control. The RC input signal fed to the gimbal device exclusively controls the gimbal's orientation. Overrides RC_MIXED flag if that is also set
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_EXCLUSIVE MAV_STORM32_GIMBAL_DEVICE_FLAGS = 1024
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_MIXED enum. RC control. The RC input signal fed to the gimbal device is mixed into the gimbal's orientation. Is overriden by RC_EXCLUSIVE flag if that is also set
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_MIXED MAV_STORM32_GIMBAL_DEVICE_FLAGS = 2048
+	// MAV_STORM32_GIMBAL_DEVICE_FLAGS_NONE enum. UINT16_MAX = ignore
+	MAV_STORM32_GIMBAL_DEVICE_FLAGS_NONE MAV_STORM32_GIMBAL_DEVICE_FLAGS = 65535
+)
+
+func (e MAV_STORM32_GIMBAL_DEVICE_FLAGS) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_DEVICE_FLAGS]string{
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_RETRACT:                 "MAV_STORM32_GIMBAL_DEVICE_FLAGS_RETRACT",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_NEUTRAL:                 "MAV_STORM32_GIMBAL_DEVICE_FLAGS_NEUTRAL",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_ROLL_LOCK:               "MAV_STORM32_GIMBAL_DEVICE_FLAGS_ROLL_LOCK",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_PITCH_LOCK:              "MAV_STORM32_GIMBAL_DEVICE_FLAGS_PITCH_LOCK",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_LOCK:                "MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_LOCK",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_CAN_ACCEPT_YAW_ABSOLUTE: "MAV_STORM32_GIMBAL_DEVICE_FLAGS_CAN_ACCEPT_YAW_ABSOLUTE",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_ABSOLUTE:            "MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_ABSOLUTE",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_EXCLUSIVE:            "MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_EXCLUSIVE",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_MIXED:                "MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_MIXED",
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_NONE:                    "MAV_STORM32_GIMBAL_DEVICE_FLAGS_NONE",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_DEVICE_FLAGS_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_DEVICE_FLAGS enums
+func (e MAV_STORM32_GIMBAL_DEVICE_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_DEVICE_FLAGS{
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_RETRACT,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_NEUTRAL,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_ROLL_LOCK,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_PITCH_LOCK,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_LOCK,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_CAN_ACCEPT_YAW_ABSOLUTE,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_YAW_ABSOLUTE,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_EXCLUSIVE,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_RC_MIXED,
+		MAV_STORM32_GIMBAL_DEVICE_FLAGS_NONE,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS type. Gimbal device error and condition flags (0 means no error or other condition).
+type MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_ROLL_LIMIT enum. Gimbal device is limited by hardware roll limit
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_ROLL_LIMIT MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 1
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_PITCH_LIMIT enum. Gimbal device is limited by hardware pitch limit
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_PITCH_LIMIT MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 2
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_YAW_LIMIT enum. Gimbal device is limited by hardware yaw limit
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_YAW_LIMIT MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 4
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_ENCODER_ERROR enum. There is an error with the gimbal device's encoders
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_ENCODER_ERROR MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 8
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_POWER_ERROR enum. There is an error with the gimbal device's power source
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_POWER_ERROR MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 16
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_MOTOR_ERROR enum. There is an error with the gimbal device's motors
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_MOTOR_ERROR MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 32
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_SOFTWARE_ERROR enum. There is an error with the gimbal device's software
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_SOFTWARE_ERROR MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 64
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_COMMS_ERROR enum. There is an error with the gimbal device's communication
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_COMMS_ERROR MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 128
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_CALIBRATION_RUNNING enum. Gimbal device is currently calibrating (not an error)
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_CALIBRATION_RUNNING MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 256
+	// MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_NO_MANAGER enum. Gimbal device is not assigned to a gimbal manager (not an error)
+	MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_NO_MANAGER MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS = 32768
+)
+
+func (e MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS]string{
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_ROLL_LIMIT:       "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_ROLL_LIMIT",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_PITCH_LIMIT:      "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_PITCH_LIMIT",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_YAW_LIMIT:        "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_YAW_LIMIT",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_ENCODER_ERROR:       "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_ENCODER_ERROR",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_POWER_ERROR:         "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_POWER_ERROR",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_MOTOR_ERROR:         "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_MOTOR_ERROR",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_SOFTWARE_ERROR:      "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_SOFTWARE_ERROR",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_COMMS_ERROR:         "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_COMMS_ERROR",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_CALIBRATION_RUNNING: "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_CALIBRATION_RUNNING",
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_NO_MANAGER:          "MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_NO_MANAGER",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS enums
+func (e MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS{
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_ROLL_LIMIT,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_PITCH_LIMIT,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_AT_YAW_LIMIT,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_ENCODER_ERROR,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_POWER_ERROR,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_MOTOR_ERROR,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_SOFTWARE_ERROR,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_COMMS_ERROR,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_CALIBRATION_RUNNING,
+		MAV_STORM32_GIMBAL_DEVICE_ERROR_FLAGS_NO_MANAGER,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS type. Gimbal manager capability flags.
+type MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_HAS_PROFILES enum. The gimbal manager supports several profiles
+	MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_HAS_PROFILES MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS = 1
+	// MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_SUPPORTS_CHANGE enum. The gimbal manager supports changing the gimbal manager during run time, i.e. can be enabled/disabled
+	MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_SUPPORTS_CHANGE MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS = 2
+)
+
+func (e MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS]string{
+		MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_HAS_PROFILES:    "MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_HAS_PROFILES",
+		MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_SUPPORTS_CHANGE: "MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_SUPPORTS_CHANGE",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS enums
+func (e MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS{
+		MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_HAS_PROFILES,
+		MAV_STORM32_GIMBAL_MANAGER_CAP_FLAGS_SUPPORTS_CHANGE,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_MANAGER_FLAGS type. Flags for gimbal manager operation. Used for setting and reporting, unless specified otherwise. If a setting is accepted by the gimbal manger, is reported in the STORM32_GIMBAL_MANAGER_STATUS message.
+type MAV_STORM32_GIMBAL_MANAGER_FLAGS int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_MANAGER_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_MANAGER_FLAGS) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_MANAGER_FLAGS(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_NONE enum. 0 = ignore
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_NONE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 0
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_RC_ACTIVE enum. Request to set RC input to active, or report RC input is active. Implies RC mixed. RC exclusive is achieved by setting all clients to inactive
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_RC_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 1
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_ONBOARD_ACTIVE enum. Request to set onboard/companion computer client to active, or report this client is active
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_ONBOARD_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 2
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_AUTOPILOT_ACTIVE enum. Request to set autopliot client to active, or report this client is active
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_AUTOPILOT_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 4
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS_ACTIVE enum. Request to set GCS client to active, or report this client is active
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 8
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA_ACTIVE enum. Request to set camera client to active, or report this client is active
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 16
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS2_ACTIVE enum. Request to set GCS2 client to active, or report this client is active
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS2_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 32
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA2_ACTIVE enum. Request to set camera2 client to active, or report this client is active
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA2_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 64
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM_ACTIVE enum. Request to set custom client to active, or report this client is active
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 128
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM2_ACTIVE enum. Request to set custom2 client to active, or report this client is active
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM2_ACTIVE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 256
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_SUPERVISON enum. Request supervision. This flag is only for setting, it is not reported
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_SUPERVISON MAV_STORM32_GIMBAL_MANAGER_FLAGS = 512
+	// MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_RELEASE enum. Release supervision. This flag is only for setting, it is not reported
+	MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_RELEASE MAV_STORM32_GIMBAL_MANAGER_FLAGS = 1024
+)
+
+func (e MAV_STORM32_GIMBAL_MANAGER_FLAGS) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_MANAGER_FLAGS]string{
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_NONE:                    "MAV_STORM32_GIMBAL_MANAGER_FLAGS_NONE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_RC_ACTIVE:               "MAV_STORM32_GIMBAL_MANAGER_FLAGS_RC_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_ONBOARD_ACTIVE:   "MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_ONBOARD_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_AUTOPILOT_ACTIVE: "MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_AUTOPILOT_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS_ACTIVE:       "MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA_ACTIVE:    "MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS2_ACTIVE:      "MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS2_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA2_ACTIVE:   "MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA2_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM_ACTIVE:    "MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM2_ACTIVE:   "MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM2_ACTIVE",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_SUPERVISON:          "MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_SUPERVISON",
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_RELEASE:             "MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_RELEASE",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_MANAGER_FLAGS_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_MANAGER_FLAGS enums
+func (e MAV_STORM32_GIMBAL_MANAGER_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_MANAGER_FLAGS{
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_NONE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_RC_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_ONBOARD_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_AUTOPILOT_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_GCS2_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CAMERA2_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_CLIENT_CUSTOM2_ACTIVE,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_SUPERVISON,
+		MAV_STORM32_GIMBAL_MANAGER_FLAGS_SET_RELEASE,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_MANAGER_CLIENT type. Gimbal manager client ID. In a prioritizing profile, the priorities are determined by the implementation; they could e.g. be custom1 > onboard > GCS > autopilot/camera > GCS2 > custom2.
+type MAV_STORM32_GIMBAL_MANAGER_CLIENT int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_MANAGER_CLIENT) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_MANAGER_CLIENT) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_MANAGER_CLIENT(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_NONE enum. For convenience
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_NONE MAV_STORM32_GIMBAL_MANAGER_CLIENT = 0
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_ONBOARD enum. This is the onboard/companion computer client
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_ONBOARD MAV_STORM32_GIMBAL_MANAGER_CLIENT = 1
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_AUTOPILOT enum. This is the autopilot client
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_AUTOPILOT MAV_STORM32_GIMBAL_MANAGER_CLIENT = 2
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS enum. This is the GCS client
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS MAV_STORM32_GIMBAL_MANAGER_CLIENT = 3
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA enum. This is the camera client
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA MAV_STORM32_GIMBAL_MANAGER_CLIENT = 4
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS2 enum. This is the GCS2 client
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS2 MAV_STORM32_GIMBAL_MANAGER_CLIENT = 5
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA2 enum. This is the camera2 client
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA2 MAV_STORM32_GIMBAL_MANAGER_CLIENT = 6
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM enum. This is the custom client
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM MAV_STORM32_GIMBAL_MANAGER_CLIENT = 7
+	// MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM2 enum. This is the custom2 client
+	MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM2 MAV_STORM32_GIMBAL_MANAGER_CLIENT = 8
+)
+
+func (e MAV_STORM32_GIMBAL_MANAGER_CLIENT) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_MANAGER_CLIENT]string{
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_NONE:      "MAV_STORM32_GIMBAL_MANAGER_CLIENT_NONE",
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_ONBOARD:   "MAV_STORM32_GIMBAL_MANAGER_CLIENT_ONBOARD",
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_AUTOPILOT: "MAV_STORM32_GIMBAL_MANAGER_CLIENT_AUTOPILOT",
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS:       "MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS",
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA:    "MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA",
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS2:      "MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS2",
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA2:   "MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA2",
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM:    "MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM",
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM2:   "MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM2",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_MANAGER_CLIENT_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_MANAGER_CLIENT enums
+func (e MAV_STORM32_GIMBAL_MANAGER_CLIENT) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_MANAGER_CLIENT{
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_NONE,
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_ONBOARD,
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_AUTOPILOT,
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS,
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA,
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_GCS2,
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_CAMERA2,
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM,
+		MAV_STORM32_GIMBAL_MANAGER_CLIENT_CUSTOM2,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS type. Flags for gimbal manager set up. Used for setting and reporting, unless specified otherwise.
+type MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_ENABLE enum. Enable gimbal manager. This flag is only for setting, is not reported
+	MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_ENABLE MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS = 16384
+	// MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_DISABLE enum. Disable gimbal manager. This flag is only for setting, is not reported
+	MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_DISABLE MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS = 32768
+)
+
+func (e MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS]string{
+		MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_ENABLE:  "MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_ENABLE",
+		MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_DISABLE: "MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_DISABLE",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS enums
+func (e MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS{
+		MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_ENABLE,
+		MAV_STORM32_GIMBAL_MANAGER_SETUP_FLAGS_DISABLE,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_MANAGER_PROFILE type. Gimbal manager profiles. Only standard profiles are defined. Any implementation can define it's own profile in addition, and should use enum values > 16.
+type MAV_STORM32_GIMBAL_MANAGER_PROFILE int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_MANAGER_PROFILE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_MANAGER_PROFILE) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_MANAGER_PROFILE(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_MANAGER_PROFILE_DEFAULT enum. Default profile. Implementation specific
+	MAV_STORM32_GIMBAL_MANAGER_PROFILE_DEFAULT MAV_STORM32_GIMBAL_MANAGER_PROFILE = 0
+	// MAV_STORM32_GIMBAL_MANAGER_PROFILE_CUSTOM enum. Custom profile. Configurable profile according to the STorM32 definition. Is configured with STORM32_GIMBAL_MANAGER_PROFIL
+	MAV_STORM32_GIMBAL_MANAGER_PROFILE_CUSTOM MAV_STORM32_GIMBAL_MANAGER_PROFILE = 1
+	// MAV_STORM32_GIMBAL_MANAGER_PROFILE_COOPERATIVE enum. Default cooperative profile. Uses STorM32 custom profile with default settings to achieve cooperative behavior
+	MAV_STORM32_GIMBAL_MANAGER_PROFILE_COOPERATIVE MAV_STORM32_GIMBAL_MANAGER_PROFILE = 2
+	// MAV_STORM32_GIMBAL_MANAGER_PROFILE_EXCLUSIVE enum. Default exclusive profile. Uses STorM32 custom profile with default settings to achieve exclusive behavior
+	MAV_STORM32_GIMBAL_MANAGER_PROFILE_EXCLUSIVE MAV_STORM32_GIMBAL_MANAGER_PROFILE = 3
+	// MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_COOPERATIVE enum. Default priority profile with cooperative behavior for equal priority. Uses STorM32 custom profile with default settings to achieve priority-based behavior
+	MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_COOPERATIVE MAV_STORM32_GIMBAL_MANAGER_PROFILE = 4
+	// MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_EXCLUSIVE enum. Default priority profile with exclusive behavior for equal priority. Uses STorM32 custom profile with default settings to achieve priority-based behavior
+	MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_EXCLUSIVE MAV_STORM32_GIMBAL_MANAGER_PROFILE = 5
+)
+
+func (e MAV_STORM32_GIMBAL_MANAGER_PROFILE) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_MANAGER_PROFILE]string{
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_DEFAULT:              "MAV_STORM32_GIMBAL_MANAGER_PROFILE_DEFAULT",
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_CUSTOM:               "MAV_STORM32_GIMBAL_MANAGER_PROFILE_CUSTOM",
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_COOPERATIVE:          "MAV_STORM32_GIMBAL_MANAGER_PROFILE_COOPERATIVE",
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_EXCLUSIVE:            "MAV_STORM32_GIMBAL_MANAGER_PROFILE_EXCLUSIVE",
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_COOPERATIVE: "MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_COOPERATIVE",
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_EXCLUSIVE:   "MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_EXCLUSIVE",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_MANAGER_PROFILE_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_MANAGER_PROFILE enums
+func (e MAV_STORM32_GIMBAL_MANAGER_PROFILE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_MANAGER_PROFILE{
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_DEFAULT,
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_CUSTOM,
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_COOPERATIVE,
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_EXCLUSIVE,
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_COOPERATIVE,
+		MAV_STORM32_GIMBAL_MANAGER_PROFILE_PRIORITY_EXCLUSIVE,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_STORM32_GIMBAL_ACTION type. Gimbal actions.
+type MAV_STORM32_GIMBAL_ACTION int
+
+// MarshalBinary generic func
+func (e MAV_STORM32_GIMBAL_ACTION) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_STORM32_GIMBAL_ACTION) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_STORM32_GIMBAL_ACTION(v)
+	return nil
+}
+
+const (
+	// MAV_STORM32_GIMBAL_ACTION_RECENTER enum. Trigger the gimbal device to recenter the gimbal
+	MAV_STORM32_GIMBAL_ACTION_RECENTER MAV_STORM32_GIMBAL_ACTION = 1
+	// MAV_STORM32_GIMBAL_ACTION_CALIBRATION enum. Trigger the gimbal device to run a calibration
+	MAV_STORM32_GIMBAL_ACTION_CALIBRATION MAV_STORM32_GIMBAL_ACTION = 2
+	// MAV_STORM32_GIMBAL_ACTION_DISCOVER_MANAGER enum. Trigger gimbal device to (re)discover the gimbal manager during run time
+	MAV_STORM32_GIMBAL_ACTION_DISCOVER_MANAGER MAV_STORM32_GIMBAL_ACTION = 3
+)
+
+func (e MAV_STORM32_GIMBAL_ACTION) String() string {
+	if name, ok := map[MAV_STORM32_GIMBAL_ACTION]string{
+		MAV_STORM32_GIMBAL_ACTION_RECENTER:         "MAV_STORM32_GIMBAL_ACTION_RECENTER",
+		MAV_STORM32_GIMBAL_ACTION_CALIBRATION:      "MAV_STORM32_GIMBAL_ACTION_CALIBRATION",
+		MAV_STORM32_GIMBAL_ACTION_DISCOVER_MANAGER: "MAV_STORM32_GIMBAL_ACTION_DISCOVER_MANAGER",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_STORM32_GIMBAL_ACTION_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_STORM32_GIMBAL_ACTION enums
+func (e MAV_STORM32_GIMBAL_ACTION) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_STORM32_GIMBAL_ACTION{
+		MAV_STORM32_GIMBAL_ACTION_RECENTER,
+		MAV_STORM32_GIMBAL_ACTION_CALIBRATION,
+		MAV_STORM32_GIMBAL_ACTION_DISCOVER_MANAGER,
+	} {
+		if e&entry > 0 {
+			if len(bitmap) > 0 {
+				bitmap += " | "
+			}
+			bitmap += entry.String()
+		}
+	}
+	return bitmap
+}
+
+// MAV_QSHOT_MODE type. Enumeration of possible shot modes.
+type MAV_QSHOT_MODE int
+
+// MarshalBinary generic func
+func (e MAV_QSHOT_MODE) MarshalBinary() (data []byte, err error) {
+	return []byte(strconv.Itoa(int(e))), nil
+}
+
+// UnmarshalBinary generic func
+func (e *MAV_QSHOT_MODE) UnmarshalBinary(data []byte) error {
+	v, err := strconv.Atoi(string(data))
+	if err != nil {
+		return err
+	}
+	*e = MAV_QSHOT_MODE(v)
+	return nil
+}
+
+const (
+	// MAV_QSHOT_MODE_UNDEFINED enum. Undefined shot mode. Can be used to determine if qshots should be used or not
+	MAV_QSHOT_MODE_UNDEFINED MAV_QSHOT_MODE = 0
+	// MAV_QSHOT_MODE_DEFAULT enum. Start normal gimbal operation. Is usally used to return back from a shot
+	MAV_QSHOT_MODE_DEFAULT MAV_QSHOT_MODE = 1
+	// MAV_QSHOT_MODE_GIMBAL_RETRACT enum. Load and keep safe gimbal position and stop stabilization
+	MAV_QSHOT_MODE_GIMBAL_RETRACT MAV_QSHOT_MODE = 2
+	// MAV_QSHOT_MODE_GIMBAL_NEUTRAL enum. Load neutral gimbal position and keep it while stabilizing
+	MAV_QSHOT_MODE_GIMBAL_NEUTRAL MAV_QSHOT_MODE = 3
+	// MAV_QSHOT_MODE_GIMBAL_MISSION enum. Start mission with gimbal control
+	MAV_QSHOT_MODE_GIMBAL_MISSION MAV_QSHOT_MODE = 4
+	// MAV_QSHOT_MODE_GIMBAL_RC_CONTROL enum. Start RC gimbal control
+	MAV_QSHOT_MODE_GIMBAL_RC_CONTROL MAV_QSHOT_MODE = 5
+	// MAV_QSHOT_MODE_POI_TARGETING enum. Start gimbal tracking the point specified by Lat, Lon, Alt
+	MAV_QSHOT_MODE_POI_TARGETING MAV_QSHOT_MODE = 6
+	// MAV_QSHOT_MODE_SYSID_TARGETING enum. Start gimbal tracking the system with specified system ID
+	MAV_QSHOT_MODE_SYSID_TARGETING MAV_QSHOT_MODE = 7
+	// MAV_QSHOT_MODE_CABLECAM_2POINT enum. Start 2-point cable cam quick shot
+	MAV_QSHOT_MODE_CABLECAM_2POINT MAV_QSHOT_MODE = 8
+)
+
+func (e MAV_QSHOT_MODE) String() string {
+	if name, ok := map[MAV_QSHOT_MODE]string{
+		MAV_QSHOT_MODE_UNDEFINED:         "MAV_QSHOT_MODE_UNDEFINED",
+		MAV_QSHOT_MODE_DEFAULT:           "MAV_QSHOT_MODE_DEFAULT",
+		MAV_QSHOT_MODE_GIMBAL_RETRACT:    "MAV_QSHOT_MODE_GIMBAL_RETRACT",
+		MAV_QSHOT_MODE_GIMBAL_NEUTRAL:    "MAV_QSHOT_MODE_GIMBAL_NEUTRAL",
+		MAV_QSHOT_MODE_GIMBAL_MISSION:    "MAV_QSHOT_MODE_GIMBAL_MISSION",
+		MAV_QSHOT_MODE_GIMBAL_RC_CONTROL: "MAV_QSHOT_MODE_GIMBAL_RC_CONTROL",
+		MAV_QSHOT_MODE_POI_TARGETING:     "MAV_QSHOT_MODE_POI_TARGETING",
+		MAV_QSHOT_MODE_SYSID_TARGETING:   "MAV_QSHOT_MODE_SYSID_TARGETING",
+		MAV_QSHOT_MODE_CABLECAM_2POINT:   "MAV_QSHOT_MODE_CABLECAM_2POINT",
+	}[e]; ok {
+		return name
+	}
+	return fmt.Sprintf("MAV_QSHOT_MODE_UNDEFINED_%d", int(e))
+}
+
+// Bitmask return string representetion of intersects MAV_QSHOT_MODE enums
+func (e MAV_QSHOT_MODE) Bitmask() string {
+	bitmap := ""
+	for _, entry := range []MAV_QSHOT_MODE{
+		MAV_QSHOT_MODE_UNDEFINED,
+		MAV_QSHOT_MODE_DEFAULT,
+		MAV_QSHOT_MODE_GIMBAL_RETRACT,
+		MAV_QSHOT_MODE_GIMBAL_NEUTRAL,
+		MAV_QSHOT_MODE_GIMBAL_MISSION,
+		MAV_QSHOT_MODE_GIMBAL_RC_CONTROL,
+		MAV_QSHOT_MODE_POI_TARGETING,
+		MAV_QSHOT_MODE_SYSID_TARGETING,
+		MAV_QSHOT_MODE_CABLECAM_2POINT,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {

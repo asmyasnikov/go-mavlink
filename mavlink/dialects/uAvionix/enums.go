@@ -962,6 +962,8 @@ const (
 	MAV_SYS_STATUS_PREARM_CHECK MAV_SYS_STATUS_SENSOR = 268435456
 	// MAV_SYS_STATUS_OBSTACLE_AVOIDANCE enum. 0x20000000 Avoidance/collision prevention
 	MAV_SYS_STATUS_OBSTACLE_AVOIDANCE MAV_SYS_STATUS_SENSOR = 536870912
+	// MAV_SYS_STATUS_SENSOR_PROPULSION enum. 0x40000000 propulsion (actuator, esc, motor or propellor)
+	MAV_SYS_STATUS_SENSOR_PROPULSION MAV_SYS_STATUS_SENSOR = 1073741824
 )
 
 func (e MAV_SYS_STATUS_SENSOR) String() string {
@@ -996,6 +998,7 @@ func (e MAV_SYS_STATUS_SENSOR) String() string {
 		MAV_SYS_STATUS_SENSOR_SATCOM:                 "MAV_SYS_STATUS_SENSOR_SATCOM",
 		MAV_SYS_STATUS_PREARM_CHECK:                  "MAV_SYS_STATUS_PREARM_CHECK",
 		MAV_SYS_STATUS_OBSTACLE_AVOIDANCE:            "MAV_SYS_STATUS_OBSTACLE_AVOIDANCE",
+		MAV_SYS_STATUS_SENSOR_PROPULSION:             "MAV_SYS_STATUS_SENSOR_PROPULSION",
 	}[e]; ok {
 		return name
 	}
@@ -1036,6 +1039,7 @@ func (e MAV_SYS_STATUS_SENSOR) Bitmask() string {
 		MAV_SYS_STATUS_SENSOR_SATCOM,
 		MAV_SYS_STATUS_PREARM_CHECK,
 		MAV_SYS_STATUS_OBSTACLE_AVOIDANCE,
+		MAV_SYS_STATUS_SENSOR_PROPULSION,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {
@@ -2864,7 +2868,7 @@ const (
 	MAV_CMD_NAV_LOITER_TIME MAV_CMD = 19
 	// MAV_CMD_NAV_RETURN_TO_LAUNCH enum. Return to launch location. Params: 1) Empty; 2) Empty; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
 	MAV_CMD_NAV_RETURN_TO_LAUNCH MAV_CMD = 20
-	// MAV_CMD_NAV_LAND enum. Land at location. Params: 1) Minimum target altitude if landing is aborted (0 = undefined/use system default).; 2) Precision land mode.; 3) Empty; 4) Desired yaw angle. NaN to use the current system yaw heading mode (e.g. yaw towards next waypoint, yaw to home, etc.).; 5) Latitude.; 6) Longitude.; 7) Landing altitude (ground level in current frame).;
+	// MAV_CMD_NAV_LAND enum. Land at location. Params: 1) Minimum target altitude if landing is aborted (0 = undefined/use system default).; 2) Precision land mode.; 3) Empty.; 4) Desired yaw angle. NaN to use the current system yaw heading mode (e.g. yaw towards next waypoint, yaw to home, etc.).; 5) Latitude.; 6) Longitude.; 7) Landing altitude (ground level in current frame).;
 	MAV_CMD_NAV_LAND MAV_CMD = 21
 	// MAV_CMD_NAV_TAKEOFF enum. Takeoff from ground / hand. Vehicles that support multiple takeoff modes (e.g. VTOL quadplane) should take off using the currently configured mode. Params: 1) Minimum pitch (if airspeed sensor present), desired pitch without sensor; 2) Empty; 3) Empty; 4) Yaw angle (if magnetometer present), ignored without magnetometer. NaN to use the current system yaw heading mode (e.g. yaw towards next waypoint, yaw to home, etc.).; 5) Latitude; 6) Longitude; 7) Altitude;
 	MAV_CMD_NAV_TAKEOFF MAV_CMD = 22
@@ -2932,7 +2936,7 @@ const (
 	MAV_CMD_DO_REPEAT_SERVO MAV_CMD = 184
 	// MAV_CMD_DO_FLIGHTTERMINATION enum. Terminate flight immediately. Params: 1) Flight termination activated if &gt; 0.5; 2) Empty; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
 	MAV_CMD_DO_FLIGHTTERMINATION MAV_CMD = 185
-	// MAV_CMD_DO_CHANGE_ALTITUDE enum. Change altitude set point. Params: 1) Altitude; 2) Frame of new altitude.; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
+	// MAV_CMD_DO_CHANGE_ALTITUDE enum. Change altitude set point. Params: 1) Altitude.; 2) Frame of new altitude.; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
 	MAV_CMD_DO_CHANGE_ALTITUDE MAV_CMD = 186
 	// MAV_CMD_DO_SET_ACTUATOR enum. Sets actuators (e.g. servos) to a desired value. The actuator numbers are mapped to specific outputs (e.g. on any MAIN or AUX PWM or UAVCAN) using a flight-stack specific mechanism (i.e. a parameter). Params: 1) Actuator 1 value, scaled from [-1 to 1]. NaN to ignore.; 2) Actuator 2 value, scaled from [-1 to 1]. NaN to ignore.; 3) Actuator 3 value, scaled from [-1 to 1]. NaN to ignore.; 4) Actuator 4 value, scaled from [-1 to 1]. NaN to ignore.; 5) Actuator 5 value, scaled from [-1 to 1]. NaN to ignore.; 6) Actuator 6 value, scaled from [-1 to 1]. NaN to ignore.; 7) Index of actuator set (i.e if set to 1, Actuator 1 becomes Actuator 7);
 	MAV_CMD_DO_SET_ACTUATOR MAV_CMD = 187
@@ -2950,7 +2954,7 @@ const (
 	MAV_CMD_DO_SET_REVERSE MAV_CMD = 194
 	// MAV_CMD_DO_SET_ROI_LOCATION enum. Sets the region of interest (ROI) to a location. This can then be used by the vehicle's control system to control the vehicle attitude and the attitude of various sensors such as cameras. This command can be sent to a gimbal manager but not to a gimbal device. A gimbal is not to react to this message. Params: 1) Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).; 2) Empty; 3) Empty; 4) Empty; 5) Latitude of ROI location; 6) Longitude of ROI location; 7) Altitude of ROI location;
 	MAV_CMD_DO_SET_ROI_LOCATION MAV_CMD = 195
-	// MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET enum. Sets the region of interest (ROI) to be toward next waypoint, with optional pitch/roll/yaw offset. This can then be used by the vehicle's control system to control the vehicle attitude and the attitude of various sensors such as cameras. This command can be sent to a gimbal manager but not to a gimbal device. A gimbal device is not to react to this message. Params: 1) Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).; 2) Empty; 3) Empty; 4) Empty; 5) Pitch offset from next waypoint, positive pitching up; 6) roll offset from next waypoint, positive rolling to the right; 7) yaw offset from next waypoint, positive yawing to the right;
+	// MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET enum. Sets the region of interest (ROI) to be toward next waypoint, with optional pitch/roll/yaw offset. This can then be used by the vehicle's control system to control the vehicle attitude and the attitude of various sensors such as cameras. This command can be sent to a gimbal manager but not to a gimbal device. A gimbal device is not to react to this message. Params: 1) Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).; 2) Empty; 3) Empty; 4) Empty; 5) Pitch offset from next waypoint, positive pitching up; 6) Roll offset from next waypoint, positive rolling to the right; 7) Yaw offset from next waypoint, positive yawing to the right;
 	MAV_CMD_DO_SET_ROI_WPNEXT_OFFSET MAV_CMD = 196
 	// MAV_CMD_DO_SET_ROI_NONE enum. Cancels any previous ROI command returning the vehicle/sensors to default flight characteristics. This can then be used by the vehicle's control system to control the vehicle attitude and the attitude of various sensors such as cameras. This command can be sent to a gimbal manager but not to a gimbal device. A gimbal device is not to react to this message. After this command the gimbal manager should go back to manual input if available, and otherwise assume a neutral position. Params: 1) Component ID of gimbal device to address (or 1-6 for non-MAVLink gimbal), 0 for all gimbal device components. Send command multiple times for more than one gimbal (but not all gimbals).; 2) Empty; 3) Empty; 4) Empty; 5) Empty; 6) Empty; 7) Empty;
 	MAV_CMD_DO_SET_ROI_NONE MAV_CMD = 197
@@ -3112,7 +3116,7 @@ const (
 	MAV_CMD_SET_GUIDED_SUBMODE_CIRCLE MAV_CMD = 4001
 	// MAV_CMD_CONDITION_GATE enum. Delay mission state machine until gate has been reached. Params: 1) Geometry: 0: orthogonal to path between previous and next waypoint.; 2) Altitude: 0: ignore altitude; 3) Empty; 4) Empty; 5) Latitude; 6) Longitude; 7) Altitude;
 	MAV_CMD_CONDITION_GATE MAV_CMD = 4501
-	// MAV_CMD_NAV_FENCE_RETURN_POINT enum. Fence return point. There can only be one fence return point. Params: 1) Reserved; 2) Reserved; 3) Reserved; 4) Reserved; 5) Latitude; 6) Longitude; 7) Altitude;
+	// MAV_CMD_NAV_FENCE_RETURN_POINT enum. Fence return point (there can only be one such point in a geofence definition). If rally points are supported they should be used instead. Params: 1) Reserved; 2) Reserved; 3) Reserved; 4) Reserved; 5) Latitude; 6) Longitude; 7) Altitude;
 	MAV_CMD_NAV_FENCE_RETURN_POINT MAV_CMD = 5000
 	// MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION enum. Fence vertex for an inclusion polygon (the polygon must not be self-intersecting). The vehicle must stay within this area. Minimum of 3 vertices required. Params: 1) Polygon vertex count; 2) Vehicle must be inside ALL inclusion zones in a single group, vehicle must be inside at least one group, must be the same for all points in each polygon; 3) Reserved; 4) Reserved; 5) Latitude; 6) Longitude; 7) Reserved;
 	MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION MAV_CMD = 5001
@@ -6818,19 +6822,19 @@ func (e *CAMERA_TRACKING_MODE) UnmarshalBinary(data []byte) error {
 }
 
 const (
-	// CAMERA_TRACKING_NONE enum. Not tracking
-	CAMERA_TRACKING_NONE CAMERA_TRACKING_MODE = 0
-	// CAMERA_TRACKING_POINT enum. Target is a point
-	CAMERA_TRACKING_POINT CAMERA_TRACKING_MODE = 1
-	// CAMERA_TRACKING_RECTANGLE enum. Target is a rectangle
-	CAMERA_TRACKING_RECTANGLE CAMERA_TRACKING_MODE = 2
+	// CAMERA_TRACKING_MODE_NONE enum. Not tracking
+	CAMERA_TRACKING_MODE_NONE CAMERA_TRACKING_MODE = 0
+	// CAMERA_TRACKING_MODE_POINT enum. Target is a point
+	CAMERA_TRACKING_MODE_POINT CAMERA_TRACKING_MODE = 1
+	// CAMERA_TRACKING_MODE_RECTANGLE enum. Target is a rectangle
+	CAMERA_TRACKING_MODE_RECTANGLE CAMERA_TRACKING_MODE = 2
 )
 
 func (e CAMERA_TRACKING_MODE) String() string {
 	if name, ok := map[CAMERA_TRACKING_MODE]string{
-		CAMERA_TRACKING_NONE:      "CAMERA_TRACKING_NONE",
-		CAMERA_TRACKING_POINT:     "CAMERA_TRACKING_POINT",
-		CAMERA_TRACKING_RECTANGLE: "CAMERA_TRACKING_RECTANGLE",
+		CAMERA_TRACKING_MODE_NONE:      "CAMERA_TRACKING_MODE_NONE",
+		CAMERA_TRACKING_MODE_POINT:     "CAMERA_TRACKING_MODE_POINT",
+		CAMERA_TRACKING_MODE_RECTANGLE: "CAMERA_TRACKING_MODE_RECTANGLE",
 	}[e]; ok {
 		return name
 	}
@@ -6841,9 +6845,9 @@ func (e CAMERA_TRACKING_MODE) String() string {
 func (e CAMERA_TRACKING_MODE) Bitmask() string {
 	bitmap := ""
 	for _, entry := range []CAMERA_TRACKING_MODE{
-		CAMERA_TRACKING_NONE,
-		CAMERA_TRACKING_POINT,
-		CAMERA_TRACKING_RECTANGLE,
+		CAMERA_TRACKING_MODE_NONE,
+		CAMERA_TRACKING_MODE_POINT,
+		CAMERA_TRACKING_MODE_RECTANGLE,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {
@@ -6874,22 +6878,22 @@ func (e *CAMERA_TRACKING_TARGET_DATA) UnmarshalBinary(data []byte) error {
 }
 
 const (
-	// CAMERA_TRACKING_TARGET_NONE enum. No target data
-	CAMERA_TRACKING_TARGET_NONE CAMERA_TRACKING_TARGET_DATA = 0
-	// CAMERA_TRACKING_TARGET_EMBEDDED enum. Target data embedded in image data (proprietary)
-	CAMERA_TRACKING_TARGET_EMBEDDED CAMERA_TRACKING_TARGET_DATA = 1
-	// CAMERA_TRACKING_TARGET_RENDERED enum. Target data rendered in image
-	CAMERA_TRACKING_TARGET_RENDERED CAMERA_TRACKING_TARGET_DATA = 2
-	// CAMERA_TRACKING_TARGET_IN_STATUS enum. Target data within status message (Point or Rectangle)
-	CAMERA_TRACKING_TARGET_IN_STATUS CAMERA_TRACKING_TARGET_DATA = 4
+	// CAMERA_TRACKING_TARGET_DATA_NONE enum. No target data
+	CAMERA_TRACKING_TARGET_DATA_NONE CAMERA_TRACKING_TARGET_DATA = 0
+	// CAMERA_TRACKING_TARGET_DATA_EMBEDDED enum. Target data embedded in image data (proprietary)
+	CAMERA_TRACKING_TARGET_DATA_EMBEDDED CAMERA_TRACKING_TARGET_DATA = 1
+	// CAMERA_TRACKING_TARGET_DATA_RENDERED enum. Target data rendered in image
+	CAMERA_TRACKING_TARGET_DATA_RENDERED CAMERA_TRACKING_TARGET_DATA = 2
+	// CAMERA_TRACKING_TARGET_DATA_IN_STATUS enum. Target data within status message (Point or Rectangle)
+	CAMERA_TRACKING_TARGET_DATA_IN_STATUS CAMERA_TRACKING_TARGET_DATA = 4
 )
 
 func (e CAMERA_TRACKING_TARGET_DATA) String() string {
 	if name, ok := map[CAMERA_TRACKING_TARGET_DATA]string{
-		CAMERA_TRACKING_TARGET_NONE:      "CAMERA_TRACKING_TARGET_NONE",
-		CAMERA_TRACKING_TARGET_EMBEDDED:  "CAMERA_TRACKING_TARGET_EMBEDDED",
-		CAMERA_TRACKING_TARGET_RENDERED:  "CAMERA_TRACKING_TARGET_RENDERED",
-		CAMERA_TRACKING_TARGET_IN_STATUS: "CAMERA_TRACKING_TARGET_IN_STATUS",
+		CAMERA_TRACKING_TARGET_DATA_NONE:      "CAMERA_TRACKING_TARGET_DATA_NONE",
+		CAMERA_TRACKING_TARGET_DATA_EMBEDDED:  "CAMERA_TRACKING_TARGET_DATA_EMBEDDED",
+		CAMERA_TRACKING_TARGET_DATA_RENDERED:  "CAMERA_TRACKING_TARGET_DATA_RENDERED",
+		CAMERA_TRACKING_TARGET_DATA_IN_STATUS: "CAMERA_TRACKING_TARGET_DATA_IN_STATUS",
 	}[e]; ok {
 		return name
 	}
@@ -6900,10 +6904,10 @@ func (e CAMERA_TRACKING_TARGET_DATA) String() string {
 func (e CAMERA_TRACKING_TARGET_DATA) Bitmask() string {
 	bitmap := ""
 	for _, entry := range []CAMERA_TRACKING_TARGET_DATA{
-		CAMERA_TRACKING_TARGET_NONE,
-		CAMERA_TRACKING_TARGET_EMBEDDED,
-		CAMERA_TRACKING_TARGET_RENDERED,
-		CAMERA_TRACKING_TARGET_IN_STATUS,
+		CAMERA_TRACKING_TARGET_DATA_NONE,
+		CAMERA_TRACKING_TARGET_DATA_EMBEDDED,
+		CAMERA_TRACKING_TARGET_DATA_RENDERED,
+		CAMERA_TRACKING_TARGET_DATA_IN_STATUS,
 	} {
 		if e&entry > 0 {
 			if len(bitmap) > 0 {

@@ -8855,8 +8855,8 @@ type HilGps struct {
 	Lat               int32  // [ degE7 ] Latitude (WGS84)
 	Lon               int32  // [ degE7 ] Longitude (WGS84)
 	Alt               int32  // [ mm ] Altitude (MSL). Positive for up.
-	Eph               uint16 // [ cm ] GPS HDOP horizontal dilution of position. If unknown, set to: 65535
-	Epv               uint16 // [ cm ] GPS VDOP vertical dilution of position. If unknown, set to: 65535
+	Eph               uint16 // GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+	Epv               uint16 // GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
 	Vel               uint16 // [ cm/s ] GPS ground speed. If unknown, set to: 65535
 	Vn                int16  // [ cm/s ] GPS velocity in north direction in earth-fixed NED frame
 	Ve                int16  // [ cm/s ] GPS velocity in east direction in earth-fixed NED frame
@@ -9751,8 +9751,8 @@ type Gps2Raw struct {
 	Lon               int32        // [ degE7 ] Longitude (WGS84)
 	Alt               int32        // [ mm ] Altitude (MSL). Positive for up.
 	DgpsAge           uint32       // [ ms ] Age of DGPS info
-	Eph               uint16       // [ cm ] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
-	Epv               uint16       // [ cm ] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+	Eph               uint16       // GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+	Epv               uint16       // GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
 	Vel               uint16       // [ cm/s ] GPS ground speed. If unknown, set to: UINT16_MAX
 	Cog               uint16       // [ cdeg ] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
 	FixType           GPS_FIX_TYPE // GPS fix type.
@@ -12383,8 +12383,8 @@ type GpsInput struct {
 	Lat               int32                  // [ degE7 ] Latitude (WGS84)
 	Lon               int32                  // [ degE7 ] Longitude (WGS84)
 	Alt               float32                // [ m ] Altitude (MSL). Positive for up.
-	Hdop              float32                // [ m ] GPS HDOP horizontal dilution of position
-	Vdop              float32                // [ m ] GPS VDOP vertical dilution of position
+	Hdop              float32                // GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
+	Vdop              float32                // GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
 	Vn                float32                // [ m/s ] GPS velocity in north direction in earth-fixed NED frame
 	Ve                float32                // [ m/s ] GPS velocity in east direction in earth-fixed NED frame
 	Vd                float32                // [ m/s ] GPS velocity in down direction in earth-fixed NED frame
