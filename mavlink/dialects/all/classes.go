@@ -17,7 +17,7 @@ import (
 // SensorOffsets struct (generated typeinfo)
 // Offsets and calibrations values for hardware sensors. This makes it easier to debug the calibration process.
 type SensorOffsets struct {
-	MagDeclination float32 // Magnetic declination.
+	MagDeclination float32 // [ rad ] Magnetic declination.
 	RawPress       int32   // Raw pressure from barometer.
 	RawTemp        int32   // Raw temperature from barometer.
 	GyroCalX       float32 // Gyro X calibration.
@@ -198,7 +198,7 @@ func (m *SetMagOffsets) Unmarshal(data []byte) error {
 // State of APM memory.
 type Meminfo struct {
 	Brkval  uint16 // Heap top.
-	Freemem uint16 // Free memory.
+	Freemem uint16 // [ bytes ] Free memory.
 }
 
 // MsgID (generated function)
@@ -332,7 +332,7 @@ type DigicamConfigure struct {
 	Iso             uint8   // ISO enumeration from 1 to N //e.g. 80, 100, 200, Etc (0 means ignore).
 	ExposureType    uint8   // Exposure type enumeration from 1 to N (0 means ignore).
 	CommandID       uint8   // Command Identity (incremental loop: 0 to 255). //A command sent multiple times will be executed or pooled just once.
-	EngineCutOff    uint8   // Main engine cut-off time before camera trigger (0 means no cut-off).
+	EngineCutOff    uint8   // [ ds ] Main engine cut-off time before camera trigger (0 means no cut-off).
 	ExtraParam      uint8   // Extra parameters enumeration (0 means ignore).
 }
 
@@ -677,9 +677,9 @@ func (m *MountControl) Unmarshal(data []byte) error {
 // MountStatus struct (generated typeinfo)
 // Message with some status from APM to GCS about camera or antenna mount.
 type MountStatus struct {
-	PointingA       int32 // Pitch.
-	PointingB       int32 // Roll.
-	PointingC       int32 // Yaw.
+	PointingA       int32 // [ cdeg ] Pitch.
+	PointingB       int32 // [ cdeg ] Roll.
+	PointingC       int32 // [ cdeg ] Yaw.
 	TargetSystem    uint8 // System ID.
 	TargetComponent uint8 // Component ID.
 }
@@ -746,8 +746,8 @@ func (m *MountStatus) Unmarshal(data []byte) error {
 // FencePoint struct (generated typeinfo)
 // A fence point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS.
 type FencePoint struct {
-	Lat             float32 // Latitude of point.
-	Lng             float32 // Longitude of point.
+	Lat             float32 // [ deg ] Latitude of point.
+	Lng             float32 // [ deg ] Longitude of point.
 	TargetSystem    uint8   // System ID.
 	TargetComponent uint8   // Component ID.
 	Idx             uint8   // Point index (first point is 1, 0 is for return point).
@@ -878,9 +878,9 @@ func (m *FenceFetchPoint) Unmarshal(data []byte) error {
 // Ahrs struct (generated typeinfo)
 // Status of DCM attitude estimator.
 type Ahrs struct {
-	Omegaix     float32 // X gyro drift estimate.
-	Omegaiy     float32 // Y gyro drift estimate.
-	Omegaiz     float32 // Z gyro drift estimate.
+	Omegaix     float32 // [ rad/s ] X gyro drift estimate.
+	Omegaiy     float32 // [ rad/s ] Y gyro drift estimate.
+	Omegaiz     float32 // [ rad/s ] Z gyro drift estimate.
 	AccelWeight float32 // Average accel_weight.
 	RenormVal   float32 // Average renormalisation value.
 	ErrorRp     float32 // Average error_roll_pitch value.
@@ -959,17 +959,17 @@ func (m *Ahrs) Unmarshal(data []byte) error {
 // Simstate struct (generated typeinfo)
 // Status of simulation environment, if used.
 type Simstate struct {
-	Roll  float32 // Roll angle.
-	Pitch float32 // Pitch angle.
-	Yaw   float32 // Yaw angle.
-	Xacc  float32 // X acceleration.
-	Yacc  float32 // Y acceleration.
-	Zacc  float32 // Z acceleration.
-	Xgyro float32 // Angular speed around X axis.
-	Ygyro float32 // Angular speed around Y axis.
-	Zgyro float32 // Angular speed around Z axis.
-	Lat   int32   // Latitude.
-	Lng   int32   // Longitude.
+	Roll  float32 // [ rad ] Roll angle.
+	Pitch float32 // [ rad ] Pitch angle.
+	Yaw   float32 // [ rad ] Yaw angle.
+	Xacc  float32 // [ m/s/s ] X acceleration.
+	Yacc  float32 // [ m/s/s ] Y acceleration.
+	Zacc  float32 // [ m/s/s ] Z acceleration.
+	Xgyro float32 // [ rad/s ] Angular speed around X axis.
+	Ygyro float32 // [ rad/s ] Angular speed around Y axis.
+	Zgyro float32 // [ rad/s ] Angular speed around Z axis.
+	Lat   int32   // [ degE7 ] Latitude.
+	Lng   int32   // [ degE7 ] Longitude.
 }
 
 // MsgID (generated function)
@@ -1064,7 +1064,7 @@ func (m *Simstate) Unmarshal(data []byte) error {
 // Hwstatus struct (generated typeinfo)
 // Status of key hardware.
 type Hwstatus struct {
-	Vcc    uint16 // Board voltage.
+	Vcc    uint16 // [ mV ] Board voltage.
 	I2cerr uint8  // I2C error count.
 }
 
@@ -1119,7 +1119,7 @@ type Radio struct {
 	Fixed    uint16 // Count of error corrected packets.
 	Rssi     uint8  // Local signal strength.
 	Remrssi  uint8  // Remote signal strength.
-	Txbuf    uint8  // How full the tx buffer is.
+	Txbuf    uint8  // [ % ] How full the tx buffer is.
 	Noise    uint8  // Background noise level.
 	Remnoise uint8  // Remote background noise level.
 }
@@ -1196,10 +1196,10 @@ func (m *Radio) Unmarshal(data []byte) error {
 // LimitsStatus struct (generated typeinfo)
 // Status of AP_Limits. Sent in extended status stream when AP_Limits is enabled.
 type LimitsStatus struct {
-	LastTrigger   uint32       // Time (since boot) of last breach.
-	LastAction    uint32       // Time (since boot) of last recovery action.
-	LastRecovery  uint32       // Time (since boot) of last successful recovery.
-	LastClear     uint32       // Time (since boot) of last all-clear.
+	LastTrigger   uint32       // [ ms ] Time (since boot) of last breach.
+	LastAction    uint32       // [ ms ] Time (since boot) of last recovery action.
+	LastRecovery  uint32       // [ ms ] Time (since boot) of last successful recovery.
+	LastClear     uint32       // [ ms ] Time (since boot) of last all-clear.
 	BreachCount   uint16       // Number of fence breaches.
 	LimitsState   LIMITS_STATE // State of AP_Limits.
 	ModsEnabled   LIMIT_MODULE // AP_Limit_Module bitfield of enabled modules.
@@ -1289,9 +1289,9 @@ func (m *LimitsStatus) Unmarshal(data []byte) error {
 // Wind struct (generated typeinfo)
 // Wind estimation.
 type Wind struct {
-	Direction float32 // Wind direction (that wind is coming from).
-	Speed     float32 // Wind speed in ground plane.
-	SpeedZ    float32 // Vertical wind speed.
+	Direction float32 // [ deg ] Wind direction (that wind is coming from).
+	Speed     float32 // [ m/s ] Wind speed in ground plane.
+	SpeedZ    float32 // [ m/s ] Vertical wind speed.
 }
 
 // MsgID (generated function)
@@ -1347,7 +1347,7 @@ func (m *Wind) Unmarshal(data []byte) error {
 // Data packet, size 16.
 type Data16 struct {
 	Type uint8   // Data type.
-	Len  uint8   // Data length.
+	Len  uint8   // [ bytes ] Data length.
 	Data []uint8 `len:"16" ` // Raw data.
 }
 
@@ -1404,7 +1404,7 @@ func (m *Data16) Unmarshal(data []byte) error {
 // Data packet, size 32.
 type Data32 struct {
 	Type uint8   // Data type.
-	Len  uint8   // Data length.
+	Len  uint8   // [ bytes ] Data length.
 	Data []uint8 `len:"32" ` // Raw data.
 }
 
@@ -1461,7 +1461,7 @@ func (m *Data32) Unmarshal(data []byte) error {
 // Data packet, size 64.
 type Data64 struct {
 	Type uint8   // Data type.
-	Len  uint8   // Data length.
+	Len  uint8   // [ bytes ] Data length.
 	Data []uint8 `len:"64" ` // Raw data.
 }
 
@@ -1518,7 +1518,7 @@ func (m *Data64) Unmarshal(data []byte) error {
 // Data packet, size 96.
 type Data96 struct {
 	Type uint8   // Data type.
-	Len  uint8   // Data length.
+	Len  uint8   // [ bytes ] Data length.
 	Data []uint8 `len:"96" ` // Raw data.
 }
 
@@ -1574,8 +1574,8 @@ func (m *Data96) Unmarshal(data []byte) error {
 // Rangefinder struct (generated typeinfo)
 // Rangefinder reporting.
 type Rangefinder struct {
-	Distance float32 // Distance.
-	Voltage  float32 // Raw voltage if available, zero otherwise.
+	Distance float32 // [ m ] Distance.
+	Voltage  float32 // [ V ] Raw voltage if available, zero otherwise.
 }
 
 // MsgID (generated function)
@@ -1625,10 +1625,10 @@ func (m *Rangefinder) Unmarshal(data []byte) error {
 // AirspeedAutocal struct (generated typeinfo)
 // Airspeed auto-calibration.
 type AirspeedAutocal struct {
-	Vx           float32 // GPS velocity north.
-	Vy           float32 // GPS velocity east.
-	Vz           float32 // GPS velocity down.
-	DiffPressure float32 // Differential pressure.
+	Vx           float32 // [ m/s ] GPS velocity north.
+	Vy           float32 // [ m/s ] GPS velocity east.
+	Vz           float32 // [ m/s ] GPS velocity down.
+	DiffPressure float32 // [ Pa ] Differential pressure.
 	Eas2tas      float32 // Estimated to true airspeed ratio.
 	Ratio        float32 // Airspeed ratio.
 	StateX       float32 // EKF state x.
@@ -1736,11 +1736,11 @@ func (m *AirspeedAutocal) Unmarshal(data []byte) error {
 // RallyPoint struct (generated typeinfo)
 // A rally point. Used to set a point when from GCS -> MAV. Also used to return a point from MAV -> GCS.
 type RallyPoint struct {
-	Lat             int32       // Latitude of point.
-	Lng             int32       // Longitude of point.
-	Alt             int16       // Transit / loiter altitude relative to home.
-	BreakAlt        int16       // Break altitude relative to home.
-	LandDir         uint16      // Heading to aim for when landing.
+	Lat             int32       // [ degE7 ] Latitude of point.
+	Lng             int32       // [ degE7 ] Longitude of point.
+	Alt             int16       // [ m ] Transit / loiter altitude relative to home.
+	BreakAlt        int16       // [ m ] Break altitude relative to home.
+	LandDir         uint16      // [ cdeg ] Heading to aim for when landing.
 	TargetSystem    uint8       // System ID.
 	TargetComponent uint8       // Component ID.
 	Idx             uint8       // Point index (first point is 0).
@@ -1892,12 +1892,12 @@ func (m *RallyFetchPoint) Unmarshal(data []byte) error {
 // CompassmotStatus struct (generated typeinfo)
 // Status of compassmot calibration.
 type CompassmotStatus struct {
-	Current       float32 // Current.
+	Current       float32 // [ A ] Current.
 	Compensationx float32 // Motor Compensation X.
 	Compensationy float32 // Motor Compensation Y.
 	Compensationz float32 // Motor Compensation Z.
-	Throttle      uint16  // Throttle.
-	Interference  uint16  // Interference.
+	Throttle      uint16  // [ d% ] Throttle.
+	Interference  uint16  // [ % ] Interference.
 }
 
 // MsgID (generated function)
@@ -1967,12 +1967,12 @@ func (m *CompassmotStatus) Unmarshal(data []byte) error {
 // Ahrs2 struct (generated typeinfo)
 // Status of secondary AHRS filter if available.
 type Ahrs2 struct {
-	Roll     float32 // Roll angle.
-	Pitch    float32 // Pitch angle.
-	Yaw      float32 // Yaw angle.
-	Altitude float32 // Altitude (MSL).
-	Lat      int32   // Latitude.
-	Lng      int32   // Longitude.
+	Roll     float32 // [ rad ] Roll angle.
+	Pitch    float32 // [ rad ] Pitch angle.
+	Yaw      float32 // [ rad ] Yaw angle.
+	Altitude float32 // [ m ] Altitude (MSL).
+	Lat      int32   // [ degE7 ] Latitude.
+	Lng      int32   // [ degE7 ] Longitude.
 }
 
 // MsgID (generated function)
@@ -2042,7 +2042,7 @@ func (m *Ahrs2) Unmarshal(data []byte) error {
 // CameraStatus struct (generated typeinfo)
 // Camera Event.
 type CameraStatus struct {
-	TimeUsec     uint64              // Image timestamp (since UNIX epoch, according to camera clock).
+	TimeUsec     uint64              // [ us ] Image timestamp (since UNIX epoch, according to camera clock).
 	P1           float32             // Parameter 1 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum).
 	P2           float32             // Parameter 2 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum).
 	P3           float32             // Parameter 3 (meaning depends on event_id, see CAMERA_STATUS_TYPES enum).
@@ -2135,15 +2135,15 @@ func (m *CameraStatus) Unmarshal(data []byte) error {
 // CameraFeedback struct (generated typeinfo)
 // Camera Capture Feedback.
 type CameraFeedback struct {
-	TimeUsec     uint64                // Image timestamp (since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB).
-	Lat          int32                 // Latitude.
-	Lng          int32                 // Longitude.
-	AltMsl       float32               // Altitude (MSL).
-	AltRel       float32               // Altitude (Relative to HOME location).
-	Roll         float32               // Camera Roll angle (earth frame, +-180).
-	Pitch        float32               // Camera Pitch angle (earth frame, +-180).
-	Yaw          float32               // Camera Yaw (earth frame, 0-360, true).
-	FocLen       float32               // Focal Length.
+	TimeUsec     uint64                // [ us ] Image timestamp (since UNIX epoch), as passed in by CAMERA_STATUS message (or autopilot if no CCB).
+	Lat          int32                 // [ degE7 ] Latitude.
+	Lng          int32                 // [ degE7 ] Longitude.
+	AltMsl       float32               // [ m ] Altitude (MSL).
+	AltRel       float32               // [ m ] Altitude (Relative to HOME location).
+	Roll         float32               // [ deg ] Camera Roll angle (earth frame, +-180).
+	Pitch        float32               // [ deg ] Camera Pitch angle (earth frame, +-180).
+	Yaw          float32               // [ deg ] Camera Yaw (earth frame, 0-360, true).
+	FocLen       float32               // [ mm ] Focal Length.
 	ImgIdx       uint16                // Image index.
 	TargetSystem uint8                 // System ID.
 	CamIdx       uint8                 // Camera ID.
@@ -2252,8 +2252,8 @@ func (m *CameraFeedback) Unmarshal(data []byte) error {
 // Battery2 struct (generated typeinfo)
 // 2nd Battery status
 type Battery2 struct {
-	Voltage        uint16 // Voltage.
-	CurrentBattery int16  // Battery current, -1: autopilot does not measure the current.
+	Voltage        uint16 // [ mV ] Voltage.
+	CurrentBattery int16  // [ cA ] Battery current, -1: autopilot does not measure the current.
 }
 
 // MsgID (generated function)
@@ -2303,12 +2303,12 @@ func (m *Battery2) Unmarshal(data []byte) error {
 // Ahrs3 struct (generated typeinfo)
 // Status of third AHRS filter if available. This is for ANU research group (Ali and Sean).
 type Ahrs3 struct {
-	Roll     float32 // Roll angle.
-	Pitch    float32 // Pitch angle.
-	Yaw      float32 // Yaw angle.
-	Altitude float32 // Altitude (MSL).
-	Lat      int32   // Latitude.
-	Lng      int32   // Longitude.
+	Roll     float32 // [ rad ] Roll angle.
+	Pitch    float32 // [ rad ] Pitch angle.
+	Yaw      float32 // [ rad ] Yaw angle.
+	Altitude float32 // [ m ] Altitude (MSL).
+	Lat      int32   // [ degE7 ] Latitude.
+	Lng      int32   // [ degE7 ] Longitude.
 	V1       float32 // Test variable1.
 	V2       float32 // Test variable2.
 	V3       float32 // Test variable3.
@@ -2661,7 +2661,7 @@ type MagCalProgress struct {
 	CalMask        uint8          // Bitmask of compasses being calibrated.
 	CalStatus      MAG_CAL_STATUS // Calibration Status.
 	Attempt        uint8          // Attempt number.
-	CompletionPct  uint8          // Completion percentage.
+	CompletionPct  uint8          // [ % ] Completion percentage.
 	CompletionMask []uint8        `len:"10" ` // Bitmask of sphere sections (see http://en.wikipedia.org/wiki/Geodesic_grid).
 }
 
@@ -2903,15 +2903,15 @@ func (m *PidTuning) Unmarshal(data []byte) error {
 // Deepstall struct (generated typeinfo)
 // Deepstall path planning.
 type Deepstall struct {
-	LandingLat             int32           // Landing latitude.
-	LandingLon             int32           // Landing longitude.
-	PathLat                int32           // Final heading start point, latitude.
-	PathLon                int32           // Final heading start point, longitude.
-	ArcEntryLat            int32           // Arc entry point, latitude.
-	ArcEntryLon            int32           // Arc entry point, longitude.
-	Altitude               float32         // Altitude.
-	ExpectedTravelDistance float32         // Distance the aircraft expects to travel during the deepstall.
-	CrossTrackError        float32         // Deepstall cross track error (only valid when in DEEPSTALL_STAGE_LAND).
+	LandingLat             int32           // [ degE7 ] Landing latitude.
+	LandingLon             int32           // [ degE7 ] Landing longitude.
+	PathLat                int32           // [ degE7 ] Final heading start point, latitude.
+	PathLon                int32           // [ degE7 ] Final heading start point, longitude.
+	ArcEntryLat            int32           // [ degE7 ] Arc entry point, latitude.
+	ArcEntryLon            int32           // [ degE7 ] Arc entry point, longitude.
+	Altitude               float32         // [ m ] Altitude.
+	ExpectedTravelDistance float32         // [ m ] Distance the aircraft expects to travel during the deepstall.
+	CrossTrackError        float32         // [ m ] Deepstall cross track error (only valid when in DEEPSTALL_STAGE_LAND).
 	Stage                  DEEPSTALL_STAGE // Deepstall stage.
 }
 
@@ -3002,16 +3002,16 @@ func (m *Deepstall) Unmarshal(data []byte) error {
 // GimbalReport struct (generated typeinfo)
 // 3 axis gimbal measurements.
 type GimbalReport struct {
-	DeltaTime       float32 // Time since last update.
-	DeltaAngleX     float32 // Delta angle X.
-	DeltaAngleY     float32 // Delta angle Y.
-	DeltaAngleZ     float32 // Delta angle X.
-	DeltaVelocityX  float32 // Delta velocity X.
-	DeltaVelocityY  float32 // Delta velocity Y.
-	DeltaVelocityZ  float32 // Delta velocity Z.
-	JointRoll       float32 // Joint ROLL.
-	JointEl         float32 // Joint EL.
-	JointAz         float32 // Joint AZ.
+	DeltaTime       float32 // [ s ] Time since last update.
+	DeltaAngleX     float32 // [ rad ] Delta angle X.
+	DeltaAngleY     float32 // [ rad ] Delta angle Y.
+	DeltaAngleZ     float32 // [ rad ] Delta angle X.
+	DeltaVelocityX  float32 // [ m/s ] Delta velocity X.
+	DeltaVelocityY  float32 // [ m/s ] Delta velocity Y.
+	DeltaVelocityZ  float32 // [ m/s ] Delta velocity Z.
+	JointRoll       float32 // [ rad ] Joint ROLL.
+	JointEl         float32 // [ rad ] Joint EL.
+	JointAz         float32 // [ rad ] Joint AZ.
 	TargetSystem    uint8   // System ID.
 	TargetComponent uint8   // Component ID.
 }
@@ -3113,9 +3113,9 @@ func (m *GimbalReport) Unmarshal(data []byte) error {
 // GimbalControl struct (generated typeinfo)
 // Control message for rate gimbal.
 type GimbalControl struct {
-	DemandedRateX   float32 // Demanded angular rate X.
-	DemandedRateY   float32 // Demanded angular rate Y.
-	DemandedRateZ   float32 // Demanded angular rate Z.
+	DemandedRateX   float32 // [ rad/s ] Demanded angular rate X.
+	DemandedRateY   float32 // [ rad/s ] Demanded angular rate Y.
+	DemandedRateZ   float32 // [ rad/s ] Demanded angular rate Z.
 	TargetSystem    uint8   // System ID.
 	TargetComponent uint8   // Component ID.
 }
@@ -3590,16 +3590,16 @@ type SysStatus struct {
 	OnboardControlSensorsPresent MAV_SYS_STATUS_SENSOR // Bitmap showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present.
 	OnboardControlSensorsEnabled MAV_SYS_STATUS_SENSOR // Bitmap showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled.
 	OnboardControlSensorsHealth  MAV_SYS_STATUS_SENSOR // Bitmap showing which onboard controllers and sensors have an error (or are operational). Value of 0: error. Value of 1: healthy.
-	Load                         uint16                // Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
-	VoltageBattery               uint16                // Battery voltage, UINT16_MAX: Voltage not sent by autopilot
-	CurrentBattery               int16                 // Battery current, -1: Current not sent by autopilot
-	DropRateComm                 uint16                // Communication drop rate, (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
+	Load                         uint16                // [ d% ] Maximum usage in percent of the mainloop time. Values: [0-1000] - should always be below 1000
+	VoltageBattery               uint16                // [ mV ] Battery voltage, UINT16_MAX: Voltage not sent by autopilot
+	CurrentBattery               int16                 // [ cA ] Battery current, -1: Current not sent by autopilot
+	DropRateComm                 uint16                // [ c% ] Communication drop rate, (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
 	ErrorsComm                   uint16                // Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
 	ErrorsCount1                 uint16                // Autopilot-specific errors
 	ErrorsCount2                 uint16                // Autopilot-specific errors
 	ErrorsCount3                 uint16                // Autopilot-specific errors
 	ErrorsCount4                 uint16                // Autopilot-specific errors
-	BatteryRemaining             int8                  // Battery energy remaining, -1: Battery remaining energy not sent by autopilot
+	BatteryRemaining             int8                  // [ % ] Battery energy remaining, -1: Battery remaining energy not sent by autopilot
 }
 
 // MsgID (generated function)
@@ -3704,8 +3704,8 @@ func (m *SysStatus) Unmarshal(data []byte) error {
 // SystemTime struct (generated typeinfo)
 // The system time is the time of the master clock, typically the computer clock of the main onboard computer.
 type SystemTime struct {
-	TimeUnixUsec uint64 // Timestamp (UNIX epoch time).
-	TimeBootMs   uint32 // Timestamp (time since system boot).
+	TimeUnixUsec uint64 // [ us ] Timestamp (UNIX epoch time).
+	TimeBootMs   uint32 // [ ms ] Timestamp (time since system boot).
 }
 
 // MsgID (generated function)
@@ -3755,7 +3755,7 @@ func (m *SystemTime) Unmarshal(data []byte) error {
 // Ping struct (generated typeinfo)
 // A ping message either requesting or responding to a ping. This allows to measure the system latencies, including serial port, radio modem and UDP connections. The ping microservice is documented at https://mavlink.io/en/services/ping.html
 type Ping struct {
-	TimeUsec        uint64 // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec        uint64 // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Seq             uint32 // PING sequence
 	TargetSystem    uint8  // 0: request ping from all receiving systems. If greater than 0: message is a ping response and number is the system id of the requesting system
 	TargetComponent uint8  // 0: request ping from all receiving components. If greater than 0: message is a ping response and number is the component id of the requesting component.
@@ -3820,7 +3820,7 @@ func (m *Ping) Unmarshal(data []byte) error {
 type ChangeOperatorControl struct {
 	TargetSystem   uint8  // System the GCS requests control for
 	ControlRequest uint8  // 0: request control of this MAV, 1: Release control of this MAV
-	Version        uint8  // 0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch.
+	Version        uint8  // [ rad ] 0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch.
 	Passkey        string `len:"25" ` // Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-"
 }
 
@@ -3983,17 +3983,17 @@ func (m *AuthKey) Unmarshal(data []byte) error {
 // LinkNodeStatus struct (generated typeinfo)
 // Status generated in each node in the communication chain and injected into MAVLink stream.
 type LinkNodeStatus struct {
-	Timestamp        uint64 // Timestamp (time since system boot).
-	TxRate           uint32 // Transmit rate
-	RxRate           uint32 // Receive rate
+	Timestamp        uint64 // [ ms ] Timestamp (time since system boot).
+	TxRate           uint32 // [ bytes/s ] Transmit rate
+	RxRate           uint32 // [ bytes/s ] Receive rate
 	MessagesSent     uint32 // Messages sent
 	MessagesReceived uint32 // Messages received (estimated from counting seq)
 	MessagesLost     uint32 // Messages lost (estimated from counting seq)
-	RxParseErr       uint16 // Number of bytes that could not be parsed correctly.
-	TxOverflows      uint16 // Transmit buffer overflows. This number wraps around as it reaches UINT16_MAX
-	RxOverflows      uint16 // Receive buffer overflows. This number wraps around as it reaches UINT16_MAX
-	TxBuf            uint8  // Remaining free transmit buffer space
-	RxBuf            uint8  // Remaining free receive buffer space
+	RxParseErr       uint16 // [ bytes ] Number of bytes that could not be parsed correctly.
+	TxOverflows      uint16 // [ bytes ] Transmit buffer overflows. This number wraps around as it reaches UINT16_MAX
+	RxOverflows      uint16 // [ bytes ] Receive buffer overflows. This number wraps around as it reaches UINT16_MAX
+	TxBuf            uint8  // [ % ] Remaining free transmit buffer space
+	RxBuf            uint8  // [ % ] Remaining free receive buffer space
 }
 
 // MsgID (generated function)
@@ -4475,14 +4475,14 @@ func (m *ParamSet) Unmarshal(data []byte) error {
 // The global position, as returned by the Global Positioning System (GPS). This is
 //                 NOT the global position estimate of the system, but rather a RAW sensor value. See message GLOBAL_POSITION for the global position estimate.
 type GpsRawInt struct {
-	TimeUsec          uint64       // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Lat               int32        // Latitude (WGS84, EGM96 ellipsoid)
-	Lon               int32        // Longitude (WGS84, EGM96 ellipsoid)
-	Alt               int32        // Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
+	TimeUsec          uint64       // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Lat               int32        // [ degE7 ] Latitude (WGS84, EGM96 ellipsoid)
+	Lon               int32        // [ degE7 ] Longitude (WGS84, EGM96 ellipsoid)
+	Alt               int32        // [ mm ] Altitude (MSL). Positive for up. Note that virtually all GPS modules provide the MSL altitude in addition to the WGS84 altitude.
 	Eph               uint16       // GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
 	Epv               uint16       // GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
-	Vel               uint16       // GPS ground speed. If unknown, set to: UINT16_MAX
-	Cog               uint16       // Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
+	Vel               uint16       // [ cm/s ] GPS ground speed. If unknown, set to: UINT16_MAX
+	Cog               uint16       // [ cdeg ] Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
 	FixType           GPS_FIX_TYPE // GPS fix type.
 	SatellitesVisible uint8        // Number of satellites visible. If unknown, set to 255
 }
@@ -4577,9 +4577,9 @@ type GpsStatus struct {
 	SatellitesVisible  uint8   // Number of satellites visible
 	SatellitePrn       []uint8 `len:"20" ` // Global satellite ID
 	SatelliteUsed      []uint8 `len:"20" ` // 0: Satellite not used, 1: used for localization
-	SatelliteElevation []uint8 `len:"20" ` // Elevation (0: right on top of receiver, 90: on the horizon) of satellite
-	SatelliteAzimuth   []uint8 `len:"20" ` // Direction of satellite, 0: 0 deg, 255: 360 deg.
-	SatelliteSnr       []uint8 `len:"20" ` // Signal to noise ratio of satellite
+	SatelliteElevation []uint8 `len:"20" ` // [ deg ] Elevation (0: right on top of receiver, 90: on the horizon) of satellite
+	SatelliteAzimuth   []uint8 `len:"20" ` // [ deg ] Direction of satellite, 0: 0 deg, 255: 360 deg.
+	SatelliteSnr       []uint8 `len:"20" ` // [ dB ] Signal to noise ratio of satellite
 }
 
 // MsgID (generated function)
@@ -4649,16 +4649,16 @@ func (m *GpsStatus) Unmarshal(data []byte) error {
 // ScaledImu struct (generated typeinfo)
 // The RAW IMU readings for the usual 9DOF sensor setup. This message should contain the scaled values to the described units
 type ScaledImu struct {
-	TimeBootMs uint32 // Timestamp (time since system boot).
-	Xacc       int16  // X acceleration
-	Yacc       int16  // Y acceleration
-	Zacc       int16  // Z acceleration
-	Xgyro      int16  // Angular speed around X axis
-	Ygyro      int16  // Angular speed around Y axis
-	Zgyro      int16  // Angular speed around Z axis
-	Xmag       int16  // X Magnetic field
-	Ymag       int16  // Y Magnetic field
-	Zmag       int16  // Z Magnetic field
+	TimeBootMs uint32 // [ ms ] Timestamp (time since system boot).
+	Xacc       int16  // [ mG ] X acceleration
+	Yacc       int16  // [ mG ] Y acceleration
+	Zacc       int16  // [ mG ] Z acceleration
+	Xgyro      int16  // [ mrad/s ] Angular speed around X axis
+	Ygyro      int16  // [ mrad/s ] Angular speed around Y axis
+	Zgyro      int16  // [ mrad/s ] Angular speed around Z axis
+	Xmag       int16  // [ mgauss ] X Magnetic field
+	Ymag       int16  // [ mgauss ] Y Magnetic field
+	Zmag       int16  // [ mgauss ] Z Magnetic field
 }
 
 // MsgID (generated function)
@@ -4748,7 +4748,7 @@ func (m *ScaledImu) Unmarshal(data []byte) error {
 // RawImu struct (generated typeinfo)
 // The RAW IMU readings for a 9DOF sensor, which is identified by the id (default IMU1). This message should always contain the true raw values without any scaling to allow data capture and system debugging.
 type RawImu struct {
-	TimeUsec uint64 // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec uint64 // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Xacc     int16  // X acceleration (raw)
 	Yacc     int16  // Y acceleration (raw)
 	Zacc     int16  // Z acceleration (raw)
@@ -4847,7 +4847,7 @@ func (m *RawImu) Unmarshal(data []byte) error {
 // RawPressure struct (generated typeinfo)
 // The RAW pressure readings for the typical setup of one absolute pressure and one differential pressure sensor. The sensor values should be the raw, UNSCALED ADC values.
 type RawPressure struct {
-	TimeUsec    uint64 // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec    uint64 // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	PressAbs    int16  // Absolute pressure (raw)
 	PressDiff1  int16  // Differential pressure 1 (raw, 0 if nonexistent)
 	PressDiff2  int16  // Differential pressure 2 (raw, 0 if nonexistent)
@@ -4916,10 +4916,10 @@ func (m *RawPressure) Unmarshal(data []byte) error {
 // ScaledPressure struct (generated typeinfo)
 // The pressure readings for the typical setup of one absolute and differential pressure sensor. The units are as specified in each field.
 type ScaledPressure struct {
-	TimeBootMs  uint32  // Timestamp (time since system boot).
-	PressAbs    float32 // Absolute pressure
-	PressDiff   float32 // Differential pressure 1
-	Temperature int16   // Absolute pressure temperature
+	TimeBootMs  uint32  // [ ms ] Timestamp (time since system boot).
+	PressAbs    float32 // [ hPa ] Absolute pressure
+	PressDiff   float32 // [ hPa ] Differential pressure 1
+	Temperature int16   // [ cdegC ] Absolute pressure temperature
 }
 
 // MsgID (generated function)
@@ -4979,13 +4979,13 @@ func (m *ScaledPressure) Unmarshal(data []byte) error {
 // Attitude struct (generated typeinfo)
 // The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right).
 type Attitude struct {
-	TimeBootMs uint32  // Timestamp (time since system boot).
-	Roll       float32 // Roll angle (-pi..+pi)
-	Pitch      float32 // Pitch angle (-pi..+pi)
-	Yaw        float32 // Yaw angle (-pi..+pi)
-	Rollspeed  float32 // Roll angular speed
-	Pitchspeed float32 // Pitch angular speed
-	Yawspeed   float32 // Yaw angular speed
+	TimeBootMs uint32  // [ ms ] Timestamp (time since system boot).
+	Roll       float32 // [ rad ] Roll angle (-pi..+pi)
+	Pitch      float32 // [ rad ] Pitch angle (-pi..+pi)
+	Yaw        float32 // [ rad ] Yaw angle (-pi..+pi)
+	Rollspeed  float32 // [ rad/s ] Roll angular speed
+	Pitchspeed float32 // [ rad/s ] Pitch angular speed
+	Yawspeed   float32 // [ rad/s ] Yaw angular speed
 }
 
 // MsgID (generated function)
@@ -5060,14 +5060,14 @@ func (m *Attitude) Unmarshal(data []byte) error {
 // AttitudeQuaternion struct (generated typeinfo)
 // The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0).
 type AttitudeQuaternion struct {
-	TimeBootMs uint32  // Timestamp (time since system boot).
+	TimeBootMs uint32  // [ ms ] Timestamp (time since system boot).
 	Q1         float32 // Quaternion component 1, w (1 in null-rotation)
 	Q2         float32 // Quaternion component 2, x (0 in null-rotation)
 	Q3         float32 // Quaternion component 3, y (0 in null-rotation)
 	Q4         float32 // Quaternion component 4, z (0 in null-rotation)
-	Rollspeed  float32 // Roll angular speed
-	Pitchspeed float32 // Pitch angular speed
-	Yawspeed   float32 // Yaw angular speed
+	Rollspeed  float32 // [ rad/s ] Roll angular speed
+	Pitchspeed float32 // [ rad/s ] Pitch angular speed
+	Yawspeed   float32 // [ rad/s ] Yaw angular speed
 }
 
 // MsgID (generated function)
@@ -5147,13 +5147,13 @@ func (m *AttitudeQuaternion) Unmarshal(data []byte) error {
 // LocalPositionNed struct (generated typeinfo)
 // The filtered local position (e.g. fused computer vision and accelerometers). Coordinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-down convention)
 type LocalPositionNed struct {
-	TimeBootMs uint32  // Timestamp (time since system boot).
-	X          float32 // X Position
-	Y          float32 // Y Position
-	Z          float32 // Z Position
-	Vx         float32 // X Speed
-	Vy         float32 // Y Speed
-	Vz         float32 // Z Speed
+	TimeBootMs uint32  // [ ms ] Timestamp (time since system boot).
+	X          float32 // [ m ] X Position
+	Y          float32 // [ m ] Y Position
+	Z          float32 // [ m ] Z Position
+	Vx         float32 // [ m/s ] X Speed
+	Vy         float32 // [ m/s ] Y Speed
+	Vz         float32 // [ m/s ] Z Speed
 }
 
 // MsgID (generated function)
@@ -5229,15 +5229,15 @@ func (m *LocalPositionNed) Unmarshal(data []byte) error {
 // The filtered global position (e.g. fused GPS and accelerometers). The position is in GPS-frame (right-handed, Z-up). It
 //                is designed as scaled integer message since the resolution of float is not sufficient.
 type GlobalPositionInt struct {
-	TimeBootMs  uint32 // Timestamp (time since system boot).
-	Lat         int32  // Latitude, expressed
-	Lon         int32  // Longitude, expressed
-	Alt         int32  // Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
-	RelativeAlt int32  // Altitude above ground
-	Vx          int16  // Ground X Speed (Latitude, positive north)
-	Vy          int16  // Ground Y Speed (Longitude, positive east)
-	Vz          int16  // Ground Z Speed (Altitude, positive down)
-	Hdg         uint16 // Vehicle heading (yaw angle), 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
+	TimeBootMs  uint32 // [ ms ] Timestamp (time since system boot).
+	Lat         int32  // [ degE7 ] Latitude, expressed
+	Lon         int32  // [ degE7 ] Longitude, expressed
+	Alt         int32  // [ mm ] Altitude (MSL). Note that virtually all GPS modules provide both WGS84 and MSL.
+	RelativeAlt int32  // [ mm ] Altitude above ground
+	Vx          int16  // [ cm/s ] Ground X Speed (Latitude, positive north)
+	Vy          int16  // [ cm/s ] Ground Y Speed (Longitude, positive east)
+	Vz          int16  // [ cm/s ] Ground Z Speed (Altitude, positive down)
+	Hdg         uint16 // [ cdeg ] Vehicle heading (yaw angle), 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
 }
 
 // MsgID (generated function)
@@ -5322,7 +5322,7 @@ func (m *GlobalPositionInt) Unmarshal(data []byte) error {
 // RcChannelsScaled struct (generated typeinfo)
 // The scaled values of the RC channels received: (-100%) -10000, (0%) 0, (100%) 10000. Channels that are inactive should be set to UINT16_MAX.
 type RcChannelsScaled struct {
-	TimeBootMs  uint32 // Timestamp (time since system boot).
+	TimeBootMs  uint32 // [ ms ] Timestamp (time since system boot).
 	Chan1Scaled int16  // RC channel 1 value scaled.
 	Chan2Scaled int16  // RC channel 2 value scaled.
 	Chan3Scaled int16  // RC channel 3 value scaled.
@@ -5427,15 +5427,15 @@ func (m *RcChannelsScaled) Unmarshal(data []byte) error {
 // RcChannelsRaw struct (generated typeinfo)
 // The RAW values of the RC channels received. The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. A value of UINT16_MAX implies the channel is unused. Individual receivers/transmitters might violate this specification.
 type RcChannelsRaw struct {
-	TimeBootMs uint32 // Timestamp (time since system boot).
-	Chan1Raw   uint16 // RC channel 1 value.
-	Chan2Raw   uint16 // RC channel 2 value.
-	Chan3Raw   uint16 // RC channel 3 value.
-	Chan4Raw   uint16 // RC channel 4 value.
-	Chan5Raw   uint16 // RC channel 5 value.
-	Chan6Raw   uint16 // RC channel 6 value.
-	Chan7Raw   uint16 // RC channel 7 value.
-	Chan8Raw   uint16 // RC channel 8 value.
+	TimeBootMs uint32 // [ ms ] Timestamp (time since system boot).
+	Chan1Raw   uint16 // [ us ] RC channel 1 value.
+	Chan2Raw   uint16 // [ us ] RC channel 2 value.
+	Chan3Raw   uint16 // [ us ] RC channel 3 value.
+	Chan4Raw   uint16 // [ us ] RC channel 4 value.
+	Chan5Raw   uint16 // [ us ] RC channel 5 value.
+	Chan6Raw   uint16 // [ us ] RC channel 6 value.
+	Chan7Raw   uint16 // [ us ] RC channel 7 value.
+	Chan8Raw   uint16 // [ us ] RC channel 8 value.
 	Port       uint8  // Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX.
 	Rssi       uint8  // Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
 }
@@ -5532,15 +5532,15 @@ func (m *RcChannelsRaw) Unmarshal(data []byte) error {
 // ServoOutputRaw struct (generated typeinfo)
 // Superseded by ACTUATOR_OUTPUT_STATUS. The RAW values of the servo outputs (for RC input from the remote, use the RC_CHANNELS messages). The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%.
 type ServoOutputRaw struct {
-	TimeUsec  uint32 // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Servo1Raw uint16 // Servo output 1 value
-	Servo2Raw uint16 // Servo output 2 value
-	Servo3Raw uint16 // Servo output 3 value
-	Servo4Raw uint16 // Servo output 4 value
-	Servo5Raw uint16 // Servo output 5 value
-	Servo6Raw uint16 // Servo output 6 value
-	Servo7Raw uint16 // Servo output 7 value
-	Servo8Raw uint16 // Servo output 8 value
+	TimeUsec  uint32 // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Servo1Raw uint16 // [ us ] Servo output 1 value
+	Servo2Raw uint16 // [ us ] Servo output 2 value
+	Servo3Raw uint16 // [ us ] Servo output 3 value
+	Servo4Raw uint16 // [ us ] Servo output 4 value
+	Servo5Raw uint16 // [ us ] Servo output 5 value
+	Servo6Raw uint16 // [ us ] Servo output 6 value
+	Servo7Raw uint16 // [ us ] Servo output 7 value
+	Servo8Raw uint16 // [ us ] Servo output 8 value
 	Port      uint8  // Servo output port (set of 8 outputs = 1 port). Flight stacks running on Pixhawk should use: 0 = MAIN, 1 = AUX.
 }
 
@@ -6301,9 +6301,9 @@ func (m *MissionAck) Unmarshal(data []byte) error {
 // SetGpsGlobalOrigin struct (generated typeinfo)
 // Sets the GPS co-ordinates of the vehicle local origin (0,0,0) position. Vehicle should emit GPS_GLOBAL_ORIGIN irrespective of whether the origin is changed. This enables transform between the local coordinate frame and the global (GPS) coordinate frame, which may be necessary when (for example) indoor and outdoor settings are connected and the MAV should move from in- to outdoor.
 type SetGpsGlobalOrigin struct {
-	Latitude     int32 // Latitude (WGS84)
-	Longitude    int32 // Longitude (WGS84)
-	Altitude     int32 // Altitude (MSL). Positive for up.
+	Latitude     int32 // [ degE7 ] Latitude (WGS84)
+	Longitude    int32 // [ degE7 ] Longitude (WGS84)
+	Altitude     int32 // [ mm ] Altitude (MSL). Positive for up.
 	TargetSystem uint8 // System ID
 }
 
@@ -6364,9 +6364,9 @@ func (m *SetGpsGlobalOrigin) Unmarshal(data []byte) error {
 // GpsGlobalOrigin struct (generated typeinfo)
 // Publishes the GPS co-ordinates of the vehicle local origin (0,0,0) position. Emitted whenever a new GPS-Local position mapping is requested or set - e.g. following SET_GPS_GLOBAL_ORIGIN message.
 type GpsGlobalOrigin struct {
-	Latitude  int32 // Latitude (WGS84)
-	Longitude int32 // Longitude (WGS84)
-	Altitude  int32 // Altitude (MSL). Positive for up.
+	Latitude  int32 // [ degE7 ] Latitude (WGS84)
+	Longitude int32 // [ degE7 ] Longitude (WGS84)
+	Altitude  int32 // [ mm ] Altitude (MSL). Positive for up.
 }
 
 // MsgID (generated function)
@@ -6640,12 +6640,12 @@ func (m *MissionChanged) Unmarshal(data []byte) error {
 // SafetySetAllowedArea struct (generated typeinfo)
 // Set a safety zone (volume), which is defined by two corners of a cube. This message can be used to tell the MAV which setpoints/waypoints to accept and which to reject. Safety areas are often enforced by national or competition regulations.
 type SafetySetAllowedArea struct {
-	P1x             float32   // x position 1 / Latitude 1
-	P1y             float32   // y position 1 / Longitude 1
-	P1z             float32   // z position 1 / Altitude 1
-	P2x             float32   // x position 2 / Latitude 2
-	P2y             float32   // y position 2 / Longitude 2
-	P2z             float32   // z position 2 / Altitude 2
+	P1x             float32   // [ m ] x position 1 / Latitude 1
+	P1y             float32   // [ m ] y position 1 / Longitude 1
+	P1z             float32   // [ m ] z position 1 / Altitude 1
+	P2x             float32   // [ m ] x position 2 / Latitude 2
+	P2y             float32   // [ m ] y position 2 / Longitude 2
+	P2z             float32   // [ m ] z position 2 / Altitude 2
 	TargetSystem    uint8     // System ID
 	TargetComponent uint8     // Component ID
 	Frame           MAV_FRAME // Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
@@ -6733,12 +6733,12 @@ func (m *SafetySetAllowedArea) Unmarshal(data []byte) error {
 // SafetyAllowedArea struct (generated typeinfo)
 // Read out the safety zone the MAV currently assumes.
 type SafetyAllowedArea struct {
-	P1x   float32   // x position 1 / Latitude 1
-	P1y   float32   // y position 1 / Longitude 1
-	P1z   float32   // z position 1 / Altitude 1
-	P2x   float32   // x position 2 / Latitude 2
-	P2y   float32   // y position 2 / Longitude 2
-	P2z   float32   // z position 2 / Altitude 2
+	P1x   float32   // [ m ] x position 1 / Latitude 1
+	P1y   float32   // [ m ] y position 1 / Longitude 1
+	P1z   float32   // [ m ] z position 1 / Altitude 1
+	P2x   float32   // [ m ] x position 2 / Latitude 2
+	P2y   float32   // [ m ] y position 2 / Longitude 2
+	P2z   float32   // [ m ] z position 2 / Altitude 2
 	Frame MAV_FRAME // Coordinate frame. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
 }
 
@@ -6814,11 +6814,11 @@ func (m *SafetyAllowedArea) Unmarshal(data []byte) error {
 // AttitudeQuaternionCov struct (generated typeinfo)
 // The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0).
 type AttitudeQuaternionCov struct {
-	TimeUsec   uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec   uint64    // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Q          []float32 `len:"4" ` // Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
-	Rollspeed  float32   // Roll angular speed
-	Pitchspeed float32   // Pitch angular speed
-	Yawspeed   float32   // Yaw angular speed
+	Rollspeed  float32   // [ rad/s ] Roll angular speed
+	Pitchspeed float32   // [ rad/s ] Pitch angular speed
+	Yawspeed   float32   // [ rad/s ] Yaw angular speed
 	Covariance []float32 `len:"9" ` // Row-major representation of a 3x3 attitude covariance matrix (states: roll, pitch, yaw; first three entries are the first ROW, next three entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
 }
 
@@ -6897,14 +6897,14 @@ func (m *AttitudeQuaternionCov) Unmarshal(data []byte) error {
 // NavControllerOutput struct (generated typeinfo)
 // The state of the fixed wing navigation and position controller.
 type NavControllerOutput struct {
-	NavRoll       float32 // Current desired roll
-	NavPitch      float32 // Current desired pitch
-	AltError      float32 // Current altitude error
-	AspdError     float32 // Current airspeed error
-	XtrackError   float32 // Current crosstrack error on x-y plane
-	NavBearing    int16   // Current desired heading
-	TargetBearing int16   // Bearing to current waypoint/target
-	WpDist        uint16  // Distance to active waypoint
+	NavRoll       float32 // [ deg ] Current desired roll
+	NavPitch      float32 // [ deg ] Current desired pitch
+	AltError      float32 // [ m ] Current altitude error
+	AspdError     float32 // [ m/s ] Current airspeed error
+	XtrackError   float32 // [ m ] Current crosstrack error on x-y plane
+	NavBearing    int16   // [ deg ] Current desired heading
+	TargetBearing int16   // [ deg ] Bearing to current waypoint/target
+	WpDist        uint16  // [ m ] Distance to active waypoint
 }
 
 // MsgID (generated function)
@@ -6984,14 +6984,14 @@ func (m *NavControllerOutput) Unmarshal(data []byte) error {
 // GlobalPositionIntCov struct (generated typeinfo)
 // The filtered global position (e.g. fused GPS and accelerometers). The position is in GPS-frame (right-handed, Z-up). It  is designed as scaled integer message since the resolution of float is not sufficient. NOTE: This message is intended for onboard networks / companion computers and higher-bandwidth links and optimized for accuracy and completeness. Please use the GLOBAL_POSITION_INT message for a minimal subset.
 type GlobalPositionIntCov struct {
-	TimeUsec      uint64             // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Lat           int32              // Latitude
-	Lon           int32              // Longitude
-	Alt           int32              // Altitude in meters above MSL
-	RelativeAlt   int32              // Altitude above ground
-	Vx            float32            // Ground X Speed (Latitude)
-	Vy            float32            // Ground Y Speed (Longitude)
-	Vz            float32            // Ground Z Speed (Altitude)
+	TimeUsec      uint64             // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Lat           int32              // [ degE7 ] Latitude
+	Lon           int32              // [ degE7 ] Longitude
+	Alt           int32              // [ mm ] Altitude in meters above MSL
+	RelativeAlt   int32              // [ mm ] Altitude above ground
+	Vx            float32            // [ m/s ] Ground X Speed (Latitude)
+	Vy            float32            // [ m/s ] Ground Y Speed (Longitude)
+	Vz            float32            // [ m/s ] Ground Z Speed (Altitude)
 	Covariance    []float32          `len:"36" ` // Row-major representation of a 6x6 position and velocity 6x6 cross-covariance matrix (states: lat, lon, alt, vx, vy, vz; first six entries are the first ROW, next six entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
 	EstimatorType MAV_ESTIMATOR_TYPE // Class id of the estimator this estimate originated from.
 }
@@ -7087,16 +7087,16 @@ func (m *GlobalPositionIntCov) Unmarshal(data []byte) error {
 // LocalPositionNedCov struct (generated typeinfo)
 // The filtered local position (e.g. fused computer vision and accelerometers). Coordinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-down convention)
 type LocalPositionNedCov struct {
-	TimeUsec      uint64             // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	X             float32            // X Position
-	Y             float32            // Y Position
-	Z             float32            // Z Position
-	Vx            float32            // X Speed
-	Vy            float32            // Y Speed
-	Vz            float32            // Z Speed
-	Ax            float32            // X Acceleration
-	Ay            float32            // Y Acceleration
-	Az            float32            // Z Acceleration
+	TimeUsec      uint64             // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	X             float32            // [ m ] X Position
+	Y             float32            // [ m ] Y Position
+	Z             float32            // [ m ] Z Position
+	Vx            float32            // [ m/s ] X Speed
+	Vy            float32            // [ m/s ] Y Speed
+	Vz            float32            // [ m/s ] Z Speed
+	Ax            float32            // [ m/s/s ] X Acceleration
+	Ay            float32            // [ m/s/s ] Y Acceleration
+	Az            float32            // [ m/s/s ] Z Acceleration
 	Covariance    []float32          `len:"45" ` // Row-major representation of position, velocity and acceleration 9x9 cross-covariance matrix upper right triangle (states: x, y, z, vx, vy, vz, ax, ay, az; first nine entries are the first ROW, next eight entries are the second row, etc.). If unknown, assign NaN value to first element in the array.
 	EstimatorType MAV_ESTIMATOR_TYPE // Class id of the estimator this estimate originated from.
 }
@@ -7202,25 +7202,25 @@ func (m *LocalPositionNedCov) Unmarshal(data []byte) error {
 // RcChannels struct (generated typeinfo)
 // The PPM values of the RC channels received. The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%.  A value of UINT16_MAX implies the channel is unused. Individual receivers/transmitters might violate this specification.
 type RcChannels struct {
-	TimeBootMs uint32 // Timestamp (time since system boot).
-	Chan1Raw   uint16 // RC channel 1 value.
-	Chan2Raw   uint16 // RC channel 2 value.
-	Chan3Raw   uint16 // RC channel 3 value.
-	Chan4Raw   uint16 // RC channel 4 value.
-	Chan5Raw   uint16 // RC channel 5 value.
-	Chan6Raw   uint16 // RC channel 6 value.
-	Chan7Raw   uint16 // RC channel 7 value.
-	Chan8Raw   uint16 // RC channel 8 value.
-	Chan9Raw   uint16 // RC channel 9 value.
-	Chan10Raw  uint16 // RC channel 10 value.
-	Chan11Raw  uint16 // RC channel 11 value.
-	Chan12Raw  uint16 // RC channel 12 value.
-	Chan13Raw  uint16 // RC channel 13 value.
-	Chan14Raw  uint16 // RC channel 14 value.
-	Chan15Raw  uint16 // RC channel 15 value.
-	Chan16Raw  uint16 // RC channel 16 value.
-	Chan17Raw  uint16 // RC channel 17 value.
-	Chan18Raw  uint16 // RC channel 18 value.
+	TimeBootMs uint32 // [ ms ] Timestamp (time since system boot).
+	Chan1Raw   uint16 // [ us ] RC channel 1 value.
+	Chan2Raw   uint16 // [ us ] RC channel 2 value.
+	Chan3Raw   uint16 // [ us ] RC channel 3 value.
+	Chan4Raw   uint16 // [ us ] RC channel 4 value.
+	Chan5Raw   uint16 // [ us ] RC channel 5 value.
+	Chan6Raw   uint16 // [ us ] RC channel 6 value.
+	Chan7Raw   uint16 // [ us ] RC channel 7 value.
+	Chan8Raw   uint16 // [ us ] RC channel 8 value.
+	Chan9Raw   uint16 // [ us ] RC channel 9 value.
+	Chan10Raw  uint16 // [ us ] RC channel 10 value.
+	Chan11Raw  uint16 // [ us ] RC channel 11 value.
+	Chan12Raw  uint16 // [ us ] RC channel 12 value.
+	Chan13Raw  uint16 // [ us ] RC channel 13 value.
+	Chan14Raw  uint16 // [ us ] RC channel 14 value.
+	Chan15Raw  uint16 // [ us ] RC channel 15 value.
+	Chan16Raw  uint16 // [ us ] RC channel 16 value.
+	Chan17Raw  uint16 // [ us ] RC channel 17 value.
+	Chan18Raw  uint16 // [ us ] RC channel 18 value.
 	Chancount  uint8  // Total number of RC channels being received. This can be larger than 18, indicating that more channels are available but not given in this message. This value should be 0 when no RC channels are available.
 	Rssi       uint8  // Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
 }
@@ -7367,7 +7367,7 @@ func (m *RcChannels) Unmarshal(data []byte) error {
 // RequestDataStream struct (generated typeinfo)
 // Request a data stream.
 type RequestDataStream struct {
-	ReqMessageRate  uint16 // The requested message rate
+	ReqMessageRate  uint16 // [ Hz ] The requested message rate
 	TargetSystem    uint8  // The target requested to send the message stream.
 	TargetComponent uint8  // The target requested to send the message stream.
 	ReqStreamID     uint8  // The ID of the requested data stream
@@ -7436,7 +7436,7 @@ func (m *RequestDataStream) Unmarshal(data []byte) error {
 // DataStream struct (generated typeinfo)
 // Data stream status information.
 type DataStream struct {
-	MessageRate uint16 // The message rate
+	MessageRate uint16 // [ Hz ] The message rate
 	StreamID    uint8  // The ID of the requested data stream
 	OnOff       uint8  // 1 stream is enabled, 0 stream is stopped.
 }
@@ -7568,14 +7568,14 @@ func (m *ManualControl) Unmarshal(data []byte) error {
 // RcChannelsOverride struct (generated typeinfo)
 // The RAW values of the RC channels sent to the MAV to override info received from the RC radio. The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. Individual receivers/transmitters might violate this specification.  Note carefully the semantic differences between the first 8 channels and the subsequent channels
 type RcChannelsOverride struct {
-	Chan1Raw        uint16 // RC channel 1 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
-	Chan2Raw        uint16 // RC channel 2 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
-	Chan3Raw        uint16 // RC channel 3 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
-	Chan4Raw        uint16 // RC channel 4 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
-	Chan5Raw        uint16 // RC channel 5 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
-	Chan6Raw        uint16 // RC channel 6 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
-	Chan7Raw        uint16 // RC channel 7 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
-	Chan8Raw        uint16 // RC channel 8 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
+	Chan1Raw        uint16 // [ us ] RC channel 1 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
+	Chan2Raw        uint16 // [ us ] RC channel 2 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
+	Chan3Raw        uint16 // [ us ] RC channel 3 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
+	Chan4Raw        uint16 // [ us ] RC channel 4 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
+	Chan5Raw        uint16 // [ us ] RC channel 5 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
+	Chan6Raw        uint16 // [ us ] RC channel 6 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
+	Chan7Raw        uint16 // [ us ] RC channel 7 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
+	Chan8Raw        uint16 // [ us ] RC channel 8 value. A value of UINT16_MAX means to ignore this field. A value of 0 means to release this channel back to the RC radio.
 	TargetSystem    uint8  // System ID
 	TargetComponent uint8  // Component ID
 }
@@ -7791,12 +7791,12 @@ func (m *MissionItemInt) Unmarshal(data []byte) error {
 // VfrHud struct (generated typeinfo)
 // Metrics typically displayed on a HUD for fixed wing aircraft.
 type VfrHud struct {
-	Airspeed    float32 // Vehicle speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed.
-	Groundspeed float32 // Current ground speed.
-	Alt         float32 // Current altitude (MSL).
-	Climb       float32 // Current climb rate.
-	Heading     int16   // Current heading in compass units (0-360, 0=north).
-	Throttle    uint16  // Current throttle setting (0 to 100).
+	Airspeed    float32 // [ m/s ] Vehicle speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed.
+	Groundspeed float32 // [ m/s ] Current ground speed.
+	Alt         float32 // [ m ] Current altitude (MSL).
+	Climb       float32 // [ m/s ] Current climb rate.
+	Heading     int16   // [ deg ] Current heading in compass units (0-360, 0=north).
+	Throttle    uint16  // [ % ] Current throttle setting (0 to 100).
 }
 
 // MsgID (generated function)
@@ -8196,10 +8196,10 @@ func (m *CommandCancel) Unmarshal(data []byte) error {
 // ManualSetpoint struct (generated typeinfo)
 // Setpoint in roll, pitch, yaw and thrust from the operator
 type ManualSetpoint struct {
-	TimeBootMs           uint32  // Timestamp (time since system boot).
-	Roll                 float32 // Desired roll rate
-	Pitch                float32 // Desired pitch rate
-	Yaw                  float32 // Desired yaw rate
+	TimeBootMs           uint32  // [ ms ] Timestamp (time since system boot).
+	Roll                 float32 // [ rad/s ] Desired roll rate
+	Pitch                float32 // [ rad/s ] Desired pitch rate
+	Yaw                  float32 // [ rad/s ] Desired yaw rate
 	Thrust               float32 // Collective thrust, normalized to 0 .. 1
 	ModeSwitch           uint8   // Flight mode switch position, 0.. 255
 	ManualOverrideSwitch uint8   // Override mode switch position, 0.. 255
@@ -8277,11 +8277,11 @@ func (m *ManualSetpoint) Unmarshal(data []byte) error {
 // SetAttitudeTarget struct (generated typeinfo)
 // Sets a desired vehicle attitude. Used by an external controller to command the vehicle (manual controller or other system).
 type SetAttitudeTarget struct {
-	TimeBootMs      uint32                   // Timestamp (time since system boot).
+	TimeBootMs      uint32                   // [ ms ] Timestamp (time since system boot).
 	Q               []float32                `len:"4" ` // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
-	BodyRollRate    float32                  // Body roll rate
-	BodyPitchRate   float32                  // Body pitch rate
-	BodyYawRate     float32                  // Body yaw rate
+	BodyRollRate    float32                  // [ rad/s ] Body roll rate
+	BodyPitchRate   float32                  // [ rad/s ] Body pitch rate
+	BodyYawRate     float32                  // [ rad/s ] Body yaw rate
 	Thrust          float32                  // Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust)
 	TargetSystem    uint8                    // System ID
 	TargetComponent uint8                    // Component ID
@@ -8374,11 +8374,11 @@ func (m *SetAttitudeTarget) Unmarshal(data []byte) error {
 // AttitudeTarget struct (generated typeinfo)
 // Reports the current commanded attitude of the vehicle as specified by the autopilot. This should match the commands sent in a SET_ATTITUDE_TARGET message if the vehicle is being controlled this way.
 type AttitudeTarget struct {
-	TimeBootMs    uint32                   // Timestamp (time since system boot).
+	TimeBootMs    uint32                   // [ ms ] Timestamp (time since system boot).
 	Q             []float32                `len:"4" ` // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
-	BodyRollRate  float32                  // Body roll rate
-	BodyPitchRate float32                  // Body pitch rate
-	BodyYawRate   float32                  // Body yaw rate
+	BodyRollRate  float32                  // [ rad/s ] Body roll rate
+	BodyPitchRate float32                  // [ rad/s ] Body pitch rate
+	BodyYawRate   float32                  // [ rad/s ] Body yaw rate
 	Thrust        float32                  // Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust)
 	TypeMask      ATTITUDE_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 }
@@ -8459,18 +8459,18 @@ func (m *AttitudeTarget) Unmarshal(data []byte) error {
 // SetPositionTargetLocalNed struct (generated typeinfo)
 // Sets a desired vehicle position in a local north-east-down coordinate frame. Used by an external controller to command the vehicle (manual controller or other system).
 type SetPositionTargetLocalNed struct {
-	TimeBootMs      uint32                   // Timestamp (time since system boot).
-	X               float32                  // X Position in NED frame
-	Y               float32                  // Y Position in NED frame
-	Z               float32                  // Z Position in NED frame (note, altitude is negative in NED)
-	Vx              float32                  // X velocity in NED frame
-	Vy              float32                  // Y velocity in NED frame
-	Vz              float32                  // Z velocity in NED frame
-	Afx             float32                  // X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Afy             float32                  // Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Afz             float32                  // Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Yaw             float32                  // yaw setpoint
-	YawRate         float32                  // yaw rate setpoint
+	TimeBootMs      uint32                   // [ ms ] Timestamp (time since system boot).
+	X               float32                  // [ m ] X Position in NED frame
+	Y               float32                  // [ m ] Y Position in NED frame
+	Z               float32                  // [ m ] Z Position in NED frame (note, altitude is negative in NED)
+	Vx              float32                  // [ m/s ] X velocity in NED frame
+	Vy              float32                  // [ m/s ] Y velocity in NED frame
+	Vz              float32                  // [ m/s ] Z velocity in NED frame
+	Afx             float32                  // [ m/s/s ] X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Afy             float32                  // [ m/s/s ] Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Afz             float32                  // [ m/s/s ] Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Yaw             float32                  // [ rad ] yaw setpoint
+	YawRate         float32                  // [ rad/s ] yaw rate setpoint
 	TypeMask        POSITION_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 	TargetSystem    uint8                    // System ID
 	TargetComponent uint8                    // Component ID
@@ -8594,18 +8594,18 @@ func (m *SetPositionTargetLocalNed) Unmarshal(data []byte) error {
 // PositionTargetLocalNed struct (generated typeinfo)
 // Reports the current commanded vehicle position, velocity, and acceleration as specified by the autopilot. This should match the commands sent in SET_POSITION_TARGET_LOCAL_NED if the vehicle is being controlled this way.
 type PositionTargetLocalNed struct {
-	TimeBootMs      uint32                   // Timestamp (time since system boot).
-	X               float32                  // X Position in NED frame
-	Y               float32                  // Y Position in NED frame
-	Z               float32                  // Z Position in NED frame (note, altitude is negative in NED)
-	Vx              float32                  // X velocity in NED frame
-	Vy              float32                  // Y velocity in NED frame
-	Vz              float32                  // Z velocity in NED frame
-	Afx             float32                  // X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Afy             float32                  // Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Afz             float32                  // Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Yaw             float32                  // yaw setpoint
-	YawRate         float32                  // yaw rate setpoint
+	TimeBootMs      uint32                   // [ ms ] Timestamp (time since system boot).
+	X               float32                  // [ m ] X Position in NED frame
+	Y               float32                  // [ m ] Y Position in NED frame
+	Z               float32                  // [ m ] Z Position in NED frame (note, altitude is negative in NED)
+	Vx              float32                  // [ m/s ] X velocity in NED frame
+	Vy              float32                  // [ m/s ] Y velocity in NED frame
+	Vz              float32                  // [ m/s ] Z velocity in NED frame
+	Afx             float32                  // [ m/s/s ] X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Afy             float32                  // [ m/s/s ] Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Afz             float32                  // [ m/s/s ] Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Yaw             float32                  // [ rad ] yaw setpoint
+	YawRate         float32                  // [ rad/s ] yaw rate setpoint
 	TypeMask        POSITION_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 	CoordinateFrame MAV_FRAME                // Valid options are: MAV_FRAME_LOCAL_NED = 1, MAV_FRAME_LOCAL_OFFSET_NED = 7, MAV_FRAME_BODY_NED = 8, MAV_FRAME_BODY_OFFSET_NED = 9
 }
@@ -8717,18 +8717,18 @@ func (m *PositionTargetLocalNed) Unmarshal(data []byte) error {
 // SetPositionTargetGlobalInt struct (generated typeinfo)
 // Sets a desired vehicle position, velocity, and/or acceleration in a global coordinate system (WGS84). Used by an external controller to command the vehicle (manual controller or other system).
 type SetPositionTargetGlobalInt struct {
-	TimeBootMs      uint32                   // Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
-	LatInt          int32                    // X Position in WGS84 frame
-	LonInt          int32                    // Y Position in WGS84 frame
-	Alt             float32                  // Altitude (MSL, Relative to home, or AGL - depending on frame)
-	Vx              float32                  // X velocity in NED frame
-	Vy              float32                  // Y velocity in NED frame
-	Vz              float32                  // Z velocity in NED frame
-	Afx             float32                  // X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Afy             float32                  // Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Afz             float32                  // Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Yaw             float32                  // yaw setpoint
-	YawRate         float32                  // yaw rate setpoint
+	TimeBootMs      uint32                   // [ ms ] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
+	LatInt          int32                    // [ degE7 ] X Position in WGS84 frame
+	LonInt          int32                    // [ degE7 ] Y Position in WGS84 frame
+	Alt             float32                  // [ m ] Altitude (MSL, Relative to home, or AGL - depending on frame)
+	Vx              float32                  // [ m/s ] X velocity in NED frame
+	Vy              float32                  // [ m/s ] Y velocity in NED frame
+	Vz              float32                  // [ m/s ] Z velocity in NED frame
+	Afx             float32                  // [ m/s/s ] X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Afy             float32                  // [ m/s/s ] Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Afz             float32                  // [ m/s/s ] Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Yaw             float32                  // [ rad ] yaw setpoint
+	YawRate         float32                  // [ rad/s ] yaw rate setpoint
 	TypeMask        POSITION_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 	TargetSystem    uint8                    // System ID
 	TargetComponent uint8                    // Component ID
@@ -8852,18 +8852,18 @@ func (m *SetPositionTargetGlobalInt) Unmarshal(data []byte) error {
 // PositionTargetGlobalInt struct (generated typeinfo)
 // Reports the current commanded vehicle position, velocity, and acceleration as specified by the autopilot. This should match the commands sent in SET_POSITION_TARGET_GLOBAL_INT if the vehicle is being controlled this way.
 type PositionTargetGlobalInt struct {
-	TimeBootMs      uint32                   // Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
-	LatInt          int32                    // X Position in WGS84 frame
-	LonInt          int32                    // Y Position in WGS84 frame
-	Alt             float32                  // Altitude (MSL, AGL or relative to home altitude, depending on frame)
-	Vx              float32                  // X velocity in NED frame
-	Vy              float32                  // Y velocity in NED frame
-	Vz              float32                  // Z velocity in NED frame
-	Afx             float32                  // X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Afy             float32                  // Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Afz             float32                  // Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
-	Yaw             float32                  // yaw setpoint
-	YawRate         float32                  // yaw rate setpoint
+	TimeBootMs      uint32                   // [ ms ] Timestamp (time since system boot). The rationale for the timestamp in the setpoint is to allow the system to compensate for the transport delay of the setpoint. This allows the system to compensate processing latency.
+	LatInt          int32                    // [ degE7 ] X Position in WGS84 frame
+	LonInt          int32                    // [ degE7 ] Y Position in WGS84 frame
+	Alt             float32                  // [ m ] Altitude (MSL, AGL or relative to home altitude, depending on frame)
+	Vx              float32                  // [ m/s ] X velocity in NED frame
+	Vy              float32                  // [ m/s ] Y velocity in NED frame
+	Vz              float32                  // [ m/s ] Z velocity in NED frame
+	Afx             float32                  // [ m/s/s ] X acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Afy             float32                  // [ m/s/s ] Y acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Afz             float32                  // [ m/s/s ] Z acceleration or force (if bit 10 of type_mask is set) in NED frame in meter / s^2 or N
+	Yaw             float32                  // [ rad ] yaw setpoint
+	YawRate         float32                  // [ rad/s ] yaw rate setpoint
 	TypeMask        POSITION_TARGET_TYPEMASK // Bitmap to indicate which dimensions should be ignored by the vehicle.
 	CoordinateFrame MAV_FRAME                // Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = 6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11
 }
@@ -8975,13 +8975,13 @@ func (m *PositionTargetGlobalInt) Unmarshal(data []byte) error {
 // LocalPositionNedSystemGlobalOffset struct (generated typeinfo)
 // The offset in X, Y, Z and yaw between the LOCAL_POSITION_NED messages of MAV X and the global coordinate frame in NED coordinates. Coordinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-down convention)
 type LocalPositionNedSystemGlobalOffset struct {
-	TimeBootMs uint32  // Timestamp (time since system boot).
-	X          float32 // X Position
-	Y          float32 // Y Position
-	Z          float32 // Z Position
-	Roll       float32 // Roll
-	Pitch      float32 // Pitch
-	Yaw        float32 // Yaw
+	TimeBootMs uint32  // [ ms ] Timestamp (time since system boot).
+	X          float32 // [ m ] X Position
+	Y          float32 // [ m ] Y Position
+	Z          float32 // [ m ] Z Position
+	Roll       float32 // [ rad ] Roll
+	Pitch      float32 // [ rad ] Pitch
+	Yaw        float32 // [ rad ] Yaw
 }
 
 // MsgID (generated function)
@@ -9056,22 +9056,22 @@ func (m *LocalPositionNedSystemGlobalOffset) Unmarshal(data []byte) error {
 // HilState struct (generated typeinfo)
 // Sent from simulation to autopilot. This packet is useful for high throughput applications such as hardware in the loop simulations.
 type HilState struct {
-	TimeUsec   uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Roll       float32 // Roll angle
-	Pitch      float32 // Pitch angle
-	Yaw        float32 // Yaw angle
-	Rollspeed  float32 // Body frame roll / phi angular speed
-	Pitchspeed float32 // Body frame pitch / theta angular speed
-	Yawspeed   float32 // Body frame yaw / psi angular speed
-	Lat        int32   // Latitude
-	Lon        int32   // Longitude
-	Alt        int32   // Altitude
-	Vx         int16   // Ground X Speed (Latitude)
-	Vy         int16   // Ground Y Speed (Longitude)
-	Vz         int16   // Ground Z Speed (Altitude)
-	Xacc       int16   // X acceleration
-	Yacc       int16   // Y acceleration
-	Zacc       int16   // Z acceleration
+	TimeUsec   uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Roll       float32 // [ rad ] Roll angle
+	Pitch      float32 // [ rad ] Pitch angle
+	Yaw        float32 // [ rad ] Yaw angle
+	Rollspeed  float32 // [ rad/s ] Body frame roll / phi angular speed
+	Pitchspeed float32 // [ rad/s ] Body frame pitch / theta angular speed
+	Yawspeed   float32 // [ rad/s ] Body frame yaw / psi angular speed
+	Lat        int32   // [ degE7 ] Latitude
+	Lon        int32   // [ degE7 ] Longitude
+	Alt        int32   // [ mm ] Altitude
+	Vx         int16   // [ cm/s ] Ground X Speed (Latitude)
+	Vy         int16   // [ cm/s ] Ground Y Speed (Longitude)
+	Vz         int16   // [ cm/s ] Ground Z Speed (Altitude)
+	Xacc       int16   // [ mG ] X acceleration
+	Yacc       int16   // [ mG ] Y acceleration
+	Zacc       int16   // [ mG ] Z acceleration
 }
 
 // MsgID (generated function)
@@ -9191,7 +9191,7 @@ func (m *HilState) Unmarshal(data []byte) error {
 // HilControls struct (generated typeinfo)
 // Sent from autopilot to simulation. Hardware in the loop control outputs
 type HilControls struct {
-	TimeUsec      uint64   // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec      uint64   // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	RollAilerons  float32  // Control output -1 .. 1
 	PitchElevator float32  // Control output -1 .. 1
 	YawRudder     float32  // Control output -1 .. 1
@@ -9296,19 +9296,19 @@ func (m *HilControls) Unmarshal(data []byte) error {
 // HilRcInputsRaw struct (generated typeinfo)
 // Sent from simulation to autopilot. The RAW values of the RC channels received. The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%. Individual receivers/transmitters might violate this specification.
 type HilRcInputsRaw struct {
-	TimeUsec  uint64 // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Chan1Raw  uint16 // RC channel 1 value
-	Chan2Raw  uint16 // RC channel 2 value
-	Chan3Raw  uint16 // RC channel 3 value
-	Chan4Raw  uint16 // RC channel 4 value
-	Chan5Raw  uint16 // RC channel 5 value
-	Chan6Raw  uint16 // RC channel 6 value
-	Chan7Raw  uint16 // RC channel 7 value
-	Chan8Raw  uint16 // RC channel 8 value
-	Chan9Raw  uint16 // RC channel 9 value
-	Chan10Raw uint16 // RC channel 10 value
-	Chan11Raw uint16 // RC channel 11 value
-	Chan12Raw uint16 // RC channel 12 value
+	TimeUsec  uint64 // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Chan1Raw  uint16 // [ us ] RC channel 1 value
+	Chan2Raw  uint16 // [ us ] RC channel 2 value
+	Chan3Raw  uint16 // [ us ] RC channel 3 value
+	Chan4Raw  uint16 // [ us ] RC channel 4 value
+	Chan5Raw  uint16 // [ us ] RC channel 5 value
+	Chan6Raw  uint16 // [ us ] RC channel 6 value
+	Chan7Raw  uint16 // [ us ] RC channel 7 value
+	Chan8Raw  uint16 // [ us ] RC channel 8 value
+	Chan9Raw  uint16 // [ us ] RC channel 9 value
+	Chan10Raw uint16 // [ us ] RC channel 10 value
+	Chan11Raw uint16 // [ us ] RC channel 11 value
+	Chan12Raw uint16 // [ us ] RC channel 12 value
 	Rssi      uint8  // Receive signal strength indicator in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
 }
 
@@ -9419,7 +9419,7 @@ func (m *HilRcInputsRaw) Unmarshal(data []byte) error {
 // HilActuatorControls struct (generated typeinfo)
 // Sent from autopilot to simulation. Hardware in the loop control outputs (replacement for HIL_CONTROLS)
 type HilActuatorControls struct {
-	TimeUsec uint64        // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec uint64        // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Flags    uint64        // Flags as bitfield, 1: indicate simulation using lockstep.
 	Controls []float32     `len:"16" ` // Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.
 	Mode     MAV_MODE_FLAG // System mode. Includes arming state.
@@ -9486,12 +9486,12 @@ func (m *HilActuatorControls) Unmarshal(data []byte) error {
 // OpticalFlow struct (generated typeinfo)
 // Optical flow from a flow sensor (e.g. optical mouse sensor)
 type OpticalFlow struct {
-	TimeUsec       uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	FlowCompMX     float32 // Flow in x-sensor direction, angular-speed compensated
-	FlowCompMY     float32 // Flow in y-sensor direction, angular-speed compensated
-	GroundDistance float32 // Ground distance. Positive value: distance known. Negative value: Unknown distance
-	FlowX          int16   // Flow in x-sensor direction
-	FlowY          int16   // Flow in y-sensor direction
+	TimeUsec       uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	FlowCompMX     float32 // [ m/s ] Flow in x-sensor direction, angular-speed compensated
+	FlowCompMY     float32 // [ m/s ] Flow in y-sensor direction, angular-speed compensated
+	GroundDistance float32 // [ m ] Ground distance. Positive value: distance known. Negative value: Unknown distance
+	FlowX          int16   // [ dpix ] Flow in x-sensor direction
+	FlowY          int16   // [ dpix ] Flow in y-sensor direction
 	SensorID       uint8   // Sensor ID
 	Quality        uint8   // Optical flow quality / confidence. 0: bad, 255: maximum quality
 }
@@ -9573,13 +9573,13 @@ func (m *OpticalFlow) Unmarshal(data []byte) error {
 // GlobalVisionPositionEstimate struct (generated typeinfo)
 // Global position/attitude estimate from a vision source.
 type GlobalVisionPositionEstimate struct {
-	Usec  uint64  // Timestamp (UNIX time or since system boot)
-	X     float32 // Global X position
-	Y     float32 // Global Y position
-	Z     float32 // Global Z position
-	Roll  float32 // Roll angle
-	Pitch float32 // Pitch angle
-	Yaw   float32 // Yaw angle
+	Usec  uint64  // [ us ] Timestamp (UNIX time or since system boot)
+	X     float32 // [ m ] Global X position
+	Y     float32 // [ m ] Global Y position
+	Z     float32 // [ m ] Global Z position
+	Roll  float32 // [ rad ] Roll angle
+	Pitch float32 // [ rad ] Pitch angle
+	Yaw   float32 // [ rad ] Yaw angle
 }
 
 // MsgID (generated function)
@@ -9654,13 +9654,13 @@ func (m *GlobalVisionPositionEstimate) Unmarshal(data []byte) error {
 // VisionPositionEstimate struct (generated typeinfo)
 // Local position/attitude estimate from a vision source.
 type VisionPositionEstimate struct {
-	Usec  uint64  // Timestamp (UNIX time or time since system boot)
-	X     float32 // Local X position
-	Y     float32 // Local Y position
-	Z     float32 // Local Z position
-	Roll  float32 // Roll angle
-	Pitch float32 // Pitch angle
-	Yaw   float32 // Yaw angle
+	Usec  uint64  // [ us ] Timestamp (UNIX time or time since system boot)
+	X     float32 // [ m ] Local X position
+	Y     float32 // [ m ] Local Y position
+	Z     float32 // [ m ] Local Z position
+	Roll  float32 // [ rad ] Roll angle
+	Pitch float32 // [ rad ] Pitch angle
+	Yaw   float32 // [ rad ] Yaw angle
 }
 
 // MsgID (generated function)
@@ -9735,10 +9735,10 @@ func (m *VisionPositionEstimate) Unmarshal(data []byte) error {
 // VisionSpeedEstimate struct (generated typeinfo)
 // Speed estimate from a vision source.
 type VisionSpeedEstimate struct {
-	Usec uint64  // Timestamp (UNIX time or time since system boot)
-	X    float32 // Global X speed
-	Y    float32 // Global Y speed
-	Z    float32 // Global Z speed
+	Usec uint64  // [ us ] Timestamp (UNIX time or time since system boot)
+	X    float32 // [ m/s ] Global X speed
+	Y    float32 // [ m/s ] Global Y speed
+	Z    float32 // [ m/s ] Global Z speed
 }
 
 // MsgID (generated function)
@@ -9798,13 +9798,13 @@ func (m *VisionSpeedEstimate) Unmarshal(data []byte) error {
 // ViconPositionEstimate struct (generated typeinfo)
 // Global position estimate from a Vicon motion system source.
 type ViconPositionEstimate struct {
-	Usec  uint64  // Timestamp (UNIX time or time since system boot)
-	X     float32 // Global X position
-	Y     float32 // Global Y position
-	Z     float32 // Global Z position
-	Roll  float32 // Roll angle
-	Pitch float32 // Pitch angle
-	Yaw   float32 // Yaw angle
+	Usec  uint64  // [ us ] Timestamp (UNIX time or time since system boot)
+	X     float32 // [ m ] Global X position
+	Y     float32 // [ m ] Global Y position
+	Z     float32 // [ m ] Global Z position
+	Roll  float32 // [ rad ] Roll angle
+	Pitch float32 // [ rad ] Pitch angle
+	Yaw   float32 // [ rad ] Yaw angle
 }
 
 // MsgID (generated function)
@@ -9879,20 +9879,20 @@ func (m *ViconPositionEstimate) Unmarshal(data []byte) error {
 // HighresImu struct (generated typeinfo)
 // The IMU readings in SI units in NED body frame
 type HighresImu struct {
-	TimeUsec      uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Xacc          float32 // X acceleration
-	Yacc          float32 // Y acceleration
-	Zacc          float32 // Z acceleration
-	Xgyro         float32 // Angular speed around X axis
-	Ygyro         float32 // Angular speed around Y axis
-	Zgyro         float32 // Angular speed around Z axis
-	Xmag          float32 // X Magnetic field
-	Ymag          float32 // Y Magnetic field
-	Zmag          float32 // Z Magnetic field
-	AbsPressure   float32 // Absolute pressure
-	DiffPressure  float32 // Differential pressure
+	TimeUsec      uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Xacc          float32 // [ m/s/s ] X acceleration
+	Yacc          float32 // [ m/s/s ] Y acceleration
+	Zacc          float32 // [ m/s/s ] Z acceleration
+	Xgyro         float32 // [ rad/s ] Angular speed around X axis
+	Ygyro         float32 // [ rad/s ] Angular speed around Y axis
+	Zgyro         float32 // [ rad/s ] Angular speed around Z axis
+	Xmag          float32 // [ gauss ] X Magnetic field
+	Ymag          float32 // [ gauss ] Y Magnetic field
+	Zmag          float32 // [ gauss ] Z Magnetic field
+	AbsPressure   float32 // [ hPa ] Absolute pressure
+	DiffPressure  float32 // [ hPa ] Differential pressure
 	PressureAlt   float32 // Altitude calculated from pressure
-	Temperature   float32 // Temperature
+	Temperature   float32 // [ degC ] Temperature
 	FieldsUpdated uint16  // Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
 }
 
@@ -10008,16 +10008,16 @@ func (m *HighresImu) Unmarshal(data []byte) error {
 // OpticalFlowRad struct (generated typeinfo)
 // Optical flow from an angular rate flow sensor (e.g. PX4FLOW or mouse sensor)
 type OpticalFlowRad struct {
-	TimeUsec            uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	IntegrationTimeUs   uint32  // Integration time. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the.
-	IntegratedX         float32 // Flow around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)
-	IntegratedY         float32 // Flow around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)
-	IntegratedXgyro     float32 // RH rotation around X axis
-	IntegratedYgyro     float32 // RH rotation around Y axis
-	IntegratedZgyro     float32 // RH rotation around Z axis
-	TimeDeltaDistanceUs uint32  // Time since the distance was sampled.
-	Distance            float32 // Distance to the center of the flow field. Positive value (including zero): distance known. Negative value: Unknown distance.
-	Temperature         int16   // Temperature
+	TimeUsec            uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	IntegrationTimeUs   uint32  // [ us ] Integration time. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the.
+	IntegratedX         float32 // [ rad ] Flow around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)
+	IntegratedY         float32 // [ rad ] Flow around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)
+	IntegratedXgyro     float32 // [ rad ] RH rotation around X axis
+	IntegratedYgyro     float32 // [ rad ] RH rotation around Y axis
+	IntegratedZgyro     float32 // [ rad ] RH rotation around Z axis
+	TimeDeltaDistanceUs uint32  // [ us ] Time since the distance was sampled.
+	Distance            float32 // [ m ] Distance to the center of the flow field. Positive value (including zero): distance known. Negative value: Unknown distance.
+	Temperature         int16   // [ cdegC ] Temperature
 	SensorID            uint8   // Sensor ID
 	Quality             uint8   // Optical flow quality / confidence. 0: no valid flow, 255: maximum quality
 }
@@ -10119,20 +10119,20 @@ func (m *OpticalFlowRad) Unmarshal(data []byte) error {
 // HilSensor struct (generated typeinfo)
 // The IMU readings in SI units in NED body frame
 type HilSensor struct {
-	TimeUsec      uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Xacc          float32 // X acceleration
-	Yacc          float32 // Y acceleration
-	Zacc          float32 // Z acceleration
-	Xgyro         float32 // Angular speed around X axis in body frame
-	Ygyro         float32 // Angular speed around Y axis in body frame
-	Zgyro         float32 // Angular speed around Z axis in body frame
-	Xmag          float32 // X Magnetic field
-	Ymag          float32 // Y Magnetic field
-	Zmag          float32 // Z Magnetic field
-	AbsPressure   float32 // Absolute pressure
-	DiffPressure  float32 // Differential pressure (airspeed)
+	TimeUsec      uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Xacc          float32 // [ m/s/s ] X acceleration
+	Yacc          float32 // [ m/s/s ] Y acceleration
+	Zacc          float32 // [ m/s/s ] Z acceleration
+	Xgyro         float32 // [ rad/s ] Angular speed around X axis in body frame
+	Ygyro         float32 // [ rad/s ] Angular speed around Y axis in body frame
+	Zgyro         float32 // [ rad/s ] Angular speed around Z axis in body frame
+	Xmag          float32 // [ gauss ] X Magnetic field
+	Ymag          float32 // [ gauss ] Y Magnetic field
+	Zmag          float32 // [ gauss ] Z Magnetic field
+	AbsPressure   float32 // [ hPa ] Absolute pressure
+	DiffPressure  float32 // [ hPa ] Differential pressure (airspeed)
 	PressureAlt   float32 // Altitude calculated from pressure
-	Temperature   float32 // Temperature
+	Temperature   float32 // [ degC ] Temperature
 	FieldsUpdated uint32  // Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.
 }
 
@@ -10255,20 +10255,20 @@ type SimState struct {
 	Roll       float32 // Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
 	Pitch      float32 // Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
 	Yaw        float32 // Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
-	Xacc       float32 // X acceleration
-	Yacc       float32 // Y acceleration
-	Zacc       float32 // Z acceleration
-	Xgyro      float32 // Angular speed around X axis
-	Ygyro      float32 // Angular speed around Y axis
-	Zgyro      float32 // Angular speed around Z axis
-	Lat        float32 // Latitude
-	Lon        float32 // Longitude
-	Alt        float32 // Altitude
+	Xacc       float32 // [ m/s/s ] X acceleration
+	Yacc       float32 // [ m/s/s ] Y acceleration
+	Zacc       float32 // [ m/s/s ] Z acceleration
+	Xgyro      float32 // [ rad/s ] Angular speed around X axis
+	Ygyro      float32 // [ rad/s ] Angular speed around Y axis
+	Zgyro      float32 // [ rad/s ] Angular speed around Z axis
+	Lat        float32 // [ deg ] Latitude
+	Lon        float32 // [ deg ] Longitude
+	Alt        float32 // [ m ] Altitude
 	StdDevHorz float32 // Horizontal position standard deviation
 	StdDevVert float32 // Vertical position standard deviation
-	Vn         float32 // True velocity in north direction in earth-fixed NED frame
-	Ve         float32 // True velocity in east direction in earth-fixed NED frame
-	Vd         float32 // True velocity in down direction in earth-fixed NED frame
+	Vn         float32 // [ m/s ] True velocity in north direction in earth-fixed NED frame
+	Ve         float32 // [ m/s ] True velocity in east direction in earth-fixed NED frame
+	Vd         float32 // [ m/s ] True velocity in down direction in earth-fixed NED frame
 }
 
 // MsgID (generated function)
@@ -10417,7 +10417,7 @@ type RadioStatus struct {
 	Fixed    uint16 // Count of error corrected radio packets (since boot).
 	Rssi     uint8  // Local (message sender) recieved signal strength indication in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
 	Remrssi  uint8  // Remote (message receiver) signal strength indication in device-dependent units/scale. Values: [0-254], 255: invalid/unknown.
-	Txbuf    uint8  // Remaining free transmitter buffer space.
+	Txbuf    uint8  // [ % ] Remaining free transmitter buffer space.
 	Noise    uint8  // Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], 255: invalid/unknown.
 	Remnoise uint8  // Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], 255: invalid/unknown.
 }
@@ -10608,7 +10608,7 @@ func (m *Timesync) Unmarshal(data []byte) error {
 // CameraTrigger struct (generated typeinfo)
 // Camera-IMU triggering and synchronisation message.
 type CameraTrigger struct {
-	TimeUsec uint64 // Timestamp for image frame (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec uint64 // [ us ] Timestamp for image frame (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Seq      uint32 // Image frame sequence
 }
 
@@ -10660,17 +10660,17 @@ func (m *CameraTrigger) Unmarshal(data []byte) error {
 // The global position, as returned by the Global Positioning System (GPS). This is
 //                  NOT the global position estimate of the sytem, but rather a RAW sensor value. See message GLOBAL_POSITION for the global position estimate.
 type HilGps struct {
-	TimeUsec          uint64 // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Lat               int32  // Latitude (WGS84)
-	Lon               int32  // Longitude (WGS84)
-	Alt               int32  // Altitude (MSL). Positive for up.
-	Eph               uint16 // GPS HDOP horizontal dilution of position. If unknown, set to: 65535
-	Epv               uint16 // GPS VDOP vertical dilution of position. If unknown, set to: 65535
-	Vel               uint16 // GPS ground speed. If unknown, set to: 65535
-	Vn                int16  // GPS velocity in north direction in earth-fixed NED frame
-	Ve                int16  // GPS velocity in east direction in earth-fixed NED frame
-	Vd                int16  // GPS velocity in down direction in earth-fixed NED frame
-	Cog               uint16 // Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If unknown, set to: 65535
+	TimeUsec          uint64 // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Lat               int32  // [ degE7 ] Latitude (WGS84)
+	Lon               int32  // [ degE7 ] Longitude (WGS84)
+	Alt               int32  // [ mm ] Altitude (MSL). Positive for up.
+	Eph               uint16 // [ cm ] GPS HDOP horizontal dilution of position. If unknown, set to: 65535
+	Epv               uint16 // [ cm ] GPS VDOP vertical dilution of position. If unknown, set to: 65535
+	Vel               uint16 // [ cm/s ] GPS ground speed. If unknown, set to: 65535
+	Vn                int16  // [ cm/s ] GPS velocity in north direction in earth-fixed NED frame
+	Ve                int16  // [ cm/s ] GPS velocity in east direction in earth-fixed NED frame
+	Vd                int16  // [ cm/s ] GPS velocity in down direction in earth-fixed NED frame
+	Cog               uint16 // [ cdeg ] Course over ground (NOT heading, but direction of movement), 0.0..359.99 degrees. If unknown, set to: 65535
 	FixType           uint8  // 0-1: no fix, 2: 2D fix, 3: 3D fix. Some applications will not use the value of this field unless it is at least two, so always correctly fill in the fix.
 	SatellitesVisible uint8  // Number of satellites visible. If unknown, set to 255
 }
@@ -10777,16 +10777,16 @@ func (m *HilGps) Unmarshal(data []byte) error {
 // HilOpticalFlow struct (generated typeinfo)
 // Simulated optical flow from a flow sensor (e.g. PX4FLOW or optical mouse sensor)
 type HilOpticalFlow struct {
-	TimeUsec            uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	IntegrationTimeUs   uint32  // Integration time. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the.
-	IntegratedX         float32 // Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)
-	IntegratedY         float32 // Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)
-	IntegratedXgyro     float32 // RH rotation around X axis
-	IntegratedYgyro     float32 // RH rotation around Y axis
-	IntegratedZgyro     float32 // RH rotation around Z axis
-	TimeDeltaDistanceUs uint32  // Time since the distance was sampled.
-	Distance            float32 // Distance to the center of the flow field. Positive value (including zero): distance known. Negative value: Unknown distance.
-	Temperature         int16   // Temperature
+	TimeUsec            uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	IntegrationTimeUs   uint32  // [ us ] Integration time. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the.
+	IntegratedX         float32 // [ rad ] Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)
+	IntegratedY         float32 // [ rad ] Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)
+	IntegratedXgyro     float32 // [ rad ] RH rotation around X axis
+	IntegratedYgyro     float32 // [ rad ] RH rotation around Y axis
+	IntegratedZgyro     float32 // [ rad ] RH rotation around Z axis
+	TimeDeltaDistanceUs uint32  // [ us ] Time since the distance was sampled.
+	Distance            float32 // [ m ] Distance to the center of the flow field. Positive value (including zero): distance known. Negative value: Unknown distance.
+	Temperature         int16   // [ cdegC ] Temperature
 	SensorID            uint8   // Sensor ID
 	Quality             uint8   // Optical flow quality / confidence. 0: no valid flow, 255: maximum quality
 }
@@ -10888,22 +10888,22 @@ func (m *HilOpticalFlow) Unmarshal(data []byte) error {
 // HilStateQuaternion struct (generated typeinfo)
 // Sent from simulation to autopilot, avoids in contrast to HIL_STATE singularities. This packet is useful for high throughput applications such as hardware in the loop simulations.
 type HilStateQuaternion struct {
-	TimeUsec           uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec           uint64    // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	AttitudeQuaternion []float32 `len:"4" ` // Vehicle attitude expressed as normalized quaternion in w, x, y, z order (with 1 0 0 0 being the null-rotation)
-	Rollspeed          float32   // Body frame roll / phi angular speed
-	Pitchspeed         float32   // Body frame pitch / theta angular speed
-	Yawspeed           float32   // Body frame yaw / psi angular speed
-	Lat                int32     // Latitude
-	Lon                int32     // Longitude
-	Alt                int32     // Altitude
-	Vx                 int16     // Ground X Speed (Latitude)
-	Vy                 int16     // Ground Y Speed (Longitude)
-	Vz                 int16     // Ground Z Speed (Altitude)
-	IndAirspeed        uint16    // Indicated airspeed
-	TrueAirspeed       uint16    // True airspeed
-	Xacc               int16     // X acceleration
-	Yacc               int16     // Y acceleration
-	Zacc               int16     // Z acceleration
+	Rollspeed          float32   // [ rad/s ] Body frame roll / phi angular speed
+	Pitchspeed         float32   // [ rad/s ] Body frame pitch / theta angular speed
+	Yawspeed           float32   // [ rad/s ] Body frame yaw / psi angular speed
+	Lat                int32     // [ degE7 ] Latitude
+	Lon                int32     // [ degE7 ] Longitude
+	Alt                int32     // [ mm ] Altitude
+	Vx                 int16     // [ cm/s ] Ground X Speed (Latitude)
+	Vy                 int16     // [ cm/s ] Ground Y Speed (Longitude)
+	Vz                 int16     // [ cm/s ] Ground Z Speed (Altitude)
+	IndAirspeed        uint16    // [ cm/s ] Indicated airspeed
+	TrueAirspeed       uint16    // [ cm/s ] True airspeed
+	Xacc               int16     // [ mG ] X acceleration
+	Yacc               int16     // [ mG ] Y acceleration
+	Zacc               int16     // [ mG ] Z acceleration
 }
 
 // MsgID (generated function)
@@ -11027,16 +11027,16 @@ func (m *HilStateQuaternion) Unmarshal(data []byte) error {
 // ScaledImu2 struct (generated typeinfo)
 // The RAW IMU readings for secondary 9DOF sensor setup. This message should contain the scaled values to the described units
 type ScaledImu2 struct {
-	TimeBootMs uint32 // Timestamp (time since system boot).
-	Xacc       int16  // X acceleration
-	Yacc       int16  // Y acceleration
-	Zacc       int16  // Z acceleration
-	Xgyro      int16  // Angular speed around X axis
-	Ygyro      int16  // Angular speed around Y axis
-	Zgyro      int16  // Angular speed around Z axis
-	Xmag       int16  // X Magnetic field
-	Ymag       int16  // Y Magnetic field
-	Zmag       int16  // Z Magnetic field
+	TimeBootMs uint32 // [ ms ] Timestamp (time since system boot).
+	Xacc       int16  // [ mG ] X acceleration
+	Yacc       int16  // [ mG ] Y acceleration
+	Zacc       int16  // [ mG ] Z acceleration
+	Xgyro      int16  // [ mrad/s ] Angular speed around X axis
+	Ygyro      int16  // [ mrad/s ] Angular speed around Y axis
+	Zgyro      int16  // [ mrad/s ] Angular speed around Z axis
+	Xmag       int16  // [ mgauss ] X Magnetic field
+	Ymag       int16  // [ mgauss ] Y Magnetic field
+	Zmag       int16  // [ mgauss ] Z Magnetic field
 }
 
 // MsgID (generated function)
@@ -11189,8 +11189,8 @@ func (m *LogRequestList) Unmarshal(data []byte) error {
 // LogEntry struct (generated typeinfo)
 // Reply to LOG_REQUEST_LIST
 type LogEntry struct {
-	TimeUtc    uint32 // UTC timestamp of log since 1970, or 0 if not available
-	Size       uint32 // Size of the log (may be approximate)
+	TimeUtc    uint32 // [ s ] UTC timestamp of log since 1970, or 0 if not available
+	Size       uint32 // [ bytes ] Size of the log (may be approximate)
 	ID         uint16 // Log id
 	NumLogs    uint16 // Total number of logs
 	LastLogNum uint16 // High log number
@@ -11259,7 +11259,7 @@ func (m *LogEntry) Unmarshal(data []byte) error {
 // Request a chunk of a log
 type LogRequestData struct {
 	Ofs             uint32 // Offset into the log
-	Count           uint32 // Number of bytes
+	Count           uint32 // [ bytes ] Number of bytes
 	ID              uint16 // Log id (from LOG_ENTRY reply)
 	TargetSystem    uint8  // System ID
 	TargetComponent uint8  // Component ID
@@ -11329,7 +11329,7 @@ func (m *LogRequestData) Unmarshal(data []byte) error {
 type LogData struct {
 	Ofs   uint32  // Offset into the log
 	ID    uint16  // Log id (from LOG_ENTRY reply)
-	Count uint8   // Number of bytes (zero for end of log)
+	Count uint8   // [ bytes ] Number of bytes (zero for end of log)
 	Data  []uint8 `len:"90" ` // log data
 }
 
@@ -11494,7 +11494,7 @@ func (m *LogRequestEnd) Unmarshal(data []byte) error {
 type GpsInjectData struct {
 	TargetSystem    uint8   // System ID
 	TargetComponent uint8   // Component ID
-	Len             uint8   // Data length
+	Len             uint8   // [ bytes ] Data length
 	Data            []uint8 `len:"110" ` // Raw data (110 is enough for 12 satellites of RTCMv2)
 }
 
@@ -11555,15 +11555,15 @@ func (m *GpsInjectData) Unmarshal(data []byte) error {
 // Gps2Raw struct (generated typeinfo)
 // Second GPS data.
 type Gps2Raw struct {
-	TimeUsec          uint64       // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	Lat               int32        // Latitude (WGS84)
-	Lon               int32        // Longitude (WGS84)
-	Alt               int32        // Altitude (MSL). Positive for up.
-	DgpsAge           uint32       // Age of DGPS info
-	Eph               uint16       // GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
-	Epv               uint16       // GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
-	Vel               uint16       // GPS ground speed. If unknown, set to: UINT16_MAX
-	Cog               uint16       // Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
+	TimeUsec          uint64       // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	Lat               int32        // [ degE7 ] Latitude (WGS84)
+	Lon               int32        // [ degE7 ] Longitude (WGS84)
+	Alt               int32        // [ mm ] Altitude (MSL). Positive for up.
+	DgpsAge           uint32       // [ ms ] Age of DGPS info
+	Eph               uint16       // [ cm ] GPS HDOP horizontal dilution of position. If unknown, set to: UINT16_MAX
+	Epv               uint16       // [ cm ] GPS VDOP vertical dilution of position. If unknown, set to: UINT16_MAX
+	Vel               uint16       // [ cm/s ] GPS ground speed. If unknown, set to: UINT16_MAX
+	Cog               uint16       // [ cdeg ] Course over ground (NOT heading, but direction of movement): 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
 	FixType           GPS_FIX_TYPE // GPS fix type.
 	SatellitesVisible uint8        // Number of satellites visible. If unknown, set to 255
 	DgpsNumch         uint8        // Number of DGPS satellites
@@ -11666,8 +11666,8 @@ func (m *Gps2Raw) Unmarshal(data []byte) error {
 // PowerStatus struct (generated typeinfo)
 // Power supply status
 type PowerStatus struct {
-	Vcc    uint16           // 5V rail voltage.
-	Vservo uint16           // Servo rail voltage.
+	Vcc    uint16           // [ mV ] 5V rail voltage.
+	Vservo uint16           // [ mV ] Servo rail voltage.
 	Flags  MAV_POWER_STATUS // Bitmap of power supply status flags.
 }
 
@@ -11723,11 +11723,11 @@ func (m *PowerStatus) Unmarshal(data []byte) error {
 // SerialControl struct (generated typeinfo)
 // Control a serial port. This can be used for raw access to an onboard serial peripheral such as a GPS or telemetry radio. It is designed to make it possible to update the devices firmware via MAVLink messages or change the devices settings. A message with zero bytes can be used to change just the baudrate.
 type SerialControl struct {
-	Baudrate uint32              // Baudrate of transfer. Zero means no change.
-	Timeout  uint16              // Timeout for reply data
+	Baudrate uint32              // [ bits/s ] Baudrate of transfer. Zero means no change.
+	Timeout  uint16              // [ ms ] Timeout for reply data
 	Device   SERIAL_CONTROL_DEV  // Serial control device type.
 	Flags    SERIAL_CONTROL_FLAG // Bitmap of serial control flags.
-	Count    uint8               // how many bytes in this transfer
+	Count    uint8               // [ bytes ] how many bytes in this transfer
 	Data     []uint8             `len:"70" ` // serial data
 }
 
@@ -11798,17 +11798,17 @@ func (m *SerialControl) Unmarshal(data []byte) error {
 // GpsRtk struct (generated typeinfo)
 // RTK GPS data. Gives information on the relative baseline calculation the GPS is reporting
 type GpsRtk struct {
-	TimeLastBaselineMs uint32                         // Time since boot of last baseline message received.
-	Tow                uint32                         // GPS Time of Week of last baseline
-	BaselineAMm        int32                          // Current baseline in ECEF x or NED north component.
-	BaselineBMm        int32                          // Current baseline in ECEF y or NED east component.
-	BaselineCMm        int32                          // Current baseline in ECEF z or NED down component.
+	TimeLastBaselineMs uint32                         // [ ms ] Time since boot of last baseline message received.
+	Tow                uint32                         // [ ms ] GPS Time of Week of last baseline
+	BaselineAMm        int32                          // [ mm ] Current baseline in ECEF x or NED north component.
+	BaselineBMm        int32                          // [ mm ] Current baseline in ECEF y or NED east component.
+	BaselineCMm        int32                          // [ mm ] Current baseline in ECEF z or NED down component.
 	Accuracy           uint32                         // Current estimate of baseline accuracy.
 	IarNumHypotheses   int32                          // Current number of integer ambiguity hypotheses.
 	Wn                 uint16                         // GPS Week Number of last baseline
 	RtkReceiverID      uint8                          // Identification of connected RTK receiver.
 	RtkHealth          uint8                          // GPS-specific health report for RTK data.
-	RtkRate            uint8                          // Rate of baseline messages being received by GPS
+	RtkRate            uint8                          // [ Hz ] Rate of baseline messages being received by GPS
 	Nsats              uint8                          // Current number of sats used for RTK calculation.
 	BaselineCoordsType RTK_BASELINE_COORDINATE_SYSTEM // Coordinate system of baseline
 }
@@ -11915,17 +11915,17 @@ func (m *GpsRtk) Unmarshal(data []byte) error {
 // Gps2Rtk struct (generated typeinfo)
 // RTK GPS data. Gives information on the relative baseline calculation the GPS is reporting
 type Gps2Rtk struct {
-	TimeLastBaselineMs uint32                         // Time since boot of last baseline message received.
-	Tow                uint32                         // GPS Time of Week of last baseline
-	BaselineAMm        int32                          // Current baseline in ECEF x or NED north component.
-	BaselineBMm        int32                          // Current baseline in ECEF y or NED east component.
-	BaselineCMm        int32                          // Current baseline in ECEF z or NED down component.
+	TimeLastBaselineMs uint32                         // [ ms ] Time since boot of last baseline message received.
+	Tow                uint32                         // [ ms ] GPS Time of Week of last baseline
+	BaselineAMm        int32                          // [ mm ] Current baseline in ECEF x or NED north component.
+	BaselineBMm        int32                          // [ mm ] Current baseline in ECEF y or NED east component.
+	BaselineCMm        int32                          // [ mm ] Current baseline in ECEF z or NED down component.
 	Accuracy           uint32                         // Current estimate of baseline accuracy.
 	IarNumHypotheses   int32                          // Current number of integer ambiguity hypotheses.
 	Wn                 uint16                         // GPS Week Number of last baseline
 	RtkReceiverID      uint8                          // Identification of connected RTK receiver.
 	RtkHealth          uint8                          // GPS-specific health report for RTK data.
-	RtkRate            uint8                          // Rate of baseline messages being received by GPS
+	RtkRate            uint8                          // [ Hz ] Rate of baseline messages being received by GPS
 	Nsats              uint8                          // Current number of sats used for RTK calculation.
 	BaselineCoordsType RTK_BASELINE_COORDINATE_SYSTEM // Coordinate system of baseline
 }
@@ -12032,16 +12032,16 @@ func (m *Gps2Rtk) Unmarshal(data []byte) error {
 // ScaledImu3 struct (generated typeinfo)
 // The RAW IMU readings for 3rd 9DOF sensor setup. This message should contain the scaled values to the described units
 type ScaledImu3 struct {
-	TimeBootMs uint32 // Timestamp (time since system boot).
-	Xacc       int16  // X acceleration
-	Yacc       int16  // Y acceleration
-	Zacc       int16  // Z acceleration
-	Xgyro      int16  // Angular speed around X axis
-	Ygyro      int16  // Angular speed around Y axis
-	Zgyro      int16  // Angular speed around Z axis
-	Xmag       int16  // X Magnetic field
-	Ymag       int16  // Y Magnetic field
-	Zmag       int16  // Z Magnetic field
+	TimeBootMs uint32 // [ ms ] Timestamp (time since system boot).
+	Xacc       int16  // [ mG ] X acceleration
+	Yacc       int16  // [ mG ] Y acceleration
+	Zacc       int16  // [ mG ] Z acceleration
+	Xgyro      int16  // [ mrad/s ] Angular speed around X axis
+	Ygyro      int16  // [ mrad/s ] Angular speed around Y axis
+	Zgyro      int16  // [ mrad/s ] Angular speed around Z axis
+	Xmag       int16  // [ mgauss ] X Magnetic field
+	Ymag       int16  // [ mgauss ] Y Magnetic field
+	Zmag       int16  // [ mgauss ] Z Magnetic field
 }
 
 // MsgID (generated function)
@@ -12131,13 +12131,13 @@ func (m *ScaledImu3) Unmarshal(data []byte) error {
 // DataTransmissionHandshake struct (generated typeinfo)
 // Handshake message to initiate, control and stop image streaming when using the Image Transmission Protocol: https://mavlink.io/en/services/image_transmission.html.
 type DataTransmissionHandshake struct {
-	Size       uint32                   // total data size (set on ACK only).
+	Size       uint32                   // [ bytes ] total data size (set on ACK only).
 	Width      uint16                   // Width of a matrix or image.
 	Height     uint16                   // Height of a matrix or image.
 	Packets    uint16                   // Number of packets being sent (set on ACK only).
 	Type       MAVLINK_DATA_STREAM_TYPE // Type of requested/acknowledged data.
-	Payload    uint8                    // Payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) (set on ACK only).
-	JpgQuality uint8                    // JPEG quality. Values: [1-100].
+	Payload    uint8                    // [ bytes ] Payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) (set on ACK only).
+	JpgQuality uint8                    // [ % ] JPEG quality. Values: [1-100].
 }
 
 // MsgID (generated function)
@@ -12263,14 +12263,14 @@ func (m *EncapsulatedData) Unmarshal(data []byte) error {
 // DistanceSensor struct (generated typeinfo)
 // Distance sensor information for an onboard rangefinder.
 type DistanceSensor struct {
-	TimeBootMs      uint32                 // Timestamp (time since system boot).
-	MinDistance     uint16                 // Minimum distance the sensor can measure
-	MaxDistance     uint16                 // Maximum distance the sensor can measure
-	CurrentDistance uint16                 // Current distance reading
+	TimeBootMs      uint32                 // [ ms ] Timestamp (time since system boot).
+	MinDistance     uint16                 // [ cm ] Minimum distance the sensor can measure
+	MaxDistance     uint16                 // [ cm ] Maximum distance the sensor can measure
+	CurrentDistance uint16                 // [ cm ] Current distance reading
 	Type            MAV_DISTANCE_SENSOR    // Type of distance sensor.
 	ID              uint8                  // Onboard ID of the sensor
 	Orientation     MAV_SENSOR_ORIENTATION // Direction the sensor faces. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270
-	Covariance      uint8                  // Measurement variance. Max standard deviation is 6cm. 255 if unknown.
+	Covariance      uint8                  // [ cm^2 ] Measurement variance. Max standard deviation is 6cm. 255 if unknown.
 }
 
 // MsgID (generated function)
@@ -12351,9 +12351,9 @@ func (m *DistanceSensor) Unmarshal(data []byte) error {
 // Request for terrain data and terrain status. See terrain protocol docs: https://mavlink.io/en/services/terrain.html
 type TerrainRequest struct {
 	Mask        uint64 // Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)
-	Lat         int32  // Latitude of SW corner of first grid
-	Lon         int32  // Longitude of SW corner of first grid
-	GridSpacing uint16 // Grid spacing
+	Lat         int32  // [ degE7 ] Latitude of SW corner of first grid
+	Lon         int32  // [ degE7 ] Longitude of SW corner of first grid
+	GridSpacing uint16 // [ m ] Grid spacing
 }
 
 // MsgID (generated function)
@@ -12413,10 +12413,10 @@ func (m *TerrainRequest) Unmarshal(data []byte) error {
 // TerrainData struct (generated typeinfo)
 // Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a lat/lon from a TERRAIN_REQUEST. See terrain protocol docs: https://mavlink.io/en/services/terrain.html
 type TerrainData struct {
-	Lat         int32   // Latitude of SW corner of first grid
-	Lon         int32   // Longitude of SW corner of first grid
-	GridSpacing uint16  // Grid spacing
-	Data        []int16 `len:"16" ` // Terrain data MSL
+	Lat         int32   // [ degE7 ] Latitude of SW corner of first grid
+	Lon         int32   // [ degE7 ] Longitude of SW corner of first grid
+	GridSpacing uint16  // [ m ] Grid spacing
+	Data        []int16 `len:"16" ` // [ m ] Terrain data MSL
 	Gridbit     uint8   // bit within the terrain request mask
 }
 
@@ -12486,8 +12486,8 @@ func (m *TerrainData) Unmarshal(data []byte) error {
 // TerrainCheck struct (generated typeinfo)
 // Request that the vehicle report terrain height at the given location (expected response is a TERRAIN_REPORT). Used by GCS to check if vehicle has all terrain data needed for a mission.
 type TerrainCheck struct {
-	Lat int32 // Latitude
-	Lon int32 // Longitude
+	Lat int32 // [ degE7 ] Latitude
+	Lon int32 // [ degE7 ] Longitude
 }
 
 // MsgID (generated function)
@@ -12537,10 +12537,10 @@ func (m *TerrainCheck) Unmarshal(data []byte) error {
 // TerrainReport struct (generated typeinfo)
 // Streamed from drone to report progress of terrain map download (initiated by TERRAIN_REQUEST), or sent as a response to a TERRAIN_CHECK request. See terrain protocol docs: https://mavlink.io/en/services/terrain.html
 type TerrainReport struct {
-	Lat           int32   // Latitude
-	Lon           int32   // Longitude
-	TerrainHeight float32 // Terrain height MSL
-	CurrentHeight float32 // Current vehicle height above lat/lon terrain height
+	Lat           int32   // [ degE7 ] Latitude
+	Lon           int32   // [ degE7 ] Longitude
+	TerrainHeight float32 // [ m ] Terrain height MSL
+	CurrentHeight float32 // [ m ] Current vehicle height above lat/lon terrain height
 	Spacing       uint16  // grid spacing (zero if terrain at this location unavailable)
 	Pending       uint16  // Number of 4x4 terrain blocks waiting to be received or read from disk
 	Loaded        uint16  // Number of 4x4 terrain blocks in memory
@@ -12618,10 +12618,10 @@ func (m *TerrainReport) Unmarshal(data []byte) error {
 // ScaledPressure2 struct (generated typeinfo)
 // Barometer readings for 2nd barometer
 type ScaledPressure2 struct {
-	TimeBootMs  uint32  // Timestamp (time since system boot).
-	PressAbs    float32 // Absolute pressure
-	PressDiff   float32 // Differential pressure
-	Temperature int16   // Absolute pressure temperature
+	TimeBootMs  uint32  // [ ms ] Timestamp (time since system boot).
+	PressAbs    float32 // [ hPa ] Absolute pressure
+	PressDiff   float32 // [ hPa ] Differential pressure
+	Temperature int16   // [ cdegC ] Absolute pressure temperature
 }
 
 // MsgID (generated function)
@@ -12681,11 +12681,11 @@ func (m *ScaledPressure2) Unmarshal(data []byte) error {
 // AttPosMocap struct (generated typeinfo)
 // Motion capture attitude and position
 type AttPosMocap struct {
-	TimeUsec uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec uint64    // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Q        []float32 `len:"4" ` // Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
-	X        float32   // X position (NED)
-	Y        float32   // Y position (NED)
-	Z        float32   // Z position (NED)
+	X        float32   // [ m ] X position (NED)
+	Y        float32   // [ m ] Y position (NED)
+	Z        float32   // [ m ] Z position (NED)
 }
 
 // MsgID (generated function)
@@ -12754,7 +12754,7 @@ func (m *AttPosMocap) Unmarshal(data []byte) error {
 // SetActuatorControlTarget struct (generated typeinfo)
 // Set the vehicle attitude and body angular rates.
 type SetActuatorControlTarget struct {
-	TimeUsec        uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec        uint64    // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Controls        []float32 `len:"8" ` // Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
 	GroupMlx        uint8     // Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances.
 	TargetSystem    uint8     // System ID
@@ -12827,7 +12827,7 @@ func (m *SetActuatorControlTarget) Unmarshal(data []byte) error {
 // ActuatorControlTarget struct (generated typeinfo)
 // Set the vehicle attitude and body angular rates.
 type ActuatorControlTarget struct {
-	TimeUsec uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec uint64    // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	Controls []float32 `len:"8" ` // Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
 	GroupMlx uint8     // Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances.
 }
@@ -12888,13 +12888,13 @@ func (m *ActuatorControlTarget) Unmarshal(data []byte) error {
 // Altitude struct (generated typeinfo)
 // The current system altitude.
 type Altitude struct {
-	TimeUsec          uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	AltitudeMonotonic float32 // This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.
-	AltitudeAmsl      float32 // This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output MSL by default and not the WGS84 altitude.
-	AltitudeLocal     float32 // This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive.
-	AltitudeRelative  float32 // This is the altitude above the home position. It resets on each change of the current home position.
-	AltitudeTerrain   float32 // This is the altitude above terrain. It might be fed by a terrain database or an altimeter. Values smaller than -1000 should be interpreted as unknown.
-	BottomClearance   float32 // This is not the altitude, but the clear space below the system according to the fused clearance estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is generally a moving target. A negative value indicates no measurement available.
+	TimeUsec          uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	AltitudeMonotonic float32 // [ m ] This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.
+	AltitudeAmsl      float32 // [ m ] This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output MSL by default and not the WGS84 altitude.
+	AltitudeLocal     float32 // [ m ] This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive.
+	AltitudeRelative  float32 // [ m ] This is the altitude above the home position. It resets on each change of the current home position.
+	AltitudeTerrain   float32 // [ m ] This is the altitude above terrain. It might be fed by a terrain database or an altimeter. Values smaller than -1000 should be interpreted as unknown.
+	BottomClearance   float32 // [ m ] This is not the altitude, but the clear space below the system according to the fused clearance estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is generally a moving target. A negative value indicates no measurement available.
 }
 
 // MsgID (generated function)
@@ -13038,10 +13038,10 @@ func (m *ResourceRequest) Unmarshal(data []byte) error {
 // ScaledPressure3 struct (generated typeinfo)
 // Barometer readings for 3rd barometer
 type ScaledPressure3 struct {
-	TimeBootMs  uint32  // Timestamp (time since system boot).
-	PressAbs    float32 // Absolute pressure
-	PressDiff   float32 // Differential pressure
-	Temperature int16   // Absolute pressure temperature
+	TimeBootMs  uint32  // [ ms ] Timestamp (time since system boot).
+	PressAbs    float32 // [ hPa ] Absolute pressure
+	PressDiff   float32 // [ hPa ] Differential pressure
+	Temperature int16   // [ cdegC ] Absolute pressure temperature
 }
 
 // MsgID (generated function)
@@ -13101,13 +13101,13 @@ func (m *ScaledPressure3) Unmarshal(data []byte) error {
 // FollowTarget struct (generated typeinfo)
 // Current motion information from a designated system
 type FollowTarget struct {
-	Timestamp       uint64    // Timestamp (time since system boot).
+	Timestamp       uint64    // [ ms ] Timestamp (time since system boot).
 	CustomState     uint64    // button states or switches of a tracker device
-	Lat             int32     // Latitude (WGS84)
-	Lon             int32     // Longitude (WGS84)
-	Alt             float32   // Altitude (MSL)
-	Vel             []float32 `len:"3" ` // target velocity (0,0,0) for unknown
-	Acc             []float32 `len:"3" ` // linear target acceleration (0,0,0) for unknown
+	Lat             int32     // [ degE7 ] Latitude (WGS84)
+	Lon             int32     // [ degE7 ] Longitude (WGS84)
+	Alt             float32   // [ m ] Altitude (MSL)
+	Vel             []float32 `len:"3" ` // [ m/s ] target velocity (0,0,0) for unknown
+	Acc             []float32 `len:"3" ` // [ m/s/s ] linear target acceleration (0,0,0) for unknown
 	AttitudeQ       []float32 `len:"4" ` // (1 0 0 0 for unknown)
 	Rates           []float32 `len:"3" ` // (0 0 0 for unknown)
 	PositionCov     []float32 `len:"3" ` // eph epv
@@ -13226,23 +13226,23 @@ func (m *FollowTarget) Unmarshal(data []byte) error {
 // ControlSystemState struct (generated typeinfo)
 // The smoothed, monotonic system state used to feed the control loops of the system.
 type ControlSystemState struct {
-	TimeUsec    uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	XAcc        float32   // X acceleration in body frame
-	YAcc        float32   // Y acceleration in body frame
-	ZAcc        float32   // Z acceleration in body frame
-	XVel        float32   // X velocity in body frame
-	YVel        float32   // Y velocity in body frame
-	ZVel        float32   // Z velocity in body frame
-	XPos        float32   // X position in local frame
-	YPos        float32   // Y position in local frame
-	ZPos        float32   // Z position in local frame
-	Airspeed    float32   // Airspeed, set to -1 if unknown
+	TimeUsec    uint64    // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	XAcc        float32   // [ m/s/s ] X acceleration in body frame
+	YAcc        float32   // [ m/s/s ] Y acceleration in body frame
+	ZAcc        float32   // [ m/s/s ] Z acceleration in body frame
+	XVel        float32   // [ m/s ] X velocity in body frame
+	YVel        float32   // [ m/s ] Y velocity in body frame
+	ZVel        float32   // [ m/s ] Z velocity in body frame
+	XPos        float32   // [ m ] X position in local frame
+	YPos        float32   // [ m ] Y position in local frame
+	ZPos        float32   // [ m ] Z position in local frame
+	Airspeed    float32   // [ m/s ] Airspeed, set to -1 if unknown
 	VelVariance []float32 `len:"3" ` // Variance of body velocity estimate
 	PosVariance []float32 `len:"3" ` // Variance in local position
 	Q           []float32 `len:"4" ` // The attitude, represented as Quaternion
-	RollRate    float32   // Angular rate in roll axis
-	PitchRate   float32   // Angular rate in pitch axis
-	YawRate     float32   // Angular rate in yaw axis
+	RollRate    float32   // [ rad/s ] Angular rate in roll axis
+	PitchRate   float32   // [ rad/s ] Angular rate in pitch axis
+	YawRate     float32   // [ rad/s ] Angular rate in yaw axis
 }
 
 // MsgID (generated function)
@@ -13379,15 +13379,15 @@ func (m *ControlSystemState) Unmarshal(data []byte) error {
 // BatteryStatus struct (generated typeinfo)
 // Battery information. Updates GCS with flight controller battery status. Smart batteries also use this message, but may additionally send SMART_BATTERY_INFO.
 type BatteryStatus struct {
-	CurrentConsumed  int32                // Consumed charge, -1: autopilot does not provide consumption estimate
-	EnergyConsumed   int32                // Consumed energy, -1: autopilot does not provide energy consumption estimate
-	Temperature      int16                // Temperature of the battery. INT16_MAX for unknown temperature.
-	Voltages         []uint16             `len:"10" ` // Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above the valid cell count for this battery should have the UINT16_MAX value. If individual cell voltages are unknown or not measured for this battery, then the overall battery voltage should be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining voltage. This can be extended to multiple cells if the total voltage is greater than 2 * (UINT16_MAX - 1).
-	CurrentBattery   int16                // Battery current, -1: autopilot does not measure the current
+	CurrentConsumed  int32                // [ mAh ] Consumed charge, -1: autopilot does not provide consumption estimate
+	EnergyConsumed   int32                // [ hJ ] Consumed energy, -1: autopilot does not provide energy consumption estimate
+	Temperature      int16                // [ cdegC ] Temperature of the battery. INT16_MAX for unknown temperature.
+	Voltages         []uint16             `len:"10" ` // [ mV ] Battery voltage of cells 1 to 10 (see voltages_ext for cells 11-14). Cells in this field above the valid cell count for this battery should have the UINT16_MAX value. If individual cell voltages are unknown or not measured for this battery, then the overall battery voltage should be filled in cell 0, with all others set to UINT16_MAX. If the voltage of the battery is greater than (UINT16_MAX - 1), then cell 0 should be set to (UINT16_MAX - 1), and cell 1 to the remaining voltage. This can be extended to multiple cells if the total voltage is greater than 2 * (UINT16_MAX - 1).
+	CurrentBattery   int16                // [ cA ] Battery current, -1: autopilot does not measure the current
 	ID               uint8                // Battery ID
 	BatteryFunction  MAV_BATTERY_FUNCTION // Function of the battery
 	Type             MAV_BATTERY_TYPE     // Type (chemistry) of the battery
-	BatteryRemaining int8                 // Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.
+	BatteryRemaining int8                 // [ % ] Remaining battery energy. Values: [0-100], -1: autopilot does not estimate the remaining battery.
 }
 
 // MsgID (generated function)
@@ -13581,12 +13581,12 @@ func (m *AutopilotVersion) Unmarshal(data []byte) error {
 // LandingTarget struct (generated typeinfo)
 // The location of a landing target. See: https://mavlink.io/en/services/landing_target.html
 type LandingTarget struct {
-	TimeUsec  uint64    // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	AngleX    float32   // X-axis angular offset of the target from the center of the image
-	AngleY    float32   // Y-axis angular offset of the target from the center of the image
-	Distance  float32   // Distance to the target from the vehicle
-	SizeX     float32   // Size of target along x-axis
-	SizeY     float32   // Size of target along y-axis
+	TimeUsec  uint64    // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	AngleX    float32   // [ rad ] X-axis angular offset of the target from the center of the image
+	AngleY    float32   // [ rad ] Y-axis angular offset of the target from the center of the image
+	Distance  float32   // [ m ] Distance to the target from the vehicle
+	SizeX     float32   // [ rad ] Size of target along x-axis
+	SizeY     float32   // [ rad ] Size of target along y-axis
 	TargetNum uint8     // The ID of the target if multiple targets are present
 	Frame     MAV_FRAME // Coordinate frame used for following fields.
 }
@@ -13668,7 +13668,7 @@ func (m *LandingTarget) Unmarshal(data []byte) error {
 // FenceStatus struct (generated typeinfo)
 // Status of geo-fencing. Sent in extended status stream when fencing enabled.
 type FenceStatus struct {
-	BreachTime   uint32       // Time (since boot) of last breach.
+	BreachTime   uint32       // [ ms ] Time (since boot) of last breach.
 	BreachCount  uint16       // Number of fence breaches.
 	BreachStatus uint8        // Breach status (0 if currently inside fence, 1 if outside).
 	BreachType   FENCE_BREACH // Last breach type.
@@ -13731,7 +13731,7 @@ func (m *FenceStatus) Unmarshal(data []byte) error {
 // MagCalReport struct (generated typeinfo)
 // Reports results of completed compass calibration. Sent until MAG_CAL_ACK received.
 type MagCalReport struct {
-	Fitness   float32        // RMS milligauss residuals.
+	Fitness   float32        // [ mgauss ] RMS milligauss residuals.
 	OfsX      float32        // X offset.
 	OfsY      float32        // Y offset.
 	OfsZ      float32        // Z offset.
@@ -13856,19 +13856,19 @@ func (m *MagCalReport) Unmarshal(data []byte) error {
 type EfiStatus struct {
 	EcuIndex                  float32 // ECU index
 	Rpm                       float32 // RPM
-	FuelConsumed              float32 // Fuel consumed
-	FuelFlow                  float32 // Fuel flow rate
-	EngineLoad                float32 // Engine load
-	ThrottlePosition          float32 // Throttle position
-	SparkDwellTime            float32 // Spark dwell time
-	BarometricPressure        float32 // Barometric pressure
-	IntakeManifoldPressure    float32 // Intake manifold pressure(
-	IntakeManifoldTemperature float32 // Intake manifold temperature
-	CylinderHeadTemperature   float32 // Cylinder head temperature
-	IgnitionTiming            float32 // Ignition timing (Crank angle degrees)
-	InjectionTime             float32 // Injection time
-	ExhaustGasTemperature     float32 // Exhaust gas temperature
-	ThrottleOut               float32 // Output throttle
+	FuelConsumed              float32 // [ cm^3 ] Fuel consumed
+	FuelFlow                  float32 // [ cm^3/min ] Fuel flow rate
+	EngineLoad                float32 // [ % ] Engine load
+	ThrottlePosition          float32 // [ % ] Throttle position
+	SparkDwellTime            float32 // [ ms ] Spark dwell time
+	BarometricPressure        float32 // [ kPa ] Barometric pressure
+	IntakeManifoldPressure    float32 // [ kPa ] Intake manifold pressure(
+	IntakeManifoldTemperature float32 // [ degC ] Intake manifold temperature
+	CylinderHeadTemperature   float32 // [ degC ] Cylinder head temperature
+	IgnitionTiming            float32 // [ deg ] Ignition timing (Crank angle degrees)
+	InjectionTime             float32 // [ ms ] Injection time
+	ExhaustGasTemperature     float32 // [ degC ] Exhaust gas temperature
+	ThrottleOut               float32 // [ % ] Output throttle
 	PtCompensation            float32 // Pressure/temperature compensation
 	Health                    uint8   // EFI health status
 }
@@ -13995,15 +13995,15 @@ func (m *EfiStatus) Unmarshal(data []byte) error {
 // EstimatorStatus struct (generated typeinfo)
 // Estimator status message including flags, innovation test ratios and estimated accuracies. The flags message is an integer bitmask containing information on which EKF outputs are valid. See the ESTIMATOR_STATUS_FLAGS enum definition for further information. The innovation test ratios show the magnitude of the sensor innovation divided by the innovation check threshold. Under normal operation the innovation test ratios should be below 0.5 with occasional values up to 1.0. Values greater than 1.0 should be rare under normal operation and indicate that a measurement has been rejected by the filter. The user should be notified if an innovation test ratio greater than 1.0 is recorded. Notifications for values in the range between 0.5 and 1.0 should be optional and controllable by the user.
 type EstimatorStatus struct {
-	TimeUsec         uint64                 // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec         uint64                 // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	VelRatio         float32                // Velocity innovation test ratio
 	PosHorizRatio    float32                // Horizontal position innovation test ratio
 	PosVertRatio     float32                // Vertical position innovation test ratio
 	MagRatio         float32                // Magnetometer innovation test ratio
 	HaglRatio        float32                // Height above terrain innovation test ratio
 	TasRatio         float32                // True airspeed innovation test ratio
-	PosHorizAccuracy float32                // Horizontal position 1-STD accuracy relative to the EKF local origin
-	PosVertAccuracy  float32                // Vertical position 1-STD accuracy relative to the EKF local origin
+	PosHorizAccuracy float32                // [ m ] Horizontal position 1-STD accuracy relative to the EKF local origin
+	PosVertAccuracy  float32                // [ m ] Vertical position 1-STD accuracy relative to the EKF local origin
 	Flags            ESTIMATOR_STATUS_FLAGS // Bitmap indicating which EKF outputs are valid.
 }
 
@@ -14094,15 +14094,15 @@ func (m *EstimatorStatus) Unmarshal(data []byte) error {
 // WindCov struct (generated typeinfo)
 // Wind covariance estimate from vehicle.
 type WindCov struct {
-	TimeUsec      uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	WindX         float32 // Wind in X (NED) direction
-	WindY         float32 // Wind in Y (NED) direction
-	WindZ         float32 // Wind in Z (NED) direction
-	VarHoriz      float32 // Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
-	VarVert       float32 // Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
-	WindAlt       float32 // Altitude (MSL) that this measurement was taken at
-	HorizAccuracy float32 // Horizontal speed 1-STD accuracy
-	VertAccuracy  float32 // Vertical speed 1-STD accuracy
+	TimeUsec      uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	WindX         float32 // [ m/s ] Wind in X (NED) direction
+	WindY         float32 // [ m/s ] Wind in Y (NED) direction
+	WindZ         float32 // [ m/s ] Wind in Z (NED) direction
+	VarHoriz      float32 // [ m/s ] Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
+	VarVert       float32 // [ m/s ] Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
+	WindAlt       float32 // [ m ] Altitude (MSL) that this measurement was taken at
+	HorizAccuracy float32 // [ m ] Horizontal speed 1-STD accuracy
+	VertAccuracy  float32 // [ m ] Vertical speed 1-STD accuracy
 }
 
 // MsgID (generated function)
@@ -14187,19 +14187,19 @@ func (m *WindCov) Unmarshal(data []byte) error {
 // GpsInput struct (generated typeinfo)
 // GPS sensor input message.  This is a raw sensor value sent by the GPS. This is NOT the global position estimate of the system.
 type GpsInput struct {
-	TimeUsec          uint64                 // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
-	TimeWeekMs        uint32                 // GPS time (from start of GPS week)
-	Lat               int32                  // Latitude (WGS84)
-	Lon               int32                  // Longitude (WGS84)
-	Alt               float32                // Altitude (MSL). Positive for up.
-	Hdop              float32                // GPS HDOP horizontal dilution of position
-	Vdop              float32                // GPS VDOP vertical dilution of position
-	Vn                float32                // GPS velocity in north direction in earth-fixed NED frame
-	Ve                float32                // GPS velocity in east direction in earth-fixed NED frame
-	Vd                float32                // GPS velocity in down direction in earth-fixed NED frame
-	SpeedAccuracy     float32                // GPS speed accuracy
-	HorizAccuracy     float32                // GPS horizontal accuracy
-	VertAccuracy      float32                // GPS vertical accuracy
+	TimeUsec          uint64                 // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeWeekMs        uint32                 // [ ms ] GPS time (from start of GPS week)
+	Lat               int32                  // [ degE7 ] Latitude (WGS84)
+	Lon               int32                  // [ degE7 ] Longitude (WGS84)
+	Alt               float32                // [ m ] Altitude (MSL). Positive for up.
+	Hdop              float32                // [ m ] GPS HDOP horizontal dilution of position
+	Vdop              float32                // [ m ] GPS VDOP vertical dilution of position
+	Vn                float32                // [ m/s ] GPS velocity in north direction in earth-fixed NED frame
+	Ve                float32                // [ m/s ] GPS velocity in east direction in earth-fixed NED frame
+	Vd                float32                // [ m/s ] GPS velocity in down direction in earth-fixed NED frame
+	SpeedAccuracy     float32                // [ m/s ] GPS speed accuracy
+	HorizAccuracy     float32                // [ m ] GPS horizontal accuracy
+	VertAccuracy      float32                // [ m ] GPS vertical accuracy
 	IgnoreFlags       GPS_INPUT_IGNORE_FLAGS // Bitmap indicating which GPS input flags fields to ignore.  All other fields must be provided.
 	TimeWeek          uint16                 // GPS week number
 	GpsID             uint8                  // ID of the GPS for multiple GPS inputs
@@ -14335,7 +14335,7 @@ func (m *GpsInput) Unmarshal(data []byte) error {
 // RTCM message for injecting into the onboard GPS (used for DGPS)
 type GpsRtcmData struct {
 	Flags uint8   // LSB: 1 means message is fragmented, next 2 bits are the fragment ID, the remaining 5 bits are used for the sequence ID. Messages are only to be flushed to the GPS when the entire message has been reconstructed on the autopilot. The fragment ID specifies which order the fragments should be assembled into a buffer, while the sequence ID is used to detect a mismatch between different buffers. The buffer is considered fully reconstructed when either all 4 fragments are present, or all the fragments before the first fragment with a non full payload is received. This management is used to ensure that normal GPS operation doesn't corrupt RTCM data, and to recover from a unreliable transport delivery order.
-	Len   uint8   // data length
+	Len   uint8   // [ bytes ] data length
 	Data  []uint8 `len:"180" ` // RTCM message (may be fragmented)
 }
 
@@ -14392,27 +14392,27 @@ func (m *GpsRtcmData) Unmarshal(data []byte) error {
 // Message appropriate for high latency connections like Iridium
 type HighLatency struct {
 	CustomMode       uint32           // A bitfield for use for autopilot-specific flags.
-	Latitude         int32            // Latitude
-	Longitude        int32            // Longitude
-	Roll             int16            // roll
-	Pitch            int16            // pitch
-	Heading          uint16           // heading
-	HeadingSp        int16            // heading setpoint
-	AltitudeAmsl     int16            // Altitude above mean sea level
-	AltitudeSp       int16            // Altitude setpoint relative to the home position
-	WpDistance       uint16           // distance to target
+	Latitude         int32            // [ degE7 ] Latitude
+	Longitude        int32            // [ degE7 ] Longitude
+	Roll             int16            // [ cdeg ] roll
+	Pitch            int16            // [ cdeg ] pitch
+	Heading          uint16           // [ cdeg ] heading
+	HeadingSp        int16            // [ cdeg ] heading setpoint
+	AltitudeAmsl     int16            // [ m ] Altitude above mean sea level
+	AltitudeSp       int16            // [ m ] Altitude setpoint relative to the home position
+	WpDistance       uint16           // [ m ] distance to target
 	BaseMode         MAV_MODE_FLAG    // Bitmap of enabled system modes.
 	LandedState      MAV_LANDED_STATE // The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
-	Throttle         int8             // throttle (percentage)
-	Airspeed         uint8            // airspeed
-	AirspeedSp       uint8            // airspeed setpoint
-	Groundspeed      uint8            // groundspeed
-	ClimbRate        int8             // climb rate
+	Throttle         int8             // [ % ] throttle (percentage)
+	Airspeed         uint8            // [ m/s ] airspeed
+	AirspeedSp       uint8            // [ m/s ] airspeed setpoint
+	Groundspeed      uint8            // [ m/s ] groundspeed
+	ClimbRate        int8             // [ m/s ] climb rate
 	GpsNsat          uint8            // Number of satellites visible. If unknown, set to 255
 	GpsFixType       GPS_FIX_TYPE     // GPS Fix type.
-	BatteryRemaining uint8            // Remaining battery (percentage)
-	Temperature      int8             // Autopilot temperature (degrees C)
-	TemperatureAir   int8             // Air temperature (degrees C) from airspeed sensor
+	BatteryRemaining uint8            // [ % ] Remaining battery (percentage)
+	Temperature      int8             // [ degC ] Autopilot temperature (degrees C)
+	TemperatureAir   int8             // [ degC ] Air temperature (degrees C) from airspeed sensor
 	Failsafe         uint8            // failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, bit1:batt, bit2:GPS, bit3:GCS, bit4:fence)
 	WpNum            uint8            // current waypoint number
 }
@@ -14574,30 +14574,30 @@ func (m *HighLatency) Unmarshal(data []byte) error {
 // HighLatency2 struct (generated typeinfo)
 // Message appropriate for high latency connections like Iridium (version 2)
 type HighLatency2 struct {
-	Timestamp      uint32          // Timestamp (milliseconds since boot or Unix epoch)
-	Latitude       int32           // Latitude
-	Longitude      int32           // Longitude
+	Timestamp      uint32          // [ ms ] Timestamp (milliseconds since boot or Unix epoch)
+	Latitude       int32           // [ degE7 ] Latitude
+	Longitude      int32           // [ degE7 ] Longitude
 	CustomMode     uint16          // A bitfield for use for autopilot-specific flags (2 byte version).
-	Altitude       int16           // Altitude above mean sea level
-	TargetAltitude int16           // Altitude setpoint
-	TargetDistance uint16          // Distance to target waypoint or position
+	Altitude       int16           // [ m ] Altitude above mean sea level
+	TargetAltitude int16           // [ m ] Altitude setpoint
+	TargetDistance uint16          // [ dam ] Distance to target waypoint or position
 	WpNum          uint16          // Current waypoint number
 	FailureFlags   HL_FAILURE_FLAG // Bitmap of failure flags.
 	Type           MAV_TYPE        // Type of the MAV (quadrotor, helicopter, etc.)
 	Autopilot      MAV_AUTOPILOT   // Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.
-	Heading        uint8           // Heading
-	TargetHeading  uint8           // Heading setpoint
-	Throttle       uint8           // Throttle
-	Airspeed       uint8           // Airspeed
-	AirspeedSp     uint8           // Airspeed setpoint
-	Groundspeed    uint8           // Groundspeed
-	Windspeed      uint8           // Windspeed
-	WindHeading    uint8           // Wind heading
-	Eph            uint8           // Maximum error horizontal position since last message
-	Epv            uint8           // Maximum error vertical position since last message
-	TemperatureAir int8            // Air temperature from airspeed sensor
-	ClimbRate      int8            // Maximum climb rate magnitude since last message
-	Battery        int8            // Battery level (-1 if field not provided).
+	Heading        uint8           // [ deg/2 ] Heading
+	TargetHeading  uint8           // [ deg/2 ] Heading setpoint
+	Throttle       uint8           // [ % ] Throttle
+	Airspeed       uint8           // [ m/s*5 ] Airspeed
+	AirspeedSp     uint8           // [ m/s*5 ] Airspeed setpoint
+	Groundspeed    uint8           // [ m/s*5 ] Groundspeed
+	Windspeed      uint8           // [ m/s*5 ] Windspeed
+	WindHeading    uint8           // [ deg/2 ] Wind heading
+	Eph            uint8           // [ dm ] Maximum error horizontal position since last message
+	Epv            uint8           // [ dm ] Maximum error vertical position since last message
+	TemperatureAir int8            // [ degC ] Air temperature from airspeed sensor
+	ClimbRate      int8            // [ dm/s ] Maximum climb rate magnitude since last message
+	Battery        int8            // [ % ] Battery level (-1 if field not provided).
 	Custom0        int8            // Field for custom payload.
 	Custom1        int8            // Field for custom payload.
 	Custom2        int8            // Field for custom payload.
@@ -14775,7 +14775,7 @@ func (m *HighLatency2) Unmarshal(data []byte) error {
 // Vibration struct (generated typeinfo)
 // Vibration levels and accelerometer clipping
 type Vibration struct {
-	TimeUsec   uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec   uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	VibrationX float32 // Vibration levels on X-axis
 	VibrationY float32 // Vibration levels on Y-axis
 	VibrationZ float32 // Vibration levels on Z-axis
@@ -14856,16 +14856,16 @@ func (m *Vibration) Unmarshal(data []byte) error {
 // HomePosition struct (generated typeinfo)
 // This message can be requested by sending the MAV_CMD_GET_HOME_POSITION command. The position the system will return to and land on. The position is set automatically by the system during the takeoff in case it was not explicitly set by the operator before or after. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector.
 type HomePosition struct {
-	Latitude  int32     // Latitude (WGS84)
-	Longitude int32     // Longitude (WGS84)
-	Altitude  int32     // Altitude (MSL). Positive for up.
-	X         float32   // Local X position of this position in the local coordinate frame
-	Y         float32   // Local Y position of this position in the local coordinate frame
-	Z         float32   // Local Z position of this position in the local coordinate frame
+	Latitude  int32     // [ degE7 ] Latitude (WGS84)
+	Longitude int32     // [ degE7 ] Longitude (WGS84)
+	Altitude  int32     // [ mm ] Altitude (MSL). Positive for up.
+	X         float32   // [ m ] Local X position of this position in the local coordinate frame
+	Y         float32   // [ m ] Local Y position of this position in the local coordinate frame
+	Z         float32   // [ m ] Local Z position of this position in the local coordinate frame
 	Q         []float32 `len:"4" ` // World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground
-	ApproachX float32   // Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	ApproachY float32   // Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	ApproachZ float32   // Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachX float32   // [ m ] Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachY float32   // [ m ] Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachZ float32   // [ m ] Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
 }
 
 // MsgID (generated function)
@@ -14959,16 +14959,16 @@ func (m *HomePosition) Unmarshal(data []byte) error {
 // SetHomePosition struct (generated typeinfo)
 // The position the system will return to and land on. The position is set automatically by the system during the takeoff in case it was not explicitly set by the operator before or after. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector.
 type SetHomePosition struct {
-	Latitude     int32     // Latitude (WGS84)
-	Longitude    int32     // Longitude (WGS84)
-	Altitude     int32     // Altitude (MSL). Positive for up.
-	X            float32   // Local X position of this position in the local coordinate frame
-	Y            float32   // Local Y position of this position in the local coordinate frame
-	Z            float32   // Local Z position of this position in the local coordinate frame
+	Latitude     int32     // [ degE7 ] Latitude (WGS84)
+	Longitude    int32     // [ degE7 ] Longitude (WGS84)
+	Altitude     int32     // [ mm ] Altitude (MSL). Positive for up.
+	X            float32   // [ m ] Local X position of this position in the local coordinate frame
+	Y            float32   // [ m ] Local Y position of this position in the local coordinate frame
+	Z            float32   // [ m ] Local Z position of this position in the local coordinate frame
 	Q            []float32 `len:"4" ` // World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground
-	ApproachX    float32   // Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	ApproachY    float32   // Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
-	ApproachZ    float32   // Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachX    float32   // [ m ] Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachY    float32   // [ m ] Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
+	ApproachZ    float32   // [ m ] Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
 	TargetSystem uint8     // System ID.
 }
 
@@ -15068,7 +15068,7 @@ func (m *SetHomePosition) Unmarshal(data []byte) error {
 // MessageInterval struct (generated typeinfo)
 // The interval between messages for a particular MAVLink message ID. This message is the response to the MAV_CMD_GET_MESSAGE_INTERVAL command. This interface replaces DATA_STREAM.
 type MessageInterval struct {
-	IntervalUs int32  // The interval between two messages. A value of -1 indicates this stream is disabled, 0 indicates it is not available, &gt; 0 indicates the interval at which it is sent.
+	IntervalUs int32  // [ us ] The interval between two messages. A value of -1 indicates this stream is disabled, 0 indicates it is not available, &gt; 0 indicates the interval at which it is sent.
 	MessageID  uint16 // The ID of the requested MAVLink message. v1.0 is limited to 254 messages.
 }
 
@@ -15171,18 +15171,18 @@ func (m *ExtendedSysState) Unmarshal(data []byte) error {
 // The location and information of an ADSB vehicle
 type AdsbVehicle struct {
 	IcaoAddress  uint32             // ICAO address
-	Lat          int32              // Latitude
-	Lon          int32              // Longitude
-	Altitude     int32              // Altitude(ASL)
-	Heading      uint16             // Course over ground
-	HorVelocity  uint16             // The horizontal velocity
-	VerVelocity  int16              // The vertical velocity. Positive is up
+	Lat          int32              // [ degE7 ] Latitude
+	Lon          int32              // [ degE7 ] Longitude
+	Altitude     int32              // [ mm ] Altitude(ASL)
+	Heading      uint16             // [ cdeg ] Course over ground
+	HorVelocity  uint16             // [ cm/s ] The horizontal velocity
+	VerVelocity  int16              // [ cm/s ] The vertical velocity. Positive is up
 	Flags        ADSB_FLAGS         // Bitmap to indicate various statuses including valid data fields
 	Squawk       uint16             // Squawk code
 	AltitudeType ADSB_ALTITUDE_TYPE // ADSB altitude type.
 	Callsign     string             `len:"9" ` // The callsign, 8+null
 	EmitterType  ADSB_EMITTER_TYPE  // ADSB emitter type.
-	Tslc         uint8              // Time since last communication in seconds
+	Tslc         uint8              // [ s ] Time since last communication in seconds
 }
 
 // MsgID (generated function)
@@ -15288,9 +15288,9 @@ func (m *AdsbVehicle) Unmarshal(data []byte) error {
 // Information about a potential collision
 type Collision struct {
 	ID                     uint32                     // Unique identifier, domain based on src field
-	TimeToMinimumDelta     float32                    // Estimated time until collision occurs
-	AltitudeMinimumDelta   float32                    // Closest vertical distance between vehicle and object
-	HorizontalMinimumDelta float32                    // Closest horizontal distance between vehicle and object
+	TimeToMinimumDelta     float32                    // [ s ] Estimated time until collision occurs
+	AltitudeMinimumDelta   float32                    // [ m ] Closest vertical distance between vehicle and object
+	HorizontalMinimumDelta float32                    // [ m ] Closest horizontal distance between vehicle and object
 	Src                    MAV_COLLISION_SRC          // Collision data source
 	Action                 MAV_COLLISION_ACTION       // Action that is being taken to avoid this collision
 	ThreatLevel            MAV_COLLISION_THREAT_LEVEL // How concerned the aircraft is about this collision
@@ -15504,7 +15504,7 @@ func (m *MemoryVect) Unmarshal(data []byte) error {
 // DebugVect struct (generated typeinfo)
 // To debug something using a named 3D vector.
 type DebugVect struct {
-	TimeUsec uint64  // Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
+	TimeUsec uint64  // [ us ] Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.
 	X        float32 // x
 	Y        float32 // y
 	Z        float32 // z
@@ -15573,7 +15573,7 @@ func (m *DebugVect) Unmarshal(data []byte) error {
 // NamedValueFloat struct (generated typeinfo)
 // Send a key-value pair as float. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output.
 type NamedValueFloat struct {
-	TimeBootMs uint32  // Timestamp (time since system boot).
+	TimeBootMs uint32  // [ ms ] Timestamp (time since system boot).
 	Value      float32 // Floating point value
 	Name       string  `len:"10" ` // Name of the debug variable
 }
@@ -15630,7 +15630,7 @@ func (m *NamedValueFloat) Unmarshal(data []byte) error {
 // NamedValueInt struct (generated typeinfo)
 // Send a key-value pair as integer. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output.
 type NamedValueInt struct {
-	TimeBootMs uint32 // Timestamp (time since system boot).
+	TimeBootMs uint32 // [ ms ] Timestamp (time since system boot).
 	Value      int32  // Signed integer value
 	Name       string `len:"10" ` // Name of the debug variable
 }
@@ -15738,7 +15738,7 @@ func (m *Statustext) Unmarshal(data []byte) error {
 // Debug struct (generated typeinfo)
 // Send a debug value. The index is used to discriminate between values. These values show up in the plot of QGroundControl as DEBUG N.
 type Debug struct {
-	TimeBootMs uint32  // Timestamp (time since system boot).
+	TimeBootMs uint32  // [ ms ] Timestamp (time since system boot).
 	Value      float32 // DEBUG value
 	Ind        uint8   // index of debug variable
 }

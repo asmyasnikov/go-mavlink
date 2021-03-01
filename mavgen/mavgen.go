@@ -82,6 +82,7 @@ type MessageField struct {
 	Name        string `xml:"name,attr"`
 	Enum        string `xml:"enum,attr"`
 	Display     string `xml:"display,attr"`
+	Units       string `xml:"units,attr"`
 	Description string `xml:",innerxml"`
 	GoType      string
 	Tags        map[string]string
@@ -752,7 +753,7 @@ func (d *Dialect) generateClasses(w io.Writer) error {
 // {{$name}} struct (generated typeinfo)  
 // {{.Description}}
 type {{$name}} struct { {{range .Fields}}
-  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{ else }} {{.GoType}} {{ end }} {{if .Tags}} ` + "`" + `{{range $k, $v := .Tags}}{{$k}}:"{{$v}}" {{end}}` + "`" + `{{end}}// {{.Description}}{{end}}
+  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{ else }} {{.GoType}} {{ end }} {{if .Tags}} ` + "`" + `{{range $k, $v := .Tags}}{{$k}}:"{{$v}}" {{end}}` + "`" + `{{end}}// {{if .Units}}[ {{.Units}} ] {{end}}{{.Description}}{{end}}
 }
 
 // MsgID (generated function)
