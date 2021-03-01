@@ -3,6 +3,7 @@ package parser
 import (
     "fmt"
     "time"
+    "{{.CommonPackageURL}}/version"
     "{{.CommonPackageURL}}/signature"
     "{{.CommonPackageURL}}/packet"
     "{{.CommonPackageURL}}/register"
@@ -59,6 +60,11 @@ func NewPacketV{{.MavlinkVersion}}(sysID uint8, compID uint8, seqID uint8, messa
         msgID:   message.MsgID(),
         payload: payload,
     }, nil
+}
+
+// Version returns version of packet framing
+func (p *packet{{.MavlinkVersion}}) Version() version.MAVLINK_VERSION {
+    return version.MAVLINK_V{{.MavlinkVersion}}
 }
 
 // IsNil returns true if packet is nil

@@ -15,6 +15,7 @@ import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/packet"
 	"github.com/asmyasnikov/go-mavlink/mavlink/register"
 	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
+	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"time"
 )
 
@@ -56,6 +57,11 @@ func NewPacketV2(sysID uint8, compID uint8, seqID uint8, message message.Message
 		msgID:   message.MsgID(),
 		payload: payload,
 	}, nil
+}
+
+// Version returns version of packet framing
+func (p *packet2) Version() version.MAVLINK_VERSION {
+	return version.MAVLINK_V2
 }
 
 // IsNil returns true if packet is nil

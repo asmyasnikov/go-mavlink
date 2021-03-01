@@ -13,6 +13,7 @@ func packetTemplate() string {
 		"\n" +
 		"import (\n" +
 		"    \"time\"\n" +
+		"    \"{{.CommonPackageURL}}/version\"\n" +
 		"    \"{{.CommonPackageURL}}/message\"\n" +
 		"    \"{{.CommonPackageURL}}/signature\"\n" +
 		")\n" +
@@ -22,6 +23,8 @@ func packetTemplate() string {
 		"\n" +
 		"// Packet is the interface implemented by frames of every supported version.\n" +
 		"type Packet interface {\n" +
+		"\t// Version returns version of packet framing\n" +
+		"\tVersion() version.MAVLINK_VERSION\n" +
 		"\t// IsNil returns true if packet is nil\n" +
 		"\tIsNil() bool\n" +
 		"\t// IsSigned checks whether the frame contains a signature. It does not validate the signature\n" +

@@ -9,6 +9,7 @@ package packet
 import (
 	"github.com/asmyasnikov/go-mavlink/mavlink/message"
 	"github.com/asmyasnikov/go-mavlink/mavlink/signature"
+	"github.com/asmyasnikov/go-mavlink/mavlink/version"
 	"time"
 )
 
@@ -17,6 +18,8 @@ type MAGIC_NUMBER uint8
 
 // Packet is the interface implemented by frames of every supported version.
 type Packet interface {
+	// Version returns version of packet framing
+	Version() version.MAVLINK_VERSION
 	// IsNil returns true if packet is nil
 	IsNil() bool
 	// IsSigned checks whether the frame contains a signature. It does not validate the signature

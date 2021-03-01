@@ -14,6 +14,7 @@ func packetVTemplate() string {
 		"import (\n" +
 		"    \"fmt\"\n" +
 		"    \"time\"\n" +
+		"    \"{{.CommonPackageURL}}/version\"\n" +
 		"    \"{{.CommonPackageURL}}/signature\"\n" +
 		"    \"{{.CommonPackageURL}}/packet\"\n" +
 		"    \"{{.CommonPackageURL}}/register\"\n" +
@@ -70,6 +71,11 @@ func packetVTemplate() string {
 		"        msgID:   message.MsgID(),\n" +
 		"        payload: payload,\n" +
 		"    }, nil\n" +
+		"}\n" +
+		"\n" +
+		"// Version returns version of packet framing\n" +
+		"func (p *packet{{.MavlinkVersion}}) Version() version.MAVLINK_VERSION {\n" +
+		"    return version.MAVLINK_V{{.MavlinkVersion}}\n" +
 		"}\n" +
 		"\n" +
 		"// IsNil returns true if packet is nil\n" +
