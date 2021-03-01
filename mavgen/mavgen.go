@@ -489,8 +489,8 @@ func (d *Dialect) generateFile(filePath string, packageName string, commonPackag
 	if err != nil {
 		return err
 	}
-	defer f.Close()
 	n, err := f.Write(formatted)
+	f.Close()
 	if err == nil && n != len(formatted) {
 		return io.ErrShortWrite
 	}
@@ -753,7 +753,7 @@ func (d *Dialect) generateClasses(w io.Writer) error {
 // {{$name}} struct (generated typeinfo)  
 // {{.Description}}
 type {{$name}} struct { {{range .Fields}}
-  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{ else }} {{.GoType}} {{ end }} {{if .Tags}} ` + "`" + `{{range $k, $v := .Tags}}{{$k}}:"{{$v}}" {{end}}` + "`" + `{{end}}// {{if .Units}}[ {{.Units}} ] {{end}}{{.Description}}{{end}}
+  {{.Name | UpperCamelCase}} {{if .Enum}} {{.Enum}} {{ else }} {{.GoType}} {{ end }} ` + "`" + `json:"{{.Name | UpperCamelCase}}" {{if .Tags}}{{range $k, $v := .Tags}}{{$k}}:"{{$v}}" {{end}}{{end}}` + "`" + `// {{if .Units}}[ {{.Units}} ] {{end}}{{.Description}}{{end}}
 }
 
 // MsgID (generated function)

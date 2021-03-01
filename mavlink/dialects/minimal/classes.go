@@ -15,12 +15,12 @@ import (
 // Heartbeat struct (generated typeinfo)
 // The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html
 type Heartbeat struct {
-	CustomMode     uint32        // A bitfield for use for autopilot-specific flags
-	Type           MAV_TYPE      // Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.
-	Autopilot      MAV_AUTOPILOT // Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.
-	BaseMode       MAV_MODE_FLAG // System mode bitmap.
-	SystemStatus   MAV_STATE     // System status flag.
-	MavlinkVersion uint8         // MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version
+	CustomMode     uint32        `json:"CustomMode" `     // A bitfield for use for autopilot-specific flags
+	Type           MAV_TYPE      `json:"Type" `           // Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.
+	Autopilot      MAV_AUTOPILOT `json:"Autopilot" `      // Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.
+	BaseMode       MAV_MODE_FLAG `json:"BaseMode" `       // System mode bitmap.
+	SystemStatus   MAV_STATE     `json:"SystemStatus" `   // System status flag.
+	MavlinkVersion uint8         `json:"MavlinkVersion" ` // MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version
 }
 
 // MsgID (generated function)
