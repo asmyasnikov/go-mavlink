@@ -274,7 +274,7 @@ func (f *MessageField) PayloadUnpackSequence() string {
 	name := UpperCamelCase(f.Name)
 	if f.ArrayLen > 0 {
 		if f.GoType == "string" {
-			return fmt.Sprintf("m.%s = string(payload[%d:%d])", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
+			return fmt.Sprintf("m.%s = strings.TrimRight(string(payload[%d:%d]), string(byte(0)))", name, f.ByteOffset, f.ByteOffset+f.ArrayLen)
 		}
 		// optimize to copy() if possible
 		if strings.HasSuffix(f.GoType, "uint8") || strings.HasSuffix(f.GoType, "byte") {
