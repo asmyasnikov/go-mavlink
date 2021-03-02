@@ -68,90 +68,49 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.WindX != 0 {
+	{
 		const prefix string = ",\"WindX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.WindX))
 	}
-	if in.WindY != 0 {
+	{
 		const prefix string = ",\"WindY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.WindY))
 	}
-	if in.WindZ != 0 {
+	{
 		const prefix string = ",\"WindZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.WindZ))
 	}
-	if in.VarHoriz != 0 {
+	{
 		const prefix string = ",\"VarHoriz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.VarHoriz))
 	}
-	if in.VarVert != 0 {
+	{
 		const prefix string = ",\"VarVert\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.VarVert))
 	}
-	if in.WindAlt != 0 {
+	{
 		const prefix string = ",\"WindAlt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.WindAlt))
 	}
-	if in.HorizAccuracy != 0 {
+	{
 		const prefix string = ",\"HorizAccuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.HorizAccuracy))
 	}
-	if in.VertAccuracy != 0 {
+	{
 		const prefix string = ",\"VertAccuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.VertAccuracy))
 	}
 	out.RawByte('}')
@@ -219,30 +178,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Direction != 0 {
+	{
 		const prefix string = ",\"Direction\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Direction))
 	}
-	if in.Speed != 0 {
+	{
 		const prefix string = ",\"Speed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Speed))
 	}
-	if in.SpeedZ != 0 {
+	{
 		const prefix string = ",\"SpeedZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.SpeedZ))
 	}
 	out.RawByte('}')
@@ -312,40 +260,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Usec != 0 {
+	{
 		const prefix string = ",\"Usec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.Usec))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
 	out.RawByte('}')
@@ -421,70 +353,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Usec != 0 {
+	{
 		const prefix string = ",\"Usec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.Usec))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
 	out.RawByte('}')
@@ -560,70 +461,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Usec != 0 {
+	{
 		const prefix string = ",\"Usec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.Usec))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
 	out.RawByte('}')
@@ -699,70 +569,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.VibrationX != 0 {
+	{
 		const prefix string = ",\"VibrationX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.VibrationX))
 	}
-	if in.VibrationY != 0 {
+	{
 		const prefix string = ",\"VibrationY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.VibrationY))
 	}
-	if in.VibrationZ != 0 {
+	{
 		const prefix string = ",\"VibrationZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.VibrationZ))
 	}
-	if in.Clipping0 != 0 {
+	{
 		const prefix string = ",\"Clipping0\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Clipping0))
 	}
-	if in.Clipping1 != 0 {
+	{
 		const prefix string = ",\"Clipping1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Clipping1))
 	}
-	if in.Clipping2 != 0 {
+	{
 		const prefix string = ",\"Clipping2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Clipping2))
 	}
 	out.RawByte('}')
@@ -836,60 +675,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Airspeed != 0 {
+	{
 		const prefix string = ",\"Airspeed\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Airspeed))
 	}
-	if in.Groundspeed != 0 {
+	{
 		const prefix string = ",\"Groundspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Groundspeed))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Alt))
 	}
-	if in.Climb != 0 {
+	{
 		const prefix string = ",\"Climb\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Climb))
 	}
-	if in.Heading != 0 {
+	{
 		const prefix string = ",\"Heading\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Heading))
 	}
-	if in.Throttle != 0 {
+	{
 		const prefix string = ",\"Throttle\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Throttle))
 	}
 	out.RawByte('}')
@@ -966,50 +779,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.MessageType != 0 {
+	{
 		const prefix string = ",\"MessageType\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.MessageType))
 	}
-	if in.TargetNetwork != 0 {
+	{
 		const prefix string = ",\"TargetNetwork\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetNetwork))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if len(in.Payload) != 0 {
+	{
 		const prefix string = ",\"Payload\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Payload)
 	}
 	out.RawByte('}')
@@ -1075,20 +867,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Tc1 != 0 {
+	{
 		const prefix string = ",\"Tc1\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int64(int64(in.Tc1))
 	}
-	if in.Ts1 != 0 {
+	{
 		const prefix string = ",\"Ts1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int64(int64(in.Ts1))
 	}
 	out.RawByte('}')
@@ -1158,40 +944,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Mask != 0 {
+	{
 		const prefix string = ",\"Mask\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.Mask))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.GridSpacing != 0 {
+	{
 		const prefix string = ",\"GridSpacing\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.GridSpacing))
 	}
 	out.RawByte('}')
@@ -1267,70 +1037,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.TerrainHeight != 0 {
+	{
 		const prefix string = ",\"TerrainHeight\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.TerrainHeight))
 	}
-	if in.CurrentHeight != 0 {
+	{
 		const prefix string = ",\"CurrentHeight\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.CurrentHeight))
 	}
-	if in.Spacing != 0 {
+	{
 		const prefix string = ",\"Spacing\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Spacing))
 	}
-	if in.Pending != 0 {
+	{
 		const prefix string = ",\"Pending\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Pending))
 	}
-	if in.Loaded != 0 {
+	{
 		const prefix string = ",\"Loaded\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Loaded))
 	}
 	out.RawByte('}')
@@ -1423,41 +1162,27 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.GridSpacing != 0 {
+	{
 		const prefix string = ",\"GridSpacing\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.GridSpacing))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Data == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v5, v6 := range in.Data {
 				if v5 > 0 {
@@ -1468,14 +1193,9 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.Gridbit != 0 {
+	{
 		const prefix string = ",\"Gridbit\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Gridbit))
 	}
 	out.RawByte('}')
@@ -1541,20 +1261,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
 	out.RawByte('}')
@@ -1620,20 +1334,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUnixUsec != 0 {
+	{
 		const prefix string = ",\"TimeUnixUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUnixUsec))
 	}
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.TimeBootMs))
 	}
 	out.RawByte('}')
@@ -1721,130 +1429,69 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.OnboardControlSensorsPresent != 0 {
+	{
 		const prefix string = ",\"OnboardControlSensorsPresent\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.OnboardControlSensorsPresent))
 	}
-	if in.OnboardControlSensorsEnabled != 0 {
+	{
 		const prefix string = ",\"OnboardControlSensorsEnabled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.OnboardControlSensorsEnabled))
 	}
-	if in.OnboardControlSensorsHealth != 0 {
+	{
 		const prefix string = ",\"OnboardControlSensorsHealth\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.OnboardControlSensorsHealth))
 	}
-	if in.Load != 0 {
+	{
 		const prefix string = ",\"Load\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Load))
 	}
-	if in.VoltageBattery != 0 {
+	{
 		const prefix string = ",\"VoltageBattery\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.VoltageBattery))
 	}
-	if in.CurrentBattery != 0 {
+	{
 		const prefix string = ",\"CurrentBattery\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.CurrentBattery))
 	}
-	if in.DropRateComm != 0 {
+	{
 		const prefix string = ",\"DropRateComm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.DropRateComm))
 	}
-	if in.ErrorsComm != 0 {
+	{
 		const prefix string = ",\"ErrorsComm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ErrorsComm))
 	}
-	if in.ErrorsCount1 != 0 {
+	{
 		const prefix string = ",\"ErrorsCount1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ErrorsCount1))
 	}
-	if in.ErrorsCount2 != 0 {
+	{
 		const prefix string = ",\"ErrorsCount2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ErrorsCount2))
 	}
-	if in.ErrorsCount3 != 0 {
+	{
 		const prefix string = ",\"ErrorsCount3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ErrorsCount3))
 	}
-	if in.ErrorsCount4 != 0 {
+	{
 		const prefix string = ",\"ErrorsCount4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ErrorsCount4))
 	}
-	if in.BatteryRemaining != 0 {
+	{
 		const prefix string = ",\"BatteryRemaining\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.BatteryRemaining))
 	}
 	out.RawByte('}')
@@ -1910,20 +1557,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Severity != 0 {
+	{
 		const prefix string = ",\"Severity\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.Severity))
 	}
-	if in.Text != "" {
+	{
 		const prefix string = ",\"Text\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.Text))
 	}
 	out.RawByte('}')
@@ -2007,110 +1648,59 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zacc))
 	}
-	if in.Xgyro != 0 {
+	{
 		const prefix string = ",\"Xgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xgyro))
 	}
-	if in.Ygyro != 0 {
+	{
 		const prefix string = ",\"Ygyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ygyro))
 	}
-	if in.Zgyro != 0 {
+	{
 		const prefix string = ",\"Zgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zgyro))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lng != 0 {
+	{
 		const prefix string = ",\"Lng\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lng))
 	}
 	out.RawByte('}')
@@ -2214,210 +1804,109 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Q1 != 0 {
+	{
 		const prefix string = ",\"Q1\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Q1))
 	}
-	if in.Q2 != 0 {
+	{
 		const prefix string = ",\"Q2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Q2))
 	}
-	if in.Q3 != 0 {
+	{
 		const prefix string = ",\"Q3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Q3))
 	}
-	if in.Q4 != 0 {
+	{
 		const prefix string = ",\"Q4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Q4))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zacc))
 	}
-	if in.Xgyro != 0 {
+	{
 		const prefix string = ",\"Xgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xgyro))
 	}
-	if in.Ygyro != 0 {
+	{
 		const prefix string = ",\"Ygyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ygyro))
 	}
-	if in.Zgyro != 0 {
+	{
 		const prefix string = ",\"Zgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zgyro))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Alt))
 	}
-	if in.StdDevHorz != 0 {
+	{
 		const prefix string = ",\"StdDevHorz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.StdDevHorz))
 	}
-	if in.StdDevVert != 0 {
+	{
 		const prefix string = ",\"StdDevVert\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.StdDevVert))
 	}
-	if in.Vn != 0 {
+	{
 		const prefix string = ",\"Vn\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vn))
 	}
-	if in.Ve != 0 {
+	{
 		const prefix string = ",\"Ve\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ve))
 	}
-	if in.Vd != 0 {
+	{
 		const prefix string = ",\"Vd\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vd))
 	}
 	out.RawByte('}')
@@ -2511,160 +2000,84 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vz))
 	}
-	if in.Afx != 0 {
+	{
 		const prefix string = ",\"Afx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afx))
 	}
-	if in.Afy != 0 {
+	{
 		const prefix string = ",\"Afy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afy))
 	}
-	if in.Afz != 0 {
+	{
 		const prefix string = ",\"Afz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afz))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.YawRate != 0 {
+	{
 		const prefix string = ",\"YawRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YawRate))
 	}
-	if in.TypeMask != 0 {
+	{
 		const prefix string = ",\"TypeMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.TypeMask))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.CoordinateFrame != 0 {
+	{
 		const prefix string = ",\"CoordinateFrame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CoordinateFrame))
 	}
 	out.RawByte('}')
@@ -2758,160 +2171,84 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.LatInt != 0 {
+	{
 		const prefix string = ",\"LatInt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.LatInt))
 	}
-	if in.LonInt != 0 {
+	{
 		const prefix string = ",\"LonInt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.LonInt))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Alt))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vz))
 	}
-	if in.Afx != 0 {
+	{
 		const prefix string = ",\"Afx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afx))
 	}
-	if in.Afy != 0 {
+	{
 		const prefix string = ",\"Afy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afy))
 	}
-	if in.Afz != 0 {
+	{
 		const prefix string = ",\"Afz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afz))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.YawRate != 0 {
+	{
 		const prefix string = ",\"YawRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YawRate))
 	}
-	if in.TypeMask != 0 {
+	{
 		const prefix string = ",\"TypeMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.TypeMask))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.CoordinateFrame != 0 {
+	{
 		const prefix string = ",\"CoordinateFrame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CoordinateFrame))
 	}
 	out.RawByte('}')
@@ -2979,30 +2316,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.CustomMode != 0 {
+	{
 		const prefix string = ",\"CustomMode\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.CustomMode))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.BaseMode != 0 {
+	{
 		const prefix string = ",\"BaseMode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.BaseMode))
 	}
 	out.RawByte('}')
@@ -3074,50 +2400,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.MagOfsX != 0 {
+	{
 		const prefix string = ",\"MagOfsX\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int16(int16(in.MagOfsX))
 	}
-	if in.MagOfsY != 0 {
+	{
 		const prefix string = ",\"MagOfsY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.MagOfsY))
 	}
-	if in.MagOfsZ != 0 {
+	{
 		const prefix string = ",\"MagOfsZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.MagOfsZ))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -3222,71 +2527,42 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Latitude != 0 {
+	{
 		const prefix string = ",\"Latitude\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.Latitude))
 	}
-	if in.Longitude != 0 {
+	{
 		const prefix string = ",\"Longitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Longitude))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Altitude))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if len(in.Q) != 0 {
+	{
 		const prefix string = ",\"Q\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Q == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v8, v9 := range in.Q {
 				if v8 > 0 {
@@ -3297,44 +2573,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.ApproachX != 0 {
+	{
 		const prefix string = ",\"ApproachX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ApproachX))
 	}
-	if in.ApproachY != 0 {
+	{
 		const prefix string = ",\"ApproachY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ApproachY))
 	}
-	if in.ApproachZ != 0 {
+	{
 		const prefix string = ",\"ApproachZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ApproachZ))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
 	out.RawByte('}')
@@ -3404,40 +2660,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Latitude != 0 {
+	{
 		const prefix string = ",\"Latitude\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.Latitude))
 	}
-	if in.Longitude != 0 {
+	{
 		const prefix string = ",\"Longitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Longitude))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Altitude))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
 	out.RawByte('}')
@@ -3538,21 +2778,17 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if len(in.Q) != 0 {
+	{
 		const prefix string = ",\"Q\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Q == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v11, v12 := range in.Q {
 				if v11 > 0 {
@@ -3563,74 +2799,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.BodyRollRate != 0 {
+	{
 		const prefix string = ",\"BodyRollRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.BodyRollRate))
 	}
-	if in.BodyPitchRate != 0 {
+	{
 		const prefix string = ",\"BodyPitchRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.BodyPitchRate))
 	}
-	if in.BodyYawRate != 0 {
+	{
 		const prefix string = ",\"BodyYawRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.BodyYawRate))
 	}
-	if in.Thrust != 0 {
+	{
 		const prefix string = ",\"Thrust\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Thrust))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.TypeMask != 0 {
+	{
 		const prefix string = ",\"TypeMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.TypeMask))
 	}
 	out.RawByte('}')
@@ -3723,21 +2924,17 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if len(in.Controls) != 0 {
+	{
 		const prefix string = ",\"Controls\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Controls == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v14, v15 := range in.Controls {
 				if v14 > 0 {
@@ -3748,34 +2945,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.GroupMlx != 0 {
+	{
 		const prefix string = ",\"GroupMlx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.GroupMlx))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -3857,100 +3039,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeUsec))
 	}
-	if in.Servo1Raw != 0 {
+	{
 		const prefix string = ",\"Servo1Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Servo1Raw))
 	}
-	if in.Servo2Raw != 0 {
+	{
 		const prefix string = ",\"Servo2Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Servo2Raw))
 	}
-	if in.Servo3Raw != 0 {
+	{
 		const prefix string = ",\"Servo3Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Servo3Raw))
 	}
-	if in.Servo4Raw != 0 {
+	{
 		const prefix string = ",\"Servo4Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Servo4Raw))
 	}
-	if in.Servo5Raw != 0 {
+	{
 		const prefix string = ",\"Servo5Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Servo5Raw))
 	}
-	if in.Servo6Raw != 0 {
+	{
 		const prefix string = ",\"Servo6Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Servo6Raw))
 	}
-	if in.Servo7Raw != 0 {
+	{
 		const prefix string = ",\"Servo7Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Servo7Raw))
 	}
-	if in.Servo8Raw != 0 {
+	{
 		const prefix string = ",\"Servo8Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Servo8Raw))
 	}
-	if in.Port != 0 {
+	{
 		const prefix string = ",\"Port\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Port))
 	}
 	out.RawByte('}')
@@ -4029,60 +3165,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Baudrate != 0 {
+	{
 		const prefix string = ",\"Baudrate\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.Baudrate))
 	}
-	if in.Timeout != 0 {
+	{
 		const prefix string = ",\"Timeout\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Timeout))
 	}
-	if in.Device != 0 {
+	{
 		const prefix string = ",\"Device\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Device))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Flags))
 	}
-	if in.Count != 0 {
+	{
 		const prefix string = ",\"Count\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Count))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -4168,120 +3278,64 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.MagDeclination != 0 {
+	{
 		const prefix string = ",\"MagDeclination\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.MagDeclination))
 	}
-	if in.RawPress != 0 {
+	{
 		const prefix string = ",\"RawPress\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.RawPress))
 	}
-	if in.RawTemp != 0 {
+	{
 		const prefix string = ",\"RawTemp\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.RawTemp))
 	}
-	if in.GyroCalX != 0 {
+	{
 		const prefix string = ",\"GyroCalX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.GyroCalX))
 	}
-	if in.GyroCalY != 0 {
+	{
 		const prefix string = ",\"GyroCalY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.GyroCalY))
 	}
-	if in.GyroCalZ != 0 {
+	{
 		const prefix string = ",\"GyroCalZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.GyroCalZ))
 	}
-	if in.AccelCalX != 0 {
+	{
 		const prefix string = ",\"AccelCalX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AccelCalX))
 	}
-	if in.AccelCalY != 0 {
+	{
 		const prefix string = ",\"AccelCalY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AccelCalY))
 	}
-	if in.AccelCalZ != 0 {
+	{
 		const prefix string = ",\"AccelCalZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AccelCalZ))
 	}
-	if in.MagOfsX != 0 {
+	{
 		const prefix string = ",\"MagOfsX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.MagOfsX))
 	}
-	if in.MagOfsY != 0 {
+	{
 		const prefix string = ",\"MagOfsY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.MagOfsY))
 	}
-	if in.MagOfsZ != 0 {
+	{
 		const prefix string = ",\"MagOfsZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.MagOfsZ))
 	}
 	out.RawByte('}')
@@ -4351,40 +3405,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.PressAbs != 0 {
+	{
 		const prefix string = ",\"PressAbs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PressAbs))
 	}
-	if in.PressDiff != 0 {
+	{
 		const prefix string = ",\"PressDiff\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PressDiff))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Temperature))
 	}
 	out.RawByte('}')
@@ -4454,40 +3492,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.PressAbs != 0 {
+	{
 		const prefix string = ",\"PressAbs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PressAbs))
 	}
-	if in.PressDiff != 0 {
+	{
 		const prefix string = ",\"PressDiff\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PressDiff))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Temperature))
 	}
 	out.RawByte('}')
@@ -4557,40 +3579,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.PressAbs != 0 {
+	{
 		const prefix string = ",\"PressAbs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PressAbs))
 	}
-	if in.PressDiff != 0 {
+	{
 		const prefix string = ",\"PressDiff\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PressDiff))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Temperature))
 	}
 	out.RawByte('}')
@@ -4672,100 +3678,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zacc))
 	}
-	if in.Xgyro != 0 {
+	{
 		const prefix string = ",\"Xgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xgyro))
 	}
-	if in.Ygyro != 0 {
+	{
 		const prefix string = ",\"Ygyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ygyro))
 	}
-	if in.Zgyro != 0 {
+	{
 		const prefix string = ",\"Zgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zgyro))
 	}
-	if in.Xmag != 0 {
+	{
 		const prefix string = ",\"Xmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xmag))
 	}
-	if in.Ymag != 0 {
+	{
 		const prefix string = ",\"Ymag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ymag))
 	}
-	if in.Zmag != 0 {
+	{
 		const prefix string = ",\"Zmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zmag))
 	}
 	out.RawByte('}')
@@ -4847,100 +3807,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zacc))
 	}
-	if in.Xgyro != 0 {
+	{
 		const prefix string = ",\"Xgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xgyro))
 	}
-	if in.Ygyro != 0 {
+	{
 		const prefix string = ",\"Ygyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ygyro))
 	}
-	if in.Zgyro != 0 {
+	{
 		const prefix string = ",\"Zgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zgyro))
 	}
-	if in.Xmag != 0 {
+	{
 		const prefix string = ",\"Xmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xmag))
 	}
-	if in.Ymag != 0 {
+	{
 		const prefix string = ",\"Ymag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ymag))
 	}
-	if in.Zmag != 0 {
+	{
 		const prefix string = ",\"Zmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zmag))
 	}
 	out.RawByte('}')
@@ -5022,100 +3936,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zacc))
 	}
-	if in.Xgyro != 0 {
+	{
 		const prefix string = ",\"Xgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xgyro))
 	}
-	if in.Ygyro != 0 {
+	{
 		const prefix string = ",\"Ygyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ygyro))
 	}
-	if in.Zgyro != 0 {
+	{
 		const prefix string = ",\"Zgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zgyro))
 	}
-	if in.Xmag != 0 {
+	{
 		const prefix string = ",\"Xmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xmag))
 	}
-	if in.Ymag != 0 {
+	{
 		const prefix string = ",\"Ymag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ymag))
 	}
-	if in.Zmag != 0 {
+	{
 		const prefix string = ",\"Zmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zmag))
 	}
 	out.RawByte('}')
@@ -5195,90 +4063,49 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.P1x != 0 {
+	{
 		const prefix string = ",\"P1x\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.P1x))
 	}
-	if in.P1y != 0 {
+	{
 		const prefix string = ",\"P1y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P1y))
 	}
-	if in.P1z != 0 {
+	{
 		const prefix string = ",\"P1z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P1z))
 	}
-	if in.P2x != 0 {
+	{
 		const prefix string = ",\"P2x\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P2x))
 	}
-	if in.P2y != 0 {
+	{
 		const prefix string = ",\"P2y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P2y))
 	}
-	if in.P2z != 0 {
+	{
 		const prefix string = ",\"P2z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P2z))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Frame != 0 {
+	{
 		const prefix string = ",\"Frame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Frame))
 	}
 	out.RawByte('}')
@@ -5354,70 +4181,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.P1x != 0 {
+	{
 		const prefix string = ",\"P1x\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.P1x))
 	}
-	if in.P1y != 0 {
+	{
 		const prefix string = ",\"P1y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P1y))
 	}
-	if in.P1z != 0 {
+	{
 		const prefix string = ",\"P1z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P1z))
 	}
-	if in.P2x != 0 {
+	{
 		const prefix string = ",\"P2x\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P2x))
 	}
-	if in.P2y != 0 {
+	{
 		const prefix string = ",\"P2y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P2y))
 	}
-	if in.P2z != 0 {
+	{
 		const prefix string = ",\"P2z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P2z))
 	}
-	if in.Frame != 0 {
+	{
 		const prefix string = ",\"Frame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Frame))
 	}
 	out.RawByte('}')
@@ -5483,20 +4279,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Rpm1 != 0 {
+	{
 		const prefix string = ",\"Rpm1\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Rpm1))
 	}
-	if in.Rpm2 != 0 {
+	{
 		const prefix string = ",\"Rpm2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Rpm2))
 	}
 	out.RawByte('}')
@@ -5578,50 +4368,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.RequestID != 0 {
+	{
 		const prefix string = ",\"RequestID\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.RequestID))
 	}
-	if in.URIType != 0 {
+	{
 		const prefix string = ",\"URIType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.URIType))
 	}
-	if len(in.URI) != 0 {
+	{
 		const prefix string = ",\"URI\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.URI)
 	}
-	if in.TransferType != 0 {
+	{
 		const prefix string = ",\"TransferType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TransferType))
 	}
-	if len(in.Storage) != 0 {
+	{
 		const prefix string = ",\"Storage\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Storage)
 	}
 	out.RawByte('}')
@@ -5693,50 +4462,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ReqMessageRate != 0 {
+	{
 		const prefix string = ",\"ReqMessageRate\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.ReqMessageRate))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.ReqStreamID != 0 {
+	{
 		const prefix string = ",\"ReqStreamID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ReqStreamID))
 	}
-	if in.StartStop != 0 {
+	{
 		const prefix string = ",\"StartStop\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.StartStop))
 	}
 	out.RawByte('}')
@@ -5811,40 +4559,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Seqno != 0 {
+	{
 		const prefix string = ",\"Seqno\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.Seqno))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -5914,40 +4646,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Seqno != 0 {
+	{
 		const prefix string = ",\"Seqno\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.Seqno))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Status != 0 {
+	{
 		const prefix string = ",\"Status\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Status))
 	}
 	out.RawByte('}')
@@ -6031,110 +4747,59 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Chan1Scaled != 0 {
+	{
 		const prefix string = ",\"Chan1Scaled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Chan1Scaled))
 	}
-	if in.Chan2Scaled != 0 {
+	{
 		const prefix string = ",\"Chan2Scaled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Chan2Scaled))
 	}
-	if in.Chan3Scaled != 0 {
+	{
 		const prefix string = ",\"Chan3Scaled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Chan3Scaled))
 	}
-	if in.Chan4Scaled != 0 {
+	{
 		const prefix string = ",\"Chan4Scaled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Chan4Scaled))
 	}
-	if in.Chan5Scaled != 0 {
+	{
 		const prefix string = ",\"Chan5Scaled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Chan5Scaled))
 	}
-	if in.Chan6Scaled != 0 {
+	{
 		const prefix string = ",\"Chan6Scaled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Chan6Scaled))
 	}
-	if in.Chan7Scaled != 0 {
+	{
 		const prefix string = ",\"Chan7Scaled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Chan7Scaled))
 	}
-	if in.Chan8Scaled != 0 {
+	{
 		const prefix string = ",\"Chan8Scaled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Chan8Scaled))
 	}
-	if in.Port != 0 {
+	{
 		const prefix string = ",\"Port\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Port))
 	}
-	if in.Rssi != 0 {
+	{
 		const prefix string = ",\"Rssi\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Rssi))
 	}
 	out.RawByte('}')
@@ -6218,110 +4883,59 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Chan1Raw != 0 {
+	{
 		const prefix string = ",\"Chan1Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan1Raw))
 	}
-	if in.Chan2Raw != 0 {
+	{
 		const prefix string = ",\"Chan2Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan2Raw))
 	}
-	if in.Chan3Raw != 0 {
+	{
 		const prefix string = ",\"Chan3Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan3Raw))
 	}
-	if in.Chan4Raw != 0 {
+	{
 		const prefix string = ",\"Chan4Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan4Raw))
 	}
-	if in.Chan5Raw != 0 {
+	{
 		const prefix string = ",\"Chan5Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan5Raw))
 	}
-	if in.Chan6Raw != 0 {
+	{
 		const prefix string = ",\"Chan6Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan6Raw))
 	}
-	if in.Chan7Raw != 0 {
+	{
 		const prefix string = ",\"Chan7Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan7Raw))
 	}
-	if in.Chan8Raw != 0 {
+	{
 		const prefix string = ",\"Chan8Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan8Raw))
 	}
-	if in.Port != 0 {
+	{
 		const prefix string = ",\"Port\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Port))
 	}
-	if in.Rssi != 0 {
+	{
 		const prefix string = ",\"Rssi\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Rssi))
 	}
 	out.RawByte('}')
@@ -6403,100 +5017,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Chan1Raw != 0 {
+	{
 		const prefix string = ",\"Chan1Raw\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Chan1Raw))
 	}
-	if in.Chan2Raw != 0 {
+	{
 		const prefix string = ",\"Chan2Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan2Raw))
 	}
-	if in.Chan3Raw != 0 {
+	{
 		const prefix string = ",\"Chan3Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan3Raw))
 	}
-	if in.Chan4Raw != 0 {
+	{
 		const prefix string = ",\"Chan4Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan4Raw))
 	}
-	if in.Chan5Raw != 0 {
+	{
 		const prefix string = ",\"Chan5Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan5Raw))
 	}
-	if in.Chan6Raw != 0 {
+	{
 		const prefix string = ",\"Chan6Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan6Raw))
 	}
-	if in.Chan7Raw != 0 {
+	{
 		const prefix string = ",\"Chan7Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan7Raw))
 	}
-	if in.Chan8Raw != 0 {
+	{
 		const prefix string = ",\"Chan8Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan8Raw))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -6600,210 +5168,109 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Chan1Raw != 0 {
+	{
 		const prefix string = ",\"Chan1Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan1Raw))
 	}
-	if in.Chan2Raw != 0 {
+	{
 		const prefix string = ",\"Chan2Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan2Raw))
 	}
-	if in.Chan3Raw != 0 {
+	{
 		const prefix string = ",\"Chan3Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan3Raw))
 	}
-	if in.Chan4Raw != 0 {
+	{
 		const prefix string = ",\"Chan4Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan4Raw))
 	}
-	if in.Chan5Raw != 0 {
+	{
 		const prefix string = ",\"Chan5Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan5Raw))
 	}
-	if in.Chan6Raw != 0 {
+	{
 		const prefix string = ",\"Chan6Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan6Raw))
 	}
-	if in.Chan7Raw != 0 {
+	{
 		const prefix string = ",\"Chan7Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan7Raw))
 	}
-	if in.Chan8Raw != 0 {
+	{
 		const prefix string = ",\"Chan8Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan8Raw))
 	}
-	if in.Chan9Raw != 0 {
+	{
 		const prefix string = ",\"Chan9Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan9Raw))
 	}
-	if in.Chan10Raw != 0 {
+	{
 		const prefix string = ",\"Chan10Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan10Raw))
 	}
-	if in.Chan11Raw != 0 {
+	{
 		const prefix string = ",\"Chan11Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan11Raw))
 	}
-	if in.Chan12Raw != 0 {
+	{
 		const prefix string = ",\"Chan12Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan12Raw))
 	}
-	if in.Chan13Raw != 0 {
+	{
 		const prefix string = ",\"Chan13Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan13Raw))
 	}
-	if in.Chan14Raw != 0 {
+	{
 		const prefix string = ",\"Chan14Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan14Raw))
 	}
-	if in.Chan15Raw != 0 {
+	{
 		const prefix string = ",\"Chan15Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan15Raw))
 	}
-	if in.Chan16Raw != 0 {
+	{
 		const prefix string = ",\"Chan16Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan16Raw))
 	}
-	if in.Chan17Raw != 0 {
+	{
 		const prefix string = ",\"Chan17Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan17Raw))
 	}
-	if in.Chan18Raw != 0 {
+	{
 		const prefix string = ",\"Chan18Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan18Raw))
 	}
-	if in.Chancount != 0 {
+	{
 		const prefix string = ",\"Chancount\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Chancount))
 	}
-	if in.Rssi != 0 {
+	{
 		const prefix string = ",\"Rssi\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Rssi))
 	}
 	out.RawByte('}')
@@ -6875,50 +5342,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.PressAbs != 0 {
+	{
 		const prefix string = ",\"PressAbs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.PressAbs))
 	}
-	if in.PressDiff1 != 0 {
+	{
 		const prefix string = ",\"PressDiff1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.PressDiff1))
 	}
-	if in.PressDiff2 != 0 {
+	{
 		const prefix string = ",\"PressDiff2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.PressDiff2))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Temperature))
 	}
 	out.RawByte('}')
@@ -7000,100 +5446,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zacc))
 	}
-	if in.Xgyro != 0 {
+	{
 		const prefix string = ",\"Xgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xgyro))
 	}
-	if in.Ygyro != 0 {
+	{
 		const prefix string = ",\"Ygyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ygyro))
 	}
-	if in.Zgyro != 0 {
+	{
 		const prefix string = ",\"Zgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zgyro))
 	}
-	if in.Xmag != 0 {
+	{
 		const prefix string = ",\"Xmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xmag))
 	}
-	if in.Ymag != 0 {
+	{
 		const prefix string = ",\"Ymag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ymag))
 	}
-	if in.Zmag != 0 {
+	{
 		const prefix string = ",\"Zmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zmag))
 	}
 	out.RawByte('}')
@@ -7159,20 +5559,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Distance != 0 {
+	{
 		const prefix string = ",\"Distance\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Distance))
 	}
-	if in.Voltage != 0 {
+	{
 		const prefix string = ",\"Voltage\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Voltage))
 	}
 	out.RawByte('}')
@@ -7254,100 +5648,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lng != 0 {
+	{
 		const prefix string = ",\"Lng\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lng))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Alt))
 	}
-	if in.BreakAlt != 0 {
+	{
 		const prefix string = ",\"BreakAlt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.BreakAlt))
 	}
-	if in.LandDir != 0 {
+	{
 		const prefix string = ",\"LandDir\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.LandDir))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Idx != 0 {
+	{
 		const prefix string = ",\"Idx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Idx))
 	}
-	if in.Count != 0 {
+	{
 		const prefix string = ",\"Count\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Count))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Flags))
 	}
 	out.RawByte('}')
@@ -7415,30 +5763,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Idx != 0 {
+	{
 		const prefix string = ",\"Idx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Idx))
 	}
 	out.RawByte('}')
@@ -7514,70 +5851,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Rxerrors != 0 {
+	{
 		const prefix string = ",\"Rxerrors\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Rxerrors))
 	}
-	if in.Fixed != 0 {
+	{
 		const prefix string = ",\"Fixed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Fixed))
 	}
-	if in.Rssi != 0 {
+	{
 		const prefix string = ",\"Rssi\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Rssi))
 	}
-	if in.Remrssi != 0 {
+	{
 		const prefix string = ",\"Remrssi\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Remrssi))
 	}
-	if in.Txbuf != 0 {
+	{
 		const prefix string = ",\"Txbuf\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Txbuf))
 	}
-	if in.Noise != 0 {
+	{
 		const prefix string = ",\"Noise\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Noise))
 	}
-	if in.Remnoise != 0 {
+	{
 		const prefix string = ",\"Remnoise\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Remnoise))
 	}
 	out.RawByte('}')
@@ -7653,70 +5959,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Rxerrors != 0 {
+	{
 		const prefix string = ",\"Rxerrors\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Rxerrors))
 	}
-	if in.Fixed != 0 {
+	{
 		const prefix string = ",\"Fixed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Fixed))
 	}
-	if in.Rssi != 0 {
+	{
 		const prefix string = ",\"Rssi\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Rssi))
 	}
-	if in.Remrssi != 0 {
+	{
 		const prefix string = ",\"Remrssi\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Remrssi))
 	}
-	if in.Txbuf != 0 {
+	{
 		const prefix string = ",\"Txbuf\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Txbuf))
 	}
-	if in.Noise != 0 {
+	{
 		const prefix string = ",\"Noise\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Noise))
 	}
-	if in.Remnoise != 0 {
+	{
 		const prefix string = ",\"Remnoise\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Remnoise))
 	}
 	out.RawByte('}')
@@ -7784,30 +6059,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Vcc != 0 {
+	{
 		const prefix string = ",\"Vcc\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Vcc))
 	}
-	if in.Vservo != 0 {
+	{
 		const prefix string = ",\"Vservo\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Vservo))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Flags))
 	}
 	out.RawByte('}')
@@ -7897,140 +6161,74 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vz))
 	}
-	if in.Afx != 0 {
+	{
 		const prefix string = ",\"Afx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afx))
 	}
-	if in.Afy != 0 {
+	{
 		const prefix string = ",\"Afy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afy))
 	}
-	if in.Afz != 0 {
+	{
 		const prefix string = ",\"Afz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afz))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.YawRate != 0 {
+	{
 		const prefix string = ",\"YawRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YawRate))
 	}
-	if in.TypeMask != 0 {
+	{
 		const prefix string = ",\"TypeMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.TypeMask))
 	}
-	if in.CoordinateFrame != 0 {
+	{
 		const prefix string = ",\"CoordinateFrame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CoordinateFrame))
 	}
 	out.RawByte('}')
@@ -8120,140 +6318,74 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.LatInt != 0 {
+	{
 		const prefix string = ",\"LatInt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.LatInt))
 	}
-	if in.LonInt != 0 {
+	{
 		const prefix string = ",\"LonInt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.LonInt))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Alt))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vz))
 	}
-	if in.Afx != 0 {
+	{
 		const prefix string = ",\"Afx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afx))
 	}
-	if in.Afy != 0 {
+	{
 		const prefix string = ",\"Afy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afy))
 	}
-	if in.Afz != 0 {
+	{
 		const prefix string = ",\"Afz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Afz))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.YawRate != 0 {
+	{
 		const prefix string = ",\"YawRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YawRate))
 	}
-	if in.TypeMask != 0 {
+	{
 		const prefix string = ",\"TypeMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.TypeMask))
 	}
-	if in.CoordinateFrame != 0 {
+	{
 		const prefix string = ",\"CoordinateFrame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CoordinateFrame))
 	}
 	out.RawByte('}')
@@ -8323,40 +6455,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Seq))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -8432,70 +6548,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Desired != 0 {
+	{
 		const prefix string = ",\"Desired\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Desired))
 	}
-	if in.Achieved != 0 {
+	{
 		const prefix string = ",\"Achieved\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Achieved))
 	}
-	if in.Ff != 0 {
+	{
 		const prefix string = ",\"Ff\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ff))
 	}
-	if in.P != 0 {
+	{
 		const prefix string = ",\"P\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P))
 	}
-	if in.I != 0 {
+	{
 		const prefix string = ",\"I\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.I))
 	}
-	if in.D != 0 {
+	{
 		const prefix string = ",\"D\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.D))
 	}
-	if in.Axis != 0 {
+	{
 		const prefix string = ",\"Axis\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Axis))
 	}
 	out.RawByte('}')
@@ -8567,50 +6652,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ParamValue != 0 {
+	{
 		const prefix string = ",\"ParamValue\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.ParamValue))
 	}
-	if in.ParamCount != 0 {
+	{
 		const prefix string = ",\"ParamCount\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ParamCount))
 	}
-	if in.ParamIndex != 0 {
+	{
 		const prefix string = ",\"ParamIndex\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ParamIndex))
 	}
-	if in.ParamID != "" {
+	{
 		const prefix string = ",\"ParamID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.ParamID))
 	}
-	if in.ParamType != 0 {
+	{
 		const prefix string = ",\"ParamType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.ParamType))
 	}
 	out.RawByte('}')
@@ -8682,50 +6746,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ParamValue != 0 {
+	{
 		const prefix string = ",\"ParamValue\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.ParamValue))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.ParamID != "" {
+	{
 		const prefix string = ",\"ParamID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.ParamID))
 	}
-	if in.ParamType != 0 {
+	{
 		const prefix string = ",\"ParamType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.ParamType))
 	}
 	out.RawByte('}')
@@ -8795,40 +6838,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ParamIndex != 0 {
+	{
 		const prefix string = ",\"ParamIndex\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int16(int16(in.ParamIndex))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.ParamID != "" {
+	{
 		const prefix string = ",\"ParamID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.ParamID))
 	}
 	out.RawByte('}')
@@ -8894,20 +6921,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -8987,90 +7008,49 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ParamValue0 != 0 {
+	{
 		const prefix string = ",\"ParamValue0\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.ParamValue0))
 	}
-	if in.Scale != 0 {
+	{
 		const prefix string = ",\"Scale\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Scale))
 	}
-	if in.ParamValueMin != 0 {
+	{
 		const prefix string = ",\"ParamValueMin\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ParamValueMin))
 	}
-	if in.ParamValueMax != 0 {
+	{
 		const prefix string = ",\"ParamValueMax\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ParamValueMax))
 	}
-	if in.ParamIndex != 0 {
+	{
 		const prefix string = ",\"ParamIndex\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.ParamIndex))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.ParamID != "" {
+	{
 		const prefix string = ",\"ParamID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.ParamID))
 	}
-	if in.ParameterRcChannelIndex != 0 {
+	{
 		const prefix string = ",\"ParameterRcChannelIndex\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ParameterRcChannelIndex))
 	}
 	out.RawByte('}')
@@ -9144,60 +7124,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ParamValue != 0 {
+	{
 		const prefix string = ",\"ParamValue\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.ParamValue))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.ParamID != "" {
+	{
 		const prefix string = ",\"ParamID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.ParamID))
 	}
-	if in.ParamType != 0 {
+	{
 		const prefix string = ",\"ParamType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.ParamType))
 	}
-	if in.ParamResult != 0 {
+	{
 		const prefix string = ",\"ParamResult\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.ParamResult))
 	}
 	out.RawByte('}')
@@ -9283,120 +7237,64 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.IntegrationTimeUs != 0 {
+	{
 		const prefix string = ",\"IntegrationTimeUs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.IntegrationTimeUs))
 	}
-	if in.IntegratedX != 0 {
+	{
 		const prefix string = ",\"IntegratedX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedX))
 	}
-	if in.IntegratedY != 0 {
+	{
 		const prefix string = ",\"IntegratedY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedY))
 	}
-	if in.IntegratedXgyro != 0 {
+	{
 		const prefix string = ",\"IntegratedXgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedXgyro))
 	}
-	if in.IntegratedYgyro != 0 {
+	{
 		const prefix string = ",\"IntegratedYgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedYgyro))
 	}
-	if in.IntegratedZgyro != 0 {
+	{
 		const prefix string = ",\"IntegratedZgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedZgyro))
 	}
-	if in.TimeDeltaDistanceUs != 0 {
+	{
 		const prefix string = ",\"TimeDeltaDistanceUs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.TimeDeltaDistanceUs))
 	}
-	if in.Distance != 0 {
+	{
 		const prefix string = ",\"Distance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Distance))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Temperature))
 	}
-	if in.SensorID != 0 {
+	{
 		const prefix string = ",\"SensorID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.SensorID))
 	}
-	if in.Quality != 0 {
+	{
 		const prefix string = ",\"Quality\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Quality))
 	}
 	out.RawByte('}')
@@ -9474,80 +7372,44 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.FlowCompMX != 0 {
+	{
 		const prefix string = ",\"FlowCompMX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.FlowCompMX))
 	}
-	if in.FlowCompMY != 0 {
+	{
 		const prefix string = ",\"FlowCompMY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.FlowCompMY))
 	}
-	if in.GroundDistance != 0 {
+	{
 		const prefix string = ",\"GroundDistance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.GroundDistance))
 	}
-	if in.FlowX != 0 {
+	{
 		const prefix string = ",\"FlowX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.FlowX))
 	}
-	if in.FlowY != 0 {
+	{
 		const prefix string = ",\"FlowY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.FlowY))
 	}
-	if in.SensorID != 0 {
+	{
 		const prefix string = ",\"SensorID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.SensorID))
 	}
-	if in.Quality != 0 {
+	{
 		const prefix string = ",\"Quality\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Quality))
 	}
 	out.RawByte('}')
@@ -9625,80 +7487,44 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.NavRoll != 0 {
+	{
 		const prefix string = ",\"NavRoll\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.NavRoll))
 	}
-	if in.NavPitch != 0 {
+	{
 		const prefix string = ",\"NavPitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.NavPitch))
 	}
-	if in.AltError != 0 {
+	{
 		const prefix string = ",\"AltError\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltError))
 	}
-	if in.AspdError != 0 {
+	{
 		const prefix string = ",\"AspdError\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AspdError))
 	}
-	if in.XtrackError != 0 {
+	{
 		const prefix string = ",\"XtrackError\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.XtrackError))
 	}
-	if in.NavBearing != 0 {
+	{
 		const prefix string = ",\"NavBearing\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.NavBearing))
 	}
-	if in.TargetBearing != 0 {
+	{
 		const prefix string = ",\"TargetBearing\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.TargetBearing))
 	}
-	if in.WpDist != 0 {
+	{
 		const prefix string = ",\"WpDist\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.WpDist))
 	}
 	out.RawByte('}')
@@ -9766,30 +7592,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Value != 0 {
+	{
 		const prefix string = ",\"Value\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Value))
 	}
-	if in.Name != "" {
+	{
 		const prefix string = ",\"Name\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.Name))
 	}
 	out.RawByte('}')
@@ -9857,30 +7672,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Value != 0 {
+	{
 		const prefix string = ",\"Value\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Value))
 	}
-	if in.Name != "" {
+	{
 		const prefix string = ",\"Name\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.Name))
 	}
 	out.RawByte('}')
@@ -9952,50 +7756,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.PointingA != 0 {
+	{
 		const prefix string = ",\"PointingA\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.PointingA))
 	}
-	if in.PointingB != 0 {
+	{
 		const prefix string = ",\"PointingB\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.PointingB))
 	}
-	if in.PointingC != 0 {
+	{
 		const prefix string = ",\"PointingC\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.PointingC))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -10069,60 +7852,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.InputA != 0 {
+	{
 		const prefix string = ",\"InputA\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.InputA))
 	}
-	if in.InputB != 0 {
+	{
 		const prefix string = ",\"InputB\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.InputB))
 	}
-	if in.InputC != 0 {
+	{
 		const prefix string = ",\"InputC\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.InputC))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.SavePosition != 0 {
+	{
 		const prefix string = ",\"SavePosition\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.SavePosition))
 	}
 	out.RawByte('}')
@@ -10196,60 +7953,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.MountMode != 0 {
+	{
 		const prefix string = ",\"MountMode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.MountMode))
 	}
-	if in.StabRoll != 0 {
+	{
 		const prefix string = ",\"StabRoll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.StabRoll))
 	}
-	if in.StabPitch != 0 {
+	{
 		const prefix string = ",\"StabPitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.StabPitch))
 	}
-	if in.StabYaw != 0 {
+	{
 		const prefix string = ",\"StabYaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.StabYaw))
 	}
 	out.RawByte('}')
@@ -10319,40 +8050,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.StartIndex != 0 {
+	{
 		const prefix string = ",\"StartIndex\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int16(int16(in.StartIndex))
 	}
-	if in.EndIndex != 0 {
+	{
 		const prefix string = ",\"EndIndex\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.EndIndex))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -10420,30 +8135,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Seq))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -10513,40 +8217,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.StartIndex != 0 {
+	{
 		const prefix string = ",\"StartIndex\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int16(int16(in.StartIndex))
 	}
-	if in.EndIndex != 0 {
+	{
 		const prefix string = ",\"EndIndex\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.EndIndex))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -10612,20 +8300,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -10693,30 +8375,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Seq))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -10784,30 +8455,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Seq))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -10871,9 +8531,8 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Seq))
 	}
@@ -10964,140 +8623,74 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Param1 != 0 {
+	{
 		const prefix string = ",\"Param1\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Param1))
 	}
-	if in.Param2 != 0 {
+	{
 		const prefix string = ",\"Param2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param2))
 	}
-	if in.Param3 != 0 {
+	{
 		const prefix string = ",\"Param3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param3))
 	}
-	if in.Param4 != 0 {
+	{
 		const prefix string = ",\"Param4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param4))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Seq))
 	}
-	if in.Command != 0 {
+	{
 		const prefix string = ",\"Command\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Command))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Frame != 0 {
+	{
 		const prefix string = ",\"Frame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Frame))
 	}
-	if in.Current != 0 {
+	{
 		const prefix string = ",\"Current\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Current))
 	}
-	if in.Autocontinue != 0 {
+	{
 		const prefix string = ",\"Autocontinue\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Autocontinue))
 	}
 	out.RawByte('}')
@@ -11187,140 +8780,74 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Param1 != 0 {
+	{
 		const prefix string = ",\"Param1\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Param1))
 	}
-	if in.Param2 != 0 {
+	{
 		const prefix string = ",\"Param2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param2))
 	}
-	if in.Param3 != 0 {
+	{
 		const prefix string = ",\"Param3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param3))
 	}
-	if in.Param4 != 0 {
+	{
 		const prefix string = ",\"Param4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param4))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Seq))
 	}
-	if in.Command != 0 {
+	{
 		const prefix string = ",\"Command\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Command))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Frame != 0 {
+	{
 		const prefix string = ",\"Frame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Frame))
 	}
-	if in.Current != 0 {
+	{
 		const prefix string = ",\"Current\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Current))
 	}
-	if in.Autocontinue != 0 {
+	{
 		const prefix string = ",\"Autocontinue\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Autocontinue))
 	}
 	out.RawByte('}')
@@ -11384,9 +8911,8 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Seq))
 	}
@@ -11455,30 +8981,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Count != 0 {
+	{
 		const prefix string = ",\"Count\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Count))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -11544,20 +9059,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -11629,50 +9138,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.StartIndex != 0 {
+	{
 		const prefix string = ",\"StartIndex\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int16(int16(in.StartIndex))
 	}
-	if in.EndIndex != 0 {
+	{
 		const prefix string = ",\"EndIndex\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.EndIndex))
 	}
-	if in.OriginSysid != 0 {
+	{
 		const prefix string = ",\"OriginSysid\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.OriginSysid))
 	}
-	if in.OriginCompid != 0 {
+	{
 		const prefix string = ",\"OriginCompid\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.OriginCompid))
 	}
-	if in.MissionType != 0 {
+	{
 		const prefix string = ",\"MissionType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.MissionType))
 	}
 	out.RawByte('}')
@@ -11740,30 +9228,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Type))
 	}
 	out.RawByte('}')
@@ -11829,20 +9306,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.IntervalUs != 0 {
+	{
 		const prefix string = ",\"IntervalUs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.IntervalUs))
 	}
-	if in.MessageID != 0 {
+	{
 		const prefix string = ",\"MessageID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.MessageID))
 	}
 	out.RawByte('}')
@@ -11933,41 +9404,27 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Address != 0 {
+	{
 		const prefix string = ",\"Address\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Address))
 	}
-	if in.Ver != 0 {
+	{
 		const prefix string = ",\"Ver\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Ver))
 	}
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Type))
 	}
-	if len(in.Value) != 0 {
+	{
 		const prefix string = ",\"Value\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Value == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v29, v30 := range in.Value {
 				if v29 > 0 {
@@ -12041,20 +9498,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Brkval != 0 {
+	{
 		const prefix string = ",\"Brkval\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Brkval))
 	}
-	if in.Freemem != 0 {
+	{
 		const prefix string = ",\"Freemem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Freemem))
 	}
 	out.RawByte('}')
@@ -12130,70 +9581,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.Thrust != 0 {
+	{
 		const prefix string = ",\"Thrust\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Thrust))
 	}
-	if in.ModeSwitch != 0 {
+	{
 		const prefix string = ",\"ModeSwitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ModeSwitch))
 	}
-	if in.ManualOverrideSwitch != 0 {
+	{
 		const prefix string = ",\"ManualOverrideSwitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ManualOverrideSwitch))
 	}
 	out.RawByte('}')
@@ -12267,60 +9687,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int16(int16(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Z))
 	}
-	if in.R != 0 {
+	{
 		const prefix string = ",\"R\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.R))
 	}
-	if in.Buttons != 0 {
+	{
 		const prefix string = ",\"Buttons\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Buttons))
 	}
-	if in.Target != 0 {
+	{
 		const prefix string = ",\"Target\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Target))
 	}
 	out.RawByte('}')
@@ -12410,140 +9804,74 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Fitness != 0 {
+	{
 		const prefix string = ",\"Fitness\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Fitness))
 	}
-	if in.OfsX != 0 {
+	{
 		const prefix string = ",\"OfsX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.OfsX))
 	}
-	if in.OfsY != 0 {
+	{
 		const prefix string = ",\"OfsY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.OfsY))
 	}
-	if in.OfsZ != 0 {
+	{
 		const prefix string = ",\"OfsZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.OfsZ))
 	}
-	if in.DiagX != 0 {
+	{
 		const prefix string = ",\"DiagX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DiagX))
 	}
-	if in.DiagY != 0 {
+	{
 		const prefix string = ",\"DiagY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DiagY))
 	}
-	if in.DiagZ != 0 {
+	{
 		const prefix string = ",\"DiagZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DiagZ))
 	}
-	if in.OffdiagX != 0 {
+	{
 		const prefix string = ",\"OffdiagX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.OffdiagX))
 	}
-	if in.OffdiagY != 0 {
+	{
 		const prefix string = ",\"OffdiagY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.OffdiagY))
 	}
-	if in.OffdiagZ != 0 {
+	{
 		const prefix string = ",\"OffdiagZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.OffdiagZ))
 	}
-	if in.CompassID != 0 {
+	{
 		const prefix string = ",\"CompassID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CompassID))
 	}
-	if in.CalMask != 0 {
+	{
 		const prefix string = ",\"CalMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CalMask))
 	}
-	if in.CalStatus != 0 {
+	{
 		const prefix string = ",\"CalStatus\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CalStatus))
 	}
-	if in.Autosaved != 0 {
+	{
 		const prefix string = ",\"Autosaved\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Autosaved))
 	}
 	out.RawByte('}')
@@ -12628,90 +9956,49 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.DirectionX != 0 {
+	{
 		const prefix string = ",\"DirectionX\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.DirectionX))
 	}
-	if in.DirectionY != 0 {
+	{
 		const prefix string = ",\"DirectionY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DirectionY))
 	}
-	if in.DirectionZ != 0 {
+	{
 		const prefix string = ",\"DirectionZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DirectionZ))
 	}
-	if in.CompassID != 0 {
+	{
 		const prefix string = ",\"CompassID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CompassID))
 	}
-	if in.CalMask != 0 {
+	{
 		const prefix string = ",\"CalMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CalMask))
 	}
-	if in.CalStatus != 0 {
+	{
 		const prefix string = ",\"CalStatus\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CalStatus))
 	}
-	if in.Attempt != 0 {
+	{
 		const prefix string = ",\"Attempt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Attempt))
 	}
-	if in.CompletionPct != 0 {
+	{
 		const prefix string = ",\"CompletionPct\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CompletionPct))
 	}
-	if len(in.CompletionMask) != 0 {
+	{
 		const prefix string = ",\"CompletionMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.CompletionMask)
 	}
 	out.RawByte('}')
@@ -12781,40 +10068,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Start != 0 {
+	{
 		const prefix string = ",\"Start\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Start))
 	}
-	if in.End != 0 {
+	{
 		const prefix string = ",\"End\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.End))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -12880,20 +10151,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -12965,50 +10230,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Ofs != 0 {
+	{
 		const prefix string = ",\"Ofs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.Ofs))
 	}
-	if in.Count != 0 {
+	{
 		const prefix string = ",\"Count\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Count))
 	}
-	if in.ID != 0 {
+	{
 		const prefix string = ",\"ID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ID))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -13074,20 +10318,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -13159,50 +10397,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUtc != 0 {
+	{
 		const prefix string = ",\"TimeUtc\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeUtc))
 	}
-	if in.Size != 0 {
+	{
 		const prefix string = ",\"Size\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Size))
 	}
-	if in.ID != 0 {
+	{
 		const prefix string = ",\"ID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ID))
 	}
-	if in.NumLogs != 0 {
+	{
 		const prefix string = ",\"NumLogs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.NumLogs))
 	}
-	if in.LastLogNum != 0 {
+	{
 		const prefix string = ",\"LastLogNum\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.LastLogNum))
 	}
 	out.RawByte('}')
@@ -13277,40 +10494,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Ofs != 0 {
+	{
 		const prefix string = ",\"Ofs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.Ofs))
 	}
-	if in.ID != 0 {
+	{
 		const prefix string = ",\"ID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ID))
 	}
-	if in.Count != 0 {
+	{
 		const prefix string = ",\"Count\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Count))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -13386,70 +10587,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
 	out.RawByte('}')
@@ -13556,111 +10726,62 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vz))
 	}
-	if in.Ax != 0 {
+	{
 		const prefix string = ",\"Ax\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ax))
 	}
-	if in.Ay != 0 {
+	{
 		const prefix string = ",\"Ay\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ay))
 	}
-	if in.Az != 0 {
+	{
 		const prefix string = ",\"Az\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Az))
 	}
-	if len(in.Covariance) != 0 {
+	{
 		const prefix string = ",\"Covariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Covariance == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v38, v39 := range in.Covariance {
 				if v38 > 0 {
@@ -13671,14 +10792,9 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.EstimatorType != 0 {
+	{
 		const prefix string = ",\"EstimatorType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.EstimatorType))
 	}
 	out.RawByte('}')
@@ -13754,70 +10870,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vz))
 	}
 	out.RawByte('}')
@@ -13901,110 +10986,59 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Timestamp != 0 {
+	{
 		const prefix string = ",\"Timestamp\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.Timestamp))
 	}
-	if in.TxRate != 0 {
+	{
 		const prefix string = ",\"TxRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.TxRate))
 	}
-	if in.RxRate != 0 {
+	{
 		const prefix string = ",\"RxRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.RxRate))
 	}
-	if in.MessagesSent != 0 {
+	{
 		const prefix string = ",\"MessagesSent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.MessagesSent))
 	}
-	if in.MessagesReceived != 0 {
+	{
 		const prefix string = ",\"MessagesReceived\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.MessagesReceived))
 	}
-	if in.MessagesLost != 0 {
+	{
 		const prefix string = ",\"MessagesLost\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.MessagesLost))
 	}
-	if in.RxParseErr != 0 {
+	{
 		const prefix string = ",\"RxParseErr\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.RxParseErr))
 	}
-	if in.TxOverflows != 0 {
+	{
 		const prefix string = ",\"TxOverflows\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.TxOverflows))
 	}
-	if in.RxOverflows != 0 {
+	{
 		const prefix string = ",\"RxOverflows\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.RxOverflows))
 	}
-	if in.TxBuf != 0 {
+	{
 		const prefix string = ",\"TxBuf\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TxBuf))
 	}
-	if in.RxBuf != 0 {
+	{
 		const prefix string = ",\"RxBuf\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.RxBuf))
 	}
 	out.RawByte('}')
@@ -14084,90 +11118,49 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.LastTrigger != 0 {
+	{
 		const prefix string = ",\"LastTrigger\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.LastTrigger))
 	}
-	if in.LastAction != 0 {
+	{
 		const prefix string = ",\"LastAction\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.LastAction))
 	}
-	if in.LastRecovery != 0 {
+	{
 		const prefix string = ",\"LastRecovery\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.LastRecovery))
 	}
-	if in.LastClear != 0 {
+	{
 		const prefix string = ",\"LastClear\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.LastClear))
 	}
-	if in.BreachCount != 0 {
+	{
 		const prefix string = ",\"BreachCount\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.BreachCount))
 	}
-	if in.LimitsState != 0 {
+	{
 		const prefix string = ",\"LimitsState\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.LimitsState))
 	}
-	if in.ModsEnabled != 0 {
+	{
 		const prefix string = ",\"ModsEnabled\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.ModsEnabled))
 	}
-	if in.ModsRequired != 0 {
+	{
 		const prefix string = ",\"ModsRequired\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.ModsRequired))
 	}
-	if in.ModsTriggered != 0 {
+	{
 		const prefix string = ",\"ModsTriggered\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.ModsTriggered))
 	}
 	out.RawByte('}')
@@ -14246,60 +11239,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Instance != 0 {
+	{
 		const prefix string = ",\"Instance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Instance))
 	}
-	if in.Pattern != 0 {
+	{
 		const prefix string = ",\"Pattern\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Pattern))
 	}
-	if in.CustomLen != 0 {
+	{
 		const prefix string = ",\"CustomLen\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CustomLen))
 	}
-	if len(in.CustomBytes) != 0 {
+	{
 		const prefix string = ",\"CustomBytes\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.CustomBytes)
 	}
 	out.RawByte('}')
@@ -14377,80 +11344,44 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.AngleX != 0 {
+	{
 		const prefix string = ",\"AngleX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AngleX))
 	}
-	if in.AngleY != 0 {
+	{
 		const prefix string = ",\"AngleY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AngleY))
 	}
-	if in.Distance != 0 {
+	{
 		const prefix string = ",\"Distance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Distance))
 	}
-	if in.SizeX != 0 {
+	{
 		const prefix string = ",\"SizeX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.SizeX))
 	}
-	if in.SizeY != 0 {
+	{
 		const prefix string = ",\"SizeY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.SizeY))
 	}
-	if in.TargetNum != 0 {
+	{
 		const prefix string = ",\"TargetNum\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetNum))
 	}
-	if in.Frame != 0 {
+	{
 		const prefix string = ",\"Frame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Frame))
 	}
 	out.RawByte('}')
@@ -14516,20 +11447,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Vcc != 0 {
+	{
 		const prefix string = ",\"Vcc\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Vcc))
 	}
-	if in.I2cerr != 0 {
+	{
 		const prefix string = ",\"I2cerr\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.I2cerr))
 	}
 	out.RawByte('}')
@@ -14632,71 +11557,42 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Latitude != 0 {
+	{
 		const prefix string = ",\"Latitude\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.Latitude))
 	}
-	if in.Longitude != 0 {
+	{
 		const prefix string = ",\"Longitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Longitude))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Altitude))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if len(in.Q) != 0 {
+	{
 		const prefix string = ",\"Q\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Q == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v44, v45 := range in.Q {
 				if v44 > 0 {
@@ -14707,34 +11603,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.ApproachX != 0 {
+	{
 		const prefix string = ",\"ApproachX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ApproachX))
 	}
-	if in.ApproachY != 0 {
+	{
 		const prefix string = ",\"ApproachY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ApproachY))
 	}
-	if in.ApproachZ != 0 {
+	{
 		const prefix string = ",\"ApproachZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ApproachZ))
 	}
 	out.RawByte('}')
@@ -14849,21 +11730,17 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if len(in.AttitudeQuaternion) != 0 {
+	{
 		const prefix string = ",\"AttitudeQuaternion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.AttitudeQuaternion == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v47, v48 := range in.AttitudeQuaternion {
 				if v47 > 0 {
@@ -14874,144 +11751,74 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.Rollspeed != 0 {
+	{
 		const prefix string = ",\"Rollspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Rollspeed))
 	}
-	if in.Pitchspeed != 0 {
+	{
 		const prefix string = ",\"Pitchspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitchspeed))
 	}
-	if in.Yawspeed != 0 {
+	{
 		const prefix string = ",\"Yawspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yawspeed))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Alt))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vz))
 	}
-	if in.IndAirspeed != 0 {
+	{
 		const prefix string = ",\"IndAirspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.IndAirspeed))
 	}
-	if in.TrueAirspeed != 0 {
+	{
 		const prefix string = ",\"TrueAirspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.TrueAirspeed))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zacc))
 	}
 	out.RawByte('}')
@@ -15105,160 +11912,84 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.Rollspeed != 0 {
+	{
 		const prefix string = ",\"Rollspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Rollspeed))
 	}
-	if in.Pitchspeed != 0 {
+	{
 		const prefix string = ",\"Pitchspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitchspeed))
 	}
-	if in.Yawspeed != 0 {
+	{
 		const prefix string = ",\"Yawspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yawspeed))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Alt))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vz))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Zacc))
 	}
 	out.RawByte('}')
@@ -15350,150 +12081,79 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zacc))
 	}
-	if in.Xgyro != 0 {
+	{
 		const prefix string = ",\"Xgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xgyro))
 	}
-	if in.Ygyro != 0 {
+	{
 		const prefix string = ",\"Ygyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ygyro))
 	}
-	if in.Zgyro != 0 {
+	{
 		const prefix string = ",\"Zgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zgyro))
 	}
-	if in.Xmag != 0 {
+	{
 		const prefix string = ",\"Xmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xmag))
 	}
-	if in.Ymag != 0 {
+	{
 		const prefix string = ",\"Ymag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ymag))
 	}
-	if in.Zmag != 0 {
+	{
 		const prefix string = ",\"Zmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zmag))
 	}
-	if in.AbsPressure != 0 {
+	{
 		const prefix string = ",\"AbsPressure\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AbsPressure))
 	}
-	if in.DiffPressure != 0 {
+	{
 		const prefix string = ",\"DiffPressure\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DiffPressure))
 	}
-	if in.PressureAlt != 0 {
+	{
 		const prefix string = ",\"PressureAlt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PressureAlt))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Temperature))
 	}
-	if in.FieldsUpdated != 0 {
+	{
 		const prefix string = ",\"FieldsUpdated\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.FieldsUpdated))
 	}
 	out.RawByte('}')
@@ -15583,140 +12243,74 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Chan1Raw != 0 {
+	{
 		const prefix string = ",\"Chan1Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan1Raw))
 	}
-	if in.Chan2Raw != 0 {
+	{
 		const prefix string = ",\"Chan2Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan2Raw))
 	}
-	if in.Chan3Raw != 0 {
+	{
 		const prefix string = ",\"Chan3Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan3Raw))
 	}
-	if in.Chan4Raw != 0 {
+	{
 		const prefix string = ",\"Chan4Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan4Raw))
 	}
-	if in.Chan5Raw != 0 {
+	{
 		const prefix string = ",\"Chan5Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan5Raw))
 	}
-	if in.Chan6Raw != 0 {
+	{
 		const prefix string = ",\"Chan6Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan6Raw))
 	}
-	if in.Chan7Raw != 0 {
+	{
 		const prefix string = ",\"Chan7Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan7Raw))
 	}
-	if in.Chan8Raw != 0 {
+	{
 		const prefix string = ",\"Chan8Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan8Raw))
 	}
-	if in.Chan9Raw != 0 {
+	{
 		const prefix string = ",\"Chan9Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan9Raw))
 	}
-	if in.Chan10Raw != 0 {
+	{
 		const prefix string = ",\"Chan10Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan10Raw))
 	}
-	if in.Chan11Raw != 0 {
+	{
 		const prefix string = ",\"Chan11Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan11Raw))
 	}
-	if in.Chan12Raw != 0 {
+	{
 		const prefix string = ",\"Chan12Raw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Chan12Raw))
 	}
-	if in.Rssi != 0 {
+	{
 		const prefix string = ",\"Rssi\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Rssi))
 	}
 	out.RawByte('}')
@@ -15802,120 +12396,64 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.IntegrationTimeUs != 0 {
+	{
 		const prefix string = ",\"IntegrationTimeUs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.IntegrationTimeUs))
 	}
-	if in.IntegratedX != 0 {
+	{
 		const prefix string = ",\"IntegratedX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedX))
 	}
-	if in.IntegratedY != 0 {
+	{
 		const prefix string = ",\"IntegratedY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedY))
 	}
-	if in.IntegratedXgyro != 0 {
+	{
 		const prefix string = ",\"IntegratedXgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedXgyro))
 	}
-	if in.IntegratedYgyro != 0 {
+	{
 		const prefix string = ",\"IntegratedYgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedYgyro))
 	}
-	if in.IntegratedZgyro != 0 {
+	{
 		const prefix string = ",\"IntegratedZgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntegratedZgyro))
 	}
-	if in.TimeDeltaDistanceUs != 0 {
+	{
 		const prefix string = ",\"TimeDeltaDistanceUs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.TimeDeltaDistanceUs))
 	}
-	if in.Distance != 0 {
+	{
 		const prefix string = ",\"Distance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Distance))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Temperature))
 	}
-	if in.SensorID != 0 {
+	{
 		const prefix string = ",\"SensorID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.SensorID))
 	}
-	if in.Quality != 0 {
+	{
 		const prefix string = ",\"Quality\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Quality))
 	}
 	out.RawByte('}')
@@ -16003,130 +12541,69 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Alt))
 	}
-	if in.Eph != 0 {
+	{
 		const prefix string = ",\"Eph\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Eph))
 	}
-	if in.Epv != 0 {
+	{
 		const prefix string = ",\"Epv\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Epv))
 	}
-	if in.Vel != 0 {
+	{
 		const prefix string = ",\"Vel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Vel))
 	}
-	if in.Vn != 0 {
+	{
 		const prefix string = ",\"Vn\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vn))
 	}
-	if in.Ve != 0 {
+	{
 		const prefix string = ",\"Ve\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Ve))
 	}
-	if in.Vd != 0 {
+	{
 		const prefix string = ",\"Vd\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vd))
 	}
-	if in.Cog != 0 {
+	{
 		const prefix string = ",\"Cog\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Cog))
 	}
-	if in.FixType != 0 {
+	{
 		const prefix string = ",\"FixType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.FixType))
 	}
-	if in.SatellitesVisible != 0 {
+	{
 		const prefix string = ",\"SatellitesVisible\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.SatellitesVisible))
 	}
 	out.RawByte('}')
@@ -16210,110 +12687,59 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.RollAilerons != 0 {
+	{
 		const prefix string = ",\"RollAilerons\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.RollAilerons))
 	}
-	if in.PitchElevator != 0 {
+	{
 		const prefix string = ",\"PitchElevator\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PitchElevator))
 	}
-	if in.YawRudder != 0 {
+	{
 		const prefix string = ",\"YawRudder\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YawRudder))
 	}
-	if in.Throttle != 0 {
+	{
 		const prefix string = ",\"Throttle\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Throttle))
 	}
-	if in.Aux1 != 0 {
+	{
 		const prefix string = ",\"Aux1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Aux1))
 	}
-	if in.Aux2 != 0 {
+	{
 		const prefix string = ",\"Aux2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Aux2))
 	}
-	if in.Aux3 != 0 {
+	{
 		const prefix string = ",\"Aux3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Aux3))
 	}
-	if in.Aux4 != 0 {
+	{
 		const prefix string = ",\"Aux4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Aux4))
 	}
-	if in.Mode != 0 {
+	{
 		const prefix string = ",\"Mode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Mode))
 	}
-	if in.NavMode != 0 {
+	{
 		const prefix string = ",\"NavMode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.NavMode))
 	}
 	out.RawByte('}')
@@ -16404,31 +12830,22 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint64(uint64(in.Flags))
 	}
-	if len(in.Controls) != 0 {
+	{
 		const prefix string = ",\"Controls\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Controls == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v50, v51 := range in.Controls {
 				if v50 > 0 {
@@ -16439,14 +12856,9 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.Mode != 0 {
+	{
 		const prefix string = ",\"Mode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Mode))
 	}
 	out.RawByte('}')
@@ -16538,150 +12950,79 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Xacc != 0 {
+	{
 		const prefix string = ",\"Xacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xacc))
 	}
-	if in.Yacc != 0 {
+	{
 		const prefix string = ",\"Yacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yacc))
 	}
-	if in.Zacc != 0 {
+	{
 		const prefix string = ",\"Zacc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zacc))
 	}
-	if in.Xgyro != 0 {
+	{
 		const prefix string = ",\"Xgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xgyro))
 	}
-	if in.Ygyro != 0 {
+	{
 		const prefix string = ",\"Ygyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ygyro))
 	}
-	if in.Zgyro != 0 {
+	{
 		const prefix string = ",\"Zgyro\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zgyro))
 	}
-	if in.Xmag != 0 {
+	{
 		const prefix string = ",\"Xmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Xmag))
 	}
-	if in.Ymag != 0 {
+	{
 		const prefix string = ",\"Ymag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ymag))
 	}
-	if in.Zmag != 0 {
+	{
 		const prefix string = ",\"Zmag\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Zmag))
 	}
-	if in.AbsPressure != 0 {
+	{
 		const prefix string = ",\"AbsPressure\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AbsPressure))
 	}
-	if in.DiffPressure != 0 {
+	{
 		const prefix string = ",\"DiffPressure\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DiffPressure))
 	}
-	if in.PressureAlt != 0 {
+	{
 		const prefix string = ",\"PressureAlt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PressureAlt))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Temperature))
 	}
-	if in.FieldsUpdated != 0 {
+	{
 		const prefix string = ",\"FieldsUpdated\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.FieldsUpdated))
 	}
 	out.RawByte('}')
@@ -16797,270 +13138,139 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Timestamp != 0 {
+	{
 		const prefix string = ",\"Timestamp\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.Timestamp))
 	}
-	if in.Latitude != 0 {
+	{
 		const prefix string = ",\"Latitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Latitude))
 	}
-	if in.Longitude != 0 {
+	{
 		const prefix string = ",\"Longitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Longitude))
 	}
-	if in.CustomMode != 0 {
+	{
 		const prefix string = ",\"CustomMode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.CustomMode))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Altitude))
 	}
-	if in.TargetAltitude != 0 {
+	{
 		const prefix string = ",\"TargetAltitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.TargetAltitude))
 	}
-	if in.TargetDistance != 0 {
+	{
 		const prefix string = ",\"TargetDistance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.TargetDistance))
 	}
-	if in.WpNum != 0 {
+	{
 		const prefix string = ",\"WpNum\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.WpNum))
 	}
-	if in.FailureFlags != 0 {
+	{
 		const prefix string = ",\"FailureFlags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.FailureFlags))
 	}
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Type))
 	}
-	if in.Autopilot != 0 {
+	{
 		const prefix string = ",\"Autopilot\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Autopilot))
 	}
-	if in.Heading != 0 {
+	{
 		const prefix string = ",\"Heading\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Heading))
 	}
-	if in.TargetHeading != 0 {
+	{
 		const prefix string = ",\"TargetHeading\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetHeading))
 	}
-	if in.Throttle != 0 {
+	{
 		const prefix string = ",\"Throttle\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Throttle))
 	}
-	if in.Airspeed != 0 {
+	{
 		const prefix string = ",\"Airspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Airspeed))
 	}
-	if in.AirspeedSp != 0 {
+	{
 		const prefix string = ",\"AirspeedSp\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.AirspeedSp))
 	}
-	if in.Groundspeed != 0 {
+	{
 		const prefix string = ",\"Groundspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Groundspeed))
 	}
-	if in.Windspeed != 0 {
+	{
 		const prefix string = ",\"Windspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Windspeed))
 	}
-	if in.WindHeading != 0 {
+	{
 		const prefix string = ",\"WindHeading\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.WindHeading))
 	}
-	if in.Eph != 0 {
+	{
 		const prefix string = ",\"Eph\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Eph))
 	}
-	if in.Epv != 0 {
+	{
 		const prefix string = ",\"Epv\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Epv))
 	}
-	if in.TemperatureAir != 0 {
+	{
 		const prefix string = ",\"TemperatureAir\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.TemperatureAir))
 	}
-	if in.ClimbRate != 0 {
+	{
 		const prefix string = ",\"ClimbRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.ClimbRate))
 	}
-	if in.Battery != 0 {
+	{
 		const prefix string = ",\"Battery\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.Battery))
 	}
-	if in.Custom0 != 0 {
+	{
 		const prefix string = ",\"Custom0\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.Custom0))
 	}
-	if in.Custom1 != 0 {
+	{
 		const prefix string = ",\"Custom1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.Custom1))
 	}
-	if in.Custom2 != 0 {
+	{
 		const prefix string = ",\"Custom2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.Custom2))
 	}
 	out.RawByte('}')
@@ -17170,240 +13380,124 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.CustomMode != 0 {
+	{
 		const prefix string = ",\"CustomMode\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.CustomMode))
 	}
-	if in.Latitude != 0 {
+	{
 		const prefix string = ",\"Latitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Latitude))
 	}
-	if in.Longitude != 0 {
+	{
 		const prefix string = ",\"Longitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Longitude))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Pitch))
 	}
-	if in.Heading != 0 {
+	{
 		const prefix string = ",\"Heading\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Heading))
 	}
-	if in.HeadingSp != 0 {
+	{
 		const prefix string = ",\"HeadingSp\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.HeadingSp))
 	}
-	if in.AltitudeAmsl != 0 {
+	{
 		const prefix string = ",\"AltitudeAmsl\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.AltitudeAmsl))
 	}
-	if in.AltitudeSp != 0 {
+	{
 		const prefix string = ",\"AltitudeSp\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.AltitudeSp))
 	}
-	if in.WpDistance != 0 {
+	{
 		const prefix string = ",\"WpDistance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.WpDistance))
 	}
-	if in.BaseMode != 0 {
+	{
 		const prefix string = ",\"BaseMode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.BaseMode))
 	}
-	if in.LandedState != 0 {
+	{
 		const prefix string = ",\"LandedState\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.LandedState))
 	}
-	if in.Throttle != 0 {
+	{
 		const prefix string = ",\"Throttle\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.Throttle))
 	}
-	if in.Airspeed != 0 {
+	{
 		const prefix string = ",\"Airspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Airspeed))
 	}
-	if in.AirspeedSp != 0 {
+	{
 		const prefix string = ",\"AirspeedSp\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.AirspeedSp))
 	}
-	if in.Groundspeed != 0 {
+	{
 		const prefix string = ",\"Groundspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Groundspeed))
 	}
-	if in.ClimbRate != 0 {
+	{
 		const prefix string = ",\"ClimbRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.ClimbRate))
 	}
-	if in.GpsNsat != 0 {
+	{
 		const prefix string = ",\"GpsNsat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.GpsNsat))
 	}
-	if in.GpsFixType != 0 {
+	{
 		const prefix string = ",\"GpsFixType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.GpsFixType))
 	}
-	if in.BatteryRemaining != 0 {
+	{
 		const prefix string = ",\"BatteryRemaining\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.BatteryRemaining))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.Temperature))
 	}
-	if in.TemperatureAir != 0 {
+	{
 		const prefix string = ",\"TemperatureAir\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.TemperatureAir))
 	}
-	if in.Failsafe != 0 {
+	{
 		const prefix string = ",\"Failsafe\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Failsafe))
 	}
-	if in.WpNum != 0 {
+	{
 		const prefix string = ",\"WpNum\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.WpNum))
 	}
 	out.RawByte('}')
@@ -17477,60 +13571,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.CustomMode != 0 {
+	{
 		const prefix string = ",\"CustomMode\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.CustomMode))
 	}
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Type))
 	}
-	if in.Autopilot != 0 {
+	{
 		const prefix string = ",\"Autopilot\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Autopilot))
 	}
-	if in.BaseMode != 0 {
+	{
 		const prefix string = ",\"BaseMode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.BaseMode))
 	}
-	if in.SystemStatus != 0 {
+	{
 		const prefix string = ",\"SystemStatus\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.SystemStatus))
 	}
-	if in.MavlinkVersion != 0 {
+	{
 		const prefix string = ",\"MavlinkVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.MavlinkVersion))
 	}
 	out.RawByte('}')
@@ -17629,60 +13697,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.SatellitesVisible != 0 {
+	{
 		const prefix string = ",\"SatellitesVisible\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.SatellitesVisible))
 	}
-	if len(in.SatellitePrn) != 0 {
+	{
 		const prefix string = ",\"SatellitePrn\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.SatellitePrn)
 	}
-	if len(in.SatelliteUsed) != 0 {
+	{
 		const prefix string = ",\"SatelliteUsed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.SatelliteUsed)
 	}
-	if len(in.SatelliteElevation) != 0 {
+	{
 		const prefix string = ",\"SatelliteElevation\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.SatelliteElevation)
 	}
-	if len(in.SatelliteAzimuth) != 0 {
+	{
 		const prefix string = ",\"SatelliteAzimuth\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.SatelliteAzimuth)
 	}
-	if len(in.SatelliteSnr) != 0 {
+	{
 		const prefix string = ",\"SatelliteSnr\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.SatelliteSnr)
 	}
 	out.RawByte('}')
@@ -17770,130 +13812,69 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeLastBaselineMs != 0 {
+	{
 		const prefix string = ",\"TimeLastBaselineMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeLastBaselineMs))
 	}
-	if in.Tow != 0 {
+	{
 		const prefix string = ",\"Tow\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Tow))
 	}
-	if in.BaselineAMm != 0 {
+	{
 		const prefix string = ",\"BaselineAMm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.BaselineAMm))
 	}
-	if in.BaselineBMm != 0 {
+	{
 		const prefix string = ",\"BaselineBMm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.BaselineBMm))
 	}
-	if in.BaselineCMm != 0 {
+	{
 		const prefix string = ",\"BaselineCMm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.BaselineCMm))
 	}
-	if in.Accuracy != 0 {
+	{
 		const prefix string = ",\"Accuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Accuracy))
 	}
-	if in.IarNumHypotheses != 0 {
+	{
 		const prefix string = ",\"IarNumHypotheses\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.IarNumHypotheses))
 	}
-	if in.Wn != 0 {
+	{
 		const prefix string = ",\"Wn\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Wn))
 	}
-	if in.RtkReceiverID != 0 {
+	{
 		const prefix string = ",\"RtkReceiverID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.RtkReceiverID))
 	}
-	if in.RtkHealth != 0 {
+	{
 		const prefix string = ",\"RtkHealth\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.RtkHealth))
 	}
-	if in.RtkRate != 0 {
+	{
 		const prefix string = ",\"RtkRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.RtkRate))
 	}
-	if in.Nsats != 0 {
+	{
 		const prefix string = ",\"Nsats\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Nsats))
 	}
-	if in.BaselineCoordsType != 0 {
+	{
 		const prefix string = ",\"BaselineCoordsType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.BaselineCoordsType))
 	}
 	out.RawByte('}')
@@ -17966,30 +13947,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.Flags))
 	}
-	if in.Len != 0 {
+	{
 		const prefix string = ",\"Len\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Len))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -18071,100 +14041,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Alt))
 	}
-	if in.Eph != 0 {
+	{
 		const prefix string = ",\"Eph\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Eph))
 	}
-	if in.Epv != 0 {
+	{
 		const prefix string = ",\"Epv\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Epv))
 	}
-	if in.Vel != 0 {
+	{
 		const prefix string = ",\"Vel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Vel))
 	}
-	if in.Cog != 0 {
+	{
 		const prefix string = ",\"Cog\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Cog))
 	}
-	if in.FixType != 0 {
+	{
 		const prefix string = ",\"FixType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.FixType))
 	}
-	if in.SatellitesVisible != 0 {
+	{
 		const prefix string = ",\"SatellitesVisible\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.SatellitesVisible))
 	}
 	out.RawByte('}')
@@ -18262,180 +14186,94 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.TimeWeekMs != 0 {
+	{
 		const prefix string = ",\"TimeWeekMs\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.TimeWeekMs))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Alt))
 	}
-	if in.Hdop != 0 {
+	{
 		const prefix string = ",\"Hdop\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Hdop))
 	}
-	if in.Vdop != 0 {
+	{
 		const prefix string = ",\"Vdop\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vdop))
 	}
-	if in.Vn != 0 {
+	{
 		const prefix string = ",\"Vn\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vn))
 	}
-	if in.Ve != 0 {
+	{
 		const prefix string = ",\"Ve\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ve))
 	}
-	if in.Vd != 0 {
+	{
 		const prefix string = ",\"Vd\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vd))
 	}
-	if in.SpeedAccuracy != 0 {
+	{
 		const prefix string = ",\"SpeedAccuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.SpeedAccuracy))
 	}
-	if in.HorizAccuracy != 0 {
+	{
 		const prefix string = ",\"HorizAccuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.HorizAccuracy))
 	}
-	if in.VertAccuracy != 0 {
+	{
 		const prefix string = ",\"VertAccuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.VertAccuracy))
 	}
-	if in.IgnoreFlags != 0 {
+	{
 		const prefix string = ",\"IgnoreFlags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.IgnoreFlags))
 	}
-	if in.TimeWeek != 0 {
+	{
 		const prefix string = ",\"TimeWeek\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.TimeWeek))
 	}
-	if in.GpsID != 0 {
+	{
 		const prefix string = ",\"GpsID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.GpsID))
 	}
-	if in.FixType != 0 {
+	{
 		const prefix string = ",\"FixType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.FixType))
 	}
-	if in.SatellitesVisible != 0 {
+	{
 		const prefix string = ",\"SatellitesVisible\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.SatellitesVisible))
 	}
 	out.RawByte('}')
@@ -18510,40 +14348,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Len != 0 {
+	{
 		const prefix string = ",\"Len\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Len))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -18611,30 +14433,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Latitude != 0 {
+	{
 		const prefix string = ",\"Latitude\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.Latitude))
 	}
-	if in.Longitude != 0 {
+	{
 		const prefix string = ",\"Longitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Longitude))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Altitude))
 	}
 	out.RawByte('}')
@@ -18722,130 +14533,69 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeLastBaselineMs != 0 {
+	{
 		const prefix string = ",\"TimeLastBaselineMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeLastBaselineMs))
 	}
-	if in.Tow != 0 {
+	{
 		const prefix string = ",\"Tow\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Tow))
 	}
-	if in.BaselineAMm != 0 {
+	{
 		const prefix string = ",\"BaselineAMm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.BaselineAMm))
 	}
-	if in.BaselineBMm != 0 {
+	{
 		const prefix string = ",\"BaselineBMm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.BaselineBMm))
 	}
-	if in.BaselineCMm != 0 {
+	{
 		const prefix string = ",\"BaselineCMm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.BaselineCMm))
 	}
-	if in.Accuracy != 0 {
+	{
 		const prefix string = ",\"Accuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Accuracy))
 	}
-	if in.IarNumHypotheses != 0 {
+	{
 		const prefix string = ",\"IarNumHypotheses\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.IarNumHypotheses))
 	}
-	if in.Wn != 0 {
+	{
 		const prefix string = ",\"Wn\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Wn))
 	}
-	if in.RtkReceiverID != 0 {
+	{
 		const prefix string = ",\"RtkReceiverID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.RtkReceiverID))
 	}
-	if in.RtkHealth != 0 {
+	{
 		const prefix string = ",\"RtkHealth\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.RtkHealth))
 	}
-	if in.RtkRate != 0 {
+	{
 		const prefix string = ",\"RtkRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.RtkRate))
 	}
-	if in.Nsats != 0 {
+	{
 		const prefix string = ",\"Nsats\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Nsats))
 	}
-	if in.BaselineCoordsType != 0 {
+	{
 		const prefix string = ",\"BaselineCoordsType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.BaselineCoordsType))
 	}
 	out.RawByte('}')
@@ -18931,120 +14681,64 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Alt))
 	}
-	if in.DgpsAge != 0 {
+	{
 		const prefix string = ",\"DgpsAge\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.DgpsAge))
 	}
-	if in.Eph != 0 {
+	{
 		const prefix string = ",\"Eph\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Eph))
 	}
-	if in.Epv != 0 {
+	{
 		const prefix string = ",\"Epv\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Epv))
 	}
-	if in.Vel != 0 {
+	{
 		const prefix string = ",\"Vel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Vel))
 	}
-	if in.Cog != 0 {
+	{
 		const prefix string = ",\"Cog\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Cog))
 	}
-	if in.FixType != 0 {
+	{
 		const prefix string = ",\"FixType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.FixType))
 	}
-	if in.SatellitesVisible != 0 {
+	{
 		const prefix string = ",\"SatellitesVisible\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.SatellitesVisible))
 	}
-	if in.DgpsNumch != 0 {
+	{
 		const prefix string = ",\"DgpsNumch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.DgpsNumch))
 	}
 	out.RawByte('}')
@@ -19110,20 +14804,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.CmdID != 0 {
+	{
 		const prefix string = ",\"CmdID\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.CmdID))
 	}
-	if in.Status != 0 {
+	{
 		const prefix string = ",\"Status\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Status))
 	}
 	out.RawByte('}')
@@ -19198,40 +14886,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.CmdID != 0 {
+	{
 		const prefix string = ",\"CmdID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CmdID))
 	}
-	if len(in.Value) != 0 {
+	{
 		const prefix string = ",\"Value\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Value)
 	}
 	out.RawByte('}')
@@ -19299,30 +14971,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Status != 0 {
+	{
 		const prefix string = ",\"Status\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.Status))
 	}
-	if in.CaptureMode != 0 {
+	{
 		const prefix string = ",\"CaptureMode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CaptureMode))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Flags))
 	}
 	out.RawByte('}')
@@ -19395,30 +15056,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.CmdID != 0 {
+	{
 		const prefix string = ",\"CmdID\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.CmdID))
 	}
-	if in.Status != 0 {
+	{
 		const prefix string = ",\"Status\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Status))
 	}
-	if len(in.Value) != 0 {
+	{
 		const prefix string = ",\"Value\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Value)
 	}
 	out.RawByte('}')
@@ -19486,30 +15136,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.CmdID != 0 {
+	{
 		const prefix string = ",\"CmdID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.CmdID))
 	}
 	out.RawByte('}')
@@ -19585,70 +15224,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Usec != 0 {
+	{
 		const prefix string = ",\"Usec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.Usec))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
 	out.RawByte('}')
@@ -19751,91 +15359,52 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Alt))
 	}
-	if in.RelativeAlt != 0 {
+	{
 		const prefix string = ",\"RelativeAlt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.RelativeAlt))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vz))
 	}
-	if len(in.Covariance) != 0 {
+	{
 		const prefix string = ",\"Covariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Covariance == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v80, v81 := range in.Covariance {
 				if v80 > 0 {
@@ -19846,14 +15415,9 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.EstimatorType != 0 {
+	{
 		const prefix string = ",\"EstimatorType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.EstimatorType))
 	}
 	out.RawByte('}')
@@ -19933,90 +15497,49 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Alt))
 	}
-	if in.RelativeAlt != 0 {
+	{
 		const prefix string = ",\"RelativeAlt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.RelativeAlt))
 	}
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Vz))
 	}
-	if in.Hdg != 0 {
+	{
 		const prefix string = ",\"Hdg\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Hdg))
 	}
 	out.RawByte('}')
@@ -20088,50 +15611,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.RlTorqueCmd != 0 {
+	{
 		const prefix string = ",\"RlTorqueCmd\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int16(int16(in.RlTorqueCmd))
 	}
-	if in.ElTorqueCmd != 0 {
+	{
 		const prefix string = ",\"ElTorqueCmd\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.ElTorqueCmd))
 	}
-	if in.AzTorqueCmd != 0 {
+	{
 		const prefix string = ",\"AzTorqueCmd\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.AzTorqueCmd))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -20217,120 +15719,64 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.DeltaTime != 0 {
+	{
 		const prefix string = ",\"DeltaTime\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.DeltaTime))
 	}
-	if in.DeltaAngleX != 0 {
+	{
 		const prefix string = ",\"DeltaAngleX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DeltaAngleX))
 	}
-	if in.DeltaAngleY != 0 {
+	{
 		const prefix string = ",\"DeltaAngleY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DeltaAngleY))
 	}
-	if in.DeltaAngleZ != 0 {
+	{
 		const prefix string = ",\"DeltaAngleZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DeltaAngleZ))
 	}
-	if in.DeltaVelocityX != 0 {
+	{
 		const prefix string = ",\"DeltaVelocityX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DeltaVelocityX))
 	}
-	if in.DeltaVelocityY != 0 {
+	{
 		const prefix string = ",\"DeltaVelocityY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DeltaVelocityY))
 	}
-	if in.DeltaVelocityZ != 0 {
+	{
 		const prefix string = ",\"DeltaVelocityZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DeltaVelocityZ))
 	}
-	if in.JointRoll != 0 {
+	{
 		const prefix string = ",\"JointRoll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.JointRoll))
 	}
-	if in.JointEl != 0 {
+	{
 		const prefix string = ",\"JointEl\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.JointEl))
 	}
-	if in.JointAz != 0 {
+	{
 		const prefix string = ",\"JointAz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.JointAz))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -20402,50 +15848,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.DemandedRateX != 0 {
+	{
 		const prefix string = ",\"DemandedRateX\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.DemandedRateX))
 	}
-	if in.DemandedRateY != 0 {
+	{
 		const prefix string = ",\"DemandedRateY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DemandedRateY))
 	}
-	if in.DemandedRateZ != 0 {
+	{
 		const prefix string = ",\"DemandedRateZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DemandedRateZ))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -20634,61 +16059,37 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Timestamp != 0 {
+	{
 		const prefix string = ",\"Timestamp\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.Timestamp))
 	}
-	if in.CustomState != 0 {
+	{
 		const prefix string = ",\"CustomState\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint64(uint64(in.CustomState))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Alt != 0 {
+	{
 		const prefix string = ",\"Alt\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Alt))
 	}
-	if len(in.Vel) != 0 {
+	{
 		const prefix string = ",\"Vel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Vel == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v87, v88 := range in.Vel {
 				if v87 > 0 {
@@ -20699,15 +16100,12 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if len(in.Acc) != 0 {
+	{
 		const prefix string = ",\"Acc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Acc == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v89, v90 := range in.Acc {
 				if v89 > 0 {
@@ -20718,15 +16116,12 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if len(in.AttitudeQ) != 0 {
+	{
 		const prefix string = ",\"AttitudeQ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.AttitudeQ == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v91, v92 := range in.AttitudeQ {
 				if v91 > 0 {
@@ -20737,15 +16132,12 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if len(in.Rates) != 0 {
+	{
 		const prefix string = ",\"Rates\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Rates == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v93, v94 := range in.Rates {
 				if v93 > 0 {
@@ -20756,15 +16148,12 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if len(in.PositionCov) != 0 {
+	{
 		const prefix string = ",\"PositionCov\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.PositionCov == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v95, v96 := range in.PositionCov {
 				if v95 > 0 {
@@ -20775,14 +16164,9 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.EstCapabilities != 0 {
+	{
 		const prefix string = ",\"EstCapabilities\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.EstCapabilities))
 	}
 	out.RawByte('}')
@@ -20857,40 +16241,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetNetwork != 0 {
+	{
 		const prefix string = ",\"TargetNetwork\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetNetwork))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if len(in.Payload) != 0 {
+	{
 		const prefix string = ",\"Payload\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Payload)
 	}
 	out.RawByte('}')
@@ -20960,40 +16328,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.BreachTime != 0 {
+	{
 		const prefix string = ",\"BreachTime\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.BreachTime))
 	}
-	if in.BreachCount != 0 {
+	{
 		const prefix string = ",\"BreachCount\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.BreachCount))
 	}
-	if in.BreachStatus != 0 {
+	{
 		const prefix string = ",\"BreachStatus\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.BreachStatus))
 	}
-	if in.BreachType != 0 {
+	{
 		const prefix string = ",\"BreachType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.BreachType))
 	}
 	out.RawByte('}')
@@ -21067,60 +16419,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Lat))
 	}
-	if in.Lng != 0 {
+	{
 		const prefix string = ",\"Lng\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Lng))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Idx != 0 {
+	{
 		const prefix string = ",\"Idx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Idx))
 	}
-	if in.Count != 0 {
+	{
 		const prefix string = ",\"Count\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Count))
 	}
 	out.RawByte('}')
@@ -21188,30 +16514,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Idx != 0 {
+	{
 		const prefix string = ",\"Idx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Idx))
 	}
 	out.RawByte('}')
@@ -21277,20 +16592,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.VtolState != 0 {
+	{
 		const prefix string = ",\"VtolState\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.VtolState))
 	}
-	if in.LandedState != 0 {
+	{
 		const prefix string = ",\"LandedState\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.LandedState))
 	}
 	out.RawByte('}')
@@ -21372,100 +16681,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.VelRatio != 0 {
+	{
 		const prefix string = ",\"VelRatio\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.VelRatio))
 	}
-	if in.PosHorizRatio != 0 {
+	{
 		const prefix string = ",\"PosHorizRatio\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PosHorizRatio))
 	}
-	if in.PosVertRatio != 0 {
+	{
 		const prefix string = ",\"PosVertRatio\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PosVertRatio))
 	}
-	if in.MagRatio != 0 {
+	{
 		const prefix string = ",\"MagRatio\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.MagRatio))
 	}
-	if in.HaglRatio != 0 {
+	{
 		const prefix string = ",\"HaglRatio\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.HaglRatio))
 	}
-	if in.TasRatio != 0 {
+	{
 		const prefix string = ",\"TasRatio\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.TasRatio))
 	}
-	if in.PosHorizAccuracy != 0 {
+	{
 		const prefix string = ",\"PosHorizAccuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PosHorizAccuracy))
 	}
-	if in.PosVertAccuracy != 0 {
+	{
 		const prefix string = ",\"PosVertAccuracy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PosVertAccuracy))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Flags))
 	}
 	out.RawByte('}')
@@ -21536,20 +16799,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Seqnr != 0 {
+	{
 		const prefix string = ",\"Seqnr\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Seqnr))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -21623,60 +16880,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.VelocityVariance != 0 {
+	{
 		const prefix string = ",\"VelocityVariance\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.VelocityVariance))
 	}
-	if in.PosHorizVariance != 0 {
+	{
 		const prefix string = ",\"PosHorizVariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PosHorizVariance))
 	}
-	if in.PosVertVariance != 0 {
+	{
 		const prefix string = ",\"PosVertVariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PosVertVariance))
 	}
-	if in.CompassVariance != 0 {
+	{
 		const prefix string = ",\"CompassVariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.CompassVariance))
 	}
-	if in.TerrainAltVariance != 0 {
+	{
 		const prefix string = ",\"TerrainAltVariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.TerrainAltVariance))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Flags))
 	}
 	out.RawByte('}')
@@ -21772,170 +17003,89 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.EcuIndex != 0 {
+	{
 		const prefix string = ",\"EcuIndex\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.EcuIndex))
 	}
-	if in.Rpm != 0 {
+	{
 		const prefix string = ",\"Rpm\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Rpm))
 	}
-	if in.FuelConsumed != 0 {
+	{
 		const prefix string = ",\"FuelConsumed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.FuelConsumed))
 	}
-	if in.FuelFlow != 0 {
+	{
 		const prefix string = ",\"FuelFlow\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.FuelFlow))
 	}
-	if in.EngineLoad != 0 {
+	{
 		const prefix string = ",\"EngineLoad\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.EngineLoad))
 	}
-	if in.ThrottlePosition != 0 {
+	{
 		const prefix string = ",\"ThrottlePosition\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ThrottlePosition))
 	}
-	if in.SparkDwellTime != 0 {
+	{
 		const prefix string = ",\"SparkDwellTime\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.SparkDwellTime))
 	}
-	if in.BarometricPressure != 0 {
+	{
 		const prefix string = ",\"BarometricPressure\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.BarometricPressure))
 	}
-	if in.IntakeManifoldPressure != 0 {
+	{
 		const prefix string = ",\"IntakeManifoldPressure\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntakeManifoldPressure))
 	}
-	if in.IntakeManifoldTemperature != 0 {
+	{
 		const prefix string = ",\"IntakeManifoldTemperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IntakeManifoldTemperature))
 	}
-	if in.CylinderHeadTemperature != 0 {
+	{
 		const prefix string = ",\"CylinderHeadTemperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.CylinderHeadTemperature))
 	}
-	if in.IgnitionTiming != 0 {
+	{
 		const prefix string = ",\"IgnitionTiming\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.IgnitionTiming))
 	}
-	if in.InjectionTime != 0 {
+	{
 		const prefix string = ",\"InjectionTime\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.InjectionTime))
 	}
-	if in.ExhaustGasTemperature != 0 {
+	{
 		const prefix string = ",\"ExhaustGasTemperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ExhaustGasTemperature))
 	}
-	if in.ThrottleOut != 0 {
+	{
 		const prefix string = ",\"ThrottleOut\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ThrottleOut))
 	}
-	if in.PtCompensation != 0 {
+	{
 		const prefix string = ",\"PtCompensation\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PtCompensation))
 	}
-	if in.Health != 0 {
+	{
 		const prefix string = ",\"Health\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Health))
 	}
 	out.RawByte('}')
@@ -22013,80 +17163,44 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.MinDistance != 0 {
+	{
 		const prefix string = ",\"MinDistance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.MinDistance))
 	}
-	if in.MaxDistance != 0 {
+	{
 		const prefix string = ",\"MaxDistance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.MaxDistance))
 	}
-	if in.CurrentDistance != 0 {
+	{
 		const prefix string = ",\"CurrentDistance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.CurrentDistance))
 	}
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Type))
 	}
-	if in.ID != 0 {
+	{
 		const prefix string = ",\"ID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ID))
 	}
-	if in.Orientation != 0 {
+	{
 		const prefix string = ",\"Orientation\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Orientation))
 	}
-	if in.Covariance != 0 {
+	{
 		const prefix string = ",\"Covariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Covariance))
 	}
 	out.RawByte('}')
@@ -22168,100 +17282,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ExtraValue != 0 {
+	{
 		const prefix string = ",\"ExtraValue\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.ExtraValue))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Session != 0 {
+	{
 		const prefix string = ",\"Session\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Session))
 	}
-	if in.ZoomPos != 0 {
+	{
 		const prefix string = ",\"ZoomPos\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ZoomPos))
 	}
-	if in.ZoomStep != 0 {
+	{
 		const prefix string = ",\"ZoomStep\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.ZoomStep))
 	}
-	if in.FocusLock != 0 {
+	{
 		const prefix string = ",\"FocusLock\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.FocusLock))
 	}
-	if in.Shot != 0 {
+	{
 		const prefix string = ",\"Shot\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Shot))
 	}
-	if in.CommandID != 0 {
+	{
 		const prefix string = ",\"CommandID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CommandID))
 	}
-	if in.ExtraParam != 0 {
+	{
 		const prefix string = ",\"ExtraParam\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ExtraParam))
 	}
 	out.RawByte('}')
@@ -22345,110 +17413,59 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ExtraValue != 0 {
+	{
 		const prefix string = ",\"ExtraValue\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.ExtraValue))
 	}
-	if in.ShutterSpeed != 0 {
+	{
 		const prefix string = ",\"ShutterSpeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ShutterSpeed))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Mode != 0 {
+	{
 		const prefix string = ",\"Mode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Mode))
 	}
-	if in.Aperture != 0 {
+	{
 		const prefix string = ",\"Aperture\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Aperture))
 	}
-	if in.Iso != 0 {
+	{
 		const prefix string = ",\"Iso\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Iso))
 	}
-	if in.ExposureType != 0 {
+	{
 		const prefix string = ",\"ExposureType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ExposureType))
 	}
-	if in.CommandID != 0 {
+	{
 		const prefix string = ",\"CommandID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CommandID))
 	}
-	if in.EngineCutOff != 0 {
+	{
 		const prefix string = ",\"EngineCutOff\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.EngineCutOff))
 	}
-	if in.ExtraParam != 0 {
+	{
 		const prefix string = ",\"ExtraParam\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ExtraParam))
 	}
 	out.RawByte('}')
@@ -22530,100 +17547,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.LandingLat != 0 {
+	{
 		const prefix string = ",\"LandingLat\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.LandingLat))
 	}
-	if in.LandingLon != 0 {
+	{
 		const prefix string = ",\"LandingLon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.LandingLon))
 	}
-	if in.PathLat != 0 {
+	{
 		const prefix string = ",\"PathLat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.PathLat))
 	}
-	if in.PathLon != 0 {
+	{
 		const prefix string = ",\"PathLon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.PathLon))
 	}
-	if in.ArcEntryLat != 0 {
+	{
 		const prefix string = ",\"ArcEntryLat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.ArcEntryLat))
 	}
-	if in.ArcEntryLon != 0 {
+	{
 		const prefix string = ",\"ArcEntryLon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.ArcEntryLon))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Altitude))
 	}
-	if in.ExpectedTravelDistance != 0 {
+	{
 		const prefix string = ",\"ExpectedTravelDistance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ExpectedTravelDistance))
 	}
-	if in.CrossTrackError != 0 {
+	{
 		const prefix string = ",\"CrossTrackError\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.CrossTrackError))
 	}
-	if in.Stage != 0 {
+	{
 		const prefix string = ",\"Stage\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Stage))
 	}
 	out.RawByte('}')
@@ -22695,50 +17666,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Name != "" {
+	{
 		const prefix string = ",\"Name\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.Name))
 	}
 	out.RawByte('}')
@@ -22806,30 +17756,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Value != 0 {
+	{
 		const prefix string = ",\"Value\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Value))
 	}
-	if in.Ind != 0 {
+	{
 		const prefix string = ",\"Ind\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Ind))
 	}
 	out.RawByte('}')
@@ -22905,70 +17844,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Size != 0 {
+	{
 		const prefix string = ",\"Size\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.Size))
 	}
-	if in.Width != 0 {
+	{
 		const prefix string = ",\"Width\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Width))
 	}
-	if in.Height != 0 {
+	{
 		const prefix string = ",\"Height\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Height))
 	}
-	if in.Packets != 0 {
+	{
 		const prefix string = ",\"Packets\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Packets))
 	}
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Type))
 	}
-	if in.Payload != 0 {
+	{
 		const prefix string = ",\"Payload\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Payload))
 	}
-	if in.JpgQuality != 0 {
+	{
 		const prefix string = ",\"JpgQuality\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.JpgQuality))
 	}
 	out.RawByte('}')
@@ -23036,30 +17944,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.MessageRate != 0 {
+	{
 		const prefix string = ",\"MessageRate\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.MessageRate))
 	}
-	if in.StreamID != 0 {
+	{
 		const prefix string = ",\"StreamID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.StreamID))
 	}
-	if in.OnOff != 0 {
+	{
 		const prefix string = ",\"OnOff\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.OnOff))
 	}
 	out.RawByte('}')
@@ -23132,30 +18029,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.Type))
 	}
-	if in.Len != 0 {
+	{
 		const prefix string = ",\"Len\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Len))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -23228,30 +18114,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.Type))
 	}
-	if in.Len != 0 {
+	{
 		const prefix string = ",\"Len\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Len))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -23324,30 +18199,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.Type))
 	}
-	if in.Len != 0 {
+	{
 		const prefix string = ",\"Len\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Len))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -23420,30 +18284,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.Type))
 	}
-	if in.Len != 0 {
+	{
 		const prefix string = ",\"Len\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Len))
 	}
-	if len(in.Data) != 0 {
+	{
 		const prefix string = ",\"Data\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.Data)
 	}
 	out.RawByte('}')
@@ -23602,121 +18455,67 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.XAcc != 0 {
+	{
 		const prefix string = ",\"XAcc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.XAcc))
 	}
-	if in.YAcc != 0 {
+	{
 		const prefix string = ",\"YAcc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YAcc))
 	}
-	if in.ZAcc != 0 {
+	{
 		const prefix string = ",\"ZAcc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ZAcc))
 	}
-	if in.XVel != 0 {
+	{
 		const prefix string = ",\"XVel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.XVel))
 	}
-	if in.YVel != 0 {
+	{
 		const prefix string = ",\"YVel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YVel))
 	}
-	if in.ZVel != 0 {
+	{
 		const prefix string = ",\"ZVel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ZVel))
 	}
-	if in.XPos != 0 {
+	{
 		const prefix string = ",\"XPos\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.XPos))
 	}
-	if in.YPos != 0 {
+	{
 		const prefix string = ",\"YPos\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YPos))
 	}
-	if in.ZPos != 0 {
+	{
 		const prefix string = ",\"ZPos\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ZPos))
 	}
-	if in.Airspeed != 0 {
+	{
 		const prefix string = ",\"Airspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Airspeed))
 	}
-	if len(in.VelVariance) != 0 {
+	{
 		const prefix string = ",\"VelVariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.VelVariance == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v118, v119 := range in.VelVariance {
 				if v118 > 0 {
@@ -23727,15 +18526,12 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if len(in.PosVariance) != 0 {
+	{
 		const prefix string = ",\"PosVariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.PosVariance == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v120, v121 := range in.PosVariance {
 				if v120 > 0 {
@@ -23746,15 +18542,12 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if len(in.Q) != 0 {
+	{
 		const prefix string = ",\"Q\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Q == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v122, v123 := range in.Q {
 				if v122 > 0 {
@@ -23765,34 +18558,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.RollRate != 0 {
+	{
 		const prefix string = ",\"RollRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.RollRate))
 	}
-	if in.PitchRate != 0 {
+	{
 		const prefix string = ",\"PitchRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.PitchRate))
 	}
-	if in.YawRate != 0 {
+	{
 		const prefix string = ",\"YawRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.YawRate))
 	}
 	out.RawByte('}')
@@ -23866,60 +18644,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Current != 0 {
+	{
 		const prefix string = ",\"Current\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Current))
 	}
-	if in.Compensationx != 0 {
+	{
 		const prefix string = ",\"Compensationx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Compensationx))
 	}
-	if in.Compensationy != 0 {
+	{
 		const prefix string = ",\"Compensationy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Compensationy))
 	}
-	if in.Compensationz != 0 {
+	{
 		const prefix string = ",\"Compensationz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Compensationz))
 	}
-	if in.Throttle != 0 {
+	{
 		const prefix string = ",\"Throttle\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Throttle))
 	}
-	if in.Interference != 0 {
+	{
 		const prefix string = ",\"Interference\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Interference))
 	}
 	out.RawByte('}')
@@ -24003,110 +18755,59 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Param1 != 0 {
+	{
 		const prefix string = ",\"Param1\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Param1))
 	}
-	if in.Param2 != 0 {
+	{
 		const prefix string = ",\"Param2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param2))
 	}
-	if in.Param3 != 0 {
+	{
 		const prefix string = ",\"Param3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param3))
 	}
-	if in.Param4 != 0 {
+	{
 		const prefix string = ",\"Param4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param4))
 	}
-	if in.Param5 != 0 {
+	{
 		const prefix string = ",\"Param5\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param5))
 	}
-	if in.Param6 != 0 {
+	{
 		const prefix string = ",\"Param6\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param6))
 	}
-	if in.Param7 != 0 {
+	{
 		const prefix string = ",\"Param7\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param7))
 	}
-	if in.Command != 0 {
+	{
 		const prefix string = ",\"Command\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Command))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Confirmation != 0 {
+	{
 		const prefix string = ",\"Confirmation\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Confirmation))
 	}
 	out.RawByte('}')
@@ -24194,130 +18895,69 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Param1 != 0 {
+	{
 		const prefix string = ",\"Param1\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Param1))
 	}
-	if in.Param2 != 0 {
+	{
 		const prefix string = ",\"Param2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param2))
 	}
-	if in.Param3 != 0 {
+	{
 		const prefix string = ",\"Param3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param3))
 	}
-	if in.Param4 != 0 {
+	{
 		const prefix string = ",\"Param4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Param4))
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
-	if in.Command != 0 {
+	{
 		const prefix string = ",\"Command\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Command))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
-	if in.Frame != 0 {
+	{
 		const prefix string = ",\"Frame\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Frame))
 	}
-	if in.Current != 0 {
+	{
 		const prefix string = ",\"Current\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Current))
 	}
-	if in.Autocontinue != 0 {
+	{
 		const prefix string = ",\"Autocontinue\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Autocontinue))
 	}
 	out.RawByte('}')
@@ -24385,30 +19025,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Command != 0 {
+	{
 		const prefix string = ",\"Command\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.Command))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -24474,20 +19103,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Command != 0 {
+	{
 		const prefix string = ",\"Command\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.Command))
 	}
-	if in.Result != 0 {
+	{
 		const prefix string = ",\"Result\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Result))
 	}
 	out.RawByte('}')
@@ -24563,70 +19186,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.ID != 0 {
+	{
 		const prefix string = ",\"ID\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.ID))
 	}
-	if in.TimeToMinimumDelta != 0 {
+	{
 		const prefix string = ",\"TimeToMinimumDelta\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.TimeToMinimumDelta))
 	}
-	if in.AltitudeMinimumDelta != 0 {
+	{
 		const prefix string = ",\"AltitudeMinimumDelta\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltitudeMinimumDelta))
 	}
-	if in.HorizontalMinimumDelta != 0 {
+	{
 		const prefix string = ",\"HorizontalMinimumDelta\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.HorizontalMinimumDelta))
 	}
-	if in.Src != 0 {
+	{
 		const prefix string = ",\"Src\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Src))
 	}
-	if in.Action != 0 {
+	{
 		const prefix string = ",\"Action\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Action))
 	}
-	if in.ThreatLevel != 0 {
+	{
 		const prefix string = ",\"ThreatLevel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.ThreatLevel))
 	}
 	out.RawByte('}')
@@ -24694,30 +19286,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.GcsSystemID != 0 {
+	{
 		const prefix string = ",\"GcsSystemID\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.GcsSystemID))
 	}
-	if in.ControlRequest != 0 {
+	{
 		const prefix string = ",\"ControlRequest\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ControlRequest))
 	}
-	if in.Ack != 0 {
+	{
 		const prefix string = ",\"Ack\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Ack))
 	}
 	out.RawByte('}')
@@ -24787,40 +19368,24 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.ControlRequest != 0 {
+	{
 		const prefix string = ",\"ControlRequest\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ControlRequest))
 	}
-	if in.Version != 0 {
+	{
 		const prefix string = ",\"Version\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Version))
 	}
-	if in.Passkey != "" {
+	{
 		const prefix string = ",\"Passkey\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.Passkey))
 	}
 	out.RawByte('}')
@@ -24886,20 +19451,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Seq != 0 {
+	{
 		const prefix string = ",\"Seq\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.Seq))
 	}
 	out.RawByte('}')
@@ -24979,90 +19538,49 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.P1 != 0 {
+	{
 		const prefix string = ",\"P1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P1))
 	}
-	if in.P2 != 0 {
+	{
 		const prefix string = ",\"P2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P2))
 	}
-	if in.P3 != 0 {
+	{
 		const prefix string = ",\"P3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P3))
 	}
-	if in.P4 != 0 {
+	{
 		const prefix string = ",\"P4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.P4))
 	}
-	if in.ImgIdx != 0 {
+	{
 		const prefix string = ",\"ImgIdx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ImgIdx))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.CamIdx != 0 {
+	{
 		const prefix string = ",\"CamIdx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CamIdx))
 	}
-	if in.EventID != 0 {
+	{
 		const prefix string = ",\"EventID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.EventID))
 	}
 	out.RawByte('}')
@@ -25150,130 +19668,69 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lng != 0 {
+	{
 		const prefix string = ",\"Lng\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lng))
 	}
-	if in.AltMsl != 0 {
+	{
 		const prefix string = ",\"AltMsl\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltMsl))
 	}
-	if in.AltRel != 0 {
+	{
 		const prefix string = ",\"AltRel\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltRel))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.FocLen != 0 {
+	{
 		const prefix string = ",\"FocLen\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.FocLen))
 	}
-	if in.ImgIdx != 0 {
+	{
 		const prefix string = ",\"ImgIdx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ImgIdx))
 	}
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.CamIdx != 0 {
+	{
 		const prefix string = ",\"CamIdx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.CamIdx))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Flags))
 	}
 	out.RawByte('}')
@@ -25374,41 +19831,27 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.CurrentConsumed != 0 {
+	{
 		const prefix string = ",\"CurrentConsumed\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int32(int32(in.CurrentConsumed))
 	}
-	if in.EnergyConsumed != 0 {
+	{
 		const prefix string = ",\"EnergyConsumed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.EnergyConsumed))
 	}
-	if in.Temperature != 0 {
+	{
 		const prefix string = ",\"Temperature\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.Temperature))
 	}
-	if len(in.Voltages) != 0 {
+	{
 		const prefix string = ",\"Voltages\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Voltages == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v125, v126 := range in.Voltages {
 				if v125 > 0 {
@@ -25419,54 +19862,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.CurrentBattery != 0 {
+	{
 		const prefix string = ",\"CurrentBattery\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.CurrentBattery))
 	}
-	if in.ID != 0 {
+	{
 		const prefix string = ",\"ID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.ID))
 	}
-	if in.BatteryFunction != 0 {
+	{
 		const prefix string = ",\"BatteryFunction\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.BatteryFunction))
 	}
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Type))
 	}
-	if in.BatteryRemaining != 0 {
+	{
 		const prefix string = ",\"BatteryRemaining\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int8(int8(in.BatteryRemaining))
 	}
 	out.RawByte('}')
@@ -25532,20 +19950,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Voltage != 0 {
+	{
 		const prefix string = ",\"Voltage\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Voltage))
 	}
-	if in.CurrentBattery != 0 {
+	{
 		const prefix string = ",\"CurrentBattery\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.CurrentBattery))
 	}
 	out.RawByte('}')
@@ -25611,20 +20023,14 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TargetSystem != 0 {
+	{
 		const prefix string = ",\"TargetSystem\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint8(uint8(in.TargetSystem))
 	}
-	if in.TargetComponent != 0 {
+	{
 		const prefix string = ",\"TargetComponent\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.TargetComponent))
 	}
 	out.RawByte('}')
@@ -25723,110 +20129,59 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Capabilities != 0 {
+	{
 		const prefix string = ",\"Capabilities\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Int(int(in.Capabilities))
 	}
-	if in.UID != 0 {
+	{
 		const prefix string = ",\"UID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint64(uint64(in.UID))
 	}
-	if in.FlightSwVersion != 0 {
+	{
 		const prefix string = ",\"FlightSwVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.FlightSwVersion))
 	}
-	if in.MiddlewareSwVersion != 0 {
+	{
 		const prefix string = ",\"MiddlewareSwVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.MiddlewareSwVersion))
 	}
-	if in.OsSwVersion != 0 {
+	{
 		const prefix string = ",\"OsSwVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.OsSwVersion))
 	}
-	if in.BoardVersion != 0 {
+	{
 		const prefix string = ",\"BoardVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint32(uint32(in.BoardVersion))
 	}
-	if in.VendorID != 0 {
+	{
 		const prefix string = ",\"VendorID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.VendorID))
 	}
-	if in.ProductID != 0 {
+	{
 		const prefix string = ",\"ProductID\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.ProductID))
 	}
-	if len(in.FlightCustomVersion) != 0 {
+	{
 		const prefix string = ",\"FlightCustomVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.FlightCustomVersion)
 	}
-	if len(in.MiddlewareCustomVersion) != 0 {
+	{
 		const prefix string = ",\"MiddlewareCustomVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.MiddlewareCustomVersion)
 	}
-	if len(in.OsCustomVersion) != 0 {
+	{
 		const prefix string = ",\"OsCustomVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Base64Bytes(in.OsCustomVersion)
 	}
 	out.RawByte('}')
@@ -25890,9 +20245,8 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Key != "" {
+	{
 		const prefix string = ",\"Key\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.String(string(in.Key))
 	}
@@ -25990,21 +20344,17 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if len(in.Q) != 0 {
+	{
 		const prefix string = ",\"Q\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Q == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v137, v138 := range in.Q {
 				if v137 > 0 {
@@ -26015,54 +20365,29 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.BodyRollRate != 0 {
+	{
 		const prefix string = ",\"BodyRollRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.BodyRollRate))
 	}
-	if in.BodyPitchRate != 0 {
+	{
 		const prefix string = ",\"BodyPitchRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.BodyPitchRate))
 	}
-	if in.BodyYawRate != 0 {
+	{
 		const prefix string = ",\"BodyYawRate\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.BodyYawRate))
 	}
-	if in.Thrust != 0 {
+	{
 		const prefix string = ",\"Thrust\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Thrust))
 	}
-	if in.TypeMask != 0 {
+	{
 		const prefix string = ",\"TypeMask\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.TypeMask))
 	}
 	out.RawByte('}')
@@ -26178,21 +20503,17 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if len(in.Q) != 0 {
+	{
 		const prefix string = ",\"Q\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Q == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v141, v142 := range in.Q {
 				if v141 > 0 {
@@ -26203,45 +20524,27 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.Rollspeed != 0 {
+	{
 		const prefix string = ",\"Rollspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Rollspeed))
 	}
-	if in.Pitchspeed != 0 {
+	{
 		const prefix string = ",\"Pitchspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitchspeed))
 	}
-	if in.Yawspeed != 0 {
+	{
 		const prefix string = ",\"Yawspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yawspeed))
 	}
-	if len(in.Covariance) != 0 {
+	{
 		const prefix string = ",\"Covariance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Covariance == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v143, v144 := range in.Covariance {
 				if v143 > 0 {
@@ -26327,80 +20630,44 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Q1 != 0 {
+	{
 		const prefix string = ",\"Q1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Q1))
 	}
-	if in.Q2 != 0 {
+	{
 		const prefix string = ",\"Q2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Q2))
 	}
-	if in.Q3 != 0 {
+	{
 		const prefix string = ",\"Q3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Q3))
 	}
-	if in.Q4 != 0 {
+	{
 		const prefix string = ",\"Q4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Q4))
 	}
-	if in.Rollspeed != 0 {
+	{
 		const prefix string = ",\"Rollspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Rollspeed))
 	}
-	if in.Pitchspeed != 0 {
+	{
 		const prefix string = ",\"Pitchspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitchspeed))
 	}
-	if in.Yawspeed != 0 {
+	{
 		const prefix string = ",\"Yawspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yawspeed))
 	}
 	out.RawByte('}')
@@ -26476,70 +20743,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeBootMs != 0 {
+	{
 		const prefix string = ",\"TimeBootMs\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.TimeBootMs))
 	}
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.Rollspeed != 0 {
+	{
 		const prefix string = ",\"Rollspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Rollspeed))
 	}
-	if in.Pitchspeed != 0 {
+	{
 		const prefix string = ",\"Pitchspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitchspeed))
 	}
-	if in.Yawspeed != 0 {
+	{
 		const prefix string = ",\"Yawspeed\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yawspeed))
 	}
 	out.RawByte('}')
@@ -26632,21 +20868,17 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if len(in.Q) != 0 {
+	{
 		const prefix string = ",\"Q\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Q == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v146, v147 := range in.Q {
 				if v146 > 0 {
@@ -26657,34 +20889,19 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.X != 0 {
+	{
 		const prefix string = ",\"X\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.X))
 	}
-	if in.Y != 0 {
+	{
 		const prefix string = ",\"Y\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Y))
 	}
-	if in.Z != 0 {
+	{
 		const prefix string = ",\"Z\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Z))
 	}
 	out.RawByte('}')
@@ -26758,60 +20975,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Adc1 != 0 {
+	{
 		const prefix string = ",\"Adc1\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint16(uint16(in.Adc1))
 	}
-	if in.Adc2 != 0 {
+	{
 		const prefix string = ",\"Adc2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Adc2))
 	}
-	if in.Adc3 != 0 {
+	{
 		const prefix string = ",\"Adc3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Adc3))
 	}
-	if in.Adc4 != 0 {
+	{
 		const prefix string = ",\"Adc4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Adc4))
 	}
-	if in.Adc5 != 0 {
+	{
 		const prefix string = ",\"Adc5\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Adc5))
 	}
-	if in.Adc6 != 0 {
+	{
 		const prefix string = ",\"Adc6\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Adc6))
 	}
 	out.RawByte('}')
@@ -26887,70 +21078,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if in.AltitudeMonotonic != 0 {
+	{
 		const prefix string = ",\"AltitudeMonotonic\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltitudeMonotonic))
 	}
-	if in.AltitudeAmsl != 0 {
+	{
 		const prefix string = ",\"AltitudeAmsl\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltitudeAmsl))
 	}
-	if in.AltitudeLocal != 0 {
+	{
 		const prefix string = ",\"AltitudeLocal\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltitudeLocal))
 	}
-	if in.AltitudeRelative != 0 {
+	{
 		const prefix string = ",\"AltitudeRelative\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltitudeRelative))
 	}
-	if in.AltitudeTerrain != 0 {
+	{
 		const prefix string = ",\"AltitudeTerrain\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AltitudeTerrain))
 	}
-	if in.BottomClearance != 0 {
+	{
 		const prefix string = ",\"BottomClearance\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.BottomClearance))
 	}
 	out.RawByte('}')
@@ -27036,120 +21196,64 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Vx != 0 {
+	{
 		const prefix string = ",\"Vx\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Vx))
 	}
-	if in.Vy != 0 {
+	{
 		const prefix string = ",\"Vy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vy))
 	}
-	if in.Vz != 0 {
+	{
 		const prefix string = ",\"Vz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Vz))
 	}
-	if in.DiffPressure != 0 {
+	{
 		const prefix string = ",\"DiffPressure\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.DiffPressure))
 	}
-	if in.Eas2tas != 0 {
+	{
 		const prefix string = ",\"Eas2tas\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Eas2tas))
 	}
-	if in.Ratio != 0 {
+	{
 		const prefix string = ",\"Ratio\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Ratio))
 	}
-	if in.StateX != 0 {
+	{
 		const prefix string = ",\"StateX\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.StateX))
 	}
-	if in.StateY != 0 {
+	{
 		const prefix string = ",\"StateY\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.StateY))
 	}
-	if in.StateZ != 0 {
+	{
 		const prefix string = ",\"StateZ\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.StateZ))
 	}
-	if in.Pax != 0 {
+	{
 		const prefix string = ",\"Pax\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pax))
 	}
-	if in.Pby != 0 {
+	{
 		const prefix string = ",\"Pby\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pby))
 	}
-	if in.Pcz != 0 {
+	{
 		const prefix string = ",\"Pcz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pcz))
 	}
 	out.RawByte('}')
@@ -27231,100 +21335,54 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Altitude))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lng != 0 {
+	{
 		const prefix string = ",\"Lng\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lng))
 	}
-	if in.V1 != 0 {
+	{
 		const prefix string = ",\"V1\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.V1))
 	}
-	if in.V2 != 0 {
+	{
 		const prefix string = ",\"V2\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.V2))
 	}
-	if in.V3 != 0 {
+	{
 		const prefix string = ",\"V3\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.V3))
 	}
-	if in.V4 != 0 {
+	{
 		const prefix string = ",\"V4\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.V4))
 	}
 	out.RawByte('}')
@@ -27398,60 +21456,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Roll != 0 {
+	{
 		const prefix string = ",\"Roll\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Roll))
 	}
-	if in.Pitch != 0 {
+	{
 		const prefix string = ",\"Pitch\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Pitch))
 	}
-	if in.Yaw != 0 {
+	{
 		const prefix string = ",\"Yaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Yaw))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Altitude))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lng != 0 {
+	{
 		const prefix string = ",\"Lng\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lng))
 	}
 	out.RawByte('}')
@@ -27527,70 +21559,39 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Omegaix != 0 {
+	{
 		const prefix string = ",\"Omegaix\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Float32(float32(in.Omegaix))
 	}
-	if in.Omegaiy != 0 {
+	{
 		const prefix string = ",\"Omegaiy\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Omegaiy))
 	}
-	if in.Omegaiz != 0 {
+	{
 		const prefix string = ",\"Omegaiz\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.Omegaiz))
 	}
-	if in.AccelWeight != 0 {
+	{
 		const prefix string = ",\"AccelWeight\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.AccelWeight))
 	}
-	if in.RenormVal != 0 {
+	{
 		const prefix string = ",\"RenormVal\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.RenormVal))
 	}
-	if in.ErrorRp != 0 {
+	{
 		const prefix string = ",\"ErrorRp\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ErrorRp))
 	}
-	if in.ErrorYaw != 0 {
+	{
 		const prefix string = ",\"ErrorYaw\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Float32(float32(in.ErrorYaw))
 	}
 	out.RawByte('}')
@@ -27678,130 +21679,69 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.IcaoAddress != 0 {
+	{
 		const prefix string = ",\"IcaoAddress\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.IcaoAddress))
 	}
-	if in.Lat != 0 {
+	{
 		const prefix string = ",\"Lat\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lat))
 	}
-	if in.Lon != 0 {
+	{
 		const prefix string = ",\"Lon\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Lon))
 	}
-	if in.Altitude != 0 {
+	{
 		const prefix string = ",\"Altitude\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int32(int32(in.Altitude))
 	}
-	if in.Heading != 0 {
+	{
 		const prefix string = ",\"Heading\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Heading))
 	}
-	if in.HorVelocity != 0 {
+	{
 		const prefix string = ",\"HorVelocity\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.HorVelocity))
 	}
-	if in.VerVelocity != 0 {
+	{
 		const prefix string = ",\"VerVelocity\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int16(int16(in.VerVelocity))
 	}
-	if in.Flags != 0 {
+	{
 		const prefix string = ",\"Flags\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Flags))
 	}
-	if in.Squawk != 0 {
+	{
 		const prefix string = ",\"Squawk\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint16(uint16(in.Squawk))
 	}
-	if in.AltitudeType != 0 {
+	{
 		const prefix string = ",\"AltitudeType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.AltitudeType))
 	}
-	if in.Callsign != "" {
+	{
 		const prefix string = ",\"Callsign\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.String(string(in.Callsign))
 	}
-	if in.EmitterType != 0 {
+	{
 		const prefix string = ",\"EmitterType\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.EmitterType))
 	}
-	if in.Tslc != 0 {
+	{
 		const prefix string = ",\"Tslc\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.Tslc))
 	}
 	out.RawByte('}')
@@ -27890,21 +21830,17 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.TimeUsec != 0 {
+	{
 		const prefix string = ",\"TimeUsec\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint64(uint64(in.TimeUsec))
 	}
-	if len(in.Controls) != 0 {
+	{
 		const prefix string = ",\"Controls\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
+		out.RawString(prefix)
+		if in.Controls == nil && (out.Flags&jwriter.NilSliceAsEmpty) == 0 {
+			out.RawString("null")
 		} else {
-			out.RawString(prefix)
-		}
-		{
 			out.RawByte('[')
 			for v149, v150 := range in.Controls {
 				if v149 > 0 {
@@ -27915,14 +21851,9 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsArdupilot
 			out.RawByte(']')
 		}
 	}
-	if in.GroupMlx != 0 {
+	{
 		const prefix string = ",\"GroupMlx\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.GroupMlx))
 	}
 	out.RawByte('}')

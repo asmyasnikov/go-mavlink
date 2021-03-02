@@ -511,7 +511,7 @@ func (d *Dialect) generateFile(filePath string, packageName string, commonPackag
 				PkgName:   p.PkgName,
 				Types:     p.StructNames,
 				OutName:   strings.ReplaceAll(filePath, ".go", "_easyjson.go"),
-				OmitEmpty: true,
+				OmitEmpty: false,
 			}
 			if err := g.Run(); err != nil {
 				return fmt.Errorf("JSON marshaller/unmarshaller Bootstrap failed: %v", err)

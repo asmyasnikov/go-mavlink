@@ -62,60 +62,34 @@ func easyjsonFa90ddaeEncodeGithubComAsmyasnikovGoMavlinkMavlinkDialectsMinimal(o
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.CustomMode != 0 {
+	{
 		const prefix string = ",\"CustomMode\":"
-		first = false
 		out.RawString(prefix[1:])
 		out.Uint32(uint32(in.CustomMode))
 	}
-	if in.Type != 0 {
+	{
 		const prefix string = ",\"Type\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Type))
 	}
-	if in.Autopilot != 0 {
+	{
 		const prefix string = ",\"Autopilot\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.Autopilot))
 	}
-	if in.BaseMode != 0 {
+	{
 		const prefix string = ",\"BaseMode\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.BaseMode))
 	}
-	if in.SystemStatus != 0 {
+	{
 		const prefix string = ",\"SystemStatus\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Int(int(in.SystemStatus))
 	}
-	if in.MavlinkVersion != 0 {
+	{
 		const prefix string = ",\"MavlinkVersion\":"
-		if first {
-			first = false
-			out.RawString(prefix[1:])
-		} else {
-			out.RawString(prefix)
-		}
+		out.RawString(prefix)
 		out.Uint8(uint8(in.MavlinkVersion))
 	}
 	out.RawByte('}')
