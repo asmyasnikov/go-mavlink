@@ -503,7 +503,7 @@ func (d *Dialect) generateFile(filePath string, packageName string, commonPackag
 			AllStructs: true,
 		}
 		if err := p.Parse(filePath, false); err != nil {
-			return fmt.Errorf("Error parsing %v: %v", filePath, err)
+			return fmt.Errorf("Error parsing %v: %w", filePath, err)
 		}
 		if len(p.StructNames) > 0 {
 			g := bootstrap.Generator{
@@ -514,7 +514,7 @@ func (d *Dialect) generateFile(filePath string, packageName string, commonPackag
 				OmitEmpty: false,
 			}
 			if err := g.Run(); err != nil {
-				return fmt.Errorf("JSON marshaller/unmarshaller Bootstrap failed: %v", err)
+				return fmt.Errorf("JSON marshaller/unmarshaller Bootstrap failed: %w", err)
 			}
 		}
 	}
